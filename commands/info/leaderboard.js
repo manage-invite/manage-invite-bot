@@ -59,7 +59,7 @@ class Leaderboard extends Command {
                         totalMemberCount === 2 ? "🥈" :
                         totalMemberCount === 3 ? "🥉" :
                         `**${totalMemberCount}.**`
-            lastEmbed.setDescription(`${oldDesc}\n${message.language.leaderboard.user(user, member, lb)}`);
+            lastEmbed.setDescription(`${oldDesc}\n${message.language.leaderboard.user(user, member, lb)}\n`);
             memberCount++;
         });
 
