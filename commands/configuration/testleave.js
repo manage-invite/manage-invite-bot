@@ -15,11 +15,11 @@ class TestLeave extends Command {
     async run (message, args, data) {
    
         let embed = new Discord.MessageEmbed()
-            .setTitle(":wrench: Leave system :")
-            .setDescription(`If it doesn't work, check the bot permissions or join our [support server](${this.client.config.discord})`)
-            .addField("> Enabled:", (data.guild.leave.enabled ? `${this.client.config.emojis.success} Leave messages enabled. Disable them with \`${data.guild.prefix}setleave\`.` : `${this.client.config.emojis.error} Leave messages disabled. Enable them with \`${data.guild.prefix}setleave\`.`))
-            .addField("> Message:", (data.guild.leave.message || `No message defined. Set it with \`${data.guild.prefix}setleave\`!`))
-            .addField("> Channel:", (data.guild.leave.channel ? `<#${data.guild.leave.channel}>` : `No channel defined. Set it with \`${data.guild.prefix}setleave\`!`))
+            .setTitle(message.language.testleave.title())
+            .setDescription(message.language.testleave.description())
+            .addField(message.language.testleave.fields.enabled(), (data.guild.leave.enabled ? message.language.testleave.enabled(data.guild.prefix) : message.language.testleave.disabled(data.guild.prefix)))
+            .addField(message.language.testleave.fields.message(), (data.guild.leave.message || message.language.testleave.notDefineds.message(data.guild.prefix)))
+            .addField(message.language.testleave.fields.channel(), (data.guild.leave.channel ? `<#${data.guild.leave.channel}>` : message.language.testleave.notDefineds.channel(data.guild.prefix)))
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)
             .setFooter(data.footer)

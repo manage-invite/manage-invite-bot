@@ -8,7 +8,7 @@ class Leaderboard extends Command {
             name: "leaderboard",
             enabled: true,
             aliases: [ "top", "lb" ],
-            clientPermissions: [ "EMBED_LINKS", "ADD_REACTIONS" ],
+            clientPermissions: [ "EMBED_LINKS", "ADD_REACTIONS", "MANAGE_MESSAGES" ],
             permLevel: 0
         });
     }
@@ -19,7 +19,7 @@ class Leaderboard extends Command {
 
         if(args[0] === "reset"){
             this.client.guildMembersData.delete({ guildID: message.guild.id });
-            return message.channel.send(this.client.config.emojis.success+" | Leaderboard cleared!");
+            return message.channel.send(message.language.leaderboard.cleared());
         }
 
         let members = [];
@@ -59,10 +59,7 @@ class Leaderboard extends Command {
                         totalMemberCount === 2 ? "🥈" :
                         totalMemberCount === 3 ? "🥉" :
                         `**${totalMemberCount}.**`
-            lastEmbed.setDescription(
-                `${oldDesc}\n`+
-                `${lb} **${user.username}** - **${member.calculatedInvites}** invites (**${member.invites}** regular, **${member.bonus}** bonus, **${member.fake > 0 ? `-${member.fake}` : `${member.fake}`}** fake, **${member.leaves > 0 ? `-${member.leaves}` : `${member.leaves}`}** leaves)
-            `);
+            lastEmbed.setDescription(`${oldDesc}\n${message.language.leaderboard.user(user, member, lb)}`);
             memberCount++;
         });
 
@@ -74,8 +71,8 @@ class Leaderboard extends Command {
         .setPage(1)
         .setColor(data.color)
         .setFooter(data.footer)
-        .setClientAssets({ prompt: "{{user}}, on which page would you like to go? Write `cancel` or `0` to cancel." })
-        .setTitle("Invites Leaderboard");
+        .setClientAssets({ prompt: message.language.leaderboard.prompt() })
+        .setTitle(message.language.leaderboard.title());
 
         pagination.build();
     }

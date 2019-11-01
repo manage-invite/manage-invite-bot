@@ -15,8 +15,9 @@ module.exports = class {
 
         let guildData = await this.client.findOrCreateGuild({ id: message.guild.id });
         data.guild = guildData;
+        message.language = require("../languages/"+data.guild.language);
 
-        if(message.content === `<@${this.client.user.id}>`) return message.reply("Hello ! Please type **"+data.guild.prefix+"help** to see all commands !");
+        if(message.content === `<@${this.client.user.id}>`) return message.reply(message.language.utils.prefix(data.guild.prefix));
 
         let memberData = await this.client.findOrCreateGuildMember({ id: message.author.id, guildID: message.guild.id, bot: message.author.bot });
         data.member = memberData;
@@ -46,18 +47,18 @@ module.exports = class {
             }
         });
         if(neededPermissions.length > 0) {
-            return message.channel.send(`__**${this.client.config.emojis.error} Missing permissions**__\n\nI need the following permissions for this command to work properly: ${neededPermissions.map((p) => permissions[p]).join(", ")}`);
+            return message.channel.send(message.language.errors.missingPerms(neededPermissions));
         }
 
         /* Command disabled */
         if(!cmd.conf.enabled){
-            return message.channel.send(this.client.config.emojis.error+" | This command is currently disabled!");
+            return message.channel.send(message.language.errors.disabled());
         }
 
         /* User permissions */
         const permLevel = await this.client.getLevel(message);
         if(permLevel < cmd.conf.permLevel){
-            return message.channel.send(this.client.config.emojis.error+" | This command requires the permission level: `"+this.client.permLevels[cmd.conf.permLevel].name+"` !");
+            return message.channel.send(message.language.errors.permLevel(this.client.permLevels[cmd.conf.permLevel].name));
         }
 
         this.client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, "cmd");

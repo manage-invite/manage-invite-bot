@@ -15,10 +15,10 @@ class TestDMJoin extends Command {
     async run (message, args, data) {
    
         let embed = new Discord.MessageEmbed()
-            .setTitle(":wrench: DM Join system :")
-            .setDescription(`If it doesn't work, check the bot permissions or join our [support server](${this.client.config.discord})`)
-            .addField("> Enabled:", (data.guild.joinDM.enabled ? `${this.client.config.emojis.success} Join messages in dm enabled. Disable them with \`${data.guild.prefix}setdmjoin\`.` : `${this.client.config.emojis.error} Join messages in dm disabled. Enable them with \`${data.guild.prefix}setdmjoin\`.`))
-            .addField("> Message:", (data.guild.joinDM.message || `No message defined. Set it with \`${data.guild.prefix}setdmjoin\`!`))
+            .setTitle(message.language.testdmjoin.title())
+            .setDescription(message.language.testdmjoin.description())
+            .addField(message.language.testdmjoin.fields.enabled(), (data.guild.joinDM.enabled ? message.language.testdmjoin.enabled(data.guild.prefix) : message.language.testdmjoin.disabled(data.guild.prefix)))
+            .addField(message.language.testdmjoin.fields.message(), (data.guild.joinDM.message || message.language.testdmjoin.notDefineds.message(data.guild.prefix)))
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)
             .setFooter(data.footer)

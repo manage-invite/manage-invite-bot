@@ -17,13 +17,13 @@ class SetLeave extends Command {
             data.guild.leave.enabled = true;
             data.guild.markModified("leave");
             await data.guild.save();
-            return message.channel.send(`**${this.client.config.emojis.success} | The leave system is now __ENABLED__ !**`);
+            return message.channel.send(message.language.setleave.off());
         }
         if(data.guild.leave.enabled){
             data.guild.leave.enabled = false;
             data.guild.markModified("leave");
             await data.guild.save();
-            return message.channel.send(`**${this.client.config.emojis.success} | The leave system is __DISABLED__ !**`);
+            return message.channel.send(message.language.setleave.off());
         }
     }
 };

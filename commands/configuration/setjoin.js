@@ -17,13 +17,13 @@ class SetJoin extends Command {
             data.guild.join.enabled = true;
             data.guild.markModified("join");
             await data.guild.save();
-            return message.channel.send(`**${this.client.config.emojis.success} | The join system is now __ENABLED__ !**`);
+            return message.channel.send(message.language.setjoin.on());
         }
         if(data.guild.join.enabled){
             data.guild.join.enabled = false;
             data.guild.markModified("join");
             await data.guild.save();
-            return message.channel.send(`**${this.client.config.emojis.success} | The join system is __DISABLED__ !**`);
+            return message.channel.send(message.language.setjoin.off());
         }
     }
 };

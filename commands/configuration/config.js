@@ -28,21 +28,10 @@ class Config extends Command {
         && message.guild.channels.get(data.guild.leave.channel);
 
         let embed = new Discord.MessageEmbed()
-            .setTitle(`${message.guild.name}'s configuration`)
-            .addField(`${(joinSuccess ? this.client.config.emojis.success : this.client.config.emojis.error)} Join Messages`, `
-            > Enabled: ${data.guild.join.enabled ? "**yes**" : "**no**"}
-            > Message: ${data.guild.join.message ? "**defined**" : "**not defined**."}
-            > Channel: ${!data.guild.join.channel ? "**not defined**" : (message.guild.channels.get(data.guild.join.channel) ? "**defined**" : "**channel not found**")}`,
-            true)
-            .addField(`${(leaveSuccess ? this.client.config.emojis.success : this.client.config.emojis.error)} Leave Messages`, `
-            > Enabled: ${data.guild.leave.enabled ? "**yes**" : "**no**"}
-            > Message: ${data.guild.leave.message ? "**defined**" : "**not defined**."}
-            > Channel: ${!data.guild.leave.channel ? "**not defined**" : (message.guild.channels.get(data.guild.leave.channel) ? "**defined**" : "**channel not found**")}`,
-            true)
-            .addField(`${(joinDMSuccess ? this.client.config.emojis.success : this.client.config.emojis.error)} Join DM Messages`, `
-            > Enabled: ${data.guild.joinDM.enabled ? "**yes**" : "**no**"}
-            > Message: ${data.guild.joinDM.message ? "**defined**" : "**not defined**."}`,
-            true)
+            .setTitle(message.language.config.title(message.guild.name))
+            .addField(message.language.config.join.title(joinSuccess), message.language.config.join.content(message.guild, data), true)
+            .addField(message.language.config.leave.title(leaveSuccess), message.language.config.leave.content(message.guild, data), true)
+            .addField(message.language.config.joinDM.title(joinDMSuccess), message.language.config.joinDM.content(message.guild, data), true)
             .setColor(data.color)
             .setFooter(data.footer);
         message.channel.send(embed);

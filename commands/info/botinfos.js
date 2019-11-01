@@ -31,13 +31,13 @@ class BotInfos extends Command {
         let embed = new Discord.MessageEmbed()
         .setColor(data.color)
         .setFooter(data.footer)
-        .setAuthor(this.client.user.username+"'s stats")
-        .addField("📊 Statistics", "`Servers: "+guildsCount+"`\n`Users: "+usersCount+"`" , true)
-        .addField("⚙️ Versions", "`Discord.js: v"+Discord.version+"`\n`Nodejs: v"+process.versions.node+"`" , true)
+        .setAuthor(message.language.botinfos.author(this.client.user.username))
+        .addField(message.language.botinfos.statistics.title(), message.language.botinfos.statistics.content(guildsCount, usersCount) , true)
+        .addField(message.language.botinfos.versions.title(), message.language.botinfos.versions.content(Discord.version, process.version), true)
         .addBlankField();
         results.forEach((shard) => {
-            let title = this.client.config.emojis.online+" Shard #"+(shard[2]+1) + (this.client.shard.ids.includes(shard[2]) ? " (current)" : "");
-            embed.addField(title, "`"+shard[0]+"` mb ram\n`"+shard[1]+"` servers\n`"+shard[3]+"` ms", true);
+            let title = message.language.botinfos.shard.title(shard[2]+1, this.client.shard.ids.includes(shard[2]));
+            embed.addField(title, message.language.botinfos.shard.content(shard[1], shard[3], shard[0]), true);
         });
 
         message.channel.send(embed);

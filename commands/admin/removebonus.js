@@ -15,20 +15,20 @@ class RemoveBonus extends Command {
     async run (message, args, data) {
 
         let bonus = args[0];
-        if(!bonus) return message.channel.send(this.client.config.emojis.error+" | You must write the number of bonus invites you want to remove. (Syntax: "+data.guild.prefix+"removebonus number @member)");
-        if(isNaN(bonus)) return message.channel.send(this.client.config.emojis.error+" | You must write a __**valid**__ number of bonus invites that you want to remove. (Syntax: "+data.guild.prefix+"removebonus number @member)");
+        if(!bonus) return message.channel.send(message.language.removebonus.errors.bonus.missing(data.guild.prefix));
+        if(isNaN(bonus)) return message.channel.send(message.language.removebonus.errors.bonus.incorrect(data.guild.prefix));
 
         let member = message.mentions.members.first() || await this.client.resolveMember(args.slice(1).join(" "), message.guild);
-        if(!member) return message.channel.send(this.client.config.emojis.error+" | You must mention the member to whom you want to remove the bonus invites. (Syntax: "+data.guild.prefix+"removebonus number @member)");
+        if(!member) return message.channel.send(message.language.removebonus.errors.member.missing(data.guild.prefix));
     
         let memberData = await this.client.findOrCreateGuildMember({ id: member.id, guildID: message.guild.id, bot: member.user.bot });
-        memberData.bonus += parseInt(bonus);
+        memberData.bonus -= parseInt(bonus);
         memberData.markModified("bonus");
         await memberData.save();
 
         let embed = new Discord.MessageEmbed()
-        .setAuthor("📥 Bonus Invites Removed")
-        .setDescription("Write `"+data.guild.prefix+"invites "+member.user.tag+"` to see the new number of invites of **"+member.user.username+"** !")
+        .setAuthor(message.language.removebonus.title())
+        .setDescription(message.language.removebonus.field(data.guild.prefix, member))
         .setColor(data.color)
         .setFooter(data.footer);
 

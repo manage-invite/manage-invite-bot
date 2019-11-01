@@ -14,10 +14,10 @@ class SetPrefix extends Command {
 
     async run (message, args, data) {
         let prefix = args[0];
-        if(!prefix) return message.channel.send(this.client.config.emojis.error+" | You must write a prefix!");
+        if(!prefix) return message.channel.send(message.language.setprefix.missing());
         data.guild.prefix = prefix;
         await data.guild.save();
-        message.channel.send(this.client.config.emojis.success+" | Prefix edited!");
+        message.channel.send(message.language.setprefix.success());
     }
 };
   

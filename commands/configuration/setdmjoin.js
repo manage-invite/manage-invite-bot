@@ -17,13 +17,13 @@ class SetDMJoin extends Command {
             data.guild.joinDM.enabled = true;
             data.guild.markModified("joinDM");
             await data.guild.save();
-            return message.channel.send(`**${this.client.config.emojis.success} | The DM join system is now __ENABLED__ !**`);
+            return message.channel.send(message.language.setdmjoin.on());
         }
         if(data.guild.joinDM.enabled){
             data.guild.joinDM.enabled = false;
             data.guild.markModified("joinDM");
             await data.guild.save();
-            return message.channel.send(`**${this.client.config.emojis.success} | The DM join system is __DISABLED__ !**`);
+            return message.channel.send(message.language.setdmjoin.off());
         }
     }
 };

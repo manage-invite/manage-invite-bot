@@ -15,18 +15,18 @@ class TestJoin extends Command {
     async run (message, args, data) {
    
         let embed = new Discord.MessageEmbed()
-            .setTitle(":wrench: Join system :")
-            .setDescription(`If it doesn't work, check the bot permissions or join our [support server](${this.client.config.discord})`)
-            .addField("> Enabled:", (data.guild.join.enabled ? `${this.client.config.emojis.success} Join messages enabled. Disable them with \`${data.guild.prefix}setjoin\`.` : `${this.client.config.emojis.error} Join messages disabled. Enable them with \`${data.guild.prefix}setjoin\`.`))
-            .addField("> Message:", (data.guild.join.message || `No message defined. Set it with \`${data.guild.prefix}setjoin\`!`))
-            .addField("> Channel:", (data.guild.join.channel ? `<#${data.guild.join.channel}>` : `No channel defined. Set it with \`${data.guild.prefix}setjoin\`!`))
+            .setTitle(message.language.testjoin.title())
+            .setDescription(message.language.testjoin.description())
+            .addField(message.language.testjoin.fields.enabled(), (data.guild.join.enabled ? message.language.testjoin.enabled(data.guild.prefix) : message.language.testjoin.disabled(data.guild.prefix)))
+            .addField(message.language.testjoin.fields.message(), (data.guild.join.message || message.language.testjoin.notDefineds.message(data.guild.prefix)))
+            .addField(message.language.testjoin.fields.channel(), (data.guild.join.channel ? `<#${data.guild.join.channel}>` : message.language.testjoin.notDefineds.channel(data.guild.prefix)))
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)
             .setFooter(data.footer)
             .setTimestamp()
         message.channel.send(embed);
         
-        this.client.emit("guildMemberAdd", message.member, { test: true, type: "simple", invite: {
+        this.client.emit("guilemberAdd", message.member, { test: true, type: "simple", invite: {
           inviter: { id: this.client.user.id },
           code: "436SPZX",
           url: "https://discord.gg/436SPZX",

@@ -13,7 +13,7 @@ class Support extends Command {
     }
 
     async run (message, args, data) {
-        message.channel.send(":information_source: If you have questions or you need more informations, you can join ManageInvite's Lounge:\n"+this.client.config.discord);
+        message.channel.send(message.language.support.content());
     }
 
 };
