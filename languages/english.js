@@ -14,7 +14,7 @@ module.exports = {
 
     help: {
         title: () => `ℹ ManageInvite's Help Page`,
-        description: (guildName, prefix) => `> ${guildName}'s prefix: **${prefix}**`,
+        description: (guildName, prefix) => `> ${guildName}'s prefix: **${prefix}** (\`+setprefix\`)\n> ${guildName}'s language: **English** (\`+setlang\`)`,
         // Join DM Messages
         joinDM: {
             title: () => `Join Messages in DM`,
@@ -347,6 +347,11 @@ Type \`cancel\` to abort. ${str}
         errors: {
             channelNotFound: (channel) => `${emojis.error} | No channel found for \`${channel}\``
         }
+    },
+
+    setlang: {
+        invalid: () => `${emojis.error} | You must write a valid language!\n\n:flag_fr: Français (\`fr\`)\n:flag_gb: English (\`en\`)`,
+        success: () => `${emojis.success} | Language has beed updated!`
     }
 
 };

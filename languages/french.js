@@ -14,7 +14,7 @@ module.exports = {
 
     help: {
         title: () => `ℹ Page d'aide de ManageInvite`,
-        description: (guildName, prefix) => `> Préfixe sur ${guildName} : **${prefix}**`,
+        description: (guildName, prefix) => `> Préfixe sur ${guildName} : **${prefix}** (\`+setprefix\`)\n> Langue sur ${guildName} : **Français** (\`+setlang\`)`,
         // Join DM Messages
         joinDM: {
             title: () => `Messages d'arrivées en MP`,
@@ -347,6 +347,11 @@ Tapez \`cancel\` pour annuler. ${str}
         errors: {
             channelNotFound: (channel) => `${emojis.error} | Aucun salon trouvé pour \`${channel}\``
         }
+    },
+
+    setlang: {
+        invalid: () => `${emojis.error} | Vous devez entrer une langue valide !\n\n:flag_fr: Français (\`fr\`)\n:flag_gb: English (\`en\`)`,
+        success: () => `${emojis.success} | Language mise à jour !`
     }
 
 };
