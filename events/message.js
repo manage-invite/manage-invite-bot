@@ -12,10 +12,11 @@ module.exports = class {
         const data = { color: this.client.config.color, footer: this.client.config.footer };
 
         if(!message.guild || message.author.bot) return;
-        if(message.content === `<@${this.client.user.id}>`) return message.reply("Hello ! Please type **+help** to see all commands !");
 
         let guildData = await this.client.findOrCreateGuild({ id: message.guild.id });
         data.guild = guildData;
+
+        if(message.content === `<@${this.client.user.id}>`) return message.reply("Hello ! Please type **"+data.guild.prefix+"help** to see all commands !");
 
         let memberData = await this.client.findOrCreateGuildMember({ id: message.author.id, guildID: message.guild.id, bot: message.author.bot });
         data.member = memberData;
