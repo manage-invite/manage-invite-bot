@@ -3,13 +3,13 @@ const { emojis, discord } = require("../config");
 module.exports = {
 
     utils: {
-        prefix: (prefix) => `Hello ! Please type **${prefix}help** to see all commands !`
+        prefix: (prefix) => `Hello! Please type **${prefix}help** to see all commands!`
     },
 
     errors: {
         missingPerms: (neededPermissions) => `__**${emojis.error} Missing permissions**__\n\nI need the following permissions for this command to work properly: ${neededPermissions.map((p) => "`"+p+"`").join(", ")}`,
         disabled: () => `${emojis.error} | This command is currently disabled!`,
-        permLevel: (name) => `${emojis.error} | This command requires the permission level: \`${name}\` !`
+        permLevel: (name) => `${emojis.error} | This command requires the permission level: \`${name}\`!`
     },
 
     help: {
@@ -119,7 +119,7 @@ module.exports = {
             }
         },
         title: () => `📥 Bonus Invites Added`,
-        field: (prefix, member) => `Write \`${prefix}invites ${member.user.tag}\` to see the new number of invites of **${member.user.username}** !`
+        field: (prefix, member) => `Write \`${prefix}invites ${member.user.tag}\` to see the new number of invites of **${member.user.username}**!`
     },
 
     removebonus: {
@@ -133,22 +133,22 @@ module.exports = {
             }
         },
         title: () => `📥 Bonus Invites Removed`,
-        field: (prefix, member) => `Write \`${prefix}invites ${member.user.tag}\` to see the new number of invites of **${member.user.username}** !`
+        field: (prefix, member) => `Write \`${prefix}invites ${member.user.tag}\` to see the new number of invites of **${member.user.username}**!`
     },
 
     setdmjoin: {
-        on: () => `**${emojis.success} | The DM join system is now __ENABLED__ !**`,
-        off: () => `**${emojis.success} | The DM join system is now __DISABLED__ !**`
+        on: () => `**${emojis.success} | The DM join system is now __ENABLED__!**`,
+        off: () => `**${emojis.success} | The DM join system is now __DISABLED__!**`
     },
 
     setjoin: {
-        on: () => `**${emojis.success} | The join system is now __ENABLED__ !**`,
-        off: () => `**${emojis.success} | The join system is now __DISABLED__ !**`
+        on: () => `**${emojis.success} | The join system is now __ENABLED__!**`,
+        off: () => `**${emojis.success} | The join system is now __DISABLED__!**`
     },
 
     setleave: {
-        on: () => `**${emojis.success} | The leave system is now __ENABLED__ !**`,
-        off: () => `**${emojis.success} | The leave system is now __DISABLED__ !**`
+        on: () => `**${emojis.success} | The leave system is now __ENABLED__!**`,
+        off: () => `**${emojis.success} | The leave system is now __DISABLED__!**`
     },
 
     setprefix: {
@@ -246,7 +246,7 @@ __**More informations**__
 
 {invite.code} : The invite code used.
 {invite.url} : The invite url used.
-{invite.uses} : Number of invites with the code invite used.
+{invite.uses} : Number of uses of the invite used.
 \`\`\`
 Type \`cancel\` to abort. ${str}
 
@@ -261,7 +261,7 @@ Type \`cancel\` to abort. ${str}
             cmd: (prefix) => `Use \`${prefix}testdmjoin\` to test the new message.`
         },
 
-        configdmjoin: {
+        configjoin: {
             disable: (prefix) => `Type \`${prefix}setjoin\` to disable join messages.`,
             instructs: {
                 message: (str) => `
@@ -282,7 +282,7 @@ Type \`cancel\` to abort. ${str}
     
     {invite.code} : The invite code used.
     {invite.url} : The invite url used.
-    {invite.uses} : Number of invites with the code invite used.
+    {invite.uses} : Number of uses of the invite used.
     \`\`\`
     Type \`cancel\` to abort. ${str}
     
@@ -327,7 +327,7 @@ __**More informations**__
 
 {invite.code} : The invite code used.
 {invite.url} : The invite url used.
-{invite.uses} : Number of invites with the code invite used.
+{invite.uses} : Number of uses of the invite used.
 \`\`\`
 Type \`cancel\` to abort. ${str}
 
