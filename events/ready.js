@@ -29,6 +29,9 @@ module.exports = class {
             });
         }
 
+        if(this.client.shard.ids.includes(0)){
+            this.client.dash.load(this.client);
+        }
         
         this.client.on("shardReady", (shardID) => {
             this.client.shard.broadcastEval(`

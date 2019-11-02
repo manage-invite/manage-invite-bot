@@ -16,6 +16,12 @@ module.exports = {
     addLogs:        "XXXXXXXXXXX",
     removeLogs:     "XXXXXXXXXXX",
     shardLogs:      "XXXXXXXXXXX",
+    /* Dashboard */
+    secret:         "XXXXXXXXXXX",
+    baseURL:        "XXXXXXXXXXX",
+    port:           3100,
+    pswd:           "XXXXXXXXXXX",
+    failureURL:     "https://docs.manage-invite.xyz",
     /* Other */
     mongodb:        "XXXXXXXXXXX",
     discord:        "XXXXXXXXXXX",

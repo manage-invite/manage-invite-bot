@@ -399,6 +399,66 @@ Tapez \`cancel\` pour annuler. ${str}
         },
         title: (guildName) => `🎯 Rôles récompenses`,
         formatRank: (rank, inviteCount) => `${rank} (**${inviteCount}** invitations)\n`
+    },
+
+    website: {
+        conf: {
+            title: () => `Configuration`
+        },
+        selector: {
+            title: () => `Sélecteur`,
+            manage: () => `Gérer`,
+            no: {
+                title: () => `Aucun serveur`,
+                content: () => `Aucun serveur trouvé. Veuillez vérifier que vous êtes connecté avec le bon compte !`
+            }
+        },
+        help: {
+            title: () => `Aide`,
+            doc: () => `Documentation`,
+            support: () => `Serveur support`
+        },
+        forms: {
+            buttons: {
+                enable: () => `Activer les messages`,
+                disable: () => `Désactiver les messages`,
+                update: () => `Mettre à jour les messages`
+            },
+            basic: {
+                title: () => `Configuration basique`,
+                language: () => `Langue`,
+                prefix: () => `Préfixe`,
+                update: () => `Mettre à jour`
+            },
+            join: {
+                title: () => `Messages d'arrivées`,
+                message: {
+                    title: () => `Message`,
+                    default: () => `{user} a rejoint le serveur ! Il a été invité par **{inviter.tag}** (qui a **{inviter.invites}** invitations).`
+                },
+                channel: {
+                    title: () => `Salon`
+                }
+            },
+            leave: {
+                title: () => `Messages de départs`,
+                message: {
+                    title: () => `Message`,
+                    default: () => `{user} a quitté le serveur. Il avait été invité par **{inviter.tag}** (qui a **{inviter.invites}** invitations).`
+                },
+                channel: {
+                    title: () => `Salon`
+                }
+            },
+            joinDM: {
+                title: () => `Messages d'arrivées en MP`,
+                premium: () => `Cette fonctionnalité n'est seulement disponible que pour les serveurs premium et les partenaires.`,
+                message: {
+                    title: () => `Message`,
+                    default: () => `Bienvenue {user} sur **{server} ! Tu as été invité par **{inviter.tag}**. N'oublie pas d'aller lire les règles du serveur !`
+                }
+            }
+        }
     }
 
 };

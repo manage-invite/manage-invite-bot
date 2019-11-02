@@ -399,6 +399,65 @@ Type \`cancel\` to abort. ${str}
         },
         title: (guildName) => `🎯 Roles rewards`,
         formatRank: (rank, inviteCount) => `${rank} (**${inviteCount}** invites)\n`
+    },
+
+    website: {
+        conf: {
+            title: () => `Configuration`
+        },
+        selector: {
+            title: () => `Selector`,
+            manage: () => `Manage`,
+            no: {
+                title: () => `No server`,
+                content: () => `No server found. Please check you're logged with the right account.`
+            }
+        },        help: {
+            title: () => `Help`,
+            doc: () => `Documentation`,
+            support: () => `Support server`
+        },
+        forms: {
+            buttons: {
+                enable: () => `Enable the messages`,
+                disable: () => `Disable the messages`,
+                update: () => `Update the messages`
+            },
+            basic: {
+                title: () => `Basic configuration`,
+                language: () => `Language`,
+                prefix: () => `Prefix`,
+                update: () => `Update`
+            },
+            join: {
+                title: () => `Join messages`,
+                message: {
+                    title: () => `Message`,
+                    default: () => `{user} joined the server! He was invited by **{inviter.tag}** (who has **{inviter.invites}** invites).`
+                },
+                channel: {
+                    title: () => `Channel`
+                },
+            },
+            leave: {
+                title: () => `Leave messages`,
+                message: {
+                    title: () => `Message`,
+                    default: () => `{user} left the server. He was invited by **{inviter.tag}** (who has **{inviter.invites}** invites).`
+                },
+                channel: {
+                    title: () => `Channel`
+                }
+            },
+            joinDM: {
+                title: () => `Join messages in DM`,
+                premium: () => `This feature is only available for premium servers and partners.`,
+                message: {
+                    title: () => `Message`,
+                    default: () => `Welcome {user} in **{server} ! You were invited by **{inviter.tag}**. Don't forget to read the server rules!`,
+                }
+            }
+        }
     }
 
 };
