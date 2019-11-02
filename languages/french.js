@@ -352,6 +352,43 @@ Tapez \`cancel\` pour annuler. ${str}
     setlang: {
         invalid: () => `${emojis.error} | Vous devez entrer une langue valide !\n\n:flag_fr: Français (\`fr\`)\n:flag_gb: English (\`en\`)`,
         success: () => `${emojis.success} | Language mise à jour !`
+    },
+
+    addrank: {
+        errors: {
+            inviteCount: {
+                missing: (prefix) => `${emojis.error} | Vous devez écrire le nombre d'invitations nécessaires pour obtenir le grade. (Syntaxe : ${prefix}addrank nombre @role)`,
+                incorrect: (prefix) => `${emojis.error} | Vous devez écrire un nombre __**valide**__ d'invitations nécessaires pour obtenir le grade. (Syntaxe : ${prefix}addrank nombre @role)`,
+                alreadyExists: (prefix, rank, role) => `${emojis.error} | Il y a déjà un rôle défini pour **${rank.inviteCount}** invitations (\`@${role.name}\`) ! Retirez-le avec \`${prefix}removerank ${role.id}\` puis réessayez !`
+            },
+            role: {
+                missing: (prefix) => `${emojis.error} | Vous devez mentionner le rôle que vous souhaitez ajouter quand le quota d'invitation est atteint. (Syntaxe : ${prefix}addrank nombre @role)`,
+                alreadyExists: (prefix, rank, role) => `${emojis.error} | Ce rôle est déjà utilisé comme récompense pour les **${rank.inviteCount}** invitations ! Retirez-le avec \`${prefix}removerank ${role.id}\` puis réessayez !`,
+                perm: (role) => `${emojis.error} | Mon rôle n'est pas assez haut pour ajouter le rôle \`@${role.name}\` aux membres ! Veuillez monter mon rôle puis réessayez !`
+            }
+        },
+        title: () => `🎯 Nouveau rôle ajouté`,
+        field: (prefix, role, inviteCount) => `Lorsqu'un membre atteindra les **${inviteCount}** invitations, il recevra le rôle \`@${role.name}\` !`
+    },
+
+    removerank: {
+        errors: {
+            role: {
+                missing: (prefix) => `${emojis.error} | Vous devez mentionner le rôle que vous souhaitez retirer. (Syntaxe : ${prefix}removerank @role)`,
+                doesntExist: (prefix, role) => `${emojis.error} | Ce rôle n'est pas utilisé pour les récompenses !`
+            }
+        },
+        title: () => `🎯 Rôle retiré`,
+        field: (prefix, role, inviteCount) => `Rôle retiré des récompenses. Les membres ne le recevront plus lorsqu'ils atteindront les **${inviteCount}** invitations.`
+    },
+
+    ranks: {
+        no: {
+            title: (guildName) => `🎯 Aucun rôle`,
+            description: (prefix) => `Pour ajouter un rôle récompense (ajouté lorsqu'un membre atteint un certain nombre d'invitations), tapez \`${prefix}addrank nombre @role\` !`
+        },
+        title: (guildName) => `🎯 Rôles récompenses`,
+        formatRank: (rank, inviteCount) => `${rank} (**${inviteCount}** invitations)\n`
     }
 
 };

@@ -1,0 +1,47 @@
+const Command = require("../../structures/Command.js"),
+Discord = require("discord.js"),
+stringSimilarity = require("string-similarity");
+
+class Addrank extends Command {
+    constructor (client) {
+        super(client, {
+            name: "addrank",
+            enabled: true,
+            aliases: [ "ar" ],
+            clientPermissions: [ "EMBED_LINKS", "MANAGE_ROLES" ],
+            permLevel: 2
+        });
+    }
+
+    async run (message, args, data) {
+        
+        let inviteCount = args[0];
+        if(!inviteCount) return message.channel.send(message.language.addrank.errors.inviteCount.missing(data.guild.prefix));
+        if(isNaN(inviteCount)) return message.channel.send(message.language.addrank.errors.inviteCount.incorrect(data.guild.prefix));
+        let currentRank = data.guild.ranks.find((r) => r.inviteCount === inviteCount) || {};
+        let currentRole = message.guild.roles.find((r) => r.id === currentRank.roleID);
+        if(currentRank && currentRole) return message.channel.send(message.language.addrank.errors.inviteCount.alreadyExists(data.guild.prefix, currentRank, currentRole));
+
+        let role = message.mentions.roles.first() || message.guild.roles.get(args.slice(1).join(" ")) || message.guild.roles.find((role) => role.name === args.slice(1).join(" ") || (stringSimilarity.compareTwoStrings(role.name, args.slice(1).join(" ")) > 0.85));
+        if(!role) return message.channel.send(message.language.addrank.errors.role.missing(data.guild.prefix));
+        if(role.position > message.guild.me.roles.highest.position) return message.channel.send(message.language.addrank.errors.role.perm(role));
+        currentRank = data.guild.ranks.find((r) => r.roleID === role.id);
+        if(currentRank) return message.channel.send(message.language.addrank.errors.role.alreadyExists(data.guild.prefix, role, currentRank));
+
+        data.guild.ranks.push({ roleID: role.id, inviteCount });
+        data.guild.markModified("ranks");
+        await data.guild.save();
+
+        let embed = new Discord.MessageEmbed()
+        .setAuthor(message.language.addrank.title())
+        .setDescription(message.language.addrank.field(data.guild.prefix, role, inviteCount))
+        .setColor(data.color)
+        .setFooter(data.footer);
+
+        message.channel.send(embed);
+
+    }
+
+};
+
+module.exports = Addrank;

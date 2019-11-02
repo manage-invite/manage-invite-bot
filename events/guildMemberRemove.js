@@ -18,6 +18,8 @@ module.exports = class {
         let inviterData = inviter ? await this.client.findOrCreateGuildMember({ id: inviter.id, guildID: member.guild.id, bot: inviter.bot }) : null;
         let invite = memberData.usedInvite;
 
+        console.log(inviter, invitedBy)
+
         // Update member invites
         if(inviter && !opt.test){
             if(member.guild.members.get(inviter.id)){
