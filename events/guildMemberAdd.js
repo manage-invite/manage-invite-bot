@@ -70,13 +70,15 @@ module.exports = class {
                 }
                 if(!nextRank){
                     let highestRole = guildData.ranks.sort((a,b) => b.inviteCount - a.inviteCount)[0];
-                    let highestRoleFound = member.guild.roles.get(highestRole.roleID);
-                    if(highestRole && highestRoleFound){
-                        inviterMember.roles.add(highestRoleFound);
-                        if(!guildData.stacked){
-                            let oldRoles = guildData.ranks.filter((r) => r.inviteCount < highestRole.inviteCount);
-                            let oldRolesFound = oldRoles.filter((r) => member.guild.roles.get(r.roleID));
-                            oldRoles.forEach((r) => inviterMember.roles.remove(r.roleID));
+                    if(highestRole){
+                        let highestRoleFound = member.guild.roles.get(highestRole.roleID);
+                        if(highestRole && highestRoleFound){
+                            inviterMember.roles.add(highestRoleFound);
+                            if(!guildData.stacked){
+                                let oldRoles = guildData.ranks.filter((r) => r.inviteCount < highestRole.inviteCount);
+                                let oldRolesFound = oldRoles.filter((r) => member.guild.roles.get(r.roleID));
+                                oldRoles.forEach((r) => inviterMember.roles.remove(r.roleID));
+                            }
                         }
                     }
                 }
