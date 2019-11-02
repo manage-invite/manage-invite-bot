@@ -17,8 +17,13 @@ class Help extends Command {
         let embed = new Discord.MessageEmbed()
             .setTitle(message.language.help.title())
             .setDescription(message.language.help.description(message.guild.name, data.guild.prefix))
-            .addField(message.language.help.joinDM.title(), message.language.help.joinDM.content(data.guild.prefix), true)
-            .addField(message.language.help.join.title(), message.language.help.join.content(data.guild.prefix), true)
+            .addField(message.language.help.admin.title(), message.language.help.admin.content(data.guild.prefix), false);
+
+            if(data.guild.premium){
+                embed.addField(message.language.help.joinDM.title(), message.language.help.joinDM.content(data.guild.prefix), true);
+            }
+
+            embed.addField(message.language.help.join.title(), message.language.help.join.content(data.guild.prefix), true)
             .addField(message.language.help.leave.title(), message.language.help.leave.content(data.guild.prefix), true)
             .addField(message.language.help.invites.title(), message.language.help.invites.content(data.guild.prefix), false)
             .addField(message.language.help.manageInvite.title(), message.language.help.manageInvite.content(data.guild.prefix), false)
