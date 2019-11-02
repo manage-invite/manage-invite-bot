@@ -352,6 +352,43 @@ Type \`cancel\` to abort. ${str}
     setlang: {
         invalid: () => `${emojis.error} | You must write a valid language!\n\n:flag_fr: Français (\`fr\`)\n:flag_gb: English (\`en\`)`,
         success: () => `${emojis.success} | Language has beed updated!`
+    },
+
+    addrank: {
+        errors: {
+            inviteCount: {
+                missing: (prefix) => `${emojis.error} | You must write the number of invites required to obtain the rank. (Syntax: ${prefix}addrank number @role)`,
+                incorrect: (prefix) => `${emojis.error} | You must write a __**valid**__ number of invites required to obtain the rank. (Syntax: ${prefix}addrank number @role)`,
+                alreadyExists: (prefix, rank, role) => `${emojis.error} | There is already a defined role for **${rank.inviteCount}** invites (\`@${role.name}\`)! Remove it with \`${prefix}removerank ${role.id}\` then try again!`
+            },
+            role: {
+                missing: (prefix) => `${emojis.error} | Vous devez mentionner le rôle que vous souhaitez ajouter quand le quota d'invitation est atteint. (Syntax: ${prefix}addrank number @role)`,
+                alreadyExists: (prefix, rank, role) => `${emojis.error} | This role is already used for the **${rank.inviteCount}** invites! Remove it with \`${prefix}removerank ${role.id}\` then try again!`,
+                perm: (role) => `${emojis.error} | Mon rôle n'est pas assez haut pour ajouter le rôle \`@${role.name}\` aux membres! Veuillez monter mon rôle then try again!`
+            }
+        },
+        title: () => `🎯 New role added`,
+        field: (prefix, role, inviteCount) => `When a member will reach **${inviteCount}** invites, he will obtain \`@${role.name}\`!`
+    },
+
+    removerank: {
+        errors: {
+            role: {
+                missing: (prefix) => `${emojis.error} | You must mention the role you want to remove from rewards. (Syntax: ${prefix}removerank @role)`,
+                doesntExist: (prefix, role) => `${emojis.error} | This role is not used for rewards!`
+            }
+        },
+        title: () => `🎯 Role removed`,
+        field: (prefix, role, inviteCount) => `Role removed from rewards. The members will no longer obtain it when they reach **${inviteCount}** invites.`
+    },
+
+    ranks: {
+        no: {
+            title: (guildName) => `🎯 No role`,
+            description: (prefix) => `To add a role reward (added when a member reach a certain number of invites), write \`${prefix}addrank number @role\`!`
+        },
+        title: (guildName) => `🎯 Roles rewards`,
+        formatRank: (rank, inviteCount) => `${rank} (**${inviteCount}** invites)\n`
     }
 
 };
