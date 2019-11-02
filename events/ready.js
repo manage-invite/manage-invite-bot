@@ -5,7 +5,7 @@ module.exports = class {
 
     async run () {
 
-        this.client.user.setActivity("+help | Add me | Easy to setup");
+        this.client.user.setActivity("+help | manage-invite.xyz");
 
         if(!process.argv.includes("--uncache")) await this.client.wait(1000);
         let invites = {};
