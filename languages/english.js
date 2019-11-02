@@ -15,6 +15,16 @@ module.exports = {
     help: {
         title: () => `ℹ ManageInvite's Help Page`,
         description: (guildName, prefix) => `> ${guildName}'s prefix: **${prefix}** (\`+setprefix\`)\n> ${guildName}'s language: **English** (\`+setlang\`)`,
+        // Admin
+        admin: {
+            title: () => `Admin`,
+            content: (prefix) => `
+        > **${prefix}addbonus number @user**: Add bonus invites to a member
+        > **${prefix}removebonus number @user**: Remove bonus invites to a member
+        > **${prefix}addrank number @role**: Add a reward rank
+        > **${prefix}removerank @role**: Remove a reward rank
+        > **${prefix}ranks**: List the reward ranks`
+        },
         // Join DM Messages
         joinDM: {
             title: () => `Join Messages in DM`,
