@@ -427,7 +427,7 @@ Tapez \`cancel\` pour annuler. ${str}
         },
         ranks: {
             title: () => `🎯 Rôle récompenses`,
-            no: (prefix) => `Aucun rôle récompense défini. Vous pouvez les configurer avec les commandes suivantes : <code>${prefix}addrank</code, <code>${prefix}removerank</code et <code>${prefix}ranks</code>.`,
+            no: (prefix) => `Aucun rôle récompense défini. Vous pouvez les configurer avec les commandes suivantes : ${prefix}addrank, ${prefix}removerank et ${prefix}ranks.`,
             fields: {
                 role: () => `Rôle`,
                 invites: () => `Invitations`

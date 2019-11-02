@@ -427,7 +427,7 @@ Type \`cancel\` to abort. ${str}
         },
         ranks: {
             title: () => `🎯 Role rewards`,
-            no: (prefix) => `No role rewards defined. You can configure them with the following commands: <code>${prefix}addrank</code, <code>${prefix}removerank</code and <code>${prefix}ranks</code>.`,
+            no: (prefix) => `No role rewards defined. You can configure them with the following commands:${prefix}addrank, ${prefix}removerank and ${prefix}ranks.`,
             fields: {
                 role: () => `Rôle`,
                 invites: () => `Invitations`
