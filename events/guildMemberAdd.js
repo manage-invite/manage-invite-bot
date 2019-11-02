@@ -38,7 +38,8 @@ module.exports = class {
 
         // Update member invites
         if(invite && !opt.test){
-            if(member.guild.members.get(inviter.id)){
+            let inviterMember = member.guild.members.get(inviter.id);
+            if(inviterMember){
                 if(inviterData.left.includes(member.id)){
                     inviterData.left = inviterData.left.filter((id) => id !== member.id);
                     inviterData.leaves--;
@@ -49,6 +50,35 @@ module.exports = class {
                 } else {
                     inviterData.invites++;
                     inviterData.invited.push(member.id);
+                }
+                let nextRank = null;
+                guildData.ranks.forEach((rank) => {
+                    let superior = (rank.inviteCount >= (inviterData.invites + inviterData.bonus - inviterData.leaves - inviterData.fake));
+                    let found = member.guild.roles.get(rank.roleID);
+                    let superiorFound = (rank.inviteCount < nextRank);
+                    if(superior && found && superiorFound) nextRank = rank;
+                });
+                if(nextRank){
+                    if(!guildData.stacked){
+                        let oldRoles = guildData.ranks.filter((r) => r.inviteCount < nextRank.inviteCount);
+                        let oldRolesFound = oldRoles.filter((r) => member.guild.roles.get(r.roleID));
+                        oldRolesFound.forEach((r) => inviterMember.roles.remove(r.roleID));
+                        inviterMember.roles.add(member.guild.roles.get(nextRank.roleID));
+                    } else {
+                        inviterMember.roles.add(member.guild.roles.get(nextRank.roleID));
+                    }
+                }
+                if(!nextRank){
+                    let highestRole = guildData.ranks.sort((a,b) => b.inviteCount - a.inviteCount)[0];
+                    let highestRoleFound = member.guild.roles.get(highestRole.roleID);
+                    if(highestRole && highestRoleFound){
+                        inviterMember.roles.add(highestRoleFound);
+                        if(!guildData.stacked){
+                            let oldRoles = guildData.ranks.filter((r) => r.inviteCount < highestRole.inviteCount);
+                            let oldRolesFound = oldRoles.filter((r) => member.guild.roles.get(r.roleID));
+                            oldRoles.forEach((r) => inviterMember.roles.remove(r.roleID));
+                        }
+                    }
                 }
                 await inviterData.save();
             }

@@ -10,7 +10,8 @@
     "discord.js": "github:discordjs/discord.js",
     "moment": "^2.24.0",
     "mongoose": "^5.7.7",
-    "ms": "^2.1.2"
+    "ms": "^2.1.2",
+    "string-similarity": "^3.0.0"
   },
   "devDependencies": {},
   "scripts": {

@@ -28,6 +28,9 @@ module.exports = mongoose.model("Guild", new Schema({
         enabled: false,
         message: null,
         channel: null
-    }}
+    }},
+
+    ranks: { type: Array, default: [] },
+    stacked: { type: Boolean, default: true }
 
 }));
