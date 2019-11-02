@@ -93,7 +93,7 @@ module.exports = {
     },
 
     invite: {
-        description: (member, memberData, isYou) => `${isYou ? `Vous avez` : `**${member.user.username}** a`} **${memberData.invites + memberData.bonus - memberData.leaves - memberData.fake}** invitations! (**${memberData.invites}** ordinaires, **${memberData.bonus}** bonus, **${memberData.fake > 0 ? `-${memberData.fake}` : `${memberData.fake}`}** faux, **${memberData.leaves > 0 ? `-${memberData.leaves}` : `${memberData.leaves}`}** partis)`
+        description: (member, memberData, isYou, nextRank, role) => `${isYou ? `Vous avez` : `**${member.user.username}** a`} **${memberData.invites + memberData.bonus - memberData.leaves - memberData.fake}** invitations! (**${memberData.invites}** ordinaires, **${memberData.bonus}** bonus, **${memberData.fake > 0 ? `-${memberData.fake}` : `${memberData.fake}`}** faux, **${memberData.leaves > 0 ? `-${memberData.leaves}` : `${memberData.leaves}`}** partis)${nextRank ? `\nIl vous faut encore **${nextRank.inviteCount - (memberData.invites + memberData.bonus - memberData.leaves - memberData.fake)}** invitations pour atteindre le grade **${role}** !` : ""}`
     },
 
     leaderboard: {

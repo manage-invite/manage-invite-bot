@@ -25,6 +25,16 @@ module.exports = class {
                 inviterData.left.push(member.id);
                 await inviterData.save();
             }
+            let previousRank = null;
+            guildData.ranks.forEach((rank) => {
+                let inferior = (rank.inviteCount <= (inviterData.invites + inviterData.bonus - inviterData.leaves - inviterData.fake));
+                let found = member.guild.roles.get(rank.roleID);
+                let inferiorFound = (previousRank ? rank.inviteCount > nextRank.inviteCount : true);
+                if(inferior && found && inferiorFound) previousRank = rank;
+            });
+            if(previousRank && previousRank.inviteCount === (inviterData.invites + inviterData.bonus - inviterData.leaves - inviterData.fake)){
+                inviterMember.roles.remove(member.guild.roles.get(previousRank.roleID));
+            }
         }
         
         // Remove member inviter

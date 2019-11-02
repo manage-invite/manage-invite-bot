@@ -55,10 +55,10 @@ module.exports = class {
                 guildData.ranks.forEach((rank) => {
                     let superior = (rank.inviteCount >= (inviterData.invites + inviterData.bonus - inviterData.leaves - inviterData.fake));
                     let found = member.guild.roles.get(rank.roleID);
-                    let superiorFound = (rank.inviteCount < nextRank);
+                    let superiorFound = (nextRank ? rank.inviteCount < nextRank.inviteCount : true);
                     if(superior && found && superiorFound) nextRank = rank;
                 });
-                if(nextRank){
+                if(nextRank && nextRank.inviteCount === (inviterData.invites + inviterData.bonus - inviterData.leaves - inviterData.fake)){
                     if(!guildData.stacked){
                         let oldRoles = guildData.ranks.filter((r) => r.inviteCount < nextRank.inviteCount);
                         let oldRolesFound = oldRoles.filter((r) => member.guild.roles.get(r.roleID));
