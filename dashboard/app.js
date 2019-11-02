@@ -57,6 +57,7 @@ module.exports.load = async (client) => {
     .use("/login", loginRouter)
     .use("/", mainRouter)
     .use(CheckAuth, function(req, res, next){
+        if(!req.user) return res.redirect("/login");
         res.status(404).render("404", {
             user: req.userInfos,
             language: req.language,
@@ -64,8 +65,7 @@ module.exports.load = async (client) => {
         });
     })
     .use(CheckAuth, function(err, req, res, next) {
-        console.error(err.stack);
-        if(!req.user) return res.redirect("/");
+        if(!req.user) return res.redirect("/login");
         res.status(500).render("500", {
             user: req.userInfos,
             language: req.language,

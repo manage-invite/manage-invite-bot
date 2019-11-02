@@ -31,6 +31,8 @@ module.exports = mongoose.model("Guild", new Schema({
     }},
 
     ranks: { type: Array, default: [] },
-    stacked: { type: Boolean, default: true }
+    stacked: { type: Boolean, default: true },
+
+    premium: { type: Boolean, default: false }
 
 }));

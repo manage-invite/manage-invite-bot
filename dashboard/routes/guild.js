@@ -37,7 +37,13 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
 router.post("/:serverID/:form", CheckAuth, async (req, res) => {
 
     // Check if the user has the permissions to edit this guild
-    let results = await req.client.shard.broadcastEval(` let guild = this.guilds.get('${req.params.serverID}'); if(guild) guild.toJSON() `);
+    let results = await req.client.shard.broadcastEval(`
+    let guild = this.guilds.get('${req.params.serverID}');
+    if(guild){
+        let toReturn = guild.toJSON();
+        toReturn.channels = guild.channels.toJSON();
+        toReturn;
+    }`);
     let guild = results.find((g) => g);
     if(!guild || !req.userInfos.displayedGuilds || !req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID)){
         return res.render("404", {
@@ -54,9 +60,81 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         if(data.hasOwnProperty("prefix") && data.prefix && data.prefix !== guildData.prefix){
             guildData.prefix = data.prefix;
         }
-        if(data.hasOwnProperty("language") && data.language && availableLanguages.find((l) => l.name === data.language.toLowerCase() || l.aliases.includes(l.name.toLowerCase()))){
-            let language = availableLanguages.find((l) => l.name === data.language.toLowerCase() || l.aliases.includes(l.name.toLowerCase()));
-            guildData.language = availableLanguages.find((l) => l.name === data.language.toLowerCase() || l.aliases.includes(l.name.toLowerCase())).name;
+        if(data.hasOwnProperty("language") && availableLanguages.find((l) => l.name === data.language.toLowerCase() || l.aliases.includes(data.language.toLowerCase()))){
+            let language = availableLanguages.find((l) => l.name === data.language.toLowerCase() || l.aliases.includes(data.language.toLowerCase()));
+            if(language.name !== guildData.language) guildData.language = language.name;
+        }
+    }
+
+    if(req.params.form === "joinDM"){
+        if(guildData.premium){
+            let enable = data.hasOwnProperty("enable");
+            let update = data.hasOwnProperty("update");
+            let disable = data.hasOwnProperty("disable");
+            if(enable && data.message){
+                guildData.joinDM.enabled = true;
+                guildData.joinDM.message = data.message;
+                guildData.markModified("joinDM");
+            } else if(update && data.message){
+                guildData.joinDM.enabled = true;
+                guildData.joinDM.message = data.message
+                guildData.markModified("joinDM");
+            } else if(disable){
+                guildData.joinDM.enabled = false;
+                guildData.markModified("joinDM");
+            }
+        }
+    }
+
+    if(req.params.form === "join"){
+        let enable = data.hasOwnProperty("enable");
+        let update = data.hasOwnProperty("update");
+        let disable = data.hasOwnProperty("disable");
+        if(enable && data.message && data.channel){
+            let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
+            if(channel && channel.type === "text"){
+                guildData.join.enabled = true;
+                guildData.join.message = data.message;
+                guildData.join.channel = channel.id;
+                guildData.markModified("join");
+            }
+        } else if(update && data.message && data.channel){
+            let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
+            if(channel && channel.type === "text"){
+                guildData.join.enabled = true;
+                guildData.join.message = data.message;
+                guildData.join.channel = channel.id;
+                guildData.markModified("join");
+            }
+        } else if(disable){
+            guildData.join.enabled = false;
+            guildData.markModified("join");
+        }
+    }
+
+    if(req.params.form === "leave"){
+        let enable = data.hasOwnProperty("enable");
+        let update = data.hasOwnProperty("update");
+        let disable = data.hasOwnProperty("disable");
+        if(enable && data.message && data.channel){
+            let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
+            if(channel && channel.type === "text"){
+                guildData.leave.enabled = true;
+                guildData.leave.message = data.message;
+                guildData.leave.channel = channel.id;
+                guildData.markModified("leave");
+            }
+        } else if(update && data.message && data.channel){
+            let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
+            if(channel && channel.type === "text"){
+                guildData.leave.enabled = true;
+                guildData.leave.message = data.message;
+                guildData.leave.channel = channel.id;
+                guildData.markModified("leave");
+            }
+        } else if(disable){
+            guildData.leave.enabled = false;
+            guildData.markModified("leave");
         }
     }
 

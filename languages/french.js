@@ -402,6 +402,9 @@ Tapez \`cancel\` pour annuler. ${str}
     },
 
     website: {
+        utils: {
+            members: () => `membres`
+        },
         conf: {
             title: () => `Configuration`
         },
@@ -418,6 +421,14 @@ Tapez \`cancel\` pour annuler. ${str}
             doc: () => `Documentation`,
             support: () => `Serveur support`
         },
+        ranks: {
+            title: () => `🎯 Rôle récompenses`,
+            no: (prefix) => `Aucun rôle récompense défini. Vous pouvez les configurer avec les commandes suivantes : <code>${prefix}addrank</code, <code>${prefix}removerank</code et <code>${prefix}ranks</code>.`,
+            fields: {
+                role: () => `Rôle`,
+                invites: () => `Invitations`
+            }
+        },
         forms: {
             buttons: {
                 enable: () => `Activer les messages`,
@@ -425,13 +436,13 @@ Tapez \`cancel\` pour annuler. ${str}
                 update: () => `Mettre à jour les messages`
             },
             basic: {
-                title: () => `Configuration basique`,
+                title: () => `⚙️ Configuration basique`,
                 language: () => `Langue`,
                 prefix: () => `Préfixe`,
                 update: () => `Mettre à jour`
             },
             join: {
-                title: () => `Messages d'arrivées`,
+                title: () => `🏁 Messages d'arrivées`,
                 message: {
                     title: () => `Message`,
                     default: () => `{user} a rejoint le serveur ! Il a été invité par **{inviter.tag}** (qui a **{inviter.invites}** invitations).`
@@ -441,7 +452,7 @@ Tapez \`cancel\` pour annuler. ${str}
                 }
             },
             leave: {
-                title: () => `Messages de départs`,
+                title: () => `🛫 Messages de départs`,
                 message: {
                     title: () => `Message`,
                     default: () => `{user} a quitté le serveur. Il avait été invité par **{inviter.tag}** (qui a **{inviter.invites}** invitations).`
@@ -451,8 +462,8 @@ Tapez \`cancel\` pour annuler. ${str}
                 }
             },
             joinDM: {
-                title: () => `Messages d'arrivées en MP`,
-                premium: () => `Cette fonctionnalité n'est seulement disponible que pour les serveurs premium et les partenaires.`,
+                title: () => `🔔 Messages d'arrivées en MP`,
+                premium: () => `Fonctionnalité disponible pour les serveurs premium et les partenaires.`,
                 message: {
                     title: () => `Message`,
                     default: () => `Bienvenue {user} sur **{server} ! Tu as été invité par **{inviter.tag}**. N'oublie pas d'aller lire les règles du serveur !`

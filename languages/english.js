@@ -402,6 +402,9 @@ Type \`cancel\` to abort. ${str}
     },
 
     website: {
+        utils: {
+            members: () => `members`
+        },
         conf: {
             title: () => `Configuration`
         },
@@ -412,10 +415,19 @@ Type \`cancel\` to abort. ${str}
                 title: () => `No server`,
                 content: () => `No server found. Please check you're logged with the right account.`
             }
-        },        help: {
+        },
+        help: {
             title: () => `Help`,
             doc: () => `Documentation`,
             support: () => `Support server`
+        },
+        ranks: {
+            title: () => `🎯 Role rewards`,
+            no: (prefix) => `No role rewards defined. You can configure them with the following commands: <code>${prefix}addrank</code, <code>${prefix}removerank</code and <code>${prefix}ranks</code>.`,
+            fields: {
+                role: () => `Rôle`,
+                invites: () => `Invitations`
+            }
         },
         forms: {
             buttons: {
@@ -451,7 +463,7 @@ Type \`cancel\` to abort. ${str}
             },
             joinDM: {
                 title: () => `Join messages in DM`,
-                premium: () => `This feature is only available for premium servers and partners.`,
+                premium: () => `Feature available for premium servers and partners.`,
                 message: {
                     title: () => `Message`,
                     default: () => `Welcome {user} in **{server} ! You were invited by **{inviter.tag}**. Don't forget to read the server rules!`,

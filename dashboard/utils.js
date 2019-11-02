@@ -12,6 +12,13 @@ async function fetchGuild(guildID, client){
     if(guild){
         let toReturn = guild.toJSON();
         toReturn.channels = guild.channels.toJSON();
+        toReturn.roles = guild.roles.map((r) => {
+            return {
+                name: r.name,
+                hexColor: r.hexColor,
+                id: r.id
+            };
+        });
         toReturn;
     }
     `);
