@@ -236,6 +236,10 @@ module.exports = {
         },
     },
 
+    joinDM: {
+        premium: (username) => `:crown: | Hey, **${username}** ! Cette fonctionnalité est disponible seulement pour les serveurs premium et les partenaires. Deviens premium ici: https://docs.manage-invite.xyz/premium !`
+    },
+
     configdmjoin: {
         disable: (prefix) => `Tapez \`${prefix}setdmjoin\` pour désactiver les messages d'arrivées en mp.`,
         instruct: (str) => `

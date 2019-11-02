@@ -14,6 +14,10 @@ class TestDMJoin extends Command {
 
     async run (message, args, data) {
    
+        if(!guild.premium){
+            return message.channel.send(message.language.joinDM.premium());
+        }
+        
         let embed = new Discord.MessageEmbed()
             .setTitle(message.language.testdmjoin.title())
             .setDescription(message.language.testdmjoin.description())

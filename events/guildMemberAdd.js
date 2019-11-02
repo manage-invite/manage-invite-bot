@@ -99,7 +99,7 @@ module.exports = class {
         }
 
         // DM Join messages
-        if((!opt.test || opt.type === "dm") && guildData.joinDM.enabled && guildData.joinDM.message && invite){
+        if((!opt.test || opt.type === "dm") && guildData.joinDM.enabled && guildData.joinDM.message && invite && guild.premium){
             let formattedMessage = this.client.functions.formatMessage(guildData.join.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData);
             member.send(formattedMessage);
         }

@@ -236,6 +236,10 @@ module.exports = {
         },
     },
 
+    joinDM: {
+        premium: (username) => `:crown: | Hey, **${username}**! This feature is only available for premium servers and partners. Get premium here: https://docs.manage-invite.xyz/premium!`
+    },
+
     configdmjoin: {
         disable: (prefix) => `Type \`${prefix}setdmjoin\` to disable join messages in dm.`,
         instruct: (str) => `
