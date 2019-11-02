@@ -28,6 +28,7 @@ module.exports = {
         .replace(/{user}/g, member.toString())
         .replace(/{user.name}/g, member.user.username)
         .replace(/{user.tag}/g, member.user.tag)
+        .replace(/{user.createdat}/g, moment(member.user.createdAt, "YYYYMMDD").fromNow())
         .replace(/{guild}/g, member.guild.name)
         .replace(/{guild.count}/g, member.guild.memberCount)
         .replace(/{inviter}/g, inviter.toString())
@@ -36,8 +37,7 @@ module.exports = {
         .replace(/{inviter.invites}/g, inviterData.invites + inviterData.bonus - inviterData.fake - inviterData.leaves)
         .replace(/{invite.code}/g, invite.code)
         .replace(/{invite.uses}/g, invite.uses)
-        .replace(/{invite.url}/g, invite.url)
-        .replace(/{createdat}/g, moment(member.user.createdAt, "YYYYMMDD").fromNow());
+        .replace(/{invite.url}/g, invite.url);
     }
 
 }
