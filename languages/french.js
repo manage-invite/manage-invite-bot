@@ -370,7 +370,7 @@ Tapez \`cancel\` pour annuler. ${str}
 
     setlang: {
         invalid: () => `${emojis.error} | Vous devez entrer une langue valide !\n\n:flag_fr: Français (\`fr\`)\n:flag_gb: English (\`en\`)`,
-        success: () => `${emojis.success} | Language mise à jour !`
+        success: () => `${emojis.success} | Langue mise à jour !`
     },
 
     addrank: {
