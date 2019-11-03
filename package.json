@@ -1,6 +1,6 @@
 {
   "name": "manage-invite",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "ManageInvite is the best bot to manage your server invites! Easy to setup, and compelete!",
   "main": "index.js",
   "dependencies": {
