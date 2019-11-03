@@ -38,7 +38,7 @@ module.exports = class {
                     if(superior && found && superiorFound) nextRank = rank;
                 });
                 // If the role found has a greater number of invitations than the member, then it means that the party member has passed the member below the required invitation quota. It is therefore necessary to remove the role and assign it the role below (or none if there is none).
-                if(currentRankOrPrevious.inviteCount > (inviterData.invites + inviterData.bonus - inviterData.leaves - inviterData.fake)){
+                if(currentRankOrPrevious && currentRankOrPrevious.inviteCount > (inviterData.invites + inviterData.bonus - inviterData.leaves - inviterData.fake)){
                     // Removal of the role
                     inviterMember.roles.remove(currentRankOrPrevious.roleID);
                     // Search for a potential role to add
