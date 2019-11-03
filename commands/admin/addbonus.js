@@ -16,7 +16,7 @@ class AddBonus extends Command {
 
         let bonus = args[0];
         if(!bonus) return message.channel.send(message.language.addbonus.errors.bonus.missing(data.guild.prefix));
-        if(isNaN(bonus)) return message.channel.send(message.language.addbonus.errors.bonus.incorrect(data.guild.prefix));
+        if(isNaN(bonus) || !Number.isInteger(bonus)) return message.channel.send(message.language.addbonus.errors.bonus.incorrect(data.guild.prefix));
 
         let member = message.mentions.members.first() || await this.client.resolveMember(args.slice(1).join(" "), message.guild);
         if(!member) return message.channel.send(message.language.addbonus.errors.member.missing(data.guild.prefix));
