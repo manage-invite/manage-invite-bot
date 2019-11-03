@@ -26,6 +26,8 @@ class RemoveRank extends Command {
 
         let embed = new Discord.MessageEmbed()
         .setAuthor(message.language.removerank.title())
+        .setTitle(message.language.utils.conf.title())
+        .setURL("https://dash.manage-invite.xyz")
         .setDescription(message.language.removerank.field(data.guild.prefix, role, currentRank.inviteCount))
         .setColor(data.color)
         .setFooter(data.footer);

@@ -14,8 +14,8 @@ class SetDMJoin extends Command {
 
     async run (message, args, data) {
 
-        if(!guild.premium){
-            return message.channel.send(message.language.joinDM.premium());
+        if(!data.guild.premium){
+            return message.channel.send(message.language.joinDM.premium(message.author.username));
         }
         
         if(!data.guild.joinDM.enabled){

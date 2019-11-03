@@ -26,12 +26,27 @@ class TestJoin extends Command {
             .setTimestamp()
         message.channel.send(embed);
         
-        this.client.emit("guilemberAdd", message.member, { test: true, type: "simple", invite: {
-          inviter: { id: this.client.user.id },
-          code: "436SPZX",
-          url: "https://discord.gg/436SPZX",
-          uses: 1
-        }});
+        if(data.guild.join.enabled && data.guild.join.message && data.guild.join.channel && message.guild.channels.get(data.guild.join.channel)){
+            message.guild.channels.get(data.guild.join.channel).send(this.client.functions.formatMessage(
+                data.guild.join.message,
+                message.member,
+                message.guild.me,
+                {
+                    code: "436SPZX",
+                    url: "https://discord.gg/436SPZX",
+                    uses: 1
+                },
+                (guildData.language || "english").substr(0, 2),
+                {
+                    invites: 1,
+                    fake: 0,
+                    bonus: 0,
+                    leaves: 0
+                }
+            )).catch(() => {
+                return message.channel.send(message.language.errors.sendPerm());
+            });
+        }
     }
 }
 

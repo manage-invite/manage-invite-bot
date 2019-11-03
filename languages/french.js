@@ -3,13 +3,19 @@ const { emojis, discord } = require("../config");
 module.exports = {
 
     utils: {
-        prefix: (prefix) => `Bonjour! Merci d'utilser **${prefix}help** pour voir toutes les commandes !`
+        prefix: (prefix) => `Bonjour! Merci d'utilser **${prefix}help** pour voir toutes les commandes !`,
+        viewConf: () => `[Voir la configuration sur le dashboard](https://dash.manage-invite.xyz)`,
+        conf: {
+            title: () => `Voir la configuration sur le dashboard`,
+            content: () => `[ou sur le dashboard](https://dash.manage-invite.xyz)`
+        }
     },
 
     errors: {
         missingPerms: (neededPermissions) => `__**${emojis.error} Permissions manquantes**__\n\nJ'ai besoin des permissions suivantes pour le bon fonctionnement de cette commande: ${neededPermissions.map((p) => "`"+p+"`").join(", ")}`,
         disabled: () => `${emojis.error} | Cette commande est actuellement désactivée !`,
-        permLevel: (name) => `${emojis.error} | Cette commande nécessite le niveau d'autorisation : \`${name}\`!`
+        permLevel: (name) => `${emojis.error} | Cette commande nécessite le niveau d'autorisation : \`${name}\`!`,
+        sendPerm: () => `${emojis.error} | Je n'ai pas la permission d'envoyer des messages dans ce salon !`
     },
 
     help: {
@@ -237,7 +243,7 @@ module.exports = {
     },
 
     joinDM: {
-        premium: (username) => `:crown: | Hey, **${username}** ! Cette fonctionnalité est disponible seulement pour les serveurs premium et les partenaires. Deviens premium ici: https://docs.manage-invite.xyz/premium !`
+        premium: (username) => `:crown: | Hey, **${username}** ! Cette fonctionnalité est disponible seulement pour les serveurs premium et les partenaires. Deviens premium ici: **<https://docs.manage-invite.xyz/configuration/premium>** !`
     },
 
     configdmjoin: {
@@ -406,6 +412,9 @@ Tapez \`cancel\` pour annuler. ${str}
     },
 
     website: {
+        doc: {
+            variables: () => `https://docs.manage-invite.xyz/v/francais/configuration/variables`
+        },
         utils: {
             members: () => `membres`
         },

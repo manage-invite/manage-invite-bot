@@ -3,13 +3,19 @@ const { emojis, discord } = require("../config");
 module.exports = {
 
     utils: {
-        prefix: (prefix) => `Hello! Please type **${prefix}help** to see all commands!`
+        prefix: (prefix) => `Hello! Please type **${prefix}help** to see all commands!`,
+        viewConf: () => `[View the configuration on the dashboard](https://dash.manage-invite.xyz)`,
+        conf: {
+            title: () => `View the configuration on the dashboard`,
+            content: () => `[or on the dashboard](https://dash.manage-invite.xyz)`
+        }
     },
 
     errors: {
         missingPerms: (neededPermissions) => `__**${emojis.error} Missing permissions**__\n\nI need the following permissions for this command to work properly: ${neededPermissions.map((p) => "`"+p+"`").join(", ")}`,
         disabled: () => `${emojis.error} | This command is currently disabled!`,
-        permLevel: (name) => `${emojis.error} | This command requires the permission level: \`${name}\`!`
+        permLevel: (name) => `${emojis.error} | This command requires the permission level: \`${name}\`!`,
+        sendPerm: () => `${emojis.error} | I don't have the permission to send messages in this channel.`
     },
 
     help: {
@@ -237,7 +243,7 @@ module.exports = {
     },
 
     joinDM: {
-        premium: (username) => `:crown: | Hey, **${username}**! This feature is only available for premium servers and partners. Get premium here: https://docs.manage-invite.xyz/premium!`
+        premium: (username) => `:crown: | Hey, **${username}**! This feature is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`
     },
 
     configdmjoin: {
@@ -406,6 +412,9 @@ Type \`cancel\` to abort. ${str}
     },
 
     website: {
+        doc: {
+            variables: () => `https://docs.manage-invite.xyz/configuration/variables`
+        },
         utils: {
             members: () => `members`
         },
