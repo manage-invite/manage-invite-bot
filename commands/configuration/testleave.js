@@ -26,12 +26,27 @@ class TestLeave extends Command {
             .setTimestamp()
         message.channel.send(embed);
         
-        this.client.emit("guildMemberRemove", message.member, { test: true, invite: {
-          inviter: { id: this.client.user.id },
-          code: "436SPZX",
-          url: "https://discord.gg/436SPZX",
-          uses: 1
-        }});
+        if(data.guild.leave.enabled && data.guild.leave.message && data.guild.leave.channel && message.guild.channels.get(data.guild.leave.channel)){
+            message.guild.channels.get(data.guild.leave.channel).send(this.client.functions.formatMessage(
+                data.guild.leave.message,
+                message.member,
+                message.guild.me,
+                {
+                    code: "436SPZX",
+                    url: "https://discord.gg/436SPZX",
+                    uses: 1
+                },
+                (guildData.language || "english").substr(0, 2),
+                {
+                    invites: 1,
+                    fake: 0,
+                    bonus: 0,
+                    leaves: 0
+                }
+            )).catch(() => {
+                return message.channel.send(message.language.errors.sendPerm());
+            });
+        }
     }
 }
 

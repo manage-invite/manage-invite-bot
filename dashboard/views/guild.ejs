@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<%- include includes/head %>
+
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+
+  <%- include includes/header %>
+
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+    <div class="container">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          <%= language.website.conf.title() %>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="/selector"><i class="fa fa-home"></i><%= language.website.selector.title() %></a></li>
+          <li><a href="/manage/<%= guild.id %>"><i class="fa fa-edit"></i><%= guild.name %></a></li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Widget: user widget style 2 -->
+            <div class="card card-widget widget-user-2">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header bg-yellow">
+                      <div class="widget-user-image">
+                        <img class="img-circle elevation-2" src="<%= guild.iconURL %>" alt="User Avatar">
+                      </div>
+                      <!-- /.widget-user-image -->
+                      <h3 class="widget-user-username"><%= guild.name %></h3>
+                      <h5 class="widget-user-desc"><%= guild.memberCount + " " + language.website.utils.members() %></h5>
+                    </div>
+                  </div>
+                  <!-- /.widget-user -->
+                <!-- BASIC CONFIGURATION -->
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><%= language.website.forms.basic.title() %></h3>
+                    </div>
+                    <form role="form" action="/manage/<%= guild.id %>/basic" method="POST">
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label><%= language.website.forms.basic.prefix() %></label>
+                                <input type="text" name="prefix" class="form-control" placeholder="<%= guild.prefix %>">
+                            </div>
+                            <!-- select -->
+                            <div class="form-group">
+                                <label><%= language.website.forms.basic.language() %></label>
+                                <select class="form-control" name="language">
+                                    <% if(guild.language === "french"){ %>
+                                        <option selected="selected">Français</option>
+                                        <option>English</options>
+                                    <% } else { %>
+                                    <option>Français</option>
+                                    <option selected="selected">English</options>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary"><%= language.website.forms.basic.update() %></button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box -->
+                <!-- JOIN DM CONFIGURATION -->
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                    <h3 class="box-title"><%= language.website.forms.joinDM.title() %></h3>
+                    <a target="_blank" href="<%= language.website.doc.variables() %>">
+                        <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
+                    </a>
+                    </div>
+                    <form role="form" action="/manage/<%= guild.id %>/joinDM" method="POST">
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label><%= language.website.forms.joinDM.message.title() %></label>
+                                <div class="tooltip-wrapper" data-title="<%= language.website.forms.joinDM.premium() %>">
+                                    <% if(guild.premium){ %>
+                                        <textarea rows="3" name="message" class="form-control"><%= guild.joinDM.message || language.website.forms.joinDM.message.default() %></textarea>
+                                    <% } else { %>
+                                        <textarea rows="3" name="message" class="form-control premiumInfo" disabled><%= guild.joinDM.message || language.website.forms.joinDM.message.default() %></textarea>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <% if(guild.premium){ %>
+                                <% if(guild.joinDM.enabled){ %>
+                                    <button type="submit" name="disable" class="btn btn-danger"><%= language.website.forms.buttons.disable() %></button>
+                                    <button type="submit" name="update" class="btn btn-primary pull-right"><%= language.website.forms.buttons.update() %></button>
+                                <% } else { %>
+                                    <button type="submit" name="enable" class="btn btn-success"><%= language.website.forms.buttons.enable() %></button>
+                                <% } %>
+                            <% } else { %>
+                                <div class="alert alert-warning" role="alert">
+                                    <%= language.website.forms.joinDM.premium() %>
+                                </div>
+                            <% } %>
+                        </div>
+                    </form>
+                </div>
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><%= language.website.ranks.title() %></h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <% if(guild.ranks.length < 1){ %>
+                            <p><%= language.website.ranks.no(guild.prefix) %></p>
+                        <% } else { %>
+                            <table class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th><%= language.website.ranks.fields.role() %></th>
+                                        <th style="width: 40px"><%= language.website.ranks.fields.invites() %></th>
+                                        </tr>
+                                    <tr>
+                                <% guild.ranks.filter((rank) => guild.roles.find((r) => r.id === rank.roleID)).sort((a,b) => b.inviteCount - a.inviteCount).forEach((rank, index) => { %>
+                                    <tr>
+                                        <td><%= ++index %>.</td>
+                                        <td><font color="<%= guild.roles.find((r) => r.id === rank.roleID).hexColor %>"><strong>@<%= guild.roles.find((r) => r.id === rank.roleID).name %></strong></font></td>
+                                        <td><span class="badge bg-red"><%= rank.inviteCount %></span></td>
+                                    </tr>
+                                <% }); %>
+                            </table>
+                        <% } %>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+            <div class="col-md-6">
+                <!-- JOIN CONFIGURATION -->
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><%= language.website.forms.join.title() %></h3>
+                        <a target="_blank" href="<%= language.website.doc.variables() %>">
+                            <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
+                        </a>
+                    <form role="form" action="/manage/<%= guild.id %>/join" method="POST">
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label><%= language.website.forms.join.message.title() %></label>
+                                <textarea rows="3" name="message" class="form-control" required><%= guild.join.message || language.website.forms.join.message.default() %></textarea>
+                            </div>
+                            <!-- select -->
+                            <div class="form-group">
+                                <label><%= language.website.forms.join.channel.title() %></label>
+                                <select class="form-control" name="channel">
+                                    <% if(guild.join.enabled){ %>
+                                        <option selected="selected">#<%= (guild.channels.find((ch) => ch.id === guild.join.channel)).name %></option>
+                                        <% guild.channels.filter((ch) => ch.id !== guild.join.channel && ch.type === "text").forEach((ch) => { %>
+                                            <option>#<%= ch.name %></option>
+                                        <% }); } else { %>
+                                        <option selected="selected">#<%= guild.channels.filter((ch) => ch.type === "text")[0].name %></option>
+                                        <% guild.channels.filter((ch) => ch.id !== guild.channels[0].id && ch.type === "text").forEach((ch) => { %>
+                                            <option>#<%= ch.name %></option>
+                                        <% }); %>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <% if(guild.join.enabled){ %>
+                                <button type="submit" name="disable" class="btn btn-danger"><%= language.website.forms.buttons.disable() %></button>
+                                <button type="submit" name="update" class="btn btn-primary pull-right"><%= language.website.forms.buttons.update() %></button>
+                            <% } else { %>
+                                <button type="submit" name="enable" class="btn btn-success"><%= language.website.forms.buttons.enable() %></button>
+                            <% } %>
+                        </div>
+                    </form>
+                </div>
+                <!-- LEAVE CONFIGURATION -->
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                    <h3 class="box-title"><%= language.website.forms.leave.title() %></h3>
+                    <a target="_blank" href="<%= language.website.doc.variables() %>">
+                        <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
+                    </a>
+                    <form role="form" action="/manage/<%= guild.id %>/leave" method="POST">
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label><%= language.website.forms.leave.message.title() %></label>
+                                <textarea rows="3" name="message" class="form-control" required><%= guild.leave.message || language.website.forms.leave.message.default() %></textarea>
+                            </div>
+                            <!-- select -->
+                            <div class="form-group">
+                                <label><%= language.website.forms.leave.channel.title() %></label>
+                                <select class="form-control" name="channel">
+                                    <% if(guild.leave.enabled){ %>
+                                        <option selected="selected">#<%= (guild.channels.find((ch) => ch.id === guild.leave.channel)).name %></option>
+                                        <% guild.channels.filter((ch) => ch.id !== guild.leave.channel && ch.type === "text").forEach((ch) => { %>
+                                            <option>#<%= ch.name %></option>
+                                        <% }); } else { %>
+                                        <option selected="selected">#<%= guild.channels.filter((ch) => ch.type === "text")[0].name %></option>
+                                        <% guild.channels.filter((ch) => ch.id !== guild.channels[0].id && ch.type === "text").forEach((ch) => { %>
+                                            <option>#<%= ch.name %></option>
+                                        <% }); %>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <% if(guild.leave.enabled){ %>
+                                <button type="submit" name="disable" class="btn btn-danger"><%= language.website.forms.buttons.disable() %></button>
+                                <button type="submit" name="update" class="btn btn-primary pull-right"><%= language.website.forms.buttons.update() %></button>
+                            <% } else { %>
+                                <button type="submit" name="enable" class="btn btn-success"><%= language.website.forms.buttons.enable() %></button>
+                            <% } %>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <div>
+      </section>
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <%- include includes/footer %>
+
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

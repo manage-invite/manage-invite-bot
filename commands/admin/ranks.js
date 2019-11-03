@@ -26,7 +26,7 @@ class Ranks extends Command {
             return message.channel.send(embed);
         }
 
-        let description = "";
+        let description = message.language.utils.viewConf()+"\n\n";
         ranks.forEach((rank) => {
             let role = message.guild.roles.get(rank.roleID);
             if(!role) return;

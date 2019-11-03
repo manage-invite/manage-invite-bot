@@ -24,6 +24,8 @@ class ManageInvite extends Client {
         // Databases
         this.guildMembersData = require("../structures/GuildMember"); // Used to store fake invites, bonus, etc...
         this.guildsData = require("../structures/Guild"); // Used to store prefixes, languages, join messages, etc...
+        // Dashboard
+        this.dash = require("../dashboard/app");
     }
 
     // This function is used to load a command and add it to the collection

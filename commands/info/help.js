@@ -27,7 +27,7 @@ class Help extends Command {
             .addField(message.language.help.leave.title(), message.language.help.leave.content(data.guild.prefix), true)
             .addField(message.language.help.invites.title(), message.language.help.invites.content(data.guild.prefix), false)
             .addField(message.language.help.manageInvite.title(), message.language.help.manageInvite.content(data.guild.prefix), false)
-            .addField(message.language.help.tip(data.guild.prefix), message.language.help.links(this.client.user.id))
+            .addField(message.language.help.tip(data.guild.prefix), message.language.utils.conf.content()+"\n\n"+message.language.help.links(this.client.user.id))
             .setThumbnail(message.author.displayAvatarURL())
             .setColor(data.color);
 

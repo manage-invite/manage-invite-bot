@@ -3,13 +3,19 @@ const { emojis, discord } = require("../config");
 module.exports = {
 
     utils: {
-        prefix: (prefix) => `Hello! Please type **${prefix}help** to see all commands!`
+        prefix: (prefix) => `Hello! Please type **${prefix}help** to see all commands!`,
+        viewConf: () => `[View the configuration on the dashboard](https://dash.manage-invite.xyz)`,
+        conf: {
+            title: () => `View the configuration on the dashboard`,
+            content: () => `[or on the dashboard](https://dash.manage-invite.xyz)`
+        }
     },
 
     errors: {
         missingPerms: (neededPermissions) => `__**${emojis.error} Missing permissions**__\n\nI need the following permissions for this command to work properly: ${neededPermissions.map((p) => "`"+p+"`").join(", ")}`,
         disabled: () => `${emojis.error} | This command is currently disabled!`,
-        permLevel: (name) => `${emojis.error} | This command requires the permission level: \`${name}\`!`
+        permLevel: (name) => `${emojis.error} | This command requires the permission level: \`${name}\`!`,
+        sendPerm: () => `${emojis.error} | I don't have the permission to send messages in this channel.`
     },
 
     help: {
@@ -93,7 +99,7 @@ module.exports = {
     },
 
     invite: {
-        description: (member, memberData, isYou) => `${isYou ? `You have` : `**${member.user.username}** has`} **${memberData.invites + memberData.bonus - memberData.leaves - memberData.fake}** invites! (**${memberData.invites}** regular, **${memberData.bonus}** bonus, **${memberData.fake > 0 ? `-${memberData.fake}` : `${memberData.fake}`}** fake, **${memberData.leaves > 0 ? `-${memberData.leaves}` : `${memberData.leaves}`}** leaves)`
+        description: (member, memberData, isYou, nextRank, role) => `${isYou ? `You have` : `**${member.user.username}** has`} **${memberData.invites + memberData.bonus - memberData.leaves - memberData.fake}** invites! (**${memberData.invites}** regular, **${memberData.bonus}** bonus, **${memberData.fake > 0 ? `-${memberData.fake}` : `${memberData.fake}`}** fake, **${memberData.leaves > 0 ? `-${memberData.leaves}` : `${memberData.leaves}`}** leaves)${nextRank ? `\nYou need **${nextRank.inviteCount - (memberData.invites + memberData.bonus - memberData.leaves - memberData.fake)}** more invites to get the next rank: **${role}**!` : ""}`
     },
 
     leaderboard: {
@@ -234,6 +240,10 @@ module.exports = {
             > Enabled: ${data.guild.joinDM.enabled ? "**yes**" : "**no**"}
             > Message: ${data.guild.joinDM.message ? "**defined**" : "**not defined**."}`
         },
+    },
+
+    joinDM: {
+        premium: (username) => `:crown: | Hey, **${username}**! This feature is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`
     },
 
     configdmjoin: {
@@ -399,6 +409,80 @@ Type \`cancel\` to abort. ${str}
         },
         title: (guildName) => `🎯 Roles rewards`,
         formatRank: (rank, inviteCount) => `${rank} (**${inviteCount}** invites)\n`
+    },
+
+    website: {
+        doc: {
+            variables: () => `https://docs.manage-invite.xyz/configuration/variables`
+        },
+        utils: {
+            members: () => `members`
+        },
+        conf: {
+            title: () => `Configuration`
+        },
+        selector: {
+            title: () => `Selector`,
+            manage: () => `Manage`,
+            no: {
+                title: () => `No server`,
+                content: () => `No server found. Please check you're logged with the right account.`
+            }
+        },
+        help: {
+            title: () => `Help`,
+            doc: () => `Documentation`,
+            support: () => `Support server`
+        },
+        ranks: {
+            title: () => `🎯 Role rewards`,
+            no: (prefix) => `No role rewards defined. You can configure them with the following commands:${prefix}addrank, ${prefix}removerank and ${prefix}ranks.`,
+            fields: {
+                role: () => `Rôle`,
+                invites: () => `Invitations`
+            }
+        },
+        forms: {
+            buttons: {
+                enable: () => `Enable the messages`,
+                disable: () => `Disable the messages`,
+                update: () => `Update the messages`
+            },
+            basic: {
+                title: () => `Basic configuration`,
+                language: () => `Language`,
+                prefix: () => `Prefix`,
+                update: () => `Update`
+            },
+            join: {
+                title: () => `Join messages`,
+                message: {
+                    title: () => `Message`,
+                    default: () => `{user} joined the server! He was invited by **{inviter.tag}** (who has **{inviter.invites}** invites).`
+                },
+                channel: {
+                    title: () => `Channel`
+                },
+            },
+            leave: {
+                title: () => `Leave messages`,
+                message: {
+                    title: () => `Message`,
+                    default: () => `{user} left the server. He was invited by **{inviter.tag}** (who has **{inviter.invites}** invites).`
+                },
+                channel: {
+                    title: () => `Channel`
+                }
+            },
+            joinDM: {
+                title: () => `Join messages in DM`,
+                premium: () => `Feature available for premium servers and partners.`,
+                message: {
+                    title: () => `Message`,
+                    default: () => `Welcome {user} in **{server} ! You were invited by **{inviter.tag}**. Don't forget to read the server rules!`,
+                }
+            }
+        }
     }
 
 };

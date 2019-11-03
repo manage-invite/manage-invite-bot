@@ -26,7 +26,7 @@ class Addrank extends Command {
         if(!role) return message.channel.send(message.language.addrank.errors.role.missing(data.guild.prefix));
         if(role.position > message.guild.me.roles.highest.position) return message.channel.send(message.language.addrank.errors.role.perm(role));
         currentRank = data.guild.ranks.find((r) => r.roleID === role.id);
-        if(currentRank) return message.channel.send(message.language.addrank.errors.role.alreadyExists(data.guild.prefix, role, currentRank));
+        if(currentRank) return message.channel.send(message.language.addrank.errors.role.alreadyExists(data.guild.prefix, currentRank, role));
 
         data.guild.ranks.push({ roleID: role.id, inviteCount });
         data.guild.markModified("ranks");
@@ -34,6 +34,8 @@ class Addrank extends Command {
 
         let embed = new Discord.MessageEmbed()
         .setAuthor(message.language.addrank.title())
+        .setTitle(message.language.utils.conf.title())
+        .setURL("https://dash.manage-invite.xyz")
         .setDescription(message.language.addrank.field(data.guild.prefix, role, inviteCount))
         .setColor(data.color)
         .setFooter(data.footer);

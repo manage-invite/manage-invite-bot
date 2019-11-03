@@ -3,13 +3,19 @@ const { emojis, discord } = require("../config");
 module.exports = {
 
     utils: {
-        prefix: (prefix) => `Bonjour! Merci d'utilser **${prefix}help** pour voir toutes les commandes !`
+        prefix: (prefix) => `Bonjour! Merci d'utilser **${prefix}help** pour voir toutes les commandes !`,
+        viewConf: () => `[Voir la configuration sur le dashboard](https://dash.manage-invite.xyz)`,
+        conf: {
+            title: () => `Voir la configuration sur le dashboard`,
+            content: () => `[ou sur le dashboard](https://dash.manage-invite.xyz)`
+        }
     },
 
     errors: {
         missingPerms: (neededPermissions) => `__**${emojis.error} Permissions manquantes**__\n\nJ'ai besoin des permissions suivantes pour le bon fonctionnement de cette commande: ${neededPermissions.map((p) => "`"+p+"`").join(", ")}`,
         disabled: () => `${emojis.error} | Cette commande est actuellement désactivée !`,
-        permLevel: (name) => `${emojis.error} | Cette commande nécessite le niveau d'autorisation : \`${name}\`!`
+        permLevel: (name) => `${emojis.error} | Cette commande nécessite le niveau d'autorisation : \`${name}\`!`,
+        sendPerm: () => `${emojis.error} | Je n'ai pas la permission d'envoyer des messages dans ce salon !`
     },
 
     help: {
@@ -93,7 +99,7 @@ module.exports = {
     },
 
     invite: {
-        description: (member, memberData, isYou) => `${isYou ? `Vous avez` : `**${member.user.username}** a`} **${memberData.invites + memberData.bonus - memberData.leaves - memberData.fake}** invitations! (**${memberData.invites}** ordinaires, **${memberData.bonus}** bonus, **${memberData.fake > 0 ? `-${memberData.fake}` : `${memberData.fake}`}** faux, **${memberData.leaves > 0 ? `-${memberData.leaves}` : `${memberData.leaves}`}** partis)`
+        description: (member, memberData, isYou, nextRank, role) => `${isYou ? `Vous avez` : `**${member.user.username}** a`} **${memberData.invites + memberData.bonus - memberData.leaves - memberData.fake}** invitations! (**${memberData.invites}** ordinaires, **${memberData.bonus}** bonus, **${memberData.fake > 0 ? `-${memberData.fake}` : `${memberData.fake}`}** faux, **${memberData.leaves > 0 ? `-${memberData.leaves}` : `${memberData.leaves}`}** partis)${nextRank ? `\nIl vous faut encore **${nextRank.inviteCount - (memberData.invites + memberData.bonus - memberData.leaves - memberData.fake)}** invitations pour atteindre le grade **${role}** !` : ""}`
     },
 
     leaderboard: {
@@ -234,6 +240,10 @@ module.exports = {
             > Activés: ${data.guild.joinDM.enabled ? "**oui**" : "**non**"}
             > Message: ${data.guild.joinDM.message ? "**défini**" : "**non défini**."}`
         },
+    },
+
+    joinDM: {
+        premium: (username) => `:crown: | Hey, **${username}** ! Cette fonctionnalité est disponible seulement pour les serveurs premium et les partenaires. Deviens premium ici: **<https://docs.manage-invite.xyz/configuration/premium>** !`
     },
 
     configdmjoin: {
@@ -398,6 +408,80 @@ Tapez \`cancel\` pour annuler. ${str}
         },
         title: (guildName) => `🎯 Rôles récompenses`,
         formatRank: (rank, inviteCount) => `${rank} (**${inviteCount}** invitations)\n`
+    },
+
+    website: {
+        doc: {
+            variables: () => `https://docs.manage-invite.xyz/v/francais/configuration/variables`
+        },
+        utils: {
+            members: () => `membres`
+        },
+        conf: {
+            title: () => `Configuration`
+        },
+        selector: {
+            title: () => `Sélecteur`,
+            manage: () => `Gérer`,
+            no: {
+                title: () => `Aucun serveur`,
+                content: () => `Aucun serveur trouvé. Veuillez vérifier que vous êtes connecté avec le bon compte !`
+            }
+        },
+        help: {
+            title: () => `Aide`,
+            doc: () => `Documentation`,
+            support: () => `Serveur support`
+        },
+        ranks: {
+            title: () => `🎯 Rôle récompenses`,
+            no: (prefix) => `Aucun rôle récompense défini. Vous pouvez les configurer avec les commandes suivantes : ${prefix}addrank, ${prefix}removerank et ${prefix}ranks.`,
+            fields: {
+                role: () => `Rôle`,
+                invites: () => `Invitations`
+            }
+        },
+        forms: {
+            buttons: {
+                enable: () => `Activer les messages`,
+                disable: () => `Désactiver les messages`,
+                update: () => `Mettre à jour les messages`
+            },
+            basic: {
+                title: () => `⚙️ Configuration basique`,
+                language: () => `Langue`,
+                prefix: () => `Préfixe`,
+                update: () => `Mettre à jour`
+            },
+            join: {
+                title: () => `🏁 Messages d'arrivées`,
+                message: {
+                    title: () => `Message`,
+                    default: () => `{user} a rejoint le serveur ! Il a été invité par **{inviter.tag}** (qui a **{inviter.invites}** invitations).`
+                },
+                channel: {
+                    title: () => `Salon`
+                }
+            },
+            leave: {
+                title: () => `🛫 Messages de départs`,
+                message: {
+                    title: () => `Message`,
+                    default: () => `{user} a quitté le serveur. Il avait été invité par **{inviter.tag}** (qui a **{inviter.invites}** invitations).`
+                },
+                channel: {
+                    title: () => `Salon`
+                }
+            },
+            joinDM: {
+                title: () => `🔔 Messages d'arrivées en MP`,
+                premium: () => `Fonctionnalité disponible pour les serveurs premium et les partenaires.`,
+                message: {
+                    title: () => `Message`,
+                    default: () => `Bienvenue {user} sur **{server} ! Tu as été invité par **{inviter.tag}**. N'oublie pas d'aller lire les règles du serveur !`
+                }
+            }
+        }
     }
 
 };
