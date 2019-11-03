@@ -28,7 +28,6 @@ class TestDMJoin extends Command {
             .setFooter(data.footer)
             .setTimestamp()
         message.channel.send(embed);
-        
 
         if(data.guild.joinDM.enabled && data.guild.joinDM.message){
             message.author.send(this.client.functions.formatMessage(
@@ -40,7 +39,7 @@ class TestDMJoin extends Command {
                     url: "https://discord.gg/436SPZX",
                     uses: 1
                 },
-                (guildData.language || "english").substr(0, 2),
+                (data.guild.language || "english").substr(0, 2),
                 {
                     invites: 1,
                     fake: 0,
