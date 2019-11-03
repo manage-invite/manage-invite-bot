@@ -271,49 +271,49 @@ Type \`cancel\` to abort. ${str}
             cmd: (prefix) => `Use \`${prefix}testdmjoin\` to test the new message.`
         },
 
-        configjoin: {
-            disable: (prefix) => `Type \`${prefix}setjoin\` to disable join messages.`,
-            instructs: {
-                message: (str) => `
-    __**More informations**__
-    \`\`\`
-    {user} : The mention of the member that just joined your server.
-    {user.name} : The name of the member that just joined your server.
-    {user.tag} : The tag of the member that just joined your server.
-    {user.createdat} : The account age of the member.
-    
-    {guild} : Name of the server.
-    {guild.count} : Number of members your server has now.
-    
-    {inviter} : The mention of the inviter.
-    {inviter.name} : The name of the inviter.
-    {inviter.tag} : The tag of the inviter.
-    {inviter.invites} : The total inviter's invites count.
-    
-    {invite.code} : The invite code used.
-    {invite.url} : The invite url used.
-    {invite.uses} : Number of uses of the invite used.
-    \`\`\`
-    Type \`cancel\` to abort. ${str}
-    
-    
-    :pencil: **| Now write the join message... :pencil2:**`,
-                channel: () => `:scroll: **| Now write the join channel name or mention it... :pencil2:**`
-            },
-            cancelled: () => `:x: Cancelled.`,
-            success: () => `✅ **| Done successfully...**`,
-            title: () => `**Done The join Msg Has Been Setup**`,
-            fields: {
-                message: () => `Message:`,
-                channel: () => `Channel:`,
-                testIt: () => `Test it:`,
-                cmd: (prefix) => `Use \`${prefix}testjoin\` to test the new message.`
-            },
-            errors: {
-                channelNotFound: (channel) => `${emojis.error} | No channel found for \`${channel}\``
-            }
-        },
+    },
 
+    configjoin: {
+        disable: (prefix) => `Type \`${prefix}setjoin\` to disable join messages.`,
+        instructs: {
+            message: (str) => `
+__**More informations**__
+\`\`\`
+{user} : The mention of the member that just joined your server.
+{user.name} : The name of the member that just joined your server.
+{user.tag} : The tag of the member that just joined your server.
+{user.createdat} : The account age of the member.
+
+{guild} : Name of the server.
+{guild.count} : Number of members your server has now.
+
+{inviter} : The mention of the inviter.
+{inviter.name} : The name of the inviter.
+{inviter.tag} : The tag of the inviter.
+{inviter.invites} : The total inviter's invites count.
+
+{invite.code} : The invite code used.
+{invite.url} : The invite url used.
+{invite.uses} : Number of uses of the invite used.
+\`\`\`
+Type \`cancel\` to abort. ${str}
+
+
+:pencil: **| Now write the join message... :pencil2:**`,
+            channel: () => `:scroll: **| Now write the join channel name or mention it... :pencil2:**`
+        },
+        cancelled: () => `:x: Cancelled.`,
+        success: () => `✅ **| Done successfully...**`,
+        title: () => `**Done The join Msg Has Been Setup**`,
+        fields: {
+            message: () => `Message:`,
+            channel: () => `Channel:`,
+            testIt: () => `Test it:`,
+            cmd: (prefix) => `Use \`${prefix}testjoin\` to test the new message.`
+        },
+        errors: {
+            channelNotFound: (channel) => `${emojis.error} | No channel found for \`${channel}\``
+        }
     },
 
     configleave: {

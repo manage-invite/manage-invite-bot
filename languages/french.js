@@ -270,11 +270,12 @@ Tapez \`cancel\` pour annuler. ${str}
             testIt: () => `Testez-le:`,
             cmd: (prefix) => `Utilisez \`${prefix}testdmjoin\` pour tester le nouveau message.`
         },
+    },
 
-        configjoin: {
-            disable: (prefix) => `Utilisez \`${prefix}setjoin\` pour désactiver les messages d'arrivées.`,
-            instructs: {
-                message: (str) => `
+    configjoin: {
+        disable: (prefix) => `Utilisez \`${prefix}setjoin\` pour désactiver les messages d'arrivées.`,
+        instructs: {
+            message: (str) => `
 __**Plus d'informations**__
 \`\`\`
 {user} : Mentionne le membre qui vient de rejoindre votre serveur.
@@ -298,22 +299,20 @@ Tapez \`cancel\` pour annuler. ${str}
 
 
 :pencil: **| Écrivez maintenant le message d'arrivées... :pencil2:**`,
-                channel: () => `:scroll: **| Maintenant écrivez le nom du salon des messages d'arrivées ou mentionnez-le... :pencil2:**`
-            },
-            cancelled: () => `${emojis.error} | Annulé.`,
-            success: () => `${emojis.success} **| Réalisé avec succès...**`,
-            title: () => `**Le Msg d'Arrivées a été mis en place**`,
-            fields: {
-                message: () => `Message:`,
-                channel: () => `Salon:`,
-                testIt: () => `Testez-le:`,
-                cmd: (prefix) => `Utilisez \`${prefix}testjoin\` pour tester le nouveau message.`
-            },
-            errors: {
-                channelNotFound: (channel) => `${emojis.error} | Aucun salon trouvé pour \`${channel}\``
-            }
+            channel: () => `:scroll: **| Maintenant écrivez le nom du salon des messages d'arrivées ou mentionnez-le... :pencil2:**`
         },
-
+        cancelled: () => `${emojis.error} | Annulé.`,
+        success: () => `${emojis.success} **| Réalisé avec succès...**`,
+        title: () => `**Le Msg d'Arrivées a été mis en place**`,
+        fields: {
+            message: () => `Message:`,
+            channel: () => `Salon:`,
+            testIt: () => `Testez-le:`,
+            cmd: (prefix) => `Utilisez \`${prefix}testjoin\` pour tester le nouveau message.`
+        },
+        errors: {
+            channelNotFound: (channel) => `${emojis.error} | Aucun salon trouvé pour \`${channel}\``
+        }
     },
 
     configleave: {
