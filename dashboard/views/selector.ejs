@@ -24,6 +24,12 @@
 
       <!-- Main content -->
       <section class="content">
+				<% if(!member){ %>
+					<div class="callout callout-warning">
+						<h4>Hey, <strong><%= user.username %></strong></h4>
+						<p>Looks like you're not on our support server. Join it by clicking <a target="_blank" href="<%= discord %>">here</a>!</p>
+					</div>
+				<% } %>
           <% if(user.displayedGuilds){ user.displayedGuilds.forEach(function(guild) { %>
 						<!-- Displays 4 servers by line -->
 						<div class="col-md-3">

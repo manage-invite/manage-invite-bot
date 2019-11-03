@@ -78,6 +78,9 @@
                 <div class="box box-danger">
                     <div class="box-header with-border">
                     <h3 class="box-title"><%= language.website.forms.joinDM.title() %></h3>
+                    <a target="_blank" href="<%= language.website.doc.variables() %>">
+                        <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
+                    </a>
                     </div>
                     <form role="form" action="/manage/<%= guild.id %>/joinDM" method="POST">
                         <!-- /.box-header -->
@@ -145,8 +148,9 @@
                 <div class="box box-danger">
                     <div class="box-header with-border">
                         <h3 class="box-title"><%= language.website.forms.join.title() %></h3>
-                        <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
-                    </div>
+                        <a target="_blank" href="<%= language.website.doc.variables() %>">
+                            <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
+                        </a>
                     <form role="form" action="/manage/<%= guild.id %>/join" method="POST">
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -187,7 +191,9 @@
                 <div class="box box-danger">
                     <div class="box-header with-border">
                     <h3 class="box-title"><%= language.website.forms.leave.title() %></h3>
-                    </div>
+                    <a target="_blank" href="<%= language.website.doc.variables() %>">
+                        <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
+                    </a>
                     <form role="form" action="/manage/<%= guild.id %>/leave" method="POST">
                         <!-- /.box-header -->
                         <div class="box-body">

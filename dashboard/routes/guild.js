@@ -17,7 +17,9 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
         return res.render("404", {
             user: req.userInfos,
             language: req.language,
-            currentURL: `${req.client.config.baseURL}/${req.originalUrl}`
+            currentURL: `${req.client.config.baseURL}/${req.originalUrl}`,
+            member: req.member,
+            discord: req.client.config.discord
         });
     }
 
@@ -29,7 +31,9 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
         user: req.userInfos,
         language: req.language,
         client: req.client,
-        currentURL: `${req.client.config.baseURL}/${req.originalUrl}`
+        currentURL: `${req.client.config.baseURL}/${req.originalUrl}`,
+        member: req.member,
+        discord: req.client.config.discord
     });
 
 });
@@ -49,7 +53,9 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         return res.render("404", {
             user: req.userInfos,
             language: req.language,
-            currentURL: `${req.client.config.baseURL}/${req.originalUrl}`
+            currentURL: `${req.client.config.baseURL}/${req.originalUrl}`,
+            member: req.member,
+            discord: req.client.config.discord
         });
     }
     
