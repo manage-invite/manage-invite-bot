@@ -6,7 +6,7 @@ class Invite extends Command {
         super(client, {
             name: "invite",
             enabled: true,
-            aliases: [ "invites" ],
+            aliases: [ "invites", "rank" ],
             clientPermissions: [ "EMBED_LINKS" ],
             permLevel: 0
         });
