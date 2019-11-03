@@ -182,7 +182,7 @@ module.exports = {
         enabled: (prefix) => `${emojis.success} Messages d'arrivées en mp activés. Désactivez-les avec \`${prefix}setdmjoin\`.`,
         disabled: (prefix) =>  `${emojis.error} Messages d'arrivées en mp désactivés Activez-les avec \`${prefix}setdmjoin\`.`,
         notDefineds: {
-            message: (prefix) => `Aucun message défini. Définissez-le avec \`${prefix}setdmjoin\`!`
+            message: (prefix) => `Aucun message défini. Définissez-le avec \`${prefix}configdm\`!`
         }
     },
 
@@ -197,8 +197,8 @@ module.exports = {
         enabled: (prefix) => `${emojis.success} Messages d'arrivées activés. Désactivez-les avec \`${prefix}setjoin\`.`,
         disabled: (prefix) =>  `${emojis.error} Messages d'arrivées désactivés. Activez-les avec \`${prefix}setjoin\`.`,
         notDefineds: {
-            message: (prefix) => `Aucun message défini. Définissez-le avec \`${prefix}setjoin\`!`,
-            channel: (prefix) => `Aucun salon défini. Définissez-le avec \`${prefix}setjoin\`!`
+            message: (prefix) => `Aucun message défini. Définissez-le avec \`${prefix}configjoin\`!`,
+            channel: (prefix) => `Aucun salon défini. Définissez-le avec \`${prefix}configjoin\`!`
         }
     },
 
@@ -213,8 +213,8 @@ module.exports = {
         enabled: (prefix) => `${emojis.success} Messages de départs activés. Désactivez-les avec \`${prefix}setleave\`.`,
         disabled: (prefix) =>  `${emojis.error} Messages de départs désactivés. Activez-les avec \`${prefix}setleave\`.`,
         notDefineds: {
-            message: (prefix) => `Aucun message défini. Définissez-le avec \`${prefix}setleave\`!`,
-            channel: (prefix) => `Aucun salon défini. Définissez-le avec \`${prefix}setleave\`!`
+            message: (prefix) => `Aucun message défini. Définissez-le avec \`${prefix}configleave\`!`,
+            channel: (prefix) => `Aucun salon défini. Définissez-le avec \`${prefix}configleave\`!`
         }
     },
 

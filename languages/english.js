@@ -182,7 +182,7 @@ module.exports = {
         enabled: (prefix) => `${emojis.success} Join messages in dm enabled. Disable them with \`${prefix}setdmjoin\`.`,
         disabled: (prefix) =>  `${emojis.error} Join messages in dm disabled. Enable them with \`${prefix}setdmjoin\`.`,
         notDefineds: {
-            message: (prefix) => `No message defined. Set it with \`${prefix}setdmjoin\`!`
+            message: (prefix) => `No message defined. Set it with \`${prefix}configdm\`!`
         }
     },
 
@@ -197,8 +197,8 @@ module.exports = {
         enabled: (prefix) => `${emojis.success} Join messages enabled. Disable them with \`${prefix}setjoin\`.`,
         disabled: (prefix) =>  `${emojis.error} Join messages disabled. Enable them with \`${prefix}setjoin\`.`,
         notDefineds: {
-            message: (prefix) => `No message defined. Set it with \`${prefix}setjoin\`!`,
-            channel: (prefix) => `No channel defined. Set it with \`${prefix}setjoin\`!`
+            message: (prefix) => `No message defined. Set it with \`${prefix}configjoin\`!`,
+            channel: (prefix) => `No channel defined. Set it with \`${prefix}configjoin\`!`
         }
     },
 
@@ -213,8 +213,8 @@ module.exports = {
         enabled: (prefix) => `${emojis.success} Leave messages enabled. Disable them with \`${prefix}setleave\`.`,
         disabled: (prefix) =>  `${emojis.error} Leave messages disabled. Enable them with \`${prefix}setleave\`.`,
         notDefineds: {
-            message: (prefix) => `No message defined. Set it with \`${prefix}setleave\`!`,
-            channel: (prefix) => `No channel defined. Set it with \`${prefix}setleave\`!`
+            message: (prefix) => `No message defined. Set it with \`${prefix}configleave\`!`,
+            channel: (prefix) => `No channel defined. Set it with \`${prefix}configleave\`!`
         }
     },
 
