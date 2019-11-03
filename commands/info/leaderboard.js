@@ -23,7 +23,7 @@ class Leaderboard extends Command {
         }
 
         let members = [];
-        membersData.filter((m) => !m.bot).forEach((member) => {
+        membersData.forEach((member) => {
             members.push({
                 calculatedInvites: (member.invites + member.bonus - member.leaves - member.fake),
                 fake: member.fake,
