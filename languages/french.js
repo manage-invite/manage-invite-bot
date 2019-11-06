@@ -482,6 +482,35 @@ Tapez \`cancel\` pour annuler. ${str}
                 }
             }
         }
+    },
+
+    removeinvites: {
+        loading: {
+            all: (prefix) => `${emojis.loading} | Suppression des invitations du serveur en cours... Vous pourrez les restaurer avec la commande \`${prefix}restore-invites\` !`,
+            member: (prefix, member) => `${emojis.loading} | Suppression des invitations de **${member.user.tag}** en cours... Vous pourrez les restaurer grâce à la commande \`${prefix}restore-invites ${member.user.tag}\` !`
+        },
+        title: () => `☄️ Invitations réinitialisées`,
+        titles: {
+            all: (prefix) => `${emojis.success} | Invitations du serveur réinitalisées ! Vous pouvez les restaurer grâce la commande \`${prefix}restore-invites\` !`,
+            member: (prefix, member) => `${emojis.success} | Invitations de **${member.user.tag}** réinitalisées ! Vous pouvez les restaurer grâce à la commande \`${prefix}restore-invites ${member.user.tag}\` !`
+        }
+    },
+
+    restoreinvites: {
+        confirmations: {
+            all: (prefix, memberCount) => `${emojis.warn} | Êtes-vous sur de vouloir restaurer les invitations du serveur ? Tous les membres récupèreront les invitations qu'ils avaient avant la dernière fois que la commande \`${prefix}remove-invites\` a été tapée (ou 0 si la commande n'a jamais été tapée).\n\n:information_source: **Aperçu des invitations**:\nIl sera restauré, au total: **${memberCount.invites}** ordinaires, **${memberCount.bonus}** bonus, **${memberCount.leaves}** partis, **${memberCount.fake}** fake.\n\n${emojis.success} Tapez \`-confirm\` pour confirmer.\n${emojis.error} Tapez \`cancel\` pour annuler.`,
+            member: (prefix, member) => `${emojis.warn} | Êtes-vous sur de vouloir restaurer les invitations de **${member.user.tag}** ? Il récupèrera les invitations qu'il avait avant la dernière fois que la commande \`${prefix}remove-invites\` a été tapée (ou 0 si la commande n'a jamais été tapée).\n\n:information_source: **Aperçu des invitations**:\nIl sera restauré: **${member.data.invites}** ordinaires, **${member.data.bonus}** bonus, **${member.data.leaves}** partis, **${member.data.fake}** fake.\n\n${emojis.success} Tapez \`-confirm\` pour confirmer.\n${emojis.error} Tapez \`cancel\` pour annuler.`,
+            cancelled: () => `${emojis.error} Annulé.`
+        },
+        loading: {
+            all: (prefix) => `${emojis.loading} | Restauration des invitations du serveur en cours...`,
+            member: (prefix, member) => `${emojis.loading} | Restauration des invitations de **${member.user.tag}** en cours...`
+        },
+        title: () => `☄️ Invitations restaurées`,
+        titles: {
+            all: (prefix) => `${emojis.success} | Invitations du serveur restaurées !`,
+            member: (prefix, member) => `${emojis.success} | Invitations de **${member.user.tag}** restaurées !`
+        }
     }
 
 };

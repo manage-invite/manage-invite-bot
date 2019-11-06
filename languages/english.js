@@ -483,6 +483,35 @@ Type \`cancel\` to abort. ${str}
                 }
             }
         }
+    },
+
+    removeinvites: {
+        loading: {
+            all: (prefix) => `${emojis.loading} | Deleting invitations from the current server.... You can restore them with the command \`${prefix}restore-invites\`!`,
+            member: (prefix, member) => `${emojis.loading} | Deleting current invitations of **${member.user.tag}**... You can restore them with the command \`${prefix}restore-invites ${member.user.tag}\` !`
+        },
+        title: () => `☄️ Invitations reinitalized`,
+        titles: {
+            all: (prefix) => `${emojis.success} | Server invitations reinitialized! You can restore them with the command \`${prefix}restore-invites\`!`,
+            member: (prefix, member) => `${emojis.success} | Invitations of **${member.user.tag}** reinitialized! You can restore them with the command \`${prefix}restore-invites ${member.user.tag}\`!`
+        }
+    },
+
+    restoreinvites: {
+        confirmations: {
+            all: (prefix) => `${emojis.warn} | Are you sure you want to restore the server invitations? All members will retrieve the invitations they had before the last time the command \`${prefix}remove-invite\` was typed (or 0 if the command was never typed).\n\n:information_source: **Invitations overview**:\nIt will be restored, in total: **${memberCount.invites}** regulars, **${memberCount.bonus}** bonus, **${memberCount.leaves}** leaves, **${memberCount.fake}** fake.\n\n${emojis.success} Type \`-confirm\` to confirm.\n${emojis.error} Type \`cancel\` to abort.`,
+            member: (prefix, member) => `${emojis.warn} | Are you sure you want to restore the invitations of **${member.user.tag}**? He will retrieve the invitations he had before the last time the command \`${prefix}remove-invites\` was typed (or 0 if the command was never typed).\n\n:information_source: **Invitations overview**:\nIt will be restored: **${member.data.invites}** regulars, **${member.data.bonus}** bonus, **${member.data.leaves}** leaves, **${member.data.fake}** fake.\n\n${emojis.success} Type \`-confirm\` to confirm.\n${emojis.error} Type \`cancel\` to abort.`,
+            cancelled: () => `${emojis.error} Cancelled.`
+        },
+        loading: {
+            all: (prefix) => `${emojis.loading} | Restoring server invitations....`,
+            member: (prefix, member) => `${emojis.loading} | Restoring invitations of **${member.user.tag}**...`
+        },
+        title: () => `☄️ Invitations restored`,
+        titles: {
+            all: (prefix) => `${emojis.success} | Server invitations restored!`,
+            member: (prefix, member) => `${emojis.success} | Invitations of **${member.user.tag}** restored!`
+        }
     }
 
 };

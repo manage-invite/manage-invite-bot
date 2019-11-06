@@ -14,6 +14,13 @@ module.exports = mongoose.model("GuildMember", new Schema({
     leaves: { type: Number, default: 0 },
     invites: { type: Number, default: 0 },
 
+    /* OLD STATS (restore command) */
+    old_fake : { type: Number, default: 0 },
+    old_bonus: { type: Number, default: 0 },
+    old_leaves: { type: Number, default: 0 },
+    old_invites: { type: Number, default: 0 },
+    backuped: { type: Boolean, default: false },
+
     /* INVITES DATA */
     invited: { type: Array, default: [] },
     left: { type: Array, default: [] },

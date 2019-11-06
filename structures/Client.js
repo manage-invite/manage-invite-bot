@@ -104,7 +104,7 @@ class ManageInvite extends Client {
             if(member) return member;
         }
         // Try username search
-        if(search.match(/^!?(\w+)#(\d+)$/)){
+        if(search.match(/^!?([^#]+)#(\d+)$/)){
             guild = await guild.fetch();
             member = guild.members.find((m) => m.user.tag === search);
             if(member) return member;
@@ -117,15 +117,15 @@ class ManageInvite extends Client {
         let user = null;
         if(!search || typeof search !== "string") return;
         // Try ID search
-        if(search.match(/^<@!?(\d+)>$/)){
-            let id = search.match(/^<@!?(\d+)>$/)[1];
+        if(search.match(/^!?([^#]+)#(\d+)$/)){
+            let id = search.match(/^!?([^#]+)#(\d+)$/)[1];
             user = this.users.fetch(id).catch((err) => {});
             if(user) return user;
         }
         // Try username search
-        if(search.match(/^!?(\w+)#(\d+)$/)){
-            let username = search.match(/^!?(\w+)#(\d+)$/)[0];
-            let discriminator = search.match(/^!?(\w+)#(\d+)$/)[1];
+        if(search.match(/^!?([^#]+)#(\d+)$/)){
+            let username = search.match(/^!?([^#]+)#(\d+)$/)[0];
+            let discriminator = search.match(/^!?([^#]+)#(\d+)$/)[1];
             user = this.users.find((u) => u.username === username && u.discriminator === discriminator);
             if(user) return user;
         }
