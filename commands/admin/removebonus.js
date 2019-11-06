@@ -6,7 +6,7 @@ class RemoveBonus extends Command {
         super(client, {
             name: "removebonus",
             enabled: true,
-            aliases: [ "delbonus", "removebonus", "removeinvites", "removeinvite" ],
+            aliases: [ "delbonus", "removebonus" ],
             clientPermissions: [ "EMBED_LINKS" ],
             permLevel: 2
         });
@@ -16,7 +16,7 @@ class RemoveBonus extends Command {
 
         let bonus = args[0];
         if(!bonus) return message.channel.send(message.language.removebonus.errors.bonus.missing(data.guild.prefix));
-        if(isNaN(bonus) || parseInt(bonus) < 1 || !Number.isInteger(bonus)) return message.channel.send(message.language.removebonus.errors.bonus.incorrect(data.guild.prefix));
+        if(isNaN(bonus) || parseInt(bonus) < 1 || !Number.isInteger(parseInt(bonus))) return message.channel.send(message.language.removebonus.errors.bonus.incorrect(data.guild.prefix));
 
         let member = message.mentions.members.first() || await this.client.resolveMember(args.slice(1).join(" "), message.guild);
         if(!member) return message.channel.send(message.language.removebonus.errors.member.missing(data.guild.prefix));

@@ -17,7 +17,7 @@ class Addrank extends Command {
         
         let inviteCount = args[0];
         if(!inviteCount) return message.channel.send(message.language.addrank.errors.inviteCount.missing(data.guild.prefix));
-        if(isNaN(inviteCount) || parseInt(inviteCount) < 1 || !Number.isInteger(inviteCount)) return message.channel.send(message.language.addrank.errors.inviteCount.incorrect(data.guild.prefix));
+        if(isNaN(inviteCount) || parseInt(inviteCount) < 1 || !Number.isInteger(parseInt(inviteCount))) return message.channel.send(message.language.addrank.errors.inviteCount.incorrect(data.guild.prefix));
         let currentRank = data.guild.ranks.find((r) => r.inviteCount === inviteCount) || {};
         let currentRole = message.guild.roles.find((r) => r.id === currentRank.roleID);
         if(currentRank && currentRole) return message.channel.send(message.language.addrank.errors.inviteCount.alreadyExists(data.guild.prefix, currentRank, currentRole));
