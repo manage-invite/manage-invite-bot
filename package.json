@@ -1,8 +1,8 @@
 {
   "name": "manage-invite",
   "version": "2.0.0",
-  "description": "ManageInvite is the best bot to manage your server invites! Easy to setup, and compelete!",
-  "main": "index.js",
+  "description": "ManageInvite is the best bot to manage your server invites! Easy to setup, and complete!",
+  "main": "sharder.js",
   "dependencies": {
     "chalk": "^2.4.2",
     "discord-backup": "^1.1.2",
