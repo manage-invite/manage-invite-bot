@@ -15,6 +15,11 @@ class Reload extends Command {
 
     async run (message, args, data) {
         let command = args[0];
+        if(command === "l"){
+            delete require.cache[require.resolve("../../languages/english.js")];
+            delete require.cache[require.resolve("../../languages/french.js")];
+            return message.channel.send(this.client.config.emojis.success+" | Languages reloaded!");
+        }
         let cmd = this.client.commands.get(command) || this.client.commands.get(this.client.aliases.get(command));
         if(!cmd){
             message.channel.send(this.client.config.emojis.error+" | Cannot find command `"+command+"`!");
