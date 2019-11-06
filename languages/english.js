@@ -2,6 +2,8 @@ const { emojis, discord } = require("../config");
 
 module.exports = {
 
+    locale: "en_US",
+
     utils: {
         prefix: (prefix) => `Hello! Please type **${prefix}help** to see all commands!`,
         viewConf: () => `[View the configuration on the dashboard](https://dash.manage-invite.xyz)`,

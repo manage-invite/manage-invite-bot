@@ -21,10 +21,24 @@
             </li>
             </ul>
         </div>
+
         <!-- /.navbar-collapse -->
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+            <li class="dropdown language-selector">
+                <% if(language.locale === "en_US"){ %>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">English</a>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a class="dropdown-item" href="/language?new=fr_FR&url=<%= currentURL %>"><span>Français</span></a></li>
+                    </ul>
+                <% } else if(language.locale === "fr_FR") { %>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">Français</a>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a class="dropdown-item" href="/language?new=en_US&url=<%= currentURL %>"><span>English</span></a></li>
+                    </ul>
+                <% } %>
+            </li>
             <!-- User Account Menu -->
             <li class="dropdown user user-menu">
                 <!-- Menu Toggle Button -->
