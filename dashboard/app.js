@@ -18,13 +18,10 @@ module.exports.load = async (client) => {
     path = require("path"),
     app = express();
 
-    const passport = require("passport");
-    const { Strategy } = require("passport-discord");
-
     /* Routers */
     const mainRouter = require("./routes/index"),
     guildManager = require("./routes/guild"),
-    loginRouter = require("./routes/login");
+    apiRouter = require("./routes/discord");
 
     /* App configuration */
     app
@@ -42,12 +39,10 @@ module.exports.load = async (client) => {
     .set("port", config.port)
     // Set the express session password and configuration
     .use(session({ secret: config.pswd, resave: false, saveUninitialized: false }))
-    // Passport (for discord authentication)
-    .use(passport.initialize())
-    .use(passport.session())
     // Multi languages support
     .use(async function(req, res, next){
         req.client = client;
+        req.user = req.session.user;
         let userLang = req.user ? req.user.locale : "en";
         req.language = require("../languages/"+(availableLanguages.find((l) => l.name === userLang || l.aliases.includes(userLang)) || { name: "english" }).name);
         if(req.user && req.url !== "/") req.userInfos = await utils.fetchUser(req.user, req.client);
@@ -65,7 +60,7 @@ module.exports.load = async (client) => {
         next();
     })
     .use("/manage", guildManager)
-    .use("/login", loginRouter)
+    .use("/api", apiRouter)
     .use("/", mainRouter)
     .use(CheckAuth, function(req, res, next){
         if(!req.user) return res.redirect("/login");
@@ -89,24 +84,4 @@ module.exports.load = async (client) => {
         console.log("ManageInvite dashboard is listening on port "+app.get("port"));
     });
 
-    // Passport is used for discord authentication
-    passport.serializeUser((user, done) => {
-        done(null, user);
-    });
-    passport.deserializeUser((obj, done) => {
-        done(null, obj);
-    });
-
-    let disStrat = new Strategy({
-        clientID:       client.user.id,
-        clientSecret:   config.secret,
-        callbackURL:    config.baseURL+"/login",
-        scope:          [ "identify", "guilds" ]
-    }, function (accessToken, refreshToken, profile, done){
-        process.nextTick(function(){
-            return done(null, profile);
-        });
-    });
-
-    passport.use(disStrat);
 };

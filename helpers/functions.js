@@ -38,6 +38,14 @@ module.exports = {
         .replace(/{invite.code}/g, invite.code)
         .replace(/{invite.uses}/g, invite.uses)
         .replace(/{invite.url}/g, invite.url);
+    },
+
+    /**
+     * Generate a random ID (used for states)
+     * @returns {string} The generated ID
+     */
+    randomID(){
+        return Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);
     }
 
 }
