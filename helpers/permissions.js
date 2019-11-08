@@ -17,7 +17,7 @@ module.exports = [
     {
         level: 3,
         name: "Owner",
-        check: (message) => (message.guild ? message.author.id === message.guild.owner.user.id : false),
+        check: (message) => (message.guild ? message.author.id === (message.guild.owner || { user: { id: null }}).user.id : false),
     },
     {
         level: 4,
