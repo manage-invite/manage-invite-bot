@@ -7,7 +7,9 @@ module.exports = {
         online:     "XXXXXXXXXXX",
         dnd:        "XXXXXXXXXXX",
         offline:    "XXXXXXXXXXX",
-        idle:       "XXXXXXXXXXX"
+        idle:       "XXXXXXXXXXX",
+        loading:    "XXXXXXXXXXX",
+        warn:       "XXXXXXXXXXX"
     },
     /* Embeds */
     color:          "XXXXXXXXXXX",
