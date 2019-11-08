@@ -21,4 +21,9 @@ router.get("/language", CheckAuth, async(req, res) => {
     res.redirect(req.query.url || "/selector");
 });
 
+router.get("/logout", (req, res) => {
+    req.session.destroy();
+    return res.redirect("https://docs.manage-invite.xyz");
+});
+
 module.exports = router;
