@@ -22,16 +22,24 @@ module.exports = {
 
     help: {
         title: () => `ℹ ManageInvite's Help Page`,
-        description: (guildName, prefix) => `> ${guildName}'s prefix: **${prefix}** (\`+setprefix\`)\n> ${guildName}'s language: **English** (\`+setlang\`)`,
+        description: (guildName, prefix) => `> ${guildName}'s prefix: **${prefix}** (\`${prefix}setprefix\`)\n> ${guildName}'s language: **English** (\`${prefix}setlang\`)`,
         // Admin
         admin: {
             title: () => `Admin`,
             content: (prefix) => `
         > **${prefix}addbonus number @user**: Add bonus invites to a member
         > **${prefix}removebonus number @user**: Remove bonus invites to a member
-        > **${prefix}addrank number @role**: Add a reward rank
-        > **${prefix}removerank @role**: Remove a reward rank
-        > **${prefix}ranks**: List the reward ranks`
+        > 
+        > **${prefix}removeinvites (@user)**: Remove (server/user) invites
+        > **${prefix}restoreinvites (@user)**: Restore (server/user) invites`
+        },
+        // Ranks
+        ranks: {
+            title: () => `Ranks reward`,
+            content: (prefix) => `
+        > **${prefix}addrank number @role**: Add a rank reward
+        > **${prefix}removerank @role**: Remove a rank reward
+        > **${prefix}ranks**: List the ranks reward`
         },
         // Join DM Messages
         joinDM: {

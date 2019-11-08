@@ -22,13 +22,21 @@ module.exports = {
 
     help: {
         title: () => `ℹ Page d'aide de ManageInvite`,
-        description: (guildName, prefix) => `> Préfixe sur ${guildName} : **${prefix}** (\`+setprefix\`)\n> Langue sur ${guildName} : **Français** (\`+setlang\`)`,
+        description: (guildName, prefix) => `> Préfixe sur ${guildName} : **${prefix}** (\`${prefix}setprefix\`)\n> Langue sur ${guildName} : **Français** (\`${prefix}setlang\`)`,
         // Admin
         admin: {
             title: () => `Admin`,
             content: (prefix) => `
         > **${prefix}addbonus nombre @user**: Ajoute des invitations bonus à un membre
         > **${prefix}removebonus nombre @user**: Retire des invitations bonus à un membre
+        > 
+        > **${prefix}removeinvites (@user)**: Supprime les invitations (serveur/membre)
+        > **${prefix}restoreinvites (@user)**: Restaure les invitations (serveur/membre)`
+        },
+        // Ranks
+        ranks: {
+            title: () => `Rôle récompenses`,
+            content: (prefix) => `
         > **${prefix}addrank nombre @role**: Ajoute un rôle récompense
         > **${prefix}removerank @role**: Retire un rôle récompense
         > **${prefix}ranks**: Liste des rôles récompenses`
