@@ -15,16 +15,16 @@ class RestoreInvites extends Command {
     async run (message, args, data) {
 
         let member = args[0] ? await this.client.resolveMember(args.join(" "), message.guild) : null;
-        if(member) member.data = await this.client.findOrCreateMember({ id: member.id, guildID: message.guild.id });
+        if(member) member.data = await this.client.findOrCreateGuildMember({ id: member.id, guildID: message.guild.id });
         let members = null;
         let memberCount = { invites: 0, leaves: 0, fake: 0, bonus: 0 };
         if(!member){
             members = await this.client.guildMembersData.find({ guildID: message.guild.id });
             members.forEach((m) => {
-                memberCount.invites += m.invites;
-                memberCount.leaves += m.leaves;
-                memberCount.fake += m.fake;
-                memberCount.bonus += m.bonus;
+                memberCount.invites += m.old_invites;
+                memberCount.leaves += m.old_leaves;
+                memberCount.fake += m.old_fake;
+                memberCount.bonus += m.old_bonus;
             });
         }
         let conf = await (member ?
