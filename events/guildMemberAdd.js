@@ -26,6 +26,12 @@ module.exports = class {
             this.client.invitations[member.guild.id] = guildInvites;
             // Find the invitations which doesn't have the same number of use
             let inviteUsed = guildInvites.find((i) => oldGuildInvites.get(i.code) && (oldGuildInvites.get(i.code).uses < i.uses));
+            if(!inviteUsed){
+                let newAndUsed = guildInvites.filter((i) => !oldGuildInvites.get(i.code) && i.uses === 1);
+                if(newAndUsed.size === 1){
+                    inviteUsed = newAndUsed.first();
+                }
+            }
             if(inviteUsed) invite = inviteUsed;
         }
 
