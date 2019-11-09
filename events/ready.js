@@ -29,7 +29,7 @@ module.exports = class {
             });
         }
 
-        if(this.client.shard.ids.includes(0)){
+        if(this.client.shard.ids.includes(0) && !this.client.spawned){
             this.client.dash.load(this.client);
         }
         

@@ -85,4 +85,6 @@ module.exports.load = async (client) => {
         console.log("ManageInvite dashboard is listening on port "+app.get("port"));
     });
 
+    client.spawned = true;
+
 };
