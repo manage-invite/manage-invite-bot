@@ -122,7 +122,7 @@ module.exports = {
     membercount: {
         title: (guildName) => `MemberCount de ${guildName}`,
         description: (guild) => `
-        Un total de **${guild.members.size}** membres (**${guild.members.filter((m) => !m.user.bot).size}** humains et **${guild.members.filter((m) => !m.user.bot).size}** bots)
+        Un total de **${guild.members.size}** membres (**${guild.members.filter((m) => !m.user.bot).size}** humains et **${guild.members.filter((m) => m.user.bot).size}** bots)
 
         ➔ ${emojis.dnd} | ${guild.members.filter((m) => m.presence.status === "dnd"  && !m.user.bot).size} membres (ne pas déranger)
         ➔ ${emojis.online} | ${guild.members.filter((m) => m.presence.status === "online" && !m.user.bot).size} membres (en ligne)
