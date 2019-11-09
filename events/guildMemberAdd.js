@@ -132,7 +132,7 @@ module.exports = class {
 
         // DM Join messages
         if(guildData.joinDM.enabled && guildData.joinDM.message && invite && guildData.premium){
-            let formattedMessage = this.client.functions.formatMessage(guildData.join.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData);
+            let formattedMessage = this.client.functions.formatMessage(guildData.joinDM.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData);
             member.send(formattedMessage);
         }
 
