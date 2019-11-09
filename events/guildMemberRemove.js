@@ -33,9 +33,9 @@ module.exports = class {
                     // The role exists?
                     let found = member.guild.roles.get(rank.roleID);
                     // The role is lower than the index role?
-                    let superiorFound = (nextRank ? rank.inviteCount > nextRank.inviteCount : true);
+                    let superiorFound = (currentRankOrPrevious ? rank.inviteCount > currentRankOrPrevious.inviteCount : true);
                     // If all conditions are correct, the value of the index is changed
-                    if(superior && found && superiorFound) nextRank = rank;
+                    if(superior && found && superiorFound) currentRankOrPrevious = rank;
                 });
                 // If the role found has a greater number of invitations than the member, then it means that the party member has passed the member below the required invitation quota. It is therefore necessary to remove the role and assign it the role below (or none if there is none).
                 if(currentRankOrPrevious && currentRankOrPrevious.inviteCount > (inviterData.invites + inviterData.bonus - inviterData.leaves - inviterData.fake)){
