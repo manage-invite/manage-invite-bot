@@ -163,7 +163,7 @@
                             <div class="form-group">
                                 <label><%= language.website.forms.join.channel.title() %></label>
                                 <select class="form-control" name="channel">
-                                    <% if(guild.join.enabled){ %>
+                                    <% if(guild.join.enabled && (guild.channels.find((ch) => ch.id === guild.join.channel))){ %>
                                         <option selected="selected">#<%= (guild.channels.find((ch) => ch.id === guild.join.channel)).name %></option>
                                         <% guild.channels.filter((ch) => ch.id !== guild.join.channel && ch.type === "text").forEach((ch) => { %>
                                             <option>#<%= ch.name %></option>
@@ -206,7 +206,7 @@
                             <div class="form-group">
                                 <label><%= language.website.forms.leave.channel.title() %></label>
                                 <select class="form-control" name="channel">
-                                    <% if(guild.leave.enabled){ %>
+                                    <% if(guild.leave.enabled && (guild.channels.find((ch) => ch.id === guild.leave.channel))){ %>
                                         <option selected="selected">#<%= (guild.channels.find((ch) => ch.id === guild.leave.channel)).name %></option>
                                         <% guild.channels.filter((ch) => ch.id !== guild.leave.channel && ch.type === "text").forEach((ch) => { %>
                                             <option>#<%= ch.name %></option>
