@@ -17,8 +17,13 @@ router.get("/login", async function(req, res) {
 
 router.get("/callback", async (req, res) => {
     if(req.query.state.startsWith("invite")){
-        if(req.query.code) return res.redirect("/manage/"+req.query.state.substr("invite".length, req.query.state.length));
-        else return res.redirect("/selector");
+        if(req.query.code){
+            let guildID = req.query.state.substr("invite".length, req.query.state.length);
+            req.client.knownGuilds.push({ id: guildID, user: req.user.id });
+            return res.redirect("/manage/"+guildID);
+        } else {
+            return res.redirect("/selector");
+        }
     }
     if(!req.query.code) res.redirect(req.client.config.failureURL);
     let redirectURL = req.client.states[req.query.state] || "/selector";
