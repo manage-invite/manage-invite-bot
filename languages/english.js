@@ -522,6 +522,17 @@ Type \`cancel\` to abort. ${str}
             all: (prefix) => `${emojis.success} | Server invitations restored!`,
             member: (prefix, member) => `${emojis.success} | Invitations of **${member.user.tag}** restored!`
         }
+    },
+
+    syncinvites: {
+        confirmations: {
+            all: (prefix, inviteCount) => `${emojis.warn} | Are you sure you want to synchronize the server invitations?\n\n:information_source: **Overview of invitations**:\nIt will be restored **${inviteCount}** regular invitations.\n\n${emojis.success} Type \`-confirm\` to confirm.\n${emojis.error} Type \`cancel\` to abort.`,
+            cancelled: () => `${emojis.error} Cancelled.`
+        },
+        title: () => `☄️ Invitations synchronized`,
+        titles: {
+            all: (prefix) => `${emojis.success} | Server invitations synchronized!`
+        }
     }
 
 };

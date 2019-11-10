@@ -521,6 +521,17 @@ Tapez \`cancel\` pour annuler. ${str}
             all: (prefix) => `${emojis.success} | Invitations du serveur restaurées !`,
             member: (prefix, member) => `${emojis.success} | Invitations de **${member.user.tag}** restaurées !`
         }
+    },
+
+    syncinvites: {
+        confirmations: {
+            all: (prefix, inviteCount) => `${emojis.warn} | Êtes-vous sur de vouloir synchroniser les invitations du serveur ?\n\n:information_source: **Aperçu des invitations**:\nIl sera restauré **${inviteCount}** invitations ordinaires.\n\n${emojis.success} Tapez \`-confirm\` pour confirmer.\n${emojis.error} Tapez \`cancel\` pour annuler.`,
+            cancelled: () => `${emojis.error} Annulé.`
+        },
+        title: () => `☄️ Invitations synchronisées`,
+        titles: {
+            all: (prefix) => `${emojis.success} | Invitations du serveur synchronisées !`
+        }
     }
 
 };
