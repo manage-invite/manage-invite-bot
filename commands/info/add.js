@@ -14,8 +14,6 @@ class Add extends Command {
 
     async run (message, args, data) {
 
-        let guildCounts = await this.client.shard.fetchClientValues("guilds.size");
-        let guildCount = guildCounts.reduce((p,c) => p+c);
         let embed = new Discord.MessageEmbed()
         .setAuthor("ManageInvite", this.client.user.displayAvatarURL())
         .setDescription(message.language.add.content(this.client.user.id))
