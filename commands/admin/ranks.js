@@ -9,7 +9,7 @@ class Ranks extends Command {
             enabled: true,
             aliases: [ "ra" ],
             clientPermissions: [ "EMBED_LINKS" ],
-            permLevel: 2
+            permLevel: 0
         });
     }
 
