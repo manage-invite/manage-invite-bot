@@ -533,6 +533,11 @@ Type \`cancel\` to abort. ${str}
         titles: {
             all: (prefix) => `${emojis.success} | Server invitations synchronized!`
         }
+    },
+
+    add: {
+        content: (id) => `You can add me to your server by clicking [here](https://discordapp.com/oauth2/authorize?client_id=${id}&scope=bot&permissions=2146958847).`,
+        requested: (username) => `Requested by ${username}`
     }
 
 };

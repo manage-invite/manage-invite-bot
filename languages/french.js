@@ -532,6 +532,11 @@ Tapez \`cancel\` pour annuler. ${str}
         titles: {
             all: (prefix) => `${emojis.success} | Invitations du serveur synchronisées !`
         }
+    },
+
+    add: {
+        content: (id) => `Vous pouvez m'ajouter sur votre serveur en cliquant [ici](https://discordapp.com/oauth2/authorize?client_id=${id}&scope=bot&permissions=2146958847).`,
+        requested: (username) => `Demandé par ${username}`
     }
 
 };
