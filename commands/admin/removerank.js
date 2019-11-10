@@ -18,7 +18,7 @@ class RemoveRank extends Command {
         let role = message.mentions.roles.first() || message.guild.roles.get(args.join(" ")) || message.guild.roles.find((role) => role.name === args.join(" ") || (stringSimilarity.compareTwoStrings(role.name, args.join(" ")) > 0.85));
         if(!role) return message.channel.send(message.language.removerank.errors.role.missing(data.guild.prefix));
         let currentRank = data.guild.ranks.find((r) => r.roleID === role.id);
-        if(!currentRank) return message.channel.send(message.language.removerank.errors.role.doesntExist(data.guild.prefix, role));
+        if(!currentRank) return message.channel.send(message.language.removerank.errors.role.doesntExist());
 
         data.guild.ranks = data.guild.ranks.filter((r) => r.inviteCount !== currentRank.inviteCount);
         data.guild.markModified("ranks");

@@ -21,7 +21,7 @@ class Ranks extends Command {
 
         let ranks = data.guild.ranks.sort((a,b) => b.inviteCount - a.inviteCount);
         if(ranks.length === 0){
-            embed.setAuthor(message.language.ranks.no.title(message.guild.name))
+            embed.setAuthor(message.language.ranks.no.title())
             .setDescription(message.language.ranks.no.description(data.guild.prefix));
             return message.channel.send(embed);
         }

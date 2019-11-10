@@ -15,7 +15,7 @@ module.exports = {
 
     errors: {
         missingPerms: (neededPermissions) => `__**${emojis.error} Missing permissions**__\n\nI need the following permissions for this command to work properly: ${neededPermissions.map((p) => "`"+p+"`").join(", ")}`,
-        disabled: () => `${emojis.error} | This command is currently disabled!`,
+        disabled: () => `${emojis.error} | This command is currently disabled!`,
         permLevel: (name) => `${emojis.error} | This command requires the permission level: \`${name}\`!`,
         sendPerm: () => `${emojis.error} | I don't have the permission to send messages in this channel.`
     },
@@ -73,7 +73,7 @@ module.exports = {
         > **${prefix}leaderboard**: Show the invites leaderboard of the server.`,
         },
         // ManageInvite
-        manageInvite: {
+        manageInvite: {
             title: () => `ManageInvite`,
             content: (prefix) => `
         > **${prefix}botinfos**: Show informations about ManageInvite.
@@ -410,7 +410,7 @@ Type \`cancel\` to abort. ${str}
         errors: {
             role: {
                 missing: (prefix) => `${emojis.error} | You must mention the role you want to remove from rewards. (Syntax: ${prefix}removerank @role)`,
-                doesntExist: (prefix, role) => `${emojis.error} | This role is not used for rewards!`
+                doesntExist: () => `${emojis.error} | This role is not used for rewards!`
             }
         },
         title: () => `🎯 Role removed`,
@@ -419,10 +419,10 @@ Type \`cancel\` to abort. ${str}
 
     ranks: {
         no: {
-            title: (guildName) => `🎯 No role`,
+            title: () => `🎯 No role`,
             description: (prefix) => `To add a role reward (added when a member reach a certain number of invites), write \`${prefix}addrank number @role\`!`
         },
-        title: (guildName) => `🎯 Roles rewards`,
+        title: () => `🎯 Roles rewards`,
         formatRank: (rank, inviteCount) => `${rank} (**${inviteCount}** invites)\n`
     },
 
@@ -519,24 +519,24 @@ Type \`cancel\` to abort. ${str}
             cancelled: () => `${emojis.error} Cancelled.`
         },
         loading: {
-            all: (prefix) => `${emojis.loading} | Restoring server invitations....`,
-            member: (prefix, member) => `${emojis.loading} | Restoring invitations of **${member.user.tag}**...`
+            all: () => `${emojis.loading} | Restoring server invitations....`,
+            member: (member) => `${emojis.loading} | Restoring invitations of **${member.user.tag}**...`
         },
         title: () => `☄️ Invitations restored`,
         titles: {
-            all: (prefix) => `${emojis.success} | Server invitations restored!`,
-            member: (prefix, member) => `${emojis.success} | Invitations of **${member.user.tag}** restored!`
+            all: () => `${emojis.success} | Server invitations restored!`,
+            member: (member) => `${emojis.success} | Invitations of **${member.user.tag}** restored!`
         }
     },
 
     syncinvites: {
         confirmations: {
-            all: (prefix, inviteCount) => `${emojis.warn} | Are you sure you want to synchronize the server invitations?\n\n:information_source: **Overview of invitations**:\nIt will be restored **${inviteCount}** regular invitations.\n\n${emojis.success} Type \`-confirm\` to confirm.\n${emojis.error} Type \`cancel\` to abort.`,
+            all: (inviteCount) => `${emojis.warn} | Are you sure you want to synchronize the server invitations?\n\n:information_source: **Overview of invitations**:\nIt will be restored **${inviteCount}** regular invitations.\n\n${emojis.success} Type \`-confirm\` to confirm.\n${emojis.error} Type \`cancel\` to abort.`,
             cancelled: () => `${emojis.error} Cancelled.`
         },
         title: () => `☄️ Invitations synchronized`,
         titles: {
-            all: (prefix) => `${emojis.success} | Server invitations synchronized!`
+            all: () => `${emojis.success} | Server invitations synchronized!`
         }
     },
 

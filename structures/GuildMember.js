@@ -1,6 +1,5 @@
 const mongoose = require("mongoose"),
-Schema = mongoose.Schema,
-config = require("../config.js");
+Schema = mongoose.Schema;
 
 module.exports = mongoose.model("GuildMember", new Schema({
 
@@ -19,11 +18,11 @@ module.exports = mongoose.model("GuildMember", new Schema({
     old_bonus: { type: Number, default: 0 },
     old_leaves: { type: Number, default: 0 },
     old_invites: { type: Number, default: 0 },
-    backuped: { type: Boolean, default: false },
+    backuped: { type: Boolean, default: false },
 
     /* INVITES DATA */
     invited: { type: Array, default: [] },
-    left: { type: Array, default: [] },
+    left: { type: Array, default: [] },
 
     /* INVITER */
     invitedBy: { type: String },

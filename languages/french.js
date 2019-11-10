@@ -15,7 +15,7 @@ module.exports = {
 
     errors: {
         missingPerms: (neededPermissions) => `__**${emojis.error} Permissions manquantes**__\n\nJ'ai besoin des permissions suivantes pour le bon fonctionnement de cette commande: ${neededPermissions.map((p) => "`"+p+"`").join(", ")}`,
-        disabled: () => `${emojis.error} | Cette commande est actuellement désactivée !`,
+        disabled: () => `${emojis.error} | Cette commande est actuellement désactivée !`,
         permLevel: (name) => `${emojis.error} | Cette commande nécessite le niveau d'autorisation : \`${name}\`!`,
         sendPerm: () => `${emojis.error} | Je n'ai pas la permission d'envoyer des messages dans ce salon !`
     },
@@ -73,7 +73,7 @@ module.exports = {
         > **${prefix}leaderboard**: Affiche le classement des invitations du serveur.`,
         },
         // ManageInvite
-        manageInvite: {
+        manageInvite: {
             title: () => `ManageInvite`,
             content: (prefix) => `
         > **${prefix}botinfos**: Affiche des informations sur ManageInvite.
@@ -409,7 +409,7 @@ Tapez \`cancel\` pour annuler. ${str}
         errors: {
             role: {
                 missing: (prefix) => `${emojis.error} | Vous devez mentionner le rôle que vous souhaitez retirer. (Syntaxe : ${prefix}removerank @role)`,
-                doesntExist: (prefix, role) => `${emojis.error} | Ce rôle n'est pas utilisé pour les récompenses !`
+                doesntExist: () => `${emojis.error} | Ce rôle n'est pas utilisé pour les récompenses !`
             }
         },
         title: () => `🎯 Rôle retiré`,
@@ -418,10 +418,10 @@ Tapez \`cancel\` pour annuler. ${str}
 
     ranks: {
         no: {
-            title: (guildName) => `🎯 Aucun rôle`,
+            title: () => `🎯 Aucun rôle`,
             description: (prefix) => `Pour ajouter un rôle récompense (ajouté lorsqu'un membre atteint un certain nombre d'invitations), tapez \`${prefix}addrank nombre @role\` !`
         },
-        title: (guildName) => `🎯 Rôles récompenses`,
+        title: () => `🎯 Rôles récompenses`,
         formatRank: (rank, inviteCount) => `${rank} (**${inviteCount}** invitations)\n`
     },
 
@@ -518,24 +518,24 @@ Tapez \`cancel\` pour annuler. ${str}
             cancelled: () => `${emojis.error} Annulé.`
         },
         loading: {
-            all: (prefix) => `${emojis.loading} | Restauration des invitations du serveur en cours...`,
-            member: (prefix, member) => `${emojis.loading} | Restauration des invitations de **${member.user.tag}** en cours...`
+            all: () => `${emojis.loading} | Restauration des invitations du serveur en cours...`,
+            member: (member) => `${emojis.loading} | Restauration des invitations de **${member.user.tag}** en cours...`
         },
         title: () => `☄️ Invitations restaurées`,
         titles: {
-            all: (prefix) => `${emojis.success} | Invitations du serveur restaurées !`,
-            member: (prefix, member) => `${emojis.success} | Invitations de **${member.user.tag}** restaurées !`
+            all: () => `${emojis.success} | Invitations du serveur restaurées !`,
+            member: (member) => `${emojis.success} | Invitations de **${member.user.tag}** restaurées !`
         }
     },
 
     syncinvites: {
         confirmations: {
-            all: (prefix, inviteCount) => `${emojis.warn} | Êtes-vous sur de vouloir synchroniser les invitations du serveur ?\n\n:information_source: **Aperçu des invitations**:\nIl sera restauré **${inviteCount}** invitations ordinaires.\n\n${emojis.success} Tapez \`-confirm\` pour confirmer.\n${emojis.error} Tapez \`cancel\` pour annuler.`,
+            all: (inviteCount) => `${emojis.warn} | Êtes-vous sur de vouloir synchroniser les invitations du serveur ?\n\n:information_source: **Aperçu des invitations**:\nIl sera restauré **${inviteCount}** invitations ordinaires.\n\n${emojis.success} Tapez \`-confirm\` pour confirmer.\n${emojis.error} Tapez \`cancel\` pour annuler.`,
             cancelled: () => `${emojis.error} Annulé.`
         },
         title: () => `☄️ Invitations synchronisées`,
         titles: {
-            all: (prefix) => `${emojis.success} | Invitations du serveur synchronisées !`
+            all: () => `${emojis.success} | Invitations du serveur synchronisées !`
         }
     },
 
