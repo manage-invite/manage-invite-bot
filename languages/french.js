@@ -29,7 +29,7 @@ module.exports = {
             content: (prefix) => `
         > **${prefix}addbonus nombre @user**: Ajoute des invitations bonus à un membre
         > **${prefix}removebonus nombre @user**: Retire des invitations bonus à un membre
-        > 
+        > **${prefix}sync-invites**: Synchronise les invitations du bot avec celles du serveur
         > **${prefix}removeinvites (@user)**: Supprime les invitations (serveur/membre)
         > **${prefix}restoreinvites (@user)**: Restaure les invitations (serveur/membre)`
         },
@@ -79,7 +79,8 @@ module.exports = {
         > **${prefix}botinfos**: Affiche des informations sur ManageInvite.
         > **${prefix}ping**: Affiche le ping de ManageInvite.
         > **${prefix}partners**: Affiche les partenaires de ManageInvite.
-        > **${prefix}support**: Rejoignez le serveur de support.`
+        > **${prefix}support**: Rejoignez le serveur de support.
+        > **${prefix}add**: Ajoutez-moi sur votre serveur.`
         },
         // Others
         tip: (prefix) => `Astuce : vous pouvez voir votre configuration avec la commande ${prefix}config`,
