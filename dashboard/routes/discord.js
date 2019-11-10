@@ -16,7 +16,12 @@ router.get("/login", async function(req, res) {
 });
 
 router.get("/callback", async (req, res) => {
+    if(req.query.state.startsWith("invite")){
+        if(req.query.code) return res.redirect("/manage/"+req.query.state.substr("invite".length, req.query.state.length));
+        else return res.redirect("/selector");
+    }
     if(!req.query.code) res.redirect(req.client.config.failureURL);
+    let redirectURL = req.client.states[req.query.state] || "/selector";
     let response = await fetch(`https://discordapp.com/api/oauth2/token?grant_type=authorization_code&code=${req.query.code}&redirect_uri=${req.client.config.baseURL}/api/callback`, {
         method: "POST",
         headers: { Authorization: `Basic ${btoa(`${req.client.user.id}:${req.client.config.secret}`)}`, }
@@ -63,7 +68,7 @@ router.get("/callback", async (req, res) => {
             name: user.tag+" connected to the dashboard!"
         }
     })}') });`);
-    res.redirect(req.client.states[req.query.state] || "/selector");
+    res.redirect(redirectURL);
 });
 
 module.exports = router;

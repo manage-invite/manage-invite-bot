@@ -41,7 +41,7 @@ async function fetchUser(userData, client, query){
             if(perms.has("MANAGE_GUILD")) guild.admin = true;
             let results = await client.shard.broadcastEval(` let guild = this.guilds.get('${guild.id}'); if(guild) guild.toJSON(); `);
             let found = results.find((g) => g);
-            guild.settingsUrl = (found ? `/manage/${guild.id}/` : `https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958847&guild_id=${guild.id}`);
+            guild.settingsUrl = (found ? `/manage/${guild.id}/` : `https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958847&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(client.config.baseURL+"/api/callback")}&state=invite${guild.id}`);
             guild.iconURL = (guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128` : "https://discordemoji.com/assets/emoji/discordcry.png");
         });
         userData.displayedGuilds = userData.guilds.filter((g) => g.admin);

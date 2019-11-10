@@ -28,6 +28,7 @@ class ManageInvite extends Client {
         this.dash = require("../dashboard/app");
         this.states = {};
         this.spawned = false;
+        this.knownGuilds = [];
     }
 
     // This function is used to load a command and add it to the collection
