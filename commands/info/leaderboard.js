@@ -31,11 +31,6 @@ class Leaderboard extends Command {
             return message.channel.send(embed);
         }
 
-        if(args[0] === "reset"){
-            this.client.guildMembersData.delete({ guildID: message.guild.id });
-            return message.channel.send(message.language.leaderboard.cleared());
-        }
-
         let members = [];
         membersData.forEach((member) => {
             members.push({
