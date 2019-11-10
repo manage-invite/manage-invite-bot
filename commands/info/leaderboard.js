@@ -15,7 +15,21 @@ class Leaderboard extends Command {
 
     async run (message, args, data) {
 
-        let membersData = await this.client.guildMembersData.find({ guildID: message.guild.id }).lean();
+        let membersData = await this.client.guildMembersData.find({
+            guildID: message.guild.id,
+            $expr: {
+                $gt: [
+                    { $add: [ "$invites", "$bonus", "$leaves", "$fake" ] }, 0
+                ]
+            }
+        }).lean();
+        if(membersData.length <= 0){
+            let embed = new Discord.MessageEmbed()
+            .setAuthor(message.language.leaderboard.empty.title())
+            .setDescription(message.language.leaderboard.empty.content())
+            .setColor(data.color);
+            return message.channel.send(embed);
+        }
 
         if(args[0] === "reset"){
             this.client.guildMembersData.delete({ guildID: message.guild.id });

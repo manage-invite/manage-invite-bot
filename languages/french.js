@@ -117,7 +117,11 @@ module.exports = {
         cleared: () => `${emojis.success} | Classement effacé !`,
         user: (user, member, lb) => `${lb} **${user.username}** - **${member.calculatedInvites}** invitations (**${member.invites}** ordinaires, **${member.bonus}** bonus, **${member.fake > 0 ? `-${member.fake}` : `${member.fake}`}** faux, **${member.leaves > 0 ? `-${member.leaves}` : `${member.leaves}`}** partis)`,
         prompt: () => `{{user}}, sur quelle page voulez-vous aller ? Écrivez \`cancel\` or \`0\` pour annuler.`,
-        title: () => `Classement des invitations`
+        title: () => `Classement des invitations`,
+        empty: {
+            title: () => `😕 Aucune invitation trouvée`,
+            content: () => `Commencez à inviter des gens et vous apparaitrez sur cette page !`
+        }
     },
 
     membercount: {
