@@ -13,10 +13,9 @@ module.exports = class {
         let guildData = await this.client.findOrCreateGuild({ id: member.guild.id });
         let memberData = await this.client.findOrCreateGuildMember({ id: member.id, guildID: member.guild.id, bot: member.user.bot });
         
-        let invitedBy = memberData.invitedBy;
-        let inviter = invitedBy ? await this.client.resolveUser(invitedBy) : null;
+        let inviter = typeof memberData.joinData === "object" && memberData.joinData === "normal" ? await this.client.resolveUser(memberData.joinData.invite.inviter) : typeof memberData.invitedBy === "string" ? await this.client.resolveUser(memberData.invitedBy) : null;
         let inviterData = inviter ? await this.client.findOrCreateGuildMember({ id: inviter.id, guildID: member.guild.id, bot: inviter.bot }) : null;
-        let invite = memberData.usedInvite;
+        let invite = (memberData.joinData || memberData.inviteUsed || {}).invite;
 
         // Update member invites
         if(inviter){
@@ -55,6 +54,7 @@ module.exports = class {
         
         // Remove member inviter
         memberData.invitedBy = null;
+        memberData.joinData = null;
         await memberData.save();
 
         // Leave messages

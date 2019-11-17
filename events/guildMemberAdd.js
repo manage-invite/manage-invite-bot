@@ -16,23 +16,39 @@ module.exports = class {
         /* Find who is the inviter */
 
         let invite = null;
+        let vanity = false;
+        let oauth = false;
+        let perm = false;
 
-        // Fetch the current invites of the guild
-        let guildInvites = await member.guild.fetchInvites().catch(() => {});
-        if(guildInvites){
-            // Fetch the invites of the guild BEFORE that the member has joined
-            let oldGuildInvites = this.client.invitations[member.guild.id];
-            // Update the cache
-            this.client.invitations[member.guild.id] = guildInvites;
-            // Find the invitations which doesn't have the same number of use
-            let inviteUsed = guildInvites.find((i) => oldGuildInvites.get(i.code) && (oldGuildInvites.get(i.code).uses < i.uses));
-            if(!inviteUsed){
-                let newAndUsed = guildInvites.filter((i) => !oldGuildInvites.get(i.code) && i.uses === 1);
-                if(newAndUsed.size === 1){
-                    inviteUsed = newAndUsed.first();
+        if(!member.guild.me.hasPermission("MANAGE_GUILD")) perm = true;
+
+        if(member.user.bot){
+            oauth = true;
+        } else if(!perm) {
+            // Fetch the current invites of the guild
+            let guildInvites = await member.guild.fetchInvites().catch(() => {});
+            if(guildInvites){
+                // Fetch the invites of the guild BEFORE that the member has joined
+                let oldGuildInvites = this.client.invitations[member.guild.id];
+                // Update the cache
+                this.client.invitations[member.guild.id] = guildInvites;
+                // Find the invitations which doesn't have the same number of use
+                let inviteUsed = guildInvites.find((i) => oldGuildInvites.get(i.code) && ((oldGuildInvites.get(i.code).hasOwnProperty("uses") ? oldGuildInvites.get(i.code).uses : "Infinite") < i.uses));
+                if((oldGuildInvites.map((i) => `${i.uses}|${i.code}` ).sort() === guildInvites.map((i) => `${i.uses}|${i.code}` ).sort()) && !inviteUsed && member.guild.features.includes("VANITY_URL")){
+                    vanity = true;
+                    if(member.user.id === "422820341791064085") console.log("Vanity invite");
+                } else if(!inviteUsed){
+                    let newAndUsed = guildInvites.filter((i) => !oldGuildInvites.get(i.code) && i.uses === 1);
+                    if(newAndUsed.size === 1){
+                        inviteUsed = newAndUsed.first();
+                        console.log("NewAndUsed invite!");
+                    }
+                } else {
+                    if(member.user.id === "422820341791064085") console.log("Invite used "+inviteUsed.code);
+                    if(member.user.id === "422820341791064085") console.log(member.guild.features.includes("VANITY_URL"));
                 }
+                if(inviteUsed && !vanity) invite = inviteUsed;
             }
-            if(inviteUsed) invite = inviteUsed;
         }
 
         let inviter = invite ? await this.client.resolveUser(invite.inviter.id) : null;
@@ -117,18 +133,32 @@ module.exports = class {
             }
         }
         
-        // Si une invitation est trouvée
+        let language = require("../languages/"+guildData.language);
+
         if(invite){
-            // On enregistre que ce membre a été invité par ce membre
-            memberData.invitedBy = inviter.id;
-            memberData.usedInvite = {
-                uses: invite.uses,
-                url: invite.url,
-                code: invite.code,
-                inviter: { id: inviter.id }
+            memberData.joinData = {
+                type: "normal",
+                invite: {
+                    uses: invite.uses,
+                    url: invite.url,
+                    code: invite.code,
+                    inviter: inviter.id
+                }
             };
-            await memberData.save();
+        } else if(oauth){
+            memberData.joinData = {
+                type: "oauth"
+            }
+        } else if(vanity){
+            memberData.joinData = {
+                type: "vanity"
+            }
+        } else if(perm){
+            memberData.joinData = {
+                type: "perm"
+            }
         }
+        await memberData.save();
 
         // DM Join messages
         if(guildData.joinDM.enabled && guildData.joinDM.message && invite && guildData.premium){
@@ -138,10 +168,18 @@ module.exports = class {
 
         // Join messages
         if(guildData.join.enabled && guildData.join.message && guildData.join.channel){
-            let formattedMessage = invite ? this.client.functions.formatMessage(guildData.join.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData) : `I can't figure out how ${member} joined the server.`;
             let channel = member.guild.channels.get(guildData.join.channel);
             if(!channel) return;
-            channel.send(formattedMessage);
+            if(invite){
+                let formattedMessage = this.client.functions.formatMessage(guildData.join.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData)
+                channel.send(formattedMessage);
+            } else if(vanity){
+                channel.send(language.utils.specialMessages.join.vanity(member.toString()))
+            } else if(oauth){
+                channel.send(language.utils.specialMessages.join.oauth2(member.toString()))
+            } else if(perm){
+                channel.send(language.utils.specialMessages.join.perm(member.toString()))
+            }
         }
 
     }
