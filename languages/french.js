@@ -10,6 +10,19 @@ module.exports = {
         conf: {
             title: () => `Voir la configuration sur le dashboard`,
             content: () => `[ou sur le dashboard](https://dash.manage-invite.xyz)`
+        },
+        specialMessages: {
+            join: {
+                oauth2: (user) => `${user} a rejoint le serveur via OAuth.`,
+                vanity: (user) => `${user} a rejoint le serveur en utilisant une invitation discord.gg définie par le propriétaire du serveur (ou un admin).`,
+                unknown: (user) => `Je n'arrive pas à trouver comment ${user} a rejoint le serveur.`,
+                perm: (user) => `${emojis.error} | J'ai besoin d'avoir les permissions de gérer le serveur pour savoir qui a invité ${user}.`
+            },
+            leave: {
+                oauth2: (user) => `${user} a quitté le serveur, il avait rejoint via OAuth.`,
+                vanity: (user) => `${user} a quitté le serveur, il avait rejoint en utilisant une invitation discord.gg définie par le propriétaire du serveur (ou un admin).`,
+                unknown: (user) => `${user} a quitté le serveur, mais je n'arrive pas à trouver comment il l'avait rejoint.`
+            }
         }
     },
 
@@ -482,7 +495,7 @@ Tapez \`cancel\` pour annuler. ${str}
                 title: () => `🛫 Messages de départs`,
                 message: {
                     title: () => `Message`,
-                    default: () => `{user} a quitté le serveur. Il avait été invité par **{inviter.tag}** (qui a **{inviter.invites}** invitations).`
+                    default: () => `{user.username} a quitté le serveur. Il avait été invité par **{inviter.tag}** (qui a **{inviter.invites}** invitations).`
                 },
                 channel: {
                     title: () => `Salon`

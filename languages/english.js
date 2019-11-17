@@ -10,6 +10,19 @@ module.exports = {
         conf: {
             title: () => `View the configuration on the dashboard`,
             content: () => `[or on the dashboard](https://dash.manage-invite.xyz)`
+        },
+        specialMessages: {
+            join: {
+                oauth2: (user) => `${user} joined the server using OAuth flow.`,
+                vanity: (user) => `${user} joined the server using a discord.gg invite defined by the guild owner (or admin).`,
+                unknown: (user) => `I can't figure out how ${user} joined the server.`,
+                perm: (user) => `${emojis.error} | I need the manage server permissions to know who is the inviter of ${user}.`
+            },
+            leave: {
+                oauth2: (user) => `${user} left the server, he joined via OAuth.`,
+                vanity: (user) => `${user} left the server, he joined using a discord.gg invite defined by the server owner (or an admin).`,
+                unknown: (user) => `${user} left the server, but I can't figure out how he joined it.`
+            }
         }
     },
 
@@ -483,7 +496,7 @@ Type \`cancel\` to abort. ${str}
                 title: () => `Leave messages`,
                 message: {
                     title: () => `Message`,
-                    default: () => `{user} left the server. He was invited by **{inviter.tag}** (who has **{inviter.invites}** invites).`
+                    default: () => `{user.username} left the server. He was invited by **{inviter.tag}** (who has **{inviter.invites}** invites).`
                 },
                 channel: {
                     title: () => `Channel`
