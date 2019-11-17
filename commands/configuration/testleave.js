@@ -30,7 +30,7 @@ class TestLeave extends Command {
             message.guild.channels.get(data.guild.leave.channel).send(this.client.functions.formatMessage(
                 data.guild.leave.message,
                 message.member,
-                message.guild.me,
+                message.client.user,
                 {
                     code: "436SPZX",
                     url: "https://discord.gg/436SPZX",

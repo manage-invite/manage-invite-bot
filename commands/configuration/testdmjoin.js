@@ -33,7 +33,7 @@ class TestDMJoin extends Command {
             message.author.send(this.client.functions.formatMessage(
                 data.guild.joinDM.message,
                 message.member,
-                message.guild.me,
+                message.client.user,
                 {
                     code: "436SPZX",
                     url: "https://discord.gg/436SPZX",

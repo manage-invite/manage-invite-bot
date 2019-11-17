@@ -30,7 +30,7 @@ class TestJoin extends Command {
             message.guild.channels.get(data.guild.join.channel).send(this.client.functions.formatMessage(
                 data.guild.join.message,
                 message.member,
-                message.guild.me,
+                message.client.user,
                 {
                     code: "436SPZX",
                     url: "https://discord.gg/436SPZX",
