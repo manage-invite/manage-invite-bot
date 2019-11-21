@@ -14,6 +14,7 @@ class SyncInvites extends Command {
 
     async run (message, args, data) {
         let guildInvites = await message.guild.fetchInvites();
+        if(guildInvites.size === 0) return message.channel.send(message.language.syncinvites.no());
         let invitesCount = guildInvites.map((i) => i.uses).reduce((p, c) => p + c);
         let conf = await message.channel.send(message.language.syncinvites.confirmations.all(invitesCount));
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {

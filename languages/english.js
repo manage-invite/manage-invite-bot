@@ -543,6 +543,7 @@ Type \`cancel\` to abort. ${str}
     },
 
     syncinvites: {
+        no: () => `${emojis.error} | No invites to synchronize.`,
         confirmations: {
             all: (inviteCount) => `${emojis.warn} | Are you sure you want to synchronize the server invitations?\n\n:information_source: **Overview of invitations**:\nIt will be restored **${inviteCount}** regular invitations.\n\n${emojis.success} Type \`-confirm\` to confirm.\n${emojis.error} Type \`cancel\` to abort.`,
             cancelled: () => `${emojis.error} Cancelled.`
