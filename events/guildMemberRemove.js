@@ -13,7 +13,7 @@ module.exports = class {
         let guildData = await this.client.findOrCreateGuild({ id: member.guild.id });
         let memberData = await this.client.findOrCreateGuildMember({ id: member.id, guildID: member.guild.id, bot: member.user.bot });
         
-        let inviter = typeof memberData.joinData === "object" && memberData.joinData === "normal" ? await this.client.resolveUser(memberData.joinData.invite.inviter) : typeof memberData.invitedBy === "string" ? await this.client.resolveUser(memberData.invitedBy) : null;
+        let inviter = memberData.joinData && memberData.joinData.type === "normal" ? await this.client.resolveUser(memberData.joinData.invite.inviter) : typeof memberData.invitedBy === "string" ? await this.client.resolveUser(memberData.invitedBy) : null;
         let inviterData = inviter ? await this.client.findOrCreateGuildMember({ id: inviter.id, guildID: member.guild.id, bot: inviter.bot }) : null;
         let invite = (memberData.joinData || memberData.inviteUsed || {}).invite;
 
