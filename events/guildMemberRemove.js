@@ -60,10 +60,20 @@ module.exports = class {
 
         // Leave messages
         if(guildData.leave.enabled && guildData.leave.message && guildData.leave.channel){
-            let formattedMessage = invite ? this.client.functions.formatMessage(guildData.leave.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData) : `${member} left but I can't figure out who invited him.`;
             let channel = member.guild.channels.get(guildData.leave.channel);
             if(!channel) return;
-            channel.send(formattedMessage);
+            if(invite){
+                let formattedMessage = this.client.functions.formatMessage(guildData.leave.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData)
+                channel.send(formattedMessage);
+            } else if(vanity){
+                channel.send(language.utils.specialMessages.leave.vanity(member.toString()))
+            } else if(oauth){
+                channel.send(language.utils.specialMessages.leave.oauth2(member.toString()))
+            } else if(perm){
+                channel.send(language.utils.specialMessages.leave.perm(member.toString()))
+            } else {
+                channel.send(language.utils.specialMessages.leave.unknown(member.toString()))
+            }
         }
 
     }
