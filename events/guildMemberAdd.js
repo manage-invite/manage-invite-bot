@@ -36,16 +36,12 @@ module.exports = class {
                 let inviteUsed = guildInvites.find((i) => oldGuildInvites.get(i.code) && ((oldGuildInvites.get(i.code).hasOwnProperty("uses") ? oldGuildInvites.get(i.code).uses : "Infinite") < i.uses));
                 if((oldGuildInvites.map((i) => `${i.uses}|${i.code}` ).sort() === guildInvites.map((i) => `${i.uses}|${i.code}` ).sort()) && !inviteUsed && member.guild.features.includes("VANITY_URL")){
                     vanity = true;
-                    if(member.user.id === "422820341791064085") console.log("Vanity invite");
                 } else if(!inviteUsed){
                     let newAndUsed = guildInvites.filter((i) => !oldGuildInvites.get(i.code) && i.uses === 1);
                     if(newAndUsed.size === 1){
                         inviteUsed = newAndUsed.first();
-                        console.log("NewAndUsed invite!");
                     }
                 } else {
-                    if(member.user.id === "422820341791064085") console.log("Invite used "+inviteUsed.code);
-                    if(member.user.id === "422820341791064085") console.log(member.guild.features.includes("VANITY_URL"));
                 }
                 if(inviteUsed && !vanity) invite = inviteUsed;
             }
@@ -179,6 +175,8 @@ module.exports = class {
                 channel.send(language.utils.specialMessages.join.oauth2(member.toString()))
             } else if(perm){
                 channel.send(language.utils.specialMessages.join.perm(member.toString()))
+            } else {
+                channel.send(language.utils.specialMessages.join.unknown(member.toString()))
             }
         }
 
