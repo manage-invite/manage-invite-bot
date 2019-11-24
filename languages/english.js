@@ -161,7 +161,7 @@ module.exports = {
             },
             invites: {
                 title: () => `Invites`,
-                content: (inviteData) => `**${inviteData.invites + inviteData.bonus - inviteData.leaves - inviteData.fake}** invites (**${inviteData.invites}** regular, **${inviteData.bonus}** bonus, **${inviteData.fake > 0 ? `-${member.fake}` : `${inviteData.fake}`}** fake, **${inviteData.leaves > 0 ? `-${inviteData.leaves}` : `${inviteData.leaves}`}** leaves)`
+                content: (inviteData) => `**${inviteData.invites + inviteData.bonus - inviteData.leaves - inviteData.fake}** invites (**${inviteData.invites}** regular, **${inviteData.bonus}** bonus, **${inviteData.fake > 0 ? `-${inviteData.fake}` : `${inviteData.fake}`}** fake, **${inviteData.leaves > 0 ? `-${inviteData.leaves}` : `${inviteData.leaves}`}** leaves)`
             },
             joinOrder: {
                 title: () => `Join Order`,
