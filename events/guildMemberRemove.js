@@ -51,30 +51,32 @@ module.exports = class {
                 }
             }
         }
-        
-        // Remove member inviter
-        memberData.invitedBy = null;
-        memberData.usedInvite = null;
-        memberData.joinData = null;
-        await memberData.save();
 
         // Leave messages
         if(guildData.leave.enabled && guildData.leave.message && guildData.leave.channel){
             let channel = member.guild.channels.get(guildData.leave.channel);
             if(!channel) return;
+            let joinType = memberData.joinData ? memberData.joinData.type : null;
+            let language = require("../languages/"+guildData.language);
             if(invite){
                 let formattedMessage = this.client.functions.formatMessage(guildData.leave.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData)
                 channel.send(formattedMessage);
-            } else if(vanity){
+            } else if(joinType === "vanity"){
                 channel.send(language.utils.specialMessages.leave.vanity(member.toString()))
-            } else if(oauth){
+            } else if(joinType === "oauth"){
                 channel.send(language.utils.specialMessages.leave.oauth2(member.toString()))
-            } else if(perm){
+            } else if(joinType === "perm"){
                 channel.send(language.utils.specialMessages.leave.perm(member.toString()))
             } else {
                 channel.send(language.utils.specialMessages.leave.unknown(member.toString()))
             }
         }
+
+        // Remove member inviter
+        memberData.invitedBy = null;
+        memberData.usedInvite = null;
+        memberData.joinData = null;
+        await memberData.save();
 
     }
 }
