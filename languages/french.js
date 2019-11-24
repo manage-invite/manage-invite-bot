@@ -137,6 +137,39 @@ module.exports = {
         }
     },
 
+    userinfo: {
+        title: (user) => `Compte ${user.tag} (${user.id})`,
+        fields: {
+            // user
+            createdAt: {
+                title: () => `Création`
+            },
+            bot: {
+                title: () => `Robot`,
+                content: (user) => user.bot ? "Oui" : "Non"
+            },
+            // member
+            joinedAt: {
+                title: () => `Arrivée`
+            },
+            joinWay: {
+                title: () => `Arrivée grâce à`,
+                oauth: () => `Invitation oauth2 (via discordapp.com).`,
+                vanity: () => `Invitation personnalisée configurée par un administrateur.`,
+                unknown: (user) => `Impossible de déterminer comment ${user.username} a rejoint le serveur.`,
+                invite: (user) => user.tag
+            },
+            invites: {
+                title: () => `Invitations`,
+                content: (inviteData) => `**${inviteData.invites + inviteData.bonus - inviteData.leaves - inviteData.fake}** invitations (**${inviteData.invites}** ordinaires, **${inviteData.bonus}** bonus, **${inviteData.fake > 0 ? `-${member.fake}` : `${inviteData.fake}`}** faux, **${inviteData.leaves > 0 ? `-${inviteData.leaves}` : `${inviteData.leaves}`}** partis)`
+            },
+            joinOrder: {
+                title: () => `Ordre d'arrivées`,
+                content: (previous, next, user) => `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`
+            }
+        }
+    },
+
     membercount: {
         title: (guildName) => `MemberCount de ${guildName}`,
         description: (guild) => `

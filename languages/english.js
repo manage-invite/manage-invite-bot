@@ -137,6 +137,39 @@ module.exports = {
         }
     },
 
+    userinfo: {
+        title: (user) => `${user.tag} account (${user.id})`,
+        fields: {
+            // user
+            createdAt: {
+                title: () => `Creation`
+            },
+            bot: {
+                title: () => `Robot`,
+                content: (user) => user.bot ? "Oui" : "Non"
+            },
+            // member
+            joinedAt: {
+                title: () => `Join`
+            },
+            joinWay: {
+                title: () => `Join due to`,
+                oauth: () => `Oauth invitation (via discordapp.com).`,
+                vanity: () => `Customized invite configured by an administrator.`,
+                unknown: (user) => `I can't figure out how ${user.username} joined the server.`,
+                invite: (user) => user.tag
+            },
+            invites: {
+                title: () => `Invites`,
+                content: (inviteData) => `**${inviteData.invites + inviteData.bonus - inviteData.leaves - inviteData.fake}** invites (**${inviteData.invites}** regular, **${inviteData.bonus}** bonus, **${inviteData.fake > 0 ? `-${member.fake}` : `${inviteData.fake}`}** fake, **${inviteData.leaves > 0 ? `-${inviteData.leaves}` : `${inviteData.leaves}`}** leaves)`
+            },
+            joinOrder: {
+                title: () => `Join Order`,
+                content: (previous, next, user) => `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`
+            }
+        }
+    },
+
     membercount: {
         title: (guildName) => `${guildName}'s MemberCount`,
         description: (guild) => `
