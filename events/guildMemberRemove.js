@@ -15,7 +15,7 @@ module.exports = class {
         
         let inviter = memberData.joinData && memberData.joinData.type === "normal" ? await this.client.resolveUser(memberData.joinData.invite.inviter) : typeof memberData.invitedBy === "string" ? await this.client.resolveUser(memberData.invitedBy) : null;
         let inviterData = inviter ? await this.client.findOrCreateGuildMember({ id: inviter.id, guildID: member.guild.id, bot: inviter.bot }) : null;
-        let invite = (memberData.joinData || memberData.inviteUsed || {}).invite;
+        let invite = (memberData.joinData || memberData.usedInvite || {}).invite;
 
         // Update member invites
         if(inviter){
@@ -54,6 +54,7 @@ module.exports = class {
         
         // Remove member inviter
         memberData.invitedBy = null;
+        memberData.usedInvite = null;
         memberData.joinData = null;
         await memberData.save();
 
