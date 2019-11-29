@@ -46,6 +46,58 @@ module.exports = {
      */
     randomID(){
         return Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);
+    },
+
+    /**
+     * Gets the next rank for a member
+     * @param {number} inviteCount The member's invite count
+     * @param {array} ranks The ranks of the guild
+     * @returns {?object} The next rank, if found
+     */
+    getNextRank(inviteCount, ranks){
+        let nextRank = null;
+        for(let rank of ranks){
+            // If the rank is lower
+            if(parseInt(rank.inviteCount) < inviteCount) break;
+            // If the rank is higher than rank
+            if(nextRank && (parseInt(nextRank.inviteCount) < parseInt(rank.inviteCount))) break;
+            // Mark the rank as nextRank
+            nextRank = rank;
+        }
+        return nextRank;
+    },
+
+    /**
+     * Assigns ranks rewards to a member
+     * @param {object} member The member on who the ranks will be assigned
+     * @param {number} inviteCount The member's invite count
+     * @param {array} ranks The ranks of the guild
+     * @returns {object} The assigned and removed ranks
+     */
+    async assignRanks(member, inviteCount, ranks){
+        let assigned = new Array();
+        let removed = new Array();
+        for(let rank of ranks){
+            // If the guild doesn't contain the rank anymore
+            if(!member.guild.roles.has(rank.roleID)) break;
+            // If the bot doesn't have permissions to assign role to this member
+            if(!member.guild.roles.get(rank.roleID).editable) break;
+            // If the member can't obtain the rank
+            if(inviteCount < parseInt(rank.inviteCount)){
+                // If the member doesn't have the rank
+                if(!member.roles.has(rank.roleID)) break;
+                // Remove the ranks
+                await member.roles.remove(rank.roleID);
+                removed.push(member.guild.roles.get(rank.roleID));
+            } else {
+                // If the member already has the rank
+                if(member.roles.has(rank.roleID)) break;
+                // Assign the role to the member
+                await member.roles.add(rank.roleID);
+                assigned.push(member.guild.roles.get(rank.roleID));
+            }
+        }
+        return { removed, assigned };
     }
 
 }
