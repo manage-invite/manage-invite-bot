@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
 Schema = mongoose.Schema;
 
-module.exports = mongoose.model("GuildMember", new Schema({
+let GuildMemberSchema = new Schema({
 
     /* REQUIRED */
     id: { type: String }, // Discord ID of the user
@@ -32,4 +32,11 @@ module.exports = mongoose.model("GuildMember", new Schema({
     /* BOT */
     bot: { type: Boolean, default: false }
 
-}));
+});
+
+GuildMemberSchema.method("calcInvites", function () {
+    return (this.invites + this.bonus - this.leaves - this.fake);
+});
+
+module.exports = mongoose.model("GuildMember", GuildMemberSchema);
+
