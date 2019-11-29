@@ -75,56 +75,7 @@ module.exports = class {
                     // We save that this member invited this member
                     inviterData.invited.push(member.id);
                 }
-                /* Search for the closest (and highest) fair role to the number of invitations from the member */
-                let nextRank = null;
-                guildData.ranks.forEach((rank) => {
-                    // The role is higher (or equal) than the member's invitations?
-                    let superior = (rank.inviteCount >= (inviterData.invites + inviterData.bonus - inviterData.leaves - inviterData.fake));
-                    // The role exists?
-                    let found = member.guild.roles.get(rank.roleID);
-                    // The role is lower than the index role?
-                    let superiorFound = (nextRank ? rank.inviteCount < nextRank.inviteCount : true);
-                    // If all conditions are correct, the value of the index is changed
-                    if(superior && found && superiorFound) nextRank = rank;
-                });
-                // If a role is found and the member has enough invitation to get it
-                if(nextRank && nextRank.inviteCount === (inviterData.invites + inviterData.bonus - inviterData.leaves - inviterData.fake)){
-                    // Should we remove the old roles?
-                    if(!guildData.stacked){
-                        // Search for all roles below the index role to be added
-                        let oldRoles = guildData.ranks.filter((r) => r.inviteCount < nextRank.inviteCount);
-                        // Filter to keep only existing roles
-                        let oldRolesFound = oldRoles.filter((r) => member.guild.roles.get(r.roleID));
-                        // The member's roles are removed (! we don't test if the member has the role, no need!)
-                        oldRolesFound.forEach((r) => inviterMember.roles.remove(r.roleID));
-                    }
-                    // Ajout du nouveau rôle
-                    inviterMember.roles.add(nextRank.roleID);
-                }
-                // If the member ever has more invitations than the highest role, the highest role is added
-                if(!nextRank){
-                    // Search for the highest role
-                    let highestRole = guildData.ranks.sort((a,b) => b.inviteCount - a.inviteCount)[0];
-                    // If there is a higher role and the member can get it
-                    if(highestRole && highestRole.inviteCount < (inviterData.invites + inviterData.bonus - inviterData.leaves - inviterData.fake)){
-                        // We're looking for it in the server roles, to see if it really exists
-                        let highestRoleFound = member.guild.roles.get(highestRole.roleID);
-                        // If it is does exist
-                        if(highestRoleFound){
-                            // Add the role to the member
-                            inviterMember.roles.add(highestRoleFound);
-                            // Should we remove the old roles?
-                            if(!guildData.stacked){
-                                // Search for all roles below the highest role to be added
-                                let oldRoles = guildData.ranks.filter((r) => r.inviteCount < highestRole.inviteCount);
-                                // Filter to keep only existing roles
-                                let oldRolesFound = oldRoles.filter((r) => member.guild.roles.get(r.roleID));
-                                // The member's roles are removed (! we don't test if the member has the role, no need!)
-                                oldRoles.forEach((r) => inviterMember.roles.remove(r.roleID));
-                            }
-                        }
-                    }
-                }
+                await this.client.functions.assignRanks(member, inviterData.calcInvites(), guildData.ranks);
                 await inviterData.save();
             }
         }

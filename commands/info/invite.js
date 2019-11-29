@@ -17,14 +17,8 @@ class Invite extends Command {
         let member = await this.client.resolveMember(args.join(" "), message.guild) || message.member;
         let memberData = await this.client.findOrCreateGuildMember({ id: member.id, guildID: message.guild.id, bot: member.user.bot });
         let guildData = await this.client.findOrCreateGuild({ id: message.guild.id });
-
-        let nextRank = null;
-        guildData.ranks.forEach((rank) => {
-            let superior = (rank.inviteCount >= (memberData.invites + memberData.bonus - memberData.leaves - memberData.fake));
-            let found = member.guild.roles.get(rank.roleID);
-            let superiorFound = (nextRank ? rank.inviteCount < nextRank.inviteCount : true);
-            if(superior && found && superiorFound) nextRank = rank;
-        });
+        await this.client.functions.assignRanks(member, memberData.calcInvites(), data.guild.ranks);
+        let nextRank = this.client.functions.getNextRank(memberData.calcInvites(), data.guild.ranks);
 
         let description = message.language.invite.description(member, memberData, (member.id === message.member.id), nextRank, (nextRank ? message.guild.roles.get(nextRank.roleID) : null));
         

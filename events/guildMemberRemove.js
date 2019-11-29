@@ -24,31 +24,7 @@ module.exports = class {
                 inviterData.leaves++;
                 inviterData.left.push(member.id);
                 await inviterData.save();
-                /* Search for the closest (and highest) fair role to the number of invitations from the member */
-                let currentRankOrPrevious = null;
-                guildData.ranks.forEach((rank) => {
-                    // The role is higher (or equal) than the member's invitations?
-                    let superior = (rank.inviteCount <= (inviterData.invites + inviterData.bonus - inviterData.leaves - inviterData.fake));
-                    // The role exists?
-                    let found = member.guild.roles.get(rank.roleID);
-                    // The role is lower than the index role?
-                    let superiorFound = (currentRankOrPrevious ? rank.inviteCount > currentRankOrPrevious.inviteCount : true);
-                    // If all conditions are correct, the value of the index is changed
-                    if(superior && found && superiorFound) currentRankOrPrevious = rank;
-                });
-                // If the role found has a greater number of invitations than the member, then it means that the party member has passed the member below the required invitation quota. It is therefore necessary to remove the role and assign it the role below (or none if there is none).
-                if(currentRankOrPrevious && currentRankOrPrevious.inviteCount > (inviterData.invites + inviterData.bonus - inviterData.leaves - inviterData.fake)){
-                    // Removal of the role
-                    inviterMember.roles.remove(currentRankOrPrevious.roleID);
-                    // Search for a potential role to add
-                    let currentRankOrPreviousIndex = guildData.ranks.sort((a,b) => b.inviteCount - a.inviteCount).indexOf(currentRankOrPrevious);
-                    // Search for the role under the currentRankOrPrevious 
-                    let rank = guildData.ranks.sort((a,b) => b.inviteCount - a.inviteCount)[currentRankOrPrevious - 1];
-                    // If the role is found, it is added
-                    if(rank && message.guild.roles.get(rank.roleID)){
-                        inviterMember.roles.add(rank.roleID);
-                    }
-                }
+                await this.client.functions.assignRanks(member, inviterData.calcInvites(), guildData.ranks);
             }
         }
 
