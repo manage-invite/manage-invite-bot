@@ -16,7 +16,7 @@ class Userinfo extends Command {
     async run (message, args, data) {
 
         // Fetch user and member
-        let user = message.mentions.users.first() || await this.client.resolveUser(args[0]) || message.author;
+        let user = message.mentions.users.first() || await this.client.resolveUser(args.join(" ")) || message.author;
         let member = await message.guild.members.fetch(user.id).catch(() => {});
         let memberData = member ? await this.client.findOrCreateGuildMember({ id: member.id, guildID: member.guild.id }) : null;
 
@@ -25,7 +25,7 @@ class Userinfo extends Command {
         moment.locale(data.guild.language.substr(0, 2));
 
         let creationDate = moment(user.createdAt, "YYYYMMDD").fromNow();
-        let joinDate = moment(member.joinedAt, "YYYYMMDD").fromNow();
+        let joinDate = member ? moment(member.joinedAt, "YYYYMMDD").fromNow() : null;
 
         let embed = new Discord.MessageEmbed()
         .setAuthor(message.language.userinfo.title(user), user.displayAvatarURL())
