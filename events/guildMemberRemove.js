@@ -24,7 +24,7 @@ module.exports = class {
                 inviterData.leaves++;
                 inviterData.left.push(member.id);
                 await inviterData.save();
-                await this.client.functions.assignRanks(member, inviterData.calcInvites(), guildData.ranks);
+                await this.client.functions.assignRanks(inviterMember, inviterData.calcInvites(), guildData.ranks);
             }
         }
 

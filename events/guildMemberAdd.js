@@ -75,7 +75,7 @@ module.exports = class {
                     // We save that this member invited this member
                     inviterData.invited.push(member.id);
                 }
-                await this.client.functions.assignRanks(member, inviterData.calcInvites(), guildData.ranks);
+                await this.client.functions.assignRanks(inviterMember, inviterData.calcInvites(), guildData.ranks);
                 await inviterData.save();
             }
         }
