@@ -29,7 +29,7 @@ const init = async () => {
         client.on(eventName, (...args) => event.run(...args));
         delete require.cache[require.resolve(`./events/${file}`)];
     });
-    
+
     client.login(client.config.token); // Log in to the discord api
 
     // connect to mongoose database
@@ -52,7 +52,8 @@ init();
 client.on("disconnect", () => client.logger.log("Bot is disconnecting...", "warn"))
     .on("reconnecting", () => client.logger.log("Bot reconnecting...", "log"))
     .on("error", (e) => client.logger.log(e, "error"))
-    .on("warn", (info) => client.logger.log(info, "warn"));
+    .on("warn", (info) => client.logger.log(info, "warn"))
+    .top.on("posted", () => client.logger.log("DBL stats successfully posted.", "log"));
 
 // if there is an unhandledRejection, log them
 process.on("unhandledRejection", (err) => {
