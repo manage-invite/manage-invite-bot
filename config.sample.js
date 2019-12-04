@@ -29,5 +29,7 @@ module.exports = {
     mongodb:        "XXXXXXXXXXX",
     discord:        "XXXXXXXXXXX",
     prefix:         "+",
-    owners: [ "XXXXXXXXXXX", "XXXXXXXXXXX" ]
+    owners: [ "XXXXXXXXXXX", "XXXXXXXXXXX" ],
+    /* Top.gg */
+    topToken: "XXXXXXXXXXX"
 };
