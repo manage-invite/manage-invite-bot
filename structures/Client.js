@@ -1,5 +1,4 @@
 const { Client, Collection } = require("discord.js"),
-TOP = require("dblapi.js"),
 util = require("util"),
 path = require("path");
 
@@ -18,7 +17,6 @@ class ManageInvite extends Client {
         this.logger = require("../helpers/logger"); // Load the logger file
         this.functions = require("../helpers/functions"); // Load the functions filec
         this.wait = util.promisify(setTimeout); // client.wait(1000) - Wait 1 second
-        this.top = new TOP(this.config.topToken, this);
         // Invitations data
         this.invitations = [];
         this.fetched = false;

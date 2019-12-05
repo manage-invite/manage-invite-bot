@@ -7,6 +7,9 @@ module.exports = class {
 
     async run (guild) {
 
+        // Top Stats
+        this.client.functions.postTopStats(this.client);
+
         const guildDelete = JSON.stringify(new Discord.MessageEmbed()
         .setTitle("Remove | :broken_heart:")
         .addField("Server name :", guild.name) 

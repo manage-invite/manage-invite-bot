@@ -27,9 +27,7 @@ module.exports = class {
             this.client.shard.broadcastEval(() => {
                 console.log(`\x1b[32m%s\x1b[0m`, `SHARD [${this.shard.ids[0]}]`, "\x1b[0m", `Serving ${this.users.size} users in ${this.guilds.size} servers.`);
             });
-            let guildsCounts = await this.client.shard.fetchClientValues("guilds.size");
-            let guildsCount = guildsCounts.reduce((p,c) => p+c);
-            this.client.top.postStats(guildsCount, this.client.shard.ids[0], this.client.shard.count);
+            this.client.functions.postTopStats(this.client);
         }
 
         if(this.client.shard.ids.includes(0) && !this.client.spawned){

@@ -1,4 +1,5 @@
 const Discord = require("discord.js"),
+fetch = require("node-fetch"),
 moment = require("moment");
 
 /**
@@ -98,4 +99,22 @@ const assignRanks = async (member, inviteCount, ranks) => {
     return { removed, assigned };
 };
 
-module.exports = { asyncForEach, formatMessage, randomID, getNextRank, assignRanks };
+const postTopStats = async (client) => {
+    let shard_id = client.shard.ids[0];
+    let shard_count = client.shard.count;
+    let server_counts = await client.shard.fetchClientValues("guilds.size");
+    let server_count = server_counts.reduce((p, c) => p + c);
+    let headers = { "content-type": "application/json", "authorization": client.config.topToken };
+    let options = {
+        method: "POST",
+        body: JSON.stringify({ shard_id, shard_count, server_count }),
+        headers
+    };
+    fetch("https://discordbots.org/api/bots/stats", options).then(async (res) => {
+        let json = await res.json();
+        if(!res.error) client.logger.log("Top.gg stats successfully posted.", "log");
+        else client.logger.log("Top.gg stats cannot be posted. Error: "+json.error, "error");
+    });
+};
+
+module.exports = { asyncForEach, formatMessage, randomID, getNextRank, assignRanks, postTopStats };

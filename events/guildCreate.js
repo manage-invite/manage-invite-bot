@@ -7,6 +7,9 @@ module.exports = class {
 
     async run (guild) {
 
+        // Top Stats
+        this.client.functions.postTopStats(this.client);
+
         let inviter = null;
 
         // Wait 2 seconds to be sure that a request have been sent to the dashboard
