@@ -445,7 +445,7 @@ Type \`cancel\` to abort. ${str}
             role: {
                 missing: (prefix) => `${emojis.error} | Vous devez mentionner le rôle que vous souhaitez ajouter quand le quota d'invitation est atteint. (Syntax: ${prefix}addrank number @role)`,
                 alreadyExists: (prefix, rank, role) => `${emojis.error} | This role is already used for the **${rank.inviteCount}** invites! Remove it with \`${prefix}removerank ${role.id}\` then try again!`,
-                perm: (role) => `${emojis.error} | Mon rôle n'est pas assez haut pour ajouter le rôle \`@${role.name}\` aux membres! Veuillez monter mon rôle then try again!`
+                perm: (role) => `${emojis.error} | My role is not high enough to add the role \`@${role.name}\` to the members! Pleaseput my role up try again!`
             }
         },
         title: () => `🎯 New role added`,
