@@ -19,9 +19,9 @@ module.exports = {
                 perm: (user) => `${emojis.error} | I need the manage server permissions to know who is the inviter of ${user}.`
             },
             leave: {
-                oauth2: (user) => `${user} left the server, he joined via OAuth.`,
-                vanity: (user) => `${user} left the server, he joined using a discord.gg invite defined by the server owner (or an admin).`,
-                unknown: (user) => `${user} left the server, but I can't figure out how he joined it.`
+                oauth2: (user) => `${user} left the server, they joined via OAuth.`,
+                vanity: (user) => `${user} left the server, they joined using a discord.gg invite defined by the server owner (or an admin).`,
+                unknown: (user) => `${user} left the server, but I can't figure out how they joined it.`
             }
         }
     },
@@ -450,7 +450,7 @@ Type \`cancel\` to abort. ${str}
             }
         },
         title: () => `🎯 New role added`,
-        field: (prefix, role, inviteCount) => `When a member will reach **${inviteCount}** invites, he will obtain \`@${role.name}\`!`
+        field: (prefix, role, inviteCount) => `When a member will reach **${inviteCount}** invites, they will obtain \`@${role.name}\`!`
     },
 
     removerank: {
@@ -520,7 +520,7 @@ Type \`cancel\` to abort. ${str}
                 title: () => `Join messages`,
                 message: {
                     title: () => `Message`,
-                    default: () => `{user} joined the server! He was invited by **{inviter.tag}** (who has **{inviter.invites}** invites).`
+                    default: () => `{user} joined the server! They were invited by **{inviter.tag}** (who has **{inviter.invites}** invites).`
                 },
                 channel: {
                     title: () => `Channel`
@@ -530,7 +530,7 @@ Type \`cancel\` to abort. ${str}
                 title: () => `Leave messages`,
                 message: {
                     title: () => `Message`,
-                    default: () => `{user.username} left the server. He was invited by **{inviter.tag}** (who has **{inviter.invites}** invites).`
+                    default: () => `{user.username} left the server. They were invited by **{inviter.tag}** (who has **{inviter.invites}** invites).`
                 },
                 channel: {
                     title: () => `Channel`
@@ -562,7 +562,7 @@ Type \`cancel\` to abort. ${str}
     restoreinvites: {
         confirmations: {
             all: (prefix, memberCount) => `${emojis.warn} | Are you sure you want to restore the server invitations? All members will retrieve the invitations they had before the last time the command \`${prefix}remove-invite\` was typed (or 0 if the command was never typed).\n\n:information_source: **Invitations overview**:\nIt will be restored, in total: **${memberCount.invites}** regulars, **${memberCount.bonus}** bonus, **${memberCount.leaves}** leaves, **${memberCount.fake}** fake.\n\n${emojis.success} Type \`-confirm\` to confirm.\n${emojis.error} Type \`cancel\` to abort.`,
-            member: (prefix, member) => `${emojis.warn} | Are you sure you want to restore the invitations of **${member.user.tag}**? He will retrieve the invitations he had before the last time the command \`${prefix}remove-invites\` was typed (or 0 if the command was never typed).\n\n:information_source: **Invitations overview**:\nIt will be restored: **${member.data.old_invites}** regulars, **${member.data.old_bonus}** bonus, **${member.data.old_leaves}** leaves, **${member.data.old_fake}** fake.\n\n${emojis.success} Type \`-confirm\` to confirm.\n${emojis.error} Type \`cancel\` to abort.`,
+            member: (prefix, member) => `${emojis.warn} | Are you sure you want to restore the invitations of **${member.user.tag}**? They will retrieve the invitations they had before the last time the command \`${prefix}remove-invites\` was typed (or 0 if the command was never typed).\n\n:information_source: **Invitations overview**:\nIt will be restored: **${member.data.old_invites}** regulars, **${member.data.old_bonus}** bonus, **${member.data.old_leaves}** leaves, **${member.data.old_fake}** fake.\n\n${emojis.success} Type \`-confirm\` to confirm.\n${emojis.error} Type \`cancel\` to abort.`,
             cancelled: () => `${emojis.error} Cancelled.`
         },
         loading: {

@@ -13,7 +13,7 @@ module.exports = mongoose.model("Guild", new Schema({
     
     /* INV CONF */
 
-    joinDM: { type: Object, default: { // Message sent to a member when he joins
+    joinDM: { type: Object, default: { // Message sent to a member when they join
         enabled: false,
         message: null
     }},

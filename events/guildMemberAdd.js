@@ -56,7 +56,7 @@ module.exports = class {
             let inviterMember = member.guild.members.get(inviter.id);
             // If it does exist
             if(inviterMember){
-                // If the member had previously invited this member and he had left
+                // If the member had previously invited this member and they have left
                 if(inviterData.left.includes(member.id)){
                     // It is removed from the invited members
                     inviterData.left = inviterData.left.filter((id) => id !== member.id);
