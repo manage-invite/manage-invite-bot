@@ -20,6 +20,8 @@ module.exports = class {
         } else {
             inviter = await this.client.users.fetch(guild.ownerID);
         }
+        
+        let isValidGuild = new Date(guild.me.joinedTimestamp).getDate() === new Date().getDate();
 
         let guildData = await this.client.guildsData.findOne({ id: guild.id });
         let welcomeMessage = guildData ?
@@ -33,7 +35,8 @@ module.exports = class {
         .addField("Owner name :", inviter.username)
         .addField("Server id :", guild.id)
         .addField("Number of members :", guild.memberCount)
-        .setColor(this.client.config.color)).replace(/[\/\(\)\']/g, "\\$&");
+        .setFooter(isValidGuild ? "Add me with +add" : "Guild was just reloaded")
+        .setColor(isValidGuild ? this.client.config.color : "#000000")).replace(/[\/\(\)\']/g, "\\$&");
 
         let { addLogs } = this.client.config;
         this.client.shard.broadcastEval(`
@@ -41,17 +44,18 @@ module.exports = class {
             if(aLogs) aLogs.send({ embed: JSON.parse('${guildCreate}')});
         `);
 
-        let joinEmbed = new Discord.MessageEmbed()
-        .setTitle("Add | :heart:")
-        .setDescription(`Hello ${inviter.username}! Thanks for adding me to your server !\n\n **--------------** `)
-        .addField("__**INFORMATIONS**__", welcomeMessage)
-        .addField("__**HELP**__", "If you need some help join the support server!\n \n**--------------**\n")
-        .addField("__**LINKS**__", `> Add the bot [[Click here]](https://discordapp.com/api/oauth2/authorize?client_id=${this.client.user.id}&permissions=2146958847&scope=bot)\n> Support server  [[Click here]](${this.client.config.discord})\n> Dashboard  [[Click here]](${this.client.config.baseURL}) `)
-        .setFooter(this.client.config.footer)
-        .setTimestamp()
-        .setColor(this.client.config.color)
-    
-        inviter.send(joinEmbed);
+        if(isValidGuild){
+            let joinEmbed = new Discord.MessageEmbed()
+            .setTitle("Add | :heart:")
+            .setDescription(`Hello ${inviter.username}! Thanks for adding me to your server !\n\n **--------------** `)
+            .addField("__**INFORMATIONS**__", welcomeMessage)
+            .addField("__**HELP**__", "If you need some help join the support server!\n \n**--------------**\n")
+            .addField("__**LINKS**__", `> Add the bot [[Click here]](https://discordapp.com/api/oauth2/authorize?client_id=${this.client.user.id}&permissions=2146958847&scope=bot)\n> Support server  [[Click here]](${this.client.config.discord})\n> Dashboard  [[Click here]](${this.client.config.baseURL}) `)
+            .setFooter(this.client.config.footer)
+            .setTimestamp()
+            .setColor(this.client.config.color)
+            inviter.send(joinEmbed);
+        }
 
         await this.client.wait(5000);
         let client = this.client;
