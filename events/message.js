@@ -16,8 +16,8 @@ module.exports = class {
         let guildData = await this.client.findOrCreateGuild({ id: message.guild.id });
         data.guild = guildData;
         message.language = require("../languages/"+data.guild.language);
-
-        if(message.content === `<@${this.client.user.id}>`) return message.reply(message.language.utils.prefix(data.guild.prefix));
+    
+        if(message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.language.utils.prefix(data.guild.prefix));
 
         let memberData = await this.client.findOrCreateGuildMember({ id: message.author.id, guildID: message.guild.id, bot: message.author.bot });
         data.member = memberData;
