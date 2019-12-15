@@ -36,7 +36,7 @@ class Stats extends Command {
         if(numberOfDays !== 7 && !data.guild.premium){
             return message.channel.send(message.language.stats.premium(message.author.username));
         }
-        if(numberOfDays <= 1) return message.channel.send(message.language.stats.errors.invalid());
+        if(numberOfDays <= 1 || numberOfDays > 1000) return message.channel.send(message.language.stats.errors.invalid());
 
         let guild = await message.guild.fetch();
         let joinedXDays = this.client.functions.joinedXDays(numberOfDays, guild.members);

@@ -598,7 +598,7 @@ Type \`cancel\` to abort. ${str}
         content: (total, percent, days) => `**${total}** members (i.e. **${percent}%** of the server) have joined the server from ${days[0]} to ${days[1]}:`,
         premium: (username) => `:crown: | Hey, **${username}**! This feature (customized stats period) is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>**!`,
         errors: {
-            invalid: () => `${emojis.error} | You must enter a valid number of days (greater than 1) to be displayed!`
+            invalid: () => `${emojis.error} | You must enter a valid number of days (greater than 1 and lower than 1000) to be displayed!`
         }
     },
 
