@@ -93,6 +93,7 @@ module.exports = {
         > **${prefix}ping**: Show the ManageInvite's ping.
         > **${prefix}partners**: Show the ManageInvite's partners.
         > **${prefix}support**: Join the support server.
+        > **${prefix}stats**: Display joins stats of your server.
         > **${prefix}add**: Add me to your server.`
         },
         // Others
