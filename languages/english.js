@@ -19,9 +19,9 @@ module.exports = {
                 perm: (user) => `${emojis.error} | I need the manage server permissions to know who is the inviter of ${user}.`
             },
             leave: {
-                oauth2: (user) => `${user} left the server, they joined via OAuth.`,
-                vanity: (user) => `${user} left the server, they joined using a discord.gg invite defined by the server owner (or an admin).`,
-                unknown: (user) => `${user} left the server, but I can't figure out how they joined it.`
+                oauth2: (user) => `${user.tag} left the server, they joined via OAuth.`,
+                vanity: (user) => `${user.tag} left the server, they joined using a discord.gg invite defined by the server owner (or an admin).`,
+                unknown: (user) => `${user.tag} left the server, but I can't figure out how they joined it.`
             }
         }
     },
@@ -530,7 +530,7 @@ Type \`cancel\` to abort. ${str}
                 title: () => `Leave messages`,
                 message: {
                     title: () => `Message`,
-                    default: () => `{user.username} left the server. They were invited by **{inviter.tag}** (who has **{inviter.invites}** invites).`
+                    default: () => `{user.tag} left the server. They were invited by **{inviter.tag}** (who has **{inviter.invites}** invites).`
                 },
                 channel: {
                     title: () => `Channel`
