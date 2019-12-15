@@ -594,6 +594,7 @@ Tapez \`cancel\` pour annuler. ${str}
     stats: {
         title: (name, nb) => `Arrivées sur ${name} ces ${nb} derniers jours`,
         content: (total, percent, days) => `**${total}** membres (soit **${percent}%** du serveur) ont rejoint le serveur du ${days[0]} au ${days[1]} :`,
+        premium: (username) => `:crown: | Hey, **${username}** ! Cette fonctionnalité (période de statistiques personnalisée) est disponible seulement pour les serveurs premium et les partenaires. Deviens premium ici: **<https://docs.manage-invite.xyz/configuration/premium>** !`,
         errors: {
             invalid: () => `${emojis.error} | Vous devez entrer un nombre de jours valide (supérieur à 1) à afficher !`
         }

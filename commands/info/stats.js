@@ -33,6 +33,9 @@ class Stats extends Command {
         let numberOfDays = args[0] || 7;
         if(isNaN(numberOfDays)) return message.channel.send(message.language.stats.errors.invalid());
         numberOfDays = parseInt(numberOfDays);
+        if(numberOfDays !== 7 && !data.guild.premium){
+            return message.channel.send(message.language.stats.premium(message.author.username));
+        }
         if(numberOfDays <= 1) return message.channel.send(message.language.stats.errors.invalid());
 
         let guild = await message.guild.fetch();
