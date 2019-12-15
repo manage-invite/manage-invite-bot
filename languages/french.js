@@ -589,6 +589,18 @@ Tapez \`cancel\` pour annuler. ${str}
     add: {
         content: (id) => `Vous pouvez m'ajouter sur votre serveur en cliquant [ici](https://discordapp.com/oauth2/authorize?client_id=${id}&scope=bot&permissions=2146958847).`,
         requested: (username) => `Demandé par ${username}`
-    }
+    },
+
+    stats: {
+        title: (name, nb) => `Arrivées sur ${name} ces ${nb} derniers jours`,
+        content: (total, percent, days) => `**${total}** membres (soit **${percent}%** du serveur) ont rejoint le serveur du ${days[0]} au ${days[1]} :`,
+        errors: {
+            invalid: () => `${emojis.error} | Vous devez entrer un nombre de jours valide (supérieur à 1) à afficher !`
+        }
+    },
+
+    monthIndex: [
+        "Janv", "Févr", "Mars", "Avr", "Mai", "Juin", "Juill", "Août", "Sept", "Oct", "Nov", "Déc"
+    ]
 
 };

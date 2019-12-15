@@ -590,6 +590,18 @@ Type \`cancel\` to abort. ${str}
     add: {
         content: (id) => `You can add me to your server by clicking [here](https://discordapp.com/oauth2/authorize?client_id=${id}&scope=bot&permissions=2146958847).`,
         requested: (username) => `Requested by ${username}`
-    }
+    },
+
+    stats: {
+        title: (name, nb) => `Joins on ${name} these last ${nb} days`,
+        content: (total, percent, days) => `**${total}** members (i.e. **${percent}%** of the server) have joined the server from ${days[0]} to ${days[1]}:`,
+        errors: {
+            invalid: () => `${emojis.error} | You must enter a valid number of days (greater than 1) to be displayed!`
+        }
+    },
+
+    monthIndex: [
+        "Jan", "Feb", "March", "Apr", "May", "June", "July", "August", "Sept", "Oct", "Nov", "Dec"
+    ]
 
 };

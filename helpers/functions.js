@@ -99,6 +99,10 @@ const assignRanks = async (member, inviteCount, ranks) => {
     return { removed, assigned };
 };
 
+/**
+ * Post client stats to Top.gg
+ * @param {object} client The Discord client
+ */
 const postTopStats = async (client) => {
     let shard_id = client.shard.ids[0];
     let shard_count = client.shard.count;
@@ -117,4 +121,75 @@ const postTopStats = async (client) => {
     });
 };
 
-module.exports = { asyncForEach, formatMessage, randomID, getNextRank, assignRanks, postTopStats };
+const isSameDay = (firstDate, secondDate) => {
+    return `${firstDate.getDate()}|${firstDate.getMonth()}|${firstDate.getFullYear()}` ===
+    `${secondDate.getDate()}|${secondDate.getMonth()}|${secondDate.getFullYear()}`;
+};
+
+/**
+ * Get the name of the last X days
+ * @param {number} numberOfDays The number of days to get
+ * @param {array} monthIndex The names of the month
+ * @returns {array} The formatted names
+ */
+const lastXDays = (numberOfDays, monthIndex) => {
+    let days = [];
+    for (let i = 0; i < numberOfDays; i++) {
+        let date = new Date();
+        date.setDate(date.getDate() - i);
+        let day = date.getDate();
+        let month = monthIndex[date.getMonth()];
+        if(day < 10) day = `0${day}`;
+        days.push(`${day} ${month}`);
+    }
+    return days.reverse();
+};
+
+/**
+ * Get the number of members who joined in a specific time
+ * @param {number} numberOfDays The number of days to get
+ * @param {array} members The total of the members
+ * @returns {array} An array with the total of members whose joined for each day
+ */
+const joinedXDays = (numberOfDays, members) => {
+    // Final result
+    let days = [];
+    // Pointer
+    let lastDate = 0;
+    // Sort the members by their joined date
+    members = members.sort((a,b) => b.joinedTimestamp - a.joinedTimestamp);
+    for (let i = 0; i <= numberOfDays; i++) {
+        let date = new Date();
+        date.setDate(date.getDate() - i);
+        // For each member in the server
+        members.forEach((member) => {
+            // Get the joinedDate
+            let joinedDate = new Date(member.joinedTimestamp);
+            // If the joinedDate is the same as the date which we are testing
+            if(isSameDay(joinedDate, date)){
+                // If the last item in the array is not the same day counter
+                if(lastDate !== joinedDate.getDate()){
+                    lastDate = joinedDate.getDate();
+                    days.push(1);
+                } else {
+                    let currentDay = days.pop();
+                    days.push(++currentDay);
+                }
+            }
+        });
+        // If nobody joins this day, set to 0
+        if(days.length < i) days.push(0);
+    }
+    return days.reverse();
+};
+
+module.exports = {
+    asyncForEach,
+    formatMessage,
+    randomID,
+    getNextRank,
+    assignRanks,
+    postTopStats,
+    lastXDays,
+    joinedXDays
+};

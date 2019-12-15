@@ -6,7 +6,7 @@ class BotInfos extends Command {
         super(client, {
             name: "botinfos",
             enabled: true,
-            aliases: [ "stats", "infos" ],
+            aliases: [ "infos" ],
             clientPermissions: [ "EMBED_LINKS" ],
             permLevel: 0
         });
