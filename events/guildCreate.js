@@ -45,6 +45,7 @@ module.exports = class {
         `);
 
         if(isValidGuild){
+
             let joinEmbed = new Discord.MessageEmbed()
             .setTitle("Add | :heart:")
             .setDescription(`Hello ${inviter.username}! Thanks for adding me to your server !\n\n **--------------** `)
@@ -55,17 +56,18 @@ module.exports = class {
             .setTimestamp()
             .setColor(this.client.config.color)
             inviter.send(joinEmbed);
-        }
 
-        await this.client.wait(5000);
-        let client = this.client;
-        let guildInvites = await guild.fetchInvites();
-        if(!guildInvites) return;
-        let users = new Set(guildInvites.map((i) => i.inviter.id));
-        await this.client.functions.asyncForEach(Array.from(users), async (user) => {
-            let memberData = await client.findOrCreateGuildMember({ id: user, guildID: guild.id });
-            memberData.invites = guildInvites.filter((i) => i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c);
-            await memberData.save();
-        });
+            await this.client.wait(5000);
+            let client = this.client;
+            let guildInvites = await guild.fetchInvites();
+            if(!guildInvites) return;
+            let users = new Set(guildInvites.map((i) => i.inviter.id));
+            await this.client.functions.asyncForEach(Array.from(users), async (user) => {
+                let memberData = await client.findOrCreateGuildMember({ id: user, guildID: guild.id });
+                memberData.invites = guildInvites.filter((i) => i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c);
+                await memberData.save();
+            });
+
+        }
     }
 };
