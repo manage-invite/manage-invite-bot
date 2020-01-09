@@ -65,8 +65,8 @@ class RestoreInvites extends Command {
             let embed = new Discord.MessageEmbed()
             .setAuthor(message.language.restoreinvites.title())
             .setDescription((member ?
-                message.language.restoreinvites.titles.member(data.guild.prefix, member)
-                : message.language.restoreinvites.titles.all(data.guild.prefix)
+                message.language.restoreinvites.titles.member(member)
+                : message.language.restoreinvites.titles.all()
             ))
             .setColor(data.color)
             .setFooter(data.footer);
