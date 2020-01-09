@@ -34,7 +34,7 @@ class RestoreInvites extends Command {
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
             if(collected.first().content === "cancel") return conf.edit(message.language.restoreinvites.confirmations.cancelled());
             collected.first().delete();
-            await (member ? conf.edit(message.language.restoreinvites.loading.member(data.guild.prefix, member)) : conf.edit(message.language.restoreinvites.loading.all(data.guild.prefix)));
+            await (member ? conf.edit(message.language.restoreinvites.loading.member(member)) : conf.edit(message.language.restoreinvites.loading.all()));
             if(member){
                 // Restore invites
                 member.data.invites = memberData.old_invites;
