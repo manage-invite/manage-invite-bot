@@ -37,13 +37,13 @@ class RestoreInvites extends Command {
             await (member ? conf.edit(message.language.restoreinvites.loading.member(member)) : conf.edit(message.language.restoreinvites.loading.all()));
             if(member){
                 // Restore invites
-                member.data.invites = memberData.old_invites;
+                member.data.invites = member.data.old_invites;
                 // Restore fake
-                member.data.fake = memberData.old_fake;
+                member.data.fake = member.data.old_fake;
                 // Restore leaves
-                member.data.leaves = memberData.old_leaves;
+                member.data.leaves = member.data.old_leaves;
                 // Restore bonus
-                member.data.bonus = memberData.old_bonus;
+                member.data.bonus = member.data.old_bonus;
                 // Save the member
                 await member.data.save();
             } else {
