@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const { isEqual } = require('../helpers/functions.js');
 
 module.exports = class {
     constructor (client) {
@@ -34,7 +35,7 @@ module.exports = class {
                 this.client.invitations[member.guild.id] = guildInvites;
                 // Find the invitations which doesn't have the same number of use
                 let inviteUsed = guildInvites.find((i) => oldGuildInvites.get(i.code) && ((oldGuildInvites.get(i.code).hasOwnProperty("uses") ? oldGuildInvites.get(i.code).uses : "Infinite") < i.uses));
-                if((oldGuildInvites.map((i) => `${i.uses}|${i.code}` ).sort() === guildInvites.map((i) => `${i.uses}|${i.code}` ).sort()) && !inviteUsed && member.guild.features.includes("VANITY_URL")){
+                if((isEqual(oldGuildInvites.map((i) => `${i.code}|${i.uses}` ).sort(), guildInvites.map((i) => `${i.code}|${i.uses}` ).sort())) && !inviteUsed && member.guild.features.includes("VANITY_URL")){
                     vanity = true;
                 } else if(!inviteUsed){
                     let newAndUsed = guildInvites.filter((i) => !oldGuildInvites.get(i.code) && i.uses === 1);
