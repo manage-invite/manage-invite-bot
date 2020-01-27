@@ -1,5 +1,6 @@
 module.exports = {
-    token:          "XXXXXXXXXXX", 
+    token:          "XXXXXXXXXXX",
+    shardCount:     2,
     /* Emojis */
     emojis: {
         success:    "XXXXXXXXXXX",
