@@ -19,9 +19,6 @@ module.exports = class {
     
         if(message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.language.utils.prefix(data.guild.prefix));
 
-        let memberData = await this.client.findOrCreateGuildMember({ id: message.author.id, guildID: message.guild.id, bot: message.author.bot });
-        data.member = memberData;
-
         // If the message does not start with the prefix, cancel
         if(!message.content.toLowerCase().startsWith(guildData.prefix)){
             return;
