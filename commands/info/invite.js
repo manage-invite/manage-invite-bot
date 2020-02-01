@@ -16,7 +16,6 @@ class Invite extends Command {
 
         let member = await this.client.resolveMember(args.join(" "), message.guild) || message.member;
         let memberData = await this.client.findOrCreateGuildMember({ id: member.id, guildID: message.guild.id, bot: member.user.bot });
-        let guildData = await this.client.findOrCreateGuild({ id: message.guild.id });
         await this.client.functions.assignRanks(member, memberData.calcInvites(), data.guild.ranks);
         let nextRank = this.client.functions.getNextRank(memberData.calcInvites(), data.guild.ranks);
 
