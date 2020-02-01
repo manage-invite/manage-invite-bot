@@ -31,7 +31,7 @@ module.exports = class {
         const guildCreate = JSON.stringify(new Discord.MessageEmbed()
         .setTitle("Add | :heart:")
         .addField("Server name :", guild.name) 
-        .addField("Owner id :", guild.owner.id)
+        .addField("Owner id :", guild.ownerID)
         .addField("Owner name :", inviter.username)
         .addField("Server id :", guild.id)
         .addField("Number of members :", guild.memberCount)
