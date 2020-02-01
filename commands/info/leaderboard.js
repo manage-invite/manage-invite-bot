@@ -46,7 +46,6 @@ class Leaderboard extends Command {
 
         const embeds = [];
         /* Distributes array */
-        let i = 0;
         let memberCount = 0;
         let totalMemberCount = 0;
         await this.client.functions.asyncForEach(members, async (member) => {
