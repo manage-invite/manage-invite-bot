@@ -18,7 +18,7 @@ class ManageInvite extends Client {
         this.functions = require("../helpers/functions"); // Load the functions filec
         this.wait = util.promisify(setTimeout); // client.wait(1000) - Wait 1 second
         // Invitations data
-        this.invitations = [];
+        this.invitations = {};
         this.fetched = false;
         this.fetching = false;
         // Databases
