@@ -54,7 +54,7 @@ module.exports = class {
         // If we know who invited the member
         if(invite){
             // We look for the member in the server members
-            let inviterMember = member.guild.members.get(inviter.id);
+            let inviterMember = member.guild.members.cache.get(inviter.id);
             // If it does exist
             if(inviterMember){
                 // If the member had previously invited this member and they have left
@@ -116,7 +116,7 @@ module.exports = class {
 
         // Join messages
         if(guildData.join.enabled && guildData.join.message && guildData.join.channel){
-            let channel = member.guild.channels.get(guildData.join.channel);
+            let channel = member.guild.channels.cache.get(guildData.join.channel);
             if(!channel) return;
             if(invite){
                 let formattedMessage = this.client.functions.formatMessage(guildData.join.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData)

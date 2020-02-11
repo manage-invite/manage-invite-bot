@@ -40,7 +40,7 @@ module.exports = class {
 
         let { addLogs } = this.client.config;
         this.client.shard.broadcastEval(`
-            let aLogs = this.channels.get('${addLogs}');
+            let aLogs = this.channels.cache.get('${addLogs}');
             if(aLogs) aLogs.send({ embed: JSON.parse('${guildCreate}')});
         `);
 

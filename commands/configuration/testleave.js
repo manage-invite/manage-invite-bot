@@ -26,8 +26,8 @@ class TestLeave extends Command {
             .setTimestamp()
         message.channel.send(embed);
         
-        if(data.guild.leave.enabled && data.guild.leave.message && data.guild.leave.channel && message.guild.channels.get(data.guild.leave.channel)){
-            message.guild.channels.get(data.guild.leave.channel).send(this.client.functions.formatMessage(
+        if(data.guild.leave.enabled && data.guild.leave.message && data.guild.leave.channel && message.guild.channels.cache.get(data.guild.leave.channel)){
+            message.guild.channels.cache.get(data.guild.leave.channel).send(this.client.functions.formatMessage(
                 data.guild.leave.message,
                 message.member,
                 message.client.user,

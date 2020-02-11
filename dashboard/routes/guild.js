@@ -11,7 +11,7 @@ router = express.Router();
 router.get("/:serverID", CheckAuth, async (req, res) => {
 
     // Check if the user has the permissions to edit this guild
-    let results = await req.client.shard.broadcastEval(` let guild = this.guilds.get('${req.params.serverID}'); if(guild) guild.toJSON() `);
+    let results = await req.client.shard.broadcastEval(` let guild = this.guilds.cache.get('${req.params.serverID}'); if(guild) guild.toJSON() `);
     let guild = results.find((g) => g);
     if(!guild || !req.userInfos.displayedGuilds || !req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID)){
         return res.render("404", {
@@ -42,7 +42,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
 
     // Check if the user has the permissions to edit this guild
     let results = await req.client.shard.broadcastEval(`
-    let guild = this.guilds.get('${req.params.serverID}');
+    let guild = this.guilds.cache.get('${req.params.serverID}');
     if(guild){
         let toReturn = guild.toJSON();
         toReturn.channels = guild.channels.toJSON();

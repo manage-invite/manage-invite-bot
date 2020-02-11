@@ -19,7 +19,7 @@ module.exports = class {
 
         // Update member invites
         if(inviter){
-            let inviterMember = member.guild.members.get(inviter.id);
+            let inviterMember = member.guild.members.cache.get(inviter.id);
             if(inviterMember){
                 inviterData.leaves++;
                 inviterData.left.push(member.id);
@@ -30,7 +30,7 @@ module.exports = class {
 
         // Leave messages
         if(guildData.leave.enabled && guildData.leave.message && guildData.leave.channel){
-            let channel = member.guild.channels.get(guildData.leave.channel);
+            let channel = member.guild.channels.cache.get(guildData.leave.channel);
             if(!channel) return;
             let joinType = memberData.joinData ? memberData.joinData.type : null;
             let language = require("../languages/"+guildData.language);

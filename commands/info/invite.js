@@ -19,7 +19,7 @@ class Invite extends Command {
         await this.client.functions.assignRanks(member, memberData.calcInvites(), data.guild.ranks);
         let nextRank = this.client.functions.getNextRank(memberData.calcInvites(), data.guild.ranks);
 
-        let description = message.language.invite.description(member, memberData, (member.id === message.member.id), nextRank, (nextRank ? message.guild.roles.get(nextRank.roleID) : null));
+        let description = message.language.invite.description(member, memberData, (member.id === message.member.id), nextRank, (nextRank ? message.guild.roles.cache.get(nextRank.roleID) : null));
         
         let embed = new Discord.MessageEmbed()
         .setAuthor(member.user.tag, member.user.displayAvatarURL())

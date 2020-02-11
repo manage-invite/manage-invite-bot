@@ -28,7 +28,7 @@ class Ranks extends Command {
 
         let description = message.language.utils.viewConf()+"\n\n";
         ranks.forEach((rank) => {
-            let role = message.guild.roles.get(rank.roleID);
+            let role = message.guild.roles.cache.get(rank.roleID);
             if(!role) return;
             description += message.language.ranks.formatRank(role, rank.inviteCount);
         });

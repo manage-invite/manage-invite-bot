@@ -174,12 +174,12 @@ module.exports = {
     membercount: {
         title: (guildName) => `MemberCount de ${guildName}`,
         description: (guild) => `
-        Un total de **${guild.members.size}** membres (**${guild.members.filter((m) => !m.user.bot).size}** humains et **${guild.members.filter((m) => m.user.bot).size}** bots)
+        Un total de **${guild.members.cache.size}** membres (**${guild.members.cache.filter((m) => !m.user.bot).size}** humains et **${guild.members.cache.filter((m) => m.user.bot).size}** bots)
 
-        ➔ ${emojis.dnd} | ${guild.members.filter((m) => m.presence.status === "dnd"  && !m.user.bot).size} membres (ne pas déranger)
-        ➔ ${emojis.online} | ${guild.members.filter((m) => m.presence.status === "online" && !m.user.bot).size} membres (en ligne)
-        ➔ ${emojis.idle} | ${guild.members.filter((m) => m.presence.status === "idle" && !m.user.bot).size} membres (afk)
-        ➔ ${emojis.offline} | ${guild.members.filter((m) => m.presence.status === "offline" && !m.user.bot).size} membres (hors-ligne)`
+        ➔ ${emojis.dnd} | ${guild.members.cache.filter((m) => m.presence.status === "dnd"  && !m.user.bot).size} membres (ne pas déranger)
+        ➔ ${emojis.online} | ${guild.members.cache.filter((m) => m.presence.status === "online" && !m.user.bot).size} membres (en ligne)
+        ➔ ${emojis.idle} | ${guild.members.cache.filter((m) => m.presence.status === "idle" && !m.user.bot).size} membres (afk)
+        ➔ ${emojis.offline} | ${guild.members.cache.filter((m) => m.presence.status === "offline" && !m.user.bot).size} membres (hors-ligne)`
     },
 
     support: {

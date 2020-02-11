@@ -46,7 +46,7 @@ class Userinfo extends Command {
                 joinWay = fields.joinWay.oauth();
             }
             let guild = await message.guild.fetch();
-            let members = guild.members.array().sort((a,b) => a.joinedTimestamp - b.joinedTimestamp);
+            let members = guild.members.cache.array().sort((a,b) => a.joinedTimestamp - b.joinedTimestamp);
             let joinPos = members.map((u) => u.id).indexOf(member.id);
             let previous = members[joinPos - 1] ? members[joinPos - 1].user : null;
             let next = members[joinPos + 1] ? members[joinPos + 1].user : null;

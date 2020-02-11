@@ -26,8 +26,8 @@ class TestJoin extends Command {
             .setTimestamp()
         message.channel.send(embed);
         
-        if(data.guild.join.enabled && data.guild.join.message && data.guild.join.channel && message.guild.channels.get(data.guild.join.channel)){
-            message.guild.channels.get(data.guild.join.channel).send(this.client.functions.formatMessage(
+        if(data.guild.join.enabled && data.guild.join.message && data.guild.join.channel && message.guild.channels.cache.get(data.guild.join.channel)){
+            message.guild.channels.cache.get(data.guild.join.channel).send(this.client.functions.formatMessage(
                 data.guild.join.message,
                 message.member,
                 message.client.user,

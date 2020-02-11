@@ -60,7 +60,7 @@ class Leaderboard extends Command {
                 embeds[index] = lastEmbed;
             }
             let oldDesc = lastEmbed.description || "";
-            let user = this.client.users.get(member.id) || (message.guild.members.get(member.id) || {}).user;
+            let user = this.client.users.cache.get(member.id) || (message.guild.members.cache.get(member.id) || {}).user;
             if(!user) user = await this.client.users.fetch(member.id);
             totalMemberCount++;
             let lb =    totalMemberCount === 1 ? "🏆" :

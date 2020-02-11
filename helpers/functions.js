@@ -78,22 +78,22 @@ const assignRanks = async (member, inviteCount, ranks) => {
     let removed = new Array();
     asyncForEach(ranks, async (rank) => {
         // If the guild doesn't contain the rank anymore
-        if(!member.guild.roles.has(rank.roleID)) return;
+        if(!member.guild.roles.cache.has(rank.roleID)) return;
         // If the bot doesn't have permissions to assign role to this member
-        if(!member.guild.roles.get(rank.roleID).editable) return;
+        if(!member.guild.roles.cache.get(rank.roleID).editable) return;
         // If the member can't obtain the rank
         if(inviteCount < parseInt(rank.inviteCount)){
             // If the member doesn't have the rank
-            if(!member.roles.has(rank.roleID)) return;
+            if(!member.roles.cache.has(rank.roleID)) return;
             // Remove the ranks
             await member.roles.remove(rank.roleID);
-            removed.push(member.guild.roles.get(rank.roleID));
+            removed.push(member.guild.roles.cache.get(rank.roleID));
         } else {
             // If the member already has the rank
             if(member.roles.has(rank.roleID)) return;
             // Assign the role to the member
             await member.roles.add(rank.roleID);
-            assigned.push(member.guild.roles.get(rank.roleID));
+            assigned.push(member.guild.roles.cache.get(rank.roleID));
         }
     });
     return { removed, assigned };
@@ -106,7 +106,7 @@ const assignRanks = async (member, inviteCount, ranks) => {
 const postTopStats = async (client) => {
     let shard_id = client.shard.ids[0];
     let shard_count = client.shard.count;
-    let server_counts = await client.shard.fetchClientValues("guilds.size");
+    let server_counts = await client.shard.fetchClientValues("guilds.cache.size");
     let server_count = server_counts.reduce((p, c) => p + c);
     let headers = { "content-type": "application/json", "authorization": client.config.topToken };
     let options = {
@@ -157,7 +157,7 @@ const joinedXDays = (numberOfDays, members) => {
     // Pointer
     let lastDate = 0;
     // Sort the members by their joined date
-    members = members.sort((a,b) => b.joinedTimestamp - a.joinedTimestamp);
+    members = members.cache.sort((a,b) => b.joinedTimestamp - a.joinedTimestamp);
     for (let i = 0; i <= numberOfDays; i++) {
         let date = new Date();
         date.setDate(date.getDate() - i);

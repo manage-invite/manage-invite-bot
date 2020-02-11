@@ -66,7 +66,7 @@ class Stats extends Command {
         embed.attachFiles(attachment);
         embed.setImage("attachment://image.png");
         let total = joinedXDays.reduce((p, c) => p+c);
-        let percent = Math.round((100*total)/guild.members.size);
+        let percent = Math.round((100*total)/guild.members.cache.size);
         let daysRange = [lastXDays.shift(), lastXDays.pop()];
         embed.addField("\u200B", message.language.stats.content(total, percent, daysRange));
         message.channel.send(embed);

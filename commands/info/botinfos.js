@@ -14,15 +14,15 @@ class BotInfos extends Command {
 
     async run (message, args, data) {
 
-        let guildsCounts = await this.client.shard.fetchClientValues("guilds.size");
-        let guildsCount = guildsCounts.reduce((p, count) => p + count);
-        let usersCounts = await this.client.shard.fetchClientValues("users.size");
-        let usersCount = usersCounts.reduce((p, count) => p + count);
+        const guildsCounts = await this.client.shard.fetchClientValues("guilds.cache.size");
+        const guildsCount = guildsCounts.reduce((p, count) => p + count);
+        const usersCounts = await this.client.shard.fetchClientValues("users.cache.size");
+        const usersCount = usersCounts.reduce((p, count) => p + count);
         
-        let results = await this.client.shard.broadcastEval(() => {
+        const results = await this.client.shard.broadcastEval(() => {
             return [
                 Math.round((process.memoryUsage().heapUsed / 1024 / 1024)),
-                this.guilds.size,
+                this.guilds.cache.size,
                 this.shard.ids[0],
                 Math.round(this.ws.ping)
             ];

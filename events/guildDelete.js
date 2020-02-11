@@ -21,7 +21,7 @@ module.exports = class {
 
         let { removeLogs } = this.client.config;
         this.client.shard.broadcastEval(`
-            let rLogs = this.channels.get('${removeLogs}');
+            let rLogs = this.channels.cache.get('${removeLogs}');
             if(rLogs) rLogs.send({ embed: JSON.parse('${guildDelete}')});
         `);
         

@@ -48,9 +48,9 @@ module.exports.load = async (client) => {
         if(req.user && req.url !== "/") req.userInfos = await utils.fetchUser(req.user, req.client);
         if(req.user){
             let results = await client.shard.broadcastEval(`
-            let guild = this.guilds.get("638685268777500672");
+            let guild = this.guilds.cache.get("638685268777500672");
             if(guild){
-                let member = guild.members.get('${req.user.id}');
+                let member = guild.members.cache.get('${req.user.id}');
                 if(member){
                     true;
                 }

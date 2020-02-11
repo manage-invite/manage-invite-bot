@@ -34,7 +34,7 @@ class ConfigJoin extends Command {
         let confChannel = collected.first();
         if(confChannel.content === "cancel") return msg.edit(message.language.configjoin.cancelled());
         let channel = confChannel.mentions.channels.first()
-        || message.guild.channels.get(confChannel.content)
+        || message.guild.channels.cache.get(confChannel.content)
         || message.guild.channels.find((ch) => ch.name === confChannel.content || `#${ch.name}` === confChannel.content);
         if(!channel) return msg.edit(message.language.configjoin.errors.channelNotFound(confChannel.content));
         collected.first().delete();

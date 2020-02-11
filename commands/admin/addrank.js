@@ -22,7 +22,7 @@ class Addrank extends Command {
         let currentRole = message.guild.roles.find((r) => r.id === currentRank.roleID);
         if(currentRank && currentRole) return message.channel.send(message.language.addrank.errors.inviteCount.alreadyExists(data.guild.prefix, currentRank, currentRole));
 
-        let role = message.mentions.roles.first() || message.guild.roles.get(args.slice(1).join(" ")) || message.guild.roles.find((role) => role.name === args.slice(1).join(" ") || (stringSimilarity.compareTwoStrings(role.name, args.slice(1).join(" ")) > 0.85));
+        let role = message.mentions.roles.first() || message.guild.roles.cache.get(args.slice(1).join(" ")) || message.guild.roles.find((role) => role.name === args.slice(1).join(" ") || (stringSimilarity.compareTwoStrings(role.name, args.slice(1).join(" ")) > 0.85));
         if(!role || (role.managed && role.members.size === 1 && role.members.first().bot && role.members.first().user.username === role.name)) return message.channel.send(message.language.addrank.errors.role.missing(data.guild.prefix));
         if(role.position > message.guild.me.roles.highest.position) return message.channel.send(message.language.addrank.errors.role.perm(role));
         currentRank = data.guild.ranks.find((r) => r.roleID === role.id);

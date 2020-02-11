@@ -174,12 +174,12 @@ module.exports = {
     membercount: {
         title: (guildName) => `${guildName}'s MemberCount`,
         description: (guild) => `
-        Total of **${guild.members.size}**  members (**${guild.members.filter((m) => !m.user.bot).size}** humans and **${guild.members.filter((m) => m.user.bot).size}** bots)
+        Total of **${guild.members.cache.size}**  members (**${guild.members.cache.filter((m) => !m.user.bot).size}** humans and **${guild.members.cache.filter((m) => m.user.bot).size}** bots)
 
-        ➔ ${emojis.dnd} | ${guild.members.filter((m) => m.presence.status === "dnd"  && !m.user.bot).size} members dnd
-        ➔ ${emojis.online} | ${guild.members.filter((m) => m.presence.status === "online" && !m.user.bot).size} members online
-        ➔ ${emojis.idle} | ${guild.members.filter((m) => m.presence.status === "idle" && !m.user.bot).size} members idle
-        ➔ ${emojis.offline} | ${guild.members.filter((m) => m.presence.status === "offline" && !m.user.bot).size} members offline`
+        ➔ ${emojis.dnd} | ${guild.members.cache.filter((m) => m.presence.status === "dnd"  && !m.user.bot).size} members dnd
+        ➔ ${emojis.online} | ${guild.members.cache.filter((m) => m.presence.status === "online" && !m.user.bot).size} members online
+        ➔ ${emojis.idle} | ${guild.members.cache.filter((m) => m.presence.status === "idle" && !m.user.bot).size} members idle
+        ➔ ${emojis.offline} | ${guild.members.cache.filter((m) => m.presence.status === "offline" && !m.user.bot).size} members offline`
     },
 
     support: {
@@ -287,14 +287,14 @@ module.exports = {
             content: (guild, data) => `
             > Enabled: ${data.guild.join.enabled ? "**yes**" : "**no**"}
             > Message: ${data.guild.join.message ? "**defined**" : "**not defined**."}
-            > Channel: ${!data.guild.join.channel ? "**not defined**" : (guild.channels.get(data.guild.join.channel) ? "**defined**" : "**channel not found**")}`
+            > Channel: ${!data.guild.join.channel ? "**not defined**" : (guild.channels.cache.get(data.guild.join.channel) ? "**defined**" : "**channel not found**")}`
         },
         leave: {
             title: (enabled) => `${(enabled ? emojis.success : emojis.error)} Leave Messages`,
             content: (guild, data) => `
             > Enabled: ${data.guild.leave.enabled ? "**yes**" : "**no**"}
             > Message: ${data.guild.leave.message ? "**defined**" : "**not defined**."}
-            > Channel: ${!data.guild.leave.channel ? "**not defined**" : (guild.channels.get(data.guild.leave.channel) ? "**defined**" : "**channel not found**")}`
+            > Channel: ${!data.guild.leave.channel ? "**not defined**" : (guild.channels.cache.get(data.guild.leave.channel) ? "**defined**" : "**channel not found**")}`
         },
         joinDM: {
             title: (enabled) => `${(enabled ? emojis.success : emojis.error)} Join DM Messages`,

@@ -22,7 +22,7 @@ class ServersList extends Command {
         let page = 1;
 
         let results = await this.client.shard.broadcastEval(() => {
-            return this.guilds.array();
+            return this.guilds.cache.array();
         });
         let guilds = [];
         results.forEach((a) => guilds = [...guilds, ...a]);
