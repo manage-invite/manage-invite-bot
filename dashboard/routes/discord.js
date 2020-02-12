@@ -67,7 +67,7 @@ router.get("/callback", async (req, res) => {
     // Update session
     req.session.user = { ... userData.infos, ... { guilds } };
     let user = await req.client.users.fetch(req.session.user.id);
-    req.client.shard.broadcastEval(`let channel = this.channels.get(this.config.dashLogs); if(channel) channel.send({ embed: JSON.parse('${JSON.stringify({
+    req.client.shard.broadcastEval(`let channel = this.channels.cache.get(this.config.dashLogs); if(channel) channel.send({ embed: JSON.parse('${JSON.stringify({
         color: req.client.config.color,
         author: {
             name: user.tag+" connected to the dashboard!"
