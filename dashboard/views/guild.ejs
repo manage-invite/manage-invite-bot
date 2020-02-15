@@ -130,10 +130,10 @@
                                         <th style="width: 40px"><%= language.website.ranks.fields.invites() %></th>
                                         </tr>
                                     <tr>
-                                <% guild.ranks.filter((rank) => guild.roles.find((r) => r.id === rank.roleID)).sort((a,b) => b.inviteCount - a.inviteCount).forEach((rank, index) => { %>
+                                <% guild.ranks.filter((rank) => guild.roles.cache.find((r) => r.id === rank.roleID)).sort((a,b) => b.inviteCount - a.inviteCount).forEach((rank, index) => { %>
                                     <tr>
                                         <td><%= ++index %>.</td>
-                                        <td><font color="<%= guild.roles.find((r) => r.id === rank.roleID).hexColor %>"><strong>@<%= guild.roles.find((r) => r.id === rank.roleID).name %></strong></font></td>
+                                        <td><font color="<%= guild.roles.cache.find((r) => r.id === rank.roleID).hexColor %>"><strong>@<%= guild.roles.cache.find((r) => r.id === rank.roleID).name %></strong></font></td>
                                         <td><span class="badge bg-red"><%= rank.inviteCount %></span></td>
                                     </tr>
                                 <% }); %>
