@@ -90,7 +90,7 @@ const assignRanks = async (member, inviteCount, ranks) => {
             removed.push(member.guild.roles.cache.get(rank.roleID));
         } else {
             // If the member already has the rank
-            if(member.roles.has(rank.roleID)) return;
+            if(member.roles.cache.has(rank.roleID)) return;
             // Assign the role to the member
             await member.roles.add(rank.roleID);
             assigned.push(member.guild.roles.cache.get(rank.roleID));
