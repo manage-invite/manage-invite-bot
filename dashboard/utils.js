@@ -11,8 +11,8 @@ async function fetchGuild(guildID, client){
     let guild = this.guilds.cache.get('${guildID}');
     if(guild){
         let toReturn = guild.toJSON();
-        toReturn.channels = guild.channels.toJSON();
-        toReturn.roles = guild.roles.map((r) => {
+        toReturn.channels = guild.channels.cach.toJSON();
+        toReturn.roles = guild.roles.cache.map((r) => {
             return {
                 name: r.name,
                 hexColor: r.hexColor,
