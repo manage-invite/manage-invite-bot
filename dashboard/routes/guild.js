@@ -45,7 +45,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
     let guild = this.guilds.cache.get('${req.params.serverID}');
     if(guild){
         let toReturn = guild.toJSON();
-        toReturn.channels = guild.channels.toJSON();
+        toReturn.channels = guild.channels.cache.toJSON();
         toReturn;
     }`);
     let guild = results.find((g) => g);
