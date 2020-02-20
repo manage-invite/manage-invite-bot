@@ -201,7 +201,7 @@ module.exports = {
         field: (prefix, member) => `Écrivez \`${prefix}invites ${member.user.tag}\` pour voir le nouveau nombre d'invitations de **${member.user.username}** !`
     },
 
-  blacklist: {
+    blacklist: {
         blacklisted: () => `${emojis.error} | Vous êtes sur la liste noire de ce serveur, vous ne pouvez pas taper cette commande!`,
         blacklistedMember: (member) => `${member.user.tag} est sur la liste noir de ce serveur.`,
         action: {
