@@ -20,7 +20,8 @@ class AddBonus extends Command {
 
         let member = message.mentions.members.first() || await this.client.resolveMember(args.slice(1).join(" "), message.guild);
         if(!member) return message.channel.send(message.language.addbonus.errors.member.missing(data.guild.prefix));
-    
+        if(data.guild.blacklistedUsers.includes(member.id)) return message.channel.send(message.language.blacklist.blacklistedMember(member));
+
         let memberData = await this.client.findOrCreateGuildMember({ id: member.id, guildID: message.guild.id, bot: member.user.bot });
         memberData.bonus += parseInt(bonus);
         memberData.markModified("bonus");
