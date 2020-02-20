@@ -40,6 +40,7 @@ module.exports = {
         admin: {
             title: () => `Admin`,
             content: (prefix) => `
+        > **${prefix}blacklist [add/remove/list] (@user)**: Add/Remove a user to the blacklist
         > **${prefix}addbonus number @user**: Add bonus invites to a member
         > **${prefix}removebonus number @user**: Remove bonus invites to a member
         > **${prefix}sync-invites**: Synchronize server invites and bot invites
