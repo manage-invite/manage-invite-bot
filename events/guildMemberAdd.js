@@ -51,6 +51,8 @@ module.exports = class {
         let inviter = invite ? await this.client.resolveUser(invite.inviter.id) : null;
         let inviterData = inviter ? await this.client.findOrCreateGuildMember({ id: inviter.id, guildID: member.guild.id, bot: inviter.bot }) : null;
 
+        if(guildData.blacklistedUsers.includes(inviter.id)) return;
+
         // If we know who invited the member
         if(invite){
             // We look for the member in the server members
