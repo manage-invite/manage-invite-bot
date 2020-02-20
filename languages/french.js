@@ -208,7 +208,7 @@ module.exports = {
             error: () => `${emojis.error} | Vous devez entrer une action valide! (\`add\`, \`remove\` ou \`list\`)\n\n:information_source: Les utilisateurs de la liste noire:\n- Ne recevront/perdront plus de rôle\n- N'apparaitront plus sur le classement\n- N'auront plus leur invitations traquées\n- Ne pourront pas taper la commande \`invites\``
         },
         mentions: {
-            add: () => `${emojis.error} | Vous devez mentionner un membre valide pour ajouter à la liste noire !`,
+            add: () => `${emojis.error} | Vous devez mentionner un membre valide à ajouter à la liste noire !`,
             remove: () => `${emojis.error} | Vous devez mentionner un membre valide à retirer de la liste noire !`
         },
         success: {
