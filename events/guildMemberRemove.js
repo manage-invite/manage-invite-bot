@@ -7,6 +7,8 @@ module.exports = class {
 
     async run (member) {
 
+        // Prevent undefined left the server
+        if(!member.user) return;
         if(!this.client.fetched) return;
 
         // Fetch guild and member data from the db
