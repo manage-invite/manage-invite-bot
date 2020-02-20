@@ -17,10 +17,10 @@ module.exports = class {
         let inviterData = inviter ? await this.client.findOrCreateGuildMember({ id: inviter.id, guildID: member.guild.id, bot: inviter.bot }) : null;
         let invite = (memberData.joinData || memberData.usedInvite || {}).invite;
 
-        if(guildData.blacklistedUsers.includes(inviter.id)) return;
 
         // Update member invites
         if(inviter){
+            if(guildData.blacklistedUsers.includes(inviter.id)) return;
             let inviterMember = member.guild.members.cache.get(inviter.id);
             if(inviterMember){
                 inviterData.leaves++;
