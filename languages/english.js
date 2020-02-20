@@ -200,6 +200,24 @@ module.exports = {
         field: (prefix, member) => `Write \`${prefix}invites ${member.user.tag}\` to see the new number of invites of **${member.user.username}**!`
     },
 
+    blacklist: {
+        blacklisted: () => `${emojis.error} | You are blacklisted on this server, you can't run this command.`,
+        blacklistedMember: (member) => `${member.user.tag} is blacklisted on this server.`,
+        action: {
+            error: () => `${emojis.error} | You must enter a valid action! (\`add\`, \`remove\` or \`list\`)\n\n:information_source: Users in the blacklist:\n- Won't receive/loose roles\n- Won't appear in the leaderboard\n- Won't have their invites tracked anymore\n- Won't be able to run the \`invites\` command`
+        },
+        mentions: {
+            add: () => `${emojis.error} | You must mention a valid member to add in the blacklist!`,
+            remove: () => `${emojis.error} | You must mention a valid member to remove from the blacklist!`
+        },
+        success: {
+            add: (user) => `${emojis.success} | **${user.tag}** was added to the blacklist!`,
+            remove: (user) => `${emojis.success} | **${user.tag}** was removed from the blacklist!`
+        },
+        empty: () => `No blacklisted users!`,
+        notFound: (user) => `${emojis.error} | **${user.tag}** is not in the blacklist!`
+    },
+
     removebonus: {
         errors: {
             bonus: {

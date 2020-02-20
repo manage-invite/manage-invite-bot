@@ -200,6 +200,24 @@ module.exports = {
         field: (prefix, member) => `Écrivez \`${prefix}invites ${member.user.tag}\` pour voir le nouveau nombre d'invitations de **${member.user.username}** !`
     },
 
+    blacklist: {
+        blacklisted: () => `${emojis.error} | Vous êtes sur la liste noire de ce serveur, vous ne pouvez pas taper cette commande!`,
+        blacklistedMember: (member) => `${member.user.tag} est sur la liste noir de ce serveur.`,
+        action: {
+            error: () => `${emojis.error} | Vous devez enter une action valide! (\`add\`, \`remove\` ou \`list\`)\n\n:information_source: Les utilisateurs de la liste noire:\n- Ne recevront/perdront plus de rôle\n- N'apparaitront plus sur le classement\n- N'auront plus leur invitations traquées\n- Ne pourront pas taper la commande \`invites\``
+        },
+        mentions: {
+            add: () => `${emojis.error} | You must mention a valid member to add in the blacklist!`,
+            remove: () => `${emojis.error} | You must mention a valid member to remove from the blacklist!`
+        },
+        success: {
+            add: (user) => `${emojis.success} | **${user.tag}** was added to the blacklist!`,
+            remove: (user) => `${emojis.success} | **${user.tag}** was removed from the blacklist!`
+        },
+        empty: () => `No blacklisted users!`,
+        notFound: (user) => `${emojis.error} | **${user.tag}** is not in the blacklist!`
+    },
+
     removebonus: {
         errors: {
             bonus: {
