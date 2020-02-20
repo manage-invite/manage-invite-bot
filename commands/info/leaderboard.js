@@ -33,6 +33,7 @@ class Leaderboard extends Command {
 
         let members = [];
         membersData.forEach((member) => {
+            if(data.guild.blacklistedUsers.includes(member.id)) return;
             members.push({
                 calculatedInvites: (member.invites + member.bonus - member.leaves - member.fake),
                 fake: member.fake,
