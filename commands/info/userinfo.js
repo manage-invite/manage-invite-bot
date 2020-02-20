@@ -51,7 +51,7 @@ class Userinfo extends Command {
             let previous = members[joinPos - 1] ? members[joinPos - 1].user : null;
             let next = members[joinPos + 1] ? members[joinPos + 1].user : null;
             embed.addField(fields.joinedAt.title(), joinDate.charAt(0).toUpperCase() + joinDate.substr(1, joinDate.length), true)
-            .addField(fields.invites.title(), fields.invites.content(memberData))
+            .addField(fields.invites.title(), data.guild.blacklistedUsers.includes(member.id) ? message.language.blacklist.blacklistedMember(member) : fields.invites.content(memberData))
             .addField(fields.joinWay.title(), joinWay)
             .addField(fields.joinOrder.title(), fields.joinOrder.content(previous, next, user));
         }
