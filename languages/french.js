@@ -201,22 +201,22 @@ module.exports = {
         field: (prefix, member) => `Écrivez \`${prefix}invites ${member.user.tag}\` pour voir le nouveau nombre d'invitations de **${member.user.username}** !`
     },
 
-    blacklist: {
+  blacklist: {
         blacklisted: () => `${emojis.error} | Vous êtes sur la liste noire de ce serveur, vous ne pouvez pas taper cette commande!`,
         blacklistedMember: (member) => `${member.user.tag} est sur la liste noir de ce serveur.`,
         action: {
-            error: () => `${emojis.error} | Vous devez enter une action valide! (\`add\`, \`remove\` ou \`list\`)\n\n:information_source: Les utilisateurs de la liste noire:\n- Ne recevront/perdront plus de rôle\n- N'apparaitront plus sur le classement\n- N'auront plus leur invitations traquées\n- Ne pourront pas taper la commande \`invites\``
+            error: () => `${emojis.error} | Vous devez entrer une action valide! (\`add\`, \`remove\` ou \`list\`)\n\n:information_source: Les utilisateurs de la liste noire:\n- Ne recevront/perdront plus de rôle\n- N'apparaitront plus sur le classement\n- N'auront plus leur invitations traquées\n- Ne pourront pas taper la commande \`invites\``
         },
         mentions: {
-            add: () => `${emojis.error} | You must mention a valid member to add in the blacklist!`,
-            remove: () => `${emojis.error} | You must mention a valid member to remove from the blacklist!`
+            add: () => `${emojis.error} | Vous devez mentionner un membre valide pour ajouter à la liste noire !`,
+            remove: () => `${emojis.error} | Vous devez mentionner un membre valide à retirer de la liste noire !`
         },
         success: {
-            add: (user) => `${emojis.success} | **${user.tag}** was added to the blacklist!`,
-            remove: (user) => `${emojis.success} | **${user.tag}** was removed from the blacklist!`
+            add: (user) => `${emojis.success} | **${user.tag}** a été ajouté à la liste noire !`,
+            remove: (user) => `${emojis.success} | **${user.tag}** a été retiré de la liste noire !`
         },
-        empty: () => `No blacklisted users!`,
-        notFound: (user) => `${emojis.error} | **${user.tag}** is not in the blacklist!`
+        empty: () => `Aucun utilisateur sur liste noire !`,
+        notFound: (user) => `${emojis.error} | **${user.tag}** n'est pas dans la liste noire !`
     },
 
     removebonus: {
