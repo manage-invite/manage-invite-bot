@@ -32,6 +32,7 @@ module.exports = mongoose.model("Guild", new Schema({
 
     ranks: { type: Array, default: [] },
     stacked: { type: Boolean, default: true },
+    blacklistedUsers: { type: Array, default: [] },
 
     premium: { type: Boolean, default: false }
 
