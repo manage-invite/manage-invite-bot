@@ -17,7 +17,7 @@ class Config extends Command {
         let joinSuccess = data.guild.join.enabled
         && data.guild.join.message
         && data.guild.join.channel
-        && message.guild.channels.get(data.guild.join.channel);
+        && message.guild.channels.cache.get(data.guild.join.channel);
 
         let joinDMSuccess = data.guild.joinDM.enabled
         && data.guild.joinDM.message;
