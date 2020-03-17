@@ -306,14 +306,14 @@ module.exports = {
             content: (guild, data) => `
             > Activés: ${data.guild.join.enabled ? "**oui**" : "**non**"}
             > Message: ${data.guild.join.message ? "**défini**" : "**non défini**."}
-            > Salon: ${!data.guild.join.channel ? "**non défini**" : (guild.channels.get(data.guild.join.channel) ? "**défini**" : "**salon introuvable**")}`
+            > Salon: ${!data.guild.join.channel ? "**non défini**" : (guild.channels.cache.get(data.guild.join.channel) ? "**défini**" : "**salon introuvable**")}`
         },
         leave: {
             title: (enabled) => `${(enabled ? emojis.success : emojis.error)} Messages de départs`,
             content: (guild, data) => `
             > Activés: ${data.guild.leave.enabled ? "**oui**" : "**non**"}
             > Message: ${data.guild.leave.message ? "**défini**" : "**non défini**."}
-            > Salon: ${!data.guild.leave.channel ? "**non défini**" : (guild.channels.get(data.guild.leave.channel) ? "**défini**" : "**salon introuvable**")}`
+            > Salon: ${!data.guild.leave.channel ? "**non défini**" : (guild.channels.cache.get(data.guild.leave.channel) ? "**défini**" : "**salon introuvable**")}`
         },
         joinDM: {
             title: (enabled) => `${(enabled ? emojis.success : emojis.error)} Messages d'arrivées en MP`,
