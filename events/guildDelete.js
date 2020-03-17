@@ -10,11 +10,13 @@ module.exports = class {
         // Top Stats
         this.client.functions.postTopStats(this.client);
 
+        const user = await this.client.users.fetch(guild.ownerID);
+
         const guildDelete = JSON.stringify(new Discord.MessageEmbed()
         .setTitle("Remove | :broken_heart:")
         .addField("Server name :", guild.name) 
-        .addField("Owner id :", guild.ownerID)
-        .addField("Owner name :", guild.owner.user.username)
+        .addField("Owner id :", user.id)
+        .addField("Owner name :", user.username)
         .addField("Server id :", guild.id)
         .addField("Number of members :", guild.memberCount)
         .setColor(this.client.config.color)).replace(/[\/\(\)\']/g, "\\$&");
