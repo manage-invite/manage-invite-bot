@@ -7,7 +7,7 @@
     "btoa": "^1.2.1",
     "chalk": "^2.4.2",
     "chart.js": "^2.9.3",
-    "chartjs-node-canvas": "^2.4.1",
+    "chartjs-node-canvas": "^3.0.6",
     "discord-backup": "^1.1.2",
     "discord-paginationembed": "^2.0.0-beta.4",
     "discord.js": "github:discordjs/discord.js",
