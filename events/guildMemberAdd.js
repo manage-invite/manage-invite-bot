@@ -124,13 +124,13 @@ module.exports = class {
                 let formattedMessage = this.client.functions.formatMessage(guildData.join.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData)
                 channel.send(formattedMessage);
             } else if(vanity){
-                channel.send(language.utils.specialMessages.join.vanity(member.toString()))
+                channel.send(language.utils.specialMessages.join.vanity(member.user));
             } else if(oauth){
-                channel.send(language.utils.specialMessages.join.oauth2(member.toString()))
+                channel.send(language.utils.specialMessages.join.oauth2(member.user));
             } else if(perm){
-                channel.send(language.utils.specialMessages.join.perm(member.toString()))
+                channel.send(language.utils.specialMessages.join.perm(member.user));
             } else {
-                channel.send(language.utils.specialMessages.join.unknown(member.toString()))
+                channel.send(language.utils.specialMessages.join.unknown(member.user));
             }
         }
 

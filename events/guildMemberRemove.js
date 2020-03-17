@@ -42,13 +42,13 @@ module.exports = class {
                 let formattedMessage = this.client.functions.formatMessage(guildData.leave.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData)
                 channel.send(formattedMessage);
             } else if(joinType === "vanity"){
-                channel.send(language.utils.specialMessages.leave.vanity(member.toString()))
+                channel.send(language.utils.specialMessages.leave.vanity(member.user));
             } else if(joinType === "oauth"){
-                channel.send(language.utils.specialMessages.leave.oauth2(member.toString()))
+                channel.send(language.utils.specialMessages.leave.oauth2(member.user));
             } else if(joinType === "perm"){
-                channel.send(language.utils.specialMessages.leave.perm(member.toString()))
+                channel.send(language.utils.specialMessages.leave.perm(member.user));
             } else {
-                channel.send(language.utils.specialMessages.leave.unknown(member.toString()))
+                channel.send(language.utils.specialMessages.leave.unknown(member.user));
             }
         }
 
