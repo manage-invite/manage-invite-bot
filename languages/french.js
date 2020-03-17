@@ -375,6 +375,7 @@ __**Plus d'informations**__
 {user.name} : Le pseudo du membre qui vient de rejoindre votre serveur.
 {user.tag} : Le tag du membre qui vient de rejoindre votre serveur.
 {user.createdat} : L'âge du compte du membre.
+{user.id} : L'ID du membre.
 
 {guild} : Nom du serveur.
 {guild.count} : Nombre de membres que votre serveur a maintenant.
@@ -383,6 +384,7 @@ __**Plus d'informations**__
 {inviter.name} : Le nom de l'inviteur.
 {inviter.tag} : Le tag de l'inviteur.
 {inviter.invites} : Le nombre total d'invitations de l'inviteur.
+{inviter.id} : L'ID de l'inviteur.
 
 {invite.code} : Le code d'invitation utilisé.
 {invite.url} : L'url d'invitation utilisée.
@@ -418,6 +420,7 @@ __**Plus d'informations**__
 {user.name} : Le pseudo du membre qui vient de partir de votre serveur.
 {user.tag} : Le tag du membre qui vient de partir de votre serveur.
 {user.createdat} : L'âge du compte du membre.
+{user.id} : L'ID du membre.
 
 {guild} : Nom du serveur.
 {guild.count} : Nombre de membres que votre serveur a maintenant.
@@ -426,6 +429,7 @@ __**Plus d'informations**__
 {inviter.name} : Le nom de l'inviteur.
 {inviter.tag} : Le tag de l'inviteur.
 {inviter.invites} : Le nombre total d'invitations de l'inviteur.
+{inviter.id} : L'ID de l'inviteur.
 
 {invite.code} : Le code d'invitation utilisé.
 {invite.url} : L'url d'invitation utilisée.
