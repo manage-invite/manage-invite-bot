@@ -158,7 +158,7 @@ const joinedXDays = (numberOfDays, members) => {
     let lastDate = 0;
     // Sort the members by their joined date
     members = members.cache.sort((a,b) => b.joinedTimestamp - a.joinedTimestamp);
-    for (let i = 0; i <= numberOfDays; i++) {
+    for (let i = 0; i < numberOfDays; i++) {
         let date = new Date();
         date.setDate(date.getDate() - i);
         // For each member in the server
