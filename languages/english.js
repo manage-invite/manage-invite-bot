@@ -374,6 +374,7 @@ __**More informations**__
 {user.name} : The name of the member that just joined your server.
 {user.tag} : The tag of the member that just joined your server.
 {user.createdat} : The account age of the member.
+{user.id} : The ID of the inviter.
 
 {guild} : Name of the server.
 {guild.count} : Number of members your server has now.
@@ -382,6 +383,7 @@ __**More informations**__
 {inviter.name} : The name of the inviter.
 {inviter.tag} : The tag of the inviter.
 {inviter.invites} : The total inviter's invites count.
+{inviter.id} : The ID of the inviter.
 
 {invite.code} : The invite code used.
 {invite.url} : The invite url used.
