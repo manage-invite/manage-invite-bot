@@ -35,7 +35,7 @@ class ConfigLeave extends Command {
         if(confChannel.content === "cancel") return msg.edit(message.language.configleave.cancelled());
         let channel = confChannel.mentions.channels.first()
         || message.guild.channels.cache.get(confChannel.content)
-        || message.guild.channels.find((ch) => ch.name === confChannel.content || `#${ch.name}` === confChannel.content);
+        || message.guild.channels.cache.find((ch) => ch.name === confChannel.content || `#${ch.name}` === confChannel.content);
         if(!channel) return msg.edit(message.language.configleave.errors.channelNotFound(confChannel.content));
         collected.first().delete();
 

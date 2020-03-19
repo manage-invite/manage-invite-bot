@@ -97,7 +97,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         let update = data.hasOwnProperty("update");
         let disable = data.hasOwnProperty("disable");
         if(enable && data.message && data.channel){
-            let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
+            let channel = guild.channels.cache.find((ch) =>`#${ch.name}` === data.channel);
             if(channel && channel.type === "text"){
                 guildData.join.enabled = true;
                 guildData.join.message = data.message;
@@ -105,7 +105,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 guildData.markModified("join");
             }
         } else if(update && data.message && data.channel){
-            let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
+            let channel = guild.channels.cache.find((ch) =>`#${ch.name}` === data.channel);
             if(channel && channel.type === "text"){
                 guildData.join.enabled = true;
                 guildData.join.message = data.message;
@@ -123,7 +123,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         let update = data.hasOwnProperty("update");
         let disable = data.hasOwnProperty("disable");
         if(enable && data.message && data.channel){
-            let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
+            let channel = guild.channels.cache.find((ch) =>`#${ch.name}` === data.channel);
             if(channel && channel.type === "text"){
                 guildData.leave.enabled = true;
                 guildData.leave.message = data.message;
@@ -131,7 +131,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 guildData.markModified("leave");
             }
         } else if(update && data.message && data.channel){
-            let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
+            let channel = guild.channels.cache.find((ch) =>`#${ch.name}` === data.channel);
             if(channel && channel.type === "text"){
                 guildData.leave.enabled = true;
                 guildData.leave.message = data.message;
