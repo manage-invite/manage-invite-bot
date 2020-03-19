@@ -23,7 +23,7 @@ class SyncInvites extends Command {
             let users = new Set(guildInvites.filter((i) => i.inviter).map((i) => i.inviter.id));
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
                 let memberData = await this.client.findOrCreateGuildMember({ id: user, guildID: message.guild.id });
-                memberData.invites = guildInvites.filter((i) => i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c);
+                memberData.invites = guildInvites.filter((i) => i.inviter && i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c);
                 await memberData.save();
             });
             let embed = new Discord.MessageEmbed()
