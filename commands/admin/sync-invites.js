@@ -20,7 +20,7 @@ class SyncInvites extends Command {
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
             if(collected.first().content === "cancel") return conf.edit(message.language.syncinvites.confirmations.cancelled());
             collected.first().delete();
-            let users = new Set(guildInvites.map((i) => i.inviter.id));
+            let users = new Set(guildInvites.filter((i) => i.inviter).map((i) => i.inviter.id));
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
                 let memberData = await this.client.findOrCreateGuildMember({ id: user, guildID: message.guild.id });
                 memberData.invites = guildInvites.filter((i) => i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c);
