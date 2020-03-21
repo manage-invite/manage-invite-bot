@@ -23,8 +23,8 @@ async function fetchGuild(guildID, client){
     }
     `);
     let guild = results.find((g) => g);
-    let conf = await client.findOrCreateGuild({ id: guild.id });
-    return { ...guild, ...conf.toJSON() };
+    let conf = await client.database.fetchGuild(guild.id);
+    return { ...guild, ...conf };
 }
 
 /**
