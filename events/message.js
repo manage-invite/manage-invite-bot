@@ -60,12 +60,10 @@ module.exports = class {
             return message.channel.send(message.language.errors.permLevel(this.client.permLevels[cmd.conf.permLevel].name));
         }
 
-        this.client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, "cmd");
+        this.client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name} (${Date.now()-startAt}ms)`, "cmd");
 
         // If the command exists, **AND** the user has permission, run it.
         cmd.run(message, args, data);
-
-        console.log(`Message request handled in ${Date.now()-startAt}ms`);
 
     }
 
