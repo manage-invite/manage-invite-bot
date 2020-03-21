@@ -18,7 +18,7 @@ class Userinfo extends Command {
         // Fetch user and member
         let user = message.mentions.users.first() || await this.client.resolveUser(args.join(" ")) || message.author;
         let member = await message.guild.members.fetch(user.id).catch(() => {});
-        let memberData = member ? await this.client.findOrCreateGuildMember({ id: member.id, guildID: member.guild.id }) : null;
+        let memberData = member ? await this.client.database.fetchMember(member.id, member.guild.id) : null;
 
         let fields = message.language.userinfo.fields;
 
@@ -35,10 +35,10 @@ class Userinfo extends Command {
         .setFooter(data.footer);
         
         if(member){
-            let joinData = memberData.joinData || (memberData.invitedBy ? { type: "normal", invite: { inviter: memberData.invitedBy } } : { type: "unknown" } );
+            let joinData = memberData.joinData || (memberData.invitedBy ? { type: "normal", invite: { inviter: memberData.joinData.invitedBy } } : { type: "unknown" } );
             let joinWay = fields.joinWay.unknown(user);
-            if(joinData.type === "normal"){
-                let inviter = await this.client.users.fetch(joinData.invite.inviter);
+            if(joinData.type === "normal" && joinData.inviteData){
+                let inviter = await this.client.users.fetch(joinData.inviteData.inviter);
                 joinWay = fields.joinWay.invite(inviter);
             } else if(joinData.type === "vanity"){
                 joinWay = fields.joinWay.vanity();
