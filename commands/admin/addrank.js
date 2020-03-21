@@ -28,9 +28,7 @@ class Addrank extends Command {
         currentRank = data.guild.ranks.find((r) => r.roleID === role.id);
         if(currentRank) return message.channel.send(message.language.addrank.errors.role.alreadyExists(data.guild.prefix, currentRank, role));
 
-        data.guild.ranks.push({ roleID: role.id, inviteCount });
-        data.guild.markModified("ranks");
-        await data.guild.save();
+        await data.guild.addRank(role.id, inviteCount);
 
         let embed = new Discord.MessageEmbed()
         .setAuthor(message.language.addrank.title())

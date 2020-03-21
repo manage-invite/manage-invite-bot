@@ -9,11 +9,13 @@ module.exports = class {
 
     async run (message) {
 
+        const startAt = Date.now();
+
         const data = { color: this.client.config.color, footer: this.client.config.footer };
 
         if(!message.guild || message.author.bot) return;
 
-        let guildData = await this.client.findOrCreateGuild({ id: message.guild.id });
+        const guildData = await this.client.database.fetchGuild(message.guild.id);
         data.guild = guildData;
         message.language = require("../languages/"+data.guild.language);
     
@@ -62,6 +64,8 @@ module.exports = class {
 
         // If the command exists, **AND** the user has permission, run it.
         cmd.run(message, args, data);
+
+        console.log(`Message request handled in ${Date.now()-startAt}ms`);
 
     }
 

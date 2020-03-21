@@ -5,8 +5,7 @@ if(!process.argv.includes('--sharded')){
 
 const util = require("util"),
 fs = require("fs"),
-readdir = util.promisify(fs.readdir),
-mongoose = require("mongoose");
+readdir = util.promisify(fs.readdir);
 
 // Load ManageInvite class
 const ManageInvite = require("./structures/Client"),
@@ -36,11 +35,6 @@ const init = async () => {
     });
 
     client.login(client.config.token); // Log in to the discord api
-
-    // connect to mongoose database
-    mongoose.connect(client.config.mongodb, { useNewUrlParser: true, useUnifiedTopology: true }).catch((err) => {
-        client.logger.log("Unable to connect to the Mongodb database. Error:"+err, "error");
-    });
 
     // Gets commands permission
     client.levelCache = {};

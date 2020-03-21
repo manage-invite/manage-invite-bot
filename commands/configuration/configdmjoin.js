@@ -41,9 +41,9 @@ class ConfigDMJoin extends Command {
             .setFooter(data.footer);
         message.channel.send(embed);
 
-        data.guild.joinDM = { enabled: true, message: confMessage };
-        data.guild.markModified("joinDM");
-        await data.guild.save();
+        data.guild.joinDM.enabled = true;
+        data.guild.joinDM.message = confMessage;
+        await data.guild.joinDM.updateData();
    }
 
 };

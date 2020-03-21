@@ -14,18 +14,17 @@ class AddBonus extends Command {
 
     async run (message, args, data) {
 
-        let bonus = args[0];
+        const bonus = args[0];
         if(!bonus) return message.channel.send(message.language.addbonus.errors.bonus.missing(data.guild.prefix));
         if(isNaN(bonus) || (parseInt(bonus) < 1) || !Number.isInteger(parseInt(bonus))) return message.channel.send(message.language.addbonus.errors.bonus.incorrect(data.guild.prefix));
 
-        let member = message.mentions.members.first() || await this.client.resolveMember(args.slice(1).join(" "), message.guild);
+        const member = message.mentions.members.first() || await this.client.resolveMember(args.slice(1).join(" "), message.guild);
         if(!member) return message.channel.send(message.language.addbonus.errors.member.missing(data.guild.prefix));
         if(data.guild.blacklistedUsers.includes(member.id)) return message.channel.send(message.language.blacklist.blacklistedMember(member));
 
-        let memberData = await this.client.findOrCreateGuildMember({ id: member.id, guildID: message.guild.id, bot: member.user.bot });
+        const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
         memberData.bonus += parseInt(bonus);
-        memberData.markModified("bonus");
-        await memberData.save();
+        await memberData.updateInvites();
 
         let embed = new Discord.MessageEmbed()
         .setAuthor(message.language.addbonus.title())

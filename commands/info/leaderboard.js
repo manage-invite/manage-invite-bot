@@ -15,14 +15,7 @@ class Leaderboard extends Command {
 
     async run (message, args, data) {
 
-        let membersData = await this.client.guildMembersData.find({
-            guildID: message.guild.id,
-            $expr: {
-                $gt: [
-                    { $add: [ "$invites", "$bonus", "$leaves", "$fake" ] }, 0
-                ]
-            }
-        }).lean();
+        let membersData = await this.client.database.fetchMembers(message.guild.id, true);
         if(membersData.length <= 0){
             let embed = new Discord.MessageEmbed()
             .setAuthor(message.language.leaderboard.empty.title())
@@ -35,12 +28,12 @@ class Leaderboard extends Command {
         membersData.forEach((member) => {
             if(data.guild.blacklistedUsers.includes(member.id)) return;
             members.push({
-                calculatedInvites: (member.invites + member.bonus - member.leaves - member.fake),
-                fake: member.fake,
-                invites: member.invites,
-                bonus: member.bonus,
-                leaves: member.leaves,
-                id: member.id
+                calculatedInvites: (member.invites_regular + member.invites_bonus - member.invites_leaves - member.invites_fake),
+                fake: member.invites_fake,
+                regular: member.invites_regular,
+                bonus: member.invites_bonus,
+                leaves: member.invites_leaves,
+                id: member.user_id
             });
         });
         members = members.sort((a, b) => b.calculatedInvites - a.calculatedInvites);

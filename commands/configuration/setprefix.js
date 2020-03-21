@@ -15,8 +15,7 @@ class SetPrefix extends Command {
     async run (message, args, data) {
         let prefix = args[0];
         if(!prefix) return message.channel.send(message.language.setprefix.missing());
-        data.guild.prefix = prefix;
-        await data.guild.save();
+        await data.guild.setPrefix(prefix);
         message.channel.send(message.language.setprefix.success());
     }
 };

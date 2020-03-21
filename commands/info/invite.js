@@ -17,7 +17,7 @@ class Invite extends Command {
         if(data.guild.blacklistedUsers.includes(message.author.id)) return message.channel.send(message.language.blacklist.blacklisted());
 
         let member = await this.client.resolveMember(args.join(" "), message.guild) || message.member;
-        let memberData = await this.client.findOrCreateGuildMember({ id: member.id, guildID: message.guild.id, bot: member.user.bot });
+        let memberData = await this.client.database.fetchMember(member.id, message.guild.id);
         await this.client.functions.assignRanks(member, memberData.calcInvites(), data.guild.ranks);
         let nextRank = this.client.functions.getNextRank(memberData.calcInvites(), data.guild.ranks);
 

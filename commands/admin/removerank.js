@@ -20,9 +20,7 @@ class RemoveRank extends Command {
         let currentRank = data.guild.ranks.find((r) => r.roleID === role.id);
         if(!currentRank) return message.channel.send(message.language.removerank.errors.role.doesntExist());
 
-        data.guild.ranks = data.guild.ranks.filter((r) => r.inviteCount !== currentRank.inviteCount);
-        data.guild.markModified("ranks");
-        await data.guild.save();
+        await data.guild.removeRank(currentRank.inviteCount);
 
         let embed = new Discord.MessageEmbed()
         .setAuthor(message.language.removerank.title())

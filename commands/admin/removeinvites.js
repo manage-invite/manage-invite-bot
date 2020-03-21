@@ -14,54 +14,36 @@ class RemoveInvites extends Command {
 
     async run (message, args, data) {
         
-        let member = args[0] ? await this.client.resolveMember(args.join(" "), message.guild) : null;
-        let msg = await (member ? message.channel.send(message.language.removeinvites.loading.member(data.guild.prefix, member)) : message.channel.send(message.language.removeinvites.loading.all(data.guild.prefix)));
+        const member = args[0] ? await this.client.resolveMember(args.join(" "), message.guild) : null;
+        const msg = await (member ? message.channel.send(message.language.removeinvites.loading.member(data.guild.prefix, member)) : message.channel.send(message.language.removeinvites.loading.all(data.guild.prefix)));
         if(member){
-            let memberData = await this.client.findOrCreateGuildMember({ id: member.id, guildID: message.guild.id });
-            // Save invites
-            memberData.old_invites = memberData.invites;
-            // Then delete them
-            memberData.invites = 0;
-            // Save fake
-            memberData.old_fake = memberData.fake;
-            // Then delete them
+            const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
+            memberData.oldRegular = memberData.regular;
+            memberData.regular = 0;
+            memberData.oldFake = memberData.fake;
             memberData.fake = 0;
-            // Save leaves
-            memberData.old_leaves = memberData.leaves;
-            // Then delete them
+            memberData.oldLeaves = memberData.leaves;
             memberData.leaves = 0;
-            // Save bonus
-            memberData.old_bonus = memberData.bonus;
-            // Then delete them
+            memberData.oldBonus = memberData.bonus;
             memberData.bonus = 0;
-            // Save the member
-            await memberData.save();
+            await memberData.updateInvites();
         } else {
             // Find all members in the guild
-            let members = await this.client.guildMembersData.find({ guildID: message.guild.id });
+            const members = await this.client.database.fetchMembers(message.guild.id, false);
             await this.client.functions.asyncForEach(members, async (memberData) => {
-                // Save invites
-                memberData.old_invites = memberData.invites;
-                // Then delete them
-                memberData.invites = 0;
-                // Save fake
-                memberData.old_fake = memberData.fake;
-                // Then delete them
+                memberData.oldRegular = memberData.regular;
+                memberData.regular = 0;
+                memberData.oldFake = memberData.fake;
                 memberData.fake = 0;
-                // Save leaves
-                memberData.old_leaves = memberData.leaves;
-                // Then delete them
+                memberData.oldLeaves = memberData.leaves;
                 memberData.leaves = 0;
-                // Save bonus
-                memberData.old_bonus = memberData.bonus;
-                // Then delete them
+                memberData.oldBonus = memberData.bonus;
                 memberData.bonus = 0;
-                // Save the member
-                await memberData.save();
+                await memberData.updateInvites();
             });
         }
 
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
         .setAuthor(message.language.removeinvites.title())
         .setDescription((member ?
             message.language.removeinvites.titles.member(data.guild.prefix, member)

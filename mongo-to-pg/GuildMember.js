@@ -35,7 +35,7 @@ let GuildMemberSchema = new Schema({
 });
 
 GuildMemberSchema.method("calcInvites", function () {
-    return (this.invites + this.bonus - this.leaves - this.fake);
+    return (this.regular + this.bonus - this.leaves - this.fake);
 });
 
 module.exports = mongoose.model("GuildMember", GuildMemberSchema);

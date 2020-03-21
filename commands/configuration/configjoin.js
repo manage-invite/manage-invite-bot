@@ -51,9 +51,10 @@ class ConfigJoin extends Command {
             .setFooter(data.footer);
         message.channel.send(embed);
 
-        data.guild.join = { enabled: true, message: confMessage, channel: channel.id };
-        data.guild.markModified("join");
-        await data.guild.save();
+        data.guild.join.enable = true;
+        data.guild.join.message = confMessage;
+        data.guild.join.channel = channel.id;
+        await data.guild.join.updateData();
 
     }
 }

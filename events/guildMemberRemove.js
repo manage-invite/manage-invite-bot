@@ -12,11 +12,11 @@ module.exports = class {
         if(!this.client.fetched) return;
 
         // Fetch guild and member data from the db
-        let guildData = await this.client.findOrCreateGuild({ id: member.guild.id });
-        let memberData = await this.client.findOrCreateGuildMember({ id: member.id, guildID: member.guild.id, bot: member.user.bot });
+        const guildData = await this.client.database.fetchGuild(member.guild.id);
+        let memberData = await this.client.database.fetchMember(member.id, member.guild.id);
         
         let inviter = memberData.joinData && memberData.joinData.type === "normal" ? await this.client.resolveUser(memberData.joinData.invite.inviter) : typeof memberData.invitedBy === "string" ? await this.client.resolveUser(memberData.invitedBy) : null;
-        let inviterData = inviter ? await this.client.findOrCreateGuildMember({ id: inviter.id, guildID: member.guild.id, bot: inviter.bot }) : null;
+        let inviterData = inviter ? await this.client.database.fetchMember(inviter.id, member.guild.id) : null;
         let invite = (memberData.joinData || memberData.usedInvite || {}).invite;
 
 
@@ -26,8 +26,8 @@ module.exports = class {
             let inviterMember = member.guild.members.cache.get(inviter.id);
             if(inviterMember){
                 inviterData.leaves++;
-                inviterData.left.push(member.id);
-                await inviterData.save();
+                inviterData.updateInvites();
+                inviterData.addInvitedUserLeft(member.id);
                 await this.client.functions.assignRanks(inviterMember, inviterData.calcInvites(), guildData.ranks);
             }
         }
@@ -53,10 +53,7 @@ module.exports = class {
         }
 
         // Remove member inviter
-        memberData.invitedBy = null;
-        memberData.usedInvite = null;
-        memberData.joinData = null;
-        await memberData.save();
+        await memberData.clearJoinData();
 
     }
 }

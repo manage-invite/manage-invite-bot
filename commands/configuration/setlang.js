@@ -35,8 +35,7 @@ class SetLang extends Command {
         if(!languages.some((l) => l.name === language || l.aliases.includes(language))){
             return message.channel.send(message.language.setlang.invalid());
         }
-        data.guild.language = languages.find((l) => l.name === language || l.aliases.includes(language)).name;
-        await data.guild.save();
+        await data.guild.setLanguage(languages.find((l) => l.name === language || l.aliases.includes(language)).name);
         message.language = require("../../languages/"+data.guild.language);
         message.channel.send(message.language.setlang.success());
     }

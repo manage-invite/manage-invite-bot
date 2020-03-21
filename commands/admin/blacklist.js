@@ -21,8 +21,7 @@ class Blacklist extends Command {
             case "add": {
                 const user = message.mentions.users.first() || await this.client.users.fetch(args[0]).catch(() => {});
                 if(!user) return message.channel.send(message.language.blacklist.mentions.add());
-                data.guild.blacklistedUsers.push(user.id);
-                await data.guild.save();
+                await data.guild.addUserBlacklist(user.id);
                 message.channel.send(message.language.blacklist.success.add(user));
                 break;
             };
@@ -30,8 +29,7 @@ class Blacklist extends Command {
                 const user = message.mentions.users.first() || await this.client.users.fetch(args[0]).catch(() => {});
                 if(!user) return message.channel.send(message.language.blacklist.mentions.remove());
                 if(!data.guild.blacklistedUsers.includes(user.id)) return message.channel.send(message.language.blacklist.notFound(user));
-                data.guild.blacklistedUsers = data.guild.blacklistedUsers.filter((u) => u !== user.id);
-                await data.guild.save();
+                await data.guild.removeUserBlacklist(user.id);
                 message.channel.send(message.language.blacklist.success.remove(user));
                 break;
             }

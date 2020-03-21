@@ -11,8 +11,8 @@ module.exports = class {
         if(!this.client.fetched) return;
 
         // Fetch guild and member data from the db
-        let guildData = await this.client.findOrCreateGuild({ id: member.guild.id });
-        let memberData = await this.client.findOrCreateGuildMember({ id: member.id, guildID: member.guild.id, bot: member.user.bot  });
+        let guildData = await this.client.database.fetchGuild(member.guild.id);
+        let memberData = await this.client.database.fetchMember(member.id, member.guild.id);
         
         /* Find who is the inviter */
 
@@ -49,7 +49,7 @@ module.exports = class {
         }
 
         let inviter = invite ? await this.client.resolveUser(invite.inviter.id) : null;
-        let inviterData = inviter ? await this.client.findOrCreateGuildMember({ id: inviter.id, guildID: member.guild.id, bot: inviter.bot }) : null;
+        let inviterData = inviter ? await this.client.database.fetchMember(inviter.id, member.guild.id) : null;
 
         if(inviter && guildData.blacklistedUsers.includes(inviter.id)) return;
 
@@ -60,9 +60,9 @@ module.exports = class {
             // If it does exist
             if(inviterMember){
                 // If the member had previously invited this member and they have left
-                if(inviterData.left.includes(member.id)){
+                if(inviterData.invitedUsersLeft.includes(member.id)){
                     // It is removed from the invited members
-                    inviterData.left = inviterData.left.filter((id) => id !== member.id);
+                    inviterData.removeInvitedUserLeft(member.id);
                     // We're removing a leave
                     inviterData.leaves--;
                 }
@@ -71,44 +71,40 @@ module.exports = class {
                     // We increase the number of fake invitations
                     inviterData.fake++;
                     // We increase the number of regular invitations
-                    inviterData.invites++;
+                    inviterData.regular++;
                 } else {
                     // We increase the number of ordinary invitations
-                    inviterData.invites++;
+                    inviterData.regular++;
                     // We save that this member invited this member
                     inviterData.invited.push(member.id);
                 }
+                await inviterData.updateInvites();
                 await this.client.functions.assignRanks(inviterMember, inviterData.calcInvites(), guildData.ranks);
-                await inviterData.save();
             }
         }
         
         let language = require("../languages/"+guildData.language);
 
         if(invite){
-            memberData.joinData = {
+            await memberData.setJoinData({
                 type: "normal",
+                inviterID: inviter.id,
                 invite: {
                     uses: invite.uses,
                     url: invite.url,
                     code: invite.code,
                     inviter: inviter.id
                 }
-            };
+            });
         } else if(oauth){
-            memberData.joinData = {
+            await memberData.setJoinData({
                 type: "oauth"
-            }
+            });
         } else if(vanity){
-            memberData.joinData = {
+            await memberData.setJoinData({
                 type: "vanity"
-            }
-        } else if(perm){
-            memberData.joinData = {
-                type: "perm"
-            }
+            });
         }
-        await memberData.save();
 
         // DM Join messages
         if(guildData.joinDM.enabled && guildData.joinDM.message && invite && guildData.premium){

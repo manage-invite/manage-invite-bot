@@ -15,16 +15,16 @@ class RestoreInvites extends Command {
     async run (message, args, data) {
 
         let member = args[0] ? await this.client.resolveMember(args.join(" "), message.guild) : null;
-        if(member) member.data = await this.client.findOrCreateGuildMember({ id: member.id, guildID: message.guild.id });
+        if(member) member.data = await this.client.database.fetchMember(member.id, message.guild.id);
         let members = null;
         let memberCount = { invites: 0, leaves: 0, fake: 0, bonus: 0 };
         if(!member){
-            members = await this.client.guildMembersData.find({ guildID: message.guild.id });
+            members = await this.client.database.fetchMembers(message.guild.id, false);
             members.forEach((m) => {
-                memberCount.invites += m.old_invites;
-                memberCount.leaves += m.old_leaves;
-                memberCount.fake += m.old_fake;
-                memberCount.bonus += m.old_bonus;
+                memberCount.regular += m.oldRegular;
+                memberCount.leaves += m.oldLeaves;
+                memberCount.fake += m.oldFake;
+                memberCount.bonus += m.oldBonus;
             });
         }
         let conf = await (member ?
@@ -37,32 +37,32 @@ class RestoreInvites extends Command {
             await (member ? conf.edit(message.language.restoreinvites.loading.member(member)) : conf.edit(message.language.restoreinvites.loading.all()));
             if(member){
                 // Restore invites
-                member.data.invites = member.data.old_invites;
+                member.data.regular = member.data.oldRegular;
                 // Restore fake
-                member.data.fake = member.data.old_fake;
+                member.data.fake = member.data.oldFake;
                 // Restore leaves
-                member.data.leaves = member.data.old_leaves;
+                member.data.leaves = member.data.oldLeaves;
                 // Restore bonus
-                member.data.bonus = member.data.old_bonus;
+                member.data.bonus = member.data.oldBonus;
                 // Save the member
-                await member.data.save();
+                await member.data.updateInvites();
             } else {
                 // Find all members in the guild
                 await this.client.functions.asyncForEach(members, async (memberData) => {
                     // Restore invites
-                    memberData.invites = memberData.old_invites;
+                    member.data.regular = member.data.oldRegular;
                     // Restore fake
-                    memberData.fake = memberData.old_fake;
+                    member.data.fake = member.data.oldFake;
                     // Restore leaves
-                    memberData.leaves = memberData.old_leaves;
+                    member.data.leaves = member.data.oldLeaves;
                     // Restore bonus
-                    memberData.bonus = memberData.old_bonus;
-                    // Restore the member
-                    await memberData.save();
+                    member.data.bonus = member.data.oldBonus;
+                    // Save the member
+                    await member.data.updateInvites();
                 });
             }
 
-            let embed = new Discord.MessageEmbed()
+            const embed = new Discord.MessageEmbed()
             .setAuthor(message.language.restoreinvites.title())
             .setDescription((member ?
                 message.language.restoreinvites.titles.member(member)

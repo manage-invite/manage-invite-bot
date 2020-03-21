@@ -59,16 +59,16 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         });
     }
     
-    let guildData = await req.client.findOrCreateGuild({ id: guild.id });
+    let guildData = await req.client.database.fetchGuild(guild.id);
     let data = req.body;
 
     if(req.params.form === "basic"){
         if(data.hasOwnProperty("prefix") && data.prefix && data.prefix !== guildData.prefix){
-            guildData.prefix = data.prefix;
+            await guildData.setPrefix(data.prefix);
         }
         if(data.hasOwnProperty("language") && availableLanguages.find((l) => l.name === data.language.toLowerCase() || l.aliases.includes(data.language.toLowerCase()))){
             let language = availableLanguages.find((l) => l.name === data.language.toLowerCase() || l.aliases.includes(data.language.toLowerCase()));
-            if(language.name !== guildData.language) guildData.language = language.name;
+            if(language.name !== guildData.language) await guildData.setLanguage(language.name);
         }
     }
 
@@ -80,14 +80,14 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
             if(enable && data.message){
                 guildData.joinDM.enabled = true;
                 guildData.joinDM.message = data.message;
-                guildData.markModified("joinDM");
+                await guildData.joinDM.updateData();
             } else if(update && data.message){
                 guildData.joinDM.enabled = true;
                 guildData.joinDM.message = data.message
-                guildData.markModified("joinDM");
+                await guildData.joinDM.updateData();
             } else if(disable){
                 guildData.joinDM.enabled = false;
-                guildData.markModified("joinDM");
+                await guildData.joinDM.updateData();
             }
         }
     }
@@ -102,7 +102,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 guildData.join.enabled = true;
                 guildData.join.message = data.message;
                 guildData.join.channel = channel.id;
-                guildData.markModified("join");
+                await guildData.join.updateData();
             }
         } else if(update && data.message && data.channel){
             let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
@@ -110,11 +110,11 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 guildData.join.enabled = true;
                 guildData.join.message = data.message;
                 guildData.join.channel = channel.id;
-                guildData.markModified("join");
+                await guildData.join.updateData();
             }
         } else if(disable){
             guildData.join.enabled = false;
-            guildData.markModified("join");
+            await guildData.join.updateData();
         }
     }
 
@@ -128,7 +128,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 guildData.leave.enabled = true;
                 guildData.leave.message = data.message;
                 guildData.leave.channel = channel.id;
-                guildData.markModified("leave");
+                await guildData.leave.updateData();
             }
         } else if(update && data.message && data.channel){
             let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
@@ -136,15 +136,13 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 guildData.leave.enabled = true;
                 guildData.leave.message = data.message;
                 guildData.leave.channel = channel.id;
-                guildData.markModified("leave");
+                await guildData.leave.updateData();
             }
         } else if(disable){
             guildData.leave.enabled = false;
-            guildData.markModified("leave");
+            await guildData.leave.updateData();
         }
     }
-
-    await guildData.save();
 
     res.redirect(303, "/manage/"+guild.id);
 });

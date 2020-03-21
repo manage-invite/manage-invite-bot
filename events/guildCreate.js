@@ -23,7 +23,7 @@ module.exports = class {
         
         let isValidGuild = new Date(guild.me.joinedTimestamp).getDate() === new Date().getDate();
 
-        let guildData = await this.client.guildsData.findOne({ id: guild.id });
+        let guildData = await this.client.database.fetchGuild(guild.id)
         let welcomeMessage = guildData ?
         `My prefix is \`${guildData.prefix}\`. If you want to remove server invites to start over from scratch, you can use \`${guildData.prefix}remove-invites\`. If you want to synchronize current server invites with the bot, you can use \`${guildData.prefix}sync-invites\`\n \n**--------------**\n`
         : "My prefix is `+`. If you want to remove server invites to start over from scratch, you can use `+remove-invites`.\n \n**--------------**\n";            
@@ -65,8 +65,8 @@ module.exports = class {
             let users = new Set(guildInvites.map((i) => i.inviter.id));
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
                 let memberData = await client.findOrCreateGuildMember({ id: user, guildID: guild.id });
-                memberData.invites = guildInvites.filter((i) => i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c);
-                await memberData.save();
+                memberData.regular = guildInvites.filter((i) => i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c);
+                await memberData.updateInvites();
             });
 
         }

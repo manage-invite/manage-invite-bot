@@ -51,9 +51,10 @@ class ConfigLeave extends Command {
             .setFooter(data.footer);
         message.channel.send(embed);
 
-        data.guild.leave = { enabled: true, message: confMessage, channel: channel.id };
-        data.guild.markModified("leave");
-        await data.guild.save();
+        data.guild.leave.enabled = true;
+        data.guild.leave.message = confMessage;
+        data.guild.leave.channel = channel.id;
+        await data.guild.leave.updateData();
     }
 };
   

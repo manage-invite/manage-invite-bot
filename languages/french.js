@@ -125,12 +125,12 @@ module.exports = {
     },
 
     invite: {
-        description: (member, memberData, isYou, nextRank, role) => `${isYou ? `Vous avez` : `**${member.user.username}** a`} **${memberData.invites + memberData.bonus - memberData.leaves - memberData.fake}** invitations! (**${memberData.invites}** ordinaires, **${memberData.bonus}** bonus, **${memberData.fake > 0 ? `-${memberData.fake}` : `${memberData.fake}`}** faux, **${memberData.leaves > 0 ? `-${memberData.leaves}` : `${memberData.leaves}`}** partis)${nextRank ? `\nIl vous faut encore **${nextRank.inviteCount - (memberData.invites + memberData.bonus - memberData.leaves - memberData.fake)}** invitations pour atteindre le grade **${role}** !` : ""}`
+        description: (member, memberData, isYou, nextRank, role) => `${isYou ? `Vous avez` : `**${member.user.username}** a`} **${memberData.regular + memberData.bonus - memberData.leaves - memberData.fake}** invitations! (**${memberData.regular}** ordinaires, **${memberData.bonus}** bonus, **${memberData.fake > 0 ? `-${memberData.fake}` : `${memberData.fake}`}** faux, **${memberData.leaves > 0 ? `-${memberData.leaves}` : `${memberData.leaves}`}** partis)${nextRank ? `\nIl vous faut encore **${nextRank.inviteCount - (memberData.regular + memberData.bonus - memberData.leaves - memberData.fake)}** invitations pour atteindre le grade **${role}** !` : ""}`
     },
 
     leaderboard: {
         cleared: () => `${emojis.success} | Classement effacé !`,
-        user: (user, member, lb) => `${lb} **${user.username}** - **${member.calculatedInvites}** invitations (**${member.invites}** ordinaires, **${member.bonus}** bonus, **${member.fake > 0 ? `-${member.fake}` : `${member.fake}`}** faux, **${member.leaves > 0 ? `-${member.leaves}` : `${member.leaves}`}** partis)`,
+        user: (user, member, lb) => `${lb} **${user.username}** - **${member.calculatedInvites}** invitations (**${member.regular}** ordinaires, **${member.bonus}** bonus, **${member.fake > 0 ? `-${member.fake}` : `${member.fake}`}** faux, **${member.leaves > 0 ? `-${member.leaves}` : `${member.leaves}`}** partis)`,
         prompt: () => `{{user}}, sur quelle page voulez-vous aller ? Écrivez \`cancel\` or \`0\` pour annuler.`,
         title: () => `Classement des invitations`,
         empty: {
@@ -163,7 +163,7 @@ module.exports = {
             },
             invites: {
                 title: () => `Invitations`,
-                content: (inviteData) => `**${inviteData.invites + inviteData.bonus - inviteData.leaves - inviteData.fake}** invitations (**${inviteData.invites}** ordinaires, **${inviteData.bonus}** bonus, **${inviteData.fake > 0 ? `-${inviteData.fake}` : `${inviteData.fake}`}** faux, **${inviteData.leaves > 0 ? `-${inviteData.leaves}` : `${inviteData.leaves}`}** partis)`
+                content: (inviteData) => `**${inviteData.regular + inviteData.bonus - inviteData.leaves - inviteData.fake}** invitations (**${inviteData.regular}** ordinaires, **${inviteData.bonus}** bonus, **${inviteData.fake > 0 ? `-${inviteData.fake}` : `${inviteData.fake}`}** faux, **${inviteData.leaves > 0 ? `-${inviteData.leaves}` : `${inviteData.leaves}`}** partis)`
             },
             joinOrder: {
                 title: () => `Ordre d'arrivées`,
@@ -585,7 +585,7 @@ Tapez \`cancel\` pour annuler. ${str}
 
     restoreinvites: {
         confirmations: {
-            all: (prefix, memberCount) => `${emojis.warn} | Êtes-vous sur de vouloir restaurer les invitations du serveur ? Tous les membres récupèreront les invitations qu'ils avaient avant la dernière fois que la commande \`${prefix}remove-invites\` a été tapée (ou 0 si la commande n'a jamais été tapée).\n\n:information_source: **Aperçu des invitations**:\nIl sera restauré, au total: **${memberCount.invites}** ordinaires, **${memberCount.bonus}** bonus, **${memberCount.leaves}** partis, **${memberCount.fake}** fake.\n\n${emojis.success} Tapez \`-confirm\` pour confirmer.\n${emojis.error} Tapez \`cancel\` pour annuler.`,
+            all: (prefix, memberCount) => `${emojis.warn} | Êtes-vous sur de vouloir restaurer les invitations du serveur ? Tous les membres récupèreront les invitations qu'ils avaient avant la dernière fois que la commande \`${prefix}remove-invites\` a été tapée (ou 0 si la commande n'a jamais été tapée).\n\n:information_source: **Aperçu des invitations**:\nIl sera restauré, au total: **${memberCount.regular}** ordinaires, **${memberCount.bonus}** bonus, **${memberCount.leaves}** partis, **${memberCount.fake}** fake.\n\n${emojis.success} Tapez \`-confirm\` pour confirmer.\n${emojis.error} Tapez \`cancel\` pour annuler.`,
             member: (prefix, member) => `${emojis.warn} | Êtes-vous sur de vouloir restaurer les invitations de **${member.user.tag}** ? Il récupèrera les invitations qu'il avait avant la dernière fois que la commande \`${prefix}remove-invites\` a été tapée (ou 0 si la commande n'a jamais été tapée).\n\n:information_source: **Aperçu des invitations**:\nIl sera restauré: **${member.data.old_invites}** ordinaires, **${member.data.old_bonus}** bonus, **${member.data.old_leaves}** partis, **${member.data.old_fake}** fake.\n\n${emojis.success} Tapez \`-confirm\` pour confirmer.\n${emojis.error} Tapez \`cancel\` pour annuler.`,
             cancelled: () => `${emojis.error} Annulé.`
         },

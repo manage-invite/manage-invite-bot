@@ -15,14 +15,12 @@ class SetJoin extends Command {
     async run (message, args, data) {
         if(!data.guild.join.enabled){
             data.guild.join.enabled = true;
-            data.guild.markModified("join");
-            await data.guild.save();
+            await data.guild.join.updateData();
             return message.channel.send(message.language.setjoin.on());
         }
         if(data.guild.join.enabled){
             data.guild.join.enabled = false;
-            data.guild.markModified("join");
-            await data.guild.save();
+            await data.guild.join.updateData();
             return message.channel.send(message.language.setjoin.off());
         }
     }

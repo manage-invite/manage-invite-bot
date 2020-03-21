@@ -35,7 +35,7 @@ const formatMessage = (message, member, inviter, invite, locale, inviterData) =>
     .replace(/{inviter.tag}/g, inviter.tag)
     .replace(/{inviter.name}/g, inviter.username)
     .replace(/{inviter.id}/g, inviter.id)
-    .replace(/{inviter.invites}/g, inviterData.invites + inviterData.bonus - inviterData.fake - inviterData.leaves)
+    .replace(/{inviter.invites}/g, inviterData.regular + inviterData.bonus - inviterData.fake - inviterData.leaves)
     .replace(/{invite.code}/g, invite.code)
     .replace(/{invite.uses}/g, invite.uses)
     .replace(/{invite.url}/g, invite.url);
