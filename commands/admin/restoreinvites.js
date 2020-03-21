@@ -17,8 +17,9 @@ class RestoreInvites extends Command {
         let member = args[0] ? await this.client.resolveMember(args.join(" "), message.guild) : null;
         if(member) member.data = await this.client.database.fetchMember(member.id, message.guild.id);
         let members = null;
-        let memberCount = { invites: 0, leaves: 0, fake: 0, bonus: 0 };
+        let memberCount = { regular: 0, leaves: 0, fake: 0, bonus: 0 };
         if(!member){
+            message.react(Discord.Util.parseEmoji(this.client.config.emojis.loading).id);
             members = await this.client.database.fetchMembers(message.guild.id, false);
             members.forEach((m) => {
                 memberCount.regular += m.oldRegular;
@@ -50,15 +51,15 @@ class RestoreInvites extends Command {
                 // Find all members in the guild
                 await this.client.functions.asyncForEach(members, async (memberData) => {
                     // Restore invites
-                    member.data.regular = member.data.oldRegular;
+                    memberData.regular = memberData.oldRegular;
                     // Restore fake
-                    member.data.fake = member.data.oldFake;
+                    memberData.fake = memberData.oldFake;
                     // Restore leaves
-                    member.data.leaves = member.data.oldLeaves;
+                    memberData.leaves = memberData.oldLeaves;
                     // Restore bonus
-                    member.data.bonus = member.data.oldBonus;
+                    memberData.bonus = memberData.oldBonus;
                     // Save the member
-                    await member.data.updateInvites();
+                    await memberData.updateInvites();
                 });
             }
 
@@ -72,7 +73,8 @@ class RestoreInvites extends Command {
             .setFooter(data.footer);
 
             conf.edit(null, { embed });
-        }).catch(() => {
+        }).catch((e) => {
+            console.log(e)
             conf.edit(message.language.restoreinvites.confirmations.cancelled());
         });
     }
