@@ -15,9 +15,9 @@ module.exports = class {
         const guildData = await this.client.database.fetchGuild(member.guild.id);
         let memberData = await this.client.database.fetchMember(member.id, member.guild.id);
         
-        let inviter = memberData.joinData && memberData.joinData.type === "normal" ? await this.client.resolveUser(memberData.joinData.invite.inviter) : typeof memberData.invitedBy === "string" ? await this.client.resolveUser(memberData.invitedBy) : null;
+        let inviter = memberData.joinData && memberData.joinData.type === "normal" && memberData.joinData.inviteData ? await this.client.resolveUser(memberData.joinData.inviteData.inviter) : typeof memberData.invitedBy === "string" ? await this.client.resolveUser(memberData.invitedBy) : null;
         let inviterData = inviter ? await this.client.database.fetchMember(inviter.id, member.guild.id) : null;
-        let invite = (memberData.joinData || memberData.usedInvite || {}).invite;
+        let invite = (memberData.joinData || {}).inviteData;
 
 
         // Update member invites

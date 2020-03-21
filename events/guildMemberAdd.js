@@ -67,7 +67,7 @@ module.exports = class {
                     inviterData.leaves--;
                 }
                 // If the member had already invited this member before
-                if(inviterData.invited.includes(member.id)){
+                if(inviterData.invitedUsers.includes(member.id)){
                     // We increase the number of fake invitations
                     inviterData.fake++;
                     // We increase the number of regular invitations
@@ -76,7 +76,7 @@ module.exports = class {
                     // We increase the number of ordinary invitations
                     inviterData.regular++;
                     // We save that this member invited this member
-                    inviterData.invited.push(member.id);
+                    inviterData.addInvitedUser(member.id);
                 }
                 await inviterData.updateInvites();
                 await this.client.functions.assignRanks(inviterMember, inviterData.calcInvites(), guildData.ranks);
@@ -89,7 +89,7 @@ module.exports = class {
             await memberData.setJoinData({
                 type: "normal",
                 inviterID: inviter.id,
-                invite: {
+                inviteData: {
                     uses: invite.uses,
                     url: invite.url,
                     code: invite.code,
