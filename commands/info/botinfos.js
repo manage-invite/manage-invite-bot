@@ -34,7 +34,7 @@ class BotInfos extends Command {
         .setAuthor(message.language.botinfos.author(this.client.user.username))
         .addField(message.language.botinfos.statistics.title(), message.language.botinfos.statistics.content(guildsCount, usersCount) , true)
         .addField(message.language.botinfos.versions.title(), message.language.botinfos.versions.content(Discord.version, process.version), true)
-        .addBlankField();
+        .addField("\u200B", "\u200B");
         results.forEach((shard) => {
             let title = message.language.botinfos.shard.title(shard[2]+1, this.client.shard.ids.includes(shard[2]));
             embed.addField(title, message.language.botinfos.shard.content(shard[1], shard[3], shard[0]), true);
