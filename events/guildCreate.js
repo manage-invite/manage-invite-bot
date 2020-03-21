@@ -21,6 +21,7 @@ module.exports = class {
             inviter = await this.client.users.fetch(guild.ownerID);
         }
         
+        await guild.members.fetch(this.client.user.id);
         let isValidGuild = new Date(guild.me.joinedTimestamp).getDate() === new Date().getDate();
 
         let guildData = await this.client.database.fetchGuild(guild.id)
@@ -64,7 +65,7 @@ module.exports = class {
             if(!guildInvites) return;
             let users = new Set(guildInvites.map((i) => i.inviter.id));
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
-                let memberData = await client.findOrCreateGuildMember({ id: user, guildID: guild.id });
+                let memberData = await client.database.fetchMember(user, guild.id);
                 memberData.regular = guildInvites.filter((i) => i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c);
                 await memberData.updateInvites();
             });
