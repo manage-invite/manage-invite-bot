@@ -25,7 +25,7 @@ class Config extends Command {
         let leaveSuccess = data.guild.leave.enabled
         && data.guild.leave.message
         && data.guild.leave.channel
-        && message.guild.channels.get(data.guild.leave.channel);
+        && message.guild.channels.cache.get(data.guild.leave.channel);
 
         let embed = new Discord.MessageEmbed()
             .setTitle(message.language.config.title(message.guild.name))
