@@ -38,7 +38,7 @@ module.exports = class Guild {
             SELECT * FROM guild_plugins
             WHERE guild_id = '${this.id}';
         `);
-        const getPluginData = (name) => rows.find(p => p.plugin_name === name) ? rows.find(p => p.plugin_name === "join").plugin_data : null;
+        const getPluginData = (name) => rows.find(p => p.plugin_name === name) ? rows.find(p => p.plugin_name === name).plugin_data : null;
         this.join = new JoinPlugin(this, getPluginData("join"));
         this.join.insert();
         this.joinDM = new JoinDMPlugin(this, getPluginData("joinDM"));
@@ -80,7 +80,7 @@ module.exports = class Guild {
     // Remove a rank
     async removeRank(inviteCount){
         await this.handler.query(`
-            DELETE guild_ranks
+            DELETE FROM guild_ranks
             WHERE guild_id = '${this.id}'
             AND invite_count = ${inviteCount};
         `);
@@ -114,7 +114,7 @@ module.exports = class Guild {
     // Remove a user from the blacklist
     async removeUserBlacklist(userID){
         await this.handler.query(`
-            DELETE guild_blacklisted_users
+            DELETE FROM guild_blacklisted_users
             WHERE guild_id = '${this.id}'
             AND user_id = '${userID}';
         `);

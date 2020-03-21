@@ -7,7 +7,7 @@ module.exports = class LeavePlugin {
         // Whether the plugin is enabled
         this.enabled = data.enabled || false;
         // The leave channel
-        this.channelID = data.channel || null;
+        this.channel = data.channel || null;
         // The leave message
         this.message = data.message || null;
     }
@@ -16,7 +16,7 @@ module.exports = class LeavePlugin {
     get data() {
         return JSON.stringify({
             enabled: this.enabled,
-            channel: this.channelID,
+            channel: this.channel,
             message: this.message
         }).replace(/'/g, "''");
     }

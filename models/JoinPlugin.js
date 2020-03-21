@@ -7,7 +7,7 @@ module.exports = class JoinPlugin {
         // Whether the plugin is enabled
         this.enabled = data.enabled || false;
         // The join channel
-        this.channelID = data.channel || null;
+        this.channel = data.channel || null;
         // The join message
         this.message = data.message || null;
     }
@@ -16,7 +16,7 @@ module.exports = class JoinPlugin {
     get data() {
         return JSON.stringify({
             enabled: this.enabled,
-            channel: this.channelID,
+            channel: this.channel,
             message: this.message
         }).replace(/'/g, "''");
     }

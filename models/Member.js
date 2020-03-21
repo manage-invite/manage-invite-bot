@@ -13,12 +13,12 @@ module.exports = class Member {
         // Member invites
         this.fake = data.invites_fake || 0;
         this.leaves = data.invites_leaves || 0;
-        this.bonus = data.invites_bonus || 0;
+        this.bonus = parseInt(data.invites_bonus) || 0;
         this.regular = data.invites_regular || 0;
         // Old member invites
         this.oldFake = data.old_invites_fake || 0;
         this.oldLeaves = data.old_invites_leaves || 0;
-        this.oldBonus = data.old_invites_bonus || 0;
+        this.oldBonus = parseInt(data.old_invites_bonus) || 0;
         this.oldRegular = data.old_invites_regular || 0;
         this.oldBackuped = data.old_invites_backuped || false;
     }
@@ -65,7 +65,7 @@ module.exports = class Member {
     // Remove invited user
     async removeInvitedUser(userID){
         await this.handler.query(`
-            DELETE member_invited_users
+            DELETE FROM member_invited_users
             WHERE user_id = '${this.id}'
             AND guild_id = '${this.id}'
             AND invited_user_id = '${userID}';
@@ -101,7 +101,7 @@ module.exports = class Member {
     // Remove invited user left
     async removeInvitedUserLeft(userID){
         await this.handler.query(`
-            DELETE member_invited_users_left
+            DELETE FROM member_invited_users_left
             WHERE user_id = '${this.id}'
             AND guild_id = '${this.id}'
             AND invited_user_id = '${userID}';
@@ -133,7 +133,7 @@ module.exports = class Member {
                 UPDATE member_join_data
                 SET join_type = '${data.type}'
                 ${data.inviterID ? `, join_inviter_id = '${data.inviterID}'` : ""}
-                ${data.inviteData ? `, join_invite_data = '${data.inviteData}'` : ""}
+                ${data.inviteData ? `, join_invite_data = '${JSON.stringify(data.inviteData)}'` : ""}
                 WHERE user_id = '${this.id}'
                 AND guild_id = '${this.guildID}';
             `);
@@ -141,7 +141,7 @@ module.exports = class Member {
             await this.handler.query(`
                 INSERT INTO member_join_data
                 (user_id, guild_id, join_type ${data.inviterID ? ", join_inviter_id" : ""} ${data.inviteData ? ", join_invite_data" : ""}) VALUES
-                ('${this.id}', '${this.guildID}', ${data.inviterID ? `, '${data.inviterID}` : ""} ${data.inviteData ? `, ${JSON.stringify(data.inviteData)}` : ""})
+                ('${this.id}', '${this.guildID}', '${data.type}' ${data.inviterID ? `, '${data.inviterID}'` : ""} ${data.inviteData ? `, '${JSON.stringify(data.inviteData)}'` : ""})
             `);
         }
         this.joinData = {
@@ -155,7 +155,7 @@ module.exports = class Member {
     // Clear member join data
     async clearJoinData(){
         await this.handler.query(`
-            DELETE member_join_data
+            DELETE FROM member_join_data
             WHERE user_id = '${this.id}'
             AND guild_id = '${this.guildID}';
         `);
