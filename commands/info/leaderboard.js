@@ -28,10 +28,10 @@ class Leaderboard extends Command {
         membersData.forEach((member) => {
             if(data.guild.blacklistedUsers.includes(member.id)) return;
             members.push({
-                calculatedInvites: (member.invites_regular + member.invites_bonus - member.invites_leaves - member.invites_fake),
+                calculatedInvites: (member.invites_regular + parseInt(member.invites_bonus) - member.invites_leaves - member.invites_fake),
                 fake: member.invites_fake,
                 regular: member.invites_regular,
-                bonus: member.invites_bonus,
+                bonus: parseInt(member.invites_bonus),
                 leaves: member.invites_leaves,
                 id: member.user_id
             });
