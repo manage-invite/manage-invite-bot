@@ -2,6 +2,8 @@ const { Client, Collection } = require("discord.js"),
 util = require("util"),
 path = require("path");
 
+const DatabaseHandler = require("../helpers/database");
+
 // Creates ManageInvite class
 class ManageInvite extends Client {
 
@@ -22,8 +24,7 @@ class ManageInvite extends Client {
         this.fetched = false;
         this.fetching = false;
         // Databases
-        this.guildMembersData = require("../structures/GuildMember"); // Used to store fake invites, bonus, etc...
-        this.guildsData = require("../structures/Guild"); // Used to store prefixes, languages, join messages, etc...
+        this.database = new DatabaseHandler(this);
         // Dashboard
         this.dash = require("../dashboard/app");
         this.states = {};
@@ -65,36 +66,6 @@ class ManageInvite extends Client {
         }
         delete require.cache[require.resolve(`.${commandPath}${path.sep}${commandName}.js`)];
         return false;
-    }
-
-    // This function is used to find a guild data or create it
-    async findOrCreateGuild(param, isLean){
-        let Guild = this.guildsData;
-        return new Promise(async function (resolve, reject){
-            let guild = (isLean ? await Guild.findOne(param).lean() : await Guild.findOne(param));
-            if(guild){
-                resolve(guild);
-            } else {
-                guild = new Guild(param);
-                await guild.save();
-                resolve(isLean ? guild.toJSON() : guild);
-            }
-        });
-    }
-
-    // This function is used to find a guild member data or create it
-    async findOrCreateGuildMember(param, isLean){
-        let GuildMember = this.guildMembersData;
-        return new Promise(async function (resolve, reject){
-            let guildMember = (isLean ? await GuildMember.findOne(param).lean() : await GuildMember.findOne(param));
-            if(guildMember){
-                resolve(guildMember);
-            } else {
-                guildMember = new GuildMember(param);
-                await guildMember.save();
-                resolve(isLean ? guildMember.toJSON() : guildMember);
-            }
-        });
     }
 
     async resolveMember(search, guild){
