@@ -50,8 +50,8 @@ module.exports = class DatabaseHandler {
             } else {
                 const members = [];
                 await asyncForEach(rows, async row => {
-                    if (this.memberCache.get(`${userID}${guildID}`)){
-                        const memberCache = this.memberCache.get(`${userID}${guildID}`);
+                    if (this.memberCache.get(`${row.user_id}${guildID}`)){
+                        const memberCache = this.memberCache.get(`${row.user_id}${guildID}`);
                         members.push(memberCache);
                     } else {
                         const member = new Member(row.user_id, row.guild_id, row, this);
