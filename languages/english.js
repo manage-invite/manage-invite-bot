@@ -117,10 +117,12 @@ module.exports = {
         // Shard
         shard: {
             title: (shardID, current) => `${emojis.online} Shard #${shardID} ${current ? `(current)` : ""}`,
-            content: (guilds, ping, ram) => `
+            content: (guilds, ping, ram, cachedMembers, cachedGuilds) => `
             \`${guilds}\` servers
             \`${ping}\` ms
-            \`${ram}\` mb ram`
+            \`${ram}\` mb ram
+            \`${cachedMembers}\` cached members
+            \`${cachedGuilds}\` cached guilds`,
         }
     },
 

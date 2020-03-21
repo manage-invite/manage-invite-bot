@@ -24,7 +24,9 @@ class BotInfos extends Command {
                 Math.round((process.memoryUsage().heapUsed / 1024 / 1024)),
                 this.guilds.cache.size,
                 this.shard.ids[0],
-                Math.round(this.ws.ping)
+                Math.round(this.ws.ping),
+                this.database.memberCache.size,
+                this.database.guildCache.size
             ];
         });
 
@@ -37,7 +39,7 @@ class BotInfos extends Command {
         .addField("\u200B", "\u200B");
         results.forEach((shard) => {
             let title = message.language.botinfos.shard.title(shard[2]+1, this.client.shard.ids.includes(shard[2]));
-            embed.addField(title, message.language.botinfos.shard.content(shard[1], shard[3], shard[0]), true);
+            embed.addField(title, message.language.botinfos.shard.content(shard[1], shard[3], shard[0], shard[4], shard[5]), true);
         });
 
         message.channel.send(embed);
