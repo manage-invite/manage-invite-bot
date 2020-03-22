@@ -60,7 +60,7 @@ module.exports = class {
                 const content = `New servers: **${totalGuildsCreated}**\nLost servers: **${totalGuildsDeleted}**\nCommands ran: **${totalCommandsRan}**\nPG Queries: **${totalPgQueries}**`;
                 this.client.shard.broadcastEval(`
                     let channel = this.channels.cache.get(this.config.statsLogs);
-                    if(channel) channel.send('${content}');
+                    if(channel) channel.send(\`${content}\`);
                 `);
                 this.client.database.saveStats(totalGuildsCreated, totalGuildsDeleted, totalCommandsRan, totalPgQueries, new Date());
             }, null, true, "America/Los_Angeles");
