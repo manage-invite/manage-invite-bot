@@ -41,7 +41,7 @@ class TestDMJoin extends Command {
                 },
                 (data.guild.language || "english").substr(0, 2),
                 {
-                    invites: 1,
+                    regular: 1,
                     fake: 0,
                     bonus: 0,
                     leaves: 0
