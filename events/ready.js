@@ -37,7 +37,7 @@ module.exports = class {
         if(this.client.shard.ids.includes(0) && !this.client.spawned){
             this.client.dash.load(this.client);
             const job = new CronJob("0 */15 * * * *", async () => {
-                const results = this.client.shard.broadcastEval(() => {
+                const results = await this.client.shard.broadcastEval(() => {
                     const commandsRan = this.commandsRan;
                     const pgQueries = this.pgQueries;
                     const guildsCreated = this.guildsCreated;
