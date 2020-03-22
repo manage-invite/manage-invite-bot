@@ -76,6 +76,7 @@ const getNextRank = (inviteCount, ranks) => {
  * @returns {object} The assigned and removed ranks
  */
 const assignRanks = async (member, inviteCount, ranks) => {
+    if(member.user.bot) return;
     let assigned = new Array();
     let removed = new Array();
     asyncForEach(ranks, async (rank) => {
