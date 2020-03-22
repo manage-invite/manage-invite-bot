@@ -63,9 +63,9 @@ module.exports = class {
                 .setColor("#FF0000"));
                 this.client.shard.broadcastEval(`
                     let channel = this.channels.cache.get(this.config.statsLogs);
-                    if(channel) channel.send(JSON.parse('${embed}'));
+                    if(channel) channel.send({ embed: JSON.parse('${embed}') });
                 `);
-                this.database.saveStats(totalGuildsCreated, totalGuildsDeleted, totalCommandsRan, totalPgQueries, new Date());
+                this.client.database.saveStats(totalGuildsCreated, totalGuildsDeleted, totalCommandsRan, totalPgQueries, new Date());
             }, null, true, "America/Los_Angeles");
         }
         
