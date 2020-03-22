@@ -5,7 +5,7 @@ module.exports = {
     locale: "fr_FR",
 
     utils: {
-        prefix: (prefix) => `Bonjour! Merci d'utilser **${prefix}help** pour voir toutes les commandes ! Vous pouvez m'ajouter sur votre serveur avec **${prefix}add**.`,
+        prefix: (prefix) => `Bonjour! Merci d'utiliser **${prefix}help** pour voir toutes les commandes ! Vous pouvez m'ajouter sur votre serveur avec **${prefix}add**.`,
         viewConf: () => `[Voir la configuration sur le dashboard](https://dash.manage-invite.xyz)`,
         conf: {
             title: () => `Voir la configuration sur le dashboard`,
