@@ -13,7 +13,8 @@ module.exports = class {
         this.client.fetching = true;
 
         await this.client.functions.asyncForEach(this.client.guilds.cache.array(), async (guild) => {
-            let i = process.argv.includes("--uncache") ? new Map() : (guild.me.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : new Map());
+            const member = await guild.members.fetch(this.client.user.id).catch(() => {});
+            let i = process.argv.includes("--uncache") ? new Map() : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : new Map());
             invites[guild.id] = i || new Map();
         });
         this.client.invitations = invites;
