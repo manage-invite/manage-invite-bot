@@ -57,13 +57,10 @@ module.exports = class {
                 const totalPgQueries = results.map((r) => r[1]).reduce((p, c) => p + c);
                 const totalGuildsCreated = results.map((r) => r[2]).reduce((p, c) => p + c);
                 const totalGuildsDeleted = results.map((r) => r[3]).reduce((p, c) => p + c);
-                const embed = JSON.stringify(new Discord.MessageEmbed()
-                .setAuthor("ManageInvite 15min LOGS")
-                .setDescription(`New servers: **${totalGuildsCreated}**\nLost servers: **${totalGuildsDeleted}**\nCommands ran: **${totalCommandsRan}**\nPG Queries: **${totalPgQueries}**`)
-                .setColor("#FF0000")).replace(/[\/\(\)\']/g, "\\$&");
+                const content = `New servers: **${totalGuildsCreated}**\nLost servers: **${totalGuildsDeleted}**\nCommands ran: **${totalCommandsRan}**\nPG Queries: **${totalPgQueries}**`;
                 this.client.shard.broadcastEval(`
                     let channel = this.channels.cache.get(this.config.statsLogs);
-                    if(channel) channel.send({ embed: JSON.parse('${embed}') });
+                    if(channel) channel.send('${content}');
                 `);
                 this.client.database.saveStats(totalGuildsCreated, totalGuildsDeleted, totalCommandsRan, totalPgQueries, new Date());
             }, null, true, "America/Los_Angeles");
