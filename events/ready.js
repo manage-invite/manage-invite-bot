@@ -60,7 +60,7 @@ module.exports = class {
                 const embed = JSON.stringify(new Discord.MessageEmbed()
                 .setAuthor("ManageInvite 15min LOGS")
                 .setDescription(`New servers: **${totalGuildsCreated}**\nLost servers: **${totalGuildsDeleted}**\nCommands ran: **${totalCommandsRan}**\nPG Queries: **${totalPgQueries}**`)
-                .setColor("#FF0000"));
+                .setColor("#FF0000")).replace(/[\/\(\)\']/g, "\\$&");
                 this.client.shard.broadcastEval(`
                     let channel = this.channels.cache.get(this.config.statsLogs);
                     if(channel) channel.send({ embed: JSON.parse('${embed}') });
