@@ -28,9 +28,9 @@ module.exports = class {
         } else if(!perm) {
             // Fetch the current invites of the guild
             let guildInvites = await member.guild.fetchInvites().catch(() => {});
-            if(guildInvites){
-                // Fetch the invites of the guild BEFORE that the member has joined
-                let oldGuildInvites = this.client.invitations[member.guild.id];
+            // Fetch the invites of the guild BEFORE that the member has joined
+            let oldGuildInvites = this.client.invitations[member.guild.id];
+            if(guildInvites && oldGuildInvites){
                 // Update the cache
                 this.client.invitations[member.guild.id] = guildInvites;
                 // Find the invitations which doesn't have the same number of use
