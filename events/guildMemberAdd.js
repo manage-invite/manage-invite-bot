@@ -77,6 +77,7 @@ module.exports = class {
                     inviterData.regular++;
                     // We save that this member invited this member
                     inviterData.addInvitedUser(member.id);
+                    if(inviter.id === member.id) inviterData.fake++;
                 }
                 await inviterData.updateInvites();
                 await this.client.functions.assignRanks(inviterMember, inviterData.calcInvites(), guildData.ranks);
