@@ -7,3 +7,8 @@ config.js
 
 # Macos
 .DS_Store
+
+# SQL and CSV files
+*.sql
+*.csv
+*.csv.txt
