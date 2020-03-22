@@ -30,6 +30,11 @@ class ManageInvite extends Client {
         this.states = {};
         this.spawned = false;
         this.knownGuilds = [];
+        // Cache
+        this.guildsCreated = 0;
+        this.guildsDeleted = 0;
+        this.commandsRan = 0;
+        this.pgQueries = 0;
     }
 
     // This function is used to load a command and add it to the collection

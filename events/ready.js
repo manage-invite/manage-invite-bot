@@ -1,3 +1,6 @@
+const Discord = require("discord.js");
+const CronJob = require("cron").CronJob;
+
 module.exports = class {
     constructor (client) {
         this.client = client;
@@ -33,6 +36,37 @@ module.exports = class {
 
         if(this.client.shard.ids.includes(0) && !this.client.spawned){
             this.client.dash.load(this.client);
+            const job = new CronJob("* */15 * * * *", async () => {
+                const results = this.client.shard.broadcastEval(() => {
+                    const commandsRan = this.commandsRan;
+                    const pgQueries = this.pgQueries;
+                    const guildsCreated = this.guildsCreated;
+                    const guildsDeleted = this.guildsDeleted;
+                    this.commandsRan = 0;
+                    this.pgQueries = 0;
+                    this.guildsCreated = 0;
+                    this.guildsDeleted = 0;
+                    return [
+                        commandsRan,
+                        pgQueries,
+                        guildsCreated,
+                        guildsDeleted
+                    ];
+                });
+                const totalCommandsRan = results.map((r) => r[0]).reduce((p, c) => p + c);
+                const totalPgQueries = results.map((r) => r[1]).reduce((p, c) => p + c);
+                const totalGuildsCreated = results.map((r) => r[2]).reduce((p, c) => p + c);
+                const totalGuildsDeleted = results.map((r) => r[3]).reduce((p, c) => p + c);
+                const embed = JSON.stringify(new Discord.MessageEmbed()
+                .setAuthor("ManageInvite 15min LOGS")
+                .setDescription(`New servers: **${totalGuildsCreated}**\nLost servers: **${totalGuildsDeleted}**\nCommands ran: **${totalCommandsRan}**\nPG Queries: **${totalPgQueries}**`)
+                .setColor("#FF0000"));
+                this.client.shard.broadcastEval(`
+                    let channel = this.channels.cache.get(this.config.statsLogs);
+                    if(channel) channel.send(JSON.parse('${embed}'));
+                `);
+                this.database.saveStats(totalGuildsCreated, totalGuildsDeleted, totalCommandsRan, totalPgQueries, new Date());
+            }, null, true, "America/Los_Angeles");
         }
         
         this.client.on("shardReady", (shardID) => {

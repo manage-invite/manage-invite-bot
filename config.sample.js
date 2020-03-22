@@ -20,6 +20,7 @@ module.exports = {
     removeLogs:     "XXXXXXXXXXX",
     shardLogs:      "XXXXXXXXXXX",
     dashLogs:       "XXXXXXXXXXX",
+    statsLogs:      "XXXXXXXXXXX",
     /* Dashboard */
     secret:         "XXXXXXXXXXX",
     baseURL:        "XXXXXXXXXXX",

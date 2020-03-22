@@ -7,6 +7,8 @@ module.exports = class {
 
     async run (guild) {
 
+        this.client.guildsDeleted++;
+
         // Top Stats
         this.client.functions.postTopStats(this.client);
 

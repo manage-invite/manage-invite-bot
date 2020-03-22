@@ -47,6 +47,7 @@ module.exports = class {
 
         if(isValidGuild){
 
+            this.client.guildsCreated++
             let joinEmbed = new Discord.MessageEmbed()
             .setTitle("Add | :heart:")
             .setDescription(`Hello ${inviter.username}! Thanks for adding me to your server !\n\n **--------------** `)

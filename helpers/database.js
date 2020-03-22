@@ -25,8 +25,18 @@ module.exports = class DatabaseHandler {
         );
     }
 
+    async saveStats(guildsCreated, guildsDeleted, commandsRan, pgQueries, date = new Date()) {
+        this.query(`
+            INSERT INTO stats
+            (date, guilds_created, guilds_deleted, commands_ran, pg_queries) VALUES
+            ('${date.toISOString()}', ${guildsCreated}, ${guildsDeleted}, ${commandsRan}, ${pgQueries});
+        `);
+        return;
+    }
+
     // Make a new query to the db
     query(string) {
+        this.client.pgQueries++;
         return new Promise((resolve, reject) => {
             this.pool.query(string, (error, results) => {
                 if (error) {
