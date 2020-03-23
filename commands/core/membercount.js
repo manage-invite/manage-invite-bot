@@ -14,8 +14,8 @@ class MemberCount extends Command {
 
     async run (message, args, data) {
 
-        let guild = await message.guild.fetch();
-        let embed = new Discord.MessageEmbed()
+        const guild = await message.guild.fetch();
+        const embed = new Discord.MessageEmbed()
         .setAuthor(message.translate("core/membercount:TITLE", {
             guild: message.guild.name
         }))
