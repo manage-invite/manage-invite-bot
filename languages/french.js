@@ -198,7 +198,7 @@ module.exports = {
         errors: {
             bonus: {
                 missing: (prefix) => `${emojis.error} | Vous devez écrire le nombre d'invitations bonus que vous voulez ajouter. (Syntaxe : ${prefix}addbonus nombre @membre)`,
-                incorrect: (prefix) => `${emojis.error} | YVous devez écrire un nombre __**valide**__ d'invitations bonus que vous voulez ajouter. (Syntaxe : ${prefix}addbonus nombre @membre)`
+                incorrect: (prefix) => `${emojis.error} | Vous devez écrire un nombre __**valide**__ d'invitations bonus que vous voulez ajouter. (Syntaxe : ${prefix}addbonus nombre @membre)`
             },
             member: {
                 missing: (prefix) => `${emojis.error} | Vous devez mentionner le membre auquel vous voulez ajouter les invitations bonus. (Syntaxe : ${prefix}addbonus nombre @membre)`
