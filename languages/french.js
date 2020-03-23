@@ -173,6 +173,7 @@ module.exports = {
                 content: (previous, next, user) => `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`
             },
             invitedUsers: {
+                premium: (username) => `:crown: | Hey, **${username}** ! Cette fonctionnalité est disponible seulement pour les serveurs premium et les partenaires. Deviens premium ici: **<https://docs.manage-invite.xyz/configuration/premium>** !`,
                 title: () => `Membres invités`,
                 content: (users, andMore, nobody) => nobody ? "Aucun membre invité" : andMore ? `${users.join(", ")}, et plus...` : users.join(", ")
             }
