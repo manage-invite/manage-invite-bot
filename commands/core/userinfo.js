@@ -7,7 +7,7 @@ class Userinfo extends Command {
         super(client, {
             name: "userinfo",
             enabled: true,
-            aliases: [ "ui" ],
+            aliases: [ "ui", "info", "infos" ],
             clientPermissions: [ "EMBED_LINKS" ],
             permLevel: 0
         });
