@@ -33,5 +33,13 @@ module.exports = {
     prefix:         "+",
     owners: [ "XXXXXXXXXXX", "XXXXXXXXXXX" ],
     /* Top.gg */
-    topToken: "XXXXXXXXXXX"
+    topToken: "XXXXXXXXXXX",
+    /* Database */
+    database: {
+        user: "",
+        host: "localhost",
+        database: "manage_invite",
+        password: "",
+        port: 5432
+    }
 };
