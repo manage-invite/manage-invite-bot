@@ -53,7 +53,8 @@ module.exports = {
             content: (prefix) => `
         > **${prefix}addrank nombre @role**: Ajoute un rôle récompense
         > **${prefix}removerank @role**: Retire un rôle récompense
-        > **${prefix}ranks**: Liste des rôles récompenses`
+        > **${prefix}ranks**: Liste des rôles récompenses
+        > **${prefix}setkeep-ranks**: Configure le paramètre "keep-ranks"`
         },
         // Join DM Messages
         joinDM: {

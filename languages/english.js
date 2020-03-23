@@ -45,7 +45,8 @@ module.exports = {
         > **${prefix}removebonus number @user**: Remove bonus invites to a member
         > **${prefix}sync-invites**: Synchronize server invites and bot invites
         > **${prefix}removeinvites (@user)**: Remove (server/user) invites
-        > **${prefix}restoreinvites (@user)**: Restore (server/user) invites`
+        > **${prefix}restoreinvites (@user)**: Restore (server/user) invites
+        > **${prefix}setkeep-ranks**: Configure the "keep-ranks" setting`
         },
         // Ranks
         ranks: {
