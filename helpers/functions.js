@@ -73,9 +73,10 @@ const getNextRank = (inviteCount, ranks) => {
  * @param {object} member The member on who the ranks will be assigned
  * @param {number} inviteCount The member's invite count
  * @param {array} ranks The ranks of the guild
+ * @param {boolean} keepRanks Whether the members should keep their ranks, even if they doesn't have enough invites
  * @returns {object} The assigned and removed ranks
  */
-const assignRanks = async (member, inviteCount, ranks) => {
+const assignRanks = async (member, inviteCount, ranks, keepRanks) => {
     if(member.user.bot) return;
     let assigned = new Array();
     let removed = new Array();
@@ -85,7 +86,7 @@ const assignRanks = async (member, inviteCount, ranks) => {
         // If the bot doesn't have permissions to assign role to this member
         if(!member.guild.roles.cache.get(rank.roleID).editable) return;
         // If the member can't obtain the rank
-        if(inviteCount < parseInt(rank.inviteCount)){
+        if(inviteCount < parseInt(rank.inviteCount) && !keepRanks){
             // If the member doesn't have the rank
             if(!member.roles.cache.has(rank.roleID)) return;
             // Remove the ranks

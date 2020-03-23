@@ -19,6 +19,8 @@ module.exports = class Guild {
         this.prefix = data.guild_prefix || "+";
         // Guild premium status
         this.premium = data.guild_is_premium || false;
+        // Guild keep ranks
+        this.keepRanks = data.guild_keep_ranks || false;
     }
 
     async fetch() {
@@ -120,6 +122,17 @@ module.exports = class Guild {
         `);
         this.blacklistedUsers = this.blacklistedUsers.filter((id) => id !== userID);
         return this.blacklistedUsers;
+    }
+
+    // Update keep ranks
+    async setKeepRanks(boolean){
+        await this.handler.query(`
+            UPDATE guilds
+            SET guild_keep_ranks = ${boolean}
+            WHERE guild_id = '${this.id}';
+        `);
+        this.keepRanks = boolean;
+        return this;
     }
 
     // Update the guild language

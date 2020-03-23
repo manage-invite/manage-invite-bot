@@ -250,6 +250,12 @@ module.exports = {
         off: () => `**${emojis.success} | The leave system is now __DISABLED__!**`
     },
 
+    setkeepranks: {
+        premium: (username) => `:crown: | Hey, **${username}**! This feature (keep ranks even if the members don't have enough invites) is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`,
+        on: () => `**${emojis.success} | Now, members will __KEEP__ their ranks, even if they don't have enough invites!**`,
+        off: () => `**${emojis.success} | Now, members won't __KEEP__ their ranks if they don't have enough invites!**`
+    },
+
     setprefix: {
         missing: () => `${emojis.error} | You must write a prefix!`,
         success: () => `${emojis.success} | Server prefix has been updated!`
