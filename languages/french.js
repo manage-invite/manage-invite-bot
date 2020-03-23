@@ -254,6 +254,12 @@ module.exports = {
         off: () => `**${emojis.success} | Le système de messages de départs est maintenant __DÉSACTIVÉ__ !**`
     },
 
+    setkeepranks: {
+        premium: (username) => `:crown: | Hey, **${username}** ! Cette fonctionnalité est disponible seulement pour les serveurs premium et les partenaires. Deviens premium ici: **<https://docs.manage-invite.xyz/configuration/premium>** !`,
+        on: () => `**${emojis.success} | Maintenant, les membres __GARDERONT__ leurs rôles, même s'ils n'ont pas assez d'invitations!**`,
+        off: () => `**${emojis.success} | Maintenant, les membres __NE GARDERONT__ pas leurs rôles s'ils n'ont pas assez d'invitations!**`
+    },
+
     setprefix: {
         missing: () => `${emojis.error} | Vous devez écrire un préfixe !`,
         success: () => `${emojis.success} | Le préfixe du serveur a été mis à jour !`
