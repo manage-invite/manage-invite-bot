@@ -15,9 +15,14 @@ class Help extends Command {
     async run (message, args, data) {
    
         let embed = new Discord.MessageEmbed()
-            .setTitle(message.language.help.title())
-            .setDescription(message.language.help.description(message.guild.name, data.guild.prefix))
-            .addField(message.language.help.admin.title(), message.language.help.admin.content(data.guild.prefix), false)
+            .setTitle(message.translate("core/help:TITLE"))
+            .setDescription(message.translate("core/help:DESCRIPTION", {
+                guildName: message.guild.name,
+                prefix: data.guild.prefix
+            }))
+            .addField(message.translate("core/help:ADMIN_TITLE"), message.translate("core/help:ADMIN_CONTENT", {
+                prefix: data.guild.prefix
+            }), false)
             .addField(message.language.help.ranks.title(), message.language.help.ranks.content(data.guild.prefix), false);
 
             if(data.guild.premium){
