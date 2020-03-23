@@ -170,6 +170,10 @@ module.exports = {
             joinOrder: {
                 title: () => `Ordre d'arrivées`,
                 content: (previous, next, user) => `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`
+            },
+            invitedUsers: {
+                title: () => `Membres invités`,
+                content: (users, andMore, nobody) => nobody ? "Aucun membre invité" : andMore ? `${users.join(", ")}, et plus...` : users.join(", ")
             }
         }
     },

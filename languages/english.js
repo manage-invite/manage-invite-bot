@@ -170,6 +170,11 @@ module.exports = {
             joinOrder: {
                 title: () => `Join Order`,
                 content: (previous, next, user) => `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`
+            },
+            invitedUsers: {
+                title: () => `Invited users`,
+                premium: () => `:crown: | This feature (view invited users) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`,
+                content: (users, andMore, nobody) => nobody ? "No invited users" : andMore ? `${users.join(", ")}, and more...` : users.join(", ")
             }
         }
     },
@@ -251,7 +256,7 @@ module.exports = {
     },
 
     setkeepranks: {
-        premium: (username) => `:crown: | Hey, **${username}**! This feature (keep ranks even if the members don't have enough invites) is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`,
+        premium: (username) => `:crown: | Hey, **${username}**! This feature (keep ranks even if the members don't have enough invites) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`,
         on: () => `**${emojis.success} | Now, members will __KEEP__ their ranks, even if they don't have enough invites!**`,
         off: () => `**${emojis.success} | Now, members won't __KEEP__ their ranks if they don't have enough invites!**`
     },
@@ -332,7 +337,7 @@ module.exports = {
     },
 
     joinDM: {
-        premium: (username) => `:crown: | Hey, **${username}**! This feature is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`
+        premium: (username) => `:crown: | Hey, **${username}**! This feature is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`
     },
 
     configdmjoin: {
@@ -571,7 +576,7 @@ Type \`cancel\` to abort. ${str}
             },
             joinDM: {
                 title: () => `Join messages in DM`,
-                premium: () => `Feature available for premium servers and partners.`,
+                premium: () => `Feature available for premium servers.`,
                 message: {
                     title: () => `Message`,
                     default: () => `Welcome {user} in **{server} ! You were invited by **{inviter.tag}**. Don't forget to read the server rules!`,
@@ -629,7 +634,7 @@ Type \`cancel\` to abort. ${str}
     stats: {
         title: (name, nb) => `Joins on ${name} these last ${nb} days`,
         content: (total, percent, days) => `**${total}** members (i.e. **${percent}%** of the server) have joined the server from ${days[0]} to ${days[1]}:`,
-        premium: (username) => `:crown: | Hey, **${username}**! This feature (customized stats period) is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>**!`,
+        premium: (username) => `:crown: | Hey, **${username}**! This feature (customized stats period) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>**!`,
         errors: {
             invalid: () => `${emojis.error} | You must enter a valid number of days (greater than 1 and lower than 1000) to be displayed!`
         }
