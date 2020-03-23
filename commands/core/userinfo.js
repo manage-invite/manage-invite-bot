@@ -65,8 +65,8 @@ class Userinfo extends Command {
             }
             const users = [];
             await this.client.functions.asyncForEach(memberData.invitedUsers, async (user) => {
-                const fetchedUser = await this.client.users.fetch(user).catch(() => {});
-                if(fetchedUser) users.push("`"+fetchedUser.tag+"`");
+                const fetchedUser = await message.guild.members.cache.get(user);
+                if(fetchedUser) users.push(fetchedUser.toString());
             });
             embed.addField(fields.invitedUsers.title(), fields.invitedUsers.content(users, andMore, nobody));
         } else {
