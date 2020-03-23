@@ -16,16 +16,37 @@ class Invite extends Command {
 
         if(data.guild.blacklistedUsers.includes(message.author.id)) return message.channel.send(message.language.blacklist.blacklisted());
 
-        let member = await this.client.resolveMember(args.join(" "), message.guild) || message.member;
-        let memberData = await this.client.database.fetchMember(member.id, message.guild.id);
+        const member = await this.client.resolveMember(args.join(" "), message.guild) || message.member;
+        const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
         await this.client.functions.assignRanks(member, memberData.calcInvites(), data.guild.ranks);
-        let nextRank = this.client.functions.getNextRank(memberData.calcInvites(), data.guild.ranks);
+        const nextRank = this.client.functions.getNextRank(memberData.calcInvites(), data.guild.ranks);
 
-        let description = message.language.invite.description(member, memberData, (member.id === message.member.id), nextRank, (nextRank ? message.guild.roles.cache.get(nextRank.roleID) : null));
-        
-        let embed = new Discord.MessageEmbed()
+        const firstDescription =  member.id === message.member.id ?
+        message.translate("core/invite:AUTHOR_CONTENT", {
+            inviteCount: memberData.calcInvites(),
+            regularCount: memberData.regular,
+            bonusCount: memberData.bonus,
+            fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
+            leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
+        }) :
+        message.translate("core/invite:MEMBER_CONTENT", {
+            username: member.user.username,
+            inviteCount: memberData.calcInvites(),
+            regularCount: memberData.regular,
+            bonusCount: memberData.bonus,
+            fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
+            leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
+        });
+
+        const secondDescription = member.id === message.member.id && nextRank ?
+        message.translate("core/invite:AUTHOR_NEXT_RANK", {
+            neededCount: nextRank.inviteCount - memberData.calcInvites(),
+            rankName: message.guild.roles.cache.get(nextRank.roleID) || "deleted-role"
+        }) : "";
+
+        const embed = new Discord.MessageEmbed()
         .setAuthor(member.user.tag, member.user.displayAvatarURL())
-        .setDescription(description)
+        .setDescription(firstDescription+secondDescription)
         .setColor(data.color)
         .setFooter(data.footer);
 
