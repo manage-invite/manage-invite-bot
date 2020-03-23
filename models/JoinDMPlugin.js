@@ -27,6 +27,7 @@ module.exports = class JoinDMPlugin {
             guild_id = '${this.guild.id}' AND
             plugin_name = 'joinDM';
         `);
+        this.handler.client.removeGuildFromOtherCaches(this.guild.id);
         return this;
     }
 

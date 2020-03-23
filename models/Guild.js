@@ -72,6 +72,7 @@ module.exports = class Guild {
             (guild_id, role_id, invite_count) VALUES
             ('${this.id}', '${roleID}', ${inviteCount});
         `);
+        this.handler.removeGuildFromOtherCaches(this.id);
         this.ranks.push({
             roleID,
             inviteCount
@@ -86,6 +87,7 @@ module.exports = class Guild {
             WHERE guild_id = '${this.id}'
             AND invite_count = ${inviteCount};
         `);
+        this.handler.removeGuildFromOtherCaches(this.id);
         this.ranks = this.ranks.filter((rank) => rank.inviteCount !== inviteCount);
         return this.ranks;
     }
@@ -109,6 +111,7 @@ module.exports = class Guild {
             (guild_id, user_id) VALUES
             ('${this.id}', '${userID}');
         `);
+        this.handler.removeGuildFromOtherCaches(this.id);
         this.blacklistedUsers.push(userID);
         return this.blacklistedUsers;
     }
@@ -120,6 +123,7 @@ module.exports = class Guild {
             WHERE guild_id = '${this.id}'
             AND user_id = '${userID}';
         `);
+        this.handler.removeGuildFromOtherCaches(this.id);
         this.blacklistedUsers = this.blacklistedUsers.filter((id) => id !== userID);
         return this.blacklistedUsers;
     }
@@ -131,6 +135,7 @@ module.exports = class Guild {
             SET guild_keep_ranks = ${boolean}
             WHERE guild_id = '${this.id}';
         `);
+        this.handler.removeGuildFromOtherCaches(this.id);
         this.keepRanks = boolean;
         return this;
     }
@@ -142,6 +147,7 @@ module.exports = class Guild {
             SET guild_language = '${newLanguage}'
             WHERE guild_id = '${this.id}';
         `);
+        this.handler.removeGuildFromOtherCaches(this.id);
         this.language = newLanguage;
         return this;
     }
@@ -153,6 +159,7 @@ module.exports = class Guild {
             SET guild_prefix = '${newPrefix}'
             WHERE guild_id = '${this.id}';
         `);
+        this.handler.removeGuildFromOtherCaches(this.id);
         this.prefix = newPrefix;
         return this;
     }
