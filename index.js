@@ -13,6 +13,8 @@ client = new ManageInvite();
 
 const init = async () => {
 
+    require("./helpers/extenders");
+
     // Search for all commands
     let directories = await readdir("./commands/");
     directories.forEach(async (dir) => {
@@ -34,13 +36,16 @@ const init = async () => {
         delete require.cache[require.resolve(`./events/${file}`)];
     });
 
+    const i18n = require("./helpers/i18n");
+    client.translations = await i18n();
+
     client.login(client.config.token); // Log in to the discord api
 
     // Gets commands permission
     client.levelCache = {};
     for (let i = 0; i < client.permLevels.length; i++) {
-      const thisLevel = client.permLevels[parseInt(i, 10)];
-      client.levelCache[thisLevel.name] = thisLevel.level;
+        const thisLevel = client.permLevels[parseInt(i, 10)];
+        client.levelCache[thisLevel.name] = thisLevel.level;
     }
 
 };
