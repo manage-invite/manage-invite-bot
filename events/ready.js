@@ -9,6 +9,7 @@ module.exports = class {
     async run () {
 
         this.client.user.setActivity("+help | manage-invite.xyz");
+        this.client.logger.log("Shard #"+this.client.shard.ids[0]+" has started.", "log");
 
         if(!process.argv.includes("--uncache")) await this.client.wait(1000);
         let invites = {};
