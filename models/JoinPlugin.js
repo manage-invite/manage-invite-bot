@@ -30,7 +30,7 @@ module.exports = class JoinPlugin {
             guild_id = '${this.guild.id}' AND
             plugin_name = 'join';
         `);
-        this.handler.client.removeGuildFromOtherCaches(this.guild.id);
+        this.handler.removeGuildFromOtherCaches(this.guild.id);
         return this;
     }
 
