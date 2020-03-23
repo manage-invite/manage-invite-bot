@@ -163,7 +163,7 @@ module.exports = class Guild {
             await this.handler.query(`
                 INSERT INTO guilds
                 (guild_id, guild_prefix, guild_language, guild_is_premium, guild_keep_ranks) VALUES
-                ('${this.id}', '${this.prefix}', '${this.language}', ${this.premium}, ${this.guild_keep_ranks});
+                ('${this.id}', '${this.prefix}', '${this.language}', ${this.premium}, ${this.keepRanks});
             `);
             this.inserted = true;
         }
