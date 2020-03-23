@@ -12,3 +12,6 @@ config.js
 *.sql
 *.csv
 *.csv.txt
+
+# To do list
+.todo
