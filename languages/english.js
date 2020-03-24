@@ -11,7 +11,7 @@ module.exports = {
             title: () => `View the configuration on the dashboard`,
             content: () => `[or on the dashboard](https://dash.manage-invite.xyz)`
         },
-        specialMessages: {
+        /*specialMessages: {
             join: {
                 oauth2: (user) => `${user} joined the server using OAuth flow.`,
                 vanity: (user) => `${user} joined the server using a discord.gg invite defined by the guild owner (or admin).`,
@@ -23,7 +23,7 @@ module.exports = {
                 vanity: (user) => `${user.tag} left the server, they joined using a discord.gg invite defined by the server owner (or an admin).`,
                 unknown: (user) => `${user.tag} left the server, but I can't figure out how they joined it.`
             }
-        }
+        }*/
     },
 
     errors: {

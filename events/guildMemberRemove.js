@@ -13,6 +13,7 @@ module.exports = class {
 
         // Fetch guild and member data from the db
         const guildData = await this.client.database.fetchGuild(member.guild.id);
+        member.guild.data = guildData;
         let memberData = await this.client.database.fetchMember(member.id, member.guild.id);
         
         let inviter = memberData.joinData && memberData.joinData.type === "normal" && memberData.joinData.inviteData ? await this.client.resolveUser(memberData.joinData.inviteData.inviter) : typeof memberData.invitedBy === "string" ? await this.client.resolveUser(memberData.invitedBy) : null;
@@ -42,13 +43,21 @@ module.exports = class {
                 let formattedMessage = this.client.functions.formatMessage(guildData.leave.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData)
                 channel.send(formattedMessage);
             } else if(joinType === "vanity"){
-                channel.send(language.utils.specialMessages.leave.vanity(member.user));
+                channel.send(member.guild.translate("LEAVE_VANITY", {
+                    user: member.user.tag
+                }));
             } else if(joinType === "oauth"){
-                channel.send(language.utils.specialMessages.leave.oauth2(member.user));
+                channel.send(member.guild.translate("LEAVE_OAUTH2", {
+                    user: member.user.tag
+                }));
             } else if(joinType === "perm"){
-                channel.send(language.utils.specialMessages.leave.perm(member.user));
+                channel.send(member.guild.translate("LEAVE_UNKNOWN", {
+                    user: member.user.tag
+                }));
             } else {
-                channel.send(language.utils.specialMessages.leave.unknown(member.user));
+                channel.send(member.guild.translate("LEAVE_UNKNOWN", {
+                    user: member.user.tag
+                }));
             }
         }
 

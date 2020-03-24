@@ -1,3 +1,13 @@
 {
-    "LINKS_FOOTER": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Support server]({{discord}}) | [Vote for me](https://top.gg/bot/{{clientID}})"
+    "LINKS_FOOTER": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Support server]({{discord}}) | [Vote for me](https://top.gg/bot/{{clientID}})",
+
+    "JOIN_OAUTH2": "{{user}} joined the server using OAuth flow.",
+    "JOIN_VANITY": "{{user}} joined the server using a discord.gg invite defined by the guild owner (or admin).",
+    "JOIN_UNKNOWN": "I can't figure out how {{user}} joined the server.",
+    "JOIN_PERMISSIONS": "I need the manage server permissions to know who is the inviter of {{user}}.",
+
+    "LEAVE_OAUTH2": "{{user}} left the server, they joined via OAuth.",
+    "LEAVE_VANITY": "{{user}} left the server, they joined using a discord.gg invite defined by the server owner (or an admin).",
+    "LEAVE_UNKNOWN": "{{user}} left the server, but I can't figure out how they joined it."
+
 }
