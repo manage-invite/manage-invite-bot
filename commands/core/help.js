@@ -52,7 +52,7 @@ class Help extends Command {
                 prefix: data.guild.prefix
             }), message.translate("core/help:DASHBOARD", {
                 dashboard: Constants.Links.DASHBOARD
-            })+"\n\n"+ message.translate("misc:LINKS", {
+            })+"\n\n"+ message.translate("misc:LINKS_FOOTER", {
                 clientID: this.client.user.id,
                 discord: Constants.Links.DISCORD
             }))
