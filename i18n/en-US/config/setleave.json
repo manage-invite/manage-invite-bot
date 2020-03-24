@@ -1,4 +1,4 @@
 {
-    "ENABLED": "**The leave system is now __ENABLED__!**",
-    "DISABLED": "**The leave system is now __DISABLED__!**"
+    "ENABLED": "**The leave messages are now __ENABLED__!**",
+    "DISABLED": "**The leave messages are now __DISABLED__!**"
 }
