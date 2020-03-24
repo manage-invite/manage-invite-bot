@@ -1,7 +1,6 @@
-const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+const Command = require("../../structures/Command.js");
 
-class SetJoin extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "setjoin",
@@ -16,14 +15,12 @@ class SetJoin extends Command {
         if(!data.guild.join.enabled){
             data.guild.join.enabled = true;
             await data.guild.join.updateData();
-            return message.channel.send(message.language.setjoin.on());
+            return message.success("config/setjoin:ENABLED");
         }
         if(data.guild.join.enabled){
             data.guild.join.enabled = false;
             await data.guild.join.updateData();
-            return message.channel.send(message.language.setjoin.off());
+            return message.success("config/setjoin:DISABLED");
         }
     }
 };
-          
-module.exports = SetJoin;

@@ -240,12 +240,12 @@ module.exports = {
         off: () => `**${emojis.success} | The DM join system is now __DISABLED__!**`
     },
 
-    setjoin: {
+    /*setjoin: {
         on: () => `**${emojis.success} | The join system is now __ENABLED__!**`,
         off: () => `**${emojis.success} | The join system is now __DISABLED__!**`
     },
 
-    /*setleave: {
+    setleave: {
         on: () => `**${emojis.success} | The leave system is now __ENABLED__!**`,
         off: () => `**${emojis.success} | The leave system is now __DISABLED__!**`
     },
