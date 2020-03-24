@@ -231,7 +231,7 @@ module.exports = {
         errors: {
             bonus: {
                 missing: (prefix) => `${emojis.error} | Vous devez indiquer le nombre d'invitations bonus que vous souhaitez retirer. (Syntaxe : ${prefix}removebonus nombre @membre)`,
-                incorrect: (prefix) => `${emojis.error} | You must write a __**valid**__ number of bonus invites that you want to remove. (Syntaxe : ${prefix}removebonus nombre @membre)`
+                incorrect: (prefix) => `${emojis.error} | Vous devez écrire un nombre __**valide**__ d'invitations bonus que vous souhaitez supprimer. (Syntaxe : ${prefix}removebonus nombre @membre)`
             },
             member: {
                 missing: (prefix) => `${emojis.error} | Vous devez mentionner le membre auquel vous souhaitez supprimer les invitations bonus. (Syntaxe : ${prefix}removebonus nombre @membre)`
