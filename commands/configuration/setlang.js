@@ -16,6 +16,13 @@ const languages = [
             "en",
             "englich"
         ]
+    },
+    {
+        name: "spanish",
+        aliases: [
+            "sp",
+            "espagnol"
+        ]
     }
 ];
 
