@@ -184,7 +184,6 @@ module.exports = {
         title: (guildName) => `MemberCount de ${guildName}`,
         description: (guild) => `
         Un total de **${guild.members.cache.size}** membres (**${guild.members.cache.filter((m) => !m.user.bot).size}** humains et **${guild.members.cache.filter((m) => m.user.bot).size}** bots)
-
         ➔ ${emojis.dnd} | ${guild.members.cache.filter((m) => m.presence.status === "dnd"  && !m.user.bot).size} membres (ne pas déranger)
         ➔ ${emojis.online} | ${guild.members.cache.filter((m) => m.presence.status === "online" && !m.user.bot).size} membres (en ligne)
         ➔ ${emojis.idle} | ${guild.members.cache.filter((m) => m.presence.status === "idle" && !m.user.bot).size} membres (afk)
@@ -351,23 +350,18 @@ __**Plus d'informations**__
 {user.tag} : Le tag du membre qui vient de rejoindre votre serveur.
 {user.createdat} : L'âge du compte du membre.
 {user.id} : L'ID du membre.
-
 {guild} : Nom du serveur.
 {guild.count} : Nombre de membres que votre serveur a maintenant.
-
 {inviter} : Mentionne l'inviteur.
 {inviter.name} : Le nom de l'inviteur.
 {inviter.tag} : Le tag de l'inviteur.
 {inviter.invites} : Le nombre total d'invitations de l'inviteur.
 {inviter.id} : L'ID de l'inviteur.
-
 {invite.code} : Le code d'invitation utilisé.
 {invite.url} : L'url d'invitation utilisée.
 {invite.uses} : Nombre d'utilisations du code d'invitation.
 \`\`\`
 Tapez \`cancel\` pour annuler. ${str}
-
-
 :pencil: **| Écrivez maintenant le message d'arrivées en MP... :pencil2:**`,
         cancelled: () => `${emojis.error} | Annulé.`,
         success: () => `${emojis.success} **| Réalisé avec succès...**`,
@@ -390,23 +384,18 @@ __**Plus d'informations**__
 {user.tag} : Le tag du membre qui vient de rejoindre votre serveur.
 {user.createdat} : L'âge du compte du membre.
 {user.id} : L'ID du membre.
-
 {guild} : Nom du serveur.
 {guild.count} : Nombre de membres que votre serveur a maintenant.
-
 {inviter} : Mentionne l'inviteur.
 {inviter.name} : Le nom de l'inviteur.
 {inviter.tag} : Le tag de l'inviteur.
 {inviter.invites} : Le nombre total d'invitations de l'inviteur.
 {inviter.id} : L'ID de l'inviteur.
-
 {invite.code} : Le code d'invitation utilisé.
 {invite.url} : L'url d'invitation utilisée.
 {invite.uses} : Nombre d'utilisations du code d'invitation.
 \`\`\`
 Tapez \`cancel\` pour annuler. ${str}
-
-
 :pencil: **| Écrivez maintenant le message d'arrivées... :pencil2:**`,
             channel: () => `:scroll: **| Maintenant écrivez le nom du salon des messages d'arrivées ou mentionnez-le... :pencil2:**`
         },
@@ -435,23 +424,18 @@ __**Plus d'informations**__
 {user.tag} : Le tag du membre qui vient de partir de votre serveur.
 {user.createdat} : L'âge du compte du membre.
 {user.id} : L'ID du membre.
-
 {guild} : Nom du serveur.
 {guild.count} : Nombre de membres que votre serveur a maintenant.
-
 {inviter} : Mentionne l'inviteur.
 {inviter.name} : Le nom de l'inviteur.
 {inviter.tag} : Le tag de l'inviteur.
 {inviter.invites} : Le nombre total d'invitations de l'inviteur.
 {inviter.id} : L'ID de l'inviteur.
-
 {invite.code} : Le code d'invitation utilisé.
 {invite.url} : L'url d'invitation utilisée.
 {invite.uses} : Nombre d'utilisations du code d'invitation.
 \`\`\`
 Tapez \`cancel\` pour annuler. ${str}
-
-
 :pencil: **| Écrivez maintenant le message de départs... :pencil2:**`,
         channel: () => `:scroll: **| Maintenant écrivez le nom du salon des messages de départs ou mentionnez-le... :pencil2:**`
         },
@@ -470,7 +454,7 @@ Tapez \`cancel\` pour annuler. ${str}
     },
 
     setlang: {
-        invalid: () => `${emojis.error} | Vous devez entrer une langue valide !\n\n:flag_fr: Français (\`fr\`)\n:flag_gb: English (\`en\`)`,
+        invalid: () => `${emojis.error} | Vous devez entrer une langue valide !\n\n:flag_fr: Français (\`fr\`)\n:flag_gb: English (\`en\`)\n:flag_es: Spanish (\`sp\`)`,
         success: () => `${emojis.success} | Langue mise à jour !`
     },
 
