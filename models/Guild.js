@@ -172,6 +172,7 @@ module.exports = class Guild {
                 (guild_id, guild_prefix, guild_language, guild_is_premium, guild_keep_ranks) VALUES
                 ('${this.id}', '${this.prefix}', '${this.language}', ${this.premium}, ${this.keepRanks});
             `);
+            this.handler.removeGuildFromOtherCaches(this.guild.id);
             this.inserted = true;
         }
         return this;

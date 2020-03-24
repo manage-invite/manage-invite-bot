@@ -224,6 +224,7 @@ module.exports = class Member {
                     ${this.oldBackuped}
                 );
             `);
+            this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
             this.inserted = true;
         }
         return this;
