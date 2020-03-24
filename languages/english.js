@@ -235,12 +235,12 @@ module.exports = {
         field: (prefix, member) => `Write \`${prefix}invites ${member.user.tag}\` to see the new number of invites of **${member.user.username}**!`
     },
 
-    setdmjoin: {
+    /*setdmjoin: {
         on: () => `**${emojis.success} | The DM join system is now __ENABLED__!**`,
         off: () => `**${emojis.success} | The DM join system is now __DISABLED__!**`
     },
 
-    /*setjoin: {
+    setjoin: {
         on: () => `**${emojis.success} | The join system is now __ENABLED__!**`,
         off: () => `**${emojis.success} | The join system is now __DISABLED__!**`
     },
