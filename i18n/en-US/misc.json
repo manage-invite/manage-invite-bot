@@ -1,0 +1,3 @@
+{
+    "LINKS_FOOTER": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Support server]({{discord}}) | [Vote for me](https://top.gg/bot/{{clientID}})"
+}

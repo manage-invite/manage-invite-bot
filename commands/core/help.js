@@ -1,6 +1,8 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
+const Constants = require("../../Constants");
+
 class Help extends Command {
     constructor (client) {
         super(client, {
@@ -23,17 +25,37 @@ class Help extends Command {
             .addField(message.translate("core/help:ADMIN_TITLE"), message.translate("core/help:ADMIN_CONTENT", {
                 prefix: data.guild.prefix
             }), false)
-            .addField(message.language.help.ranks.title(), message.language.help.ranks.content(data.guild.prefix), false);
-
-            if(data.guild.premium){
-                embed.addField(message.language.help.joinDM.title(), message.language.help.joinDM.content(data.guild.prefix), true);
-            }
-
-            embed.addField(message.language.help.join.title(), message.language.help.join.content(data.guild.prefix), true)
-            .addField(message.language.help.leave.title(), message.language.help.leave.content(data.guild.prefix), true)
-            .addField(message.language.help.invites.title(), message.language.help.invites.content(data.guild.prefix), false)
-            .addField(message.language.help.manageInvite.title(), message.language.help.manageInvite.content(data.guild.prefix), false)
-            .addField(message.language.help.tip(data.guild.prefix), message.language.utils.conf.content()+"\n\n"+message.language.help.links(this.client.user.id))
+            .addField(messages.translate("core/help:RANKS_TITLE"), message.translate("core/help:RANKS_CONTENT", {
+                prefix: data.guild.prefix
+            }), false)
+            .addField(messages.translate("core/help:JOIN_DM_TITLE"), message.translate("core/help:JOIN_DM_CONTENT", {
+                    prefix: data.guild.prefix
+            }), true)
+            .addField(messages.translate("core/help:JOIN_TITLE"), message.translate("core/help:JOIN_CONTENT", {
+                prefix: data.guild.prefix
+            }), true)
+            .addField(messages.translate("core/help:LEAVE_TITLE"), message.translate("core/help:LEAVE_CONTENT", {
+                prefix: data.guild.prefix
+            }), true)
+            .addField(messages.translate("core/help:INVITES_TITLE"), message.translate("core/help:INVITES_CONTENT", {
+                prefix: data.guild.prefix
+            }), false)
+            .addField(messages.translate("core/help:CORE_TITLE"), message.translate("core/help:CORE_CONTENT", {
+                prefix: data.guild.prefix
+            }), false)
+            .addField(messages.translate("core/help:TIP", {
+                prefix: data.guild.prefix
+            }), message.translate("core/help:CORE_CONTENT", {
+                prefix: data.guild.prefix
+            }), false)
+            .addField(message.translate("core/help:TIP", {
+                prefix: data.guild.prefix
+            }), message.translate("core/help:DASHBOARD", {
+                dashboard: Constants.Links.DASHBOARD
+            })+"\n\n"+ message.translate("misc:LINKS", {
+                clientID: this.client.user.id,
+                discord: Constants.Links.DISCORD
+            }))
             .setThumbnail(message.author.displayAvatarURL())
             .setColor(data.color);
 
