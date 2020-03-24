@@ -325,9 +325,9 @@ module.exports = {
         },
     },
 
-    joinDM: {
+    /*joinDM: {
         premium: (username) => `:crown: | Hey, **${username}**! This feature is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`
-    },
+    },*/
 
     configdmjoin: {
         disable: (prefix) => `Type \`${prefix}setdmjoin\` to disable join messages in dm.`,
@@ -458,10 +458,10 @@ Type \`cancel\` to abort. ${str}
         }
     },
 
-    setlang: {
+    /*setlang: {
         invalid: () => `${emojis.error} | You must write a valid language!\n\n:flag_fr: Français (\`fr\`)\n:flag_gb: English (\`en\`)`,
         success: () => `${emojis.success} | Language has beed updated!`
-    },
+    },*/
 
     addrank: {
         errors: {

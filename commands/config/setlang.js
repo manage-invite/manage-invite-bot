@@ -19,7 +19,7 @@ const languages = [
     }
 ];
 
-class SetLang extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "setlang",
@@ -31,15 +31,11 @@ class SetLang extends Command {
     }
 
     async run (message, args, data) {
-        let language = args[0];
+        const language = args[0];
         if(!languages.some((l) => l.name === language || l.aliases.includes(language))){
-            return message.channel.send(message.language.setlang.invalid());
+            return message.error("config/setlang:INVALID");
         }
         await data.guild.setLanguage(languages.find((l) => l.name === language || l.aliases.includes(language)).name);
-        message.language = require("../../languages/"+data.guild.language);
-        message.channel.send(message.language.setlang.success());
+        message.success("config/setlang:SUCCESS");
     }
 };
-  
-
-module.exports = SetLang;
