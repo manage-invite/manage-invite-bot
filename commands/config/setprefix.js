@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class SetPrefix extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "setprefix",
@@ -14,11 +14,8 @@ class SetPrefix extends Command {
 
     async run (message, args, data) {
         let prefix = args[0];
-        if(!prefix) return message.channel.send(message.language.setprefix.missing());
+        if(!prefix) return message.error("config/setprefix:MISSING");
         await data.guild.setPrefix(prefix);
-        message.channel.send(message.language.setprefix.success());
+        message.success("config/setprefix:SUCCESS");
     }
 };
-  
-
-module.exports = SetPrefix;

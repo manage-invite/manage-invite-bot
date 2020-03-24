@@ -174,7 +174,7 @@ module.exports = {
         }
     },
 
-    membercount: {
+    /*membercount: {
         title: (guildName) => `${guildName}'s MemberCount`,
         description: (guild) => `
         Total of **${guild.members.cache.size}**  members (**${guild.members.cache.filter((m) => !m.user.bot).size}** humans and **${guild.members.cache.filter((m) => m.user.bot).size}** bots)
@@ -183,11 +183,11 @@ module.exports = {
         ➔ ${emojis.online} | ${guild.members.cache.filter((m) => m.presence.status === "online" && !m.user.bot).size} members online
         ➔ ${emojis.idle} | ${guild.members.cache.filter((m) => m.presence.status === "idle" && !m.user.bot).size} members idle
         ➔ ${emojis.offline} | ${guild.members.cache.filter((m) => m.presence.status === "offline" && !m.user.bot).size} members offline`
-    },
+    },*/
 
-    support: {
+    /*support: {
         content: () => `:information_source: If you have questions or you need more informations, you can join ManageInvite's Lounge:\n${discord}`
-    },
+    },*/
 
     addbonus: {
         errors: {
