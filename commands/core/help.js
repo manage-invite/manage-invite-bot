@@ -25,25 +25,25 @@ class Help extends Command {
             .addField(message.translate("core/help:ADMIN_TITLE"), message.translate("core/help:ADMIN_CONTENT", {
                 prefix: data.guild.prefix
             }), false)
-            .addField(messages.translate("core/help:RANKS_TITLE"), message.translate("core/help:RANKS_CONTENT", {
+            .addField(message.translate("core/help:RANKS_TITLE"), message.translate("core/help:RANKS_CONTENT", {
                 prefix: data.guild.prefix
             }), false)
-            .addField(messages.translate("core/help:JOIN_DM_TITLE"), message.translate("core/help:JOIN_DM_CONTENT", {
+            .addField(message.translate("core/help:JOIN_DM_TITLE"), message.translate("core/help:JOIN_DM_CONTENT", {
                     prefix: data.guild.prefix
             }), true)
-            .addField(messages.translate("core/help:JOIN_TITLE"), message.translate("core/help:JOIN_CONTENT", {
+            .addField(message.translate("core/help:JOIN_TITLE"), message.translate("core/help:JOIN_CONTENT", {
                 prefix: data.guild.prefix
             }), true)
-            .addField(messages.translate("core/help:LEAVE_TITLE"), message.translate("core/help:LEAVE_CONTENT", {
+            .addField(message.translate("core/help:LEAVE_TITLE"), message.translate("core/help:LEAVE_CONTENT", {
                 prefix: data.guild.prefix
             }), true)
-            .addField(messages.translate("core/help:INVITES_TITLE"), message.translate("core/help:INVITES_CONTENT", {
+            .addField(message.translate("core/help:INVITES_TITLE"), message.translate("core/help:INVITES_CONTENT", {
                 prefix: data.guild.prefix
             }), false)
-            .addField(messages.translate("core/help:CORE_TITLE"), message.translate("core/help:CORE_CONTENT", {
+            .addField(message.translate("core/help:CORE_TITLE"), message.translate("core/help:CORE_CONTENT", {
                 prefix: data.guild.prefix
             }), false)
-            .addField(messages.translate("core/help:TIP", {
+            .addField(message.translate("core/help:TIP", {
                 prefix: data.guild.prefix
             }), message.translate("core/help:CORE_CONTENT", {
                 prefix: data.guild.prefix
