@@ -184,7 +184,6 @@ module.exports = {
         title: (guildName) => `${guildName}'s MemberCount`,
         description: (guild) => `
         Total of **${guild.members.cache.size}**  members (**${guild.members.cache.filter((m) => !m.user.bot).size}** humans and **${guild.members.cache.filter((m) => m.user.bot).size}** bots)
-
         ➔ ${emojis.dnd} | ${guild.members.cache.filter((m) => m.presence.status === "dnd"  && !m.user.bot).size} members dnd
         ➔ ${emojis.online} | ${guild.members.cache.filter((m) => m.presence.status === "online" && !m.user.bot).size} members online
         ➔ ${emojis.idle} | ${guild.members.cache.filter((m) => m.presence.status === "idle" && !m.user.bot).size} members idle
@@ -351,23 +350,18 @@ __**More informations**__
 {user.tag} : The tag of the member that just joined your server.
 {user.createdat} : The account age of the member.
 {user.id} : The ID of the member.
-
 {guild} : Name of the server.
 {guild.count} : Number of members your server has now.
-
 {inviter} : The mention of the inviter.
 {inviter.name} : The name of the inviter.
 {inviter.tag} : The tag of the inviter.
 {inviter.invites} : The total inviter's invites count.
 {inviter.id} : The ID of the inviter.
-
 {invite.code} : The invite code used.
 {invite.url} : The invite url used.
 {invite.uses} : Number of uses of the invite used.
 \`\`\`
 Type \`cancel\` to abort. ${str}
-
-
 :pencil: **| Now write the join DM message... :pencil2:**`,
         cancelled: () => `:x: Cancelled.`,
         success: () => `✅ **| Done successfully...**`,
@@ -391,23 +385,18 @@ __**More informations**__
 {user.tag} : The tag of the member that just joined your server.
 {user.createdat} : The account age of the member.
 {user.id} : The ID of the member.
-
 {guild} : Name of the server.
 {guild.count} : Number of members your server has now.
-
 {inviter} : The mention of the inviter.
 {inviter.name} : The name of the inviter.
 {inviter.tag} : The tag of the inviter.
 {inviter.invites} : The total inviter's invites count.
 {inviter.id} : The ID of the inviter.
-
 {invite.code} : The invite code used.
 {invite.url} : The invite url used.
 {invite.uses} : Number of uses of the invite used.
 \`\`\`
 Type \`cancel\` to abort. ${str}
-
-
 :pencil: **| Now write the join message... :pencil2:**`,
             channel: () => `:scroll: **| Now write the join channel name or mention it... :pencil2:**`
         },
@@ -436,23 +425,18 @@ __**More informations**__
 {user.tag} : The tag of the member that just left your server.
 {user.createdat} : The account age of the member.
 {user.id} : The ID of the member.
-
 {guild} : Name of the server.
 {guild.count} : Number of members your server has now.
-
 {inviter} : The mention of the inviter.
 {inviter.name} : The name of the inviter.
 {inviter.tag} : The tag of the inviter.
 {inviter.invites} : The total inviter's invites count.
 {inviter.id} : The ID of the inviter.
-
 {invite.code} : The invite code used.
 {invite.url} : The invite url used.
 {invite.uses} : Number of uses of the invite used.
 \`\`\`
 Type \`cancel\` to abort. ${str}
-
-
 :pencil: **| Now write the leave message... :pencil2:**`,
             channel: () => `:scroll: **| Now write the leave channel name or mention it... :pencil2:**`
         },
@@ -471,7 +455,7 @@ Type \`cancel\` to abort. ${str}
     },
 
     setlang: {
-        invalid: () => `${emojis.error} | You must write a valid language!\n\n:flag_fr: Français (\`fr\`)\n:flag_gb: English (\`en\`)`,
+        invalid: () => `${emojis.error} | You must write a valid language!\n\n:flag_fr: Français (\`fr\`)\n:flag_gb: English (\`en\`)\n:flag_es: Spanish (\`sp\`)`,
         success: () => `${emojis.success} | Language has beed updated!`
     },
 
