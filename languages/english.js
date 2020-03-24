@@ -128,10 +128,10 @@ module.exports = {
 
     /*invite: {
         description: (member, memberData, isYou, nextRank, role) => `${isYou ? `You have` : `**${member.user.username}** has`} **${memberData.regular + memberData.bonus - memberData.leaves - memberData.fake}** invites! (**${memberData.regular}** regular, **${memberData.bonus}** bonus, **${memberData.fake > 0 ? `-${memberData.fake}` : `${memberData.fake}`}** fake, **${memberData.leaves > 0 ? `-${memberData.leaves}` : `${memberData.leaves}`}** leaves)${nextRank ? `\nYou need **${nextRank.inviteCount - (memberData.regular + memberData.bonus - memberData.leaves - memberData.fake)}** more invites to get the next rank: **${role}**!` : ""}`
-    },*/
+    },
 
     leaderboard: {
-        cleared: () => `${emojis.success} | Leaderboard cleared!`,
+        cleared: () => `${emojis.success} | `,
         user: (user, member, lb) => `${lb} **${user.username}** - **${member.calculatedInvites}** invites (**${member.regular}** regular, **${member.bonus}** bonus, **${member.fake > 0 ? `-${member.fake}` : `${member.fake}`}** fake, **${member.leaves > 0 ? `-${member.leaves}` : `${member.leaves}`}** leaves)`,
         prompt: () => `{{user}}, on which page would you like to go? Write \`cancel\` or \`0\` to cancel.`,
         title: () => `Invites Leaderboard`,
@@ -139,7 +139,7 @@ module.exports = {
             title: () => `😕 No invite found`,
             content: () => `Start inviting people and you will appear on this page!`
         }
-    },
+    },*/
 
     userinfo: {
         title: (user) => `${user.tag} account (${user.id})`,

@@ -18,8 +18,8 @@ class Leaderboard extends Command {
         let membersData = await this.client.database.fetchMembers(message.guild.id, true);
         if(membersData.length <= 0){
             let embed = new Discord.MessageEmbed()
-            .setAuthor(message.language.leaderboard.empty.title())
-            .setDescription(message.language.leaderboard.empty.content())
+            .setAuthor(message.translate("core/leaderboard:EMPTY_TITLE"))
+            .setDescription(message.translate("core/leaderboard:EMPTY_CONTENT"))
             .setColor(data.color);
             return message.channel.send(embed);
         }
@@ -28,7 +28,7 @@ class Leaderboard extends Command {
         membersData.forEach((member) => {
             if(data.guild.blacklistedUsers.includes(member.id)) return;
             members.push({
-                calculatedInvites: (member.invites_regular + parseInt(member.invites_bonus) - member.invites_leaves - member.invites_fake),
+                invites: (member.invites_regular + parseInt(member.invites_bonus) - member.invites_leaves - member.invites_fake),
                 fake: member.invites_fake,
                 regular: member.invites_regular,
                 bonus: parseInt(member.invites_bonus),
@@ -57,15 +57,23 @@ class Leaderboard extends Command {
             let user = this.client.users.cache.get(member.id) || (message.guild.members.cache.get(member.id) || {}).user;
             if(!user) user = await this.client.users.fetch(member.id);
             totalMemberCount++;
-            let lb =    totalMemberCount === 1 ? "🏆" :
+            let position =    totalMemberCount === 1 ? "🏆" :
                         totalMemberCount === 2 ? "🥈" :
                         totalMemberCount === 3 ? "🥉" :
                         `**${totalMemberCount}.**`
-            lastEmbed.setDescription(`${oldDesc}\n${message.language.leaderboard.user(user, member, lb)}\n`);
+            lastEmbed.setDescription(`${oldDesc}\n${message.translate("core/leaderboard:USER", {
+                username: user.username,
+                position,
+                invites: member.invites,
+                regular: member.regular,
+                fake: (member.fake > 0 ? `-${member.fake}` : member.fake),
+                leaves: (member.leaves > 0 ? `-${member.leaves}` : member.leaves),
+                bonus: member.bonus
+            })}\n`);
             memberCount++;
         });
 
-        let pagination = new Pagination.Embeds()
+        const pagination = new Pagination.Embeds()
         .setArray(embeds)
         .setAuthorizedUsers([message.author.id])
         .setChannel(message.channel)
@@ -74,8 +82,8 @@ class Leaderboard extends Command {
         .setDisabledNavigationEmojis(['DELETE'])
         .setColor(data.color)
         .setFooter(data.footer)
-        .setClientAssets({ prompt: message.language.leaderboard.prompt() })
-        .setTitle(message.language.leaderboard.title());
+        .setClientAssets({ prompt: message.translate("core/leaderboard:PROMPT") })
+        .setTitle(message.translate("core/leaderboard:TITLE"));
 
         pagination.build();
     }
