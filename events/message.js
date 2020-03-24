@@ -18,7 +18,9 @@ module.exports = class {
         const guildData = data.guild = message.guild.data = await this.client.database.fetchGuild(message.guild.id);
         message.language = require("../languages/"+data.guild.language);
     
-        if(message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.language.utils.prefix(data.guild.prefix));
+        if(message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.translate("misc:PREFIX", {
+            prefix: guildData.prefix
+        }));
 
         // If the message does not start with the prefix, cancel
         if(!message.content.toLowerCase().startsWith(guildData.prefix)){

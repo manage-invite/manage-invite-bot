@@ -1,5 +1,6 @@
 {
     "LINKS_FOOTER": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Support server]({{discord}}) | [Vote for me](https://top.gg/bot/{{clientID}})",
+    "PREFIX": "Hello! Please type **{{prefix}}help** to see all commands! You can add me to your server with **{{prefix}}add**.",
 
     "JOIN_OAUTH2": "{{user}} joined the server using OAuth flow.",
     "JOIN_VANITY": "{{user}} joined the server using a discord.gg invite defined by the guild owner (or admin).",
