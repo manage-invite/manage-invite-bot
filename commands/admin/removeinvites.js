@@ -54,6 +54,7 @@ class RemoveInvites extends Command {
         .setFooter(data.footer);
 
         msg.edit(null, { embed });
+        this.client.database.removeAllMembersFromOtherCaches(message.guild.id);
 
     }
 

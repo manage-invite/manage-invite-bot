@@ -73,6 +73,7 @@ class RestoreInvites extends Command {
             .setFooter(data.footer);
 
             conf.edit(null, { embed });
+            this.client.database.removeAllMembersFromOtherCaches(message.guild.id);
         }).catch((e) => {
             console.log(e)
             conf.edit(message.language.restoreinvites.confirmations.cancelled());

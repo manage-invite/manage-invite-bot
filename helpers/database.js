@@ -34,6 +34,12 @@ module.exports = class DatabaseHandler {
         return;
     }
 
+    removeAllMembersFromOtherCaches(guildID){
+        this.client.shard.broadcastEval(`
+            this.database.removeAllMembersFromCache('${guildID}');
+        `);
+    }
+
     removeMemberFromOtherCaches(memberID, guildID){
         const shardID = this.client.shard.ids[0];
         this.client.shard.broadcastEval(`
@@ -50,6 +56,10 @@ module.exports = class DatabaseHandler {
                 this.database.removeGuildFromCache('${guildID}');
             }
         `);
+    }
+
+    removeAllMembersFromCache(guildID){
+        this.memberCache = this.memberCache.filter((member) => member.guildID !== guildID);
     }
 
     removeGuildFromCache(guildID){
