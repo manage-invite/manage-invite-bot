@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class BotInfos extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "botinfos",
@@ -33,7 +33,9 @@ class BotInfos extends Command {
         let embed = new Discord.MessageEmbed()
         .setColor(data.color)
         .setFooter(data.footer)
-        .setAuthor(message.language.botinfos.author(this.client.user.username))
+        .setAuthor(message.translate("core/botinfos:TITLE", {
+            username: this.client.user.username
+        }))
         .addField(message.language.botinfos.statistics.title(), message.language.botinfos.statistics.content(guildsCount, usersCount) , true)
         .addField(message.language.botinfos.versions.title(), message.language.botinfos.versions.content(Discord.version, process.version), true)
         .addField("\u200B", "\u200B");
@@ -46,5 +48,3 @@ class BotInfos extends Command {
     }
 
 };
-
-module.exports = BotInfos;
