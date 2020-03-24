@@ -102,9 +102,9 @@ module.exports = {
         links: (clientID) => `[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id=${clientID}&permissions=8&scope=bot) | [Support server](${discord}) | [Vote for me](https://top.gg/bot/${clientID})`
     },*/
 
-    botinfos: {
+    /*botinfos: {
         author: (username) => `${username}'s stats`,
-        // Statistics
+         Statistics
         statistics: {
             title: () => `📊 Statistics`,
             content: (guilds, users) => `\`Servers: ${guilds}\`\n\`Users: ${users}\``
@@ -124,7 +124,7 @@ module.exports = {
             \`${cachedMembers}\` cached members
             \`${cachedGuilds}\` cached guilds`,
         }
-    },
+    },*/
 
     /*invite: {
         description: (member, memberData, isYou, nextRank, role) => `${isYou ? `You have` : `**${member.user.username}** has`} **${memberData.regular + memberData.bonus - memberData.leaves - memberData.fake}** invites! (**${memberData.regular}** regular, **${memberData.bonus}** bonus, **${memberData.fake > 0 ? `-${memberData.fake}` : `${memberData.fake}`}** fake, **${memberData.leaves > 0 ? `-${memberData.leaves}` : `${memberData.leaves}`}** leaves)${nextRank ? `\nYou need **${nextRank.inviteCount - (memberData.regular + memberData.bonus - memberData.leaves - memberData.fake)}** more invites to get the next rank: **${role}**!` : ""}`
