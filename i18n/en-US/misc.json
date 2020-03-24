@@ -2,6 +2,10 @@
     "LINKS_FOOTER": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Support server]({{discord}}) | [Vote for me](https://top.gg/bot/{{clientID}})",
     "PREFIX": "Hello! Please type **{{prefix}}help** to see all commands! You can add me to your server with **{{prefix}}add**.",
 
+    "COMMAND_DISABLED": "This command is currently disabled!",
+    "USER_MISSING_PERMISSIONS": "This command requires the permission level: `{{level}}`!",
+    "BOT_MISSING_PERMISSIONS": "__**Missing permissions**__\n\nI need the following permissions for this command to work properly: {{permissions}}",
+
     "JOIN_OAUTH2": "{{user}} joined the server using OAuth flow.",
     "JOIN_VANITY": "{{user}} joined the server using a discord.gg invite defined by the guild owner (or admin).",
     "JOIN_UNKNOWN": "I can't figure out how {{user}} joined the server.",

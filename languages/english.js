@@ -27,10 +27,10 @@ module.exports = {
     },
 
     errors: {
-        missingPerms: (neededPermissions) => `__**${emojis.error} Missing permissions**__\n\nI need the following permissions for this command to work properly: ${neededPermissions.map((p) => "`"+p+"`").join(", ")}`,
-        disabled: () => `${emojis.error} | This command is currently disabled!`,
-        permLevel: (name) => `${emojis.error} | This command requires the permission level: \`${name}\`!`,
-        sendPerm: () => `${emojis.error} | I don't have the permission to send messages in this channel.`
+        //missingPerms: (neededPermissions) => `__**${emojis.error} Missing permissions**__\n\nI need the following permissions for this command to work properly: ${neededPermissions.map((p) => "`"+p+"`").join(", ")}`,
+        //disabled: () => `${emojis.error} | This command is currently disabled!`,
+        //permLevel: (name) => `${emojis.error} | This command requires the permission level: \`${name}\`!`,
+        //sendPerm: () => `${emojis.error} | I don't have the permission to send messages in this channel.`
     },
 
     /*help: {

@@ -47,18 +47,22 @@ module.exports = class {
             }
         });
         if(neededPermissions.length > 0) {
-            return message.channel.send(message.language.errors.missingPerms(neededPermissions));
+            return message.error("misc:BOT_MISSING_PERMISSIONS", {
+                permissions: neededPermissions.map((p) => "`"+p+"`").join(", ")
+            });
         }
 
         /* Command disabled */
         if(!cmd.conf.enabled){
-            return message.channel.send(message.language.errors.disabled());
+            return message.error("misc:COMMAND_DISABLED");
         }
 
         /* User permissions */
         const permLevel = await this.client.getLevel(message);
         if(permLevel < cmd.conf.permLevel){
-            return message.channel.send(message.language.errors.permLevel(this.client.permLevels[cmd.conf.permLevel].name));
+            return message.error("misc:USER_MISSING_PERMISSIONS", {
+                level: this.client.permLevels[cmd.conf.permLevel].name
+            });
         }
 
         this.client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name} (${Date.now()-startAt}ms)`, "cmd");
