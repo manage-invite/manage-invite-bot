@@ -33,7 +33,7 @@ module.exports = {
         sendPerm: () => `${emojis.error} | I don't have the permission to send messages in this channel.`
     },
 
-    help: {
+    /*help: {
         title: () => `ℹ ManageInvite's Help Page`,
         description: (guildName, prefix) => `> ${guildName}'s prefix: **${prefix}** (\`${prefix}setprefix\`)\n> ${guildName}'s language: **English** (\`${prefix}setlang\`)`,
         // Admin
@@ -100,7 +100,7 @@ module.exports = {
         // Others
         tip: (prefix) => `Tip: you can see your configuration with ${prefix}config`,
         links: (clientID) => `[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id=${clientID}&permissions=8&scope=bot) | [Support server](${discord}) | [Vote for me](https://top.gg/bot/${clientID})`
-    },
+    },*/
 
     botinfos: {
         author: (username) => `${username}'s stats`,
@@ -126,9 +126,9 @@ module.exports = {
         }
     },
 
-    invite: {
+    /*invite: {
         description: (member, memberData, isYou, nextRank, role) => `${isYou ? `You have` : `**${member.user.username}** has`} **${memberData.regular + memberData.bonus - memberData.leaves - memberData.fake}** invites! (**${memberData.regular}** regular, **${memberData.bonus}** bonus, **${memberData.fake > 0 ? `-${memberData.fake}` : `${memberData.fake}`}** fake, **${memberData.leaves > 0 ? `-${memberData.leaves}` : `${memberData.leaves}`}** leaves)${nextRank ? `\nYou need **${nextRank.inviteCount - (memberData.regular + memberData.bonus - memberData.leaves - memberData.fake)}** more invites to get the next rank: **${role}**!` : ""}`
-    },
+    },*/
 
     leaderboard: {
         cleared: () => `${emojis.success} | Leaderboard cleared!`,

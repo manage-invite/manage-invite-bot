@@ -1,6 +1,8 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
+const Constants = require("../../Constants");
+
 class Support extends Command {
     constructor (client) {
         super(client, {
@@ -13,7 +15,9 @@ class Support extends Command {
     }
 
     async run (message, args, data) {
-        message.channel.send(message.language.support.content());
+        message.sendT("core/support:CONTENT", {
+            discord: Constants.Links.DISCORD
+        });
     }
 
 };
