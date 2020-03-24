@@ -36,7 +36,7 @@ module.exports = class extends Command {
         .setAuthor(message.translate("core/botinfos:TITLE", {
             username: this.client.user.username
         }))
-        .addField(message.translate("core/botinfos:STATS_TITLE"), message.translate("core/botinfos:STATS_TITLE", {
+        .addField(message.translate("core/botinfos:STATS_TITLE"), message.translate("core/botinfos:STATS_CONTENT", {
             guilds: guildsCount,
             users: usersCount
         }), true)
