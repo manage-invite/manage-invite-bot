@@ -456,7 +456,7 @@ Tapez \`cancel\` pour annuler. ${str}
         channel: () => `:scroll: **| Maintenant écrivez le nom du salon des messages de départs ou mentionnez-le... :pencil2:**`
         },
         cancelled: () => `${emojis.error} | Annulé.`,
-        success: () => `${emojis.success} **| Done successfully...**`,
+        success: () => `${emojis.success} **| Réalisé avec succès...**`,
         title: () => `**Le Msg de Départs a été mis en place**`,
         fields: {
             message: () => `Message:`,
