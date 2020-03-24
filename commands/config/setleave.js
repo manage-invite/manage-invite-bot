@@ -1,6 +1,6 @@
 const Command = require("../../structures/Command.js");
 
-class SetLeave extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "setleave",
@@ -15,14 +15,12 @@ class SetLeave extends Command {
         if(!data.guild.leave.enabled){
             data.guild.leave.enabled = true;
             await data.guild.leave.updateData();
-            return message.channel.send(message.language.setleave.on());
+            return message.success("config/setleave:ENABLED");
         }
         if(data.guild.leave.enabled){
             data.guild.leave.enabled = false;
             await data.guild.leave.updateData();
-            return message.channel.send(message.language.setleave.off());
+            return message.success("config/setleave:DISABLED");
         }
     }
 };
-          
-module.exports = SetLeave;

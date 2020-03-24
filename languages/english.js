@@ -245,7 +245,7 @@ module.exports = {
         off: () => `**${emojis.success} | The join system is now __DISABLED__!**`
     },
 
-    setleave: {
+    /*setleave: {
         on: () => `**${emojis.success} | The leave system is now __ENABLED__!**`,
         off: () => `**${emojis.success} | The leave system is now __DISABLED__!**`
     },
@@ -253,7 +253,7 @@ module.exports = {
     setprefix: {
         missing: () => `${emojis.error} | You must write a prefix!`,
         success: () => `${emojis.success} | Server prefix has been updated!`
-    },
+    },*/
 
     testdmjoin: {
         title: () => `:wrench: DM Join system :`,
