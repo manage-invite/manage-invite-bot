@@ -615,10 +615,10 @@ Type \`cancel\` to abort. ${str}
         }
     },
 
-    add: {
+    /*add: {
         content: (id) => `You can add me to your server by clicking [here](https://discordapp.com/oauth2/authorize?client_id=${id}&scope=bot&permissions=2146958847).`,
         requested: (username) => `Requested by ${username}`
-    },
+    },*/
 
     stats: {
         title: (name, nb) => `Joins on ${name} these last ${nb} days`,

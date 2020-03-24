@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class Add extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "add",
@@ -12,17 +12,19 @@ class Add extends Command {
         });
     }
 
-    async run (message, args, data) {
+    async run (message) {
 
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
         .setAuthor("ManageInvite", this.client.user.displayAvatarURL())
-        .setDescription(message.language.add.content(this.client.user.id))
+        .setDescription(message.translate("core/add:CONTENT", {
+            clientID: this.client.user.id
+        }))
         .setColor(this.client.config.color)
-        .setFooter(message.language.add.requested(message.author.username), message.author.displayAvatarURL());
+        .setFooter(message.translate("core/add:REQUESTED_BY", {
+            username: message.author.username
+        }), message.author.displayAvatarURL());
         message.channel.send(embed);
 
     }
 
 };
-
-module.exports = Add;
