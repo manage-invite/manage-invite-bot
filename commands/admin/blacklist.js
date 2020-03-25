@@ -19,14 +19,14 @@ class Blacklist extends Command {
         const action = args[0];
         switch(action){
             case "add": {
-                const user = message.mentions.users.first() || await this.client.users.fetch(args[0]).catch(() => {});
+                const user = message.mentions.users.first() || await this.client.users.fetch(args[1]).catch(() => {});
                 if(!user) return message.channel.send(message.language.blacklist.mentions.add());
                 await data.guild.addUserBlacklist(user.id);
                 message.channel.send(message.language.blacklist.success.add(user));
                 break;
             };
             case "remove": {
-                const user = message.mentions.users.first() || await this.client.users.fetch(args[0]).catch(() => {});
+                const user = message.mentions.users.first() || await this.client.users.fetch(args[1]).catch(() => {});
                 if(!user) return message.channel.send(message.language.blacklist.mentions.remove());
                 if(!data.guild.blacklistedUsers.includes(user.id)) return message.channel.send(message.language.blacklist.notFound(user));
                 await data.guild.removeUserBlacklist(user.id);
