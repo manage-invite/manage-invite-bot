@@ -141,7 +141,7 @@ module.exports = {
         }
     },*/
 
-    userinfo: {
+    /*userinfo: {
         title: (user) => `${user.tag} account (${user.id})`,
         fields: {
             // user
@@ -187,7 +187,7 @@ module.exports = {
 
     /*support: {
         content: () => `:information_source: If you have questions or you need more informations, you can join ManageInvite's Lounge:\n${discord}`
-    },*/
+    },
 
     addbonus: {
         errors: {
@@ -201,7 +201,7 @@ module.exports = {
         },
         title: () => `📥 Bonus Invites Added`,
         field: (prefix, member) => `Write \`${prefix}invites ${member.user.tag}\` to see the new number of invites of **${member.user.username}**!`
-    },
+    },*/
 
     blacklist: {
         blacklisted: () => `${emojis.error} | You are blacklisted on this server, you can't run this command.`,
