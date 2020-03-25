@@ -142,6 +142,10 @@ module.exports = {
         }
     },
 
+    fetchInvites: {
+        success: () => `${emojis.success} Invites successfully fetched!`
+    },
+
     userinfo: {
         title: (user) => `${user.tag} account (${user.id})`,
         fields: {
