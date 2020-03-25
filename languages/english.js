@@ -299,7 +299,7 @@ module.exports = {
             message: (prefix) => `No message defined. Set it with \`${prefix}configleave\`!`,
             channel: (prefix) => `No channel defined. Set it with \`${prefix}configleave\`!`
         }
-    },*/
+    },
 
     config: {
         title: (guildName) => `${guildName}'s configuration`,
@@ -323,7 +323,7 @@ module.exports = {
             > Enabled: ${data.guild.joinDM.enabled ? "**yes**" : "**no**"}
             > Message: ${data.guild.joinDM.message ? "**defined**" : "**not defined**."}`
         },
-    },
+    },*/
 
     /*joinDM: {
         premium: (username) => `:crown: | Hey, **${username}**! This feature is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`

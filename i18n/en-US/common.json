@@ -1,4 +1,6 @@
 {
     "YES": "Yes",
-    "NO": "No"
+    "NO": "No",
+    "DEFINED": "Defined",
+    "NOT_DEFINED": "Not defined"
 }
