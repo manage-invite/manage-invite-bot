@@ -56,7 +56,7 @@ class Userinfo extends Command {
             .addField(fields.joinOrder.title(), fields.joinOrder.content(previous, next, user));
         }
 
-        if(data.guild.premium){
+        if(data.guild.premium && memberData.invitedUsers){
             let nobody = memberData.invitedUsers.length === 0;
             let andMore = false;
             if(memberData.invitedUsers.length > 20){
