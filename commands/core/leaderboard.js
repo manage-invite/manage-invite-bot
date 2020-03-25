@@ -36,7 +36,7 @@ class Leaderboard extends Command {
                 id: member.user_id
             });
         });
-        members = members.sort((a, b) => b.calculatedInvites - a.calculatedInvites);
+        members = members.filter((m) => m.calculatedInvites !== 0).sort((a, b) => b.calculatedInvites - a.calculatedInvites);
 
         const embeds = [];
         /* Distributes array */
