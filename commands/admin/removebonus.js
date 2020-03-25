@@ -16,20 +16,32 @@ class RemoveBonus extends Command {
 
     
         const bonus = args[0];
-        if(!bonus) return message.channel.send(message.language.removebonus.errors.bonus.missing(data.guild.prefix));
-        if(isNaN(bonus) || parseInt(bonus) < 1 || !Number.isInteger(parseInt(bonus))) return message.channel.send(message.language.removebonus.errors.bonus.incorrect(data.guild.prefix));
+        if(!bonus) return message.error("admin/removebonus:MISSING_AMOUNT", {
+            prefix: data.guild.prefix
+        });
+        if(isNaN(bonus) || parseInt(bonus) < 1 || !Number.isInteger(parseInt(bonus)))return message.error("admin/removebonus:INVALID_AMOUNT", {
+            prefix: data.guild.prefix
+        });
 
         const member = message.mentions.members.first() || await this.client.resolveMember(args.slice(1).join(" "), message.guild);
-        if(!member) return message.channel.send(message.language.removebonus.errors.member.missing(data.guild.prefix));
-        if(data.guild.blacklistedUsers.includes(member.id)) return message.channel.send(message.language.blacklist.blacklistedMember(member));
+        if(!member) return message.error("admin/removebonus:MISSING_MEMBER", {
+            prefix: data.guild.prefix
+        });
+        if(data.guild.blacklistedUsers.includes(member.id)) return message.error("admin/blacklist:BLACKLISTED", {
+            username: member.user.username
+        });
 
         const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
         memberData.bonus -= parseInt(bonus);
         await memberData.updateInvites();
 
-        let embed = new Discord.MessageEmbed()
-        .setAuthor(message.language.removebonus.title())
-        .setDescription(message.language.removebonus.field(data.guild.prefix, member))
+        const embed = new Discord.MessageEmbed()
+        .setAuthor(message.translate("admin/removebonus:SUCCESS_TITLE"))
+        .setDescription(message.translate("admin/removebonus:SUCCESS_CONTENT", {
+            prefix: data.guild.prefix,
+            usertag: member.user.tag,
+            username: member.user.username
+        }))
         .setColor(data.color)
         .setFooter(data.footer);
 

@@ -219,7 +219,7 @@ module.exports = {
         },
         empty: () => `No blacklisted users!`,
         notFound: (user) => `${emojis.error} | **${user.tag}** is not in the blacklist!`
-    },*/
+    },
 
     removebonus: {
         errors: {
