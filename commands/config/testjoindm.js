@@ -1,12 +1,14 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class TestDMJoin extends Command {
+const Constants = require("../../Constants");
+
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
-            name: "testdmjoin",
+            name: "testjoindm",
             enabled: true,
-            aliases: [ "testdm" ],
+            aliases: [ "testdm", "testdmjoin" ],
             clientPermissions: [ "EMBED_LINKS" ],
             permLevel: 2
         });
@@ -15,14 +17,26 @@ class TestDMJoin extends Command {
     async run (message, args, data) {
    
         if(!data.guild.premium){
-            return message.channel.send(message.language.joinDM.premium(message.author.username));
+            return message.error("config/setjoindm:PREMIUM", {
+                username: message.author.username
+            });
         }
         
-        let embed = new Discord.MessageEmbed()
-            .setTitle(message.language.testdmjoin.title())
-            .setDescription(message.language.testdmjoin.description())
-            .addField(message.language.testdmjoin.fields.enabled(), (data.guild.joinDM.enabled ? message.language.testdmjoin.enabled(data.guild.prefix) : message.language.testdmjoin.disabled(data.guild.prefix)))
-            .addField(message.language.testdmjoin.fields.message(), (data.guild.joinDM.message || message.language.testdmjoin.notDefineds.message(data.guild.prefix)))
+        const embed = new Discord.MessageEmbed()
+            .setTitle(message.translate("config/testjoindm:TITLE"))
+            .setDescription(message.translate("config/testjoindm:DESCRIPTION", {
+                discord: Constants.Links.DISCORD
+            }))
+            .addField(message.translate("config/testjoindm:ENABLED"), (data.guild.joinDM.enabled ? message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
+                prefix: data.guild.prefix,
+                success: this.client.config.emojis.success
+            }) : message.translate("config/testjoindm:ENABLED_NO_CONTENT", {
+                prefix: data.guild.prefix,
+                success: this.client.config.emojis.success
+            })))
+            .addField(message.translate("config/testjoindm:MESSAGE"), (data.guild.joinDM.message || message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
+                prefix: data.guild.prefix
+            })))
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)
             .setFooter(data.footer)
@@ -53,5 +67,3 @@ class TestDMJoin extends Command {
 
     }
 }
-
-module.exports = TestDMJoin;

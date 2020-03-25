@@ -255,19 +255,19 @@ module.exports = {
         success: () => `${emojis.success} | Server prefix has been updated!`
     },*/
 
-    testdmjoin: {
-        title: () => `:wrench: DM Join system :`,
-        description: () => `If it doesn't work, check the bot permissions or join our [support server](${discord})`,
+    /*testdmjoin: {
+        title: () => ``,
+        description: () => ``,
         fields: {
-            enabled: () => `> Enabled:`,
-            message: () => `> Message:`
+            enabled: () => ``,
+            message: () => ``
         },
-        enabled: (prefix) => `${emojis.success} Join messages in dm enabled. Disable them with \`${prefix}setdmjoin\`.`,
+        enabled: (prefix) => ``,
         disabled: (prefix) =>  `${emojis.error} Join messages in dm disabled. Enable them with \`${prefix}setdmjoin\`.`,
         notDefineds: {
             message: (prefix) => `No message defined. Set it with \`${prefix}configdm\`!`
         }
-    },
+    },*/
 
     testjoin: {
         title: () => `:wrench: Join system :`,
