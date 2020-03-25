@@ -110,8 +110,7 @@ const assignRanks = async (member, inviteCount, ranks, keepRanks) => {
 const postTopStats = async (client) => {
     let shard_id = client.shard.ids[0];
     let shard_count = client.shard.count;
-    let server_counts = await client.shard.fetchClientValues("guilds.cache.size");
-    let server_count = server_counts.reduce((p, c) => p + c);
+    let server_count = client.guilds.cache.size;
     let headers = { "content-type": "application/json", "authorization": client.config.topToken };
     let options = {
         method: "POST",
