@@ -201,7 +201,7 @@ module.exports = {
         },
         title: () => `📥 Bonus Invites Added`,
         field: (prefix, member) => `Write \`${prefix}invites ${member.user.tag}\` to see the new number of invites of **${member.user.username}**!`
-    },*/
+    },
 
     blacklist: {
         blacklisted: () => `${emojis.error} | You are blacklisted on this server, you can't run this command.`,
@@ -219,7 +219,7 @@ module.exports = {
         },
         empty: () => `No blacklisted users!`,
         notFound: (user) => `${emojis.error} | **${user.tag}** is not in the blacklist!`
-    },
+    },*/
 
     removebonus: {
         errors: {
