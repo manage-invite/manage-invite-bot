@@ -16,44 +16,54 @@ class Userinfo extends Command {
     async run (message, args, data) {
 
         // Fetch user and member
-        let user = message.mentions.users.first() || await this.client.resolveUser(args.join(" ")) || message.author;
-        let member = await message.guild.members.fetch(user.id).catch(() => {});
-        let memberData = member ? await this.client.database.fetchMember(member.id, member.guild.id) : null;
-
-        let fields = message.language.userinfo.fields;
+        const user = message.mentions.users.first() || await this.client.resolveUser(args.join(" ")) || message.author;
+        const member = await message.guild.members.fetch(user.id).catch(() => {});
+        const memberData = member ? await this.client.database.fetchMember(member.id, member.guild.id) : null;
 
         moment.locale(data.guild.language.substr(0, 2));
+        const creationDate = moment(user.createdAt, "YYYYMMDD").fromNow();
+        const joinDate = member ? moment(member.joinedAt, "YYYYMMDD").fromNow() : null;
 
-        let creationDate = moment(user.createdAt, "YYYYMMDD").fromNow();
-        let joinDate = member ? moment(member.joinedAt, "YYYYMMDD").fromNow() : null;
-
-        let embed = new Discord.MessageEmbed()
-        .setAuthor(message.language.userinfo.title(user), user.displayAvatarURL())
-        .addField(fields.bot.title(), fields.bot.content(user), true)
-        .addField(fields.createdAt.title(), creationDate.charAt(0).toUpperCase() + creationDate.substr(1, creationDate.length), true)
+        const embed = new Discord.MessageEmbed()
+        .setAuthor(message.translate("core/userinfo:TITLE", {
+            username: user.tag
+        }), user.displayAvatarURL())
+        .addField(message.translate("core/userinfo:BOT_TITLE"), user.bot ? message.translate("common:YES") : message.translate("common:NO"), true)
+        .addField(message.translate("core/userinfo:CREATED_AT_TITLE"), creationDate.charAt(0).toUpperCase() + creationDate.substr(1, creationDate.length), true)
         .setColor(data.color)
         .setFooter(data.footer);
         
         if(member){
-            let joinData = memberData.joinData || (memberData.invitedBy ? { type: "normal", invite: { inviter: memberData.joinData.invitedBy } } : { type: "unknown" } );
-            let joinWay = fields.joinWay.unknown(user);
+            const joinData = memberData.joinData || (memberData.invitedBy ? { type: "normal", invite: { inviter: memberData.joinData.invitedBy } } : { type: "unknown" } );
+            const joinWay = message.translate("core/userinfo:JOIN_WAY_UNKNOWN", {
+                user: user.username
+            });
             if(joinData.type === "normal" && joinData.inviteData){
-                let inviter = await this.client.users.fetch(joinData.inviteData.inviter);
-                joinWay = fields.joinWay.invite(inviter);
+                const inviter = await this.client.users.fetch(joinData.inviteData.inviter);
+                joinWay = inviter.tag;
             } else if(joinData.type === "vanity"){
                 joinWay = fields.joinWay.vanity();
             } else if(joinData.type === "oauth" || user.bot){
                 joinWay = fields.joinWay.oauth();
             }
-            let guild = await message.guild.fetch();
-            let members = guild.members.cache.array().sort((a,b) => a.joinedTimestamp - b.joinedTimestamp);
-            let joinPos = members.map((u) => u.id).indexOf(member.id);
-            let previous = members[joinPos - 1] ? members[joinPos - 1].user : null;
-            let next = members[joinPos + 1] ? members[joinPos + 1].user : null;
+            const guild = await message.guild.fetch();
+            const members = guild.members.cache.array().sort((a,b) => a.joinedTimestamp - b.joinedTimestamp);
+            const joinPos = members.map((u) => u.id).indexOf(member.id);
+            const previous = members[joinPos - 1] ? members[joinPos - 1].user : null;
+            const next = members[joinPos + 1] ? members[joinPos + 1].user : null;
             embed.addField(fields.joinedAt.title(), joinDate.charAt(0).toUpperCase() + joinDate.substr(1, joinDate.length), true)
-            .addField(fields.invites.title(), data.guild.blacklistedUsers.includes(member.id) ? message.language.blacklist.blacklistedMember(member) : fields.invites.content(memberData))
-            .addField(fields.joinWay.title(), joinWay)
-            .addField(fields.joinOrder.title(), fields.joinOrder.content(previous, next, user));
+            .addField(message.translate("core/userinfo:INVITES_TITLE"), data.guild.blacklistedUsers.includes(member.id) ? message.translate("admin/blacklist:BLACKLISTED", {
+                username: member.user.tag
+            }) : message.translate("core/invite:MEMBER_CONTENT", {
+                username: member.user.username,
+                inviteCount: memberData.calcInvites(),
+                regularCount: memberData.regular,
+                bonusCount: memberData.bonus,
+                fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
+                leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
+            }))
+            .addField(message.translate("core/userinfo:JOIN_WAY_TITLE"), joinWay)
+            .addField(message.translate("core/userinfo:JOIN_ORDER_TITLE"), `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`);
         }
 
         message.channel.send(embed);
