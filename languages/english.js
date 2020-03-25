@@ -267,11 +267,11 @@ module.exports = {
         notDefineds: {
             message: (prefix) => `No message defined. Set it with \`${prefix}configdm\`!`
         }
-    },*/
+    },
 
     testjoin: {
         title: () => `:wrench: Join system :`,
-        description: () => `If it doesn't work, check the bot permissions or join our [support server](${discord})`,
+        description: () => ``,
         fields: {
             enabled: () => `> Enabled:`,
             channel: () => `> Channel:`,
@@ -299,7 +299,7 @@ module.exports = {
             message: (prefix) => `No message defined. Set it with \`${prefix}configleave\`!`,
             channel: (prefix) => `No channel defined. Set it with \`${prefix}configleave\`!`
         }
-    },
+    },*/
 
     config: {
         title: (guildName) => `${guildName}'s configuration`,

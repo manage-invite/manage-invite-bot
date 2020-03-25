@@ -14,12 +14,22 @@ class TestLeave extends Command {
 
     async run (message, args, data) {
    
-        let embed = new Discord.MessageEmbed()
-            .setTitle(message.language.testleave.title())
-            .setDescription(message.language.testleave.description())
-            .addField(message.language.testleave.fields.enabled(), (data.guild.leave.enabled ? message.language.testleave.enabled(data.guild.prefix) : message.language.testleave.disabled(data.guild.prefix)))
-            .addField(message.language.testleave.fields.message(), (data.guild.leave.message || message.language.testleave.notDefineds.message(data.guild.prefix)))
-            .addField(message.language.testleave.fields.channel(), (data.guild.leave.channel ? `<#${data.guild.leave.channel}>` : message.language.testleave.notDefineds.channel(data.guild.prefix)))
+        const embed = new Discord.MessageEmbed()
+            .setTitle(message.translate("config/testleave:TITLE"))
+            .setDescription(message.translate("config/testleave:DESCRIPTION"))
+            .addField(message.translate("config/testleave:ENABLED"), (data.guild.leave.enabled ? message.translate("config/testleave:ENABLED_YES_CONTENT", {
+                prefix: data.guild.prefix,
+                success: this.client.config.emojis.success
+            }) : message.translate("config/testleave:ENABLED_NO_CONTENT", {
+                prefix: data.guild.prefix,
+                success: this.client.config.emojis.success
+            })))
+            .addField(message.translate("config/testleave:MESSAGE"), (data.guild.leave.message || message.translate("config/testleave:ENABLED_YES_CONTENT", {
+                prefix: data.guild.prefix
+            })))
+            .addField(message.translate("config/testleave:CHANNEL"), (data.guild.leave.channel ? `<#${data.guild.leave.channel}>` : message.translate("config/testleave:CHANNEL_CONTENT", {
+                prefix: data.guild.prefix
+            })))
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)
             .setFooter(data.footer)

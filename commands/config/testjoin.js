@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class TestJoin extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "testjoin",
@@ -14,12 +14,22 @@ class TestJoin extends Command {
 
     async run (message, args, data) {
    
-        let embed = new Discord.MessageEmbed()
-            .setTitle(message.language.testjoin.title())
-            .setDescription(message.language.testjoin.description())
-            .addField(message.language.testjoin.fields.enabled(), (data.guild.join.enabled ? message.language.testjoin.enabled(data.guild.prefix) : message.language.testjoin.disabled(data.guild.prefix)))
-            .addField(message.language.testjoin.fields.message(), (data.guild.join.message || message.language.testjoin.notDefineds.message(data.guild.prefix)))
-            .addField(message.language.testjoin.fields.channel(), (data.guild.join.channel ? `<#${data.guild.join.channel}>` : message.language.testjoin.notDefineds.channel(data.guild.prefix)))
+        const embed = new Discord.MessageEmbed()
+            .setTitle(message.translate("config/testjoin:TITLE"))
+            .setDescription(message.translate("config/testjoin:DESCRIPTION"))
+            .addField(message.translate("config/testjoin:ENABLED"), (data.guild.join.enabled ? message.translate("config/testjoin:ENABLED_YES_CONTENT", {
+                prefix: data.guild.prefix,
+                success: this.client.config.emojis.success
+            }) : message.translate("config/testjoin:ENABLED_NO_CONTENT", {
+                prefix: data.guild.prefix,
+                success: this.client.config.emojis.success
+            })))
+            .addField(message.translate("config/testjoin:MESSAGE"), (data.guild.join.message || message.translate("config/testjoin:ENABLED_YES_CONTENT", {
+                prefix: data.guild.prefix
+            })))
+            .addField(message.translate("config/testjoin:CHANNEL"), (data.guild.join.channel ? `<#${data.guild.join.channel}>` : message.translate("config/testjoin:CHANNEL_CONTENT", {
+                prefix: data.guild.prefix
+            })))
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)
             .setFooter(data.footer)
@@ -49,5 +59,3 @@ class TestJoin extends Command {
         }
     }
 }
-
-module.exports = TestJoin;
