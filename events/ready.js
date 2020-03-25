@@ -10,6 +10,7 @@ module.exports = class {
 
         this.client.user.setActivity("+help | manage-invite.xyz");
         this.client.logger.log("Shard #"+this.client.shard.ids[0]+" has started.", "log");
+        this.client.functions.postTopStats(this.client);
 
         if(!process.argv.includes("--uncache")) await this.client.wait(1000);
         let invites = {};
@@ -32,7 +33,6 @@ module.exports = class {
             this.client.shard.broadcastEval(() => {
                 console.log(`\x1b[32m%s\x1b[0m`, `SHARD [${this.shard.ids[0]}]`, "\x1b[0m", `Serving ${this.users.cache.size} users in ${this.guilds.cache.size} servers.`);
             });
-            this.client.functions.postTopStats(this.client);
         }
 
         if(this.client.shard.ids.includes(0) && !this.client.spawned){
