@@ -603,7 +603,7 @@ Type \`cancel\` to abort. ${str}
         }
     },
 
-    syncinvites: {
+    /*syncinvites: {
         no: () => `${emojis.error} | No invites to synchronize.`,
         confirmations: {
             all: (inviteCount) => `${emojis.warn} | Are you sure you want to synchronize the server invitations?\n\n:information_source: **Overview of invitations**:\nIt will be restored **${inviteCount}** regular invitations.\n\n${emojis.success} Type \`-confirm\` to confirm.\n${emojis.error} Type \`cancel\` to abort.`,
@@ -613,7 +613,7 @@ Type \`cancel\` to abort. ${str}
         titles: {
             all: () => `${emojis.success} | Server invitations synchronized!`
         }
-    },
+    },*/
 
     /*add: {
         content: (id) => `You can add me to your server by clicking [here](https://discordapp.com/oauth2/authorize?client_id=${id}&scope=bot&permissions=2146958847).`,

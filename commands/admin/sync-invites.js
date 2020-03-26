@@ -22,7 +22,7 @@ class SyncInvites extends Command {
             inviteCount
         });
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
-            if(collected.first().content === "cancel") return conf.edit(message.language.syncinvites.confirmations.cancelled());
+            if(collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete();
             const users = new Set(guildInvites.filter((i) => i.inviter).map((i) => i.inviter.id));
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
@@ -31,13 +31,13 @@ class SyncInvites extends Command {
                 await memberData.updateInvites();
             });
             const embed = new Discord.MessageEmbed()
-            .setAuthor(message.language.syncinvites.title())
-            .setDescription(message.language.restoreinvites.titles.all())
+            .setAuthor(message.translate("admin/sync-invites:TITLE"))
+            .setDescription(message.translate("admin/sync-invites:DESCRIPTION"))
             .setColor(data.color)
             .setFooter(data.footer);
             conf.edit(null, { embed });
         }).catch(() => {
-            conf.edit();
+           conf.error("common:CANCELLED", null, true);
         });
     }
 
