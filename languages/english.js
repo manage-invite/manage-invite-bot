@@ -463,7 +463,7 @@ Type \`cancel\` to abort. ${str}
         success: () => `${emojis.success} | Language has beed updated!`
     },*/
 
-    addrank: {
+    /*addrank: {
         errors: {
             inviteCount: {
                 missing: (prefix) => `${emojis.error} | You must write the number of invites required to obtain the rank. (Syntax: ${prefix}addrank number @role)`,
@@ -480,7 +480,7 @@ Type \`cancel\` to abort. ${str}
         field: (prefix, role, inviteCount) => `When a member will reach **${inviteCount}** invites, they will obtain \`@${role.name}\`!`
     },
 
-    /*removerank: {
+    removerank: {
         errors: {
             role: {
                 missing: (prefix) => `${emojis.error} | You must mention the role you want to remove from rewards. (Syntax: ${prefix}removerank @role)`,
