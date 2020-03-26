@@ -16,5 +16,6 @@
     "DOCUMENTATION": "Documentation",
     "SUPPORT_SERVER": "Support server",
     "ROLE": "Role",
-    "INVITES": "Invites"
+    "INVITES": "Invites",
+    "TEST_IT": "Test it:"
 }

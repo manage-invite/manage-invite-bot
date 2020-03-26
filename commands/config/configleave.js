@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class ConfigLeave extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "configleave",
@@ -14,38 +14,46 @@ class ConfigLeave extends Command {
 
     async run (message, args, data) {
 
-        let filter = (m) => m.author.id === message.author.id,
+        const filter = (m) => m.author.id === message.author.id,
         opt = { max: 1, time: 90000, errors: [ "time" ] };
+        
+        const str = data.guild.join.enabled ? message.translate("config/configleave:DISABLE", {
+            prefix: data.guild.prefix
+        }) : "";
+        const msg = await message.sendT("config/configleave:INSTRUCTIONS_1", {
+            string: str
+        });
 
-        let str = data.guild.leave.enabled ? message.language.configleave.disable(data.guild.prefix) : "";
-        let msg = await message.channel.send(message.language.configleave.instructs.message(str));
-
-        let collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
-        if(!collected || !collected.first()) return msg.edit(message.language.configleave.cancelled());
-        let confMessage = collected.first().content;
-        if(confMessage === "cancel") return msg.edit(message.language.configleave.cancelled());
-        if(confMessage === data.guild.prefix+"setleave") return;
+        const collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
+        if(!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
+        const confMessage = collected.first().content;
+        if(confMessage === "cancel") return msg.error("common:CANCELLED", null, true);
+        if(confMessage === data.guild.prefix+"setjoin") return;
         collected.first().delete();
 
-        msg.edit(message.language.configleave.instructs.channel());
+        msg.sendT("config/configleave:INSTRUCTIONS_2", null, true);
 
         collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
-        if(!collected || !collected.first()) return msg.edit(message.language.configleave.cancelled());
+        if(!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
         let confChannel = collected.first();
-        if(confChannel.content === "cancel") return msg.edit(message.language.configleave.cancelled());
+        if(confChannel.content === "cancel") return msg.error("common:CANCELLED", null, true);
         let channel = confChannel.mentions.channels.first()
         || message.guild.channels.cache.get(confChannel.content)
         || message.guild.channels.cache.find((ch) => ch.name === confChannel.content || `#${ch.name}` === confChannel.content);
-        if(!channel) return msg.edit(message.language.configleave.errors.channelNotFound(confChannel.content));
+        if(!channel) return msg.error("config/configleave:CHANNEL_NOT_FOUND", {
+            channel: confChannel.content
+        }, true)
         collected.first().delete();
 
-        msg.edit(message.language.configleave.success());
+        msg.sendT("config/configjoindm:SUCCESS", null, true);
 
-        let embed = new Discord.MessageEmbed()
-            .setTitle(message.language.configleave.title())
-            .addField(message.language.configleave.fields.message(), confMessage)
-            .addField(message.language.configleave.fields.channel(), channel)
-            .addField(message.language.configleave.fields.testIt(), message.language.configleave.fields.cmd(data.guild.prefix))
+        const embed = new Discord.MessageEmbed()
+            .setTitle(message.translate("config/configleave:TITLE"))
+            .addField(message.translate("common:MESSAGE"), confMessage)
+            .addField(message.translate("common:CHANNEL"), channel)
+            .addField(message.translate("common:TEST_IT"), message.translate("config/configleave:TEST", {
+                prefix: data.guild.prefix
+            }))
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)
             .setFooter(data.footer);
@@ -54,9 +62,7 @@ class ConfigLeave extends Command {
         data.guild.leave.enabled = true;
         data.guild.leave.message = confMessage;
         data.guild.leave.channel = channel.id;
-        await data.guild.leave.updateData();
-    }
-};
-  
+        await data.guild.join.updateData();
 
-module.exports = ConfigLeave;
+    }
+}

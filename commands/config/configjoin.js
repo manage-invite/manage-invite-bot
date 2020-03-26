@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class ConfigJoin extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "configjoin",
@@ -14,49 +14,55 @@ class ConfigJoin extends Command {
 
     async run (message, args, data) {
 
-        let filter = (m) => m.author.id === message.author.id,
+        const filter = (m) => m.author.id === message.author.id,
         opt = { max: 1, time: 90000, errors: [ "time" ] };
         
-        let str = data.guild.join.enabled ? message.language.configjoin.disable(data.guild.prefix) : "";
-        let msg = await message.channel.send(message.language.configjoin.instructs.message(str));
+        const str = data.guild.join.enabled ? message.translate("config/configjoin:DISABLE", {
+            prefix: data.guild.prefix
+        }) : "";
+        const msg = await message.sendT("config/configjoin:INSTRUCTIONS_1", {
+            string: str
+        });
 
-        let collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
-        if(!collected || !collected.first()) return msg.edit(message.language.configjoin.cancelled());
-        let confMessage = collected.first().content;
-        if(confMessage === "cancel") return msg.edit(message.language.configjoin.cancelled());
+        const collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
+        if(!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
+        const confMessage = collected.first().content;
+        if(confMessage === "cancel") return msg.error("common:CANCELLED", null, true);
         if(confMessage === data.guild.prefix+"setjoin") return;
         collected.first().delete();
 
-        msg.edit(message.language.configjoin.instructs.channel());
+        msg.sendT("config/configjoin:INSTRUCTIONS_2", null, true);
 
         collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
-        if(!collected || !collected.first()) return msg.edit(message.language.configjoin.cancelled());
+        if(!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
         let confChannel = collected.first();
-        if(confChannel.content === "cancel") return msg.edit(message.language.configjoin.cancelled());
+        if(confChannel.content === "cancel") return msg.error("common:CANCELLED", null, true);
         let channel = confChannel.mentions.channels.first()
         || message.guild.channels.cache.get(confChannel.content)
         || message.guild.channels.cache.find((ch) => ch.name === confChannel.content || `#${ch.name}` === confChannel.content);
-        if(!channel) return msg.edit(message.language.configjoin.errors.channelNotFound(confChannel.content));
+        if(!channel) return msg.error("config/configjoin:CHANNEL_NOT_FOUND", {
+            channel: confChannel.content
+        }, true)
         collected.first().delete();
 
-        msg.edit(message.language.configjoin.success());
+        msg.sendT("config/configjoindm:SUCCESS", null, true);
 
-        let embed = new Discord.MessageEmbed()
-            .setTitle(message.language.configjoin.title())
-            .addField(message.language.configjoin.fields.message(), confMessage)
-            .addField(message.language.configjoin.fields.channel(), channel)
-            .addField(message.language.configjoin.fields.testIt(), message.language.configjoin.fields.cmd(data.guild.prefix))
+        const embed = new Discord.MessageEmbed()
+            .setTitle(message.translate("config/configjoin:TITLE"))
+            .addField(message.translate("common:MESSAGE"), confMessage)
+            .addField(message.translate("common:CHANNEL"), channel)
+            .addField(message.translate("common:TEST_IT"), message.translate("config/configjoin:TEST", {
+                prefix: data.guild.prefix
+            }))
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)
             .setFooter(data.footer);
         message.channel.send(embed);
 
-        data.guild.join.enable = true;
+        data.guild.join.enabled = true;
         data.guild.join.message = confMessage;
         data.guild.join.channel = channel.id;
         await data.guild.join.updateData();
 
     }
 }
-
-module.exports = ConfigJoin;
