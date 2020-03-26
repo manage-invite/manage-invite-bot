@@ -586,7 +586,7 @@ Type \`cancel\` to abort. ${str}
         }
     },
 
-    restoreinvites: {
+    /*restoreinvites: {
         confirmations: {
             all: (prefix, memberCount) => `${emojis.warn} | Are you sure you want to restore the server invitations? All members will retrieve the invitations they had before the last time the command \`${prefix}remove-invite\` was typed (or 0 if the command was never typed).\n\n:information_source: **Invitations overview**:\nIt will be restored, in total: **${memberCount.regular}** regulars, **${memberCount.bonus}** bonus, **${memberCount.leaves}** leaves, **${memberCount.fake}** fake.\n\n${emojis.success} Type \`-confirm\` to confirm.\n${emojis.error} Type \`cancel\` to abort.`,
             member: (prefix, member) => `${emojis.warn} | Are you sure you want to restore the invitations of **${member.user.tag}**? They will retrieve the invitations they had before the last time the command \`${prefix}remove-invites\` was typed (or 0 if the command was never typed).\n\n:information_source: **Invitations overview**:\nIt will be restored: **${member.data.oldRegular}** regulars, **${member.data.oldBonus}** bonus, **${member.data.oldLeaves}** leaves, **${member.data.oldFake}** fake.\n\n${emojis.success} Type \`-confirm\` to confirm.\n${emojis.error} Type \`cancel\` to abort.`,
@@ -601,7 +601,7 @@ Type \`cancel\` to abort. ${str}
             all: () => `${emojis.success} | Server invitations restored!`,
             member: (member) => `${emojis.success} | Invitations of **${member.user.tag}** restored!`
         }
-    },
+    },*/
 
     /*syncinvites: {
         no: () => `${emojis.error} | No invites to synchronize.`,

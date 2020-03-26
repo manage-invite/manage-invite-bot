@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class RestoreInvites extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "restoreinvites",
@@ -29,13 +29,35 @@ class RestoreInvites extends Command {
             });
         }
         let conf = await (member ?
-            message.channel.send(message.language.restoreinvites.confirmations.member(data.guild.prefix, member))
-            : message.channel.send(message.language.restoreinvites.confirmations.all(data.guild.prefix, memberCount))
+            message.sendT("admin/restoreinvites:CONFIRMATION_MEMBER", {
+                prefix: data.guild.prefix,
+                username: member.user.tag,
+                regular: member.regular,
+                leaves: member.leaves,
+                bonus: member.bonus,
+                fake: member.fake,
+                error: this.client.config.emojis.error,
+                success: this.client.config.emojis.success
+            })
+            : message.sendT("admin/restoreinvites:CONFIRMATION", {
+                prefix: data.guild.prefix,
+                regular: memberCount.regular,
+                leaves: memberCount.leaves,
+                bonus: memberCount.bonus,
+                fake: memberCount.fake,
+                error: this.client.config.emojis.error,
+                success: this.client.config.emojis.success
+            });
         );
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
-            if(collected.first().content === "cancel") return conf.edit(message.language.restoreinvites.confirmations.cancelled());
+            if(collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete();
-            await (member ? conf.edit(message.language.restoreinvites.loading.member(member)) : conf.edit(message.language.restoreinvites.loading.all()));
+            await (member ? conf.sendT("admin/restoreinvites:LOADING", {
+                username: member.user.tag,
+                loading: this.client.config.emojis.loading
+            }, true) : conf.sendT("admin/restoreinvites:LOADING_MEMBER", {
+                loading: this.client.config.emojis.loading
+            }, true));
             if(member){
                 // Restore invites
                 member.data.regular = member.data.oldRegular;
@@ -64,10 +86,15 @@ class RestoreInvites extends Command {
             }
 
             const embed = new Discord.MessageEmbed()
-            .setAuthor(message.language.restoreinvites.title())
+            .setAuthor(message.translate("admin/restoreinvites:TITLE"))
             .setDescription((member ?
-                message.language.restoreinvites.titles.member(member)
-                : message.language.restoreinvites.titles.all()
+                message.translate("admin/restoreinvites:DESCRIPTION_MEMBER", {
+                    username: member.user.tag,
+                    success: this.client.config.emojis.success
+                })
+                : message.translate("admin/restoreinvites:DESCRIPTION", {
+                    success: this.client.config.emojis.success
+                })
             ))
             .setColor(data.color)
             .setFooter(data.footer);
@@ -75,10 +102,8 @@ class RestoreInvites extends Command {
             conf.edit(null, { embed });
         }).catch((e) => {
             console.log(e)
-            conf.edit(message.language.restoreinvites.confirmations.cancelled());
+            conf.error("common:CANCELLED", null, true);
         });
     }
 
 };
-
-module.exports = RestoreInvites;
