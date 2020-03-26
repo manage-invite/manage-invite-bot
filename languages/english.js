@@ -480,7 +480,7 @@ Type \`cancel\` to abort. ${str}
         field: (prefix, role, inviteCount) => `When a member will reach **${inviteCount}** invites, they will obtain \`@${role.name}\`!`
     },
 
-    removerank: {
+    /*removerank: {
         errors: {
             role: {
                 missing: (prefix) => `${emojis.error} | You must mention the role you want to remove from rewards. (Syntax: ${prefix}removerank @role)`,
@@ -491,7 +491,7 @@ Type \`cancel\` to abort. ${str}
         field: (prefix, role, inviteCount) => `Role removed from rewards. The members will no longer obtain it when they reach **${inviteCount}** invites.`
     },
 
-    /*ranks: {
+    ranks: {
         no: {
             title: () => `🎯 No role`,
             description: (prefix) => `To add a role reward (added when a member reach a certain number of invites), write \`${prefix}addrank number @role\`!`
