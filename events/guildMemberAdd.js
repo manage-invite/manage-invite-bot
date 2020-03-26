@@ -8,16 +8,12 @@ module.exports = class {
 
     async run (member) {
 
-        console.log(member.id+" | JOIN");
         if(!this.client.fetched) return;
-        console.log(member.id+" | FETCHED");
 
         // Fetch guild and member data from the db
         let guildData = await this.client.database.fetchGuild(member.guild.id);
-        member.guild.data = guildData;
         let memberData = await this.client.database.fetchMember(member.id, member.guild.id);
-        console.log(member.id+" | DB FETCHED");
-
+        
         /* Find who is the inviter */
 
         let invite = null;
@@ -32,7 +28,6 @@ module.exports = class {
         } else if(!perm) {
             // Fetch the current invites of the guild
             let guildInvites = await member.guild.fetchInvites().catch(() => {});
-            console.log(member.id+" | INVITES FETCHED");
             // Fetch the invites of the guild BEFORE that the member has joined
             let oldGuildInvites = this.client.invitations[member.guild.id];
             if(guildInvites && oldGuildInvites){
@@ -53,13 +48,10 @@ module.exports = class {
             }
         }
 
-        console.log(member.id+" | INVITES CALCULATED ("+(invite ? invite.code : "NULL")+")");
-
         let inviter = invite ? await this.client.resolveUser(invite.inviter.id) : null;
         let inviterData = inviter ? await this.client.database.fetchMember(inviter.id, member.guild.id) : null;
 
         if(inviter && guildData.blacklistedUsers.includes(inviter.id)) return;
-        console.log(member.id+" | NOT BLACKLISTED");
 
         // If we know who invited the member
         if(invite){
@@ -88,10 +80,9 @@ module.exports = class {
                     if(inviter.id === member.id) inviterData.fake++;
                 }
                 await inviterData.updateInvites();
-                await this.client.functions.assignRanks(inviterMember, inviterData.calcInvites(), guildData.ranks);
+                await this.client.functions.assignRanks(inviterMember, inviterData.calcInvites(), guildData.ranks, guildData.keepRanks);
             }
         }
-        console.log(member.id+" | RANKS ASSIGNED");
         
         let language = require("../languages/"+guildData.language);
 
@@ -124,29 +115,19 @@ module.exports = class {
 
         // Join messages
         if(guildData.join.enabled && guildData.join.message && guildData.join.channel){
-            console.log(member.id+" | JOIN MSG.");
             let channel = member.guild.channels.cache.get(guildData.join.channel);
             if(!channel) return;
-            console.log(member.id+" | CHANNEL FOUND.");
             if(invite){
                 let formattedMessage = this.client.functions.formatMessage(guildData.join.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData)
                 channel.send(formattedMessage);
             } else if(vanity){
-                channel.send(member.guild.translate("misc:JOIN_VANITY", {
-                    user: member.user.toString()
-                }));
+                channel.send(language.utils.specialMessages.join.vanity(member.user));
             } else if(oauth){
-                channel.send(member.guild.translate("misc:JOIN_OAUTH2", {
-                    user: member.user.toString()
-                }));
+                channel.send(language.utils.specialMessages.join.oauth2(member.user));
             } else if(perm){
-                channel.send(member.guild.translate("misc:JOIN_PERMISSIONS", {
-                    user: member.user.toString()
-                }));
+                channel.send(language.utils.specialMessages.join.perm(member.user));
             } else {
-                channel.send(member.guild.translate("misc:JOIN_UNKNOWN", {
-                    user: member.user.toString()
-                }));
+                channel.send(language.utils.specialMessages.join.unknown(member.user));
             }
         }
 
