@@ -15,10 +15,10 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          <%= language.website.conf.title() %>
+          <%= translate("common:CONFIGURATION") %>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="/selector"><i class="fa fa-home"></i><%= language.website.selector.title() %></a></li>
+          <li><a href="/selector"><i class="fa fa-home"></i><%= translate("dashboard:SELECTOR") %></a></li>
           <li><a href="/manage/<%= guild.id %>"><i class="fa fa-edit"></i><%= guild.name %></a></li>
         </ol>
       </section>
@@ -36,26 +36,26 @@
                       </div>
                       <!-- /.widget-user-image -->
                       <h3 class="widget-user-username"><%= guild.name %></h3>
-                      <h5 class="widget-user-desc"><%= guild.memberCount + " " + language.website.utils.members() %></h5>
+                      <h5 class="widget-user-desc"><%= guild.memberCount + " " + translate("common:MEMBERS").toLowerCase() %></h5>
                     </div>
                   </div>
                   <!-- /.widget-user -->
                 <!-- BASIC CONFIGURATION -->
                 <div class="box box-warning">
                     <div class="box-header with-border">
-                        <h3 class="box-title"><%= language.website.forms.basic.title() %></h3>
+                        <h3 class="box-title"><%= translate("dashboard:BASIC_TITLE") %></h3>
                     </div>
                     <form role="form" action="/manage/<%= guild.id %>/basic" method="POST">
                         <!-- /.box-header -->
                         <div class="box-body">
                             <!-- text input -->
                             <div class="form-group">
-                                <label><%= language.website.forms.basic.prefix() %></label>
+                                <label><%= translate("common:PREFIX") %></label>
                                 <input type="text" name="prefix" class="form-control" placeholder="<%= guild.prefix %>">
                             </div>
                             <!-- select -->
                             <div class="form-group">
-                                <label><%= language.website.forms.basic.language() %></label>
+                                <label><%= translate("common:LANGUAGE") %></label>
                                 <select class="form-control" name="language">
                                     <% if(guild.language === "french"){ %>
                                         <option selected="selected">Français</option>
@@ -69,7 +69,7 @@
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary"><%= language.website.forms.basic.update() %></button>
+                            <button type="submit" class="btn btn-primary"><%= translate("common:UPDATE") %></button>
                         </div>
                     </form>
                 </div>
@@ -77,8 +77,8 @@
                 <!-- JOIN DM CONFIGURATION -->
                 <div class="box box-danger">
                     <div class="box-header with-border">
-                    <h3 class="box-title"><%= language.website.forms.joinDM.title() %></h3>
-                    <a target="_blank" href="<%= language.website.doc.variables() %>">
+                    <h3 class="box-title"><%= translate("dashboard:JOIN_DM_TITLE") %></h3>
+                    <a target="_blank" href="https://docs.manage-invite.xyz/configuration/variables">
                         <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
                     </a>
                     </div>
@@ -87,12 +87,12 @@
                         <div class="box-body">
                             <!-- text input -->
                             <div class="form-group">
-                                <label><%= language.website.forms.joinDM.message.title() %></label>
-                                <div class="tooltip-wrapper" data-title="<%= language.website.forms.joinDM.premium() %>">
+                                <label><%= translate("common:MESSAGE") %></label>
+                                <div class="tooltip-wrapper" data-title="<%= translate('dashboard:JOIN_DM_PREMIUM') %>">
                                     <% if(guild.premium){ %>
-                                        <textarea rows="3" name="message" class="form-control"><%= guild.joinDM.message || language.website.forms.joinDM.message.default() %></textarea>
+                                        <textarea rows="3" name="message" class="form-control"><%= guild.joinDM.message || translate("dashboard:JOIN_DM_DEFAULT") %></textarea>
                                     <% } else { %>
-                                        <textarea rows="3" name="message" class="form-control premiumInfo" disabled><%= guild.joinDM.message || language.website.forms.joinDM.message.default() %></textarea>
+                                        <textarea rows="3" name="message" class="form-control premiumInfo" disabled><%= guild.joinDM.message || translate("dashboard:JOIN_DM_DEFAULT") %></textarea>
                                     <% } %>
                                 </div>
                             </div>
@@ -101,14 +101,14 @@
                         <div class="box-footer">
                             <% if(guild.premium){ %>
                                 <% if(guild.joinDM.enabled){ %>
-                                    <button type="submit" name="disable" class="btn btn-danger"><%= language.website.forms.buttons.disable() %></button>
-                                    <button type="submit" name="update" class="btn btn-primary pull-right"><%= language.website.forms.buttons.update() %></button>
+                                    <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
+                                    <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
                                 <% } else { %>
-                                    <button type="submit" name="enable" class="btn btn-success"><%= language.website.forms.buttons.enable() %></button>
+                                    <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
                                 <% } %>
                             <% } else { %>
                                 <div class="alert alert-warning" role="alert">
-                                    <%= language.website.forms.joinDM.premium() %>
+                                    <%= translate("dashboard:JOIN_DM_PREMIUM") %>
                                 </div>
                             <% } %>
                         </div>
@@ -116,18 +116,18 @@
                 </div>
                 <div class="box box-warning">
                     <div class="box-header with-border">
-                        <h3 class="box-title"><%= language.website.ranks.title() %></h3>
+                        <h3 class="box-title"><%= translate("dashboard:RANKS_REWARDS") %></h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <% if(guild.ranks.length < 1){ %>
-                            <p><%= language.website.ranks.no(guild.prefix) %></p>
+                            <p><%= translate("dashboard:RANKS_REWARDS_EMPTY", { prefix: guild.prefix }) %></p>
                         <% } else { %>
                             <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>
-                                        <th><%= language.website.ranks.fields.role() %></th>
-                                        <th style="width: 40px"><%= language.website.ranks.fields.invites() %></th>
+                                        <th><%= translate("common:ROLE") %></th>
+                                        <th style="width: 40px"><%= translate("common:INVITES") %></th>
                                         </tr>
                                     <tr>
                                 <% guild.ranks.filter((rank) => guild.roles.find((r) => r.id === rank.roleID)).sort((a,b) => b.inviteCount - a.inviteCount).forEach((rank, index) => { %>
@@ -147,8 +147,8 @@
                 <!-- JOIN CONFIGURATION -->
                 <div class="box box-danger">
                     <div class="box-header with-border">
-                        <h3 class="box-title"><%= language.website.forms.join.title() %></h3>
-                        <a target="_blank" href="<%= language.website.doc.variables() %>">
+                        <h3 class="box-title"><%= translate("dashboard:JOIN_TITLE") %></h3>
+                        <a target="_blank" href="https://docs.manage-invite.xyz/configuration/variables">
                             <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
                         </a>
                     <form role="form" action="/manage/<%= guild.id %>/join" method="POST">
@@ -156,12 +156,12 @@
                         <div class="box-body">
                             <!-- text input -->
                             <div class="form-group">
-                                <label><%= language.website.forms.join.message.title() %></label>
-                                <textarea rows="3" name="message" class="form-control" required><%= guild.join.message || language.website.forms.join.message.default() %></textarea>
+                                <label><%= translate("common:MESSAGE") %></label>
+                                <textarea rows="3" name="message" class="form-control" required><%= guild.join.message || translate("dashboard:JOIN_DEFAULT") %></textarea>
                             </div>
                             <!-- select -->
                             <div class="form-group">
-                                <label><%= language.website.forms.join.channel.title() %></label>
+                                <label><%= translate("common:CHANNEL") %></label>
                                 <select class="form-control" name="channel">
                                     <% if(guild.join.enabled && (guild.channels.find((ch) => ch.id === guild.join.channel))){ %>
                                         <option selected="selected">#<%= (guild.channels.find((ch) => ch.id === guild.join.channel)).name %></option>
@@ -179,10 +179,10 @@
                         <!-- /.box-body -->
                         <div class="box-footer">
                             <% if(guild.join.enabled){ %>
-                                <button type="submit" name="disable" class="btn btn-danger"><%= language.website.forms.buttons.disable() %></button>
-                                <button type="submit" name="update" class="btn btn-primary pull-right"><%= language.website.forms.buttons.update() %></button>
+                                <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE) %></button>
+                                <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
                             <% } else { %>
-                                <button type="submit" name="enable" class="btn btn-success"><%= language.website.forms.buttons.enable() %></button>
+                                <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
                             <% } %>
                         </div>
                     </form>
@@ -190,8 +190,8 @@
                 <!-- LEAVE CONFIGURATION -->
                 <div class="box box-danger">
                     <div class="box-header with-border">
-                    <h3 class="box-title"><%= language.website.forms.leave.title() %></h3>
-                    <a target="_blank" href="<%= language.website.doc.variables() %>">
+                    <h3 class="box-title"><%= translate("dashboard:LEAVE_TITLE") %></h3>
+                    <a target="_blank" href="https://docs.manage-invite.xyz/configuration/variables">
                         <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
                     </a>
                     <form role="form" action="/manage/<%= guild.id %>/leave" method="POST">
@@ -199,12 +199,12 @@
                         <div class="box-body">
                             <!-- text input -->
                             <div class="form-group">
-                                <label><%= language.website.forms.leave.message.title() %></label>
-                                <textarea rows="3" name="message" class="form-control" required><%= guild.leave.message || language.website.forms.leave.message.default() %></textarea>
+                                <label><%= translate("common:MESSAGE") %></label>
+                                <textarea rows="3" name="message" class="form-control" required><%= guild.leave.message || translate("dashboard:LEAVE_DEFAULT") %></textarea>
                             </div>
                             <!-- select -->
                             <div class="form-group">
-                                <label><%= language.website.forms.leave.channel.title() %></label>
+                                <label><%= translate("common:CHANNEL") %></label>
                                 <select class="form-control" name="channel">
                                     <% if(guild.leave.enabled && (guild.channels.find((ch) => ch.id === guild.leave.channel))){ %>
                                         <option selected="selected">#<%= (guild.channels.find((ch) => ch.id === guild.leave.channel)).name %></option>
@@ -222,10 +222,10 @@
                         <!-- /.box-body -->
                         <div class="box-footer">
                             <% if(guild.leave.enabled){ %>
-                                <button type="submit" name="disable" class="btn btn-danger"><%= language.website.forms.buttons.disable() %></button>
-                                <button type="submit" name="update" class="btn btn-primary pull-right"><%= language.website.forms.buttons.update() %></button>
+                                <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
+                                <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
                             <% } else { %>
-                                <button type="submit" name="enable" class="btn btn-success"><%= language.website.forms.buttons.enable() %></button>
+                                <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
                             <% } %>
                         </div>
                     </form>

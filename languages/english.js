@@ -500,8 +500,8 @@ Type \`cancel\` to abort. ${str}
         formatRank: (rank, inviteCount) => `${rank} (**${inviteCount}** invites)\n`
     },
 
-    website: {
-        doc: {
+   // website: {
+        /*doc: {
             variables: () => `https://docs.manage-invite.xyz/configuration/variables`
         },
         utils: {
@@ -517,21 +517,21 @@ Type \`cancel\` to abort. ${str}
                 title: () => `No server`,
                 content: () => `No server found. Please check you're logged with the right account.`
             }
-        },
-        help: {
-            title: () => `Help`,
-            doc: () => `Documentation`,
-            support: () => `Support server`
-        },
-        ranks: {
-            title: () => `🎯 Role rewards`,
-            no: (prefix) => `No role rewards defined. You can configure them with the following commands:${prefix}addrank, ${prefix}removerank and ${prefix}ranks.`,
-            fields: {
-                role: () => `Rôle`,
-                invites: () => `Invitations`
-            }
-        },
-        forms: {
+        },*/
+        //help: {
+        //    title: () => `Help`,
+        //    doc: () => `Documentation`,
+        //    support: () => `Support server`
+        //},
+        //ranks: {
+        //    title: () => `🎯 Role rewards`,
+        //    no: (prefix) => `No role rewards defined. You can configure them with the following commands:${prefix}addrank, ${prefix}removerank and ${prefix}ranks.`,
+            //fields: {
+            //    role: () => `Rôle`,
+            //    invites: () => `Invitations`
+            //}
+        //},
+        /*forms: {
             buttons: {
                 enable: () => `Enable the messages`,
                 disable: () => `Disable the messages`,

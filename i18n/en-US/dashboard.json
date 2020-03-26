@@ -1,0 +1,25 @@
+{
+    "SELECTOR": "Selector",
+
+    "NO_SERVER_TITLE": "No server.",
+    "NO_SERVER_CONTENT": "No server found. Please check you're logged with the right account.",
+
+    "BUTTON_ENABLE": "Enable the messages",
+    "BUTTON_DISABLE": "Disable the messages",
+    "BUTTON_UPDATE": "Update the messages",
+
+    "BASIC_TITLE": "Basic configuration",
+    
+    "JOIN_TITLE": "Join messages",
+    "JOIN_DEFAULT": "{user} joined the server! They were invited by **{inviter.tag}** (who has **{inviter.invites}** invites).",
+
+    "LEAVE_TITLE": "Leave messages",
+    "LEAVE_DEFAULT": "{user.tag} left the server. They were invited by **{inviter.tag}** (who has **{inviter.invites}** invites).",
+
+    "JOIN_DM_TITLE": "Join messages in DM",
+    "JOIN_DM_PREMIUM": "Feature available for premium servers.",
+    "JOIN_DM_DEFAULT": "Welcome {user} in **{server}** ! You were invited by **{inviter.tag}**. Don't forget to read the server rules!",
+
+    "ROLE_REWARDS": "🎯 Role rewards",
+    "ROLE_REWARDS_EMPTY": "No role rewards defined. You can configure them with the following commands: {{prefix}}addrank, {{prefix}}removerank and {{prefix}}ranks."
+}

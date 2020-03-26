@@ -3,5 +3,18 @@
     "NO": "No",
     "DEFINED": "Defined",
     "NOT_DEFINED": "Not defined",
-    "CANCELLED": "Cancelled."
+    "CANCELLED": "Cancelled.",
+    "LANGUAGE": "Language",
+    "CHANNEL": "Channel",
+    "PREFIX": "Prefix",
+    "UPDATE": "Update",
+    "MESSAGE": "Message",
+    "MEMBERS": "Members",
+    "CONFIGURATION": "Configuration",
+    "MANAGE": "Manage",
+    "HELP": "Help",
+    "DOCUMENTATION": "Documentation",
+    "SUPPORT_SERVER": "Support server",
+    "ROLE": "Role",
+    "INVITES": "Invites"
 }

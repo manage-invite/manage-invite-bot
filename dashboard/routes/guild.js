@@ -1,6 +1,6 @@
 const availableLanguages = [
-    { name: "french", aliases: [ "francais", "fr", "français" ] },
-    { name: "english", aliases: [ "en", "englich" ] }
+    { name: "fr-FR", aliases: [ "fr", "francais", "français" ] },
+    { name: "en-US", aliases: [ "en", "english" ] }
 ];
 
 const express = require("express"),
@@ -16,7 +16,7 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
     if(!guild || !req.userInfos.displayedGuilds || !req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID)){
         return res.render("404", {
             user: req.userInfos,
-            language: req.language,
+            translate: req.translate,
             currentURL: `${req.client.config.baseURL}${req.originalUrl}`,
             member: req.member,
             discord: req.client.config.discord
@@ -29,7 +29,7 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
     res.render("guild", {
         guild: guildInfos,
         user: req.userInfos,
-        language: req.language,
+        translate: req.translate,
         client: req.client,
         currentURL: `${req.client.config.baseURL}${req.originalUrl}`,
         member: req.member,
@@ -52,7 +52,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
     if(!guild || !req.userInfos.displayedGuilds || !req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID)){
         return res.render("404", {
             user: req.userInfos,
-            language: req.language,
+            translate: req.translate,
             currentURL: `${req.client.config.baseURL}${req.originalUrl}`,
             member: req.member,
             discord: req.client.config.discord
@@ -66,8 +66,8 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         if(data.hasOwnProperty("prefix") && data.prefix && data.prefix !== guildData.prefix){
             await guildData.setPrefix(data.prefix);
         }
-        if(data.hasOwnProperty("language") && availableLanguages.find((l) => l.name === data.language.toLowerCase() || l.aliases.includes(data.language.toLowerCase()))){
-            let language = availableLanguages.find((l) => l.name === data.language.toLowerCase() || l.aliases.includes(data.language.toLowerCase()));
+        if(data.hasOwnProperty("language") && availableLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || l.aliases.includes(data.language.toLowerCase()))){
+            const language = availableLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || l.aliases.includes(data.language.toLowerCase()));
             if(language.name !== guildData.language) await guildData.setLanguage(language.name);
         }
     }
