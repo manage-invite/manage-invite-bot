@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class RemoveInvites extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "removeinvites",
@@ -15,7 +15,14 @@ class RemoveInvites extends Command {
     async run (message, args, data) {
         
         const member = args[0] ? await this.client.resolveMember(args.join(" "), message.guild) : null;
-        const msg = await (member ? message.channel.send(message.language.removeinvites.loading.member(data.guild.prefix, member)) : message.channel.send(message.language.removeinvites.loading.all(data.guild.prefix)));
+        const msg = await (member ? message.sendT("admin/removeinvites:LOADING_MEMBER", {
+            username: member.user.tag,
+            loading: this.client.config.emojis.loading,
+            prefix: data.guild.prefix
+        }) : message.sendT("admin/removeinvites:LOADING", {
+            loading: this.client.config.emojis.loading,
+            prefix: data.guild.prefix
+        }));
         if(member){
             const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
             memberData.oldRegular = memberData.regular;
@@ -45,10 +52,15 @@ class RemoveInvites extends Command {
         }
 
         const embed = new Discord.MessageEmbed()
-        .setAuthor(message.language.removeinvites.title())
+        .setAuthor(message.translate("admin/removeinvites:TITLE"))
         .setDescription((member ?
-            message.language.removeinvites.titles.member(data.guild.prefix, member)
-            : message.language.removeinvites.titles.all(data.guild.prefix)
+            message.translate("admin/removeinvites:DESCRIPTION_MEMBER", {
+                username: member.user.tag,
+                success: this.client.config.emojis.success
+            })
+            : message.translate("admin/removeinvites:DESCRIPTION", {
+                success: this.client.config.emojis.success
+            })
         ))
         .setColor(data.color)
         .setFooter(data.footer);
@@ -58,5 +70,3 @@ class RemoveInvites extends Command {
     }
 
 };
-
-module.exports = RemoveInvites;
