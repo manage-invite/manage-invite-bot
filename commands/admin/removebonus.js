@@ -17,7 +17,7 @@ class RemoveBonus extends Command {
     
         const bonus = args[0];
         if(!bonus) return message.channel.send(message.language.removebonus.errors.bonus.missing(data.guild.prefix));
-        if(isNaN(bonus) || parseInt(bonus) < 1 || !Number.isInteger(parseInt(bonus))) return message.channel.send(message.language.removebonus.errors.bonus.incorrect(data.guild.prefix));
+        if(Number.isNaN(bonus) || parseInt(bonus) < 1 || parseInt(bonus) >= 9223372036854775800 || !Number.isInteger(parseInt(bonus))) return message.channel.send(message.language.removebonus.errors.bonus.incorrect(data.guild.prefix));
 
         const member = message.mentions.members.first() || await this.client.resolveMember(args.slice(1).join(" "), message.guild);
         if(!member) return message.channel.send(message.language.removebonus.errors.member.missing(data.guild.prefix));
