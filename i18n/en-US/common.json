@@ -2,5 +2,6 @@
     "YES": "Yes",
     "NO": "No",
     "DEFINED": "Defined",
-    "NOT_DEFINED": "Not defined"
+    "NOT_DEFINED": "Not defined",
+    "CANCELLED": "Cancelled."
 }
