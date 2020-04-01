@@ -1,15 +1,15 @@
 {
   "BOT_MISSING_PERMISSIONS": "__**Permissions manquantes**__J'ai besoin des permissions suivantes pour effectuer cette commande: {{permissions}}",
-  "CANNOT_SEND": "I can't send messages in the channel.",
-  "COMMAND_DISABLED": "This command is currently disabled!",
-  "JOIN_OAUTH2": "{{user}} joined the server using OAuth flow.",
-  "JOIN_PERMISSIONS": "I need the manage server permissions to know who is the inviter of {{user}}.",
-  "JOIN_UNKNOWN": "I can't figure out how {{user}} joined the server.",
-  "JOIN_VANITY": "{{user}} joined the server using a discord.gg invite defined by the guild owner (or admin).",
-  "LEAVE_OAUTH2": "{{user}} left the server, they joined via OAuth.",
-  "LEAVE_UNKNOWN": "{{user}} left the server, but I can't figure out how they joined it.",
-  "LEAVE_VANITY": "{{user}} left the server, they joined using a discord.gg invite defined by the server owner (or an admin).",
-  "LINKS_FOOTER": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Support server]({{discord}}) | [Vote for me](https://top.gg/bot/{{clientID}})",
-  "PREFIX": "Hello! Please type **{{prefix}}help** to see all commands! You can add me to your server with **{{prefix}}add**.",
-  "USER_MISSING_PERMISSIONS": "This command requires the permission level: `{{level}}`!"
+  "CANNOT_SEND": "Je ne peux pas envoyer de message dans le salon.",
+  "COMMAND_DISABLED": "Cette commande est actuellement désactivée!",
+  "JOIN_OAUTH2": "{{user}} a rejoint en utilisant le flux OAuth2.",
+  "JOIN_PERMISSIONS": "J'ai besoin de la permission \"Gérer le serveur\" pour savoir qui a invité {{user}}.",
+  "JOIN_UNKNOWN": "Impossible de déterminer comment {{user}} a rejoint le serveur.",
+  "JOIN_VANITY": "{{user}} a rejoint le serveur en utilisant une invitation discord.gg définie par le propriétaire du serveur (ou un administrateur).",
+  "LEAVE_OAUTH2": "{{user}} a quitté le serveur, il avait rejoint via OAuth.",
+  "LEAVE_UNKNOWN": "{{user}} a quitté le serveur, mais il est impossible de déterminer comment il avait rejoint.",
+  "LEAVE_VANITY": "{{user}} a quitté le serveur, il avait rejoint en utilisant une invitation discord.gg définie par le propriétaire du serveur (ou un administrateur).",
+  "LINKS_FOOTER": "[Ajouter moi sur votre serveur](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Serveur support]({{discord}}) | [Votez pour moi](https://top.gg/bot/{{clientID}})",
+  "PREFIX": "Bonjour! Tapez **{{prefix}}help** pour voir toutes les commandes! Vous pouvez m'ajouter sur votre serveur en tapant **{{prefix}}add**.",
+  "USER_MISSING_PERMISSIONS": "Cette commande requiert le niveau de permissions: `{{level}}`!"
 }
