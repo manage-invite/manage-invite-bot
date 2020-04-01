@@ -1,6 +1,6 @@
 const Command = require("../../structures/Command.js");
 
-class SetKeepRanks extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "setkeep-ranks",
@@ -12,16 +12,16 @@ class SetKeepRanks extends Command {
     }
 
     async run (message, args, data) {
-        if(!data.guild.premium) return message.channel.send(message.language.setkeepranks.premium(message.author.username));
+        if(!data.guild.premium) return message.error("config/setkeep-ranks:SUCCESS_DISABLED", {
+            username: message.author.username
+        });
         if(!data.guild.keepRanks){
             await data.guild.setKeepRanks(true);
-            return message.channel.send(message.language.setkeepranks.on());
+            return message.success("config/setkeep-ranks:SUCCESS_ENABLED");
         }
         if(data.guild.keepRanks){
             await data.guild.setKeepRanks(false);
-            return message.channel.send(message.language.setkeepranks.off());
+            return message.success("config/setkeep-ranks:SUCCESS_DISABLED");
         }
     }
 };
-          
-module.exports = SetKeepRanks;
