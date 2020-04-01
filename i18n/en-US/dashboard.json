@@ -4,7 +4,7 @@
   "BUTTON_ENABLE": "Enable the messages",
   "BUTTON_UPDATE": "Update the messages",
   "JOIN_DEFAULT": "{user} joined the server! They were invited by **{inviter.tag}** (who has **{inviter.invites}** invites).",
-  "JOIN_DM_DEFAULT": "Welcome {user} in **{server}** ! You were invited by **{inviter.tag}**. Don't forget to read the server rules!",
+  "JOIN_DM_DEFAULT": "Welcome {user} in **{server}**! You were invited by **{inviter.tag}**. Don't forget to read the server rules!",
   "JOIN_DM_PREMIUM": "Feature available for premium servers.",
   "JOIN_DM_TITLE": "Join messages in DM",
   "JOIN_TITLE": "Join messages",
