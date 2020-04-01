@@ -8,5 +8,9 @@
     "JOIN_WAY_VANITY": "Customized invite configured by an administrator.",
     "JOIN_WAY_UNKNOWN": "I can't figure out how {{username}} joined the server.",
     "INVITES_TITLE": "Invites",
-    "JOIN_ORDER_TITLE": "Join Order"
+    "JOIN_ORDER_TITLE": "Join Order",
+    "INVITED_TITLE": "Invited title",
+    "INVITED_PREMIUM": ":crown: | This feature (view invited users) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !",
+    "NO_INVITED_USERS": "No invited users",
+    "INVITED_USERS_MORE": "{{list}}, and more..."
 }

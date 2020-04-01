@@ -14,7 +14,7 @@ module.exports = class extends Command {
     async run (message, args, data) {
         const invites = await message.guild.fetchInvites();
         this.client.invitations[message.guild.id] = invites;
-        message.channel.send(message.language.fetchInvites.success());
+        message.success("admin/fetch-invites:SUCCESS");
     }
 
 };

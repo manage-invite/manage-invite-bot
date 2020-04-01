@@ -76,11 +76,16 @@ module.exports = class extends Command {
             const users = [];
             await this.client.functions.asyncForEach(memberData.invitedUsers, async (user) => {
                 const fetchedUser = await message.guild.members.cache.get(user);
-                if(fetchedUser) users.push(fetchedUser.toString());
+                if(fetchedUser) users.push("`"+fetchedUser.tag+"`");
             });
-            embed.addField(fields.invitedUsers.title(), fields.invitedUsers.content(users, andMore, nobody));
+            embed.addField(message.translate("core/userinfo:INVITED_TITLE"),
+                nobody ? message.translate("NO_INVITED_USERS") :
+                (andMore ? message.translate("core/userinfo:INVITED_USERS_MORE", {
+                    list: users.join(", ")
+                }) :
+                users.join(" ")));
         } else {
-            embed.addField(fields.invitedUsers.title(), fields.invitedUsers.premium(message.author.username));
+            embed.addField(message.translate("core/userinfo:INVITED_TITLE"), message.translate("core/userinfo:INVITED_PREMIUM"));
         }
         
         message.channel.send(embed);
