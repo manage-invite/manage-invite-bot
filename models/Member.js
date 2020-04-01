@@ -58,6 +58,7 @@ module.exports = class Member {
             (user_id, guild_id, invited_user_id) VALUES
             ('${this.id}', '${this.guildID}', '${userID}');
         `);
+        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
         this.invitedUsers.push(userID);
         return;
     }
@@ -70,6 +71,7 @@ module.exports = class Member {
             AND guild_id = '${this.id}'
             AND invited_user_id = '${userID}';
         `);
+        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
         this.invitedUsers = this.invitedUsers.filter((id) => id !== userID);
         return;
     }
@@ -94,6 +96,7 @@ module.exports = class Member {
             (user_id, guild_id, invited_user_id) VALUES
             ('${this.id}', '${this.guildID}', '${userID}');
         `);
+        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
         this.invitedUsersLeft.push(userID);
         return;
     }
@@ -106,6 +109,7 @@ module.exports = class Member {
             AND guild_id = '${this.id}'
             AND invited_user_id = '${userID}';
         `);
+        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
         this.invitedUsersLeft = this.invitedUsersLeft.filter((id) => id !== userID);
         return;
     }
@@ -118,6 +122,7 @@ module.exports = class Member {
             AND guild_id = '${this.guildID}';
         `);
         if(!rows[0]) return;
+        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
         this.joinData = {
             type: rows[0].join_type,
             inviterID: rows[0].join_inviter_id,
@@ -144,6 +149,7 @@ module.exports = class Member {
                 ('${this.id}', '${this.guildID}', '${data.type}' ${data.inviterID ? `, '${data.inviterID}'` : ""} ${data.inviteData ? `, '${JSON.stringify(data.inviteData)}'` : ""})
             `);
         }
+        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
         this.joinData = {
             type: data.type,
             inviterID: data.inviterID,
@@ -159,6 +165,8 @@ module.exports = class Member {
             WHERE user_id = '${this.id}'
             AND guild_id = '${this.guildID}';
         `);
+        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
+        this.joinData = null;
     }
 
     // Update member invites
@@ -180,6 +188,7 @@ module.exports = class Member {
             WHERE user_id = '${this.id}'
             AND guild_id = '${this.guildID}';
         `);
+        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
         return;
     }
 
@@ -215,6 +224,7 @@ module.exports = class Member {
                     ${this.oldBackuped}
                 );
             `);
+            this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
             this.inserted = true;
         }
         return this;

@@ -30,6 +30,7 @@ module.exports = class LeavePlugin {
             guild_id = '${this.guild.id}' AND
             plugin_name = 'leave';
         `);
+        this.handler.removeGuildFromOtherCaches(this.guild.id);
         return this;
     }
 
@@ -41,6 +42,7 @@ module.exports = class LeavePlugin {
                 (guild_id, plugin_name, plugin_data) VALUES
                 ('${this.guild.id}', 'leave', '${this.data}');
             `);
+            this.handler.removeGuildFromOtherCaches(this.guild.id);
             this.inserted = true;
         }
         return this;

@@ -7,7 +7,7 @@ class Userinfo extends Command {
         super(client, {
             name: "userinfo",
             enabled: true,
-            aliases: [ "ui" ],
+            aliases: [ "ui", "info", "infos" ],
             clientPermissions: [ "EMBED_LINKS" ],
             permLevel: 0
         });
@@ -66,6 +66,23 @@ class Userinfo extends Command {
             .addField(message.translate("core/userinfo:JOIN_ORDER_TITLE"), `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`);
         }
 
+        if(data.guild.premium && memberData.invitedUsers){
+            let nobody = memberData.invitedUsers.length === 0;
+            let andMore = false;
+            if(memberData.invitedUsers.length > 20){
+                andMore = true;
+                memberData.invitedUsers.length = 19;
+            }
+            const users = [];
+            await this.client.functions.asyncForEach(memberData.invitedUsers, async (user) => {
+                const fetchedUser = await message.guild.members.cache.get(user);
+                if(fetchedUser) users.push(fetchedUser.toString());
+            });
+            embed.addField(fields.invitedUsers.title(), fields.invitedUsers.content(users, andMore, nobody));
+        } else {
+            embed.addField(fields.invitedUsers.title(), fields.invitedUsers.premium(message.author.username));
+        }
+        
         message.channel.send(embed);
     }
 

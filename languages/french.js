@@ -53,7 +53,8 @@ module.exports = {
             content: (prefix) => `
         > **${prefix}addrank nombre @role**: Ajoute un rôle récompense
         > **${prefix}removerank @role**: Retire un rôle récompense
-        > **${prefix}ranks**: Liste des rôles récompenses`
+        > **${prefix}ranks**: Liste des rôles récompenses
+        > **${prefix}setkeep-ranks**: Configure le paramètre "keep-ranks"`
         },
         // Join DM Messages
         joinDM: {
@@ -141,6 +142,10 @@ module.exports = {
         }
     },
 
+    fetchInvites: {
+        success: () => `${emojis.success} Invitations récupérées avec succès!`
+    },
+
     userinfo: {
         title: (user) => `Compte ${user.tag} (${user.id})`,
         fields: {
@@ -170,6 +175,11 @@ module.exports = {
             joinOrder: {
                 title: () => `Ordre d'arrivées`,
                 content: (previous, next, user) => `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`
+            },
+            invitedUsers: {
+                premium: (username) => `:crown: | Hey, **${username}** ! Cette fonctionnalité est disponible seulement pour les serveurs premium et les partenaires. Deviens premium ici: **<https://docs.manage-invite.xyz/configuration/premium>** !`,
+                title: () => `Membres invités`,
+                content: (users, andMore, nobody) => nobody ? "Aucun membre invité" : andMore ? `${users.join(", ")}, et plus...` : users.join(", ")
             }
         }
     },
@@ -193,7 +203,7 @@ module.exports = {
         errors: {
             bonus: {
                 missing: (prefix) => `${emojis.error} | Vous devez écrire le nombre d'invitations bonus que vous voulez ajouter. (Syntaxe : ${prefix}addbonus nombre @membre)`,
-                incorrect: (prefix) => `${emojis.error} | YVous devez écrire un nombre __**valide**__ d'invitations bonus que vous voulez ajouter. (Syntaxe : ${prefix}addbonus nombre @membre)`
+                incorrect: (prefix) => `${emojis.error} | Vous devez écrire un nombre __**valide**__ d'invitations bonus que vous voulez ajouter. (Syntaxe : ${prefix}addbonus nombre @membre)`
             },
             member: {
                 missing: (prefix) => `${emojis.error} | Vous devez mentionner le membre auquel vous voulez ajouter les invitations bonus. (Syntaxe : ${prefix}addbonus nombre @membre)`
@@ -225,7 +235,7 @@ module.exports = {
         errors: {
             bonus: {
                 missing: (prefix) => `${emojis.error} | Vous devez indiquer le nombre d'invitations bonus que vous souhaitez retirer. (Syntaxe : ${prefix}removebonus nombre @membre)`,
-                incorrect: (prefix) => `${emojis.error} | You must write a __**valid**__ number of bonus invites that you want to remove. (Syntaxe : ${prefix}removebonus nombre @membre)`
+                incorrect: (prefix) => `${emojis.error} | Vous devez écrire un nombre __**valide**__ d'invitations bonus que vous souhaitez supprimer. (Syntaxe : ${prefix}removebonus nombre @membre)`
             },
             member: {
                 missing: (prefix) => `${emojis.error} | Vous devez mentionner le membre auquel vous souhaitez supprimer les invitations bonus. (Syntaxe : ${prefix}removebonus nombre @membre)`
@@ -248,6 +258,12 @@ module.exports = {
     setleave: {
         on: () => `**${emojis.success} | Le système de messages de départs est maintenant __ACTIVÉ__ !**`,
         off: () => `**${emojis.success} | Le système de messages de départs est maintenant __DÉSACTIVÉ__ !**`
+    },
+
+    setkeepranks: {
+        premium: (username) => `:crown: | Hey, **${username}** ! Cette fonctionnalité est disponible seulement pour les serveurs premium et les partenaires. Deviens premium ici: **<https://docs.manage-invite.xyz/configuration/premium>** !`,
+        on: () => `**${emojis.success} | Maintenant, les membres __GARDERONT__ leurs rôles, même s'ils n'ont pas assez d'invitations!**`,
+        off: () => `**${emojis.success} | Maintenant, les membres __NE GARDERONT__ pas leurs rôles s'ils n'ont pas assez d'invitations!**`
     },
 
     setprefix: {
@@ -444,7 +460,7 @@ Tapez \`cancel\` pour annuler. ${str}
         channel: () => `:scroll: **| Maintenant écrivez le nom du salon des messages de départs ou mentionnez-le... :pencil2:**`
         },
         cancelled: () => `${emojis.error} | Annulé.`,
-        success: () => `${emojis.success} **| Done successfully...**`,
+        success: () => `${emojis.success} **| Réalisé avec succès...**`,
         title: () => `**Le Msg de Départs a été mis en place**`,
         fields: {
             message: () => `Message:`,

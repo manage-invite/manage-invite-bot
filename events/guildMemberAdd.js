@@ -9,6 +9,7 @@ module.exports = class {
     async run (member) {
 
         if(!this.client.fetched) return;
+        console.log("Calculating for member "+member.id);
 
         // Fetch guild and member data from the db
         let guildData = await this.client.database.fetchGuild(member.guild.id);
@@ -49,6 +50,7 @@ module.exports = class {
             }
         }
 
+
         let inviter = invite ? await this.client.resolveUser(invite.inviter.id) : null;
         let inviterData = inviter ? await this.client.database.fetchMember(inviter.id, member.guild.id) : null;
 
@@ -81,10 +83,10 @@ module.exports = class {
                     if(inviter.id === member.id) inviterData.fake++;
                 }
                 await inviterData.updateInvites();
-                await this.client.functions.assignRanks(inviterMember, inviterData.calcInvites(), guildData.ranks);
+                await this.client.functions.assignRanks(inviterMember, inviterData.calcInvites(), guildData.ranks, guildData.keepRanks);
             }
         }
-        
+
         let language = require("../languages/"+guildData.language);
 
         if(invite){

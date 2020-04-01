@@ -45,7 +45,8 @@ module.exports = {
         > **${prefix}removebonus number @user**: Remove bonus invites to a member
         > **${prefix}sync-invites**: Synchronize server invites and bot invites
         > **${prefix}removeinvites (@user)**: Remove (server/user) invites
-        > **${prefix}restoreinvites (@user)**: Restore (server/user) invites`
+        > **${prefix}restoreinvites (@user)**: Restore (server/user) invites
+        > **${prefix}setkeep-ranks**: Configure the "keep-ranks" setting`
         },
         // Ranks
         ranks: {
@@ -141,7 +142,11 @@ module.exports = {
         }
     },*/
 
-    /*userinfo: {
+    fetchInvites: {
+        success: () => `${emojis.success} Invites successfully fetched!`
+    },
+
+    userinfo: {
         title: (user) => `${user.tag} account (${user.id})`,
         fields: {
             // user
@@ -170,6 +175,11 @@ module.exports = {
             joinOrder: {
                 title: () => `Join Order`,
                 content: (previous, next, user) => `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`
+            },
+            invitedUsers: {
+                title: () => `Invited users`,
+                premium: () => `:crown: | This feature (view invited users) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`,
+                content: (users, andMore, nobody) => nobody ? "No invited users" : andMore ? `${users.join(", ")}, and more...` : users.join(", ")
             }
         }
     },
@@ -248,6 +258,12 @@ module.exports = {
     setleave: {
         on: () => `**${emojis.success} | The leave system is now __ENABLED__!**`,
         off: () => `**${emojis.success} | The leave system is now __DISABLED__!**`
+    },
+
+    setkeepranks: {
+        premium: (username) => `:crown: | Hey, **${username}**! This feature (keep ranks even if the members don't have enough invites) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`,
+        on: () => `**${emojis.success} | Now, members will __KEEP__ their ranks, even if they don't have enough invites!**`,
+        off: () => `**${emojis.success} | Now, members won't __KEEP__ their ranks if they don't have enough invites!**`
     },
 
     setprefix: {
@@ -565,7 +581,7 @@ Type \`cancel\` to abort. ${str}
             },
             joinDM: {
                 title: () => `Join messages in DM`,
-                premium: () => `Feature available for premium servers and partners.`,
+                premium: () => `Feature available for premium servers.`,
                 message: {
                     title: () => `Message`,
                     default: () => `Welcome {user} in **{server} ! You were invited by **{inviter.tag}**. Don't forget to read the server rules!`,
@@ -623,7 +639,7 @@ Type \`cancel\` to abort. ${str}
     stats: {
         title: (name, nb) => `Joins on ${name} these last ${nb} days`,
         content: (total, percent, days) => `**${total}** members (i.e. **${percent}%** of the server) have joined the server from ${days[0]} to ${days[1]}:`,
-        premium: (username) => `:crown: | Hey, **${username}**! This feature (customized stats period) is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>**!`,
+        premium: (username) => `:crown: | Hey, **${username}**! This feature (customized stats period) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>**!`,
         errors: {
             invalid: () => `${emojis.error} | You must enter a valid number of days (greater than 1 and lower than 1000) to be displayed!`
         }

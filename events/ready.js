@@ -9,6 +9,8 @@ module.exports = class {
     async run () {
 
         this.client.user.setActivity("+help | manage-invite.xyz");
+        this.client.logger.log("Shard #"+this.client.shard.ids[0]+" has started.", "log");
+        this.client.functions.postTopStats(this.client);
 
         if(!process.argv.includes("--uncache")) await this.client.wait(1000);
         let invites = {};
@@ -31,12 +33,11 @@ module.exports = class {
             this.client.shard.broadcastEval(() => {
                 console.log(`\x1b[32m%s\x1b[0m`, `SHARD [${this.shard.ids[0]}]`, "\x1b[0m", `Serving ${this.users.cache.size} users in ${this.guilds.cache.size} servers.`);
             });
-            this.client.functions.postTopStats(this.client);
         }
 
         if(this.client.shard.ids.includes(0) && !this.client.spawned){
             this.client.dash.load(this.client);
-            const job = new CronJob("0 */15 * * * *", async () => {
+            new CronJob("0 */15 * * * *", async () => {
                 const results = await this.client.shard.broadcastEval(() => {
                     const commandsRan = this.commandsRan;
                     const pgQueries = this.pgQueries;
@@ -94,6 +95,19 @@ module.exports = class {
                 if(logsChannel) logsChannel.send(emojis.online+' | Shard #${shardID} has resumed!');
             `);
         });
+
+        new CronJob("0 */15 * * * *", async () => {
+            if(this.client.fetched){
+                const guildsToFetch = this.client.guilds.cache.filter((guild) => !this.client.invitations[guild.id]).array();
+                this.client.logger.log(`${guildsToFetch.length} guilds need to be fetched`);
+                await this.client.functions.asyncForEach(guildsToFetch, async (guild) => {
+                    const member = await guild.members.fetch(this.client.user.id).catch(() => {});
+                    const i = process.argv.includes("--uncache") ? new Map() : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : new Map());
+                    this.client.invitations[guild.id] = i || new Map();
+                });
+            }
+        });
+
     }
 };
 

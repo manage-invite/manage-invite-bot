@@ -26,7 +26,7 @@ class Leaderboard extends Command {
 
         let members = [];
         membersData.forEach((member) => {
-            if(data.guild.blacklistedUsers.includes(member.id)) return;
+            if(data.guild.blacklistedUsers.includes(member.user_id)) return;
             members.push({
                 invites: (member.invites_regular + parseInt(member.invites_bonus) - member.invites_leaves - member.invites_fake),
                 fake: member.invites_fake,
@@ -36,7 +36,7 @@ class Leaderboard extends Command {
                 id: member.user_id
             });
         });
-        members = members.sort((a, b) => b.calculatedInvites - a.calculatedInvites);
+        members = members.filter((m) => m.calculatedInvites !== 0).sort((a, b) => b.calculatedInvites - a.calculatedInvites);
 
         const embeds = [];
         /* Distributes array */

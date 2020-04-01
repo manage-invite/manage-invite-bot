@@ -28,7 +28,7 @@ class Blacklist extends Command {
                 break;
             };
             case "remove": {
-                const user = message.mentions.users.first() || await this.client.users.fetch(args[0]).catch(() => {});
+                const user = message.mentions.users.first() || await this.client.users.fetch(args[1]).catch(() => {});
                 if(!user) return message.error("admin/blacklist:MISSING_MEMBER_REMOVE");
                 if(!data.guild.blacklistedUsers.includes(user.id)) return message.error("admin/blacklist:NOT_BLACKLISTED", {
                     username: user.tag

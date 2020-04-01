@@ -19,6 +19,8 @@ module.exports = class Guild {
         this.prefix = data.guild_prefix || "+";
         // Guild premium status
         this.premium = data.guild_is_premium || false;
+        // Guild keep ranks
+        this.keepRanks = data.guild_keep_ranks || false;
     }
 
     async fetch() {
@@ -70,6 +72,7 @@ module.exports = class Guild {
             (guild_id, role_id, invite_count) VALUES
             ('${this.id}', '${roleID}', ${inviteCount});
         `);
+        this.handler.removeGuildFromOtherCaches(this.id);
         this.ranks.push({
             roleID,
             inviteCount
@@ -84,6 +87,7 @@ module.exports = class Guild {
             WHERE guild_id = '${this.id}'
             AND invite_count = ${inviteCount};
         `);
+        this.handler.removeGuildFromOtherCaches(this.id);
         this.ranks = this.ranks.filter((rank) => rank.inviteCount !== inviteCount);
         return this.ranks;
     }
@@ -107,6 +111,7 @@ module.exports = class Guild {
             (guild_id, user_id) VALUES
             ('${this.id}', '${userID}');
         `);
+        this.handler.removeGuildFromOtherCaches(this.id);
         this.blacklistedUsers.push(userID);
         return this.blacklistedUsers;
     }
@@ -118,8 +123,21 @@ module.exports = class Guild {
             WHERE guild_id = '${this.id}'
             AND user_id = '${userID}';
         `);
+        this.handler.removeGuildFromOtherCaches(this.id);
         this.blacklistedUsers = this.blacklistedUsers.filter((id) => id !== userID);
         return this.blacklistedUsers;
+    }
+
+    // Update keep ranks
+    async setKeepRanks(boolean){
+        await this.handler.query(`
+            UPDATE guilds
+            SET guild_keep_ranks = ${boolean}
+            WHERE guild_id = '${this.id}';
+        `);
+        this.handler.removeGuildFromOtherCaches(this.id);
+        this.keepRanks = boolean;
+        return this;
     }
 
     // Update the guild language
@@ -129,6 +147,7 @@ module.exports = class Guild {
             SET guild_language = '${newLanguage}'
             WHERE guild_id = '${this.id}';
         `);
+        this.handler.removeGuildFromOtherCaches(this.id);
         this.language = newLanguage;
         return this;
     }
@@ -140,6 +159,7 @@ module.exports = class Guild {
             SET guild_prefix = '${newPrefix}'
             WHERE guild_id = '${this.id}';
         `);
+        this.handler.removeGuildFromOtherCaches(this.id);
         this.prefix = newPrefix;
         return this;
     }
@@ -149,9 +169,10 @@ module.exports = class Guild {
         if (!this.inserted) {
             await this.handler.query(`
                 INSERT INTO guilds
-                (guild_id, guild_prefix, guild_language, guild_is_premium) VALUES
-                ('${this.id}', '${this.prefix}', '${this.language}', ${this.premium});
+                (guild_id, guild_prefix, guild_language, guild_is_premium, guild_keep_ranks) VALUES
+                ('${this.id}', '${this.prefix}', '${this.language}', ${this.premium}, ${this.keepRanks});
             `);
+            this.handler.removeGuildFromOtherCaches(this.id);
             this.inserted = true;
         }
         return this;

@@ -34,6 +34,42 @@ module.exports = class DatabaseHandler {
         return;
     }
 
+    removeAllMembersFromOtherCaches(guildID){
+        this.client.shard.broadcastEval(`
+            this.database.removeAllMembersFromCache('${guildID}');
+        `);
+    }
+
+    removeMemberFromOtherCaches(memberID, guildID){
+        const shardID = this.client.shard.ids[0];
+        this.client.shard.broadcastEval(`
+            if(this.shard.ids[0] !== ${shardID}){
+                this.database.removeMemberFromCache('${memberID}', '${guildID}');
+            }
+        `);
+    }
+
+    removeGuildFromOtherCaches(guildID){
+        const shardID = this.client.shard.ids[0];
+        this.client.shard.broadcastEval(`
+            if(this.shard.ids[0] !== ${shardID}){
+                this.database.removeGuildFromCache('${guildID}');
+            }
+        `);
+    }
+
+    removeAllMembersFromCache(guildID){
+        this.memberCache = this.memberCache.filter((member) => member.guildID !== guildID);
+    }
+
+    removeGuildFromCache(guildID){
+        this.guildCache.delete(guildID);
+    }
+
+    removeMemberFromCache(memberID, guildID){
+        this.memberCache.delete(`${memberID}${guildID}`);
+    }
+
     // Make a new query to the db
     query(string) {
         this.client.pgQueries++;
@@ -78,8 +114,8 @@ module.exports = class DatabaseHandler {
     fetchMember(userID, guildID) {
         return new Promise(async resolve => {
             // If the member is in the cache
-            //if (this.memberCache.get(`${userID}${guildID}`))
-            //    return resolve(this.memberCache.get(`${userID}${guildID}`));
+            if (this.memberCache.get(`${userID}${guildID}`))
+                return resolve(this.memberCache.get(`${userID}${guildID}`));
             const { rows } = await this.query(`
                 SELECT * FROM members
                 WHERE guild_id = '${guildID}'
@@ -90,7 +126,7 @@ module.exports = class DatabaseHandler {
             await member.fetch();
             resolve(member);
             // Add the member to the cache
-            //this.memberCache.set(`${userID}${guildID}`, member);
+            this.memberCache.set(`${userID}${guildID}`, member);
         });
     }
 
@@ -98,8 +134,8 @@ module.exports = class DatabaseHandler {
     fetchGuild(guildID) {
         return new Promise(async resolve => {
             // If the guild is in the cache
-            //if (this.guildCache.get(guildID))
-            //    return resolve(this.guildCache.get(guildID));
+            if (this.guildCache.get(guildID))
+                return resolve(this.guildCache.get(guildID));
             const { rows } = await this.query(`
                 SELECT * FROM guilds
                 WHERE guild_id = '${guildID}';
@@ -111,7 +147,7 @@ module.exports = class DatabaseHandler {
             await guild.fetch();
             resolve(guild);
             // Add the guild to the cache
-            //this.guildCache.set(guildID, guild);
+            this.guildCache.set(guildID, guild);
         });
     }
 
