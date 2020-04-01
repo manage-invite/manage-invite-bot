@@ -12,7 +12,7 @@ const options = {
     scales: { yAxes: ticksOptions, xAxes: ticksOptions }
 };
 
-class Stats extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "stats",
@@ -83,6 +83,4 @@ class Stats extends Command {
         message.channel.send(embed);
 
     }
-}
-
-module.exports = Stats;
+};

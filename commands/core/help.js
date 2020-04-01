@@ -3,7 +3,7 @@ Discord = require("discord.js");
 
 const Constants = require("../../Constants");
 
-class Help extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "help",
@@ -61,6 +61,4 @@ class Help extends Command {
 
         message.channel.send(embed);
     }
-}
-
-module.exports = Help;
+};

@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class Ping extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "ping",
@@ -24,6 +24,4 @@ class Ping extends Command {
             .addField(message.translate("core/ping:BOT"), `${Math.floor(msg.createdTimestamp - message.createdTimestamp)} ms`)
         msg.edit(null, { embed });
     }
-}
-
-module.exports = Ping;
+};

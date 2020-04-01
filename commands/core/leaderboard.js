@@ -2,7 +2,7 @@ const Command = require("../../structures/Command.js"),
 Discord = require("discord.js"),
 Pagination = require("discord-paginationembed");
 
-class Leaderboard extends Command {
+module.exports  = class extends Command {
     constructor (client) {
         super(client, {
             name: "leaderboard",
@@ -89,5 +89,3 @@ class Leaderboard extends Command {
     }
 
 };
-
-module.exports = Leaderboard;

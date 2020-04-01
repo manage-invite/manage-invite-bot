@@ -1,5 +1,4 @@
-const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+const Command = require("../../structures/Command.js");
 
 module.exports = class extends Command {
     constructor (client) {
