@@ -54,7 +54,7 @@ module.exports = class extends Command {
                     leaves: 0
                 }
             )).catch(() => {
-                return message.channel.send(message.language.errors.sendPerm());
+                return message.error("misc:CANNOT_SEND");
             });
         }
     }
