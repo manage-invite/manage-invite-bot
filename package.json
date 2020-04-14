@@ -9,7 +9,6 @@
     "chart.js": "^2.9.3",
     "chartjs-node-canvas": "^3.0.6",
     "cron": "^1.8.2",
-    "discord-backup": "^1.1.2",
     "discord-paginationembed": "^2.0.0-beta.4",
     "discord.js": "^12.1.1",
     "ejs": "^2.7.1",
