@@ -353,10 +353,10 @@ discord-paginationembed@^2.0.0-beta.4:
   resolved "https://registry.yarnpkg.com/discord-paginationembed/-/discord-paginationembed-2.0.0-beta.4.tgz#ac64a92fa7655dbc2d1f3062aca63cb3161dda1b"
   integrity sha512-SLs+UrBmIe/VAmNEEy4VqTiMGGFExxvXyda7iJy2KADXO3NlGv/Kh4pFuabFTngADXe8DYroZjU2ZduFm7T+Jg==
 
-discord.js@^12.0.2:
-  version "12.0.2"
-  resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-12.0.2.tgz#c4d68f1363d7fc05ed71a42dba6b930966ed8602"
-  integrity sha512-iZiEA4Y61gqq/EjFfLXnkRK9pLapnax/vTVDUhs/mAhyqozAy0GOlk/MZI9rSa1iIoKTWRq6P9CRKhLNT2wUnA==
+discord.js@^12.1.1:
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-12.1.1.tgz#440043ab5a09d66311e8b975acd31bea4f8ed227"
+  integrity sha512-Y6+QfAUZkb9cy27cfNqUigAgYVSKTw9jPF3mN4UDMih3Em3VQ0WjGBdX1UbE8CwFkLOu5XWQSNPdsoStTR8c2Q==
   dependencies:
     "@discordjs/collection" "^0.1.5"
     abort-controller "^3.0.0"
