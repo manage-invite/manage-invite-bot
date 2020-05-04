@@ -1,8 +1,8 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js"),
-stringSimilarity = require("string-similarity");
+Constants = require("../../Constants");
 
-class Ranks extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "ranks",
@@ -15,29 +15,32 @@ class Ranks extends Command {
 
     async run (message, args, data) {
         
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
         .setColor(data.color)
         .setFooter(data.footer);
 
-        let ranks = data.guild.ranks.sort((a,b) => b.inviteCount - a.inviteCount);
+        const ranks = data.guild.ranks.sort((a,b) => b.inviteCount - a.inviteCount);
         if(ranks.length === 0){
-            embed.setAuthor(message.language.ranks.no.title())
-            .setDescription(message.language.ranks.no.description(data.guild.prefix));
+            embed.setAuthor(message.translate("admin/ranks:NO_RANK_TITLE"))
+            .setDescription(message.translate("admin/ranks:NO_RANK_CONTENT", {
+                prefix: data.guild.prefix
+            }));
             return message.channel.send(embed);
         }
 
-        let description = message.language.utils.viewConf()+"\n\n";
+        const description = `[${message.translate("admin/ranks:VIEW_CONF")}](${Constants.Links.DASHBOARD})\n\n`;
         ranks.forEach((rank) => {
-            let role = message.guild.roles.cache.get(rank.roleID);
+            const role = message.guild.roles.cache.get(rank.roleID);
             if(!role) return;
-            description += message.language.ranks.formatRank(role, rank.inviteCount);
+            description += message.translate("admin/ranks:RANK", {
+                rank: role.toString(),
+                invites: rank.inviteCount
+            });
         });
 
-        embed.setAuthor(message.language.ranks.title(message.guild.name))
+        embed.setAuthor(message.translate("admin/ranks:TITLE"))
         .setDescription(description);
         message.channel.send(embed);
     }
 
 };
-
-module.exports = Ranks;

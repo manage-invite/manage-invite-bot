@@ -15,10 +15,10 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          <%= language.website.selector.title() %>
+          <%= translate("dashboard:SELECTOR") %>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="/selector"><i class="fa fa-home"></i><%= language.website.selector.title() %></a></li>
+          <li><a href="/selector"><i class="fa fa-home"></i><%= translate("dashboard:SELECTOR") %></a></li>
         </ol>
       </section>
 
@@ -46,7 +46,7 @@
 								</div>
 								<!-- /.box-body -->
 								<div class="box-footer">
-									<a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block"><%= language.website.selector.manage() %></button></a>
+									<a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block"><%= translate("common:MANAGE") %></button></a>
 								</div>
 								<!-- /.box-footer -->
 							</div>
@@ -57,7 +57,7 @@
 						<div class="col-md-12">
 							<div class="box box-warning">
 								<div class="box-header with-border">
-									<h3 class="box-title"><%= language.website.selector.no.title() %></h3>
+									<h3 class="box-title"><%= translate("dashboard:NO_SERVER_TITLE") %></h3>
 									<div class="box-tools pull-right">
 									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 									</button>
@@ -66,7 +66,7 @@
 								</div>
 								<!-- /.box-header -->
 								<div class="box-body">
-									<<%= language.website.selector.no.content() %>
+									<%= translate("dashboard:NO_SERVER") %>
 								</div>
 								<!-- /.box-body -->
 							</div>

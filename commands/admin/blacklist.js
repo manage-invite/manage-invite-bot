@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class Blacklist extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "blacklist",
@@ -19,23 +19,29 @@ class Blacklist extends Command {
         const action = args[0];
         switch(action){
             case "add": {
-                const user = message.mentions.users.first() || await this.client.users.fetch(args[1]).catch(() => {});
-                if(!user) return message.channel.send(message.language.blacklist.mentions.add());
+                const user = message.mentions.users.first() || await this.client.users.fetch(args[0]).catch(() => {});
+                if(!user) return message.error("admin/blacklist:MISSING_MEMBER_ADD");
                 await data.guild.addUserBlacklist(user.id);
-                message.channel.send(message.language.blacklist.success.add(user));
+                message.success("admin/blacklist:SUCCESS_MEMBER_ADD", {
+                    username: user.tag
+                });
                 break;
             };
             case "remove": {
                 const user = message.mentions.users.first() || await this.client.users.fetch(args[1]).catch(() => {});
-                if(!user) return message.channel.send(message.language.blacklist.mentions.remove());
-                if(!data.guild.blacklistedUsers.includes(user.id)) return message.channel.send(message.language.blacklist.notFound(user));
+                if(!user) return message.error("admin/blacklist:MISSING_MEMBER_REMOVE");
+                if(!data.guild.blacklistedUsers.includes(user.id)) return message.error("admin/blacklist:NOT_BLACKLISTED", {
+                    username: user.tag
+                });
                 await data.guild.removeUserBlacklist(user.id);
-                message.channel.send(message.language.blacklist.success.remove(user));
+                message.success("admin/blacklist:SUCCESS_MEMBER_REMOVE", {
+                    username: user.tag
+                });
                 break;
             }
             case "list": {
                 if(data.guild.blacklistedUsers.length < 1){
-                    embed.setDescription(message.language.blacklist.empty());
+                    embed.setDescription(message.translate("admin/blacklist:EMPTY"));
                 } else {
                     let users = [];
                     await this.client.functions.asyncForEach(data.guild.blacklistedUsers, async (userID) => {
@@ -48,11 +54,9 @@ class Blacklist extends Command {
                 break;
             }
             default: {
-                message.channel.send(message.language.blacklist.action.error());
+                message.error("admin/blacklist:MISSING_TYPE")
             }
         }
     }
 
 };
-
-module.exports = Blacklist;

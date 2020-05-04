@@ -11,12 +11,12 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
             <ul class="nav navbar-nav">
-            <li id="select"><a href="/selector"><%= language.website.selector.title() %> <span class="sr-only">(current)</span></a></li>
+            <li id="select"><a href="/selector"><%= translate("dashboard:SELECTOR") %> <span class="sr-only">(current)</span></a></li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= language.website.help.title() %> <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= translate("common:HELP") %> <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                <li><a target="_blank" href="https://docs.manage-invite.xyz"><%= language.website.help.doc() %></a></li>
-                <li><a target="_blank" href="https://discord.gg/N99PJgE"><%= language.website.help.support() %></a></li>
+                <li><a target="_blank" href="https://docs.manage-invite.xyz"><%= translate("common:DOCUMENTATION") %></a></li>
+                <li><a target="_blank" href="https://discord.gg/N99PJgE"><%= translate("common:SUPPORT_SERVER") %></a></li>
                 </ul>
             </li>
             </ul>
@@ -27,15 +27,15 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
             <li class="dropdown language-selector">
-                <% if(language.locale === "en_US"){ %>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">English</a>
+                <% if(locale === "en-US"){ %>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">English (en-US)</a>
                     <ul class="dropdown-menu pull-right">
-                        <li><a class="dropdown-item" href="/language?new=fr_FR&url=<%= currentURL %>"><span>Français</span></a></li>
+                        <li><a class="dropdown-item" href="/language?new=fr-FR&url=<%= currentURL %>"><span>Français (fr-FR)</span></a></li>
                     </ul>
-                <% } else if(language.locale === "fr_FR") { %>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">Français</a>
+                <% } else if(localelocale === "fr-FR") { %>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">Français (fr-FR)</a>
                     <ul class="dropdown-menu pull-right">
-                        <li><a class="dropdown-item" href="/language?new=en_US&url=<%= currentURL %>"><span>English</span></a></li>
+                        <li><a class="dropdown-item" href="/language?new=en-US&url=<%= currentURL %>"><span>English (en-US)</span></a></li>
                     </ul>
                 <% } %>
             </li>

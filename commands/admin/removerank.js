@@ -2,7 +2,7 @@ const Command = require("../../structures/Command.js"),
 Discord = require("discord.js"),
 stringSimilarity = require("string-similarity");
 
-class RemoveRank extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "removerank",
@@ -15,18 +15,22 @@ class RemoveRank extends Command {
 
     async run (message, args, data) {
         
-        let role = message.mentions.roles.first() || message.guild.roles.cache.get(args.join(" ")) || message.guild.roles.cache.find((role) => role.name === args.join(" ") || (stringSimilarity.compareTwoStrings(role.name, args.join(" ")) > 0.85));
-        if(!role) return message.channel.send(message.language.removerank.errors.role.missing(data.guild.prefix));
-        let currentRank = data.guild.ranks.find((r) => r.roleID === role.id);
-        if(!currentRank) return message.channel.send(message.language.removerank.errors.role.doesntExist());
+        const role = message.mentions.roles.first() || message.guild.roles.cache.get(args.join(" ")) || message.guild.roles.cache.find((role) => role.name === args.join(" ") || (stringSimilarity.compareTwoStrings(role.name, args.join(" ")) > 0.85));
+        if(!role) return message.error("admin/removerank:MISSING", {
+            prefix: data.guild.prefix
+        });
+        const currentRank = data.guild.ranks.find((r) => r.roleID === role.id);
+        if(!currentRank) return message.error("admin/removerank:DOESNT_EXIST");
 
         await data.guild.removeRank(currentRank.inviteCount);
 
-        let embed = new Discord.MessageEmbed()
-        .setAuthor(message.language.removerank.title())
-        .setTitle(message.language.utils.conf.title())
+        const embed = new Discord.MessageEmbed()
+        .setAuthor(message.translate("admin/removerank:TITLE"))
+        .setTitle(message.translate("admin/ranks:VIEW_CONF"))
         .setURL("https://dash.manage-invite.xyz")
-        .setDescription(message.language.removerank.field(data.guild.prefix, role, currentRank.inviteCount))
+        .setDescription(message.translate("admin/removerank:CONTENT", {
+            count: currentRank.inviteCount
+        }))
         .setColor(data.color)
         .setFooter(data.footer);
 
@@ -35,5 +39,3 @@ class RemoveRank extends Command {
     }
 
 };
-
-module.exports = RemoveRank;

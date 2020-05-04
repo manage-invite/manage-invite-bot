@@ -12,7 +12,7 @@ const options = {
     scales: { yAxes: ticksOptions, xAxes: ticksOptions }
 };
 
-class Stats extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "stats",
@@ -24,26 +24,32 @@ class Stats extends Command {
     }
 
     async run (message, args, data) {
-        let type = args[0];
 
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
         .setColor(data.color)
         .setFooter(data.footer);
 
         let numberOfDays = args[0] || 7;
-        if(isNaN(numberOfDays)) return message.channel.send(message.language.stats.errors.invalid());
+        if(isNaN(numberOfDays)) return message.error("core/stats:INVALID");
         numberOfDays = parseInt(numberOfDays);
         if(numberOfDays !== 7 && !data.guild.premium){
-            return message.channel.send(message.language.stats.premium(message.author.username));
+            return message.error("core/stats:PREMIUM", {
+                username: message.author.username
+            });
         }
-        if(numberOfDays <= 1 || numberOfDays > 1000) return message.channel.send(message.language.stats.errors.invalid());
+        if(numberOfDays <= 1 || numberOfDays > 1000) return message.error("core/stats:INVALID");
 
-        let guild = await message.guild.fetch();
-        let joinedXDays = this.client.functions.joinedXDays(numberOfDays, guild.members);
-        let lastXDays = this.client.functions.lastXDays(numberOfDays, message.language.monthIndex);
+        const guild = await message.guild.fetch();
+        const joinedXDays = this.client.functions.joinedXDays(numberOfDays, guild.members);
+        const lastXDays = this.client.functions.lastXDays(numberOfDays, message.translate("core/stats:months", {
+            returnObjects: true
+        }));
 
-        embed.setAuthor(message.language.stats.title(message.guild.name, numberOfDays));
-        const canvasRenderService = new CanvasRenderService(width, height, (ChartJS) => {});
+        embed.setAuthor(message.translate("core/stats:TITLE", {
+            server: message.guild.name,
+            days: numberOfDays
+        }));
+        const canvasRenderService = new CanvasRenderService(width, height, () => {});
         const image = await canvasRenderService.renderToBuffer({
             type: "line",
             data: {
@@ -65,13 +71,16 @@ class Stats extends Command {
         const attachment = new Discord.MessageAttachment(image, "image.png");
         embed.attachFiles(attachment);
         embed.setImage("attachment://image.png");
-        let total = joinedXDays.reduce((p, c) => p+c);
-        let percent = Math.round((100*total)/guild.members.cache.size);
-        let daysRange = [lastXDays.shift(), lastXDays.pop()];
-        embed.addField("\u200B", message.language.stats.content(total, percent, daysRange));
+        const total = joinedXDays.reduce((p, c) => p+c);
+        const percent = Math.round((100*total)/guild.members.cache.size);
+        const daysRange = [lastXDays.shift(), lastXDays.pop()];
+        embed.addField("\u200B", message.translate("core/stats:CONTENT", {
+            total,
+            percent,
+            from: daysRange[1],
+            to: daysRange[2]
+        }));
         message.channel.send(embed);
 
     }
-}
-
-module.exports = Stats;
+};

@@ -1,0 +1,15 @@
+{
+  "BOT_MISSING_PERMISSIONS": "__**Permissions manquantes**__J'ai besoin des permissions suivantes pour effectuer cette commande: {{permissions}}",
+  "CANNOT_SEND": "Je ne peux pas envoyer de message dans le salon.",
+  "COMMAND_DISABLED": "Cette commande est actuellement désactivée!",
+  "JOIN_OAUTH2": "{{user}} a rejoint en utilisant le flux OAuth2.",
+  "JOIN_PERMISSIONS": "J'ai besoin de la permission \"Gérer le serveur\" pour savoir qui a invité {{user}}.",
+  "JOIN_UNKNOWN": "Impossible de déterminer comment {{user}} a rejoint le serveur.",
+  "JOIN_VANITY": "{{user}} a rejoint le serveur en utilisant une invitation discord.gg définie par le propriétaire du serveur (ou un administrateur).",
+  "LEAVE_OAUTH2": "{{user}} a quitté le serveur, il avait rejoint via OAuth.",
+  "LEAVE_UNKNOWN": "{{user}} a quitté le serveur, mais il est impossible de déterminer comment il avait rejoint.",
+  "LEAVE_VANITY": "{{user}} a quitté le serveur, il avait rejoint en utilisant une invitation discord.gg définie par le propriétaire du serveur (ou un administrateur).",
+  "LINKS_FOOTER": "[Ajouter moi sur votre serveur](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Serveur support]({{discord}}) | [Votez pour moi](https://top.gg/bot/{{clientID}})",
+  "PREFIX": "Bonjour! Tapez **{{prefix}}help** pour voir toutes les commandes! Vous pouvez m'ajouter sur votre serveur en tapant **{{prefix}}add**.",
+  "USER_MISSING_PERMISSIONS": "Cette commande requiert le niveau de permissions: `{{level}}`!"
+}

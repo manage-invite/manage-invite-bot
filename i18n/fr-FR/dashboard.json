@@ -1,0 +1,18 @@
+{
+  "BASIC_TITLE": "Configuration basique",
+  "BUTTON_DISABLE": "Désactiver les messages",
+  "BUTTON_ENABLE": "Activer les messages",
+  "BUTTON_UPDATE": "Mettre à jour les messages",
+  "JOIN_DEFAULT": "{user} a rejoint le serveur! Il a été invité par **{inviter.tag}** (qui a **{inviter.invites}** invitations).",
+  "JOIN_DM_DEFAULT": "Bienvenue {user} sur **{server}** ! Tu as été invité par **{inviter.tag}**. N'oublie pas de lire les règles du serveur !",
+  "JOIN_DM_PREMIUM": "Fonctionnalité disponible pour les serveurs premium.",
+  "JOIN_DM_TITLE": "Messages d'arrivée en MP",
+  "JOIN_TITLE": "Messages d'arrivées",
+  "LEAVE_DEFAULT": "{user.tag} a quitté le serveur. Il avait été invité par **{inviter.tag}** (qui a **{inviter.invites}** invites).",
+  "LEAVE_TITLE": "Messages de départs",
+  "NO_SERVER_CONTENT": "Aucun serveur trouvé. Vérifiez que vous êtes connecté avec le bon compte.",
+  "NO_SERVER_TITLE": "Aucun serveur.",
+  "ROLE_REWARDS": "🎯 Rôles récompenses",
+  "ROLE_REWARDS_EMPTY": "Aucun rôle récompense défini. Vous pouvez les configurer avec les commandes suivantes: {{prefix}}addrank, {{prefix}}removerank et {{prefix}}ranks.",
+  "SELECTOR": "Selector"
+}

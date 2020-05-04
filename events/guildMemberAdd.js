@@ -13,6 +13,7 @@ module.exports = class {
 
         // Fetch guild and member data from the db
         let guildData = await this.client.database.fetchGuild(member.guild.id);
+        member.guild.data = guildData;
         let memberData = await this.client.database.fetchMember(member.id, member.guild.id);
         
         /* Find who is the inviter */
@@ -123,13 +124,21 @@ module.exports = class {
                 let formattedMessage = this.client.functions.formatMessage(guildData.join.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData)
                 channel.send(formattedMessage);
             } else if(vanity){
-                channel.send(language.utils.specialMessages.join.vanity(member.user));
+                channel.send(member.guild.translate("misc:JOIN_VANITY", {
+                    user: member.user.toString()
+                }));
             } else if(oauth){
-                channel.send(language.utils.specialMessages.join.oauth2(member.user));
+                channel.send(member.guild.translate("misc:JOIN_OAUTH2", {
+                    user: member.user.toString()
+                }));
             } else if(perm){
-                channel.send(language.utils.specialMessages.join.perm(member.user));
+                channel.send(member.guild.translate("misc:JOIN_PERMISSIONS", {
+                    user: member.user.toString()
+                }));
             } else {
-                channel.send(language.utils.specialMessages.join.unknown(member.user));
+                channel.send(member.guild.translate("misc:JOIN_UNKNOWN", {
+                    user: member.user.toString()
+                }));
             }
         }
 

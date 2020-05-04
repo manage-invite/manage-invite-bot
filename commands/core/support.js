@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+Constants = require("../../Constants");
 
-class Support extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "support",
@@ -13,9 +13,9 @@ class Support extends Command {
     }
 
     async run (message, args, data) {
-        message.channel.send(message.language.support.content());
+        message.sendT("core/support:CONTENT", {
+            discord: Constants.Links.DISCORD
+        });
     }
 
 };
-
-module.exports = Support;

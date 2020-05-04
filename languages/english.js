@@ -5,13 +5,13 @@ module.exports = {
     locale: "en_US",
 
     utils: {
-        prefix: (prefix) => `Hello! Please type **${prefix}help** to see all commands! You can add me to your server with **${prefix}add**.`,
+        //prefix: (prefix) => `Hello! Please type **${prefix}help** to see all commands! You can add me to your server with **${prefix}add**.`,
         viewConf: () => `[View the configuration on the dashboard](https://dash.manage-invite.xyz)`,
         conf: {
             title: () => `View the configuration on the dashboard`,
             content: () => `[or on the dashboard](https://dash.manage-invite.xyz)`
         },
-        specialMessages: {
+        /*specialMessages: {
             join: {
                 oauth2: (user) => `${user} joined the server using OAuth flow.`,
                 vanity: (user) => `${user} joined the server using a discord.gg invite defined by the guild owner (or admin).`,
@@ -23,17 +23,17 @@ module.exports = {
                 vanity: (user) => `${user.tag} left the server, they joined using a discord.gg invite defined by the server owner (or an admin).`,
                 unknown: (user) => `${user.tag} left the server, but I can't figure out how they joined it.`
             }
-        }
+        }*/
     },
 
     errors: {
-        missingPerms: (neededPermissions) => `__**${emojis.error} Missing permissions**__\n\nI need the following permissions for this command to work properly: ${neededPermissions.map((p) => "`"+p+"`").join(", ")}`,
-        disabled: () => `${emojis.error} | This command is currently disabled!`,
-        permLevel: (name) => `${emojis.error} | This command requires the permission level: \`${name}\`!`,
-        sendPerm: () => `${emojis.error} | I don't have the permission to send messages in this channel.`
+        //missingPerms: (neededPermissions) => `__**${emojis.error} Missing permissions**__\n\nI need the following permissions for this command to work properly: ${neededPermissions.map((p) => "`"+p+"`").join(", ")}`,
+        //disabled: () => `${emojis.error} | This command is currently disabled!`,
+        //permLevel: (name) => `${emojis.error} | This command requires the permission level: \`${name}\`!`,
+        //sendPerm: () => `${emojis.error} | I don't have the permission to send messages in this channel.`
     },
 
-    help: {
+    /*help: {
         title: () => `ℹ ManageInvite's Help Page`,
         description: (guildName, prefix) => `> ${guildName}'s prefix: **${prefix}** (\`${prefix}setprefix\`)\n> ${guildName}'s language: **English** (\`${prefix}setlang\`)`,
         // Admin
@@ -101,11 +101,11 @@ module.exports = {
         // Others
         tip: (prefix) => `Tip: you can see your configuration with ${prefix}config`,
         links: (clientID) => `[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id=${clientID}&permissions=8&scope=bot) | [Support server](${discord}) | [Vote for me](https://top.gg/bot/${clientID})`
-    },
+    },*/
 
-    botinfos: {
+    /*botinfos: {
         author: (username) => `${username}'s stats`,
-        // Statistics
+         Statistics
         statistics: {
             title: () => `📊 Statistics`,
             content: (guilds, users) => `\`Servers: ${guilds}\`\n\`Users: ${users}\``
@@ -125,14 +125,14 @@ module.exports = {
             \`${cachedMembers}\` cached members
             \`${cachedGuilds}\` cached guilds`,
         }
-    },
+    },*/
 
-    invite: {
+    /*invite: {
         description: (member, memberData, isYou, nextRank, role) => `${isYou ? `You have` : `**${member.user.username}** has`} **${memberData.regular + memberData.bonus - memberData.leaves - memberData.fake}** invites! (**${memberData.regular}** regular, **${memberData.bonus}** bonus, **${memberData.fake > 0 ? `-${memberData.fake}` : `${memberData.fake}`}** fake, **${memberData.leaves > 0 ? `-${memberData.leaves}` : `${memberData.leaves}`}** leaves)${nextRank ? `\nYou need **${nextRank.inviteCount - (memberData.regular + memberData.bonus - memberData.leaves - memberData.fake)}** more invites to get the next rank: **${role}**!` : ""}`
     },
 
     leaderboard: {
-        cleared: () => `${emojis.success} | Leaderboard cleared!`,
+        cleared: () => `${emojis.success} | `,
         user: (user, member, lb) => `${lb} **${user.username}** - **${member.calculatedInvites}** invites (**${member.regular}** regular, **${member.bonus}** bonus, **${member.fake > 0 ? `-${member.fake}` : `${member.fake}`}** fake, **${member.leaves > 0 ? `-${member.leaves}` : `${member.leaves}`}** leaves)`,
         prompt: () => `{{user}}, on which page would you like to go? Write \`cancel\` or \`0\` to cancel.`,
         title: () => `Invites Leaderboard`,
@@ -140,7 +140,7 @@ module.exports = {
             title: () => `😕 No invite found`,
             content: () => `Start inviting people and you will appear on this page!`
         }
-    },
+    },*/
 
     fetchInvites: {
         success: () => `${emojis.success} Invites successfully fetched!`
@@ -184,7 +184,7 @@ module.exports = {
         }
     },
 
-    membercount: {
+    /*membercount: {
         title: (guildName) => `${guildName}'s MemberCount`,
         description: (guild) => `
         Total of **${guild.members.cache.size}**  members (**${guild.members.cache.filter((m) => !m.user.bot).size}** humans and **${guild.members.cache.filter((m) => m.user.bot).size}** bots)
@@ -193,9 +193,9 @@ module.exports = {
         ➔ ${emojis.online} | ${guild.members.cache.filter((m) => m.presence.status === "online" && !m.user.bot).size} members online
         ➔ ${emojis.idle} | ${guild.members.cache.filter((m) => m.presence.status === "idle" && !m.user.bot).size} members idle
         ➔ ${emojis.offline} | ${guild.members.cache.filter((m) => m.presence.status === "offline" && !m.user.bot).size} members offline`
-    },
+    },*/
 
-    support: {
+    /*support: {
         content: () => `:information_source: If you have questions or you need more informations, you can join ManageInvite's Lounge:\n${discord}`
     },
 
@@ -245,7 +245,7 @@ module.exports = {
         field: (prefix, member) => `Write \`${prefix}invites ${member.user.tag}\` to see the new number of invites of **${member.user.username}**!`
     },
 
-    setdmjoin: {
+    /*setdmjoin: {
         on: () => `**${emojis.success} | The DM join system is now __ENABLED__!**`,
         off: () => `**${emojis.success} | The DM join system is now __DISABLED__!**`
     },
@@ -269,16 +269,16 @@ module.exports = {
     setprefix: {
         missing: () => `${emojis.error} | You must write a prefix!`,
         success: () => `${emojis.success} | Server prefix has been updated!`
-    },
+    },*/
 
-    testdmjoin: {
-        title: () => `:wrench: DM Join system :`,
-        description: () => `If it doesn't work, check the bot permissions or join our [support server](${discord})`,
+    /*testdmjoin: {
+        title: () => ``,
+        description: () => ``,
         fields: {
-            enabled: () => `> Enabled:`,
-            message: () => `> Message:`
+            enabled: () => ``,
+            message: () => ``
         },
-        enabled: (prefix) => `${emojis.success} Join messages in dm enabled. Disable them with \`${prefix}setdmjoin\`.`,
+        enabled: (prefix) => ``,
         disabled: (prefix) =>  `${emojis.error} Join messages in dm disabled. Enable them with \`${prefix}setdmjoin\`.`,
         notDefineds: {
             message: (prefix) => `No message defined. Set it with \`${prefix}configdm\`!`
@@ -287,7 +287,7 @@ module.exports = {
 
     testjoin: {
         title: () => `:wrench: Join system :`,
-        description: () => `If it doesn't work, check the bot permissions or join our [support server](${discord})`,
+        description: () => ``,
         fields: {
             enabled: () => `> Enabled:`,
             channel: () => `> Channel:`,
@@ -339,11 +339,11 @@ module.exports = {
             > Enabled: ${data.guild.joinDM.enabled ? "**yes**" : "**no**"}
             > Message: ${data.guild.joinDM.message ? "**defined**" : "**not defined**."}`
         },
-    },
+    },*/
 
-    joinDM: {
-        premium: (username) => `:crown: | Hey, **${username}**! This feature is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`
-    },
+    /*joinDM: {
+        premium: (username) => `:crown: | Hey, **${username}**! This feature is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !`
+    },*/
 
     configdmjoin: {
         disable: (prefix) => `Type \`${prefix}setdmjoin\` to disable join messages in dm.`,
@@ -474,12 +474,12 @@ Type \`cancel\` to abort. ${str}
         }
     },
 
-    setlang: {
+    /*setlang: {
         invalid: () => `${emojis.error} | You must write a valid language!\n\n:flag_fr: Français (\`fr\`)\n:flag_gb: English (\`en\`)`,
         success: () => `${emojis.success} | Language has beed updated!`
-    },
+    },*/
 
-    addrank: {
+    /*addrank: {
         errors: {
             inviteCount: {
                 missing: (prefix) => `${emojis.error} | You must write the number of invites required to obtain the rank. (Syntax: ${prefix}addrank number @role)`,
@@ -516,8 +516,8 @@ Type \`cancel\` to abort. ${str}
         formatRank: (rank, inviteCount) => `${rank} (**${inviteCount}** invites)\n`
     },
 
-    website: {
-        doc: {
+   // website: {
+        /*doc: {
             variables: () => `https://docs.manage-invite.xyz/configuration/variables`
         },
         utils: {
@@ -533,21 +533,21 @@ Type \`cancel\` to abort. ${str}
                 title: () => `No server`,
                 content: () => `No server found. Please check you're logged with the right account.`
             }
-        },
-        help: {
-            title: () => `Help`,
-            doc: () => `Documentation`,
-            support: () => `Support server`
-        },
-        ranks: {
-            title: () => `🎯 Role rewards`,
-            no: (prefix) => `No role rewards defined. You can configure them with the following commands:${prefix}addrank, ${prefix}removerank and ${prefix}ranks.`,
-            fields: {
-                role: () => `Rôle`,
-                invites: () => `Invitations`
-            }
-        },
-        forms: {
+        },*/
+        //help: {
+        //    title: () => `Help`,
+        //    doc: () => `Documentation`,
+        //    support: () => `Support server`
+        //},
+        //ranks: {
+        //    title: () => `🎯 Role rewards`,
+        //    no: (prefix) => `No role rewards defined. You can configure them with the following commands:${prefix}addrank, ${prefix}removerank and ${prefix}ranks.`,
+            //fields: {
+            //    role: () => `Rôle`,
+            //    invites: () => `Invitations`
+            //}
+        //},
+        /*forms: {
             buttons: {
                 enable: () => `Enable the messages`,
                 disable: () => `Disable the messages`,
@@ -590,7 +590,7 @@ Type \`cancel\` to abort. ${str}
         }
     },
 
-    removeinvites: {
+    /*removeinvites: {
         loading: {
             all: (prefix) => `${emojis.loading} | Deleting invitations from the current server.... You can restore them with the command \`${prefix}restore-invites\`!`,
             member: (prefix, member) => `${emojis.loading} | Deleting current invitations of **${member.user.tag}**... You can restore them with the command \`${prefix}restore-invites ${member.user.tag}\` !`
@@ -617,9 +617,9 @@ Type \`cancel\` to abort. ${str}
             all: () => `${emojis.success} | Server invitations restored!`,
             member: (member) => `${emojis.success} | Invitations of **${member.user.tag}** restored!`
         }
-    },
+    },*/
 
-    syncinvites: {
+    /*syncinvites: {
         no: () => `${emojis.error} | No invites to synchronize.`,
         confirmations: {
             all: (inviteCount) => `${emojis.warn} | Are you sure you want to synchronize the server invitations?\n\n:information_source: **Overview of invitations**:\nIt will be restored **${inviteCount}** regular invitations.\n\n${emojis.success} Type \`-confirm\` to confirm.\n${emojis.error} Type \`cancel\` to abort.`,
@@ -629,9 +629,9 @@ Type \`cancel\` to abort. ${str}
         titles: {
             all: () => `${emojis.success} | Server invitations synchronized!`
         }
-    },
+    },*/
 
-    add: {
+    /*add: {
         content: (id) => `You can add me to your server by clicking [here](https://discordapp.com/oauth2/authorize?client_id=${id}&scope=bot&permissions=2146958847).`,
         requested: (username) => `Requested by ${username}`
     },
@@ -647,6 +647,6 @@ Type \`cancel\` to abort. ${str}
 
     monthIndex: [
         "Jan", "Feb", "March", "Apr", "May", "June", "July", "August", "Sept", "Oct", "Nov", "Dec"
-    ]
+    ]*/
 
 };

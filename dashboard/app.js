@@ -43,8 +43,12 @@ module.exports.load = async (client) => {
     .use(async function(req, res, next){
         req.client = client;
         req.user = req.session.user;
-        let userLang = req.user ? req.user.locale : "en";
-        req.language = require("../languages/"+(availableLanguages.find((l) => l.name === userLang || l.aliases.includes(userLang)) || { name: "english" }).name);
+        req.locale = sessionUser.locale;
+        req.translate = req.client.translations.get(
+            Array.from(req.client.translations).find(l =>
+                l[0].includes(sessionUser.locale)
+            )[0]
+        );
         if(req.user && req.url !== "/") req.userInfos = await utils.fetchUser(req.user, req.client);
         if(req.user){
             let results = await client.shard.broadcastEval(`

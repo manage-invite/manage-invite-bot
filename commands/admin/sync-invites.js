@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class SyncInvites extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "sync-invites",
@@ -13,30 +13,32 @@ class SyncInvites extends Command {
     }
 
     async run (message, args, data) {
-        let guildInvites = await message.guild.fetchInvites();
-        if(guildInvites.size === 0) return message.channel.send(message.language.syncinvites.no());
-        let invitesCount = guildInvites.map((i) => i.uses).reduce((p, c) => p + c);
-        let conf = await message.channel.send(message.language.syncinvites.confirmations.all(invitesCount));
-        message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
-            if(collected.first().content === "cancel") return conf.edit(message.language.syncinvites.confirmations.cancelled());
+        const guildInvites = await message.guild.fetchInvites();
+        if(guildInvites.size === 0) return message.error("admin/sync-invites:NO_INVITES");
+        const inviteCount = guildInvites.map((i) => i.uses).reduce((p, c) => p + c);
+        const conf = await message.sendT("admin/sync-invites:CONFIRM", {
+            success: this.client.config.emojis.success,
+            error: this.client.config.emojis.error,
+            inviteCount
+        });
+        await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
+            if(collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete();
-            let users = new Set(guildInvites.filter((i) => i.inviter).map((i) => i.inviter.id));
+            const users = new Set(guildInvites.filter((i) => i.inviter).map((i) => i.inviter.id));
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
                 const memberData = await this.client.database.fetchMember(user, message.guild.id);
                 memberData.regular = guildInvites.filter((i) => i.inviter && i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c);
                 await memberData.updateInvites();
             });
-            let embed = new Discord.MessageEmbed()
-            .setAuthor(message.language.syncinvites.title())
-            .setDescription(message.language.restoreinvites.titles.all())
+            const embed = new Discord.MessageEmbed()
+            .setAuthor(message.translate("admin/sync-invites:TITLE"))
+            .setDescription(message.translate("admin/sync-invites:DESCRIPTION"))
             .setColor(data.color)
             .setFooter(data.footer);
             conf.edit(null, { embed });
         }).catch(() => {
-            conf.edit(message.language.syncinvites.confirmations.cancelled());
+           conf.error("common:CANCELLED", null, true);
         });
     }
 
 };
-
-module.exports = SyncInvites;

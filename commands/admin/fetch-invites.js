@@ -1,7 +1,6 @@
-const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+const Command = require("../../structures/Command.js");
 
-class FetchInvites extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "fetch-invites",
@@ -15,9 +14,7 @@ class FetchInvites extends Command {
     async run (message, args, data) {
         const invites = await message.guild.fetchInvites();
         this.client.invitations[message.guild.id] = invites;
-        message.channel.send(message.language.fetchInvites.success());
+        message.success("admin/fetch-invites:SUCCESS");
     }
 
 };
-
-module.exports = FetchInvites;

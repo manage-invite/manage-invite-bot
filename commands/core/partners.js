@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class Partners extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "partners",
@@ -29,5 +29,3 @@ class Partners extends Command {
     }
 
 };
-
-module.exports = Partners;

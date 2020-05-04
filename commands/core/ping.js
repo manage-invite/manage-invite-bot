@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class Ping extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "ping",
@@ -14,16 +14,14 @@ class Ping extends Command {
 
     async run (message, args, data) {
         
-        let msg = await message.channel.send(":ping_pong: Pong!");
+        let msg = await message.sendT("core/ping:CONTENT");
     
         let embed = new Discord.MessageEmbed()
-            .setTitle("🏓 Pong!")
+            .setTitle(message.translate("core/ping:TITLE"))
             .setColor(data.color)
             .setFooter(data.footer)
-            .addField("💻 | Websocket Ping", `${Math.floor(this.client.ws.ping)} ms`)
-            .addField("📟 | Bot Ping", `${Math.floor(msg.createdTimestamp - message.createdTimestamp)} ms`)
+            .addField(message.translate("core/ping:WEBSOCKET"), `${Math.floor(this.client.ws.ping)} ms`)
+            .addField(message.translate("core/ping:BOT"), `${Math.floor(msg.createdTimestamp - message.createdTimestamp)} ms`)
         msg.edit(null, { embed });
     }
-}
-
-module.exports = Ping;
+};

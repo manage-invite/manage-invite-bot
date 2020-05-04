@@ -15,11 +15,11 @@ module.exports = class {
 
         if(!message.guild || message.author.bot) return;
 
-        const guildData = await this.client.database.fetchGuild(message.guild.id);
-        data.guild = guildData;
-        message.language = require("../languages/"+data.guild.language);
+        const guildData = data.guild = message.guild.data = await this.client.database.fetchGuild(message.guild.id);
     
-        if(message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.language.utils.prefix(data.guild.prefix));
+        if(message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.translate("misc:PREFIX", {
+            prefix: guildData.prefix
+        }));
 
         // If the message does not start with the prefix, cancel
         if(!message.content.toLowerCase().startsWith(guildData.prefix)){
@@ -46,18 +46,22 @@ module.exports = class {
             }
         });
         if(neededPermissions.length > 0) {
-            return message.channel.send(message.language.errors.missingPerms(neededPermissions));
+            return message.error("misc:BOT_MISSING_PERMISSIONS", {
+                permissions: neededPermissions.map((p) => "`"+p+"`").join(", ")
+            });
         }
 
         /* Command disabled */
         if(!cmd.conf.enabled){
-            return message.channel.send(message.language.errors.disabled());
+            return message.error("misc:COMMAND_DISABLED");
         }
 
         /* User permissions */
         const permLevel = await this.client.getLevel(message);
         if(permLevel < cmd.conf.permLevel){
-            return message.channel.send(message.language.errors.permLevel(this.client.permLevels[cmd.conf.permLevel].name));
+            return message.error("misc:USER_MISSING_PERMISSIONS", {
+                level: this.client.permLevels[cmd.conf.permLevel].name
+            });
         }
 
         this.client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name} (${Date.now()-startAt}ms)`, "cmd");

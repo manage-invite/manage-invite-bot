@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-class BotInfos extends Command {
+module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "botinfos",
@@ -32,18 +32,33 @@ class BotInfos extends Command {
         let embed = new Discord.MessageEmbed()
         .setColor(data.color)
         .setFooter(data.footer)
-        .setAuthor(message.language.botinfos.author(this.client.user.username))
-        .addField(message.language.botinfos.statistics.title(), message.language.botinfos.statistics.content(guildsCount, usersCount) , true)
-        .addField(message.language.botinfos.versions.title(), message.language.botinfos.versions.content(Discord.version, process.version), true)
+        .setAuthor(message.translate("core/botinfos:TITLE", {
+            username: this.client.user.username
+        }))
+        .addField(message.translate("core/botinfos:STATS_TITLE"), message.translate("core/botinfos:STATS_CONTENT", {
+            guilds: guildsCount,
+            users: usersCount
+        }), true)
+        .addField(message.translate("core/botinfos:VERSIONS_TITLE"), message.translate("core/botinfos:VERSIONS_CONTENT", {
+            discord: Discord.version,
+            node: process.version
+        }), true)
         .addField("\u200B", "\u200B");
         results.forEach((shard) => {
-            let title = message.language.botinfos.shard.title(shard[2]+1, this.client.shard.ids.includes(shard[2]));
-            embed.addField(title, message.language.botinfos.shard.content(shard[1], shard[3], shard[0], shard[4], shard[5]), true);
+            const title = message.translate(`core/botinfos:SHARD_TITLE${this.client.shard.ids.includes(shard[2]) ? "_CURRENT" : ""}`, {
+                online: this.client.config.emojis.online,
+                shardID: shard[2]+1
+            });
+            embed.addField(title, message.translate("core/botinfos:SHARD_CONTENT", {
+                guilds: shard[1],
+                ping: shard[3],
+                ram: shard[0],
+                cachedMembers: shard[4],
+                cachedGuilds: shard[5]
+            }), true);
         });
 
         message.channel.send(embed);
     }
 
 };
-
-module.exports = BotInfos;

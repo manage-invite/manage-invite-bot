@@ -1,0 +1,15 @@
+{
+  "BOT_MISSING_PERMISSIONS": "__**Missing permissions**__I need the following permissions for this command to work properly: {{permissions}}",
+  "CANNOT_SEND": "I can't send messages in the channel.",
+  "COMMAND_DISABLED": "This command is currently disabled!",
+  "JOIN_OAUTH2": "{{user}} joined the server using OAuth flow.",
+  "JOIN_PERMISSIONS": "I need the manage server permissions to know who is the inviter of {{user}}.",
+  "JOIN_UNKNOWN": "I can't figure out how {{user}} joined the server.",
+  "JOIN_VANITY": "{{user}} joined the server using a discord.gg invite defined by the guild owner (or admin).",
+  "LEAVE_OAUTH2": "{{user}} left the server, they joined via OAuth.",
+  "LEAVE_UNKNOWN": "{{user}} left the server, but I can't figure out how they joined it.",
+  "LEAVE_VANITY": "{{user}} left the server, they joined using a discord.gg invite defined by the server owner (or an admin).",
+  "LINKS_FOOTER": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Support server]({{discord}}) | [Vote for me](https://top.gg/bot/{{clientID}})",
+  "PREFIX": "Hello! Please type **{{prefix}}help** to see all commands! You can add me to your server with **{{prefix}}add**.",
+  "USER_MISSING_PERMISSIONS": "This command requires the permission level: `{{level}}`!"
+}

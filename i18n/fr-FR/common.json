@@ -1,0 +1,21 @@
+{
+  "CANCELLED": "Annulé.",
+  "CHANNEL": "Salon",
+  "CONFIGURATION": "Configuration",
+  "DEFINED": "Défini",
+  "DOCUMENTATION": "Documentation",
+  "HELP": "Aide",
+  "INVITES": "Invitations",
+  "LANGUAGE": "Langue",
+  "MANAGE": "Gérer",
+  "MEMBERS": "Membres",
+  "MESSAGE": "Message",
+  "NO": "Non",
+  "NOT_DEFINED": "Non défini",
+  "PREFIX": "Préfixe",
+  "ROLE": "Rôle",
+  "SUPPORT_SERVER": "Serveur support",
+  "TEST_IT": "Testez le:",
+  "UPDATE": "Mettre à jour",
+  "YES": "Oui"
+}
