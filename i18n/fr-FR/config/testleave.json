@@ -1,11 +1,11 @@
 {
-    "TITLE": ":wrench: Leave system :",
-    "DESCRIPTION": "If it doesn't work, check the bot permissions or join our [support server]({{discord}})",
-    "ENABLED_TITLE": "> Enabled:",
-    "ENABLED_YES_CONTENT": "{{success}} Leave messages enabled. Disable them with `{{prefix}}setleave`.",
-    "ENABLED_NO_CONTENT": "{{error}} Leave messages disabled. Enable them with `{{prefix}}setleave`.",
-    "CHANNEL_TITLE": "> Channel",
-    "CHANNEL_CONTENT": "No channel defined. Set it with `{{prefix}}configleave`!",
+    "TITLE": ":wrench: Système de départ :",
+    "DESCRIPTION": "Si cela ne fonctionne pas, vérifiez les permissions du bot ou rejoignez notre [serveur support]({{discord}})",
+    "ENABLED_TITLE": "> Activé:",
+    "ENABLED_YES_CONTENT": "{{success}} Messages de départs désactivés. Désactivez-les avec `{{prefix}}setleave`.",
+    "ENABLED_NO_CONTENT": "{{error}} Messages de départs désactivés. Activez-les avec `{{prefix}}setleave`.",
+    "CHANNEL_TITLE": "> Salon",
+    "CHANNEL_CONTENT": "Aucun salon défini. Définissez-le avec `{{prefix}}configleave` !",
     "MESSAGE": "> Message:",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configleave`!"
+    "MESSAGE_CONTENT": "Aucun message défini. Définissez-le avec `{{prefix}}configleave` !"
 }
