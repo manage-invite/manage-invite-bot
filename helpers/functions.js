@@ -53,15 +53,18 @@ const randomID = () => {
  * Gets the next rank for a member
  * @param {number} inviteCount The member's invite count
  * @param {array} ranks The ranks of the guild
+ * @param {Guild} guild The guild
  * @returns {?object} The next rank, if found
  */
-const getNextRank = (inviteCount, ranks) => {
+const getNextRank = (inviteCount, ranks, guild) => {
     let nextRank = null;
     ranks.forEach((rank) => {
         // If the rank is lower
         if(parseInt(rank.inviteCount) <= inviteCount) return;
         // If the rank is higher than rank
         if(nextRank && (parseInt(nextRank.inviteCount) < parseInt(rank.inviteCount))) return;
+        // If the role was deleted
+        if(!guild.roles.cache.get(rank.roleID)) return;
         // Mark the rank as nextRank
         nextRank = rank;
     });
