@@ -1,20 +1,20 @@
 {
-    "TITLE": "Joins on {{server}} these last {{days}} days",
-    "CONTENT": "**{{total}}** members (i.e. **{{percent}}%** of the server) have joined the server from {{from}} to {{to}}:",
-    "PREMIUM": ":crown: | Hey, **{{username}}**! This feature (customized stats period) is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>**!",
-    "INVALID": "You must enter a valid number of days (greater than 1 and lower than 1000) to be displayed!",
+    "TITLE": "Arrivées sur {{server}} ces {{days}} derniers jours",
+    "CONTENT": "**{{total}}** membres (c'est à dire **{{percent}}%** du serveur) ont rejoint le serveur du {{from}} au {{to}}:",
+    "PREMIUM": ":crown: | Bonjour, **{{username}}** ! Cette fonctionnalité (période de statistiques personnalisées) n'est disponible que pour les serveurs premium. Obtenez le premium ici : **<https://docs.manage-invite.xyz/configuration/premium>**!",
+    "INVALID": "Vous devez saisir un nombre de jours valide (supérieur à 1 et inférieur à 1000) pour être affiché !",
     "months": [
-        "Jan",
-        "Feb",
-        "March",
-        "Apr",
-        "May",
-        "June",
-        "July",
-        "August",
+        "Janv",
+        "Fév",
+        "Mars",
+        "Avr",
+        "Mai",
+        "Juin",
+        "Juillet",
+        "Août",
         "Sept",
         "Oct",
         "Nov",
-        "Dec"
+        "Déc"
     ]
 }
