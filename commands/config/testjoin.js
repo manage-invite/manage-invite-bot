@@ -16,18 +16,18 @@ module.exports = class extends Command {
    
         const embed = new Discord.MessageEmbed()
             .setTitle(message.translate("config/testjoin:TITLE"))
-            .setDescription(message.translate("config/testjoin:DESCRIPTION"))
-            .addField(message.translate("config/testjoin:ENABLED"), (data.guild.join.enabled ? message.translate("config/testjoin:ENABLED_YES_CONTENT", {
+            .setDescription(message.translate("config/testleave:DESCRIPTION"))
+            .addField(message.translate("config/testleave:ENABLED"), (data.guild.join.enabled ? message.translate("config/testjoin:ENABLED_YES_CONTENT", {
                 prefix: data.guild.prefix,
                 success: this.client.config.emojis.success
             }) : message.translate("config/testjoin:ENABLED_NO_CONTENT", {
                 prefix: data.guild.prefix,
                 success: this.client.config.emojis.success
             })))
-            .addField(message.translate("config/testjoin:MESSAGE"), (data.guild.join.message || message.translate("config/testjoin:ENABLED_YES_CONTENT", {
+            .addField(message.translate("config/testleave:MESSAGE"), (data.guild.join.message || message.translate("config/testjoin:ENABLED_YES_CONTENT", {
                 prefix: data.guild.prefix
             })))
-            .addField(message.translate("config/testjoin:CHANNEL"), (data.guild.join.channel ? `<#${data.guild.join.channel}>` : message.translate("config/testjoin:CHANNEL_CONTENT", {
+            .addField(message.translate("config/testleave:CHANNEL"), (data.guild.join.channel ? `<#${data.guild.join.channel}>` : message.translate("config/testjoin:CHANNEL_CONTENT", {
                 prefix: data.guild.prefix
             })))
             .setThumbnail(message.author.avatarURL())

@@ -23,17 +23,17 @@ module.exports = class extends Command {
         
         const embed = new Discord.MessageEmbed()
             .setTitle(message.translate("config/testjoindm:TITLE"))
-            .setDescription(message.translate("config/testjoindm:DESCRIPTION", {
+            .setDescription(message.translate("config/testleave:DESCRIPTION", {
                 discord: Constants.Links.DISCORD
             }))
-            .addField(message.translate("config/testjoindm:ENABLED"), (data.guild.joinDM.enabled ? message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
+            .addField(message.translate("config/testleave:ENABLED"), (data.guild.joinDM.enabled ? message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
                 prefix: data.guild.prefix,
                 success: this.client.config.emojis.success
             }) : message.translate("config/testjoindm:ENABLED_NO_CONTENT", {
                 prefix: data.guild.prefix,
                 success: this.client.config.emojis.success
             })))
-            .addField(message.translate("config/testjoindm:MESSAGE"), (data.guild.joinDM.message || message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
+            .addField(message.translate("config/testleave:MESSAGE"), (data.guild.joinDM.message || message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
                 prefix: data.guild.prefix
             })))
             .setThumbnail(message.author.avatarURL())
