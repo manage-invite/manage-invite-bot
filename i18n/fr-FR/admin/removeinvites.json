@@ -1,7 +1,7 @@
 {
-    "LOADING": "{{loading}} | Deleting invitations from the current server.... You can restore them with the command `{{prefix}}restore-invites`!",
-    "LOADING_MEMBER": "{{loading}} | Deleting current invitations of **{{username}}**... You can restore them with the command `{{prefix}}restore-invites {{username}}`!",
-    "TITLE": "☄️ Invitations reinitalized",
-    "DESCRIPTION": "{{success}} | Server invitations reinitialized! You can restore them with the command `{{prefix}}restore-invites`!",
-    "DESCRIPTION_MEMBER": "{{success}} | Invitations of **{{username}}** reinitialized! You can restore them with the command `{{prefix}}restore-invites {{username}}`!"
+    "LOADING": "{{loading}} | Supprimer les invitations du serveur actuel.... Vous pouvez les restaurer avec la commande `{{prefix}}restore-invites` !",
+    "LOADING_MEMBER": "{{loading}} | Suppression des invitations actuelles de **{{username}}**... Vous pouvez les restaurer avec la commande `{{prefix}}restore-invites {{username}}` !",
+    "TITLE": "☄️ Invitations réinitalisées",
+    "DESCRIPTION": "{{success}} | Invitations du serveur réinitialisées ! Vous pouvez les restaurer avec la commande `{{prefix}}restore-invites` !",
+    "DESCRIPTION_MEMBER": "{{success}} | Invitations de **{{username}}** réinitialisées ! Vous pouvez les restaurer avec la commande `{{prefix}}restore-invites {{username}}` !"
 }
