@@ -38,7 +38,6 @@ module.exports = class {
             let channel = member.guild.channels.cache.get(guildData.leave.channel);
             if(!channel) return;
             let joinType = memberData.joinData ? memberData.joinData.type : null;
-            let language = require("../languages/"+guildData.language);
             if(invite){
                 let formattedMessage = this.client.functions.formatMessage(guildData.leave.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData)
                 channel.send(formattedMessage);
