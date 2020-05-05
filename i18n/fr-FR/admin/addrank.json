@@ -1,10 +1,10 @@
 {
-    "MISSING_COUNT": "You must write the number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
-    "INCORRECT_COUNT": " You must write a __**valid**__ number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
-    "ALREADY_EXIST": "There is already a defined role for **{{count}}** invites (`{{roleName}}`)! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
-    "MISSING_ROLE": "You must mention the role you want to be added when the invite count is reached! (Syntax: {{prefix}}addrank number @role)",
-    "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
-    "MISSING_PERM": "My role is not high enough to add the role `{{roleName}}` to the members! Please put my role up and try again!",
-    "TITLE": "🎯 New role added",
-    "CONTENT": "When a member will reach **{{count}}** invites, they will obtain `{{roleName}}`!"
+    "MISSING_COUNT": "Vous devez spécifier le nombre d'invitations nécessaires pour obtenir le grade. (Syntaxe : {{prefix}}addrank nombre @rôle)",
+    "INCORRECT_COUNT": " Vous devez spécifier un nombre __**valide**__ d'invitations requises pour obtenir le grade. (Syntaxe : {{prefix}}addrank nombre @rôle)",
+    "ALREADY_EXIST": "Il existe déjà un rôle défini pour  **{{count}}** invitations (`{{roleName}}`) ! Supprimez-le avec `{{prefix}}removerank {{roleID}}` puis essayez à nouveau !",
+    "MISSING_ROLE": "Vous devez mentionner le rôle que vous souhaitez ajouter lorsque le nombre d'invitations est atteint ! (Syntaxe : {{prefix}}addrank nombre @rôle)",
+    "ALREADY_USED": "Ce rôle est déjà utilisé pour **{{count}}** invitations ! Enlevez-le avec `{{{prefix}}removerank {{roleID}}` puis réessayez !",
+    "MISSING_PERM": "Mon rôle n'est pas assez élevé pour ajouter le rôle `{{roleName}}` aux membres ! S'il vous plaît, augmentez mon rôle et essayez à nouveau!",
+    "TITLE": "🎯 Nouveau rôle ajouté",
+    "CONTENT": "Quand un membre atteindra **{{count}}** invitations, il obtiendra `{{roleName}}` !"
 }
