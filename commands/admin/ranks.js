@@ -28,7 +28,7 @@ module.exports = class extends Command {
             return message.channel.send(embed);
         }
 
-        const description = `[${message.translate("admin/ranks:VIEW_CONF")}](${Constants.Links.DASHBOARD})\n\n`;
+        let description = `[${message.translate("admin/ranks:VIEW_CONF")}](${Constants.Links.DASHBOARD})\n\n`;
         ranks.forEach((rank) => {
             const role = message.guild.roles.cache.get(rank.roleID);
             if(!role) return;
