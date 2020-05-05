@@ -1,11 +1,11 @@
 {
-    "AUTHOR_BLACKLISTED": "You are blacklisted on this server, you can't run this command.",
-    "BLACKLISTED": "{{username}} is blacklisted on this server.",
-    "MISSING_TYPE": "You must enter a valid action! (`add`, `remove` or `list`)\n\n:information_source: Users in the blacklist:\n- Won't receive/loose roles\n- Won't appear in the leaderboard\n- Won't have their invites tracked anymore\n- Won't be able to run the `invites` command",
-    "MISSING_MEMBER_ADD": "You must mention a valid member to add in the blacklist!",
-    "MISSING_MEMBER_REMOVE": "You must mention a valid member to remove from the blacklist!",
-    "SUCCESS_MEMBER_ADD": "**{{username}}** was added to the blacklist!",
-    "SUCCESS_MEMBER_REMOVE": "**{{username}}** was removed from the blacklist!",
-    "EMPTY": "No blacklisted users!",
-    "NOT_BLACKLISTED": "**{{username}}** is not in the blacklist!"
+    "AUTHOR_BLACKLISTED": "Vous êtes sur liste noire sur ce serveur, vous ne pouvez pas exécuter cette commande.",
+    "BLACKLISTED": "{{username}} est sur liste noire sur ce serveur.",
+    "MISSING_TYPE": "Vous devez saisir une action valide ! `add` (ajouter), `remove` (supprimer) ou `list` (lister)\n\n:information_source: Les utilisateurs de la liste noire :\n- Ne recevront pas/ne perdront pas leur rôle\n- N'apparaîtra pas dans le classement\n- Leurs invitations ne seront plus suivies\n- Ne pourra pas exécuter la commande invites",
+    "MISSING_MEMBER_ADD": "Vous devez mentionner un membre valide pour l'ajouter à la liste noire !",
+    "MISSING_MEMBER_REMOVE": "Vous devez mentionner un membre valide pour être retiré de la liste noire !",
+    "SUCCESS_MEMBER_ADD": "**{{username}}** a été ajouté à la liste noire !",
+    "SUCCESS_MEMBER_REMOVE": "**{{username}}** a été retiré de la liste noire !",
+    "EMPTY": "Pas d'utilisateurs sur liste noire !",
+    "NOT_BLACKLISTED": "**{{username}}** n'est pas dans la liste noire !"
 }
