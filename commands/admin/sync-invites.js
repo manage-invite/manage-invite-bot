@@ -7,7 +7,7 @@ module.exports = class extends Command {
             name: "sync-invites",
             enabled: true,
             aliases: [ "sync" ],
-            clientPermissions: [ "MANAGE_INVITES" ],
+            clientPermissions: [ "MANAGE_GUILD" ],
             permLevel: 2
         });
     }
