@@ -14,7 +14,7 @@ module.exports = class Guild {
         // Whether the guild is fetched
         this.fetched = false;
         // Guild language
-        this.language = data.guild_language || "english";
+        this.language = data.guild_language || "en-US";
         // Guild prefix
         this.prefix = data.guild_prefix || "+";
         // Guild premium status
