@@ -35,7 +35,7 @@ module.exports = class extends Command {
             description += message.translate("admin/ranks:RANK", {
                 rank: role.toString(),
                 invites: rank.inviteCount
-            });
+            })+"\n";
         });
 
         embed.setAuthor(message.translate("admin/ranks:TITLE"))
