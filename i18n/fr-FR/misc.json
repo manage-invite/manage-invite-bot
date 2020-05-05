@@ -1,5 +1,5 @@
 {
-  "BOT_MISSING_PERMISSIONS": "__**Permissions manquantes**__\n\nJ'ai besoin des permissions suivantes pour effectuer cette commande: {{permissions}}",
+  "BOT_MISSING_PERMISSIONS": "__**Missing permissions**__\n\nI need the following permissions for this command to work properly: {{permissions}}",
   "CANNOT_SEND": "Je ne peux pas envoyer de message dans le salon.",
   "COMMAND_DISABLED": "Cette commande est actuellement désactivée!",
   "JOIN_OAUTH2": "{{user}} a rejoint en utilisant le flux OAuth2.",
