@@ -1,4 +1,4 @@
 {
-    "INVALID": "You must write a valid language!\n\n:flag_fr: Français (`fr`)\n:flag_gb: English (`en`)\nYour language is not supported? Join the support server and translate the bot in your language!",
-    "SUCCESS": "Language has beed updated!"
+    "INVALID": "Vous devez envoyer une langue valide !\n\n:flag_fr: Français (`fr`)\n:flag_gb: English (`en`)\nVotre langue n'est pas encore supportée? Rejoignez le serveur support et traduisez le bot dans votre langue!",
+    "SUCCESS": "La langue a été mise à jour !"
 }

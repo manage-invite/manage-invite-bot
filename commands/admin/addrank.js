@@ -51,7 +51,7 @@ module.exports = class extends Command {
         .setAuthor(message.translate("admin/addrank:TITLE"))
         .setTitle(message.translate("admin/ranks:VIEW_CONF"))
         .setURL("https://dash.manage-invite.xyz")
-        .setDescription(mmessage.translate("admin/addrank:CONTENT", {
+        .setDescription(message.translate("admin/addrank:CONTENT", {
             count: inviteCount,
             roleName: role.name
         }))

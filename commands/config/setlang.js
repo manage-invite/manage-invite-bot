@@ -3,7 +3,7 @@ Discord = require("discord.js");
 
 const languages = [
     {
-        name: "fr_FR",
+        name: "fr-FR",
         aliases: [
             "french",
             "francais",
@@ -12,7 +12,7 @@ const languages = [
         ]
     },
     {
-        name: "en_US",
+        name: "en-US",
         aliases: [
             "english",
             "en"

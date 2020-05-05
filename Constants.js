@@ -1,5 +1,5 @@
 const Links = {
-    DISCORD: "",
+    DISCORD: "https://discord.gg/N99PJgE",
     DASHBOARD: "https://dash.manage-invite.xyz"
 };
 

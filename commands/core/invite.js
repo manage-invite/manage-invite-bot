@@ -39,9 +39,9 @@ module.exports = class extends Command {
         });
 
         const secondDescription = member.id === message.member.id && nextRank ?
-        message.translate("core/invite:AUTHOR_NEXT_RANK", {
+        "\n"+message.translate("core/invite:AUTHOR_NEXT_RANK", {
             neededCount: nextRank.inviteCount - memberData.calcInvites(),
-            rankName: message.guild.roles.cache.get(nextRank.roleID) || "deleted-role"
+            rankName: message.guild.roles.cache.get(nextRank.roleID).toString() || "deleted-role"
         }) : "";
 
         const embed = new Discord.MessageEmbed()

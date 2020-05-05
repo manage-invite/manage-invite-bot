@@ -1,6 +1,7 @@
 const { Pool } = require("pg");
 const { Collection } = require("discord.js");
 const { asyncForEach } = require("./functions");
+const logger = require("./logger");
 
 const Guild = require("../models/Guild");
 const Member = require("../models/Member");
@@ -10,6 +11,10 @@ module.exports = class DatabaseHandler {
         Object.defineProperty(this, "client", { value: client });
         const { database } = this.client.config;
         this.pool = new Pool(database);
+        this.pool
+        .on("connect", () => {
+            logger.log("Shard #"+this.client.shard.ids[0]+" connected to database.");
+        });
 
         // Cache
         this.guildCache = new Collection();

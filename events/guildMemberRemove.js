@@ -38,24 +38,23 @@ module.exports = class {
             let channel = member.guild.channels.cache.get(guildData.leave.channel);
             if(!channel) return;
             let joinType = memberData.joinData ? memberData.joinData.type : null;
-            let language = require("../languages/"+guildData.language);
             if(invite){
                 let formattedMessage = this.client.functions.formatMessage(guildData.leave.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData)
                 channel.send(formattedMessage);
             } else if(joinType === "vanity"){
-                channel.send(member.guild.translate("LEAVE_VANITY", {
+                channel.send(member.guild.translate("misc:LEAVE_VANITY", {
                     user: member.user.tag
                 }));
             } else if(joinType === "oauth"){
-                channel.send(member.guild.translate("LEAVE_OAUTH2", {
+                channel.send(member.guild.translate("misc:LEAVE_OAUTH2", {
                     user: member.user.tag
                 }));
             } else if(joinType === "perm"){
-                channel.send(member.guild.translate("LEAVE_UNKNOWN", {
+                channel.send(member.guild.translate("misc:LEAVE_UNKNOWN", {
                     user: member.user.tag
                 }));
             } else {
-                channel.send(member.guild.translate("LEAVE_UNKNOWN", {
+                channel.send(member.guild.translate("misc:LEAVE_UNKNOWN", {
                     user: member.user.tag
                 }));
             }

@@ -36,7 +36,7 @@ module.exports  = class extends Command {
                 id: member.user_id
             });
         });
-        members = members.filter((m) => m.calculatedInvites !== 0).sort((a, b) => b.calculatedInvites - a.calculatedInvites);
+        members = members.filter((m) => m.invites !== 0).sort((a, b) => b.invites - a.invites);
 
         const embeds = [];
         /* Distributes array */

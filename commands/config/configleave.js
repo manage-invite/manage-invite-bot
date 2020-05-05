@@ -7,7 +7,7 @@ module.exports = class extends Command {
             name: "configleave",
             enabled: true,
             aliases: [ "leave", "leaveconfig" ],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ "EMBED_LINKS", "ADMINISTRATOR" ],
             permLevel: 2
         });
     }
@@ -24,7 +24,7 @@ module.exports = class extends Command {
             string: str
         });
 
-        const collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
+        let collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
         if(!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
         const confMessage = collected.first().content;
         if(confMessage === "cancel") return msg.error("common:CANCELLED", null, true);

@@ -87,8 +87,6 @@ module.exports = class {
             }
         }
 
-        let language = require("../languages/"+guildData.language);
-
         if(invite){
             await memberData.setJoinData({
                 type: "normal",
