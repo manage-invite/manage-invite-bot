@@ -43,10 +43,10 @@ module.exports.load = async (client) => {
     .use(async function(req, res, next){
         req.client = client;
         req.user = req.session.user;
-        req.locale = sessionUser.locale;
+        req.locale = req.user.locale;
         req.translate = req.client.translations.get(
             Array.from(req.client.translations).find(l =>
-                l[0].includes(sessionUser.locale)
+                l[0].includes(req.user.locale)
             )[0]
         );
         if(req.user && req.url !== "/") req.userInfos = await utils.fetchUser(req.user, req.client);
