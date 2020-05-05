@@ -1,9 +1,9 @@
 {
-    "TITLE": "{{guild}} configuration",
-    "JOIN_TITLE": "{{status}} Join Messages",
-    "JOIN_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}\n> Channel: {{channel}}",
-    "LEAVE_TITLE": "{{status}} Leave Messages",
-    "JOIN_DM_TITLE": "{{status}} Join DM Messages",
-    "JOIN_DM_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}",
-    "CHANNEL_NOT_FOUND": "**channel not found**"
+    "TITLE": "Configuration de {{guild}}",
+    "JOIN_TITLE": "{{status}} Messages d'arrivées",
+    "JOIN_CONTENT": "> Activé: {{enabled}}\n> Message: {{message}}\n> Salon: {{channel}}",
+    "LEAVE_TITLE": "{{status}} Messages de départs",
+    "JOIN_DM_TITLE": "{{status}} Messages d'arrivées en MP",
+    "JOIN_DM_CONTENT": "> Activé: {{enabled}}\n> Message: {{message}}",
+    "CHANNEL_NOT_FOUND": "**salon non trouvé**"
 }

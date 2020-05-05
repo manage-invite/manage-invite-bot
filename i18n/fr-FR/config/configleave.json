@@ -1,8 +1,8 @@
 {
-    "DISABLE": "Type `{{prefix}}setleave` to disable leave messages",
-    "INSTRUCTIONS_1": "__**More informations**__\n```\n{user} : The mention of the member that just left your server.\n{user.name} : The name of the member that just left your server.\n{user.tag} : The tag of the member that just left your server.\n{user.createdat} : The account age of the member.\n{user.id} : The ID of the member.\n\n{guild} : Name of the server.\n{guild.count} : Number of members your server has now.\n\n{inviter} : The mention of the inviter.\n{inviter.name} : The name of the inviter.\n{inviter.tag} : The tag of the inviter.\n{inviter.invites} : The total inviter's invites count.\n{inviter.id} : The ID of the inviter.\n\n{invite.code} : The invite code used.\n{invite.url} : The invite url used.\n{invite.uses} : Number of uses of the invite used.\n```\nType `cancel` to abort. {{string}}\n\n\n:pencil: **| Now write the join DM message... :pencil2:**",
-    "INSTRUCTIONS_2": ":scroll: **| Now write the leave channel name or mention it... :pencil2:**",
-    "SUCCESS": "**Done The leave Msg Has Been Setup**",
-    "TEST": "Use `{{prefix}}testleave` to test the new message.",
-    "CHANNEL_NOT_FOUND": "No channel found for `{{channel}}`"
+    "DISABLE": "Tapez `{{prefix}}setleave` pour désactiver les messages de départs",
+    "INSTRUCTIONS_1": "__**Plus d'informations**__\n```\n{user} : La mention du membre qui vient de quitter votre serveur.\n{user.name} : Le nom du membre qui vient de quitter votre serveur.\n{user.tag} : Le tag du membre qui vient de quitter votre serveur.\n{user.createdat} : L'âge du compte du membre.\n{user.id} : L'ID du compte du membre.\n\n{guild} : Le nom de votre serveur.\n{guild.count} : Le nombre de membres que votre serveur a.\n\n{inviter} : La mention de l'inviteur.\n{inviter.name} : Le nom de l'inviteur.\n{inviter.tag} : Le tag de l'inviteur.\n{inviter.invites} : Le nombre d'invitations de l'inviteur.\n{inviter.id} : L'ID de l'inviteur.\n\n{invite.code} : Le code de l'invitation utilisée.\n{invite.url} : L'URL de l'invitation utilisée.\n{invite.uses} : Le nombre d'utilisations de l'invitation utilisée.\n```\nTapez `cancel` pour annuler. {{string}}\n\n\n:pencil: **| Maintenant envoyez le message de départ... :pencil2:**",
+    "INSTRUCTIONS_2": ":scroll: **| Maintenant envoyez le nom du salon des départs ou mentionnez-le... :pencil2:**",
+    "SUCCESS": "**Done Le Message de Départs A Été Configuré**",
+    "TEST": "Utilisez `{{prefix}}testleave` pour tester le nouveau message.",
+    "CHANNEL_NOT_FOUND": "Aucun salon trouvé pour `{{channel}}`"
 }

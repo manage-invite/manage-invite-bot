@@ -12,7 +12,7 @@
   "LEAVE_TITLE": "Messages de départs",
   "NO_SERVER_CONTENT": "Aucun serveur trouvé. Vérifiez que vous êtes connecté avec le bon compte.",
   "NO_SERVER_TITLE": "Aucun serveur.",
-  "ROLE_REWARDS": "🎯 Rôles récompenses",
+  "ROLE_REWARDS": "🎯 Grades récompenses",
   "ROLE_REWARDS_EMPTY": "Aucun rôle récompense défini. Vous pouvez les configurer avec les commandes suivantes: {{prefix}}addrank, {{prefix}}removerank et {{prefix}}ranks.",
   "SELECTOR": "Selector"
 }

@@ -1,6 +1,6 @@
 {
-    "TITLE": ":wrench: DM Join system :",
-    "ENABLED_YES_CONTENT": "{{success}} Join messages in dm enabled. Disable them with `{{prefix}}setdmjoin`.",
-    "ENABLED_NO_CONTENT": "{{error}} Join messages in dm disabled. Enable them with `{{prefix}}setdmjoin`.",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configdm`!"
+    "TITLE": ":wrench: Système d'arrivées en MP :",
+    "ENABLED_YES_CONTENT": "{{success}} Messages d'arrivées en MP activés. Désactivez-les avec `{{prefix}}setdmjoin`.",
+    "ENABLED_NO_CONTENT": "{{error}} Messages d'arrivées en MP désactivés. Activez-les avec `{{prefix}}setdmjoin`.",
+    "MESSAGE_CONTENT": "Pas de message défini. Définissez-le avec `{{prefix}}configdm`!"
 }
