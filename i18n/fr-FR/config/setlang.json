@@ -1,4 +1,4 @@
 {
-    "INVALID": "You must write a valid language!\n\n:flag_fr: Français (`fr`)\n:flag_gb: English (`en`)",
-    "SUCCESS": "Language has beed updated!`"
+    "INVALID": "Vous devez envoyer une langue valide !\n\n:flag_fr: Français (`fr`)\n:flag_gb: English (`en`)",
+    "SUCCESS": "La langue a été mise à jour !"
 }
