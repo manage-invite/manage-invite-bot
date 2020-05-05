@@ -43,14 +43,14 @@ module.exports.load = async (client) => {
     .use(async function(req, res, next){
         req.client = client;
         req.user = req.session.user;
-        req.locale = req.user.locale;
-        req.translate = req.client.translations.get(
-            Array.from(req.client.translations).find(l =>
-                l[0].includes(req.user.locale)
-            )[0]
-        );
         if(req.user && req.url !== "/") req.userInfos = await utils.fetchUser(req.user, req.client);
         if(req.user){
+            req.locale = req.user.locale;
+            req.translate = req.client.translations.get(
+                Array.from(req.client.translations).find(l =>
+                    l[0].includes(req.user.locale)
+                )[0]
+            );
             let results = await client.shard.broadcastEval(`
             let guild = this.guilds.cache.get("638685268777500672");
             if(guild){
