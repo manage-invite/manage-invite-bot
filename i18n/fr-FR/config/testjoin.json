@@ -1,7 +1,7 @@
 {
-    "TITLE": ":wrench: Join system :",
-    "ENABLED_YES_CONTENT": "{{success}} Join messages enabled. Disable them with `{{prefix}}setjoin`.",
-    "ENABLED_NO_CONTENT": "{{error}} Join messages disabled. Enable them with `{{prefix}}setjoin`.",
-    "CHANNEL_CONTENT": "No channel defined. Set it with `{{prefix}}configjoin`!",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configjoin`!"
+    "TITLE": ":wrench: Système d'arrivées :",
+    "ENABLED_YES_CONTENT": "{{success}} Messages d'arrivées activés. Désactivez-les avec `{{prefix}}setjoin`.",
+    "ENABLED_NO_CONTENT": "{{error}} Messages d'arrivées désactivés. Activez-les avec `{{prefix}}setjoin`.",
+    "CHANNEL_CONTENT": "Aucun salon défini. Définissez-le avec `{{prefix}}configjoin`!",
+    "MESSAGE_CONTENT": "Aucun message défini. Définissez-le avec `{{prefix}}configjoin` !"
 }
