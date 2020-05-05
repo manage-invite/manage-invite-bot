@@ -1,0 +1,7 @@
+{
+    "TITLE": "🎯 Roles rewards",
+    "RANK": "{{rank}} (**{{invites}}** invites)",
+    "NO_RANK_TITLE": "🎯 No role",
+    "NO_RANK_CONTENT": "To add a role reward (added when a member reach a certain number of invites), write `{{prefix}}addrank number @role`!",
+    "VIEW_CONF": "View the configuration on the dashboard"
+}
