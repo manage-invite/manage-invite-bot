@@ -11,7 +11,7 @@
     "cron": "^1.8.2",
     "discord-paginationembed": "^2.0.0-beta.4",
     "discord.js": "^12.2.0",
-    "ejs": "^2.7.1",
+    "ejs": "^3.1.2",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "i18next": "^19.3.3",
