@@ -7,7 +7,7 @@ module.exports = class extends Command {
             name: "configleave",
             enabled: true,
             aliases: [ "leave", "leaveconfig" ],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ "EMBED_LINKS", "ADMINISTRATOR" ],
             permLevel: 2
         });
     }

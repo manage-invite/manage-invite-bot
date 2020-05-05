@@ -7,7 +7,7 @@ module.exports = class extends Command {
             name: "configjoin",
             enabled: true,
             aliases: [ "join", "joinconfig" ],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ "EMBED_LINKS", "ADMINISTRATOR" ],
             permLevel: 2
         });
     }
