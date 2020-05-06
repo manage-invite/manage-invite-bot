@@ -1,0 +1,11 @@
+{
+    "TITLE": ":wrench: Leave system :",
+    "DESCRIPTION": "If it doesn't work, check the bot permissions or join our [support server]({{discord}})",
+    "ENABLED_TITLE": "> Enabled:",
+    "ENABLED_YES_CONTENT": "{{success}} Leave messages enabled. Disable them with `{{prefix}}setleave`.",
+    "ENABLED_NO_CONTENT": "{{error}} Leave messages disabled. Enable them with `{{prefix}}setleave`.",
+    "CHANNEL_TITLE": "> Channel",
+    "CHANNEL_CONTENT": "No channel defined. Set it with `{{prefix}}configleave`!",
+    "MESSAGE": "> Message:",
+    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configleave`!"
+}
