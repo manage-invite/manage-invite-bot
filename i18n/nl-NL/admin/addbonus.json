@@ -1,7 +1,7 @@
 {
-    "MISSING_AMOUNT": "You must write the number of bonus invites you want to add. (Syntax: {{prefix}}addbonus number @member)",
-    "INVALID_AMOUNT": "You must write a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member)",
-    "MISSING_MEMBER": "You must mention the member to whom you want to add the bonus invites. (Syntax: {{prefix}}addbonus number @member)",
-    "SUCCESS_TITLE": "📥 Bonus Invites Added",
-    "SUCCESS_CONTENT": "Write `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
+    "MISSING_AMOUNT": "Je moet het aantal nummers van de bonus die je wilt toevoegen invullen (Syntax: {{prefix}}voegbonus nummer @member)",
+    "INVALID_AMOUNT": "Je moest een __**geldig**__ nummer toevoegen van bonus invites dat je wilt toevoegen. (Syntax: {{prefix}}voegbonus nummer @member)",
+    "MISSING_MEMBER": "Je moet het lid vermelden van wie je wilt de bonus invites zien (Syntax: {{prefix}}voegbonus nummer @member)",
+    "SUCCESS_TITLE": "📥 Bonus Uitnodigingen Toegevoegd",
+    "SUCCESS_CONTENT": "Schrijf `{{prefix}}uitnodigingen {{usertag}}` om de nieuwe uitnodigingen te zien van **{{username}}**!"
 }
