@@ -51,7 +51,7 @@ module.exports = class extends Command {
             const joinPos = members.map((u) => u.id).indexOf(member.id);
             const previous = members[joinPos - 1] ? members[joinPos - 1].user : null;
             const next = members[joinPos + 1] ? members[joinPos + 1].user : null;
-            embed.addField(fields.joinedAt.title(), joinDate.charAt(0).toUpperCase() + joinDate.substr(1, joinDate.length), true)
+            embed.addField(message.translate("core/userinfo:JOINED_AT_TITLE"), joinDate.charAt(0).toUpperCase() + joinDate.substr(1, joinDate.length), true)
             .addField(message.translate("core/userinfo:INVITES_TITLE"), data.guild.blacklistedUsers.includes(member.id) ? message.translate("admin/blacklist:BLACKLISTED", {
                 username: member.user.tag
             }) : message.translate("core/invite:MEMBER_CONTENT", {
