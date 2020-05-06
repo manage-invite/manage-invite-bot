@@ -19,7 +19,8 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
             translate: req.translate,
             currentURL: `${req.client.config.baseURL}${req.originalUrl}`,
             member: req.member,
-            discord: req.client.config.discord
+            discord: req.client.config.discord,
+            locale: req.user.locale
         });
     }
 
@@ -33,7 +34,8 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
         client: req.client,
         currentURL: `${req.client.config.baseURL}${req.originalUrl}`,
         member: req.member,
-        discord: req.client.config.discord
+        discord: req.client.config.discord,
+        locale: req.user.locale
     });
 
 });
@@ -55,7 +57,8 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
             translate: req.translate,
             currentURL: `${req.client.config.baseURL}${req.originalUrl}`,
             member: req.member,
-            discord: req.client.config.discord
+            discord: req.client.config.discord,
+            locale: req.user.locale
         });
     }
     

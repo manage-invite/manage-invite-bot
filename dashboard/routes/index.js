@@ -12,7 +12,8 @@ router.get("/selector", CheckAuth, async(req, res) => {
         translate: req.translate,
         currentURL: `${req.client.config.baseURL}${req.originalUrl}`,
         member: req.member,
-        discord: req.client.config.discord
+        discord: req.client.config.discord,
+        locale: req.user.locale
     });
 });
 
