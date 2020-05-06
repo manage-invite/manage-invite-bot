@@ -1,0 +1,8 @@
+{
+    "TITLE": "{{guild}}'s MemberCount",
+    "TOTAL": "Total of **{{totalCount}}**  members (**{{humanCount}}** humans and **{{botCount}}** bots)",
+    "DND": "➔ {{emoji}} | {{count}} members dnd",
+    "ONLINE": "➔ {{emoji}} | {{count}} members online",
+    "IDLE": "➔ {{emoji}} | {{count}} members idle",
+    "OFFLINE": "➔ {{emoji}} | {{count}} members offline"
+}
