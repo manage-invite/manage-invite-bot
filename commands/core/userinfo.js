@@ -42,9 +42,9 @@ module.exports = class extends Command {
                 const inviter = await this.client.users.fetch(joinData.inviteData.inviter);
                 joinWay = inviter.tag;
             } else if(joinData.type === "vanity"){
-                joinWay = fields.joinWay.vanity();
+                joinWay = message.translate("core/userinfo:JOIN_WAY_VANITY");
             } else if(joinData.type === "oauth" || user.bot){
-                joinWay = fields.joinWay.oauth();
+                joinWay = message.translate("core/userinfo:JOIN_WAY_OAUTH");
             }
             const guild = await message.guild.fetch();
             const members = guild.members.cache.array().sort((a,b) => a.joinedTimestamp - b.joinedTimestamp);
