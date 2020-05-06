@@ -1,0 +1,7 @@
+{
+    "DISABLE": "Type `{{prefix}}setdmjoin` to disable join messages in dm.",
+    "INSTRUCTIONS": "__**More informations**__\n```\n{user} : The mention of the member that just joined your server.\n{user.name} : The name of the member that just joined your server.\n{user.tag} : The tag of the member that just joined your server.\n{user.createdat} : The account age of the member.\n{user.id} : The ID of the member.\n\n{guild} : Name of the server.\n{guild.count} : Number of members your server has now.\n\n{inviter} : The mention of the inviter.\n{inviter.name} : The name of the inviter.\n{inviter.tag} : The tag of the inviter.\n{inviter.invites} : The total inviter's invites count.\n{inviter.id} : The ID of the inviter.\n\n{invite.code} : The invite code used.\n{invite.url} : The invite url used.\n{invite.uses} : Number of uses of the invite used.\n```\nType `cancel` to abort. {{string}}\n\n\n:pencil: **| Now write the join DM message... :pencil2:**",
+    "SUCCESS": "✅ **| Done successfully...**",
+    "TITLE": "**Done The join DM Msg Has Been Setup**",
+    "TEST": "Use `{{prefix}}testjoindm` to test the new message."
+}
