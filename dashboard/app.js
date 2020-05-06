@@ -45,7 +45,7 @@ module.exports.load = async (client) => {
         req.user = req.session.user;
         if(req.user && req.url !== "/") req.userInfos = await utils.fetchUser(req.user, req.client);
         if(req.user){
-            req.locale = req.user.locale;
+            req.locale = req.user.locale === "fr" ? "fr-FR" : "en-US";
             req.translate = req.client.translations.get(
                 Array.from(req.client.translations).find(l =>
                     l[0].includes(req.user.locale)

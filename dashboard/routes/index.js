@@ -17,7 +17,7 @@ router.get("/selector", CheckAuth, async(req, res) => {
 });
 
 router.get("/language", CheckAuth, async(req, res) => {
-    req.user.locale = (req.query.new || "en").substr(0, 2);
+    req.user.locale = (req.query.new || "en-US").substr(0, 2);
     res.redirect(req.query.url || "/selector");
 });
 
