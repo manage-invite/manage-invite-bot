@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-<%- include includes/head %>
+<%- include('includes/head') %>
 
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
 <div class="wrapper">
 
-  <%- include includes/header %>
+  <%- include('includes/header') %>
 
   <!-- Full Width Column -->
   <div class="content-wrapper">
@@ -179,7 +179,7 @@
                         <!-- /.box-body -->
                         <div class="box-footer">
                             <% if(guild.join.enabled){ %>
-                                <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE) %></button>
+                                <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
                                 <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
                             <% } else { %>
                                 <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
@@ -238,7 +238,7 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <%- include includes/footer %>
+  <%- include('includes/footer') %>
 
 </div>
 <!-- ./wrapper -->

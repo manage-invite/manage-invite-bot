@@ -44,8 +44,8 @@ module.exports.load = async (client) => {
         req.client = client;
         req.user = req.session.user;
         if(req.user && req.url !== "/") req.userInfos = await utils.fetchUser(req.user, req.client);
+        req.locale = req.user ? (req.user.locale === "fr" ? "fr-FR" : "en-US") : "en-US";
         if(req.user){
-            req.locale = req.user.locale === "fr" ? "fr-FR" : "en-US";
             req.translate = req.client.translations.get(req.locale);
             let results = await client.shard.broadcastEval(`
             let guild = this.guilds.cache.get("638685268777500672");
@@ -66,8 +66,9 @@ module.exports.load = async (client) => {
         if(!req.user) return res.redirect("/login");
         res.status(404).render("404", {
             user: req.userInfos,
-            language: req.language,
-            currentURL: `${req.protocol}://${req.get("host")}${req.originalUrl}`
+            currentURL: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
+            locale: req.locale || "en-US",
+            translate: req.translate
         });
     })
     .use(CheckAuth, function(err, req, res, next) {
@@ -75,8 +76,9 @@ module.exports.load = async (client) => {
         console.log(err);
         res.status(500).render("500", {
             user: req.userInfos,
-            language: req.language,
-            currentURL: `${req.protocol}://${req.get("host")}${req.originalUrl}`
+            currentURL: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
+            locale: req.locale || "en-US",
+            translate: req.translate
         });
     });
 
