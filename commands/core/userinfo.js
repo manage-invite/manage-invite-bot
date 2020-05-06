@@ -35,7 +35,7 @@ module.exports = class extends Command {
         
         if(member){
             const joinData = memberData.joinData || (memberData.invitedBy ? { type: "normal", invite: { inviter: memberData.joinData.invitedBy } } : { type: "unknown" } );
-            const joinWay = message.translate("core/userinfo:JOIN_WAY_UNKNOWN", {
+            let joinWay = message.translate("core/userinfo:JOIN_WAY_UNKNOWN", {
                 user: user.username
             });
             if(joinData.type === "normal" && joinData.inviteData){
