@@ -21,7 +21,7 @@ module.exports = class extends Command {
         }))
         .setDescription(
             message.translate("core/membercount:TOTAL", {
-                memberCount: guild.members.cache.size,
+                totalCount: guild.members.cache.size,
                 humanCount: guild.members.cache.filter((m) => !m.user.bot).size,
                 botCount: guild.members.cache.filter((m) => m.user.bot).size
             }) + "\n" +
