@@ -45,11 +45,6 @@ module.exports = class extends Command {
             }), false)
             .addField(message.translate("core/help:TIP", {
                 prefix: data.guild.prefix
-            }), message.translate("core/help:CORE_CONTENT", {
-                prefix: data.guild.prefix
-            }), false)
-            .addField(message.translate("core/help:TIP", {
-                prefix: data.guild.prefix
             }), message.translate("core/help:DASHBOARD", {
                 dashboard: Constants.Links.DASHBOARD
             })+"\n\n"+ message.translate("misc:LINKS_FOOTER", {
