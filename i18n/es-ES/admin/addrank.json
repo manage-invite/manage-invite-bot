@@ -1,7 +1,7 @@
 {
-    "MISSING_COUNT": "You must write the number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
-    "INCORRECT_COUNT": " You must write a __**valid**__ number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
-    "ALREADY_EXIST": "There is already a defined role for **{{count}}** invites (`{{roleName}}`)! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
+    "MISSING_COUNT": "Debes escribir la cantidad de invitaciones requeridas para obtener el rango. (Sintaxis: {{prefix}}addrank number @rol)",
+    "INCORRECT_COUNT": " Debes escribir una __**válida**__ cantidad de invitaciones requeridas para obtener el rango. (Sintaxis: {{prefix}}addrank number @rol)",
+    "ALREADY_EXIST": "¡Ya hay un rol definido para **{{count}}** invitaciones (`{{roleName}}`)! Puedes quitarlo con `{{prefix}}removerank {{roleID}} o inténtalo de nuevo!",
     "MISSING_ROLE": "You must mention the role you want to be added when the invite count is reached! (Syntax: {{prefix}}addrank number @role)",
     "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
     "MISSING_PERM": "My role is not high enough to add the role `{{roleName}}` to the members! Please put my role up and try again!",
