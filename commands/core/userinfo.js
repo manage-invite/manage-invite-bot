@@ -80,11 +80,11 @@ module.exports = class extends Command {
                 if(fetchedUser) users.push("`"+fetchedUser.user.tag+"`");
             });
             embed.addField(message.translate("core/userinfo:INVITED_TITLE"),
-                nobody ? message.translate("NO_INVITED_USERS") :
+                nobody ? message.translate("core/userinfo:NO_INVITED_USERS") :
                 (andMore ? message.translate("core/userinfo:INVITED_USERS_MORE", {
                     list: users.join(", ")
                 }) :
-                users.join(" ")));
+                users.join(", ")));
         } else {
             embed.addField(message.translate("core/userinfo:INVITED_TITLE"), message.translate("core/userinfo:INVITED_PREMIUM"));
         }
