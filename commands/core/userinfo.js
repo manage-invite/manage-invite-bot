@@ -27,6 +27,7 @@ module.exports = class extends Command {
         const embed = new Discord.MessageEmbed()
         .setAuthor(message.translate("core/userinfo:TITLE", {
             username: user.tag
+            userID: user.id
         }), user.displayAvatarURL())
         .addField(message.translate("core/userinfo:BOT_TITLE"), user.bot ? message.translate("common:YES") : message.translate("common:NO"), true)
         .addField(message.translate("core/userinfo:CREATED_AT_TITLE"), creationDate.charAt(0).toUpperCase() + creationDate.substr(1, creationDate.length), true)
