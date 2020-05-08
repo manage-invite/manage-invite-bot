@@ -1,5 +1,5 @@
 {
-    "MISSING_AMOUNT": "You must write the number of bonus invites you want to add. (Syntax: {{prefix}}addbonus number @member)",
+    "MISSING_AMOUNT": "Sie müssen die Anzahl der Bonuseinladungen schreiben, die Sie hinzufügen möchten. (Syntax: {{prefix}}addbonus nummer @Mitglied)",
     "INVALID_AMOUNT": "You must write a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member)",
     "MISSING_MEMBER": "You must mention the member to whom you want to add the bonus invites. (Syntax: {{prefix}}addbonus number @member)",
     "SUCCESS_TITLE": "📥 Bonus Invites Added",
