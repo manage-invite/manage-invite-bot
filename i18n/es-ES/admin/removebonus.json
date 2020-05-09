@@ -1,7 +1,7 @@
 {
-    "MISSING_AMOUNT": "You must write the number of bonus invites you want to remove. (Syntax: {{prefix}}removebonus number @member)",
-    "INVALID_AMOUNT": "You must write a __**valid**__ number of bonus invites that you want to remove. (Syntax: {{prefix}}removebonus number @member)",
-    "MISSING_MEMBER": "You must mention the member to whom you want to remove the bonus invites. (Syntax: {{prefix}}removebonus number @member)",
-    "SUCCESS_TITLE": "📥 Bonus Invites Removed",
-    "SUCCESS_CONTENT": "Write `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
+    "MISSING_AMOUNT": "Debe escribir la cantidad de invitaciones adicionales que desea eliminar. (Sintaxis: {{prefix}}removebonus cantidad @usuario)",
+    "INVALID_AMOUNT": "Tú debes escribir un número__**válido**__ de invitaciones que quieres eliminar. (Sintaxis: {{prefix}}removebonus cantidad @usuario)",
+    "MISSING_MEMBER": "Tú debes mencionar el usuario a quién tú quieres eliminarle las invitaciones. (Sintaxis:{{prefix}}removebonus cantidad @usuario)",
+    "SUCCESS_TITLE": "📥 Invitaciones Removidas",
+    "SUCCESS_CONTENT": "Escribe `{{prefix}}invites {{usertag}}` para ver el nuevo número de invitaciones de **{{username}}**!"
 }
