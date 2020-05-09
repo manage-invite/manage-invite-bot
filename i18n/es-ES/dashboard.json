@@ -8,7 +8,7 @@
   "JOIN_DM_PREMIUM": "Feature available for premium servers.",
   "JOIN_DM_TITLE": "Join messages in DM",
   "JOIN_TITLE": "Join messages",
-  "LEAVE_DEFAULT": "Holla no hablo espanol \n{user.tag} joined the server! They were invited by **{inviter.tag}** (who has **{inviter.invites}** invites).",
+  "LEAVE_DEFAULT": "{user.tag} left the server. They were invited by **{inviter.tag}** (who has **{inviter.invites}** invites).",
   "LEAVE_TITLE": "Leave messages",
   "NO_SERVER_CONTENT": "No server found. Please check you're logged with the right account.",
   "NO_SERVER_TITLE": "No server.",
