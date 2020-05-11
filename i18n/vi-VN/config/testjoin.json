@@ -1,7 +1,7 @@
 {
     "TITLE": ":wrench: Join system :",
-    "ENABLED_YES_CONTENT": "{{success}} Join messages enabled. Disable them with `{{prefix}}setjoin`.",
-    "ENABLED_NO_CONTENT": "{{error}} Join messages disabled. Enable them with `{{prefix}}setjoin`.",
-    "CHANNEL_CONTENT": "No channel defined. Set it with `{{prefix}}configjoin`!",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configjoin`!"
+    "ENABLED_YES_CONTENT": "{{success}} Tin nhắn tham gia đã được kích hoạt. Tắt nó với lệnh `{{prefix}}setjoin`.",
+    "ENABLED_NO_CONTENT": "{{error}} Tin nhắn tham gia đã được hủy kích hoạt. Mở nó với lệnh `{{prefix}}setjoin`.",
+    "CHANNEL_CONTENT": "Không có channel nào được xác định. Thiết lập nó với lệnh `{{prefix}}configjoin`!",
+    "MESSAGE_CONTENT": "Không có tin nhắn nào được xác định. Thiết lập nó với lệnh `{{prefix}}configjoin`!"
 }
