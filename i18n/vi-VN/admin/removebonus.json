@@ -1,7 +1,7 @@
 {
-    "MISSING_AMOUNT": "You must write the number of bonus invites you want to remove. (Syntax: {{prefix}}removebonus number @member)",
-    "INVALID_AMOUNT": "You must write a __**valid**__ number of bonus invites that you want to remove. (Syntax: {{prefix}}removebonus number @member)",
-    "MISSING_MEMBER": "You must mention the member to whom you want to remove the bonus invites. (Syntax: {{prefix}}removebonus number @member)",
-    "SUCCESS_TITLE": "📥 Bonus Invites Removed",
-    "SUCCESS_CONTENT": "Write `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
+    "MISSING_AMOUNT": "Bạn phải thêm số bonus invites muốn xoá. (Cú pháp: {{prefix}}removebonus (số invites) @member)",
+    "INVALID_AMOUNT": "Bạn phải điền một __**số**__ bonus invites mà bạn muốn xoá. Cú pháp: {{prefix}}removebonus (số invites) @member)",
+    "MISSING_MEMBER": "Bạn phải đề cập tới thành viên muốn xoá bonus invites. (Cú pháp: {{prefix}}removebonus (số invites) @member)",
+    "SUCCESS_TITLE": "📥 Bonus Invites đã được xoá",
+    "SUCCESS_CONTENT": "Hãy nhập `{{prefix}}invites {{usertag}}` để xem số invites mới của **{{username}}**!"
 }
