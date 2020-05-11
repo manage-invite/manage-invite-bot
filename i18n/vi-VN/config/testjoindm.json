@@ -1,6 +1,6 @@
 {
     "TITLE": ":wrench: DM Join system :",
-    "ENABLED_YES_CONTENT": "{{success}} Join messages in dm enabled. Disable them with `{{prefix}}setdmjoin`.",
-    "ENABLED_NO_CONTENT": "{{error}} Join messages in dm disabled. Enable them with `{{prefix}}setdmjoin`.",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configdm`!"
+    "ENABLED_YES_CONTENT": "{{success}} Tin nhắn tham gia trực tiếp đã được kích hoạt. Tắt nó với lệnh `{{prefix}}setdmjoin`.",
+    "ENABLED_NO_CONTENT": "{{error}} Tin nhắn tham gia trực tiếp đã được hủy kích hoạt. Mở nó với lệnh `{{prefix}}setdmjoin`.",
+    "MESSAGE_CONTENT": "Không có tin nhắn nào được xác định. Thiết lập với lệnh `{{prefix}}configdm`!"
 }
