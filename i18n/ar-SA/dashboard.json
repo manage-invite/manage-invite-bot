@@ -8,11 +8,11 @@
   "JOIN_DM_PREMIUM": "هذه الميزات متاحه لسيرفرات البرميوم.",
   "JOIN_DM_TITLE": "رسالة الدخول في الخاص",
   "JOIN_TITLE": "رسالة الدخول",
-  "LEAVE_DEFAULT": "{user.tag} left the server. They were invited by **{inviter.tag}** (who has **{inviter.invites}** invites).",
-  "LEAVE_TITLE": "Leave messages",
-  "NO_SERVER_CONTENT": "No server found. Please check you're logged with the right account.",
-  "NO_SERVER_TITLE": "No server.",
-  "ROLE_REWARDS": "🎯 Role rewards",
-  "ROLE_REWARDS_EMPTY": "No role rewards defined. You can configure them with the following commands: {{prefix}}addrank, {{prefix}}removerank and {{prefix}}ranks.",
-  "SELECTOR": "Selector"
+  "LEAVE_DEFAULT": "{user.tag} خرج من السيرفر. ولقد كان مدعو بواسطة {inviter.tag} ويمتلك الداعي عدد دعوات {inviter.invites}.",
+  "LEAVE_TITLE": "رسالة الخروج",
+  "NO_SERVER_CONTENT": "لا يوجد سيرفرات. رجاء تحقق من تسجيلك بالحساب الصحيح.",
+  "NO_SERVER_TITLE": "لا يوجد سيرفر.",
+  "ROLE_REWARDS": "رتبة المكافآت",
+  "ROLE_REWARDS_EMPTY": "لا يوجد رتبة المكافآت. يمكنك اضافتها بالاوامر التالية: addrank {{prefix}}, {{prefix}}removerank و ايضا لمعرفة الرتبة {{prefix}}ranks.",
+  "SELECTOR": "محدد"
 }
