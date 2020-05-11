@@ -24,56 +24,56 @@
 
       <!-- Main content -->
       <section class="content">
-				<% if(!member){ %>
-					<div class="callout callout-warning">
-						<h4>Hey, <strong><%= user.username %></strong></h4>
-						<p>Looks like you're not on our support server. Join it by clicking <a target="_blank" href="<%= discord %>">here</a>!</p>
-					</div>
-				<% } %>
-          <% if(user.displayedGuilds){ user.displayedGuilds.forEach(function(guild) { %>
-						<!-- Displays 4 servers by line -->
-						<div class="col-md-3">
-							<div class="box box-solid">
-								<div class="box-header with-border text-center">
-									<i class="fas fa-crown"></i>    
-									<h3 class="box-title"><%= guild.name.length > 25 ? guild.name.substr(0, 23)+"..." : guild.name %></h3>
-								</div>
-								<!-- /.box-header -->
-								<div class="box-body">
-									<div class="text-center">
-										<img src="<%= guild.iconURL %>" style="border-radius:100%" width="100" height="100" class="img-fluid">
-									</div>
-								</div>
-								<!-- /.box-body -->
-								<div class="box-footer">
-									<a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block"><%= translate("common:MANAGE") %></button></a>
-								</div>
-								<!-- /.box-footer -->
-							</div>
-							<!-- /.box -->
+			<% if(!member){ %>
+				<div class="callout callout-warning">
+					<h4>Hey, <strong><%= user.username %></strong></h4>
+					<p>Looks like you're not on our support server. Join it by clicking <a target="_blank" href="<%= discord %>">here</a>!</p>
+				</div>
+			<% } %>
+			<% if(user.displayedGuilds){ user.displayedGuilds.forEach(function(guild) { %>
+				<!-- Displays 4 servers by line -->
+				<div class="col-md-3">
+					<div class="box box-solid">
+						<div class="box-header with-border text-center">
+							<i class="fas fa-crown"></i>    
+							<h3 class="box-title"><%= guild.name.length > 25 ? guild.name.substr(0, 23)+"..." : guild.name %></h3>
 						</div>
-						<!-- /.col -->
-					<% }); } else { %>
-						<div class="col-md-12">
-							<div class="box box-warning">
-								<div class="box-header with-border">
-									<h3 class="box-title"><%= translate("dashboard:NO_SERVER_TITLE") %></h3>
-									<div class="box-tools pull-right">
-									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-									</button>
-									</div>
-									<!-- /.box-tools -->
-								</div>
-								<!-- /.box-header -->
-								<div class="box-body">
-									<%= translate("dashboard:NO_SERVER") %>
-								</div>
-								<!-- /.box-body -->
+						<!-- /.box-header -->
+						<div class="box-body">
+							<div class="text-center">
+								<img src="<%= guild.iconURL %>" style="border-radius:100%" width="100" height="100" class="img-fluid">
 							</div>
-							<!-- /.box -->
 						</div>
-					<% } %>
+						<!-- /.box-body -->
+						<div class="box-footer">
+							<a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block"><%= translate("common:MANAGE") %></button></a>
+						</div>
+						<!-- /.box-footer -->
 					</div>
+					<!-- /.box -->
+				</div>
+				<!-- /.col -->
+			<% }); } else { %>
+				<div class="col-md-12">
+					<div class="box box-warning">
+						<div class="box-header with-border">
+							<h3 class="box-title"><%= translate("dashboard:NO_SERVER_TITLE") %></h3>
+							<div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+							</button>
+							</div>
+							<!-- /.box-tools -->
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							<%= translate("dashboard:NO_SERVER") %>
+						</div>
+						<!-- /.box-body -->
+					</div>
+					<!-- /.box -->
+				</div>
+			<% } %>
+			</div>
       </section>
       <!-- /.content -->
     </div>
