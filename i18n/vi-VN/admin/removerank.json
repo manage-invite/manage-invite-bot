@@ -2,5 +2,5 @@
     "MISSING": "Bạn phải đề cập role muốn loại bỏ khỏi phần thưởng. (Cú pháp: {{prefix}}removerank @role)",
     "DOESNT_EXIST": "Role này không được sử dụng làm phần thưởng!",
     "TITLE": "🎯 Role đã được loại bỏ",
-    "CONTENT": "Role removed from rewards. The members will no longer obtain it when they reach **{{count}}** invites."
+    "CONTENT": "Role đã được loại bỏ khỏi phần thưởng. Thành viên sẽ không nhận được role khi họ đạt đủ **{{count}}** invites nữa."
 }
