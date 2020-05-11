@@ -1,7 +1,7 @@
 {
-    "LOADING": "{{loading}} | Deleting invitations from the current server.... You can restore them with the command `{{prefix}}restore-invites`!",
-    "LOADING_MEMBER": "{{loading}} | Deleting current invitations of **{{username}}**... You can restore them with the command `{{prefix}}restore-invites {{username}}`!",
-    "TITLE": "☄️ Invitations reinitalized",
-    "DESCRIPTION": "{{success}} | Server invitations reinitialized! You can restore them with the command `{{prefix}}restore-invites`!",
-    "DESCRIPTION_MEMBER": "{{success}} | Invitations of **{{username}}** reinitialized! You can restore them with the command `{{prefix}}restore-invites {{username}}`!"
+    "LOADING": "{{loading}} | Xoá toàn bộ Invites trong server... Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites`!",
+    "LOADING_MEMBER": "{{loading}} | Xoá toàn bộ Invites của **{{username}}**... Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites {{username}}`!",
+    "TITLE": "☄️ Xoá thành công",
+    "DESCRIPTION": "{{success}} | Toàn bộ Invites trong server đã được xoá! Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites`!",
+    "DESCRIPTION_MEMBER": "{{success}} | Toàn bộ Invites của **{{username}}** đã được xoá! Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites {{username}}`!"
 }
