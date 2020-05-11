@@ -5,6 +5,6 @@
     "MISSING_ROLE": "You must mention the role you want to be added when the invite count is reached! (Syntax: {{prefix}}addrank number @role)",
     "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
     "MISSING_PERM": "My role is not high enough to add the role `{{roleName}}` to the members! Please put my role up and try again!",
-    "TITLE": "🎯 New role added",
+    "TITLE": "🎯 Neue rolle addieren",
     "CONTENT": "When a member will reach **{{count}}** invites, they will obtain `{{roleName}}`!"
 }
