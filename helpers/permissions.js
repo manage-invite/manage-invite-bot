@@ -1,7 +1,7 @@
 module.exports = [
     {
         level: 0,
-        name: "Iser",
+        name: "User",
         check: () => true,
     },
     {
