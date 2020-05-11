@@ -12,7 +12,7 @@
   "LEAVE_TITLE": "Abschiedsnachricht",
   "NO_SERVER_CONTENT": "Kein Server gefunden. Bitte überprüfe, ob du mit dem richtigen Account eingeloggt bist.",
   "NO_SERVER_TITLE": "Kein Server.",
-  "ROLE_REWARDS": "Rollen Belohnung",
+  "ROLE_REWARDS": "🎯Rollen Belohnung",
   "ROLE_REWARDS_EMPTY": "Es wurde keine Belohnung festgelegt. Du kannst diese mit den folgenden Befehlen konfigurieren: {{prefix}}ranghinzufügen, {{prefix}}rangentfernen und {{prefix}}ränge.",
   "SELECTOR": "Wähler"
 }
