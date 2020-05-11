@@ -1,20 +1,20 @@
 {
     "TITLE": "Tham gia {{server}} trên {{days}} ngày qua",
     "CONTENT": "**{{total}}** thành viên (i.e. **{{percent}}%** của server) đã tham gia server này từ {{from}} tới {{to}}:",
-    "PREMIUM": ":crown: | Hey, **{{username}}**! This feature (customized stats period) is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>**!",
-    "INVALID": "You must enter a valid number of days (greater than 1 and lower than 1000) to be displayed!",
+    "PREMIUM": ":crown: | Hey, **{{username}}**! Tính năng này (tùy chỉnh bảng số liệu) chỉ có sẵn cho premium servers và partners. Nhận premium tại đây: **<https://docs.manage-invite.xyz/configuration/premium>**!",
+    "INVALID": "Bạn cần nhập một số ngày hợp lệ (lớn hơn 1 và nhỏ hơn 1000) để hiển thị!",
     "months": [
-        "Jan",
-        "Feb",
-        "March",
-        "Apr",
-        "May",
-        "June",
-        "July",
-        "August",
-        "Sept",
-        "Oct",
-        "Nov",
-        "Dec"
+        "Tháng 1",
+        "Tháng 2",
+        "Tháng 3",
+        "Tháng 4",
+        "Tháng 5",
+        "Tháng 6",
+        "Tháng 7",
+        "Tháng 8",
+        "Tháng 9",
+        "Tháng 10",
+        "Tháng 11",
+        "Tháng 12"
     ]
 }
