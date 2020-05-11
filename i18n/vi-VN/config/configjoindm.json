@@ -1,7 +1,7 @@
 {
-    "DISABLE": "Type `{{prefix}}setdmjoin` to disable join messages in dm.",
-    "INSTRUCTIONS": "__**More informations**__\n```\n{user} : The mention of the member that just joined your server.\n{user.name} : The name of the member that just joined your server.\n{user.tag} : The tag of the member that just joined your server.\n{user.createdat} : The account age of the member.\n{user.id} : The ID of the member.\n\n{guild} : Name of the server.\n{guild.count} : Number of members your server has now.\n\n{inviter} : The mention of the inviter.\n{inviter.name} : The name of the inviter.\n{inviter.tag} : The tag of the inviter.\n{inviter.invites} : The total inviter's invites count.\n{inviter.id} : The ID of the inviter.\n\n{invite.code} : The invite code used.\n{invite.url} : The invite url used.\n{invite.uses} : Number of uses of the invite used.\n```\nType `cancel` to abort. {{string}}\n\n\n:pencil: **| Now write the join DM message... :pencil2:**",
-    "SUCCESS": "✅ **| Done successfully...**",
-    "TITLE": "**Done The join DM Msg Has Been Setup**",
-    "TEST": "Use `{{prefix}}testjoindm` to test the new message."
+    "DISABLE": "Nhập `{{prefix}}setdmjoin` để tắt tin nhắn DM tham gia.",
+    "INSTRUCTIONS": "__**Thông tin thêm**__\n```\n{user} : Đề cập thành viên vừa mới tham gia server của bạn.\n{user.name} : Tên của thành viên vừa mới tham gia server của bạn.\n{user.tag} : Nametag của thành viên vừa mới tham gia server của bạn.\n{user.createdat} : Thời gian tài khoản được tạo của thành viên.\n{user.id} : ID của thành viên\n\n{guild} : Tên của server.\n{guild.count} : Số member của server hiện tại.\n{inviter} : Đề cập tới người mời.\n{inviter.name} : Tên của người mời.\n{inviter.tag} : Nametag của người mời.\n{inviter.invites} : Tổng invites của người mời.\n{inviter.id} : ID của người mời.\n\n{invite.code} : Invite code đã sử dụng.\n{invite.url} : Link invite đã sử dụng.\n{invite.uses} : Số lần sử dụng của link invite.\n```\nNhập `cancel` để hủy. {{string}}\n\n\n:pencil: **| Bây giờ, hãy viết tin nhắn DM tham gia... :pencil2:**",
+    "SUCCESS": "✅ **| Thành công...**",
+    "TITLE": "**Hoàn thành, tin nhắn DM tham gia đã được thiết lập**",
+    "TEST": "Dùng lệnh `{{prefix}}testjoindm` để gửi thử 1 thông báo."
 }
