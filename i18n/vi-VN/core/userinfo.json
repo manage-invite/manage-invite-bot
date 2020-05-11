@@ -5,12 +5,12 @@
     "JOINED_AT_TITLE": "Join",
     "JOIN_WAY_TITLE": "Join due to",
     "JOIN_WAY_OAUTH": "Oauth invitation (via discordapp.com).",
-    "JOIN_WAY_VANITY": "Customized invite configured by an administrator.",
-    "JOIN_WAY_UNKNOWN": "I can't figure out how {{username}} joined the server.",
+    "JOIN_WAY_VANITY": "Tùy chỉnh thiết lập invite bởi một admin.",
+    "JOIN_WAY_UNKNOWN": "Tôi không thể tìm ra cách {{username}} tham gia server.",
     "INVITES_TITLE": "Invites",
     "JOIN_ORDER_TITLE": "Join Order",
     "INVITED_TITLE": "Invited",
-    "INVITED_PREMIUM": ":crown: | This feature (view invited users) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !",
-    "NO_INVITED_USERS": "No invited users",
-    "INVITED_USERS_MORE": "{{list}}, and more..."
+    "INVITED_PREMIUM": ":crown: | Tính năng này (xem người dùng được mời) chỉ có sẵn cho premium servers. Mua premium tại đây: **<https://docs.manage-invite.xyz/configuration/premium>**!",
+    "NO_INVITED_USERS": "Không có",
+    "INVITED_USERS_MORE": "{{list}}, và nhiều hơn nữa..."
 }
