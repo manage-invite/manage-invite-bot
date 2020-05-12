@@ -1,0 +1,7 @@
+{
+    "MISSING_AMOUNT": "Debes escribir el número de bono de invitaciones que quieras agregar. (Sintaxis: {{prefix}}addbonus number @miembro)",
+    "INVALID_AMOUNT": "Debes escribir un número __**valido**__ de bono de invitaciones que quieras agregar. (Sintaxis: {{prefix}}addbonus number @miembro)",
+    "MISSING_MEMBER": "Debes mencionar a la persona que desea agregar el bono de invitaciones. (Sintaxis: {{prefix}}addbonus number @miembro)",
+    "SUCCESS_TITLE": "📥 Bono de Invitaciones Agregados",
+    "SUCCESS_CONTENT": "¡Escriba `{{prefix}}invites {{usertag}}` para ver la nueva cantidad de invitaciones de **{{username}}**!"
+}

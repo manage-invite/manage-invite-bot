@@ -1,0 +1,15 @@
+{
+  "BOT_MISSING_PERMISSIONS": "__**Thiếu permissions**__\n\nTôi cần các quyền sau để hoạt động lệnh này một cách hiệu quả: {{permissions}}",
+  "CANNOT_SEND": "Tôi không thể gửi tin nhắn tại channel đó.",
+  "COMMAND_DISABLED": "Lệnh này hiện tại đã bị tắt!",
+  "JOIN_OAUTH2": "{{user}} tham gia server sử dụng OAuth flow.",
+  "JOIN_PERMISSIONS": "Tôi cần quyền quản lý server để biết được ai là người đã mời {{user}}.",
+  "JOIN_UNKNOWN": "Tôi không thể biết được cách {{user}} tham gia server.",
+  "JOIN_VANITY": "{{user}} tham gia server bằng cách sử dụng link discord.gg đã được xác định bởi guild owner (hoặc admin).",
+  "LEAVE_OAUTH2": "{{user}} rời khỏi server, họ được tham gia bởi OAuth.",
+  "LEAVE_UNKNOWN": "{{user}} đã rời khỏi server, nhưng tôi không thể biết được cách nào mà họ có thể tham gia.",
+  "LEAVE_VANITY": "{{user}} rời khỏi server, họ tham gia bằng cách sử dụng link discord.gg đã được xác định bởi server owner (hoặc admin).",
+  "LINKS_FOOTER": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Support server]({{discord}}) | [Vote for me](https://top.gg/bot/{{clientID}})",
+  "PREFIX": "Hello! Hãy nhập **{{prefix}}help** để biết được toàn bộ lệnh của tôi! Bạn có thể thêm tôi vào server với lệnh **{{prefix}}add**.",
+  "USER_MISSING_PERMISSIONS": "Lệnh này yêu cầu quyền level: `{{level}}`!"
+}

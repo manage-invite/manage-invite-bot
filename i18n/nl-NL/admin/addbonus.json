@@ -1,0 +1,7 @@
+{
+    "MISSING_AMOUNT": "Je moet het aantal nummers van de bonus die je wilt toevoegen invullen (Syntax: {{prefix}}voegbonus nummer @member)",
+    "INVALID_AMOUNT": "Je moest een __**geldig**__ nummer toevoegen van bonus invites dat je wilt toevoegen. (Syntax: {{prefix}}voegbonus nummer @member)",
+    "MISSING_MEMBER": "Je moet het lid vermelden van wie je wilt de bonus invites zien (Syntax: {{prefix}}voegbonus nummer @member)",
+    "SUCCESS_TITLE": "📥 Bonus Uitnodigingen Toegevoegd",
+    "SUCCESS_CONTENT": "Schrijf `{{prefix}}uitnodigingen {{usertag}}` om de nieuwe uitnodigingen te zien van **{{username}}**!"
+}

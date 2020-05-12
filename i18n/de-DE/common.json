@@ -1,0 +1,21 @@
+{
+  "CANCELLED": "Abgebrochen.",
+  "CHANNEL": "Kanal",
+  "CONFIGURATION": "Konfiguration",
+  "DEFINED": "Definiert",
+  "DOCUMENTATION": "Dokumentation",
+  "HELP": "Hilfe",
+  "INVITES": "Einladungen",
+  "LANGUAGE": "Sprache",
+  "MANAGE": "Verwalten",
+  "MEMBERS": "Mitglieder",
+  "MESSAGE": "Nachricht",
+  "NO": "Nein",
+  "NOT_DEFINED": "Nicht definiert",
+  "PREFIX": "Präfix",
+  "ROLE": "Rolle",
+  "SUPPORT_SERVER": "Support-Server",
+  "TEST_IT": "Teste es:",
+  "UPDATE": "Aktualisieren",
+  "YES": "Ja"
+}

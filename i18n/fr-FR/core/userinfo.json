@@ -9,7 +9,7 @@
     "JOIN_WAY_UNKNOWN": "Impossible de déterminer comment {{username}} a rejoint le serveur.",
     "INVITES_TITLE": "Invitations",
     "JOIN_ORDER_TITLE": "Ordre d'arrivées",
-    "INVITED_TITLE": "Utilisateurs invités",
+    "INVITED_TITLE": "Invités",
     "INVITED_PREMIUM": ":crown: | Cette fonctionnalité (voir les utilisateurs invités) n'est disponible que pour les serveurs premium. Obtenez le premium ici : **<https://docs.manage-invite.xyz/configuration/premium>** !",
     "NO_INVITED_USERS": "Aucun utilisateur invité",
     "INVITED_USERS_MORE": "{{list}}, et plus..."

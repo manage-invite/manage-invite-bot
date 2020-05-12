@@ -1,0 +1,8 @@
+{
+    "TITLE": "Số lượng thành viên của {{guild}}",
+    "TOTAL": "Có tổng cộng **{{totalCount}}**  thành viên (**{{humanCount}}** người dùng và **{{botCount}}** bots)",
+    "DND": "➔ {{emoji}} | {{count}} thành viên dnd",
+    "ONLINE": "➔ {{emoji}} | {{count}} members online",
+    "IDLE": "➔ {{emoji}} | {{count}} members idle",
+    "OFFLINE": "➔ {{emoji}} | {{count}} members offline"
+}

@@ -1,0 +1,5 @@
+{
+    "ENABLED": "**Tin nhắn tham gia trực tiếp (DM) bây giờ đã được __ENABLED__!*",
+    "DISABLED": "**Tin nhắn tham gia trực tiếp (DM) bây giờ đã được __DISABLED__!*",
+    "PREMIUM": ":crown: | Hey, **{{username}}**! Tính năng này chỉ có sẵn cho premium server. Mua premium tại đây: **<https://docs.manage-invite.xyz/configuration/premium>**!"
+}

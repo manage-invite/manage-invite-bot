@@ -1,0 +1,7 @@
+{
+    "USER": "{{position}} **{{username}}** - **{{invites}}** invites (**{{regular}}** regular, **{{bonus}}** bonus, **{{fake}}** fake, **{{leaves}}** leaves)",
+    "PROMPT": "{{user}}, bạn muốn xem trang nào? Chat `cancel` hoặc `0` để hủy.",
+    "EMPTY_TITLE": "😕 Không tìm thấy invite nào",
+    "EMPTY_CONTENT": "Mời ai đó và bạn sẽ được xuất hiện tại trang này!",
+    "TITLE": "Bảng xếp hạng Invites"
+}

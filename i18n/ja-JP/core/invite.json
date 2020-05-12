@@ -1,0 +1,5 @@
+{
+    "AUTHOR_CONTENT": "You have **{{inviteCount}}** invites! (**{{regularCount}}** regular, **{{bonusCount}}** bonus, **{{fakeCount}}** fake, **{{leavesCount}}** leaves)",
+    "AUTHOR_NEXT_RANK": "You need **{{neededCount}}** more invites to get the next rank: **{{rankName}}**!",
+    "MEMBER_CONTENT": "**{{username}}** has **{{inviteCount}}** invites! (**{{regularCount}}** regular, **{{bonusCount}}** bonus, **{{fakeCount}}** fake, **{{leavesCount}}** leaves)"
+}

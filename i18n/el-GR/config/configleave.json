@@ -1,0 +1,8 @@
+{
+    "DISABLE": "Type `{{prefix}}setleave` to disable leave messages",
+    "INSTRUCTIONS_1": "__**More informations**__\n```\n{user} : The mention of the member that just left your server.\n{user.name} : The name of the member that just left your server.\n{user.tag} : The tag of the member that just left your server.\n{user.createdat} : The account age of the member.\n{user.id} : The ID of the member.\n\n{guild} : Name of the server.\n{guild.count} : Number of members your server has now.\n\n{inviter} : The mention of the inviter.\n{inviter.name} : The name of the inviter.\n{inviter.tag} : The tag of the inviter.\n{inviter.invites} : The total inviter's invites count.\n{inviter.id} : The ID of the inviter.\n\n{invite.code} : The invite code used.\n{invite.url} : The invite url used.\n{invite.uses} : Number of uses of the invite used.\n```\nType `cancel` to abort. {{string}}\n\n\n:pencil: **| Now write the join DM message... :pencil2:**",
+    "INSTRUCTIONS_2": ":scroll: **| Now write the leave channel name or mention it... :pencil2:**",
+    "SUCCESS": "**Done The leave Msg Has Been Setup**",
+    "TEST": "Use `{{prefix}}testleave` to test the new message.",
+    "CHANNEL_NOT_FOUND": "No channel found for `{{channel}}`"
+}

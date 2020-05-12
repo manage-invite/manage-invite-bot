@@ -1,0 +1,7 @@
+{
+    "LOADING": "{{loading}} | Xoá toàn bộ Invites trong server... Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites`!",
+    "LOADING_MEMBER": "{{loading}} | Xoá toàn bộ Invites của **{{username}}**... Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites {{username}}`!",
+    "TITLE": "☄️ Xoá thành công",
+    "DESCRIPTION": "{{success}} | Toàn bộ Invites trong server đã được xoá! Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites`!",
+    "DESCRIPTION_MEMBER": "{{success}} | Toàn bộ Invites của **{{username}}** đã được xoá! Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites {{username}}`!"
+}

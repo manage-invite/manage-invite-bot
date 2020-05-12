@@ -1,0 +1,18 @@
+{
+  "BASIC_TITLE": "الترتيب الاساسي",
+  "BUTTON_DISABLE": "تعطيل الرسائل",
+  "BUTTON_ENABLE": "تفعيل الرسائل",
+  "BUTTON_UPDATE": "تحديث الرسائل",
+  "JOIN_DEFAULT": "{user} دخل الى السيرفر! لقد تم دعوته بواسطة {inviter.tag} ولديه عدد دعوات {inviter.invites}.",
+  "JOIN_DM_DEFAULT": "اهلا بك {user} في {server} لقد تم دعوتك بواسطة {inviter.tag} لا تنسى ان تقرأ قوانين السيرفر!",
+  "JOIN_DM_PREMIUM": "هذه الميزات متاحه لسيرفرات البرميوم.",
+  "JOIN_DM_TITLE": "رسالة الدخول في الخاص",
+  "JOIN_TITLE": "رسالة الدخول",
+  "LEAVE_DEFAULT": "{user.tag} خرج من السيرفر. ولقد كان مدعو بواسطة {inviter.tag} ويمتلك الداعي عدد دعوات {inviter.invites}.",
+  "LEAVE_TITLE": "رسالة الخروج",
+  "NO_SERVER_CONTENT": "لا يوجد سيرفرات. رجاء تحقق من تسجيلك بالحساب الصحيح.",
+  "NO_SERVER_TITLE": "لا يوجد سيرفر.",
+  "ROLE_REWARDS": "رتبة المكافآت",
+  "ROLE_REWARDS_EMPTY": "لا يوجد رتبة المكافآت. يمكنك اضافتها بالاوامر التالية: addrank {{prefix}}, {{prefix}}removerank و ايضا لمعرفة الرتبة {{prefix}}ranks.",
+  "SELECTOR": "محدد"
+}

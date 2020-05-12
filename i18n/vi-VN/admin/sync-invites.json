@@ -1,0 +1,6 @@
+{
+    "NO_INVITES": "Không có Invites nào để đồng bộ.",
+    "CONFIRM": "Bạn có chắc chắn muốn đồng bộ Invites của toàn server?\n\n:information_source: **Tổng quan Invites**:\nBot sẽ khôi phục **{{inviteCount}}** regular Invites.\n\n{{success}} Nhập `-confirm` để xác nhận.\n{{error}} Nhập `cancel` để hủy.",
+    "TITLE": "☄️ Invites đã được đồng bộ",
+    "DESCRIPTION": "Invites của toàn server đã được đồng bộ!"
+}

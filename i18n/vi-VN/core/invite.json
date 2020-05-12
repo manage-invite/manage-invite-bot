@@ -1,0 +1,5 @@
+{
+    "AUTHOR_CONTENT": "Bạn có tổng cộng **{{inviteCount}}** invites! (**{{regularCount}}** regular, **{{bonusCount}}** bonus, **{{fakeCount}}** fake, **{{leavesCount}}** leaves)",
+    "AUTHOR_NEXT_RANK": "Bạn cần thêm **{{neededCount}}** invites để lên rank tiếp theo: **{{rankName}}**!",
+    "MEMBER_CONTENT": "**{{username}}** có tổng cộng **{{inviteCount}}** invites! (**{{regularCount}}** regular, **{{bonusCount}}** bonus, **{{fakeCount}}** fake, **{{leavesCount}}** leaves)"
+}

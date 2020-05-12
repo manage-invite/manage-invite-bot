@@ -1,0 +1,6 @@
+{
+    "TITLE": ":wrench: DM Join system :",
+    "ENABLED_YES_CONTENT": "{{success}} Join messages in dm enabled. Disable them with `{{prefix}}setdmjoin`.",
+    "ENABLED_NO_CONTENT": "{{error}} Join messages in dm disabled. Enable them with `{{prefix}}setdmjoin`.",
+    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configdm`!"
+}

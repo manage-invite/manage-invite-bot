@@ -1,0 +1,9 @@
+{
+    "CONFIRMATION": "Bạn có chắc chắn muốn khôi phục Invites của toàn bộ server? Tất cả thành viên sẽ nhận lại số Invites mà họ có trước lần trước lệnh `{{prefix}}remove-invite` được sử dụng (hoặc 0 nếu lệnh đó chưa từng được sử dụng).\n\n:information_source:**Tổng quan Invites**:\nNó sẽ được khôi phục, tổng cộng: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.\n\n{{success}} Nhập `-confirm` để xác nhận.\n{{error}} Nhập `cancel` để hủy.",
+    "CONFIRMATION_MEMBER": "Bạn có chắc chắn muốn khôi phục toàn bộ Invites của **{{username}}**? Họ sẽ nhận lại số Invites mà họ có trước lần trước lệnh `{{prefix}}remove-invite` được sử dụng (hoặc 0 nếu lệnh đó chưa từng được sử dụng).\n\n:information_source:**Tổng quan Invites**:\nNó sẽ được khôi phục, tổng cộng: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.\n\n{{success}} Nhập `-confirm` để xác nhận.\n${emojis.error} Nhập `cancel` để hủy.",
+    "LOADING": "{{loading}} | Đang khôi phục toàn bộ Invites của server...",
+    "LOADING_MEMBER": "{{loading}} | Đang khôi phục toàn bộ Invites của**{{username}}**...",
+    "TITLE": "☄️ Toàn bộ Invites đã được khôi phục",
+    "DESCRIPTION": "{{success}} | Invites của toàn bộ server đã được khôi phục!",
+    "DESCRIPTION_MEMBER": "{{success}} | Toàn bộ Invites của **{{username}}** đã được khôi phục!"
+}

@@ -1,0 +1,11 @@
+{
+    "AUTHOR_BLACKLISTED": "Estás en la lista negra de este servidor, tu no puedes usar este comando.",
+    "BLACKLISTED": "{{username}} ha sido agregado a la lista negra de este servidor.",
+    "MISSING_TYPE": "Debes ingresar una acción validad! (`add`, `remove` or `list`)\n\n:information_source: Los usuarios en la lista negra\n- No podrán recibir/perder roles\n- No podrán aparecer en la tabla de clasificación\n- No podrán tener su contador de invitaciones nunca mas\n- No podrán ser capaz de usar  los comandos `invites`",
+    "MISSING_MEMBER_ADD": "You must mention a valid member to add in the blacklist!",
+    "MISSING_MEMBER_REMOVE": "You must mention a valid member to remove from the blacklist!",
+    "SUCCESS_MEMBER_ADD": "**{{username}}** was added to the blacklist!",
+    "SUCCESS_MEMBER_REMOVE": "**{{username}}** was removed from the blacklist!",
+    "EMPTY": "No blacklisted users!",
+    "NOT_BLACKLISTED": "**{{username}}** is not in the blacklist!"
+}

@@ -1,0 +1,6 @@
+{
+    "NO_INVITES": "No invites to synchronize.",
+    "CONFIRM": "Are you sure you want to synchronize the server invitations?\n\n:information_source: **Overview of invitations**:\nIt will be restored **{{inviteCount}}** regular invitations.\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
+    "TITLE": "☄️ Invitations synchronized",
+    "DESCRIPTION": "Server invitations synchronized!"
+}

@@ -1,0 +1,18 @@
+{
+  "BASIC_TITLE": "Thiết lập cơ bản",
+  "BUTTON_DISABLE": "Hủy kích hoạt tin nhắn",
+  "BUTTON_ENABLE": "Kích hoạt tin nhắn",
+  "BUTTON_UPDATE": "Cập nhật tin nhắn",
+  "JOIN_DEFAULT": "{user} đã tham gia server! Thành viên được mời bởi **{inviter.tag}** (người có **{inviter.invites}** invites).",
+  "JOIN_DM_DEFAULT": "Chào mừng {user} đã tới với **{server}**! Bạn được mời bởi **{inviter.tag}**. Đừng quên đọc rules của server nha!",
+  "JOIN_DM_PREMIUM": "Tính năng có sẵn cho premium server.",
+  "JOIN_DM_TITLE": "Tin nhắn tham gia trực tiếp",
+  "JOIN_TITLE": "Tin nhắn tham gia",
+  "LEAVE_DEFAULT": "{user.tag} đã rời khỏi server. Họ được mời bởi **{inviter.tag}** (người có **{inviter.invites}** invites).",
+  "LEAVE_TITLE": "Tin nhắn rời khỏi",
+  "NO_SERVER_CONTENT": "Không tìm thấy server. Hãy kiểm tra lại bạn đã đăng nhập đúng tài khoản.",
+  "NO_SERVER_TITLE": "Không có server.",
+  "ROLE_REWARDS": "🎯 Role rewards",
+  "ROLE_REWARDS_EMPTY": "Không có phần thưởng role nào được xác định. Bạn có thể thiết lập nó với lệnh sau: {{prefix}}addrank, {{prefix}}removerank và {{prefix}}ranks.",
+  "SELECTOR": "Selector"
+}

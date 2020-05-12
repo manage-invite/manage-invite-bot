@@ -1,0 +1,11 @@
+{
+    "TITLE": ":wrench: Leave system :",
+    "DESCRIPTION": "Nếu nó không hoạt động, kiểm tra quyền của bot hoặc tham gia server của chúng tôi [server hỗ trợ]({{discord}})",
+    "ENABLED_TITLE": "> Kích hoạt:",
+    "ENABLED_YES_CONTENT": "{{success}} Tin nhắn rời khỏi đã được kích hoạt. Tắt nó với lệnh `{{prefix}}setleave`.",
+    "ENABLED_NO_CONTENT": "{{error}} Tin nhắn rời khỏi đã được hủy kích hoạt. Mở nó với lệnh `{{prefix}}setleave`.",
+    "CHANNEL_TITLE": "> Channel",
+    "CHANNEL_CONTENT": "Không có channel nào được xác định. Thiết lập nó với lệnh `{{prefix}}configleave`!",
+    "MESSAGE": "> Tin nhắn:",
+    "MESSAGE_CONTENT": "Không có tin nhắn nào được xác định. Thiết lập nó với lệnh `{{prefix}}configleave`!"
+}

@@ -1,0 +1,11 @@
+{
+    "AUTHOR_BLACKLISTED": "Bạn đã nằm trong danh sách cấm trong server này nên không thể dùng lệnh đó.",
+    "BLACKLISTED": "{{username}} đã được đưa vào danh sách đen của server.",
+    "MISSING_TYPE": "Bạn phải nhập một hành động hợp lệ! (`add`, `remove` hoặc `list`)\n\n:information_source: Người dùng trong danh sách đen sẽ:\n- Không được nhận/mất roles\n- Không xuất hiện trên bảng xếp hạng\n- Không tính invites của họ nữa\n- Không thể dùng lệnh `invites`",
+    "MISSING_MEMBER_ADD": "Bạn phải điển một thành viên hợp lệ để thêm vào danh sách đen!",
+    "MISSING_MEMBER_REMOVE": "Bạn phải điển một thành viên hợp lệ để xoá khỏi danh sách đen!",
+    "SUCCESS_MEMBER_ADD": "**{{username}}** đã được thêm vào danh sách đen!",
+    "SUCCESS_MEMBER_REMOVE": "**{{username}}** đã được xoá khỏi danh sách đen!",
+    "EMPTY": "Không có người dùng trong danh sách đen!",
+    "NOT_BLACKLISTED": "**{{username}}** không có trong danh sách đen!"
+}

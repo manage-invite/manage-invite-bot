@@ -1,0 +1,10 @@
+{
+    "MISSING_COUNT": "Debes escribir la cantidad de invitaciones requeridas para obtener el rango. (Sintaxis: {{prefix}}addrank number @rol)",
+    "INCORRECT_COUNT": " Debes escribir una __**válida**__ cantidad de invitaciones requeridas para obtener el rango. (Sintaxis: {{prefix}}addrank number @rol)",
+    "ALREADY_EXIST": "¡Ya hay un rol definido para **{{count}}** invitaciones (`{{roleName}}`)! Puedes quitarlo con `{{prefix}}removerank {{roleID}} o inténtalo de nuevo!",
+    "MISSING_ROLE": "¡Debes mencionar el rol que quieras que sea agregado cuando el conteo de invitaciones está hecho! (Sintaxis: {{prefix}}addrank number @role)",
+    "ALREADY_USED": "Éste rol ya es usado para **{{count}}** invitaciones! Puedes quitarlo con `{{prefix}}removerank {{roleID}}` o inténtalo de nuevo!",
+    "MISSING_PERM": "Mi rol no es lo suficiente alto para agregar el rol `{{roleName}}` a los miembros! Por favor, pon mi rol arriba e inténtalo de nuevo!",
+    "TITLE": "🎯 Nuevo rol agregado",
+    "CONTENT": "Cuando un miembro tenga **{{count}}** invitaciones, podrán obtener `{{roleName}}`!"
+}

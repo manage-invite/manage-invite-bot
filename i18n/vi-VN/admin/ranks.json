@@ -1,0 +1,7 @@
+{
+    "TITLE": "🎯 Roles rewards",
+    "RANK": "{{rank}} (**{{invites}}** invites)",
+    "NO_RANK_TITLE": "🎯 No role",
+    "NO_RANK_CONTENT": "Để thêm một roles phần thưởng (thêm khi một thành viên đạt được một số lượng invites nhất định), nhập `{{prefix}}addrank (số invites) @role`!",
+    "VIEW_CONF": "Xem toàn bộ config trên dashboard"
+}

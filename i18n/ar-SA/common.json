@@ -1,0 +1,21 @@
+{
+  "CANCELLED": "الغاء.",
+  "CHANNEL": "قناة",
+  "CONFIGURATION": "ترتيب",
+  "DEFINED": "تعريف",
+  "DOCUMENTATION": "توثيق",
+  "HELP": "مساعدة",
+  "INVITES": "الدعوات",
+  "LANGUAGE": "اللغة",
+  "MANAGE": "مدير",
+  "MEMBERS": "الاعضاء",
+  "MESSAGE": "رسالة",
+  "NO": "كلا",
+  "NOT_DEFINED": "غير معرف",
+  "PREFIX": "اختصار",
+  "ROLE": "رتبة",
+  "SUPPORT_SERVER": "سيرفر الدعم الفني",
+  "TEST_IT": "تجربة:",
+  "UPDATE": "تحديث",
+  "YES": "نعم"
+}

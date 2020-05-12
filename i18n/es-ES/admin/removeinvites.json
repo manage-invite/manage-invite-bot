@@ -1,0 +1,7 @@
+{
+    "LOADING": "{{loading}} | Borran invitaciones del servidor actual... Puedes restaurarlo con este comando`{{prefix}}restore-invites`!",
+    "LOADING_MEMBER": "{{loading}} |Borrando invitaciones actuales de **{{username}}**... Puedes restaurarlo con el siguiente comando `{{prefix}}restore-invites {{username}}`!",
+    "TITLE": "☄️Invitaciones reiniciadas",
+    "DESCRIPTION": "{{success}} | Invitaciones del servidor reiniciadas! Puedes restaurarlo con el siguiente comando`{{prefix}}restore-invites`!",
+    "DESCRIPTION_MEMBER": "{{success}} | invitaciones de **{{username}}** reiniciadas! Puedes restaurarlo con el siguiente comando`{{prefix}}restore-invites {{username}}`!"
+}

@@ -1,0 +1,7 @@
+{
+    "TITLE": "🎯Recompensas de roles",
+    "RANK": "{{rank}} (**{{invites}}** invitaciones)",
+    "NO_RANK_TITLE": "🎯Sin rol",
+    "NO_RANK_CONTENT": "Para añadir una recompensa de roles (Se agrega cuando un miembro alcanza un cierto número de invitaciones), escribe `{{prefix}}addrank cantidad @role`!",
+    "VIEW_CONF": "Ver la configuración en el tablero"
+}

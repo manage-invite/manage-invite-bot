@@ -1,0 +1,7 @@
+{
+    "MISSING_AMOUNT": "Bạn phải điền số bonus invite muốn thêm. (Cú pháp: {{prefix}}add bonus (số bonus) @member)",
+    "INVALID_AMOUNT": "Bạn phải điền một __**số**__ bonus invites mà bạn muốn thêm. Cú pháp: {{prefix}}addbonus (số bonus) @member)",
+    "MISSING_MEMBER": "Bạn phải đề cập tới thành viên muốn thêm bonus invites. (Cú pháp: {{prefix}}addbonus (số bonus) @member)",
+    "SUCCESS_TITLE": "📥 Đã thêm",
+    "SUCCESS_CONTENT": "Hãy nhập `{{prefix}}invites {{usertag}}` để xem số invites mới của **{{username}}**!"
+}
