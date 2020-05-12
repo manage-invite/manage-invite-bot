@@ -2,7 +2,7 @@
   "BOT_MISSING_PERMISSIONS": "__**Fehlende Berechtigungen**__\n\nIch brauche folgende Berechtigungen, damit der Befehl richtig funktioniert: {{permissions}}",
   "CANNOT_SEND": "Ich kann keine Nachrichten in diesen Kanal schicken.",
   "COMMAND_DISABLED": "Dieser Befehl ist momentan deaktiviert!",
-  "JOIN_OAUTH2": "{{user}} joined the server using OAuth flow.",
+  "JOIN_OAUTH2": "{{user}} beigetreten der Kellner mit einem OAuth-Stream bei.",
   "JOIN_PERMISSIONS": "I need the manage server permissions to know who is the inviter of {{user}}.",
   "JOIN_UNKNOWN": "I can't figure out how {{user}} joined the server.",
   "JOIN_VANITY": "{{user}} joined the server using a discord.gg invite defined by the guild owner (or admin).",
