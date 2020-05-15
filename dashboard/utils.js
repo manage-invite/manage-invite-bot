@@ -42,7 +42,9 @@ async function fetchUser(userData, client, query){
             let results = await client.shard.broadcastEval(` let guild = this.guilds.cache.get('${guild.id}'); if(guild) guild.toJSON(); `);
             let found = results.find((g) => g);
             guild.settingsUrl = (found ? `/manage/${guild.id}/` : `https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958847&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(client.config.baseURL+"/api/callback")}&state=invite${guild.id}`);
-            guild.iconURL = (guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128` : "https://discordemoji.com/assets/emoji/discordcry.png");
+            guild.iconURL = (guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128` : "/dist/img/discordcry.png");
+            const guildDB = await client.database.fetchGuild(guild.id);
+            guild.isPremium = guildDB.premium;
         });
         userData.displayedGuilds = userData.guilds.filter((g) => g.admin);
         if(userData.displayedGuilds.length < 1){

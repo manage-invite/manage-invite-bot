@@ -24,6 +24,10 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
         });
     }
 
+    if(!req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID).isPremium){
+        res.redirect("/payment/"+guild.id+"/paypal");
+    }
+
     // Fetch guild informations
     let guildInfos = await utils.fetchGuild(guild.id, req.client, req.user.guilds);
 

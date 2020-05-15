@@ -17,8 +17,8 @@ module.exports = class Guild {
         this.language = data.guild_language || "en-US";
         // Guild prefix
         this.prefix = data.guild_prefix || "+";
-        // Guild premium status
-        this.premium = data.guild_is_premium || false;
+        // Guild premium expires at
+        this.premiumExpiresAt = data.guild_premium_expires_at || null;
         // Guild keep ranks
         this.keepRanks = data.guild_keep_ranks || false;
     }
@@ -32,6 +32,22 @@ module.exports = class Guild {
         this.blacklistedUsers = [];
         await this.fetchBlacklistedUsers();
         this.fetched = true;
+    }
+
+    get premium(){
+        return this.premiumExpiresAt && (new Date(this.premiumExpiresAt).getTime() > Date.now());
+    }
+
+    async addPremiumMonth(){
+        const newPremiumExpiresAt = this.premium ? (this.premiumExpiresAt+2592000000) : (Date.now()+2592000000);
+        await this.handler.query(`
+            UPDATE guilds
+            SET guild_premium_expires_at = '${new Date(newPremiumExpiresAt).toUTCString()}'
+            WHERE guild_id = '${this.guildID}';
+        `);
+        this.handler.removeGuildFromOtherCaches(this.id);
+        this.premiumExpiresAt = newPremiumExpiresAt;
+        return this.premium;
     }
 
     // Fetch and fill plugins
@@ -169,8 +185,8 @@ module.exports = class Guild {
         if (!this.inserted) {
             await this.handler.query(`
                 INSERT INTO guilds
-                (guild_id, guild_prefix, guild_language, guild_is_premium, guild_keep_ranks) VALUES
-                ('${this.id}', '${this.prefix}', '${this.language}', ${this.premium}, ${this.keepRanks});
+                (guild_id, guild_prefix, guild_language, guild_is_premium, guild_premium_expires_at, guild_keep_ranks) VALUES
+                ('${this.id}', '${this.prefix}', '${this.language}', false, ${this.premiumExpiresAt}, ${this.keepRanks});
             `);
             this.handler.removeGuildFromOtherCaches(this.id);
             this.inserted = true;

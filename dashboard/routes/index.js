@@ -13,7 +13,8 @@ router.get("/selector", CheckAuth, async(req, res) => {
         currentURL: `${req.client.config.baseURL}${req.originalUrl}`,
         member: req.member,
         discord: req.client.config.discord,
-        locale: req.user.locale
+        locale: req.user.locale,
+        paypal: req.client.config.paypal.mode === 'live' ? req.client.config.paypal.live : req.client.config.paypal.sandbox
     });
 });
 

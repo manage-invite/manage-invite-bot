@@ -21,7 +21,8 @@ module.exports.load = async (client) => {
     /* Routers */
     const mainRouter = require("./routes/index"),
     guildManager = require("./routes/guild"),
-    apiRouter = require("./routes/discord");
+    apiRouter = require("./routes/discord"),
+    paymentManager = require("./routes/payment");
 
     /* App configuration */
     app
@@ -59,6 +60,7 @@ module.exports.load = async (client) => {
         }
         next();
     })
+    .use("/payment", paymentManager)
     .use("/manage", guildManager)
     .use("/api", apiRouter)
     .use("/", mainRouter)
