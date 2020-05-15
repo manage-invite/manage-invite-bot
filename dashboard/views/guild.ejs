@@ -116,12 +116,12 @@
                 </div>
                 <div class="box box-warning">
                     <div class="box-header with-border">
-                        <h3 class="box-title"><%= translate("dashboard:RANKS_REWARDS") %></h3>
+                        <h3 class="box-title"><%= translate("dashboard:ROLE_REWARDS") %></h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <% if(guild.ranks.length < 1){ %>
-                            <p><%= translate("dashboard:RANKS_REWARDS_EMPTY", { prefix: guild.prefix }) %></p>
+                            <p><%= translate("dashboard:ROLE_REWARDS_EMPTY", { prefix: guild.prefix }) %></p>
                         <% } else { %>
                             <table class="table table-bordered">
                                     <tr>
