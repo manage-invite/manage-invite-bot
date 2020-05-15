@@ -15,15 +15,16 @@ router.post("/ipn", async (req, res) => {
     res.sendStatus(200);
     const payloadCopy = new URLSearchParams(payload);
     payloadCopy.set("cmd", "_notify-validate");
-    fetch(req.client.config.paypal.mode === "live" ? req.client.config.paypal.live : req.client.config.paypal.sandbox, {
+    fetch(req.client.config.paypal.mode === "live" ? req.client.config.paypal.live.fetchURL : req.client.config.paypal.sandbox.fetchURL, {
         method: "POST",
         body: payloadCopy.toString()
     }).then(async (paypalRes) => {
         const valid = await paypalRes.text() === "VERIFIED";
         if(!valid) return console.log("Invalid payment");
         if(payload.tnx_type === "subscr_signup"){
-            if(payload.amout3 !== '1.00') return;
+            if(payload.amount3 !== '1.00' && payload.mc_gross !== '1.00') return;
             const paymentData = (payload.custom || "").split("-");
+            if(!paymentData[0]) return;
             const guildID = paymentData[0];
             const userID = paymentData[1];
             const guildInfos = await utils.fetchGuild(guildID, req.client);
@@ -45,7 +46,7 @@ router.post("/ipn", async (req, res) => {
                     if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
                 `);
             });
-        } else if(tnx_type === "subscr_payment") {
+        } else if(payload.tnx_type === "subscr_payment") {
             console.log(payload)
             const paymentData = (payload.custom || "").split("-");
             const guildID = paymentData[0];

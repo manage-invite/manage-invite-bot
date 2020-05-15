@@ -49,7 +49,7 @@ module.exports = class Guild {
         await this.handler.query(`
             INSERT INTO subscriptions
             (sub_guild_id, sub_type, sub_created_at, sub_payer_id) VALUES
-            ('${this.id}', '${type}', '${Date.now().toUTCString()}',${userID ? `'${userID}'` : 'null'})
+            ('${this.id}', '${type}', '${new Date().toUTCString()}',${userID ? `'${userID}'` : 'null'})
         `);
         this.handler.removeGuildFromOtherCaches(this.id);
         this.premiumExpiresAt = newPremiumExpiresAt;
