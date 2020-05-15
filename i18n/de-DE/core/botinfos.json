@@ -6,5 +6,5 @@
     "VERSIONS_CONTENT": "`Discord: {{discord}}`\n`Node: {{node}}`",
     "SHARD_TITLE": "{{online}} Shard #{{shardID}}",
     "SHARD_TITLE_CURRENT": "{{online}} Shard #{{shardID}} (jetzig)",
-    "SHARD_CONTENT": "`{{guilds}}` servers\n`{{ping}}` ms\n`{{ram}}` mb ram\n`{{cachedMembers}}` cached members\n`{{cachedGuilds}}` cached guilds"
+    "SHARD_CONTENT": "`{{guilds}}` Server\n`{{ping}}` ms\n`{{ram}}` mb ram\n`{{cachedMembers}}` zwischengespeicherte Mitglieder\n`{{cachedGuilds}}` zwischengespeicherte Server"
 }
