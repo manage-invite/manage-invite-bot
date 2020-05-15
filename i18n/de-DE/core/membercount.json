@@ -1,8 +1,8 @@
 {
     "TITLE": "{{guild}}s Mitgliederzahl",
     "TOTAL": "Summe auf **{{totalCount}}**  Mitglied (**{{humanCount}}** menschlich und **{{botCount}}** Bot)",
-    "DND": "➔ {{emoji}} | {{count}} members dnd",
-    "ONLINE": "➔ {{emoji}} | {{count}} members online",
-    "IDLE": "➔ {{emoji}} | {{count}} members idle",
-    "OFFLINE": "➔ {{emoji}} | {{count}} members offline"
+    "DND": "➔ {{emoji}} | {{count}} Mitglied BNS",
+    "ONLINE": "➔ {{emoji}} | {{count}} Mitglied online",
+    "IDLE": "➔ {{emoji}} | {{count}} Mitglied Abwesend",
+    "OFFLINE": "➔ {{emoji}} | {{count}} Mitglied offline"
 }
