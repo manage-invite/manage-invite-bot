@@ -151,41 +151,42 @@
                         <a target="_blank" href="https://docs.manage-invite.xyz/configuration/variables">
                             <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
                         </a>
-                    <form role="form" action="/manage/<%= guild.id %>/join" method="POST">
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <!-- text input -->
-                            <div class="form-group">
-                                <label><%= translate("common:MESSAGE") %></label>
-                                <textarea rows="3" name="message" class="form-control" required><%= guild.join.message || translate("dashboard:JOIN_DEFAULT") %></textarea>
+                        <form role="form" action="/manage/<%= guild.id %>/join" method="POST">
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label><%= translate("common:MESSAGE") %></label>
+                                    <textarea rows="3" name="message" class="form-control" required><%= guild.join.message || translate("dashboard:JOIN_DEFAULT") %></textarea>
+                                </div>
+                                <!-- select -->
+                                <div class="form-group">
+                                    <label><%= translate("common:CHANNEL") %></label>
+                                    <select class="form-control" name="channel">
+                                        <% if(guild.join.enabled && (guild.channels.find((ch) => ch.id === guild.join.channel))){ %>
+                                            <option selected="selected">#<%= (guild.channels.find((ch) => ch.id === guild.join.channel)).name %></option>
+                                            <% guild.channels.filter((ch) => ch.id !== guild.join.channel && ch.type === "text").forEach((ch) => { %>
+                                                <option>#<%= ch.name %></option>
+                                            <% }); } else { %>
+                                            <option selected="selected">#<%= guild.channels.filter((ch) => ch.type === "text")[0].name %></option>
+                                            <% guild.channels.filter((ch) => ch.id !== guild.channels[0].id && ch.type === "text").forEach((ch) => { %>
+                                                <option>#<%= ch.name %></option>
+                                            <% }); %>
+                                        <% } %>
+                                    </select>
+                                </div>
                             </div>
-                            <!-- select -->
-                            <div class="form-group">
-                                <label><%= translate("common:CHANNEL") %></label>
-                                <select class="form-control" name="channel">
-                                    <% if(guild.join.enabled && (guild.channels.find((ch) => ch.id === guild.join.channel))){ %>
-                                        <option selected="selected">#<%= (guild.channels.find((ch) => ch.id === guild.join.channel)).name %></option>
-                                        <% guild.channels.filter((ch) => ch.id !== guild.join.channel && ch.type === "text").forEach((ch) => { %>
-                                            <option>#<%= ch.name %></option>
-                                        <% }); } else { %>
-                                        <option selected="selected">#<%= guild.channels.filter((ch) => ch.type === "text")[0].name %></option>
-                                        <% guild.channels.filter((ch) => ch.id !== guild.channels[0].id && ch.type === "text").forEach((ch) => { %>
-                                            <option>#<%= ch.name %></option>
-                                        <% }); %>
-                                    <% } %>
-                                </select>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <% if(guild.join.enabled){ %>
+                                    <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
+                                    <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
+                                <% } else { %>
+                                    <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
+                                <% } %>
                             </div>
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-                            <% if(guild.join.enabled){ %>
-                                <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
-                                <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
-                            <% } else { %>
-                                <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
-                            <% } %>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
                 <!-- LEAVE CONFIGURATION -->
                 <div class="box box-danger">
