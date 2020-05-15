@@ -99,17 +99,11 @@
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
-                            <% if(guild.premium){ %>
-                                <% if(guild.joinDM.enabled){ %>
-                                    <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
-                                    <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
-                                <% } else { %>
-                                    <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
-                                <% } %>
+                            <% if(guild.joinDM.enabled){ %>
+                                <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
+                                <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
                             <% } else { %>
-                                <div class="alert alert-warning" role="alert">
-                                    <%= translate("dashboard:JOIN_DM_PREMIUM") %>
-                                </div>
+                                <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
                             <% } %>
                         </div>
                     </form>
