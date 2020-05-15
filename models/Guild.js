@@ -38,12 +38,18 @@ module.exports = class Guild {
         return this.premiumExpiresAt && (new Date(this.premiumExpiresAt).getTime() > Date.now());
     }
 
-    async addPremiumMonth(){
-        const newPremiumExpiresAt = this.premium ? (this.premiumExpiresAt+2592000000) : (Date.now()+2592000000);
+    async addPremiumDays(count, type, userID){
+        const time = count*24*60*60*1000;
+        const newPremiumExpiresAt = this.premium ? (this.premiumExpiresAt+time) : (Date.now()+time);
         await this.handler.query(`
             UPDATE guilds
             SET guild_premium_expires_at = '${new Date(newPremiumExpiresAt).toUTCString()}'
             WHERE guild_id = '${this.guildID}';
+        `);
+        await this.handler.query(`
+            INSERT INTO subscriptions
+            (sub_guild_id, sub_type, sub_created_at, sub_payer_id) VALUES
+            ('${this.id}', '${type}', '${Date.now().toUTCString()}',${userID ? `'${userID}'` : 'null'})
         `);
         this.handler.removeGuildFromOtherCaches(this.id);
         this.premiumExpiresAt = newPremiumExpiresAt;

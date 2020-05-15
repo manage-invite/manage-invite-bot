@@ -19,16 +19,16 @@ router.post("/ipn", async (req, res) => {
         method: "POST",
         body: payloadCopy.toString()
     }).then(async (paypalRes) => {
-        const valid = (await paypalRes.text() === "VERIFIED") && payload.txn_type === "subscr_signup" && payload.amount3 === '2.00';
-        if(!valid) return console.log('Invalid payment');
-        const paymentData = (payload.custom || "").split("-");
-        const paymentType = paymentData[0];
-        if(paymentType === "premium_month"){
-            const guildID = paymentData[1];
-            const userID = paymentData[2];
+        const valid = await paypalRes.text() === "VERIFIED";
+        if(!valid) return console.log("Invalid payment");
+        if(payload.tnx_type === "subscr_signup"){
+            if(payload.amout3 !== '1.00') return;
+            const paymentData = (payload.custom || "").split("-");
+            const guildID = paymentData[0];
+            const userID = paymentData[1];
             const guildInfos = await utils.fetchGuild(guildID, req.client);
-            const guild = await req.client.database.fetchGuild();
-            await guild.addPremiumMonth();
+            const guild = await req.client.database.fetchGuild(guildID);
+            await guild.addPremiumDays(30, "sub_dash_paypal", paymentData[1]);
             req.client.users.fetch(userID).then((user) => {
                 const embed = new Discord.MessageEmbed()
                 .setAuthor(`Thanks for purchasing ManageInvite Premium, ${user.tag}`, user.displayAvatarURL())
@@ -45,6 +45,12 @@ router.post("/ipn", async (req, res) => {
                     if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
                 `);
             });
+        } else if(tnx_type === "subscr_payment") {
+            console.log(payload)
+            const paymentData = (payload.custom || "").split("-");
+            const guildID = paymentData[0];
+            const guild = await req.client.database.fetchGuild(guildID);
+            await guild.addPremiumDays(30, "sub_dash_paypal", paymentData[1]);
         }
     });
 });
