@@ -13,6 +13,8 @@ module.exports = class {
 
         // Fetch guild and member data from the db
         let guildData = await this.client.database.fetchGuild(member.guild.id);
+        if(!guildData.premium) return;
+
         member.guild.data = guildData;
         let memberData = await this.client.database.fetchMember(member.id, member.guild.id);
         

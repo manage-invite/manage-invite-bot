@@ -17,10 +17,13 @@ module.exports = class {
         let startAt = Date.now();
         this.client.fetching = true;
 
+        const premiumGuildsID = await this.client.database.fetchPremiumGuilds();
         await this.client.functions.asyncForEach(this.client.guilds.cache.array(), async (guild) => {
-            const member = await guild.members.fetch(this.client.user.id).catch(() => {});
-            let i = process.argv.includes("--uncache") ? new Map() : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : new Map());
-            invites[guild.id] = i || new Map();
+            if(premiumGuildsID.includes(guild.id)){
+                const member = await guild.members.fetch(this.client.user.id).catch(() => {});
+                let i = process.argv.includes("--uncache") ? new Map() : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : new Map());
+                invites[guild.id] = i || new Map();
+            }
         });
         this.client.invitations = invites;
         this.client.fetched = true;
