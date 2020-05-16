@@ -21,7 +21,12 @@ module.exports = [
     },
     {
         level: 4,
+        name: "Bot moderator",
+        check: (message) => message.client.channels.cache.get(message.client.config.addLogs).guild.members.cache.get(message.author.id).roles.cache.has(message.client.config.modRole)
+    },
+    {
+        level: 5,
         name: "Bot owner",
         check: (message) => message.client.config.owners.includes(message.author.id),
-    },
+    }
 ];

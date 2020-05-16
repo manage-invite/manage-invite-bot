@@ -6,7 +6,7 @@ module.exports = class extends Command {
             enabled: true,
             aliases: [ "execute" ],
             clientPermissions: [],
-            permLevel: 4
+            permLevel: 5
         });
     }
 
