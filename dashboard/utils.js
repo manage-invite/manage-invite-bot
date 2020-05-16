@@ -33,7 +33,7 @@ async function fetchGuild(guildID, client, locale){
     }
     conf.premiumExpiresDisplayed = date.format(new Date(conf.premiumExpiresAt), "MMM DD YYYY");
     const difference = new Date(conf.premiumExpiresAt).getTime() - Date.now();
-    conf.premiumExpiresDays = Math.round(difference/1000/60/60/2);
+    conf.premiumExpiresDays = Math.round(difference/86400000);
     return { ...guild, ...conf };
 }
 
