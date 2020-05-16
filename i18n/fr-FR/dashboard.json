@@ -14,5 +14,21 @@
   "NO_SERVER_TITLE": "Aucun serveur.",
   "ROLE_REWARDS": "🎯 Grades récompenses",
   "ROLE_REWARDS_EMPTY": "Aucun rôle récompense défini. Vous pouvez les configurer avec les commandes suivantes: {{prefix}}addrank, {{prefix}}removerank et {{prefix}}ranks.",
-  "SELECTOR": "Selector"
+  "SELECTOR": "Selector",
+  "PREMIUM": "👑 Abonnement Premium",
+  "PREMIUM_EXPIRES": "Votre abonnement premium expirera le {{date}} (dans {{count}} jours).",
+  "UPGRADE_SERVER": "Mettre à niveau {{server}}",
+  "FREE_SUB": "Gratuit",
+  "PREMIUM_SUB": "Premium (1€/mois)",
+  "ADD_BOT": "Ajouter le bot",
+  "NO_LATENCY": "Aucune latence",
+  "ALL_FEATURES": "Accès à toutes les fonctionnalités du bot (y compris les fonctionnalités d'invitation)",
+  "ADVANCED_FEATURES": "Fonctions avancées (auparavant réservées à la version premium à 5€)",
+  "DASH_ACCESS": "Accès au dashboard",
+  "PREMIUM_RANK": "Rôle Premium",
+  "GET_PREMIUM": "Obtenir Premium",
+  "WAITING_VERIF": "En attente de vérification...",
+  "WHY_TITLE": "Pourquoi ne puis-je pas utiliser ManageInvite sur mon serveur ?",
+  "WHY_CONTENT": "ManageInvite a atteint les 10 000 serveurs il y a quelques jours. Comme vous le savez, de nombreux bots d'invitation ont de gros problèmes et sont régulièrement en maintenance. Nous constatons que de nombreux serveurs ne peuvent pas trouver de bots de gestion des invitations qui soient en permanence en ligne, et c'est pourquoi nous avons changé la façon dont d'accéder à ManageInvite. Nous voulons que le bot reste accessible à tous : c'est pourquoi nous avons décidé d'acheter un gros serveur et de proposer une version du bot à 1€ par mois, sans latence et en permanence en ligne, sans coupure. Vous hésitez ? Vous pouvez demander une période d'essai pour la nouvelle version sur le serveur de support !",
+  "WHY_LINKS": "Obtenez plus de détails et demandez un essai sur le serveur support !"
 }

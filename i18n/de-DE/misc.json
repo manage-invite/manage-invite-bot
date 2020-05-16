@@ -11,5 +11,6 @@
   "LEAVE_VANITY": "{{user}} left the server, they joined using a discord.gg invite defined by the server owner (or an admin).",
   "LINKS_FOOTER": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Support server]({{discord}}) | [Vote for me](https://top.gg/bot/{{clientID}})",
   "PREFIX": "Hello! Please type **{{prefix}}help** to see all commands! You can add me to your server with **{{prefix}}add**.",
-  "USER_MISSING_PERMISSIONS": "This command requires the permission level: `{{level}}`!"
+  "USER_MISSING_PERMISSIONS": "This command requires the permission level: `{{level}}`!",
+  "NEED_UPGRADE": "{{emote}} | Hello, **{{username}}**! Your server need to be upgraded to use **ManageInvite**! We have managed to reduce latency to create a fast and powerful bot for servers that want a 100% reliable bot. To get more informations, you can join the support server ( {{discord}} ) or connect to the dashboard **<https://dash.manage-invite.xyz>**!"
 }
