@@ -17,8 +17,8 @@ module.exports = class Guild {
         this.language = data.guild_language || "en-US";
         // Guild prefix
         this.prefix = data.guild_prefix || "+";
-        // Guild premium status
-        this.premium = data.guild_is_premium || false;
+        // Guild premium expires at
+        this.premiumExpiresAt = new Date(data.guild_premium_expires_at).getTime() || null;
         // Guild keep ranks
         this.keepRanks = data.guild_keep_ranks || false;
     }
@@ -32,6 +32,29 @@ module.exports = class Guild {
         this.blacklistedUsers = [];
         await this.fetchBlacklistedUsers();
         this.fetched = true;
+    }
+
+    get premium(){
+        return this.premiumExpiresAt && (new Date(this.premiumExpiresAt).getTime() > Date.now());
+    }
+
+    async addPremiumDays(count, type, userID){
+        const time = count*86400000;
+        const newPremiumExpiresAt = this.premium ? (this.premiumExpiresAt+time) : (Date.now()+time);
+        console.log(newPremiumExpiresAt)
+        await this.handler.query(`
+            UPDATE guilds
+            SET guild_premium_expires_at = '${new Date(newPremiumExpiresAt).toUTCString()}'
+            WHERE guild_id = '${this.id}';
+        `);
+        await this.handler.query(`
+            INSERT INTO subscriptions
+            (sub_guild_id, sub_type, sub_created_at, sub_payer_id, sub_days) VALUES
+            ('${this.id}', '${type}', '${new Date().toUTCString()}' ,${userID ? `'${userID}'` : 'null'}, ${count})
+        `);
+        this.handler.removeGuildFromOtherCaches(this.id);
+        this.premiumExpiresAt = newPremiumExpiresAt;
+        return this.premium;
     }
 
     // Fetch and fill plugins
@@ -169,8 +192,8 @@ module.exports = class Guild {
         if (!this.inserted) {
             await this.handler.query(`
                 INSERT INTO guilds
-                (guild_id, guild_prefix, guild_language, guild_is_premium, guild_keep_ranks) VALUES
-                ('${this.id}', '${this.prefix}', '${this.language}', ${this.premium}, ${this.keepRanks});
+                (guild_id, guild_prefix, guild_language, guild_is_premium, guild_premium_expires_at, guild_keep_ranks) VALUES
+                ('${this.id}', '${this.prefix}', '${this.language}', false, ${this.premiumExpiresAt}, ${this.keepRanks});
             `);
             this.handler.removeGuildFromOtherCaches(this.id);
             this.inserted = true;

@@ -9,7 +9,7 @@ module.exports = class extends Command {
             enabled: true,
             aliases: [ "sl" ],
             clientPermissions: [ "EMBED_LINKS" ],
-            permLevel: 4
+            permLevel: 5
         });
     }
 

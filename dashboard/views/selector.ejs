@@ -2,6 +2,34 @@
 <html>
 
 <%- include('includes/head') %>
+<style>
+	.modal {
+		text-align: center;
+	}
+
+	@media screen and (min-width: 768px) { 
+		.modal:before {
+			display: inline-block;
+			vertical-align: middle;
+			content: " ";
+			height: 100%;
+		}
+	}
+
+	.modal-dialog {
+		display: inline-block;
+		text-align: left;
+		vertical-align: middle;
+	}
+
+	.table th {
+		text-align: center;   
+	}
+
+	.feat {
+		text-align: left !important;
+	}
+</style>
 
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
@@ -24,62 +52,160 @@
 
       <!-- Main content -->
       <section class="content">
-			<% if(!member){ %>
-				<div class="callout callout-warning">
-					<h4>Hey, <strong><%= user.username %></strong></h4>
-					<p>Looks like you're not on our support server. Join it by clicking <a target="_blank" href="<%= discord %>">here</a>!</p>
-				</div>
-			<% } %>
-			<% if(user.displayedGuilds){ user.displayedGuilds.forEach(function(guild) { %>
-				<!-- Displays 4 servers by line -->
-				<div class="col-md-3">
-					<div class="box box-solid">
-						<div class="box-header with-border text-center">
-							<i class="fas fa-crown"></i>    
-							<h3 class="box-title"><%= guild.name.length > 25 ? guild.name.substr(0, 23)+"..." : guild.name %></h3>
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
-							<div class="text-center">
-								<img src="<%= guild.iconURL %>" style="border-radius:100%" width="100" height="100" class="img-fluid">
-							</div>
-						</div>
-						<!-- /.box-body -->
-						<div class="box-footer">
-							<a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block"><%= translate("common:MANAGE") %></button></a>
-						</div>
-						<!-- /.box-footer -->
-					</div>
-					<!-- /.box -->
-				</div>
-				<!-- /.col -->
-			<% }); } else { %>
-				<div class="col-md-12">
-					<div class="box box-warning">
-						<div class="box-header with-border">
-							<h3 class="box-title"><%= translate("dashboard:NO_SERVER_TITLE") %></h3>
-							<div class="box-tools pull-right">
-							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-							</button>
-							</div>
-							<!-- /.box-tools -->
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
-							<%= translate("dashboard:NO_SERVER") %>
-						</div>
-						<!-- /.box-body -->
-					</div>
-					<!-- /.box -->
-				</div>
-			<% } %>
+		<% if(!member){ %>
+			<div class="callout callout-warning">
+				<h4>Hey, <strong><%= user.username %></strong></h4>
+				<p>Looks like you're not on our support server. Join it by clicking <a target="_blank" href="<%= discord %>">here</a>!</p>
 			</div>
-      </section>
-      <!-- /.content -->
-    </div>
-    <!-- /.container -->
-  </div>
-  <!-- /.content-wrapper -->
+		<% } %>
+		<% if(user.displayedGuilds){ user.displayedGuilds.forEach(function(guild) { %>
+			<!-- Displays 4 servers by line -->
+			<div class="col-md-3">
+				<div class="box box-solid">
+					<div class="box-header with-border text-center">
+						<i class="fas fa-crown"></i>    
+						<h3 class="box-title"><%= guild.name.length > 25 ? guild.name.substr(0, 23)+"..." : guild.name %></h3>
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body">
+						<div class="text-center">
+							<img src="<%= guild.iconURL %>" style="border-radius:100%" width="100" height="100" class="img-fluid">
+						</div>
+					</div>
+					<!-- /.box-body -->
+					<div class="box-footer">
+						<% if(guild.isPremium){ %>
+							<a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block"><%= translate("common:MANAGE") %></button></a>
+						<% } else if(guild.isWaitingForVerification) { %>
+							<a><button class="btn btn-warning btn-block" style="background-color: #f77f00 !important;" disabled><%= translate("dashboard:WAITING_VERIF") %></button></a>
+						<% } else { %>
+							<a><button class="btn btn-primary btn-block" data-toggle="modal" data-target="#<%= guild.id %>"><%= translate("dashboard:GET_PREMIUM") %></button></a>
+						<% } %> 
+					</div>
+					<!-- /.box-footer -->
+				</div>
+				<!-- /.box -->
+			</div>
+			<!-- /.col -->
+			<!-- Modal -->
+			<div class="modal fade" id="<%= guild.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h3 class="modal-title" id="myModalLabel"><%= translate("dashboard:UPGRADE_SERVER", { server: guild.name }) %></h3>
+					</div>
+					<div class="modal-body">
+					<h4><%= translate("dashboard:WHY_TITLE") %></h4>
+					<p><%= translate("dashboard:WHY_CONTENT") %> <a href="https://discord.gg/N99PJgE" target="_blank"><%= translate("dashboard:WHY_LINKS") %></a></p>
+					<table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th></th>
+								<th scope="col"><%= translate("dashboard:FREE_SUB") %></th>
+								<th scope="col"><%= translate("dashboard:PREMIUM_SUB") %></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row" class="feat"><%= translate("dashboard:ADD_BOT") %></th>
+								<th><i class="fa fa-check"></i></th>
+								<th><i class="fa fa-check"></i></th>
+							</tr>
+							<tr>
+								<th scope="row" class="feat"><%= translate("dashboard:NO_LATENCY") %></th>
+								<th><i class="fa fa-minus"></i></th>
+								<th><i class="fa fa-check"></i></th>
+							</tr>
+							<tr>
+								<th scope="row" class="feat"><%= translate("dashboard:ALL_FEATURES") %></th>
+								<th></th>
+								<th><i class="fa fa-check"></i></th>
+							</tr>
+							<tr>
+								<th scope="row" class="feat"><%= translate("dashboard:ADVANCED_FEATURES") %></th>
+								<th></th>
+								<th><i class="fa fa-check"></i></th>
+							</tr>
+							<tr>
+								<th scope="row" class="feat"><%= translate("dashboard:DASH_ACCESS") %></th>
+								<th></th>
+								<th><i class="fa fa-check"></i></th>
+							</tr>
+							<tr>
+								<th scope="row" class="feat"><%= translate("dashboard:PREMIUM_RANK") %></th>
+								<th></th>
+								<th><i class="fa fa-check"></i></th>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+					<div class="modal-footer">
+						<form id="paypal-submit" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+							<input type="hidden" name="business" value="sb-jvkgv1790003@business.example.com">
+							<!--
+							<form id="paypal-submit" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="business" value="">
+							-->
+						
+							<input type="hidden" name="lc" value="US">
+							
+							<!-- recurring -->
+							<input type="hidden" name="cmd" value="_xclick-subscriptions">
+							<input type="hidden" name="a3" value="1">
+							<input type="hidden" name="p3" value="1">
+							<input type="hidden" name="t3" value="M">
+							
+							<!-- One time purchase -->
+							<input class="one-time" type="hidden" name="cmd" value="_xclick" disabled="">
+							<input class="one-time item-amount" type="hidden" name="amount" value="1" disabled="">
+							
+							<input type="hidden" name="item_name" value="ManageInvite Premium">
+							
+ 							<!-- Shipping Address Require -->
+							<input type="hidden" name="no_shipping" value="1">
+
+							<input type="hidden" name="currency_code" value="USD">
+							<input type="hidden" name="custom" value="manageinvite_premium,<%= guild.id %>,<%= user.id %>,<%= guild.name %>">
+
+							<!-- Redirect URLs -->
+							<input type="hidden" name="notify_url" value="<%= paypal.ipnURL %>">
+							<input type="hidden" name="return" value="<%= paypal.returnURL %>">
+							<input type="hidden" id="cancel-return" name="cancel_return" value="<%= paypal.cancelURL %>">
+
+							<button class="btn btn-default" data-dismiss="modal">Cancel</button>
+							<button type="submit" class="btn btn-primary">Upgrade <%= guild.name %></button>
+						</form>
+					</div>
+				</div>
+				</div>
+			</div>
+		<% }); } else { %>
+			<div class="col-md-12">
+				<div class="box box-warning">
+					<div class="box-header with-border">
+						<h3 class="box-title"><%= translate("dashboard:NO_SERVER_TITLE") %></h3>
+						<div class="box-tools pull-right">
+						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+						</button>
+						</div>
+						<!-- /.box-tools -->
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body">
+						<%= translate("dashboard:NO_SERVER") %>
+					</div>
+					<!-- /.box-body -->
+				</div>
+				<!-- /.box -->
+			</div>
+		<% } %>
+	</section>
+		<!-- /.content -->
+	</div>
+	<!-- /.container -->
+	</div>
+	<!-- /.content-wrapper -->
 
   <%- include('includes/footer') %>
 

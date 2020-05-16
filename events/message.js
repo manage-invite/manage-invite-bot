@@ -1,5 +1,6 @@
 const config = require("../config");
 const Discord = require("discord.js");
+const Constants = require("../Constants");
 
 module.exports = class {
 
@@ -61,6 +62,14 @@ module.exports = class {
         if(permLevel < cmd.conf.permLevel){
             return message.error("misc:USER_MISSING_PERMISSIONS", {
                 level: this.client.permLevels[cmd.conf.permLevel].name
+            });
+        }
+
+        if(!data.guild.premium){
+            return message.sendT("misc:NEED_UPGRADE", {
+                username: message.author.username,
+                discord: Constants.Links.DISCORD,
+                emote: this.client.config.emojis.upgrade
             });
         }
 

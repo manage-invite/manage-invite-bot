@@ -88,6 +88,16 @@ module.exports = class DatabaseHandler {
             });
         });
     }
+    
+    fetchPremiumGuilds(){
+        return new Promise(async resolve => {
+            const { rows } = await this.query(`
+                SELECT * FROM guilds
+                WHERE guild_premium_expires_at is not null;
+            `);
+            resolve(rows.map((row) => row.guild_id));
+        });
+    }
 
     // Create or get all the members of a guild
     fetchMembers(guildID, raw) {

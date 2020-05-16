@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('includes/head') %>
+
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+
+  <%- include('includes/header') %>
+
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+    <div class="container">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Get premium version
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="/selector"><i class="fa fa-home"></i><%= translate("dashboard:SELECTOR") %></a></li>
+          <li><a href="/manage/<%= guild.id %>"><i class="fa fa-edit"></i><%= guild.name %></a></li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container">
+            <div class="jumbotron jumbotron-fluid" style="background-color: #f4c46c;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img src="<%= guild.iconURL %>" style="border-radius: 50%;"></img>
+                        </div>
+                        <div class="col-md-5">
+                            <h2>Upgrade to Premium for <%= guild.name %></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <%- include('includes/footer') %>
+
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

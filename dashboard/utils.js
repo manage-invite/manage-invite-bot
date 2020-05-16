@@ -1,3 +1,5 @@
+const date = require('date-and-time');
+require('date-and-time/locale/fr');
 const Discord = require("discord.js");
 
 /**
@@ -6,7 +8,7 @@ const Discord = require("discord.js");
  * @param {object} client The discord client instance
  * @param {array} guilds The user guilds
  */
-async function fetchGuild(guildID, client){
+async function fetchGuild(guildID, client, locale){
     let results = await client.shard.broadcastEval(`
     let guild = this.guilds.cache.get('${guildID}');
     if(guild){
@@ -24,6 +26,14 @@ async function fetchGuild(guildID, client){
     `);
     let guild = results.find((g) => g);
     let conf = await client.database.fetchGuild(guild.id);
+    if(locale === "fr"){
+        date.locale("fr");
+    } else {
+        date.locale("en");
+    }
+    conf.premiumExpiresDisplayed = date.format(new Date(conf.premiumExpiresAt), "MMM DD YYYY");
+    const difference = new Date(conf.premiumExpiresAt).getTime() - Date.now();
+    conf.premiumExpiresDays = Math.round(difference/86400000);
     return { ...guild, ...conf };
 }
 
@@ -31,10 +41,9 @@ async function fetchGuild(guildID, client){
  * Fetch user informations (stats, guilds, etc...)
  * @param {object} userData The oauth2 user informations
  * @param {object} client The discord client instance
- * @param {string} query The optional query for guilds
  * @returns {object} The user informations
  */
-async function fetchUser(userData, client, query){
+async function fetchUser(userData, client, locale){
     if(userData.guilds){
         await client.functions.asyncForEach(userData.guilds, async (guild) => {
             let perms = new Discord.Permissions(guild.permissions);
@@ -42,7 +51,10 @@ async function fetchUser(userData, client, query){
             let results = await client.shard.broadcastEval(` let guild = this.guilds.cache.get('${guild.id}'); if(guild) guild.toJSON(); `);
             let found = results.find((g) => g);
             guild.settingsUrl = (found ? `/manage/${guild.id}/` : `https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958847&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(client.config.baseURL+"/api/callback")}&state=invite${guild.id}`);
-            guild.iconURL = (guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128` : "https://discordemoji.com/assets/emoji/discordcry.png");
+            guild.iconURL = (guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128` : "/dist/img/discordcry.png");
+            const guildDB = await client.database.fetchGuild(guild.id);
+            guild.isPremium = guildDB.premium;
+            guild.isWaitingForVerification = client.waitingForVerification.includes(guild.id);
         });
         userData.displayedGuilds = userData.guilds.filter((g) => g.admin);
         if(userData.displayedGuilds.length < 1){

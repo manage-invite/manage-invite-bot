@@ -1,7 +1,8 @@
 const config = require("../config"),
 Discord = require("discord.js"),
 utils = require("./utils"),
-CheckAuth = require("./auth/CheckAuth");
+CheckAuth = require("./auth/CheckAuth"),
+morgan = require("morgan");
 
 const availableLanguages = [
     { name: "french", aliases: [ "francais", "fr", "français" ] },
@@ -21,10 +22,12 @@ module.exports.load = async (client) => {
     /* Routers */
     const mainRouter = require("./routes/index"),
     guildManager = require("./routes/guild"),
-    apiRouter = require("./routes/discord");
+    apiRouter = require("./routes/discord"),
+    paymentManager = require("./routes/payment");
 
     /* App configuration */
     app
+    .use(morgan('dev'))
     // Body parser (for post method)
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({ extended: true }))
@@ -43,8 +46,8 @@ module.exports.load = async (client) => {
     .use(async function(req, res, next){
         req.client = client;
         req.user = req.session.user;
-        if(req.user && req.url !== "/") req.userInfos = await utils.fetchUser(req.user, req.client);
         req.locale = req.user ? (req.user.locale === "fr" ? "fr-FR" : "en-US") : "en-US";
+        if(req.user && req.url !== "/") req.userInfos = await utils.fetchUser(req.user, req.client);
         if(req.user){
             req.translate = req.client.translations.get(req.locale);
             let results = await client.shard.broadcastEval(`
@@ -59,6 +62,7 @@ module.exports.load = async (client) => {
         }
         next();
     })
+    .use("/payment", paymentManager)
     .use("/manage", guildManager)
     .use("/api", apiRouter)
     .use("/", mainRouter)

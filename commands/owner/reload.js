@@ -8,7 +8,7 @@ module.exports = class extends Command {
             enabled: true,
             aliases: [ "r" ],
             clientPermissions: [ "EMBED_LINKS" ],
-            permLevel: 4
+            permLevel: 5
         });
     }
 

@@ -35,6 +35,8 @@ class ManageInvite extends Client {
         this.guildsDeleted = 0;
         this.commandsRan = 0;
         this.pgQueries = 0;
+        // Waiting for verifications guilds ID
+        this.waitingForVerification = [];
     }
 
     // This function is used to load a command and add it to the collection
