@@ -7,3 +7,5 @@ files:
     translation: /i18n/%locale%/config/%original_file_name%
   - source: /i18n/en-US/core/*.json
     translation: /i18n/%locale%/core/%original_file_name%
+  - source: /i18n/en-US/staff/*.json
+    translation: /i18n/%locale%/staff/%original_file_name%
