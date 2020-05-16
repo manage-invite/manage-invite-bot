@@ -77,9 +77,9 @@
 						<% if(guild.isPremium){ %>
 							<a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block"><%= translate("common:MANAGE") %></button></a>
 						<% } else if(guild.isWaitingForVerification) { %>
-							<a><button class="btn btn-warning btn-block" style="background-color: #f77f00 !important;" disabled>Waiting for verification...</button></a>
+							<a><button class="btn btn-warning btn-block" style="background-color: #f77f00 !important;" disabled><%= translate("dashboard:WAITING_VERIF") %></button></a>
 						<% } else { %>
-							<a><button class="btn btn-primary btn-block" data-toggle="modal" data-target="#<%= guild.id %>">Get premium version</button></a>
+							<a><button class="btn btn-primary btn-block" data-toggle="modal" data-target="#<%= guild.id %>"><%= translate("dashboard:GET_PREMIUM") %></button></a>
 						<% } %> 
 					</div>
 					<!-- /.box-footer -->
@@ -93,48 +93,47 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h3 class="modal-title" id="myModalLabel">Upgrade <%= guild.name %></h3>
+						<h3 class="modal-title" id="myModalLabel"><%= translate("dashboard:UPGRADE_SERVER", { server: guild.name }) %></h3>
 					</div>
 					<div class="modal-body">
-					<h4>Why can't I use ManageInvite on my server?</h4>
-					<p>Your data is not lost, rest assured. ManageInvite has reached 10,000 servers few days ago. As you know, many invite bots have big problems and are regularly under maintenance. We don't want this to be the case with ManageInvite, but we want the bot to remain accessible to everyone. That's why we have decided to buy a big server and propose a $1 per month version of the bot. You can request trial period for the new version on the support server! <a href="https://discord.gg/N99PJgE" target="_blank">Get more details and request a trial on the support server!</a></p>
-					<h4>ManageInvite Premium Features</h4>
+					<h4><%= translate("dashboard:WHY_TITLE") %></h4>
+					<p><%= translate("dashboard:WHY_CONTENT") %> <a href="https://discord.gg/N99PJgE" target="_blank"><%= translate("dashboard:WHY_LINKS") %></a></p>
 					<table class="table">
 						<thead class="thead-dark">
 							<tr>
 								<th></th>
-								<th scope="col">Free</th>
-								<th scope="col">Premium (1$/month)</th>
+								<th scope="col"><%= translate("dashboard:FREE_SUB") %></th>
+								<th scope="col"><%= translate("dashboard:PREMIUM_SUB") %></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th scope="row" class="feat">Add the bot</th>
+								<th scope="row" class="feat"><%= translate("dashboard:ADD_BOT") %></th>
 								<th><i class="fa fa-check"></i></th>
 								<th><i class="fa fa-check"></i></th>
 							</tr>
 							<tr>
-								<th scope="row" class="feat">Very high speed</th>
+								<th scope="row" class="feat"><%= translate("dashboard:NO_LATENCY") %></th>
 								<th><i class="fa fa-minus"></i></th>
 								<th><i class="fa fa-check"></i></th>
 							</tr>
 							<tr>
-								<th scope="row" class="feat">Access to all bot features (including invite features)</th>
+								<th scope="row" class="feat"><%= translate("dashboard:ALL_FEATURES") %></th>
 								<th></th>
 								<th><i class="fa fa-check"></i></th>
 							</tr>
 							<tr>
-								<th scope="row" class="feat">Advanced features (formerly reserved for the $5 premium version)</th>
+								<th scope="row" class="feat"><%= translate("dashboard:ADVANCED_FEATURES") %></th>
 								<th></th>
 								<th><i class="fa fa-check"></i></th>
 							</tr>
 							<tr>
-								<th scope="row" class="feat">Dashboard access</th>
+								<th scope="row" class="feat"><%= translate("dashboard:DASH_ACCESS") %></th>
 								<th></th>
 								<th><i class="fa fa-check"></i></th>
 							</tr>
 							<tr>
-								<th scope="row" class="feat">Premium Role</th>
+								<th scope="row" class="feat"><%= translate("dashboard:PREMIUM_RANK") %></th>
 								<th></th>
 								<th><i class="fa fa-check"></i></th>
 							</tr>
