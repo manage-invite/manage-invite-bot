@@ -18,7 +18,7 @@ module.exports = class Guild {
         // Guild prefix
         this.prefix = data.guild_prefix || "+";
         // Guild premium expires at
-        this.premiumExpiresAt = data.guild_premium_expires_at || null;
+        this.premiumExpiresAt = new Date(data.guild_premium_expires_at).getTime() || null;
         // Guild keep ranks
         this.keepRanks = data.guild_keep_ranks || false;
     }
@@ -41,6 +41,7 @@ module.exports = class Guild {
     async addPremiumDays(count, type, userID){
         const time = count*86400000;
         const newPremiumExpiresAt = this.premium ? (this.premiumExpiresAt+time) : (Date.now()+time);
+        console.log(newPremiumExpiresAt)
         await this.handler.query(`
             UPDATE guilds
             SET guild_premium_expires_at = '${new Date(newPremiumExpiresAt).toUTCString()}'
