@@ -39,12 +39,12 @@ module.exports = class Guild {
     }
 
     async addPremiumDays(count, type, userID){
-        const time = count*24*60*60*1000;
+        const time = count*86400000;
         const newPremiumExpiresAt = this.premium ? (this.premiumExpiresAt+time) : (Date.now()+time);
         await this.handler.query(`
             UPDATE guilds
             SET guild_premium_expires_at = '${new Date(newPremiumExpiresAt).toUTCString()}'
-            WHERE guild_id = '${this.guildID}';
+            WHERE guild_id = '${this.id}';
         `);
         await this.handler.query(`
             INSERT INTO subscriptions
