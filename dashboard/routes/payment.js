@@ -21,7 +21,7 @@ router.post("/ipn", async (req, res) => {
     }).then(async (paypalRes) => {
         const valid = await paypalRes.text() === "VERIFIED";
         if(!valid) return console.log("Invalid payment");
-        if(payload.tnx_type === "subscr_signup"){
+        if(payload.txn_type === "subscr_signup"){
             if(payload.amount3 !== '1.00' && payload.mc_gross !== '1.00') return;
             const paymentData = (payload.custom || "").split("-");
             if(!paymentData[0]) return;
@@ -46,7 +46,7 @@ router.post("/ipn", async (req, res) => {
                     if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
                 `);
             });
-        } else if(payload.tnx_type === "subscr_payment") {
+        } else if(payload.txn_type === "subscr_payment") {
             console.log(payload)
             const paymentData = (payload.custom || "").split("-");
             const guildID = paymentData[0];
