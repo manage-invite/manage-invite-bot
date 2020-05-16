@@ -1,7 +1,8 @@
 const config = require("../config"),
 Discord = require("discord.js"),
 utils = require("./utils"),
-CheckAuth = require("./auth/CheckAuth");
+CheckAuth = require("./auth/CheckAuth"),
+morgan = require("morgan");
 
 const availableLanguages = [
     { name: "french", aliases: [ "francais", "fr", "français" ] },
@@ -26,6 +27,7 @@ module.exports.load = async (client) => {
 
     /* App configuration */
     app
+    .use(morgan('dev'))
     // Body parser (for post method)
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({ extended: true }))
