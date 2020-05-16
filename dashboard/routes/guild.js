@@ -29,7 +29,7 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
     }
 
     // Fetch guild informations
-    let guildInfos = await utils.fetchGuild(guild.id, req.client, req.user.guilds);
+    let guildInfos = await utils.fetchGuild(guild.id, req.client, req.user.guilds, req.user.locale);
 
     res.render("guild", {
         guild: guildInfos,

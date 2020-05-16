@@ -44,8 +44,8 @@ module.exports.load = async (client) => {
     .use(async function(req, res, next){
         req.client = client;
         req.user = req.session.user;
-        if(req.user && req.url !== "/") req.userInfos = await utils.fetchUser(req.user, req.client);
         req.locale = req.user ? (req.user.locale === "fr" ? "fr-FR" : "en-US") : "en-US";
+        if(req.user && req.url !== "/") req.userInfos = await utils.fetchUser(req.user, req.client);
         if(req.user){
             req.translate = req.client.translations.get(req.locale);
             let results = await client.shard.broadcastEval(`

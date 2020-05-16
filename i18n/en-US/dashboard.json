@@ -14,5 +14,7 @@
   "NO_SERVER_TITLE": "No server.",
   "ROLE_REWARDS": "🎯 Role rewards",
   "ROLE_REWARDS_EMPTY": "No role rewards defined. You can configure them with the following commands: {{prefix}}addrank, {{prefix}}removerank and {{prefix}}ranks.",
-  "SELECTOR": "Selector"
+  "SELECTOR": "Selector",
+  "PREMIUM": "👑 Premium Subscription",
+  "PREMIUM_EXPIRES": "Your premium subscription will expire on {{date}} (in {{count}} days)."
 }

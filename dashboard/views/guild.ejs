@@ -135,7 +135,6 @@
                         <% } %>
                     </div>
                 </div>
-                <!-- /.box -->
             </div>
             <div class="col-md-6">
                 <!-- JOIN CONFIGURATION -->
@@ -226,6 +225,17 @@
                     </form>
                 </div>
             </div>
+            <!-- /.box -->
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><%= translate("dashboard:PREMIUM") %></h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <%= translate("dashboard:PREMIUM_EXPIRES", { count: guild.premiumExpiresDays, date: guild.premiumExpiresDisplayed }) %>
+                </div>
+            </div>
+            <!-- /.box -->
         <div>
       </section>
     </div>
