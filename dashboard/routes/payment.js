@@ -2,11 +2,19 @@ const express = require("express"),
 CheckAuth = require("../auth/CheckAuth"),
 fetch = require("node-fetch"),
 router = express.Router(),
-utils = require("../utils");
-
-const Discord = require("discord.js");
+utils = require("../utils"),
+Discord = require("discord.js");
 
 router.get("/", CheckAuth, async (_req, res) => {
+    res.redirect("/selector");
+});
+
+router.get("/callback", async (req, res) => {
+    const parsedCM = (req.query.cm || "").split(",");
+    parsedCM.shift();
+    const guildID = parsedCM[0];
+    if(!guildID) return res.redirect("/");
+    req.client.waitingForVerification.push(guildID);
     res.redirect("/selector");
 });
 
@@ -20,10 +28,12 @@ router.post("/ipn", async (req, res) => {
         body: payloadCopy.toString()
     }).then(async (paypalRes) => {
         const valid = await paypalRes.text() === "VERIFIED";
+        console.log(payload, valid);
         if(!valid) return console.log("Invalid payment");
         if(payload.txn_type === "subscr_signup"){
             if(payload.amount3 !== '1.00' && payload.mc_gross !== '1.00') return;
-            const paymentData = (payload.custom || "").split("-");
+            const paymentData = (payload.custom || "").split(",");
+            paymentData.shift();
             if(!paymentData[0]) return;
             const guildID = paymentData[0];
             const userID = paymentData[1];
@@ -49,6 +59,7 @@ router.post("/ipn", async (req, res) => {
         } else if(payload.txn_type === "subscr_payment") {
             console.log(payload)
             const paymentData = (payload.custom || "").split("-");
+            paymentData.shift();
             const guildID = paymentData[0];
             const guild = await req.client.database.fetchGuild(guildID);
             await guild.addPremiumDays(30, "sub_dash_paypal", paymentData[1]);

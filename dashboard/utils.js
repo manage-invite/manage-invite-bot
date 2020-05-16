@@ -54,6 +54,7 @@ async function fetchUser(userData, client, locale){
             guild.iconURL = (guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128` : "/dist/img/discordcry.png");
             const guildDB = await client.database.fetchGuild(guild.id);
             guild.isPremium = guildDB.premium;
+            guild.isWaitingForVerification = client.waitingForVerification.includes(guild.id);
         });
         userData.displayedGuilds = userData.guilds.filter((g) => g.admin);
         if(userData.displayedGuilds.length < 1){

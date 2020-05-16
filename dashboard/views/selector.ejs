@@ -76,9 +76,11 @@
 					<div class="box-footer">
 						<% if(guild.isPremium){ %>
 							<a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block"><%= translate("common:MANAGE") %></button></a>
+						<% } else if(guild.isWaitingForVerification) { %>
+							<a><button class="btn btn-warning btn-block" style="background-color: #f77f00 !important;" disabled>Waiting for verification...</button></a>
 						<% } else { %>
 							<a><button class="btn btn-primary btn-block" data-toggle="modal" data-target="#<%= guild.id %>">Get premium version</button></a>
-						<% } %>
+						<% } %> 
 					</div>
 					<!-- /.box-footer -->
 				</div>
