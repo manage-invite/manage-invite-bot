@@ -37,18 +37,18 @@ router.post("/ipn", async (req, res) => {
             if(!paymentData[0]) return;
             const guildID = paymentData[0];
             const userID = paymentData[1];
-            const guildInfos = await utils.fetchGuild(guildID, req.client);
+            const guildName = paymentData[2];
             const guild = await req.client.database.fetchGuild(guildID);
             await guild.addPremiumDays(30, "sub_dash_paypal", paymentData[1]);
             req.client.users.fetch(userID).then((user) => {
                 const embed = new Discord.MessageEmbed()
                 .setAuthor(`Thanks for purchasing ManageInvite Premium, ${user.tag}`, user.displayAvatarURL())
-                .setDescription(`Congratulations, your server **${guildInfos.name}** is now premium! :crown:`)
+                .setDescription(`Congratulations, your server **${guildName}** is now premium! :crown:`)
                 .setColor("#F4831B");
                 user.send(embed);
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()
                 .setAuthor(`${user.tag} purchased ManageInvite Premium`, user.displayAvatarURL())
-                .setDescription(`Server **${guildInfos.name}** is now premium (**$1/month**) :crown:`)
+                .setDescription(`Server **${guildName}** is now premium (**$1/month**) :crown:`)
                 .setColor("#F4831B")).replace(/[\/\(\)\']/g, "\\$&");
                 let { premiumLogs } = req.client.config;
                 req.client.shard.broadcastEval(`
