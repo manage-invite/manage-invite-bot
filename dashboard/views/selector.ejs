@@ -173,8 +173,8 @@
 							<input type="hidden" name="return" value="<%= paypal.returnURL %>">
 							<input type="hidden" id="cancel-return" name="cancel_return" value="<%= paypal.cancelURL %>">
 
-							<button class="btn btn-default" data-dismiss="modal">Cancel</button>
-							<button type="submit" class="btn btn-primary">Upgrade <%= guild.name %></button>
+							<button class="btn btn-default" data-dismiss="modal"><%= translate("common:CANCEL") %></button>
+							<button type="submit" class="btn btn-primary"><%= translate("dashboard:UPGRADE_SERVER", { server: guild.name }) %></button>
 						</form>
 					</div>
 				</div>
