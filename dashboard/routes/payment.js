@@ -31,7 +31,10 @@ router.post("/ipn", async (req, res) => {
         console.log(payload, valid);
         if(!valid) return console.log("Invalid payment");
         if(payload.txn_type === "subscr_signup"){
-            if(payload.amount3 !== '1.00' && payload.mc_gross !== '1.00') return;
+            if(
+                (payload.amount3 !== '1.00' && payload.mc_gross !== '1.00') ||
+                (payload.receiver_email !== (req.client.config.paypal.mode === "live" ? req.client.config.paypal.live.email : req.client.config.paypal.sandbox.email))
+            ) return;
             const paymentData = (payload.custom || "").split(",");
             paymentData.shift();
             if(!paymentData[0]) return;
