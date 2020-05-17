@@ -19,7 +19,7 @@
   "PREMIUM_EXPIRES": "Your premium subscription will expire on {{date}} (in {{count}} days).",
   "UPGRADE_SERVER": "Upgrade {{server}}",
   "FREE_SUB": "Free",
-  "PREMIUM_SUB": "Premium ($1/month)",
+  "PREMIUM_SUB": "Premium ($2/month)",
   "ADD_BOT": "Add the bot",
   "NO_LATENCY": "No latency",
   "ALL_FEATURES": "Access to all bot features (including invite features)",
