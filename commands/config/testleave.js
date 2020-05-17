@@ -17,7 +17,7 @@ module.exports = class extends Command {
         const embed = new Discord.MessageEmbed()
             .setTitle(message.translate("config/testleave:TITLE"))
             .setDescription(message.translate("config/testleave:DESCRIPTION"))
-            .addField(message.translate("config/testleave:ENABLED"), (data.guild.leave.enabled ? message.translate("config/testleave:ENABLED_YES_CONTENT", {
+            .addField(message.translate("config/testleave:ENABLED_TITLE"), (data.guild.leave.enabled ? message.translate("config/testleave:ENABLED_YES_CONTENT", {
                 prefix: data.guild.prefix,
                 success: this.client.config.emojis.success
             }) : message.translate("config/testleave:ENABLED_NO_CONTENT", {
@@ -27,7 +27,7 @@ module.exports = class extends Command {
             .addField(message.translate("config/testleave:MESSAGE"), (data.guild.leave.message || message.translate("config/testleave:ENABLED_YES_CONTENT", {
                 prefix: data.guild.prefix
             })))
-            .addField(message.translate("config/testleave:CHANNEL"), (data.guild.leave.channel ? `<#${data.guild.leave.channel}>` : message.translate("config/testleave:CHANNEL_CONTENT", {
+            .addField(message.translate("config/testleave:CHANNEL_TITLE"), (data.guild.leave.channel ? `<#${data.guild.leave.channel}>` : message.translate("config/testleave:CHANNEL_CONTENT", {
                 prefix: data.guild.prefix
             })))
             .setThumbnail(message.author.avatarURL())

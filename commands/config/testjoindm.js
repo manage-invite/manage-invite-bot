@@ -26,7 +26,7 @@ module.exports = class extends Command {
             .setDescription(message.translate("config/testleave:DESCRIPTION", {
                 discord: Constants.Links.DISCORD
             }))
-            .addField(message.translate("config/testleave:ENABLED"), (data.guild.joinDM.enabled ? message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
+            .addField(message.translate("config/testleave:ENABLED_TITLE"), (data.guild.joinDM.enabled ? message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
                 prefix: data.guild.prefix,
                 success: this.client.config.emojis.success
             }) : message.translate("config/testjoindm:ENABLED_NO_CONTENT", {
