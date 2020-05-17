@@ -32,7 +32,7 @@ router.post("/ipn", async (req, res) => {
         if(!valid) return console.log("Invalid payment");
         if(payload.txn_type === "subscr_signup"){
             if(
-                (payload.amount3 !== '1.00' && payload.mc_gross !== '1.00') ||
+                (payload.amount3 !== '2.00' && payload.mc_gross !== '2.00') ||
                 (payload.receiver_email !== (req.client.config.paypal.mode === "live" ? req.client.config.paypal.live.email : req.client.config.paypal.sandbox.email))
             ) return;
             const paymentData = (payload.custom || "").split(",");
@@ -51,7 +51,7 @@ router.post("/ipn", async (req, res) => {
                 user.send(embed);
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()
                 .setAuthor(`${user.tag} purchased ManageInvite Premium`, user.displayAvatarURL())
-                .setDescription(`Server **${guildName}** is now premium (**$1/month**) :crown:`)
+                .setDescription(`Server **${guildName}** is now premium (**$2/month**) :crown:`)
                 .setColor("#F4831B")).replace(/[\/\(\)\']/g, "\\$&");
                 let { premiumLogs } = req.client.config;
                 req.client.shard.broadcastEval(`
