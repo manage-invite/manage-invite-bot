@@ -10,7 +10,8 @@ module.exports = {
         offline:    "XXXXXXXXXXX",
         idle:       "XXXXXXXXXXX",
         loading:    "XXXXXXXXXXX",
-        warn:       "XXXXXXXXXXX"
+        warn:       "XXXXXXXXXXX",
+        upgrade:    "XXXXXXXXXXX"
     },
     /* Embeds */
     color:          "XXXXXXXXXXX",
