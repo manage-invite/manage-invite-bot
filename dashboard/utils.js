@@ -10,16 +10,18 @@ async function fetchGuild(guildID, client, locale){
     let results = await client.shard.broadcastEval(`
     let guild = this.guilds.cache.get('${guildID}');
     if(guild){
-        let toReturn = guild.toJSON();
-        toReturn.channels = guild.channels.cache.toJSON();
-        toReturn.roles = guild.roles.cache.map((r) => {
-            return {
-                name: r.name,
-                hexColor: r.hexColor,
-                id: r.id
-            };
-        });
-        toReturn;
+        if(guild.name) {
+            let toReturn = guild.toJSON();
+            toReturn.channels = guild.channels.cache.toJSON();
+            toReturn.roles = guild.roles.cache.map((r) => {
+                return {
+                    name: r.name,
+                    hexColor: r.hexColor,
+                    id: r.id
+                };
+            });
+            toReturn;
+        }
     }
     `);
     let guild = results.find((g) => g);
@@ -41,7 +43,7 @@ async function fetchUser(userData, client, locale){
         await client.functions.asyncForEach(userData.guilds, async (guild) => {
             let perms = new Discord.Permissions(guild.permissions);
             if(perms.has("MANAGE_GUILD")) guild.admin = true;
-            let results = await client.shard.broadcastEval(` let guild = this.guilds.cache.get('${guild.id}'); if(guild) guild.toJSON(); `);
+            let results = await client.shard.broadcastEval(` let guild = this.guilds.cache.get('${guild.id}'); if(guild && guild.name) guild.toJSON(); `);
             let found = results.find((g) => g);
             guild.settingsUrl = (found ? `/manage/${guild.id}/` : `https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958847&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(client.config.baseURL+"/api/callback")}&state=invite${guild.id}`);
             guild.iconURL = (guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128` : "/dist/img/discordcry.png");
