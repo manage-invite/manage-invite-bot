@@ -19,7 +19,7 @@
   "PREMIUM_EXPIRES": "الاشتراك المميز الخاص بك ينتهي في {{date}} في ({{count}} ايام).",
   "UPGRADE_SERVER": "تطوير {{server}}",
   "FREE_SUB": "مجانا",
-  "PREMIUM_SUB": "الاشتراك المميز (1$/في الشهر)",
+  "PREMIUM_SUB": "Premium ($2/month)",
   "ADD_BOT": "اضافة هذا البوت",
   "NO_LATENCY": "لا استجابة",
   "ALL_FEATURES": "الوصول إلى جميع ميزات البوت (بما في ذلك ميزات الدعوة)",
