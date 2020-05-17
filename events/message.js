@@ -65,7 +65,7 @@ module.exports = class {
             });
         }
 
-        if(!data.guild.premium){
+        if(!data.guild.premium && permLevel < 4){
             return message.sendT("misc:NEED_UPGRADE", {
                 username: message.author.username,
                 discord: Constants.Links.DISCORD,
