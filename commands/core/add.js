@@ -20,7 +20,7 @@ module.exports = class extends Command {
             clientID: this.client.user.id
         }))
         .setColor(this.client.config.color)
-        .setFooter(message.translate("core/add:REQUESTED_BY", {
+        .setFooter(message.translate("core/add:REQUEST_BY", {
             username: message.author.username
         }), message.author.displayAvatarURL());
         message.channel.send(embed);
