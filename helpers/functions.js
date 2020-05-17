@@ -1,6 +1,7 @@
 const Discord = require("discord.js"),
 fetch = require("node-fetch"),
-moment = require("moment");
+moment = require("moment"),
+date = require('date-and-time');
 
 /**
  * @param {array} array The array to loop
@@ -230,9 +231,22 @@ const isEqual = (value, other) => {
 	return true;
 };
 
+/**
+ * Format a date for a specified locale
+ * @param {Date} dateToFormat 
+ * @param {string} format 
+ * @param {string} locale 
+ */
+const formatDate = (dateToFormat, format, locale) => {
+    if(locale !== "en-US") require('date-and-time/locale/'+locale.substr(0, 2));
+    date.locale(locale.substr(0, 2));
+    return date.format(dateToFormat, format);
+}
+
 module.exports = {
     asyncForEach,
     formatMessage,
+    formatDate,
     randomID,
     getNextRank,
     assignRanks,

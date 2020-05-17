@@ -1,6 +1,4 @@
 const Command = require("../../structures/Command.js");
-const date = require('date-and-time');
-require('date-and-time/locale/fr');
 
 module.exports = class extends Command {
     constructor (client) {
@@ -30,16 +28,10 @@ module.exports = class extends Command {
         const guildName = guildNameFound || guildID;
         guildData.addPremiumDays(parseInt(numberOfDays), "addpremium cmd", message.guild.id);
 
-        if(guildData.language === "fr-FR"){
-            date.locale("fr");
-        } else {
-            date.locale("en");
-        }
-
         message.success("staff/addpremium:ADDED", {
             guild: guildName,
             days: parseInt(numberOfDays),
-            expiresAt: date.format(new Date(guildData.premiumExpiresAt), "MMM DD YYYY")
+            expiresAt: this.client.functions.formatDate(new Date(guildData.premiumExpiresAt), "MMM DD YYYY", message.guild.data.language)
         });
 
     }

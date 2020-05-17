@@ -1,5 +1,3 @@
-const date = require('date-and-time');
-require('date-and-time/locale/fr');
 const Discord = require("discord.js");
 
 /**
@@ -26,12 +24,7 @@ async function fetchGuild(guildID, client, locale){
     `);
     let guild = results.find((g) => g);
     let conf = await client.database.fetchGuild(guild.id);
-    if(locale === "fr"){
-        date.locale("fr");
-    } else {
-        date.locale("en");
-    }
-    conf.premiumExpiresDisplayed = date.format(new Date(conf.premiumExpiresAt), "MMM DD YYYY");
+    conf.premiumExpiresDisplayed = req.client.functions.formatDate(new Date(conf.premiumExpiresAt), "MMM DD YYYY", guildData.language);
     const difference = new Date(conf.premiumExpiresAt).getTime() - Date.now();
     conf.premiumExpiresDays = Math.round(difference/86400000);
     return { ...guild, ...conf };
