@@ -1,0 +1,5 @@
+{
+    "MISSING_GUILD_ID": "Veuillez spécifier un ID de serveur valide !",
+    "MISSING_NUMBER_DAYS": "Veuillez préciser un nombre de jours valide!",
+    "ADDED": "**{{days}}** jours de premium ajoutés au serveur **{{guild}}**. L'abonnement premium de ce serveur expirera le **{{expiresAt}}**."
+}
