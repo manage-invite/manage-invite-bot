@@ -141,12 +141,8 @@
 					</table>
 					</div>
 					<div class="modal-footer">
-						<form id="paypal-submit" action="<%= paypal.formURL %>" method="post" target="_top">
-							<input type="hidden" name="business" value="sb-jvkgv1790003@business.example.com">
-							<!--
-							<form id="paypal-submit" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-								<input type="hidden" name="business" value="">
-							-->
+							<form id="paypal-submit" action="<%= paypal.formURL %>" method="post" target="_top">
+								<input type="hidden" name="business" value="<%= paypal.email %>">
 						
 							<input type="hidden" name="lc" value="US">
 							
