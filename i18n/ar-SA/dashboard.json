@@ -15,14 +15,14 @@
   "ROLE_REWARDS": "رتبة المكافآت",
   "ROLE_REWARDS_EMPTY": "لا يوجد رتبة المكافآت. يمكنك اضافتها بالاوامر التالية: addrank {{prefix}}, {{prefix}}removerank و ايضا لمعرفة الرتبة {{prefix}}ranks.",
   "SELECTOR": "محدد",
-  "PREMIUM": "👑 Premium Subscription",
-  "PREMIUM_EXPIRES": "Your premium subscription will expire on {{date}} (in {{count}} days).",
-  "UPGRADE_SERVER": "Upgrade {{server}}",
-  "FREE_SUB": "Free",
-  "PREMIUM_SUB": "Premium ($1/month)",
-  "ADD_BOT": "Add the bot",
-  "NO_LATENCY": "No latency",
-  "ALL_FEATURES": "Access to all bot features (including invite features)",
+  "PREMIUM": "👑اشتراك مميز",
+  "PREMIUM_EXPIRES": "الاشتراك المميز الخاص بك ينتهي في {{date}} في ({{count}} ايام).",
+  "UPGRADE_SERVER": "تطوير {{server}}",
+  "FREE_SUB": "مجانا",
+  "PREMIUM_SUB": "الاشتراك المميز (1$/في الشهر)",
+  "ADD_BOT": "اضافة هذا البوت",
+  "NO_LATENCY": "لا استجابة",
+  "ALL_FEATURES": "الوصول إلى جميع ميزات البوت (بما في ذلك ميزات الدعوة)",
   "ADVANCED_FEATURES": "Advanced features (formerly reserved for the $5 premium version)",
   "DASH_ACCESS": "Dashboard access",
   "PREMIUM_RANK": "Premium Role",
