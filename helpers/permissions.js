@@ -22,7 +22,7 @@ module.exports = [
     {
         level: 4,
         name: "Bot moderator",
-        check: (message) => message.client.guilds.cache.get("638685268777500672").members.cache.get(message.author.id) &&  message.client.guilds.cache.get("638685268777500672").members.cache.get(message.author.id).roles.cache.has(message.client.config.modRole)
+        check: (message) => [ "456500252048883714", "547514927019982864" ].includes(message.author.id)
     },
     {
         level: 5,
