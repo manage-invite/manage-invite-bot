@@ -49,7 +49,7 @@ module.exports = {
         mode: 'sandbox',
         live: {
             email: "XXXXXXXXXXX",
-            returnURL: "https://dash.manage-invite.xyz/selector",
+            returnURL: "https://dash.manage-invite.xyz/payment/callback",
             cancelURL: "https://dash.manage-invite.xyz/selector",
             ipnURL: "https://dash.manage-invite.xyz/payment/ipn",
             formURL: "https://www.paypal.com/cgi-bin/webscr",
