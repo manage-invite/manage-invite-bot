@@ -16,13 +16,6 @@ module.exports  = class extends Command {
     async run (message, args, data) {
 
         let membersData = await this.client.database.fetchMembers(message.guild.id, true);
-        if(membersData.length <= 0){
-            let embed = new Discord.MessageEmbed()
-            .setAuthor(message.translate("core/leaderboard:EMPTY_TITLE"))
-            .setDescription(message.translate("core/leaderboard:EMPTY_CONTENT"))
-            .setColor(data.color);
-            return message.channel.send(embed);
-        }
 
         let members = [];
         membersData.forEach((member) => {
@@ -37,6 +30,14 @@ module.exports  = class extends Command {
             });
         });
         members = members.filter((m) => m.invites !== 0).sort((a, b) => b.invites - a.invites);
+
+        if(members.length <= 0){
+            let embed = new Discord.MessageEmbed()
+            .setAuthor(message.translate("core/leaderboard:EMPTY_TITLE"))
+            .setDescription(message.translate("core/leaderboard:EMPTY_CONTENT"))
+            .setColor(data.color);
+            return message.channel.send(embed);
+        }
 
         const embeds = [];
         /* Distributes array */
