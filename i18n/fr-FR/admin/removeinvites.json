@@ -1,6 +1,6 @@
 {
-    "CONFIRMATION": "Are you sure you want to remove all the server invites?\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
-    "CONFIRMATION_MEMBER": "Are you sure you want to remove all the invites of **{{username}}**?\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
+    "CONFIRMATION": "Êtes-vous sûr de vouloir supprimer toutes les invitations des serveurs ?\n\n{{success}} Envoyez `-confirm` pour confirmer.\n{{error}} Envoyez `cancel` pour annuler.",
+    "CONFIRMATION_MEMBER": "Êtes-vous sûr de vouloir supprimer toutes les invitations de **{{username}}** ?\n\n{{success}} Envoyez `-confirm` pour confirmer.\n{{error}} Envoyez `cancel` pour annuler.",
     "LOADING": "{{loading}} | Supprimer les invitations du serveur actuel.... Vous pouvez les restaurer avec la commande `{{prefix}}restore-invites` !",
     "LOADING_MEMBER": "{{loading}} | Suppression des invitations actuelles de **{{username}}**... Vous pouvez les restaurer avec la commande `{{prefix}}restore-invites {{username}}` !",
     "TITLE": "☄️ Invitations réinitalisées",
