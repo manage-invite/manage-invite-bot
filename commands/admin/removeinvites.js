@@ -14,17 +14,17 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
         
-        const member = args[0] ? await this.client.resolveMember(args.join(" "), message.guild) : null;
-        const msg = await (member ? message.sendT("admin/removeinvites:LOADING_MEMBER", {
-            username: member.user.tag,
+        const user = args[0] ? await this.client.resolveUser(args.join(" ")) : null;
+        const msg = await (user ? message.sendT("admin/removeinvites:LOADING_MEMBER", {
+            username: user.tag,
             loading: this.client.config.emojis.loading,
             prefix: data.guild.prefix
         }) : message.sendT("admin/removeinvites:LOADING", {
             loading: this.client.config.emojis.loading,
             prefix: data.guild.prefix
         }));
-        if(member){
-            const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
+        if(user){
+            const memberData = await this.client.database.fetchMember(user.id, message.guild.id);
             memberData.oldRegular = memberData.regular;
             memberData.regular = 0;
             memberData.oldFake = memberData.fake;
@@ -52,9 +52,9 @@ module.exports = class extends Command {
 
         const embed = new Discord.MessageEmbed()
         .setAuthor(message.translate("admin/removeinvites:TITLE"))
-        .setDescription((member ?
+        .setDescription((user ?
             message.translate("admin/removeinvites:DESCRIPTION_MEMBER", {
-                username: member.user.tag,
+                username: user.tag,
                 success: this.client.config.emojis.success
             })
             : message.translate("admin/removeinvites:DESCRIPTION", {
