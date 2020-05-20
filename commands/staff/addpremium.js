@@ -27,10 +27,10 @@ module.exports = class extends Command {
         const guildNameFound = guildNames.find((r) => r);
         const guildName = guildNameFound || guildID;
         if(!message.content.includes("no-trial")){
-            await guildData.addPremiumDays(parseInt(numberOfDays), "addpremium_cmd", message.author.id);
+            await guildData.addPremiumDays(parseInt(numberOfDays), "addpremium_cmd_trial", message.author.id);
             await guildData.setTrialPeriodEnabled(true);
         } else {
-            await guildData.addPremiumDays(parseInt(numberOfDays), "addpremium_cmd_trial", message.author.id);
+            await guildData.addPremiumDays(parseInt(numberOfDays), "addpremium_cmd", message.author.id);
             await guildData.setTrialPeriodEnabled(false);
             await guildData.setTrialPeriodUsed(true);
         }
