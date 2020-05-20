@@ -30,8 +30,12 @@
 		text-align: left !important;
 	}
 
+	.trial {
+		display: flex;
+	}
+
 	.inner {
-		display: inline-block;
+		flex: 1;
 	}
 </style>
 
@@ -80,8 +84,8 @@
 					<div class="box-footer">
 						<% if(guild.trialPeriod){ %>
 							<div class="trial">
-								<div class="inner"><a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block" style="width: 100%;">Gérer (version d'essai)</button></a></div>
-								<div class="inner"><a><button class="btn btn-primary btn-block" data-toggle="modal" data-target="#<%= guild.id %>"><i class="fa fa-paypal"></i></button></a></div>
+								<div class="inner"><a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block" style="width: 98%;"><%= translate("dashboard:MANAGE_TRIAL") %></button></a></div>
+								<a><button class="btn btn-primary btn-block" data-toggle="modal" data-target="#<%= guild.id %>"><i class="fa fa-paypal"></i></button></a>
 							</div>
 						<% } else if(guild.isWaitingForVerification) { %>
 							<a><button class="btn btn-warning btn-block" style="background-color: #f77f00 !important;" disabled><%= translate("dashboard:WAITING_VERIF") %></button></a>
