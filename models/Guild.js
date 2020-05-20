@@ -19,6 +19,8 @@ module.exports = class Guild {
         this.prefix = data.guild_prefix || "+";
         // Guild premium expires at
         this.premiumExpiresAt = new Date(data.guild_premium_expires_at).getTime() || null;
+        // Trial period enabled
+        this.trialPeriodEnabled = data.guild_trial_period_enabled || false;
         // Guild keep ranks
         this.keepRanks = data.guild_keep_ranks || false;
     }
@@ -36,6 +38,17 @@ module.exports = class Guild {
 
     get premium(){
         return this.premiumExpiresAt && (new Date(this.premiumExpiresAt).getTime() > Date.now());
+    }
+
+    async setTrialPeriod(newStatus){
+        this.trialPeriodEnabled = newStatus;
+        await this.handler.query(`
+            UPDATE guilds
+            SET guild_trial_period_enabled = ${newStatus}
+            WHERE guild_id = '${this.id}';
+        `);
+        this.handler.removeGuildFromOtherCaches(this.id);
+        return this.trialPeriodEnabled;
     }
 
     async addPremiumDays(count, type, userID){
@@ -192,8 +205,8 @@ module.exports = class Guild {
         if (!this.inserted) {
             await this.handler.query(`
                 INSERT INTO guilds
-                (guild_id, guild_prefix, guild_language, guild_is_premium, guild_premium_expires_at, guild_keep_ranks) VALUES
-                ('${this.id}', '${this.prefix}', '${this.language}', false, ${this.premiumExpiresAt}, ${this.keepRanks});
+                (guild_id, guild_prefix, guild_language, guild_is_premium, guild_premium_expires_at, guild_trial_period_enabled, guild_keep_ranks) VALUES
+                ('${this.id}', '${this.prefix}', '${this.language}', false, ${this.premiumExpiresAt}, ${this.trialPeriodEnabled}, ${this.keepRanks});
             `);
             this.handler.removeGuildFromOtherCaches(this.id);
             this.inserted = true;
