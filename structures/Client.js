@@ -98,8 +98,8 @@ class ManageInvite extends Client {
         let user = null;
         if(!search || typeof search !== "string") return;
         // Try ID search
-        if(search.match(/^!?([^#]+)#(\d+)$/)){
-            let id = search.match(/^!?([^#]+)#(\d+)$/)[1];
+        if(search.match(/^<@!?(\d+)>$/)){
+            let id = search.match(/^<@!?(\d+)>$/)[1];
             user = this.users.fetch(id).catch((err) => {});
             if(user) return user;
         }
