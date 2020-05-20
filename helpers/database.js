@@ -112,23 +112,24 @@ module.exports = class DatabaseHandler {
     // Create or get all the members of a guild
     fetchMembers(guildID, raw) {
         return new Promise(async resolve => {
+            let startAt = Date.now();
             const { rows } = await this.query(`
                 SELECT * FROM members
                 WHERE guild_id = '${guildID}';
             `);
+            console.log(`Fetched in ${Date.now()-startAt}ms`);
             if(raw){
                 resolve(rows);
             } else {
                 const members = [];
                 await asyncForEach(rows, async row => {
-                   // if (this.memberCache.get(`${row.user_id}${guildID}`)){
-                    //    const memberCache = this.memberCache.get(`${row.user_id}${guildID}`);
-                    //    members.push(memberCache);
-                    //} else {
-                        const member = new Member(row.user_id, row.guild_id, row, this);
-                        member.fetch();
+                   if (this.memberCache.get(`${row.user_id}${guildID}`)){
+                        const memberCache = this.memberCache.get(`${row.user_id}${guildID}`);
+                        members.push(memberCache);
+                    } else {
+                        const member = new Member(row.user_id, row.guild_id, row, this, true);
                         members.push(member);
-                    //}
+                    }
                 });
                 resolve(members);
             }

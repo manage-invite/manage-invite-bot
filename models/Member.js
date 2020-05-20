@@ -1,7 +1,7 @@
 const { Collection } = require("discord.js");
 
 module.exports = class Member {
-    constructor(userID, guildID, data, handler) {
+    constructor(userID, guildID, data, handler, editOnly) {
         if(!data) data = {};
         this.id = userID;
         this.guildID = guildID
@@ -21,6 +21,8 @@ module.exports = class Member {
         this.oldBonus = parseInt(data.old_invites_bonus) || 0;
         this.oldRegular = data.old_invites_regular || 0;
         this.oldBackuped = data.old_invites_backuped || false;
+        // Whether this member is "edit only"
+        this.editOnly = editOnly;
     }
 
     async fetch() {
@@ -73,6 +75,7 @@ module.exports = class Member {
         `);
         this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
         this.invitedUsers = this.invitedUsers.filter((id) => id !== userID);
+        if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
         return;
     }
 
@@ -98,6 +101,7 @@ module.exports = class Member {
         `);
         this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
         this.invitedUsersLeft.push(userID);
+        if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
         return;
     }
 
@@ -111,6 +115,7 @@ module.exports = class Member {
         `);
         this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
         this.invitedUsersLeft = this.invitedUsersLeft.filter((id) => id !== userID);
+        if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
         return;
     }
 
@@ -155,6 +160,7 @@ module.exports = class Member {
             inviterID: data.inviterID,
             inviteData: data.inviteData
         };
+        if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
         return;
     }
 
@@ -167,6 +173,7 @@ module.exports = class Member {
         `);
         this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
         this.joinData = null;
+        if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
     }
 
     // Update member invites
@@ -189,6 +196,7 @@ module.exports = class Member {
             AND guild_id = '${this.guildID}';
         `);
         this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
+        if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
         return;
     }
 
@@ -225,6 +233,7 @@ module.exports = class Member {
                 );
             `);
             this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
+            if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
             this.inserted = true;
         }
         return this;
