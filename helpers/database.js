@@ -88,6 +88,16 @@ module.exports = class DatabaseHandler {
             });
         });
     }
+
+    fetchSubscriptions(guildID){
+        return new Promise(async resolve => {
+            const { rows } = await this.query(`
+                SELECT * FROM subscriptions
+                WHERE sub_guild_id = '${guildID}';
+            `);
+            resolve(rows);
+        });
+    }
     
     fetchPremiumGuilds(){
         return new Promise(async resolve => {
