@@ -12,5 +12,6 @@
   "LINKS_FOOTER": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Support server]({{discord}}) | [Vote for me](https://top.gg/bot/{{clientID}})",
   "PREFIX": "Hello! Hãy nhập **{{prefix}}help** để biết được toàn bộ lệnh của tôi! Bạn có thể thêm tôi vào server với lệnh **{{prefix}}add**.",
   "USER_MISSING_PERMISSIONS": "Lệnh này yêu cầu quyền level: `{{level}}`!",
-  "NEED_UPGRADE": "{{emote}} | Hello, **{{username}}**! Your server need to be upgraded to use **ManageInvite**! We have managed to reduce latency to create a fast and powerful bot for servers that want a 100% reliable bot. To get more informations, you can join the support server ( {{discord}} ) or connect to the dashboard **<https://dash.manage-invite.xyz>**!"
+  "NEED_UPGRADE": "{{emote}} | Hello, **{{username}}**! Your server need to be upgraded to use **ManageInvite**! We have managed to reduce latency to create a fast and powerful bot for servers that want a 100% reliable bot. To get more informations, you can join the support server ( {{discord}} ) or connect to the dashboard **<https://dash.manage-invite.xyz>**!",
+  "PLEASE_WAIT": "{{loading}} | Please wait..."
 }
