@@ -19,8 +19,11 @@ module.exports = class extends Command {
         let members = null;
         let memberCount = { regular: 0, leaves: 0, fake: 0, bonus: 0 };
         if(!member){
-            message.react(Discord.Util.parseEmoji(this.client.config.emojis.loading).id);
+            let m = await message.sendT("misc:PLEASE_WAIT", {
+                loading: this.client.config.emojis.loading
+            });
             members = await this.client.database.fetchMembers(message.guild.id, false);
+            m.delete();
             members.forEach((m) => {
                 memberCount.regular += m.oldRegular;
                 memberCount.leaves += m.oldLeaves;

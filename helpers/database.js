@@ -116,7 +116,7 @@ module.exports = class DatabaseHandler {
                     //    members.push(memberCache);
                     //} else {
                         const member = new Member(row.user_id, row.guild_id, row, this);
-                        await member.fetch();
+                        member.fetch();
                         members.push(member);
                     //}
                 });

@@ -35,7 +35,6 @@ module.exports = class extends Command {
             memberData.bonus = 0;
             await memberData.updateInvites();
         } else {
-            message.react(Discord.Util.parseEmoji(this.client.config.emojis.loading).id);
             // Find all members in the guild
             const members = await this.client.database.fetchMembers(message.guild.id, false);
             await this.client.functions.asyncForEach(members, async (memberData) => {
