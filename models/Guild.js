@@ -21,6 +21,8 @@ module.exports = class Guild {
         this.premiumExpiresAt = new Date(data.guild_premium_expires_at).getTime() || null;
         // Trial period enabled
         this.trialPeriodEnabled = data.guild_trial_period_enabled || false;
+        // Trial period used
+        this.trialPeriodUsed = data.guild_trial_period_used || false;
         // Guild keep ranks
         this.keepRanks = data.guild_keep_ranks || false;
     }
@@ -40,7 +42,7 @@ module.exports = class Guild {
         return this.premiumExpiresAt && (new Date(this.premiumExpiresAt).getTime() > Date.now());
     }
 
-    async setTrialPeriod(newStatus){
+    async setTrialPeriodEnabled(newStatus){
         this.trialPeriodEnabled = newStatus;
         await this.handler.query(`
             UPDATE guilds
@@ -49,6 +51,17 @@ module.exports = class Guild {
         `);
         this.handler.removeGuildFromOtherCaches(this.id);
         return this.trialPeriodEnabled;
+    }
+
+    async setTrialPeriodUsed(newStatus){
+        this.trialPeriodUsed = newStatus;
+        await this.handler.query(`
+            UPDATE guilds
+            SET guild_trial_period_used = ${newStatus}
+            WHERE guild_id = '${this.id}';
+        `);
+        this.handler.removeGuildFromOtherCaches(this.id);
+        return this.trialPeriodUsed;
     }
 
     async addPremiumDays(count, type, userID){

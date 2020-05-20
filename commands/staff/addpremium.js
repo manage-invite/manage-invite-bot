@@ -28,10 +28,11 @@ module.exports = class extends Command {
         const guildName = guildNameFound || guildID;
         if(!message.content.includes("no-trial")){
             await guildData.addPremiumDays(parseInt(numberOfDays), "addpremium_cmd", message.guild.id);
-            await guildData.setTrialPeriod(true);
+            await guildData.setTrialPeriodEnabled(true);
         } else {
             await guildData.addPremiumDays(parseInt(numberOfDays), "addpremium_cmd_trial", message.guild.id);
-            await guildData.setTrialPeriod(false);
+            await guildData.setTrialPeriodEnabled(false);
+            await guildData.setTrialPeriodUsed(true);
         }
 
         message.success("staff/addpremium:ADDED", {

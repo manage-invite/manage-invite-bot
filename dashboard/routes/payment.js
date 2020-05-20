@@ -43,6 +43,7 @@ router.post("/ipn", async (req, res) => {
             const guildName = paymentData[2];
             const guild = await req.client.database.fetchGuild(guildID);
             await guild.addPremiumDays(30, "sub_dash_paypal", paymentData[1]);
+            await guild.setTrialPeriodEnabled(false);
             req.client.users.fetch(userID).then((user) => {
                 const embed = new Discord.MessageEmbed()
                 .setAuthor(`Thanks for purchasing ManageInvite Premium, ${user.tag}`, user.displayAvatarURL())
@@ -66,6 +67,7 @@ router.post("/ipn", async (req, res) => {
             const guildID = paymentData[0];
             const guild = await req.client.database.fetchGuild(guildID);
             await guild.addPremiumDays(30, "sub_dash_paypal", paymentData[1]);
+            await guild.setTrialPeriodEnabled(false);
         }
     });
 });
