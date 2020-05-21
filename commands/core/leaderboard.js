@@ -15,7 +15,10 @@ module.exports  = class extends Command {
 
     async run (message, args, data) {
 
+        let startAt = Date.now();
         let membersData = await this.client.database.fetchMembers(message.guild.id, true);
+        console.log(Date.now()-startAt);
+        startAt = Date.now();
 
         let members = [];
         membersData.forEach((member) => {
@@ -74,6 +77,7 @@ module.exports  = class extends Command {
             memberCount++;
         });
 
+        console.log("Sent "+Date.now()-startAt);
         const pagination = new Pagination.Embeds()
         .setArray(embeds)
         .setAuthorizedUsers([message.author.id])
