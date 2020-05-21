@@ -14,8 +14,13 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
 
-        const guildID = args[0];
+        let guildID = args[0];
         if(!guildID) return message.error("staff/addpremium:MISSING_GUILD_ID");
+
+        if(guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-z]/)){
+            let invite = await this.client.fetchInvite(guildID);
+            guildID = invite.channel.guild.id;
+        }
 
         const guildDB = await this.client.database.fetchGuild(guildID);
         const guildJsons = await this.client.shard.broadcastEval(`
