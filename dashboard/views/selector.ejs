@@ -87,10 +87,10 @@
 								<div class="inner"><a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block" style="width: 98%;"><%= translate("dashboard:MANAGE_TRIAL") %></button></a></div>
 								<a><button class="btn btn-primary btn-block" data-toggle="modal" data-target="#<%= guild.id %>"><i class="fa fa-paypal"></i></button></a>
 							</div>
-						<% } else if(guild.isWaitingForVerification) { %>
-							<a><button class="btn btn-warning btn-block" style="background-color: #f77f00 !important;" disabled><%= translate("dashboard:WAITING_VERIF") %></button></a>
 						<% } else if(guild.isPremium){ %>
 							<a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block"><%= translate("common:MANAGE") %></button></a>
+						<% } else if(guild.isWaitingForVerification) { %>
+							<a><button class="btn btn-warning btn-block" style="background-color: #f77f00 !important;" disabled><%= translate("dashboard:WAITING_VERIF") %></button></a>
 						<% } else { %>
 							<a><button class="btn btn-primary btn-block" data-toggle="modal" data-target="#<%= guild.id %>"><%= translate("dashboard:GET_PREMIUM") %></button></a>
 						<% } %>
