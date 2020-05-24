@@ -37,6 +37,7 @@ module.exports = {
     modRole:        "XXXXXXXXXXX",
     /* Top.gg */
     topToken: "XXXXXXXXXXX",
+    topAuth: "XXXXXXXXXXX",
     /* Database */
     database: {
         user: "",
