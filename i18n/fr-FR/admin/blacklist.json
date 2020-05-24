@@ -7,5 +7,6 @@
     "SUCCESS_MEMBER_ADD": "**{{username}}** a été ajouté à la liste noire !",
     "SUCCESS_MEMBER_REMOVE": "**{{username}}** a été retiré de la liste noire !",
     "EMPTY": "Pas d'utilisateurs sur liste noire !",
-    "NOT_BLACKLISTED": "**{{username}}** n'est pas dans la liste noire !"
+    "NOT_BLACKLISTED": "**{{username}}** n'est pas dans la liste noire !",
+    "ALREADY_BLACKLISTED": "**{{username}}** is already blacklisted!"
 }
