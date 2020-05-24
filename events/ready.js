@@ -109,7 +109,7 @@ module.exports = class {
                     this.client.invitations[guild.id] = i || new Map();
                 });
             }
-        });
+        }, null, true, "America/Los_Angeles");
 
     }
 };
