@@ -23,7 +23,8 @@ module.exports.load = async (client) => {
     const mainRouter = require("./routes/index"),
     guildManager = require("./routes/guild"),
     apiRouter = require("./routes/discord"),
-    paymentManager = require("./routes/payment");
+    paymentManager = require("./routes/payment"),
+    voteRouter = require("./routes/vote");
 
     /* App configuration */
     app
@@ -65,6 +66,7 @@ module.exports.load = async (client) => {
     .use("/payment", paymentManager)
     .use("/manage", guildManager)
     .use("/api", apiRouter)
+    .use("/vote", voteRouter)
     .use("/", mainRouter)
     .use(CheckAuth, function(req, res, next){
         if(!req.user) return res.redirect("/login");
