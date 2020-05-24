@@ -34,12 +34,12 @@ module.exports = class extends Command {
         if(confMessage === "cancel") return msg.error("common:CANCELLED", null, true);
         if(confMessage === data.guild.prefix+"setdmjoin") return;
 
-        msg.sendT("config/configjoindm", null, true);
+        msg.sendT("config/configjoindm:SUCCESS", null, true);
 
         const embed = new Discord.MessageEmbed()
             .setTitle(message.translate("config/configjoindm:TITLE"))
             .addField(message.translate("common:MESSAGE"), confMessage)
-            .addField(message.translate("common:TEST_IT"), message.translate("config/configjoindm", {
+            .addField(message.translate("common:TEST_IT"), message.translate("config/configjoindm:TEST", {
                 prefix: data.guild.prefix
             }))
             .setThumbnail(message.author.avatarURL())
