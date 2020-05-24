@@ -59,7 +59,15 @@ module.exports  = class extends Command {
             }
             let oldDesc = lastEmbed.description || "";
             let user = this.client.users.cache.get(member.id) || (message.guild.members.cache.get(member.id) || {}).user;
-            if(!user) user = await this.client.users.fetch(member.id);
+            if(!user) {
+                if((members.indexOf(member) < 1)){
+                    user = await this.client.users.fetch(member.id);
+                } else {
+                    user = {
+                        username: member.id
+                    }
+                }
+            }
             totalMemberCount++;
             let position =    totalMemberCount === 1 ? "🏆" :
                         totalMemberCount === 2 ? "🥈" :
@@ -77,7 +85,7 @@ module.exports  = class extends Command {
             memberCount++;
         });
 
-        console.log("Sent "+Date.now()-startAt);
+        console.log("Sent "+(Date.now()-startAt));
         const pagination = new Pagination.Embeds()
         .setArray(embeds)
         .setAuthorizedUsers([message.author.id])
