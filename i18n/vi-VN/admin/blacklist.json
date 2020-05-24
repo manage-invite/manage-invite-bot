@@ -7,5 +7,6 @@
     "SUCCESS_MEMBER_ADD": "**{{username}}** đã được thêm vào danh sách đen!",
     "SUCCESS_MEMBER_REMOVE": "**{{username}}** đã được xoá khỏi danh sách đen!",
     "EMPTY": "Không có người dùng trong danh sách đen!",
-    "NOT_BLACKLISTED": "**{{username}}** không có trong danh sách đen!"
+    "NOT_BLACKLISTED": "**{{username}}** không có trong danh sách đen!",
+    "ALREADY_BLACKLISTED": "**{{username}}** is already blacklisted!"
 }
