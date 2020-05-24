@@ -7,5 +7,6 @@
     "SUCCESS_MEMBER_ADD": "**{{username}}** was added to the blacklist!",
     "SUCCESS_MEMBER_REMOVE": "**{{username}}** was removed from the blacklist!",
     "EMPTY": "No blacklisted users!",
-    "NOT_BLACKLISTED": "**{{username}}** is not in the blacklist!"
+    "NOT_BLACKLISTED": "**{{username}}** is not in the blacklist!",
+    "ALREADY_BLACKLISTED": "**{{username}}** is already blacklisted!"
 }
