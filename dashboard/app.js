@@ -4,11 +4,6 @@ utils = require("./utils"),
 CheckAuth = require("./auth/CheckAuth"),
 morgan = require("morgan");
 
-const availableLanguages = [
-    { name: "french", aliases: [ "francais", "fr", "français" ] },
-    { name: "english", aliases: [ "en", "englich" ] }
-];
-
 module.exports.load = async (client) => {
 
     /* Init express app */

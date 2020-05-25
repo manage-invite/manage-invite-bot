@@ -1,25 +1,6 @@
 const Command = require("../../structures/Command.js"),
 Discord = require("discord.js");
 
-const languages = [
-    {
-        name: "fr-FR",
-        aliases: [
-            "french",
-            "francais",
-            "fr",
-            "français"
-        ]
-    },
-    {
-        name: "en-US",
-        aliases: [
-            "english",
-            "en"
-        ]
-    }
-];
-
 module.exports = class extends Command {
     constructor (client) {
         super(client, {
@@ -33,10 +14,10 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
         const language = args[0];
-        if(!languages.some((l) => l.name === language || l.aliases.includes(language))){
+        if(!this.client.config.enabledLanguages.some((l) => l.name.toLowserCase() === language.toLowserCase() || l.aliases.includes(language.toLowserCase()))){
             return message.error("config/setlang:INVALID");
         }
-        await data.guild.setLanguage(languages.find((l) => l.name === language || l.aliases.includes(language)).name);
+        await data.guild.setLanguage(this.client.config.enabledLanguages.find((l) => l.name.toLowserCase() === language.toLowserCase() || l.aliases.includes(language.toLowserCase())).name);
         message.success("config/setlang:SUCCESS");
     }
 };

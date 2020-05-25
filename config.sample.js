@@ -68,5 +68,32 @@ module.exports = {
             fetchURL: "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate",
             pdtToken: "XXXXXXXXXXX"
         }
-    }
+    },
+    /* Language configuration */
+    enabledLanguages: [
+        {
+            name: "en-US",
+            nativeName: "English",
+            default: true,
+            aliases: [
+                "english",
+                "en",
+                "en-us",
+                "en_us",
+                "en_US"
+            ]
+        },
+        {
+            name: "fr-FR",
+            nativeName: "Français",
+            default: false,
+            aliases: [
+                "français",
+                "francais",
+                "french",
+                "fr",
+                "fr_fr"
+            ]
+        }
+    ]
 };

@@ -1,5 +1,5 @@
 const i18next = require("i18next");
-const Backend = require("i18next-node-fs-backend");
+const Backend = require("i18next-fs-backend");
 const path = require("path");
 const fs = require("fs").promises;
 
@@ -30,11 +30,6 @@ async function walkDirectory(dir, namespaces = [], folderName = "") {
 }
 
 module.exports = async () => {
-    const options = {
-        jsonIndent: 2,
-        loadPath: path.resolve(__dirname, "../i18n/{{lng}}/{{ns}}.json")
-    };
-
     const { namespaces, languages } = await walkDirectory(
         path.resolve(__dirname, "../i18n/")
     );
@@ -42,7 +37,10 @@ module.exports = async () => {
     i18next.use(Backend);
 
     await i18next.init({
-        backend: options,
+        backend: {
+            jsonIndent: 2,
+            loadPath: path.resolve(__dirname, "../i18n/{{lng}}/{{ns}}.json")
+        },
         debug: false,
         fallbackLng: "en-US",
         initImmediate: false,

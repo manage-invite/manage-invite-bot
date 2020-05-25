@@ -1,5 +1,5 @@
 const availableLanguages = [
-    { name: "fr-FR", aliases: [ "fr", "francais", "français" ] },
+    { name: "fr-FR", aliases: [ "fr", "francais", "français", "Français" ] },
     { name: "en-US", aliases: [ "en", "english" ] }
 ];
 
@@ -72,8 +72,8 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         if(data.hasOwnProperty("prefix") && data.prefix && data.prefix !== guildData.prefix){
             await guildData.setPrefix(data.prefix);
         }
-        if(data.hasOwnProperty("language") && availableLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || l.aliases.includes(data.language.toLowerCase()))){
-            const language = availableLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || l.aliases.includes(data.language.toLowerCase()));
+        if(data.hasOwnProperty("language") && req.client.config.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || l.aliases.includes(data.language.toLowerCase()))){
+            const language = req.client.config.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || l.aliases.includes(data.language.toLowerCase()));
             if(language.name !== guildData.language) await guildData.setLanguage(language.name);
         }
     }

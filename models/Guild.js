@@ -14,7 +14,7 @@ module.exports = class Guild {
         // Whether the guild is fetched
         this.fetched = false;
         // Guild language
-        this.language = data.guild_language || "en-US";
+        this.language = data.guild_language || handler.client.config.enabledLanguages.find((language) => language.default).name;
         // Guild prefix
         this.prefix = data.guild_prefix || "+";
         // Guild premium expires at
