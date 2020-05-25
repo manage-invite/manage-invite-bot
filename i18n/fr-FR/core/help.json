@@ -2,7 +2,7 @@
     "TITLE": "ℹ Page d'aide de ManageInvite",
     "DESCRIPTION": "> Préfixe de {{guildName}}: **{{prefix}}** (`{{prefix}}setprefix`)\n> Langue de {{guildName}}: **Français fr_FR** (`{{prefix}}setlang`)",
     "ADMIN_TITLE": "Admin",
-    "ADMIN_CONTENT": "> **{{prefix}}blacklist [add/remove/list] (@user)**: Ajoute/Enlève un utilisateur de la blacklist\n> **{{prefix}}addbonus number @user**: Ajoute des invitations bonus à un membre\n> **{{prefix}}removebonus number @user**: Enlève des invitations bonus à un membre\n> **{{prefix}}sync-invites**: Synchronise les invitations du serveur avec le bot\n> **{{prefix}}removeinvites (@user)**: Reset les invitations du serveur ou du membre\n> **{{prefix}}restoreinvites (@user)**: Restaure les invitations du serveur ou du membre",
+    "ADMIN_CONTENT": "> **{{prefix}}setkeep-ranks**: Whether members keep their roles when they lose invitations\n> **{{prefix}}blacklist [add/remove/list] (@user)**: Add/Remove a user to the blacklist\n> **{{prefix}}addbonus number @user**: Add bonus invites to a member\n> **{{prefix}}removebonus number @user**: Remove bonus invites to a member\n> **{{prefix}}sync-invites**: Synchronize server invites and bot invites\n> **{{prefix}}removeinvites (@user)**: Remove (server/user) invites\n> **{{prefix}}restoreinvites (@user)**: Restore (server/user) invites",
     "RANKS_TITLE": "Grades récompenses",
     "RANKS_CONTENT": "> **{{prefix}}addrank number @role**: Ajoute un grade récompense\n> **{{prefix}}removerank @role**: Supprime un grade récompense\n> **{{prefix}}ranks**: Liste les grades récompenses",
     "JOIN_DM_TITLE": "Messages d'arrivées en messages privés",
