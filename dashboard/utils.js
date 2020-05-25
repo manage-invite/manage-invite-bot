@@ -53,7 +53,8 @@ async function fetchUser(userData, client, locale){
             guild.trialPeriod = guildDB.trialPeriodEnabled && guildDB.premium;
         });
         userData.displayedGuilds = userData.guilds.filter((g) => g.admin);
-        if(userData.displayedGuilds.length < 1){
+        userData.notAdmin = userData.guilds.filter((g) => !g.admin);
+        if(userData.displayedGuilds.length < 1 && userData.notAdmin.length < 1){
             delete userData.displayedGuilds;
         }
     }
