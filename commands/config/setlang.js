@@ -14,10 +14,10 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
         const language = args[0];
-        if(!this.client.config.enabledLanguages.some((l) => l.name.toLowserCase() === language.toLowserCase() || l.aliases.includes(language.toLowserCase()))){
+        if(!this.client.config.enabledLanguages.some((l) => l.name.toLowerCase() === language.toLowerCase() || l.aliases.includes(language.toLowerCase()))){
             return message.error("config/setlang:INVALID");
         }
-        await data.guild.setLanguage(this.client.config.enabledLanguages.find((l) => l.name.toLowserCase() === language.toLowserCase() || l.aliases.includes(language.toLowserCase())).name);
+        await data.guild.setLanguage(this.client.config.enabledLanguages.find((l) => l.name.toLowerCase() === language.toLowerCase() || l.aliases.includes(language.toLowerCase())).name);
         message.success("config/setlang:SUCCESS");
     }
 };
