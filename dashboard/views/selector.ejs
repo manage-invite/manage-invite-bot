@@ -212,11 +212,11 @@
 					<div class="box-footer">
 						<% if(guild.trialPeriod){ %>
 							<div class="trial">
-								<div class="inner"><a href="<%= guild.settingsUrl %>"><button class="btn btn-danger btn-block" style="width: 98%;"><%= translate("dashboard:MISSING_PERM") %></button></a></div>
+								<div class="inner"><a><button class="btn btn-danger btn-block" style="width: 98%;" disabled><%= translate("dashboard:MISSING_PERM") %></button></a></div>
 								<a><button class="btn btn-primary btn-block" data-toggle="modal" data-target="#<%= guild.id %>"><i class="fa fa-paypal"></i></button></a>
 							</div>
 						<% } else if(guild.isPremium){ %>
-							<a href="<%= guild.settingsUrl %>"><button class="btn btn-danger btn-block"><%= translate("dashboard:MISSING_PERM") %></button></a>
+							<a><button class="btn btn-danger btn-block" disabled><%= translate("dashboard:MISSING_PERM") %></button></a>
 						<% } else if(guild.isWaitingForVerification) { %>
 							<a><button class="btn btn-warning btn-block" style="background-color: #f77f00 !important;" disabled><%= translate("dashboard:WAITING_VERIF") %></button></a>
 						<% } else { %>
