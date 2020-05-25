@@ -4,6 +4,7 @@ package-lock.json
 
 # Conf
 config.js
+!commands/config/config.js
 
 # Macos
 .DS_Store
