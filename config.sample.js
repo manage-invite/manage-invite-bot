@@ -23,6 +23,7 @@ module.exports = {
     dashLogs:       "XXXXXXXXXXX",
     statsLogs:      "XXXXXXXXXXX",
     premiumLogs:    "XXXXXXXXXXX",
+    voteLogs:       "XXXXXXXXXXX",
     /* Dashboard */
     secret:         "XXXXXXXXXXX",
     baseURL:        "XXXXXXXXXXX",
