@@ -89,11 +89,7 @@
                             <div class="form-group">
                                 <label><%= translate("common:MESSAGE") %></label>
                                 <div class="tooltip-wrapper" data-title="<%= translate('dashboard:JOIN_DM_PREMIUM') %>">
-                                    <% if(guild.premium){ %>
-                                        <textarea rows="3" name="message" class="form-control"><%= guild.joinDM.message || translate("dashboard:JOIN_DM_DEFAULT") %></textarea>
-                                    <% } else { %>
-                                        <textarea rows="3" name="message" class="form-control premiumInfo" disabled><%= guild.joinDM.message || translate("dashboard:JOIN_DM_DEFAULT") %></textarea>
-                                    <% } %>
+                                    <textarea rows="3" name="message" class="form-control"><%= guild.joinDM.message || translate("dashboard:JOIN_DM_DEFAULT") %></textarea>
                                 </div>
                             </div>
                         </div>

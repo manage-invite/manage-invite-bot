@@ -79,22 +79,20 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
     }
 
     if(req.params.form === "joinDM"){
-        if(guildData.premium){
-            let enable = data.hasOwnProperty("enable");
-            let update = data.hasOwnProperty("update");
-            let disable = data.hasOwnProperty("disable");
-            if(enable && data.message){
-                guildData.joinDM.enabled = true;
-                guildData.joinDM.message = data.message;
-                await guildData.joinDM.updateData();
-            } else if(update && data.message){
-                guildData.joinDM.enabled = true;
-                guildData.joinDM.message = data.message
-                await guildData.joinDM.updateData();
-            } else if(disable){
-                guildData.joinDM.enabled = false;
-                await guildData.joinDM.updateData();
-            }
+        let enable = data.hasOwnProperty("enable");
+        let update = data.hasOwnProperty("update");
+        let disable = data.hasOwnProperty("disable");
+        if(enable && data.message){
+            guildData.joinDM.enabled = true;
+            guildData.joinDM.message = data.message;
+            await guildData.joinDM.updateData();
+        } else if(update && data.message){
+            guildData.joinDM.enabled = true;
+            guildData.joinDM.message = data.message
+            await guildData.joinDM.updateData();
+        } else if(disable){
+            guildData.joinDM.enabled = false;
+            await guildData.joinDM.updateData();
         }
     }
 
