@@ -31,5 +31,7 @@
   "WHY_TITLE": "Why can't I use ManageInvite on my server?",
   "WHY_CONTENT": "ManageInvite has reached 10,000 servers few days ago. As you know, many invite bots have big problems and are regularly under maintenance. We see that many servers can't find invitation management bots that are always online, and that's why we've changed the way we access ManageInvite. And we want the bot to remain accessible to everyone: that's why we have decided to upgrade our infrastructure and propose a $2 per month version of the bot, with no latency and always online, without interruption. Hesitating? You can request trial period for the new version on the support server!",
   "WHY_LINKS": "Get more details and request a trial on the support server!",
-  "MANAGE_TRIAL": "Manage (trial version)"
+  "MANAGE_TRIAL": "Manage (trial version)",
+  "NOT_ADMIN": "Servers where you are not admin",
+  "MISSING_PERM": "Missing permissions"
 }
