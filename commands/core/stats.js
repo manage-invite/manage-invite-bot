@@ -32,11 +32,6 @@ module.exports = class extends Command {
         let numberOfDays = args[0] || 7;
         if(isNaN(numberOfDays)) return message.error("core/stats:INVALID");
         numberOfDays = parseInt(numberOfDays);
-        if(numberOfDays !== 7 && !data.guild.premium){
-            return message.error("core/stats:PREMIUM", {
-                username: message.author.username
-            });
-        }
         if(numberOfDays <= 1 || numberOfDays > 1000) return message.error("core/stats:INVALID");
 
         const guild = await message.guild.fetch();

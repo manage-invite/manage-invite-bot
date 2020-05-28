@@ -12,9 +12,6 @@ module.exports = class extends Command {
     }
 
     async run (message, args, data) {
-        if(!data.guild.premium) return message.error("config/setkeep-ranks:SUCCESS_DISABLED", {
-            username: message.author.username
-        });
         if(!data.guild.keepRanks){
             await data.guild.setKeepRanks(true);
             return message.success("config/setkeep-ranks:SUCCESS_ENABLED");

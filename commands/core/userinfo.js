@@ -67,7 +67,7 @@ module.exports = class extends Command {
             .addField(message.translate("core/userinfo:JOIN_ORDER_TITLE"), `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`);
         }
 
-        if(data.guild.premium && memberData.invitedUsers){
+        if(memberData.invitedUsers){
             let nobody = memberData.invitedUsers.length === 0;
             let andMore = false;
             if(memberData.invitedUsers.length > 20){
@@ -85,8 +85,6 @@ module.exports = class extends Command {
                     list: users.join(", ")
                 }) :
                 users.join(", ")));
-        } else {
-            embed.addField(message.translate("core/userinfo:INVITED_TITLE"), message.translate("core/userinfo:INVITED_PREMIUM"));
         }
         
         message.channel.send(embed);
