@@ -6,5 +6,6 @@
     "ALREADY_USED": "Vai trò này đã được sử dụng với **{{count}}** invites! Xoá nó bằng cú pháp `{{prefix}}removerank {{roleID}}` và thử lại!",
     "MISSING_PERM": "Role của bot không đủ cao để thêm role `{{roleName}}` cho thành viên! Hãy đặt role của bot cao hơn và thử lại!",
     "TITLE": "🎯 Role đã được thêm",
-    "CONTENT": "Khi một thành viên đạt đủ **{{count}}** invites, họ sẽ được thêm `{{roleName}}`!"
+    "CONTENT": "Khi một thành viên đạt đủ **{{count}}** invites, họ sẽ được thêm `{{roleName}}`!",
+    "MANAGED": "Managed roles can't be defined as a rank reward."
 }
