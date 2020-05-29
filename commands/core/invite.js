@@ -18,7 +18,7 @@ module.exports = class extends Command {
 
         const member = await this.client.resolveMember(args.join(" "), message.guild) || message.member;
         const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
-        await this.client.functions.assignRanks(member, memberData.calcInvites(), data.guild.ranks);
+        await this.client.functions.assignRanks(member, memberData.calcInvites(), data.guild.ranks, data.guild.keepRanks, data.guild.stackedRanks);
         const nextRank = this.client.functions.getNextRank(memberData.calcInvites(), data.guild.ranks, message.guild);
 
         const firstDescription =  member.id === message.member.id ?

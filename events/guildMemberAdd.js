@@ -85,7 +85,7 @@ module.exports = class {
                     if(inviter.id === member.id) inviterData.fake++;
                 }
                 await inviterData.updateInvites();
-                await this.client.functions.assignRanks(inviterMember, inviterData.calcInvites(), guildData.ranks, guildData.keepRanks);
+                await this.client.functions.assignRanks(inviterMember, inviterData.calcInvites(), guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
             }
         }
 

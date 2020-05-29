@@ -25,6 +25,8 @@ module.exports = class Guild {
         this.trialPeriodUsed = data.guild_trial_period_used || false;
         // Guild keep ranks
         this.keepRanks = data.guild_keep_ranks || false;
+        // Guild stacked ranks
+        this.stackedRanks = data.guild_stacked_ranks || false;
     }
 
     async fetch() {
@@ -189,6 +191,18 @@ module.exports = class Guild {
         return this;
     }
 
+    // Update stacked ranks
+    async setStackedRanks(boolean){
+        await this.handler.query(`
+            UPDATE guilds
+            SET guild_stacked_ranks = ${boolean}
+            WHERE guild_id = '${this.id}';
+        `);
+        this.handler.removeGuildFromOtherCaches(this.id);
+        this.stackedRanks = boolean;
+        return this;
+    }
+
     // Update the guild language
     async setLanguage(newLanguage) {
         await this.handler.query(`
@@ -218,8 +232,8 @@ module.exports = class Guild {
         if (!this.inserted) {
             await this.handler.query(`
                 INSERT INTO guilds
-                (guild_id, guild_prefix, guild_language, guild_is_premium, guild_premium_expires_at, guild_trial_period_enabled, guild_keep_ranks) VALUES
-                ('${this.id}', '${this.prefix}', '${this.language}', false, ${this.premiumExpiresAt}, ${this.trialPeriodEnabled}, ${this.keepRanks});
+                (guild_id, guild_prefix, guild_language, guild_is_premium, guild_premium_expires_at, guild_trial_period_enabled, guild_keep_ranks, guild_stacked_ranks) VALUES
+                ('${this.id}', '${this.prefix}', '${this.language}', false, ${this.premiumExpiresAt}, ${this.trialPeriodEnabled}, ${this.keepRanks}, ${this.stackedRanks});
             `);
             this.handler.removeGuildFromOtherCaches(this.id);
             this.inserted = true;

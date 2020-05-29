@@ -78,13 +78,13 @@ const getNextRank = (inviteCount, ranks, guild) => {
  * @param {number} inviteCount The member's invite count
  * @param {array} ranks The ranks of the guild
  * @param {boolean} keepRanks Whether the members should keep their ranks, even if they doesn't have enough invites
- * @returns {object} The assigned and removed ranks
+ * @param {boolean} stackedRanks Whether the ranks should be stacked (otherwise, only the highest rank will be kept)
+ * @returns {Promise<void>}
  */
-const assignRanks = async (member, inviteCount, ranks, keepRanks) => {
+const assignRanks = async (member, inviteCount, ranks, keepRanks, stackedRanks) => {
     if(member.user.bot) return;
     let assigned = new Array();
-    let removed = new Array();
-    asyncForEach(ranks, async (rank) => {
+    asyncForEach((ranks.sort((a, b) => b.inviteCount - a.inviteCount)), async (rank) => {
         // If the guild doesn't contain the rank anymore
         if(!member.guild.roles.cache.has(rank.roleID)) return;
         // If the bot doesn't have permissions to assign role to this member
@@ -95,16 +95,21 @@ const assignRanks = async (member, inviteCount, ranks, keepRanks) => {
             if(!member.roles.cache.has(rank.roleID)) return;
             // Remove the ranks
             await member.roles.remove(rank.roleID);
-            removed.push(member.guild.roles.cache.get(rank.roleID));
         } else {
+            assigned.push(member.guild.roles.cache.get(rank.roleID));
             // If the member already has the rank
             if(member.roles.cache.has(rank.roleID)) return;
-            // Assign the role to the member
-            await member.roles.add(rank.roleID);
-            assigned.push(member.guild.roles.cache.get(rank.roleID));
+            // Add the role to the member
+            if (!stackedRanks) await member.roles.add(rank.roleID);
         }
     });
-    return { removed, assigned };
+    if (stackedRanks && assigned.length > 0) {
+        await member.roles.add(assigned.shift().id);
+        for(let role of assigned){
+            if(member.roles.cache.has(role.id)) await member.roles.remove(role.id);
+        }
+    }
+    return;
 };
 
 /**
