@@ -3,9 +3,9 @@
     "DESCRIPTION": "Çalışmazsa, bot izinlerini kontrol edin veya [destek sunucumuza]({{discord}}) katılın",
     "ENABLED_TITLE": "> Etkin:",
     "ENABLED_YES_CONTENT": "{{success}} Ayrılma mesajları etkinleştirildi. `{{prefix}}setleave` yazarak kapatın.",
-    "ENABLED_NO_CONTENT": "{{error}} Leave messages disabled. Enable them with `{{prefix}}setleave`.",
-    "CHANNEL_TITLE": "> Channel",
-    "CHANNEL_CONTENT": "No channel defined. Set it with `{{prefix}}configleave`!",
-    "MESSAGE": "> Message:",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configleave`!"
+    "ENABLED_NO_CONTENT": "{{error}} Ayrılma mesajları etkinleştirildi. `{{prefix}}setleave` yazarak kapatın.",
+    "CHANNEL_TITLE": "> Kanal",
+    "CHANNEL_CONTENT": "Hiçbir kanal tanımlanmadı. `{{prefix}}configleave` ile ayarlayın!",
+    "MESSAGE": "> Mesaj:",
+    "MESSAGE_CONTENT": "Tanımlanmış mesaj yok. `{{prefix}}configleave` ile ayarlayın!"
 }
