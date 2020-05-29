@@ -1,10 +1,10 @@
 {
-    "TITLE": "{{username}}'s stats",
-    "STATS_TITLE": "📊 Statistics",
-    "STATS_CONTENT": "`Servers: {{guilds}}`\n`Users: {{users}}`",
-    "VERSIONS_TITLE": "⚙️ Versions",
+    "TITLE": "{{username}} istatistikleri",
+    "STATS_TITLE": "📊 İstatistikler",
+    "STATS_CONTENT": "`Sunucular: {{guilds}}`\n`Kullanıcılar: {{users}}`",
+    "VERSIONS_TITLE": "⚙️ Versiyonlar",
     "VERSIONS_CONTENT": "`Discord: {{discord}}`\n`Node: {{node}}`",
     "SHARD_TITLE": "{{online}} Shard #{{shardID}}",
-    "SHARD_TITLE_CURRENT": "{{online}} Shard #{{shardID}} (current)",
-    "SHARD_CONTENT": "`{{guilds}}` servers\n`{{ping}}` ms\n`{{ram}}` mb ram\n`{{cachedMembers}}` cached members\n`{{cachedGuilds}}` cached guilds"
+    "SHARD_TITLE_CURRENT": "{{online}} Shard #{{shardID}} (şimdiki)",
+    "SHARD_CONTENT": "`{{guilds}}` sunucular\n`{{ping}}` ms\n`{{ram}}` mb ram\n`{{cachedMembers}}` önbelleklenen üyeler\n`{{cachedGuilds}}` önbelleklenen sunucular"
 }
