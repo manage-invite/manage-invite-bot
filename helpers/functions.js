@@ -90,11 +90,13 @@ const assignRanks = async (member, inviteCount, ranks, keepRanks, stackedRanks) 
         // If the bot doesn't have permissions to assign role to this member
         if(!member.guild.roles.cache.get(rank.roleID).editable) return;
         // If the member can't obtain the rank
-        if(inviteCount < parseInt(rank.inviteCount) && !keepRanks){
-            // If the member doesn't have the rank
-            if(!member.roles.cache.has(rank.roleID)) return;
-            // Remove the ranks
-            await member.roles.remove(rank.roleID);
+        if(inviteCount < parseInt(rank.inviteCount)){
+            if(!keepRanks){
+                // If the member doesn't have the rank
+                if(!member.roles.cache.has(rank.roleID)) return;
+                // Remove the ranks
+                await member.roles.remove(rank.roleID);
+            }
         } else {
             assigned.push(member.guild.roles.cache.get(rank.roleID));
             // If the member already has the rank
