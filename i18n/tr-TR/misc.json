@@ -12,6 +12,6 @@
   "LINKS_FOOTER": "[Beni sunucuna ekle](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Destek sunucusu]({{discord}}) | [Bana oy ver](https://top.gg/bot/{{clientID}})",
   "PREFIX": "Merhaba! Tüm komutları görmek için lütfen **{{prefix}}help ** yazın! Beni **{{prefix}}add** ile sunucunuza ekleyebilirsiniz.",
   "USER_MISSING_PERMISSIONS": "Bu komut için izin seviyesi gereklidir: `{{level}}`!",
-  "NEED_UPGRADE": "{{emote}} | Hello, **{{username}}**! Your server need to be upgraded to use **ManageInvite**! We have managed to reduce latency to create a fast and powerful bot for servers that want a 100% reliable bot. To get more informations, you can join the support server ( {{discord}} ) or connect to the dashboard **<https://dash.manage-invite.xyz>**!",
-  "PLEASE_WAIT": "{{loading}} | Please wait..."
+  "NEED_UPGRADE": "{{emote}} | Merhaba, **{{username}}**! **ManageInvite** botunu kullanmak için sunucunuzun yükseltilmesi gerekiyor! %100 güvenilir bir bot isteyen sunucular için hızlı ve güçlü bir bot oluşturma gecikmesini azaltmayı başardık. Daha fazla bilgi almak için destek sunucusuna ( {{discord}} ) katılabilir veya gösterge tablosuna bağlanabilirsiniz **<https://dash.manage-invite.xyz>**!",
+  "PLEASE_WAIT": "{{loading}} | Lütfen bekleyin..."
 }
