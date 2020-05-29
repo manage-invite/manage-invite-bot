@@ -94,6 +94,17 @@ module.exports = {
                 "fr",
                 "fr_fr"
             ]
+        },
+        {
+            name: "vi-VN",
+            nativeName: "Tiếng Việt",
+            default: false,
+            aliases: [
+                "Tieng Viet",
+                "vietnamese",
+                "vi",
+                "vi_vn"
+            ]
         }
     ]
 };
