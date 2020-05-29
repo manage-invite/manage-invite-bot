@@ -59,6 +59,7 @@ router.post("/ipn", async (req, res) => {
     res.sendStatus(200);
     const payloadCopy = new URLSearchParams(payload);
     payloadCopy.set("cmd", "_notify-validate");
+    payloadCopy.set("custom", unescape(payload.custom));
     fetch(req.client.config.paypal.mode === "live" ? req.client.config.paypal.live.fetchURL : req.client.config.paypal.sandbox.fetchURL, {
         method: "POST",
         body: payloadCopy.toString()
