@@ -27,9 +27,17 @@ router.get("/callback", async (req, res) => {
     }
     if(!req.query.code) res.redirect(req.client.config.failureURL);
     let redirectURL = req.client.states[req.query.state] || "/selector";
-    let response = await fetch(`https://discordapp.com/api/oauth2/token?grant_type=authorization_code&code=${req.query.code}&redirect_uri=${req.client.config.baseURL}/api/callback`, {
+    const params = new URLSearchParams();
+    params.set('grant_type', 'authorization_code');
+    params.set('code', req.query.code);
+    params.set('redirect_uri', `${req.client.config.baseURL}/api/callback`);
+    let response = await fetch(`https://discord.com/api/oauth2/token`, {
         method: "POST",
-        headers: { Authorization: `Basic ${btoa(`${req.client.user.id}:${req.client.config.secret}`)}`, }
+        body: params.toString(),
+        headers: {
+            Authorization: `Basic ${btoa(`${req.client.user.id}:${req.client.config.secret}`)}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
     });
     // Fetch tokens (used to fetch user informations)
     let tokens = await response.json();
