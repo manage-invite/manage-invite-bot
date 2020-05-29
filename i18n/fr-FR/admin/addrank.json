@@ -7,5 +7,5 @@
     "MISSING_PERM": "Mon rôle n'est pas assez élevé pour ajouter le rôle `{{roleName}}` aux membres ! S'il vous plaît, augmentez mon rôle et essayez à nouveau!",
     "TITLE": "🎯 Nouveau rôle ajouté",
     "CONTENT": "Quand un membre atteindra **{{count}}** invitations, il obtiendra `{{roleName}}` !",
-    "MANAGED": "Managed roles can't be defined as a rank reward."
+    "MANAGED": "Les rôles gérés ne peuvent pas être définis comme des rôles récompenses."
 }
