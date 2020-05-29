@@ -13,7 +13,7 @@ module.exports = class extends Command {
     }
 
     async run (message, args, data) {
-        const language = args[0];
+        const language = args.join(" ");
         if(!this.client.config.enabledLanguages.some((l) => l.name.toLowerCase() === language.toLowerCase() || l.aliases.includes(language.toLowerCase()))){
             return message.error("config/setlang:INVALID");
         }
