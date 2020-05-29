@@ -1,12 +1,12 @@
 {
     "AUTHOR_BLACKLISTED": "Bu sunucuda kara listeye alınmışsın, bu komutu çalıştıramazsın.",
     "BLACKLISTED": "{{username}} adlı üye kara listeye alındı.",
-    "MISSING_TYPE": "You must enter a valid action! (`add`, `remove` or `list`)\n\n:information_source: Users in the blacklist:\n- Won't receive/loose roles\n- Won't appear in the leaderboard\n- Won't have their invites tracked anymore\n- Won't be able to run the `invites` command",
-    "MISSING_MEMBER_ADD": "You must mention a valid member to add in the blacklist!",
-    "MISSING_MEMBER_REMOVE": "You must mention a valid member to remove from the blacklist!",
-    "SUCCESS_MEMBER_ADD": "**{{username}}** was added to the blacklist!",
-    "SUCCESS_MEMBER_REMOVE": "**{{username}}** was removed from the blacklist!",
-    "EMPTY": "No blacklisted users!",
-    "NOT_BLACKLISTED": "**{{username}}** is not in the blacklist!",
-    "ALREADY_BLACKLISTED": "**{{username}}** is already blacklisted!"
+    "MISSING_TYPE": "Geçerli bir işlem girmelisiniz! (`add`, `remove` ya da `list`)\n\n:information_source: Kara listedeki kullanıcılar:\n- Rolleri almayacak/kaybetmeyecek\n- Davet sıralamasında gösterilmeyecek\n- Davetleri sayılmayacak\n- `Davet` komutlarını çalıştıramayacaklar",
+    "MISSING_MEMBER_ADD": "Kara listeye eklemek için geçerli bir üyeyi etiketlemelisiniz!",
+    "MISSING_MEMBER_REMOVE": "Kara listeden kaldırmak için geçerli bir üyeyi etiketlemelisiniz!",
+    "SUCCESS_MEMBER_ADD": "**{{username}}** kara listeye eklendi!",
+    "SUCCESS_MEMBER_REMOVE": "**{{username}}** kara listeden kaldırıldı!",
+    "EMPTY": "Kara listede bir kullanıcı yok!",
+    "NOT_BLACKLISTED": "**{{username}}** kara listede değil!",
+    "ALREADY_BLACKLISTED": "**{{username}}** zaten kara listede!"
 }
