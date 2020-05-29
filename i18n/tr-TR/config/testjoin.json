@@ -1,7 +1,7 @@
 {
-    "TITLE": ":wrench: Join system :",
-    "ENABLED_YES_CONTENT": "{{success}} Join messages enabled. Disable them with `{{prefix}}setjoin`.",
-    "ENABLED_NO_CONTENT": "{{error}} Join messages disabled. Enable them with `{{prefix}}setjoin`.",
+    "TITLE": ":wrench: Giriş sistemi:",
+    "ENABLED_YES_CONTENT": "{{success}} Giriş mesajlar etkin. `{{prefix}}setjoin` yazarak engelleyin.",
+    "ENABLED_NO_CONTENT": "{{error}} Giriş mesajları engelli. `{{prefix}}setjoin` yazarak açın.",
     "CHANNEL_CONTENT": "No channel defined. Set it with `{{prefix}}configjoin`!",
     "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configjoin`!"
 }
