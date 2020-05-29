@@ -1,7 +1,7 @@
 {
-    "TITLE": "ℹ ManageInvite's Help Page",
-    "DESCRIPTION": "> {{guildName}}'s prefix: **{{prefix}}** (`{{prefix}}setprefix`)\n> {{guildName}}'s language: **English en_US** (`{{prefix}}setlang`)",
-    "ADMIN_TITLE": "Admin",
+    "TITLE": "ℹ ManageInvite Yardım Sayfası",
+    "DESCRIPTION": "> {{guildName}} öneki: **{{prefix}}** (`{{prefix}}setprefix`)\n> {{guildName}} dili: **Türkçe tr_TR** (`{{prefix}}setlang`)",
+    "ADMIN_TITLE": "Yönetim",
     "ADMIN_CONTENT": "> **{{prefix}}set-stacked-ranks**: Whether members keep all their roles or only the highest one\n> **{{prefix}}setkeep-ranks**: Whether members keep their roles when they lose invitations\n> **{{prefix}}blacklist [add/remove/list] (@user)**: Add/Remove a user to the blacklist\n> **{{prefix}}addbonus number @user**: Add bonus invites to a member\n> **{{prefix}}removebonus number @user**: Remove bonus invites to a member\n> **{{prefix}}sync-invites**: Synchronize server invites and bot invites\n> **{{prefix}}removeinvites (@user)**: Remove (server/user) invites\n> **{{prefix}}restoreinvites (@user)**: Restore (server/user) invites",
     "RANKS_TITLE": "Ranks reward",
     "RANKS_CONTENT": "> **{{prefix}}addrank number @role**: Add a rank reward\n> **{{prefix}}removerank @role**: Remove a rank reward\n> **{{prefix}}ranks**: List the ranks reward",
