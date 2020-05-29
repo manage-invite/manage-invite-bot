@@ -1,4 +1,4 @@
 {
-    "INVALID": "You must write a valid language!\n\n:flag_fr: French (`fr`)\n:flag_gb: English (`en`)\n:flag_vn: Vietnamese (vi)\nYour language is not supported? Join the support server and translate the bot in your language!",
-    "SUCCESS": "Language has beed updated!"
+    "INVALID": "Geçerli bir dil yazmalısınız!\n\n:flag_fr: Fransızca (`fr`)\n:flag_gb: İngilizce (`en`)\n:flag_vn: Vietnamca (`vi`)\nDiliniz desteklenmiyor mu? Destek sunucusuna katılın ve botu kendi dilinizde çevirin!",
+    "SUCCESS": "Dil güncellendi!"
 }
