@@ -6,5 +6,6 @@
     "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
     "MISSING_PERM": "My role is not high enough to add the role `{{roleName}}` to the members! Please put my role up and try again!",
     "TITLE": "🎯 Ny rolle tilføjet",
-    "CONTENT": "When a member will reach **{{count}}** invites, they will obtain `{{roleName}}`!"
+    "CONTENT": "When a member will reach **{{count}}** invites, they will obtain `{{roleName}}`!",
+    "MANAGED": "Managed roles can't be defined as a rank reward."
 }
