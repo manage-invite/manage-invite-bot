@@ -32,9 +32,10 @@ module.exports = class extends Command {
         });
 
         let role = message.mentions.roles.first() || message.guild.roles.cache.get(args.slice(1).join(" ")) || message.guild.roles.cache.find((role) => role.name === args.slice(1).join(" ") || (stringSimilarity.compareTwoStrings(role.name, args.slice(1).join(" ")) > 0.85));
-        if(!role || (role.managed && role.members.size === 1 && role.members.first().bot && role.members.first().user.username === role.name)) return message.error("admin/addrank:MISSING_ROLE", {
+        if(!role) return message.error("admin/addrank:MISSING_ROLE", {
             prefix: data.guild.prefix
         });
+        if(role.managed) return message.error("admin/addrank:MANAGED");
         if(role.position > message.guild.me.roles.highest.position) return message.error("admin/addrank:MISSING_PERM", {
             roleName: role.name
         });
