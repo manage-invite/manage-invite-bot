@@ -58,11 +58,17 @@
                                 <label><%= translate("common:LANGUAGE") %></label>
                                 <select class="form-control" name="language">
                                     <% if(guild.language === "fr-FR"){ %>
-                                        <option selected="selected">Français</option>
+                                        <option selected="selected">French</option>
+                                        <option>Vietnamese</options>
+                                        <option>English</options>
+                                    <% } else if(guild.language === "vi_VN") { %>
+                                        <option>French</option>
+                                        <option selected="selected">Vietnamese</options>
                                         <option>English</options>
                                     <% } else { %>
-                                    <option>Français</option>
-                                    <option selected="selected">English</options>
+                                        <option>French</option>
+                                        <option>Vietnamese</options>
+                                        <option selected="selected">English</options>
                                     <% } %>
                                 </select>
                             </div>
