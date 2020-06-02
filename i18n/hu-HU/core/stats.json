@@ -4,17 +4,17 @@
     "PREMIUM": ":crown: | Hey, **{{username}}**! This feature (customized stats period) is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>**!",
     "INVALID": "You must enter a valid number of days (greater than 1 and lower than 1000) to be displayed!",
     "months": [
-        "Jan",
-        "Feb",
-        "March",
-        "Apr",
-        "May",
-        "June",
-        "July",
-        "August",
-        "Sept",
-        "Oct",
-        "Nov",
-        "Dec"
+        "Január",
+        "Február",
+        "Március",
+        "Április",
+        "Május",
+        "Június",
+        "Július",
+        "Agusztus",
+        "Szeptember",
+        "Október",
+        "November",
+        "December"
     ]
 }
