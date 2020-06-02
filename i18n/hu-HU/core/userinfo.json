@@ -1,6 +1,6 @@
 {
     "TITLE": "{{username}} felhasználó ({{userID}})",
-    "CREATED_AT_TITLE": "Creation",
+    "CREATED_AT_TITLE": "Létrehozás",
     "BOT_TITLE": "Robot",
     "JOINED_AT_TITLE": "Belépés",
     "JOIN_WAY_TITLE": "Csatlakozás miatt",
@@ -8,7 +8,7 @@
     "JOIN_WAY_VANITY": "A rendszergazda által konfigurált testreszabott meghívás.",
     "JOIN_WAY_UNKNOWN": "Nem tudom kitalálni, hogy {{username}} csatlakozott-e a szerverhez.",
     "INVITES_TITLE": "Meghívások",
-    "JOIN_ORDER_TITLE": "Join Order",
+    "JOIN_ORDER_TITLE": "Csatlakozz a rendeléshez",
     "INVITED_TITLE": "Meghívott",
     "INVITED_PREMIUM": ":crown: | Ez a szolgáltatás (meghívott felhasználók megtekintése) csak prémium szervereken érhető el. Itt kaphatsz prémiumot: **<https://docs.manage-invite.xyz/configuration/premium>** !",
     "NO_INVITED_USERS": "Nincs meghívott felhasználó",
