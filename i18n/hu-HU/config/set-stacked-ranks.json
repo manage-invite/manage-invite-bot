@@ -1,4 +1,4 @@
 {
-    "SUCCESS_ENABLED": "**A tagok __ONLY__-ban megtartják a __LEGMAGASABB__ rangot!**",
-    "SUCCESS_DISABLED": "**Most a tagok megtartják az __ÖSSZES__ rangukat!**"
+    "SUCCESS_ENABLED": "**__CSAK__ a __LEGMAGASABB__ rangjuk marad meg a tagoknak!**",
+    "SUCCESS_DISABLED": "**A tagok megtartják az __ÖSSZES__ rangukat!**"
 }
