@@ -2,6 +2,6 @@
     "USER": "{{position}} **{{username}}** - **{{invites}}** meghivás (**{{regular}}** szabályos, **{{bonus}}** bónusz, **{{fake}}** hamis, **{{leaves}}** kiléptek)",
     "PROMPT": "{{user}}, melyik oldalra szeretnél menni? Írjd be, hogy „cancel” vagy a „0”-t visszavonáshoz.",
     "EMPTY_TITLE": "😕 Nem található meghívás",
-    "EMPTY_CONTENT": "Start inviting people and you will appear on this page!",
+    "EMPTY_CONTENT": "Kezdj meghívni embereket és meg fog jelenni ezen az oldalon!",
     "TITLE": "Meghívási ranglistát"
 }
