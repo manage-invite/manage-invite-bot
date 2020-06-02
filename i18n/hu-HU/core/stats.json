@@ -1,8 +1,8 @@
 {
-    "TITLE": "Joins on {{server}} these last {{days}} days",
-    "CONTENT": "**{{total}}** members (i.e. **{{percent}}%** of the server) have joined the server from {{from}} to {{to}}:",
-    "PREMIUM": ":crown: | Hey, **{{username}}**! This feature (customized stats period) is only available for premium servers and partners. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>**!",
-    "INVALID": "You must enter a valid number of days (greater than 1 and lower than 1000) to be displayed!",
+    "TITLE": "Csatlakozás a(z) {{server}}-ig ezen elmúlt {{days}} napon",
+    "CONTENT": "**{{total}}** felhasználük (azaz a szerver **{{percent}}%**) már csatlakoztak a szerverhez {{from}}-nak/-nek {{to}}:",
+    "PREMIUM": ":crown: | Hé, **{{username}}**! Ez a szolgáltatás (testreszabott statisztikai időszak) csak prémium szerverek és partnerek számára érhető el. Itt kaphatsz prémiumot: **<https://docs.manage-invite.xyz/configuration/premium>**!",
+    "INVALID": "Érvényes számú napot kell megadnod (nagyobb, mint 1 és kevesebb, mint 1000)",
     "months": [
         "Január",
         "Február",
