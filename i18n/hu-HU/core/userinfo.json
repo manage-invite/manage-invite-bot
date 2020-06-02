@@ -7,10 +7,10 @@
     "JOIN_WAY_OAUTH": "Oauth meghívás (a discordapp.com webhelyén keresztül).",
     "JOIN_WAY_VANITY": "A rendszergazda által konfigurált testreszabott meghívás.",
     "JOIN_WAY_UNKNOWN": "Nem tudom kitalálni, hogy {{username}} csatlakozott-e a szerverhez.",
-    "INVITES_TITLE": "Invites",
+    "INVITES_TITLE": "Meghívások",
     "JOIN_ORDER_TITLE": "Join Order",
-    "INVITED_TITLE": "Invited",
-    "INVITED_PREMIUM": ":crown: | This feature (view invited users) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !",
-    "NO_INVITED_USERS": "No invited users",
-    "INVITED_USERS_MORE": "{{list}}, and more..."
+    "INVITED_TITLE": "Meghívott",
+    "INVITED_PREMIUM": ":crown: | Ez a szolgáltatás (meghívott felhasználók megtekintése) csak prémium szervereken érhető el. Itt kaphatsz prémiumot: **<https://docs.manage-invite.xyz/configuration/premium>** !",
+    "NO_INVITED_USERS": "Nincs meghívott felhasználó",
+    "INVITED_USERS_MORE": "{{list}}, és több..."
 }
