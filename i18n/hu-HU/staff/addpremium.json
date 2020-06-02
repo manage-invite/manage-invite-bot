@@ -1,5 +1,5 @@
 {
-    "MISSING_GUILD_ID": "Please specify a valid ID of guild!",
-    "MISSING_NUMBER_DAYS": "Please specify a valid number of days!",
-    "ADDED": "**{{days}}** days of premium added to guild **{{guild}}**. Premium for this guild will expire on **{{expiresAt}}**."
+    "MISSING_GUILD_ID": "Kérlek, adj meg egy érvényes szerver azonosítót!",
+    "MISSING_NUMBER_DAYS": "Adj meg egy érvényes napszámot!",
+    "ADDED": "**{{days}}** nap prémium hozzáadva a szerverhez **{{guild}}**. A  prémiumának a lejárási napja: **{{expiresAt}}**."
 }
