@@ -1,9 +1,9 @@
 {
-    "CONFIRMATION": "Are you sure you want to remove all the server invites?\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
-    "CONFIRMATION_MEMBER": "Are you sure you want to remove all the invites of **{{username}}**?\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
-    "LOADING": "{{loading}} | Deleting invitations from the current server.... You can restore them with the command `{{prefix}}restore-invites`!",
-    "LOADING_MEMBER": "{{loading}} | Deleting current invitations of **{{username}}**... You can restore them with the command `{{prefix}}restore-invites {{username}}`!",
-    "TITLE": "☄️ Invitations reinitalized",
-    "DESCRIPTION": "{{success}} | Server invitations reinitialized! You can restore them with the command `{{prefix}}restore-invites`!",
-    "DESCRIPTION_MEMBER": "{{success}} | Invitations of **{{username}}** reinitialized! You can restore them with the command `{{prefix}}restore-invites {{username}}`!"
+    "CONFIRMATION": "Biztos vagy benne, hogy el akarj távolítani az összes szervermeghívást?\n\n{{success}} A megerősítéshez írjd be ezt: `-confirm`.\n{{error}} A megszakításhoz írd be ezt: `Mégsem`.",
+    "CONFIRMATION_MEMBER": "Biztos vagy benne, hogy el akarod távolítani az összes meghívót **{{username}}**?\n\n{{success}} A megerősítéshez írjd be ezt: `-confirm`.\n{{error}} A megszakításhoz írd be ezt: `Mégsem`.",
+    "LOADING": "{{loading}} | Meghívó törlése az aktuális szerverről.... A parancs segítségével visszaállíthatod őket `{{prefix}}restore-invites`!",
+    "LOADING_MEMBER": "{{loading}} | A jelenlegi meghívásainak törlése **{{username}}**... A parancs segítségével visszaállíthatod  `{{prefix}}restore-invites {{username}}`!",
+    "TITLE": "☄️ A meghívók újraszámolásra kerültek",
+    "DESCRIPTION": "{{success}} | A szerver meghívások újból inicializáltak! A parancs segítségével visszaállíthatod őket `{{prefix}}restore-invites`!",
+    "DESCRIPTION_MEMBER": "{{success}} | **{{username}}** meghívója újrainicializálva! A parancs segítségével visszaállíthatod őket `{{prefix}}restore-invites {{username}}`!"
 }
