@@ -1,4 +1,4 @@
 {
-    "INVALID": "You must write a valid language!\n\n:flag_fr: French (`fr`)\n:flag_gb: English (`en`)\n:flag_vn: Vietnamese (vi)\nYour language is not supported? Join the support server and translate the bot in your language!",
-    "SUCCESS": "Language has beed updated!"
+    "INVALID": "Érvényes nyelvet kell írnj!\n\n:flag_fr: Francia (`fr`)\n:flag_gb: Angol (`en`)\n:flag_vn: Vietnám (vi)\nAz te nyelvd nem elérhető? Csatlakozzon a support szerverhez, és fordítsd le a botot az te nyelvedre!",
+    "SUCCESS": "A nyelv frissült!"
 }
