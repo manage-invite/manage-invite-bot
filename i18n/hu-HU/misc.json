@@ -4,14 +4,14 @@
   "COMMAND_DISABLED": "Ez a parancs jelenleg le van tiltva!",
   "JOIN_OAUTH2": "{{user}} csatlakozott az OAuth álltal.",
   "JOIN_PERMISSIONS": "I need the manage server permissions to know who is the inviter of {{user}}.",
-  "JOIN_UNKNOWN": "I can't figure out how {{user}} joined the server.",
-  "JOIN_VANITY": "{{user}} joined the server using a discord.gg invite defined by the guild owner (or admin).",
-  "LEAVE_OAUTH2": "{{user}} left the server, they joined via OAuth.",
-  "LEAVE_UNKNOWN": "{{user}} left the server, but I can't figure out how they joined it.",
+  "JOIN_UNKNOWN": "Nem tudom kitalálni, hogyan csatlakozott-e a(z) {{user}} felhasználó szerverhez.",
+  "JOIN_VANITY": "A {{user}} csatlakozott a szerverhez a szervertulajdonos (vagy az adminisztrátor) által meghatározott discord.gg meghívóval.",
+  "LEAVE_OAUTH2": "{{user}} kilépett a szerverről, csatlakozott az OAuth-on keresztül.",
+  "LEAVE_UNKNOWN": "{{user}} elhagyta a szervert, de nem tudom kitalálni, hogyan csatlakozott-e.",
   "LEAVE_VANITY": "{{user}} left the server, they joined using a discord.gg invite defined by the server owner (or an admin).",
-  "LINKS_FOOTER": "[Add me to your server](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Support server]({{discord}}) | [Vote for me](https://top.gg/bot/{{clientID}})",
+  "LINKS_FOOTER": "[Adj hozzá a szerveredhez](https://discord.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Support szerver]({{discord}}) | [Szavazz rám](https://top.gg/bot/{{clientID}})",
   "PREFIX": "Hello! Please type **{{prefix}}help** to see all commands! You can add me to your server with **{{prefix}}add**.",
-  "USER_MISSING_PERMISSIONS": "This command requires the permission level: `{{level}}`!",
+  "USER_MISSING_PERMISSIONS": "Ehhez a parancshoz engedélyezési szint szükséges: `{{level}}`!",
   "NEED_UPGRADE": "{{emote}} | Hello, **{{username}}**! Your server need to be upgraded to use **ManageInvite**! We have managed to reduce latency to create a fast and powerful bot for servers that want a 100% reliable bot. To get more informations, you can join the support server ( {{discord}} ) or connect to the dashboard **<https://dash.manage-invite.xyz>**!",
-  "PLEASE_WAIT": "{{loading}} | Please wait..."
+  "PLEASE_WAIT": "{{loading}} | kérlek várj..."
 }
