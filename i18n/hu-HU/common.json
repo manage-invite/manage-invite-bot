@@ -1,7 +1,7 @@
 {
   "CANCELLED": "Törölve.",
   "CHANNEL": "Csatorna",
-  "CONFIGURATION": "Configuration",
+  "CONFIGURATION": "Konfiguráció",
   "DEFINED": "Meghatározott",
   "DOCUMENTATION": "Dokumentáció",
   "HELP": "Segítség",
@@ -12,11 +12,11 @@
   "MESSAGE": "Üzenet",
   "NO": "Nem",
   "NOT_DEFINED": "Nem meghatározott",
-  "PREFIX": "Előtagja",
-  "ROLE": "Szerep",
+  "PREFIX": "Előtag",
+  "ROLE": "Rang",
   "SUPPORT_SERVER": "Támogatási szerver",
   "TEST_IT": "Próbáld ki:",
   "UPDATE": "Frissítés",
   "YES": "Igen",
-  "CANCEL": "Cancel"
+  "CANCEL": "Megszüntet"
 }
