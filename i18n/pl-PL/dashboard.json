@@ -9,7 +9,7 @@
   "JOIN_DM_TITLE": "Wiadomość prywatna na PV",
   "JOIN_TITLE": "Wiadomość powitalna",
   "LEAVE_DEFAULT": "{user.tag} Opóścił server. Został zaproszony przez **{inviter.tag}** (który ma **{inviter.invites}** zaproszeń).",
-  "LEAVE_TITLE": "Leave messages",
+  "LEAVE_TITLE": "Wiadomość pożegnalna",
   "NO_SERVER_CONTENT": "No server found. Please check you're logged with the right account.",
   "NO_SERVER_TITLE": "No server.",
   "ROLE_REWARDS": "🎯 Role rewards",
