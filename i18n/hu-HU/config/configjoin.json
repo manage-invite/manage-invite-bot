@@ -4,5 +4,5 @@
     "INSTRUCTIONS_2": ":scroll: **| Most írd be a csatlakozási csatorna nevét, vagy említse meg... :pencil2:**",
     "SUCCESS": "**Sikeresen be lett állítva az üdvözlő üzenet**",
     "TEST": "Használd `{{prefix}}testjoin` csatlakozási üzenet tesztelése.",
-    "CHANNEL_NOT_FOUND": "Nem található ez a csatorna: `{{channel}}`"
+    "CHANNEL_NOT_FOUND": "Nem található ilyen csatorna: `{{channel}}`"
 }
