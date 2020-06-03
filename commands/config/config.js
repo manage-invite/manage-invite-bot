@@ -42,15 +42,15 @@ module.exports = class extends Command {
             }), true)
             .addField(message.translate("config/config:LEAVE_TITLE", {
                 emoji: getEmoji(joinSuccess)
-            }), message.translate("config/config:LEAVE_CONTENT", {
-                enabled: leaveSuccess ? `**${message.translate("common:YES").toLowerCase()}**` : `**${message.translate("common:NO").toLowerCase()}`,
-                message: data.guild.leave.message ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}`,
+            }), message.translate("config/config:JOIN_CONTENT", {
+                enabled: leaveSuccess ? `**${message.translate("common:YES").toLowerCase()}**` : `**${message.translate("common:NO").toLowerCase()}**`,
+                message: data.guild.leave.message ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`,
                 channel: data.guild.leave.channel ? (message.guild.channels.cache.get(data.guild.leave.channel) ? `**${message.translate("common:DEFINED").toLowerCase()}**` : message.translate("config/config:CHANNEL_NOT_FOUND")) : `**${message.translate("common:NOT_DEFINED").toLowerCase()}`
             }), true)
             .addField(message.translate("config/config:JOIN_DM_TITLE", {
                 emoji: getEmoji(joinSuccess)
             }), message.translate("config/config:JOIN_DM_CONTENT", {
-                enabled: joinDMSuccess ? `**${message.translate("common:YES").toLowerCase()}**` : `**${message.translate("common:NO").toLowerCase()}`,
+                enabled: joinDMSuccess ? `**${message.translate("common:YES").toLowerCase()}**` : `**${message.translate("common:NO").toLowerCase()}**`,
                 message: data.guild.joinDM.message ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}`
             }), true)
             .setColor(data.color)
