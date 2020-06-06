@@ -1,5 +1,5 @@
 {
-    "TITLE": ":wrench: Leave system :",
+    "TITLE": ":wrench: Tin nhắn rời khỏi:",
     "DESCRIPTION": "Nếu nó không hoạt động, kiểm tra quyền của bot hoặc tham gia server của chúng tôi [server hỗ trợ]({{discord}})",
     "ENABLED_TITLE": "> Kích hoạt:",
     "ENABLED_YES_CONTENT": "{{success}} Tin nhắn rời khỏi đã được kích hoạt. Tắt nó với lệnh `{{prefix}}setleave`.",
