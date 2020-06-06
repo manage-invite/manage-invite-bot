@@ -29,9 +29,9 @@
   "GET_PREMIUM": "Mua phiên bản premium",
   "WAITING_VERIF": "Đang chờ xác minh...",
   "WHY_TITLE": "Tại sao tôi không thể dùng ManageInvite trong server của mình?",
-  "WHY_CONTENT": "ManageInvite has reached 10,000 servers few days ago. As you know, many invite bots have big problems and are regularly under maintenance. We see that many servers can't find invitation management bots that are always online, and that's why we've changed the way we access ManageInvite. And we want the bot to remain accessible to everyone: that's why we have decided to upgrade our infrastructure and propose a $2 per month version of the bot, with no latency and always online, without interruption. Hesitating? You can request trial period for the new version on the support server!",
-  "WHY_LINKS": "Get more details and request a trial on the support server!",
-  "MANAGE_TRIAL": "Manage (trial version)",
-  "NOT_ADMIN": "Servers where you are not admin",
-  "MISSING_PERM": "Missing permissions"
+  "WHY_CONTENT": "Vài ngày trước, ManageInvite đã đạt 10,000 servers. Như bạn đã biết, hầu hết các invite bots gặp nhiều vấn đề lớn và thường xuyên phải bảo trì. Chúng ta có thể thấy nhiều server muốn tìm 1 bot quản lý invites luôn luôn hoạt động, và đó chính là lý do chúng tôi thay đổi cách thức sử dụng ManageInvite. Để bot có thể hoạt động với tất cả mọi người, chúng tôi đã nâng cấp hệ thống và yêu cầu $2 mỗi tháng, bot sẽ không có độ trễ và luôn hoạt động. Không chắc chắn? Bạn có thể yêu cầu dùng thử ở server hỗ trợ!",
+  "WHY_LINKS": "Để biết thêm thông tin chi tiết về bot và yêu cầu dùng thử, tham gia server hỗ trợ!",
+  "MANAGE_TRIAL": "Manage (phiên bản dùng thử)",
+  "NOT_ADMIN": "Servers bạn không phải admin",
+  "MISSING_PERM": "Thiếu permissions"
 }
