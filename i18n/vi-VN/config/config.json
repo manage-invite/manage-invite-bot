@@ -1,9 +1,9 @@
 {
-    "TITLE": "{{guild}} configuration",
-    "JOIN_TITLE": "{{status}} Join Messages",
+    "TITLE": "Thiết lập của {{guild}}",
+    "JOIN_TITLE": "{{status}} Tin nhắn tham gia",
     "JOIN_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}\n> Channel: {{channel}}",
-    "LEAVE_TITLE": "{{status}} Leave Messages",
-    "JOIN_DM_TITLE": "{{status}} Join DM Messages",
+    "LEAVE_TITLE": "{{status}} Tin nhắn rời",
+    "JOIN_DM_TITLE": "{{status}} Tin nhắn tham gia trực tiếp",
     "JOIN_DM_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}",
     "CHANNEL_NOT_FOUND": "**không tìm thấy channel**"
 }
