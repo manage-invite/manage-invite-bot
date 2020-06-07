@@ -27,6 +27,8 @@ module.exports = class Guild {
         this.keepRanks = data.guild_keep_ranks || false;
         // Guild stacked ranks
         this.stackedRanks = data.guild_stacked_ranks || false;
+        // Guild cmd channel
+        this.cmdChannel = data.guild_cmd_channel || null;
     }
 
     async fetch() {
@@ -42,6 +44,18 @@ module.exports = class Guild {
 
     get premium(){
         return this.premiumExpiresAt && (new Date((this.premiumExpiresAt+(1000*60*60*24*7))).getTime() > Date.now());
+    }
+
+    // Change the guild cmd channel
+    async setCmdChannel(newValue){
+        this.cmdChannel = newValue;
+        await this.handler.query(`
+            UPDATE guilds
+            SET guild_cmd_channel = ${newValue ? `'${newValue}'` : 'null'}
+            WHERE guild_id = '${this.id}';
+        `);
+        this.handler.removeGuildFromOtherCaches(this.id);
+        return this.cmdChannel;
     }
 
     async setTrialPeriodEnabled(newStatus){

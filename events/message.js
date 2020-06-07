@@ -73,6 +73,13 @@ module.exports = class {
             });
         }
 
+        if(data.guild.cmdChannel && (message.channel.id !== data.guild.cmdChannel)){
+            message.delete();
+            return message.author.send(message.translate("misc:WRONG_CHANNEL", {
+                channel: `<#${data.guild.cmdChannel}>`
+            }));
+        }
+
         this.client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name} (${Date.now()-startAt}ms)`, "cmd");
 
         this.client.commandsRan++;
