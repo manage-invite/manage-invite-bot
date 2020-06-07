@@ -5,5 +5,5 @@
     "LOADING_MEMBER": "{{loading}} | Meghívó visszaállítása **{{username}}**-nak/-nek...",
     "TITLE": "☄️ Meghívók visszaállítva",
     "DESCRIPTION": "{{success}} | Szerver meghívások visszaállítva!",
-    "DESCRIPTION_MEMBER": "{{success}} | ** {{username}} ** meghívói visszaállítva!"
+    "DESCRIPTION_MEMBER": "{{success}} | **{{username}}** meghívói visszaállítva!"
 }
