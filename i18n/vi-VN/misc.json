@@ -13,5 +13,6 @@
   "PREFIX": "Hello! Hãy nhập **{{prefix}}help** để biết được toàn bộ lệnh của tôi! Bạn có thể thêm tôi vào server với lệnh **{{prefix}}add**.",
   "USER_MISSING_PERMISSIONS": "Lệnh này yêu cầu quyền level: `{{level}}`!",
   "NEED_UPGRADE": "{{emote}} | Hello, **{{username}}**! Server của bạn cần được nâng cấp để sử dụng **ManageInvite**! Chúng tôi đã nâng cấp bot không có độ trễ, nhanh và mạnh cho các servers muốn 1 bot đáng tin cậy 100%. Để biết thêm thông tin, hãy tham gia server hỗ trợ ( {{discord}} ) hoặc truy cập Dashboard **<https://dash.manage-invite.xyz>**!",
-  "PLEASE_WAIT": "{{loading}} | Đợi xíu..."
+  "PLEASE_WAIT": "{{loading}} | Đợi xíu...",
+  "WRONG_CHANNEL": "Commands are not allowed in this channel, please use {{channel}} instead."
 }
