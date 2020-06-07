@@ -74,9 +74,10 @@ module.exports = {
         {
             name: "en-US",
             nativeName: "English",
+            flag: ":flag_us:",
             default: true,
             aliases: [
-                "english",
+                "English",
                 "en",
                 "en-us",
                 "en_us",
@@ -86,11 +87,12 @@ module.exports = {
         {
             name: "fr-FR",
             nativeName: "Français",
+            flag: ":flag_fr:",
             default: false,
             aliases: [
+                "French",
                 "français",
                 "francais",
-                "french",
                 "fr",
                 "fr_fr"
             ]
@@ -98,12 +100,36 @@ module.exports = {
         {
             name: "vi-VN",
             nativeName: "Tiếng Việt",
+            flag: ":flag_vn:",
             default: false,
             aliases: [
+                "Vietnamese",
                 "Tieng Viet",
-                "vietnamese",
                 "vi",
                 "vi_vn"
+            ]
+        },
+        {
+            name: "hu-HU",
+            nativeName: "Magyar",
+            flag: ":flag_hu:",
+            default: false,
+            aliases: [
+                "Hungarian",
+                "hu",
+                "hu_hu"
+            ]
+        },
+        {
+            name: "tr-TR",
+            nativeName: "Türk",
+            flag: ":flag_tr:",
+            default: false,
+            aliases: [
+                "Turkish",
+                "Turk",
+                "tr",
+                "tr_tr"
             ]
         }
     ]
