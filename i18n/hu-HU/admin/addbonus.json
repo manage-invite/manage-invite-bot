@@ -1,7 +1,7 @@
 {
-    "MISSING_AMOUNT": "Meg kell adni egy hozzáadni kívánt bónusz meghívások számát. (Syntax: {{prefix}} addbonus szám @member)",
-    "INVALID_AMOUNT": "Írnia kell egy __**érvényes**__ számú bónusz meghívót, amelyet hozzá szeretnél adni. (Syntax: {{prefix}} addbonus szám @member)",
+    "MISSING_AMOUNT": "Meg kell adni egy hozzáadni kívánt bónusz meghívások számát. (Syntax: {{prefix}}addbonus szám @member)",
+    "INVALID_AMOUNT": "Írnia kell egy __**érvényes**__ számú bónusz meghívót, amelyet hozzá szeretnél adni. (Syntax: {{prefix}}addbonus szám @member)",
     "MISSING_MEMBER": "Meg kell említeni azt a tagot, akinek szeretnél adni a bónusz meghívót. (Szintaxis: {{prefix}}addbonus szám @member)",
     "SUCCESS_TITLE": "📥 Bonusz Meghívás Hozzáadva",
-    "SUCCESS_CONTENT": "Írd be: `{{prefix}}invites {{usertag}}”, hogy lássd a **{{username}}** új meghívóinak számát!"
+    "SUCCESS_CONTENT": "Írd be: `{{prefix}}invites {{usertag}}`, hogy lássd a **{{username}}** új meghívóinak számát!"
 }
