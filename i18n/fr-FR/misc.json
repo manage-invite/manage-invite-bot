@@ -14,5 +14,5 @@
   "USER_MISSING_PERMISSIONS": "Cette commande requiert le niveau de permissions: `{{level}}`!",
   "NEED_UPGRADE": "{{emote}} | Bonjour, **{{username}}** ! Votre serveur doit être mis à niveau pour utiliser **ManageInvite** ! Nous avons réduit la latence pour créer un bot rapide et puissant pour les serveurs qui veulent un bot fiable à 100%. Pour obtenir plus d'informations, vous pouvez rejoindre le serveur de support ( {{discord}} ) ou vous connecter au dashboard **<https://dash.manage-invite.xyz>** !",
   "PLEASE_WAIT": "{{loading}} | Veuillez patienter...",
-  "WRONG_CHANNEL": "Commands are not allowed in this channel, please use {{channel}} instead."
+  "WRONG_CHANNEL": "Les commandes ne sont pas autorisées dans ce salon, veuillez utiliser {{channel}}."
 }
