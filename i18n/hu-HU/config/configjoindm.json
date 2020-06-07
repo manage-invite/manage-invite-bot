@@ -1,5 +1,5 @@
 {
-    "DISABLE": "Írd be `{{prefix}} setdmjoin` parancsot, hogy letiltsd az üdvözlő privát üzenetet.",
+    "DISABLE": "Írd be `{{prefix}}setdmjoin` parancsot, hogy letiltsd az üdvözlő privát üzenetet.",
     "INSTRUCTIONS": "__**További információk**__\n```\n{user} : Annak a tagnak a megemlítése, aki éppen csatlakozott a szerverhez.\n{user.name} : A szerverhez csatlakozó tag neve.\n{user.tag} : A szerverhez csatlakozott tag tagje.\n{user.createdat} : Felhasználó létrehozási dátumja.\n{user.id} : A felhasználó ID-je.\n\n{guild} : A szerver neve\n{guild.count} : A szerver tagjainak száma.\n\n{inviter} : Meghívó megemlítése.\n{inviter.name} : Meghívó neve.\n{inviter.tag} : Meghivó tagje.\n{inviter.invites} : Meghívó összes száma.\n{inviter.id} : Meghívó ID-je.\n\n{invite.code} : Meghívó kód.\n{invite.url} : Meghívó urlje\n{invite.uses} : Meghívó használási száma.\n```\nMegszakításhoz írd be ezt: `cancel`. {{string}}\n\n\n:pencil: **| Most írjd meg a csatlakozási üzenetet... :pencil2:**",
     "SUCCESS": "✅ **| Sikeresen beállítva...**",
     "TITLE": "**Sikeresen beállítottad a csatlakozás privát üzenetét.**",
