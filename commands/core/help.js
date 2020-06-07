@@ -31,13 +31,13 @@ module.exports = class extends Command {
             }), false)
             .addField(message.translate("core/help:JOIN_DM_TITLE"), message.translate("core/help:JOIN_DM_CONTENT", {
                     prefix: `\\${data.guild.prefix}`
-            }), true)
+            }), false)
             .addField(message.translate("core/help:JOIN_TITLE"), message.translate("core/help:JOIN_CONTENT", {
                 prefix: `\\${data.guild.prefix}`
-            }), true)
+            }), false)
             .addField(message.translate("core/help:LEAVE_TITLE"), message.translate("core/help:LEAVE_CONTENT", {
                 prefix: `\\${data.guild.prefix}`
-            }), true)
+            }), false)
             .addField(message.translate("core/help:INVITES_TITLE"), message.translate("core/help:INVITES_CONTENT", {
                 prefix: `\\${data.guild.prefix}`
             }), false)
