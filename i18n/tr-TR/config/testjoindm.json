@@ -1,6 +1,6 @@
 {
-    "TITLE": ":wrench: DM Join system :",
-    "ENABLED_YES_CONTENT": "{{success}} Join messages in dm enabled. Disable them with `{{prefix}}setdmjoin`.",
-    "ENABLED_NO_CONTENT": "{{error}} Join messages in dm disabled. Enable them with `{{prefix}}setdmjoin`.",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configdm`!"
+    "TITLE": ":wrench: DM Giriş sistemi:",
+    "ENABLED_YES_CONTENT": "{{success}} DM yoluyla giriş mesajı etkinleştirildi. `{{prefix}}setdmjoin` yazarak kapatın.",
+    "ENABLED_NO_CONTENT": "{{error}} DM yoluyla ayrılma mesajı kapandı. `{{prefix}}setdmjoin` yazarak etkinleştirin.",
+    "MESSAGE_CONTENT": "Tanımlanmış mesaj yok. `{{prefix}}configdm` ile ayarlayın!"
 }

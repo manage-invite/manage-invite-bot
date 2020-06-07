@@ -1,7 +1,7 @@
 {
-    "TITLE": ":wrench: Join system :",
-    "ENABLED_YES_CONTENT": "{{success}} Join messages enabled. Disable them with `{{prefix}}setjoin`.",
-    "ENABLED_NO_CONTENT": "{{error}} Join messages disabled. Enable them with `{{prefix}}setjoin`.",
-    "CHANNEL_CONTENT": "No channel defined. Set it with `{{prefix}}configjoin`!",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configjoin`!"
+    "TITLE": ":wrench: Üdvözlő rendszer:",
+    "ENABLED_YES_CONTENT": "{{success}} Az üdvözlő üzenet engedélyezve van. Tiltani ezzel tudod: `{{prefix}}setjoin`.",
+    "ENABLED_NO_CONTENT": "{{error}} Az üdvözlő üzenet tíltva van. Engedélyezni ezzel tudod: `{{prefix}}setjoin`.",
+    "CHANNEL_CONTENT": "Nincsen csatorna beállítva. Beállíttani ezzel a paranccsal tudod: `{{prefix}}configjoin`!",
+    "MESSAGE_CONTENT": "Nincsen üzenet beállítva. Beállíttani ezzel a paranccsal tudod: `{{prefix}}configjoin`!"
 }

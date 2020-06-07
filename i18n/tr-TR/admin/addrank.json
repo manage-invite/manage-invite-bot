@@ -1,11 +1,11 @@
 {
-    "MISSING_COUNT": "You must write the number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
-    "INCORRECT_COUNT": " You must write a __**valid**__ number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
-    "ALREADY_EXIST": "There is already a defined role for **{{count}}** invites (`{{roleName}}`)! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
-    "MISSING_ROLE": "You must mention the role you want to be added when the invite count is reached! (Syntax: {{prefix}}addrank number @role)",
-    "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
-    "MISSING_PERM": "My role is not high enough to add the role `{{roleName}}` to the members! Please put my role up and try again!",
-    "TITLE": "🎯 New role added",
-    "CONTENT": "When a member will reach **{{count}}** invites, they will obtain `{{roleName}}`!",
-    "MANAGED": "Managed roles can't be defined as a rank reward."
+    "MISSING_COUNT": "Rütbeye erişmek için gereken davet sayısını yazmalısınız. (Örnek: {{prefix}}addrank sayı @rol)",
+    "INCORRECT_COUNT": " Rütbeye erişmek __**geçerli**__ bir davet sayısı yazmalısınız. (Örnek: {{prefix}}addrank sayı @rol)",
+    "ALREADY_EXIST": "**{{count}}** davet için zaten tanımlanmış bir rol var (`{{roleName}}`)! `{{prefix}}removerank {{roleID}}` ile kaldırın, sonra tekrar deneyin!",
+    "MISSING_ROLE": "Davet sayısına ulaşıldığında eklemek istediğiniz rolü belirtmelisiniz! (Örnek: {{prefix}}addrank sayı @rol)",
+    "ALREADY_USED": "Bu rol zaten **{{count}}** davet karşılığı veriliyor! `{{prefix}}removerank {{roleID}}` ile silin, sonra tekrar deneyin!",
+    "MISSING_PERM": "Benim rolüm `{{roleName}}` rolünden alçak olduğu için bu rolü veremem! Lütfen benim rolümü üste koyun ve tekrar deneyin!",
+    "TITLE": "🎯 Yeni rol eklendi",
+    "CONTENT": "Üye **{{count}}** davete erişince, `{{roleName}}` rolünü alacak!",
+    "MANAGED": "Yönetici rolleri rütbe ödülü olarak tanımlanamaz."
 }

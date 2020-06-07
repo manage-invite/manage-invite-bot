@@ -1,5 +1,5 @@
 {
-    "ENABLED": "**The join messages in direct messages are now __ENABLED__!**",
-    "DISABLED": "**The join messages in direct messages are now __DISABLED__!**",
-    "PREMIUM": ":crown: | Hey, **{{username}}**! This feature is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !"
+    "ENABLED": "**Doğrudan mesajlardaki giriş mesajları artık __ETKİN__!**",
+    "DISABLED": "**Doğrudan mesajlardaki giriş mesajları artık __ENGELLİ__!**",
+    "PREMIUM": ":crown: | Hey, **{{username}}**! Bu özellik sadece premium sunuculara özeldir. Buradan premium alın: **<https://docs.manage-invite.xyz/configuration/premium>**!"
 }

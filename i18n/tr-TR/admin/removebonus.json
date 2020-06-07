@@ -1,7 +1,7 @@
 {
-    "MISSING_AMOUNT": "You must write the number of bonus invites you want to remove. (Syntax: {{prefix}}removebonus number @member)",
-    "INVALID_AMOUNT": "You must write a __**valid**__ number of bonus invites that you want to remove. (Syntax: {{prefix}}removebonus number @member)",
-    "MISSING_MEMBER": "You must mention the member to whom you want to remove the bonus invites. (Syntax: {{prefix}}removebonus number @member)",
-    "SUCCESS_TITLE": "📥 Bonus Invites Removed",
-    "SUCCESS_CONTENT": "Write `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
+    "MISSING_AMOUNT": "Kaldırmak istediğiniz kadar bonus davet sayısını giriniz. (Örnek: {{prefix}}removebonus sayı @üye)",
+    "INVALID_AMOUNT": "Kaldırmak istediğiniz bonus davet sayısını geçerli bir şekilde girin. (Örnek: {{prefix}}removebonus sayı @üye)",
+    "MISSING_MEMBER": "Bonus davetlerini kaldırmak istediğiniz üyeyi etiketlemelisiniz. (Örnek: {{prefix}}removebonus sayı @üye)",
+    "SUCCESS_TITLE": "📥 Bonus Davetler Kaldırıldı",
+    "SUCCESS_CONTENT": "**{{username}}** kullanıcısının yeni davetlerini görmek için, `{{prefix}}invites {{usertag}}` yazın!"
 }

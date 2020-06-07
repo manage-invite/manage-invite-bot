@@ -1,5 +1,5 @@
 {
-    "TITLE": ":wrench: DM Join system :",
+    "TITLE": ":wrench: Tin nhắn DM tham gia:",
     "ENABLED_YES_CONTENT": "{{success}} Tin nhắn tham gia trực tiếp đã được kích hoạt. Tắt nó với lệnh `{{prefix}}setdmjoin`.",
     "ENABLED_NO_CONTENT": "{{error}} Tin nhắn tham gia trực tiếp đã được hủy kích hoạt. Mở nó với lệnh `{{prefix}}setdmjoin`.",
     "MESSAGE_CONTENT": "Không có tin nhắn nào được xác định. Thiết lập với lệnh `{{prefix}}configdm`!"
