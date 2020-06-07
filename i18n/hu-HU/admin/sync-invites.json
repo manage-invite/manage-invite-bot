@@ -1,6 +1,6 @@
 {
     "NO_INVITES": "Nincs meghívás szinkronizálva.",
-    "CONFIRM": "Biztosan szinkronizálni akarod a szerver meghívásait?\n\n:information_source: **Meghívók áttekintése**:\n**{{inviteCount}}** rendes meghívót fogok helyreállítani.\n\n{{success}} A megerősítéshez írd be ezt: `-confirm`.\n{{error}} A megszakításhoz írd be ezt: `Mégse`.",
+    "CONFIRM": "Biztosan szinkronizálni akarod a szerver meghívásait?\n\n:information_source: **Meghívók áttekintése**:\n**{{inviteCount}}** rendes meghívót fogok helyreállítani.\n\n{{success}} A megerősítéshez írd be ezt: `-confirm`.\n{{error}} A megszakításhoz írd be ezt: `cancel`.",
     "TITLE": "☄️ A meghívók szinkronizálva lettek",
     "DESCRIPTION": "Szerver meghívások szinkronizálva!"
 }
