@@ -1,11 +1,11 @@
 {
-    "MISSING_COUNT": "You must write the number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
-    "INCORRECT_COUNT": " You must write a __**valid**__ number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
-    "ALREADY_EXIST": "There is already a defined role for **{{count}}** invites (`{{roleName}}`)! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
-    "MISSING_ROLE": "You must mention the role you want to be added when the invite count is reached! (Syntax: {{prefix}}addrank number @role)",
-    "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
-    "MISSING_PERM": "My role is not high enough to add the role `{{roleName}}` to the members! Please put my role up and try again!",
-    "TITLE": "🎯 New role added",
-    "CONTENT": "When a member will reach **{{count}}** invites, they will obtain `{{roleName}}`!",
-    "MANAGED": "Managed roles can't be defined as a rank reward."
+    "MISSING_COUNT": "Meg kell adnod a rang megszerzéséhez szükséges meghívások számát. (Szintaxis: {{prefix}}addrank szám @rang)",
+    "INCORRECT_COUNT": "A rang megszerzéséhez __**érvényes**__ számú meghívót kell írni. (Szintaxis: {{prefix}}addrank szám @rang)",
+    "ALREADY_EXIST": "A **{{count}}** meghívóknak már szerepel egy meghatározott rangja ({{roleName}})! Távolítsd el a `{{prefix}}removerank {{roleID}}` paranccsal, majd próbáld újra!",
+    "MISSING_ROLE": "Meg kell említened azt a szerepet, amelyet hozzá szeretnél adni, ha eléri a meghívószámot! (Szintaxis: {{prefix}}addrank szám @rang)",
+    "ALREADY_USED": "Ezt a rangot már használják a **{{count}}** meghíváshoz! Távolítsd el a `{{prefix}}removerank {{roleID}}` paranccsal, majd próbáld újra!",
+    "MISSING_PERM": "Az én rangom nem elég magas ahhoz, hogy hozzáadjam a(z) {{roleName}} rangot a tagoknak! Kérlek, tedd feljebb a rangomat, és próbáld újra!",
+    "TITLE": "🎯 Új rang hozzáadva",
+    "CONTENT": "Amikor egy tag eléri a **{{count}}** meghívót, akkor megkapja a következő rangot: {{roleName}}!",
+    "MANAGED": "A kezelt rangokat nem lehet meghatározni rangdíjként."
 }

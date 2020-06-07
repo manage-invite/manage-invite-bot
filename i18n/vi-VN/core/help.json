@@ -1,8 +1,8 @@
 {
-    "TITLE": "ℹ ManageInvite's Help Page",
+    "TITLE": "ℹ ManageInvite's Help",
     "DESCRIPTION": "> {{guildName}}'s prefix: **{{prefix}}** (`{{prefix}}setprefix`)\n> {{guildName}}'s language: **Tiếng Việt vi_VN** (`{{prefix}}setlang`)",
     "ADMIN_TITLE": "Admin",
-    "ADMIN_CONTENT": "> **{{prefix}}set-stacked-ranks**: Whether members keep all their roles or only the highest one\n> **{{prefix}}setkeep-ranks**: Whether members keep their roles when they lose invitations\n> **{{prefix}}blacklist [add/remove/list] (@user)**: Add/Remove a user to the blacklist\n> **{{prefix}}addbonus number @user**: Add bonus invites to a member\n> **{{prefix}}removebonus number @user**: Remove bonus invites to a member\n> **{{prefix}}sync-invites**: Synchronize server invites and bot invites\n> **{{prefix}}removeinvites (@user)**: Remove (server/user) invites\n> **{{prefix}}restoreinvites (@user)**: Restore (server/user) invites",
+    "ADMIN_CONTENT": "> **{{prefix}}set-stacked-ranks**: Thành viên sẽ giữ toàn bộ roles của họ hoặc chỉ role cao nhất\n> **{{prefix}}setkeep-ranks** Thành viên sẽ giữ toàn bộ roles của họ kể cả khi Invites bị mất\n> **{{prefix}}blacklist [add/remove/list] (@user)**: Thêm/Loại bỏ thành viên từ danh sách đen\n> **{{prefix}}addbonus number @user**: Thêm bonus invites cho một thành viên\n> **{{prefix}}removebonus number @user**: Xoá bonus invites khỏi một thành viên\n> **{{prefix}}sync-invites**: Đồng bộ toàn bộ invites của server và bot\n> **{{prefix}}removeinvites (@user)**: Xoá toàn bộ invites của (server/user)\n> **{{prefix}}restoreinvites (@user)**: Khôi phục toàn bộ invites của (server/user)",
     "RANKS_TITLE": "Phần thưởng hạng",
     "RANKS_CONTENT": "> **{{prefix}}addrank số invites @role**: Thêm một phần thưởng hạng\n> **{{prefix}}removerank @role**: Xoá một phần thưởng hạng\n> **{{prefix}}ranks**: Danh sách phần thưởng hạng",
     "JOIN_DM_TITLE": "Tin nhắn tham gia trực tiếp",

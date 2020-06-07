@@ -1,9 +1,9 @@
 {
-    "CONFIRMATION": "Are you sure you want to remove all the server invites?\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
-    "CONFIRMATION_MEMBER": "Are you sure you want to remove all the invites of **{{username}}**?\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
-    "LOADING": "{{loading}} | Deleting invitations from the current server.... You can restore them with the command `{{prefix}}restore-invites`!",
-    "LOADING_MEMBER": "{{loading}} | Deleting current invitations of **{{username}}**... You can restore them with the command `{{prefix}}restore-invites {{username}}`!",
-    "TITLE": "☄️ Invitations reinitalized",
-    "DESCRIPTION": "{{success}} | Server invitations reinitialized! You can restore them with the command `{{prefix}}restore-invites`!",
-    "DESCRIPTION_MEMBER": "{{success}} | Invitations of **{{username}}** reinitialized! You can restore them with the command `{{prefix}}restore-invites {{username}}`!"
+    "CONFIRMATION": "Tüm sunucudaki davetleri silmek istediğinizden emin misiniz?\n\n{{success}} Onaylıyorsanız `-confirm` yazın.\n{{error}} Onaylamıyorsanız `cancel` yazın.",
+    "CONFIRMATION_MEMBER": "**{{username}}** kullanıcısının tüm davetlerini silmek istediğinize emin misiniz?\n\n{{success}} Onaylıyorsanız `-confirm` yazın.\n{{error}} Onaylamıyorsanız `cancel` yazın.",
+    "LOADING": "{{loading}} | Bu sunucunun davetleri siliniyor... Davetleri geri yüklemek için `{{prefix}}restore-invites` komutunu kullanabilirsiniz!",
+    "LOADING_MEMBER": "{{loading}} | **{{username}}** adlı kullanıcının mevcut davetleri siliniyor... `{{prefix}}restore-invites {{username}}` komutunu kullanarak geri yükleyebilirsiniz!",
+    "TITLE": "☄️ Davetler yeniden düzenlendi",
+    "DESCRIPTION": "{{success}} | Sunucu davetleri yeniden düzenlendi! Bunları `{{prefix}}restore-invites` komutuyla geri yükleyebilirsiniz!",
+    "DESCRIPTION_MEMBER": "{{success}} | **{{username}}** adlı kullanıcının davetleri geri yüklendi! Bunları `{{prefix}}restore-invites {{username}}` komutuyla geri yükleyebilirsiniz!"
 }

@@ -1,8 +1,8 @@
 {
-    "TITLE": "{{guild}}'s MemberCount",
-    "TOTAL": "Total of **{{totalCount}}**  members (**{{humanCount}}** humans and **{{botCount}}** bots)",
-    "DND": "➔ {{emoji}} | {{count}} members dnd",
-    "ONLINE": "➔ {{emoji}} | {{count}} members online",
-    "IDLE": "➔ {{emoji}} | {{count}} members idle",
-    "OFFLINE": "➔ {{emoji}} | {{count}} members offline"
+    "TITLE": "{{guild}} szerver tagok száma",
+    "TOTAL": "Összesen **{{totalCount}}** felhasználó (**{{humanCount}}** ember és **{{botCount}}** bot)",
+    "DND": "➔ {{emoji}} | {{count}} felhasználó elfoglat",
+    "ONLINE": "➔ {{emoji}} | {{count}} felhasználó elérhető",
+    "IDLE": "➔ {{emoji}} | {{count}} felhasználó tétlen",
+    "OFFLINE": "➔ {{emoji}} | {{count}} felhasználó nem eléhető"
 }

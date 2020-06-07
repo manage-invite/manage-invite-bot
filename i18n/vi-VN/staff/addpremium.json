@@ -1,5 +1,5 @@
 {
-    "MISSING_GUILD_ID": "Please specify a valid ID of guild!",
-    "MISSING_NUMBER_DAYS": "Please specify a valid number of days!",
-    "ADDED": "**{{days}}** days of premium added to guild **{{guild}}**. Premium for this guild will expire on **{{expiresAt}}**."
+    "MISSING_GUILD_ID": "Hãy nhập ID của server hợp lệ!",
+    "MISSING_NUMBER_DAYS": "Hãy nhập số ngày hợp lệ!",
+    "ADDED": "Đã thêm **{{days}}** ngày premium cho server **{{guild}}**. Premium của server này sẽ hết hạn vào **{{expiresAt}}**."
 }
