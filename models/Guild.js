@@ -41,7 +41,7 @@ module.exports = class Guild {
     }
 
     get premium(){
-        return this.premiumExpiresAt && (new Date(this.premiumExpiresAt).getTime() > Date.now());
+        return this.premiumExpiresAt && (new Date((this.premiumExpiresAt+(1000*60*60*24*7))).getTime() > Date.now());
     }
 
     async setTrialPeriodEnabled(newStatus){
