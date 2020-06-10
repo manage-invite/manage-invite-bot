@@ -1,6 +1,6 @@
 {
-    "MISSING_AMOUNT": "You must write the number of bonus invites you want to add. (Syntax: {{prefix}}addbonus number @member)",
-    "INVALID_AMOUNT": "You must write a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member)",
+    "MISSING_AMOUNT": "يجب كتابة عدد البونس انفايتس (مثال: {{prefix}}addbonus number @member)",
+    "INVALID_AMOUNT": "يجب كتابة عدد __**صالح**__ للبونس انفايتس التي تريد اضافتها (مثال: {{prefix}}addbonus number @member)",
     "MISSING_MEMBER": "You must mention the member to whom you want to add the bonus invites. (Syntax: {{prefix}}addbonus number @member)",
     "SUCCESS_TITLE": "📥 Bonus Invites Added",
     "SUCCESS_CONTENT": "Write `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
