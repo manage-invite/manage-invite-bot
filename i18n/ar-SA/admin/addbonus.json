@@ -1,7 +1,7 @@
 {
     "MISSING_AMOUNT": "يجب كتابة عدد البونس انفايتس (مثال: {{prefix}}addbonus number @member)",
     "INVALID_AMOUNT": "يجب كتابة عدد __**صالح**__ للبونس انفايتس التي تريد اضافتها (مثال: {{prefix}}addbonus number @member)",
-    "MISSING_MEMBER": "You must mention the member to whom you want to add the bonus invites. (Syntax: {{prefix}}addbonus number @member)",
-    "SUCCESS_TITLE": "📥 Bonus Invites Added",
+    "MISSING_MEMBER": "يجب أن تذكر العضو الذي تريد إضافة دعوات المكافأة إليه. (بناء الجملة: {{prefix}} أضف مكافأة رقم @عضو)",
+    "SUCCESS_TITLE": "تمت إضافة دعوات المكافأة 📥",
     "SUCCESS_CONTENT": "كتابة `{{prefix}}دعوة {{usertag}}` لمعرفة العدد الجديد من الدعوات **{{username}}**!"
 }
