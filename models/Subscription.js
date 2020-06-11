@@ -15,12 +15,6 @@ module.exports = class Subscription {
         return this.expiresAt > Date.now();
     }
 
-    async fetch() {
-        if (this.fetched) return;
-        this.guilds = [];
-        this.fetchGuilds();
-    }
-
     async addDays(count){
         const ms = count*24*60*60*1000;
         if(this.expiresAt >= Date.now()){
@@ -37,7 +31,7 @@ module.exports = class Subscription {
         `);
         for(let row of rows) {
             this.guilds.push(row.guild_id);
-            await this.handler.fetchGuild(row.guild_id, this);
+            await this.handler.fetchGuild(row.guild_id);
         }
     }
 

@@ -234,7 +234,7 @@ module.exports = class DatabaseHandler {
     }
 
     // Create or get a guild
-    fetchGuild(guildID, subscription) {
+    fetchGuild(guildID) {
         return new Promise(async resolve => {
             // If the guild is in the cache
             if (this.guildCache.get(guildID))
@@ -243,7 +243,7 @@ module.exports = class DatabaseHandler {
                 SELECT * FROM guilds
                 WHERE guild_id = '${guildID}';
             `);
-            const guild = new Guild(guildID, subscription ? { ...rows[0], ...{ subscription } } : rows[0], this);
+            const guild = new Guild(guildID, rows[0], this);
             // Insert the guild into the database if it's needed
             if (!guild.inserted) await guild.insert();
             // Fetch guild
