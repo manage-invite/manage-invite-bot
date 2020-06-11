@@ -58,7 +58,7 @@ module.exports = class Guild {
         `);
         this.subscriptions = [];
         for(let row of rows){
-            const cachedSub = this.handler.subscriptionsCache.find((sub) => sub.id === row.sub_id);
+            const cachedSub = this.handler.subscriptionCache.find((sub) => sub.id === row.sub_id);
             if(cachedSub){
                 this.subscriptions.push(cachedSub);
             } else {

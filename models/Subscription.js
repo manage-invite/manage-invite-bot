@@ -8,7 +8,9 @@ module.exports = class Subscription {
         this.inserted = Object.keys(data).length !== 0;
         this.data = data;
         // Expiration date
-        this.expiresAt = data.expires_at ? new Date(expires_at).getTime() : null;
+        this.expiresAt = data.expires_at ? new Date(data.expires_at).getTime() : null;
+        // Guilds related to the subscription
+        this.guilds = [];
     }
 
     get active () {

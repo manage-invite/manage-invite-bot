@@ -73,6 +73,20 @@ module.exports = class DatabaseHandler {
         this.memberCache = this.memberCache.filter((member) => member.guildID !== guildID);
     }
 
+    syncSubscriptionForOtherCaches(subID){
+        const shardID = this.client.shard.ids[0];
+        this.client.shard.broadcastEval(`
+            if(this.shard.ids[0] !== ${shardID}){
+                this.database.removeSubscriptionFromCache('${subID}');
+                this.database.fetchSubscription('${subID}');
+            }
+        `);
+    }
+
+    removeSubscriptionFromCache(subID){
+        this.subscriptionCache.delete(subID);
+    }
+
     removeGuildFromCache(guildID){
         this.guildCache.delete(guildID);
     }
@@ -108,7 +122,7 @@ module.exports = class DatabaseHandler {
                     guildIDs.push(row.guild_id);
                     await this.fetchGuild(row.guild_id);
                 }
-                return guildIDs;
+                resolve(guildIDs);
             });
         });
     }
@@ -120,23 +134,23 @@ module.exports = class DatabaseHandler {
                 (payer_discord_id, payer_discord_username, payer_email, amount, created_at, type, transaction_id, details, signup_id) VALUES
                 (${this.stringOrNull(payerDiscordID)}, ${this.stringOrNull(payerDiscordUsername)}, ${this.stringOrNull(payerEmail)}, ${amount}, '${createdAt.toISOString()}', '${type}', ${this.stringOrNull(transactionID)}, '${JSON.stringify(details)}', ${this.stringOrNull(signupID)})
                 RETURNING id;
-            `).then((paymentID) => {
-                resolve(paymentID);
+            `).then(({ rows }) => {
+                resolve(rows[0].id);
             });
         });
     }
 
-    createSubscription({ expiresAt = new Date(), createdAt = new Date(), subLabel, guildsCount = 1, patreonUserID }){
+    createSubscription({ expiresAt = new Date(), createdAt = new Date(), subLabel, guildsCount = 1, patreonUserID }, fetchGuilds = true){
         return new Promise(async resolve => {
             this.query(`
                 INSERT INTO subscriptions
                 (expires_at, created_at, sub_label, guilds_count, patreon_user_id) VALUES
                 (${this.stringOrNull(expiresAt.toISOString())}, '${createdAt.toISOString()}', ${this.stringOrNull(subLabel)}, ${guildsCount}, '${this.stringOrNull(patreonUserID)}')
                 RETURNING *;
-            `).then(async (row) => {
-                const subscription = new Subscription(row.sub_id, row, this);
-                await subscription.fetchGuilds();
-                this.subscriptionCache.set(row.sub_id, subscription);
+            `).then(async ({ rows }) => {
+                const subscription = new Subscription(rows[0].id, rows[0], this);
+                if(fetchGuilds) await subscription.fetchGuilds();
+                this.subscriptionCache.set(rows[0].id, subscription);
                 resolve(subscription);
             });
         });
@@ -149,12 +163,11 @@ module.exports = class DatabaseHandler {
                 return resolve(this.subscriptionCache.get(subID));
             const { rows } = await this.query(`
                 SELECT * FROM subscriptions
-                WHERE sub_id = '${subID}';
+                WHERE id = '${subID}';
             `);
             const sub = new Subscription(subID, rows[0], this);
-            // Fetch subscription
-            await sub.fetch();
             resolve(sub);
+            await sub.fetchGuilds();
             // Add the sub to the cache
             this.subscriptionCache.set(subID, sub);
         });
@@ -167,8 +180,8 @@ module.exports = class DatabaseHandler {
                 (sub_id, payment_id) VALUES
                 (${subID}, ${paymentID})
                 RETURNING id;
-            `).then((id) => {
-                resolve(id);
+            `).then(({ rows }) => {
+                resolve(rows[0].id);
             })
         });
     }
@@ -180,8 +193,8 @@ module.exports = class DatabaseHandler {
                 (guild_id, sub_id) VALUES
                 ('${guildID}', ${subID})
                 RETURNING id;
-            `).then((id) => {
-                resolve(id);
+            `).then(({ rows }) => {
+                resolve(rows[0].id);
             })
         });
     }
