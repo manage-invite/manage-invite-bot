@@ -21,16 +21,14 @@ module.exports = class Guild {
         this.premiumExpiresAt = new Date(data.guild_premium_expires_at).getTime() || null;
         // Trial period enabled
         this.trialPeriodEnabled = data.guild_trial_period_enabled || false;
-        // Trial period used
-        this.trialPeriodUsed = data.guild_trial_period_used || false;
         // Guild keep ranks
         this.keepRanks = data.guild_keep_ranks || false;
         // Guild stacked ranks
         this.stackedRanks = data.guild_stacked_ranks || false;
         // Guild cmd channel
         this.cmdChannel = data.guild_cmd_channel || null;
-        // Subscription related to the guild
-        this.subscription = data.subscription || null;
+        // Subscriptions
+        this.subscriptions = [];
     }
 
     async fetch() {
@@ -41,15 +39,19 @@ module.exports = class Guild {
         await this.fetchRanks();
         this.blacklistedUsers = [];
         await this.fetchBlacklistedUsers();
-        if(!this.subscription) await this.findSubscription();
+        await this.findSubscriptions();
         this.fetched = true;
     }
 
     get premium(){
-        return this.subscription && this.subscription.active;
+        return this.subscriptions.some((subscription) => subscription.active);
     }
 
-    async findSubscription(){
+    get trialPeriodUsed(){
+        return this.subscriptions.length > 0;
+    }
+
+    async findSubscriptions(){
         const { rows } = await this.handler.query(`
             SELECT * FROM guilds_subscriptions
             WHERE guild_id = '${this.id}'
@@ -57,10 +59,10 @@ module.exports = class Guild {
         for(let row of rows){
             const cachedSub = this.handler.subscriptionsCache.find((sub) => sub.id === row.sub_id);
             if(cachedSub){
-                if(cachedSub.active) this.subscription = cachedSub;
+                this.subscriptions.push(cachedSub);
             } else {
                 const sub = await this.handler.fetchSubscription(row.sub_id);
-                if(sub.active) this.subscription = sub;
+                this.subscriptions.push(cachedSub);
             }
         }
     }
