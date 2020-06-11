@@ -126,14 +126,20 @@ router.post("/ipn", async (req, res) => {
                     user.send(embed);
                     notSentSignup = notSentSignup.filter((s) => s.guildID !== guildID);
                     const signupID = await req.client.database.createPayment({
-                        payerID: paymentData[1],
-                        amount: parseInt(payload.mc_gross),
+                        payerDiscordID: paymentData[1],
+                        payerDiscordUsername: user.tag,
+                        payerEmail: signupData.payload.payer_email,
+                        transactionID: signupData.payload.txn_id,
+                        amount: parseInt(signupData.payload.mc_gross),
                         createdAt: paymentDate,
                         type: "paypal_dash_signup",
                         details: signupData.payload
                     });
                     const paymentID = await req.client.database.createPayment({
-                        payerID: paymentData[1],
+                        payerDiscordID: paymentData[1],
+                        payerDiscordUsername: user.tag,
+                        payerEmail: payload.payer_email,
+                        transactionID: payload.txn_id,
                         amount: parseInt(payload.mc_gross),
                         createdAt: paymentDate,
                         type: "paypal_dash_pmnt",
@@ -141,7 +147,7 @@ router.post("/ipn", async (req, res) => {
                         signupID
                     });
                     const subscription = await req.client.database.createSubscription({
-                        expiresAt: Date.now()+2592000000,
+                        expiresAt: new Date(Date.now()+2592000000),
                         createdAt: paymentDate,
                         subLabel: "Premium Monthly 1 Guild",
                         guildsCount: 1

@@ -113,12 +113,12 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    createPayment({ payerID, amount, createdAt = new Date(), type, transactionID, details, signupID }){
+    createPayment({ payerDiscordID, payerDiscordUsername, payerEmail, amount, createdAt = new Date(), type, transactionID, details = {}, signupID }){
         return new Promise(async resolve => {
             this.query(`
                 INSERT INTO payments
-                (payer_id, amount, created_at, type, transaction_id, details, signup_id) VALUES
-                (${this.stringOrNull(payerID)}, ${amount}, '${createdAt.toISOString()}', '${type}', ${this.stringOrNull(transactionID)}, ${details || {}}, ${this.stringOrNull(signupID)})
+                (payer_discord_id, payer_discord_username, payer_email, amount, created_at, type, transaction_id, details, signup_id) VALUES
+                (${this.stringOrNull(payerDiscordID)}, ${this.stringOrNull(payerDiscordUsername)}, ${this.stringOrNull(payerEmail)}, ${amount}, '${createdAt.toISOString()}', '${type}', ${this.stringOrNull(transactionID)}, '${JSON.stringify(details)}', ${this.stringOrNull(signupID)})
                 RETURNING id;
             `).then((paymentID) => {
                 resolve(paymentID);
@@ -131,10 +131,9 @@ module.exports = class DatabaseHandler {
             this.query(`
                 INSERT INTO subscriptions
                 (expires_at, created_at, sub_label, guilds_count, patreon_user_id) VALUES
-                (${expiresAt.toISOString()}, ${createdAt.toISOString()}, '${this.stringOrNull(subLabel)}', ${guildsCount}, ${this.stringOrNull(patreonUserID)})
+                (${this.stringOrNull(expiresAt.toISOString())}, '${createdAt.toISOString()}', ${this.stringOrNull(subLabel)}, ${guildsCount}, '${this.stringOrNull(patreonUserID)}')
                 RETURNING *;
             `).then(async (row) => {
-                console.log(row)
                 const subscription = new Subscription(row.sub_id, row, this);
                 await subscription.fetchGuilds();
                 this.subscriptionCache.set(row.sub_id, subscription);
@@ -179,7 +178,7 @@ module.exports = class DatabaseHandler {
             this.query(`
                 INSERT INTO guilds_subscriptions
                 (guild_id, sub_id) VALUES
-                (${guildID}, ${subID})
+                ('${guildID}', ${subID})
                 RETURNING id;
             `).then((id) => {
                 resolve(id);
