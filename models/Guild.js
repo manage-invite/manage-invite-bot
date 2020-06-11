@@ -29,6 +29,8 @@ module.exports = class Guild {
         this.stackedRanks = data.guild_stacked_ranks || false;
         // Guild cmd channel
         this.cmdChannel = data.guild_cmd_channel || null;
+        // Subscription related to the guild
+        this.subscription = data.subscription || null;
     }
 
     async fetch() {
@@ -39,11 +41,28 @@ module.exports = class Guild {
         await this.fetchRanks();
         this.blacklistedUsers = [];
         await this.fetchBlacklistedUsers();
+        if(!this.subscription) await this.findSubscription();
         this.fetched = true;
     }
 
     get premium(){
-        return this.premiumExpiresAt && (new Date((this.premiumExpiresAt+(1000*60*60*24*7))).getTime() > Date.now());
+        return this.subscription && this.subscription.active;
+    }
+
+    async findSubscription(){
+        const { rows } = await this.handler.query(`
+            SELECT * FROM guilds_subscriptions
+            WHERE guild_id = '${this.id}'
+        `);
+        for(let row of rows){
+            const cachedSub = this.handler.subscriptionsCache.find((sub) => sub.id === row.sub_id);
+            if(cachedSub){
+                if(cachedSub.active) this.subscription = cachedSub;
+            } else {
+                const sub = await this.handler.fetchSubscription(row.sub_id);
+                if(sub.active) this.subscription = sub;
+            }
+        }
     }
 
     // Change the guild cmd channel
@@ -78,25 +97,6 @@ module.exports = class Guild {
         `);
         this.handler.removeGuildFromOtherCaches(this.id);
         return this.trialPeriodUsed;
-    }
-
-    async addPremiumDays(count, type, userID){
-        const time = count*86400000;
-        const newPremiumExpiresAt = this.premium ? (this.premiumExpiresAt+time) : (Date.now()+time);
-        console.log(newPremiumExpiresAt)
-        await this.handler.query(`
-            UPDATE guilds
-            SET guild_premium_expires_at = '${new Date(newPremiumExpiresAt).toUTCString()}'
-            WHERE guild_id = '${this.id}';
-        `);
-        await this.handler.query(`
-            INSERT INTO subscriptions
-            (sub_guild_id, sub_type, sub_created_at, sub_payer_id, sub_days) VALUES
-            ('${this.id}', '${type}', '${new Date().toUTCString()}' ,${userID ? `'${userID}'` : 'null'}, ${count})
-        `);
-        this.handler.removeGuildFromOtherCaches(this.id);
-        this.premiumExpiresAt = newPremiumExpiresAt;
-        return this.premium;
     }
 
     // Fetch and fill plugins

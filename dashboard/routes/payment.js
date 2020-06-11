@@ -81,7 +81,8 @@ router.post("/ipn", async (req, res) => {
             notSentSignup.push({
                 guildID,
                 userID,
-                guildName
+                guildName,
+                payload
             });
             // const guild = await req.client.database.fetchGuild(guildID);
             // await guild.addPremiumDays(30, "sub_dash_paypal", paymentData[1]);
@@ -106,18 +107,16 @@ router.post("/ipn", async (req, res) => {
         if(payload.txn_type === "subscr_payment") {
             console.log(payload);
             if(
-                (payload.mc_gross !== '2.00') ||
+                (payload.amount3 !== '2.00' && payload.mc_gross !== '2.00') ||
                 (payload.receiver_email !== (req.client.config.paypal.mode === "live" ? req.client.config.paypal.live.email : req.client.config.paypal.sandbox.email))
             ) return;
             const paymentData = (payload.custom || "").split(",");
             paymentData.shift();
             const guildID = paymentData[0];
-            const guild = await req.client.database.fetchGuild(guildID);
-            await guild.addPremiumDays(30, "sub_dash_paypal", paymentData[1]);
-            await guild.setTrialPeriodEnabled(false);
             const userID = paymentData[1];
             const guildName = paymentData[2];
-            req.client.users.fetch(userID).then((user) => {
+            const paymentDate = new Date();
+            req.client.users.fetch(userID).then(async (user) => {
                 const signupData = notSentSignup.find((s) => s.guildID === guildID);
                 if (signupData) {
                     const embed = new Discord.MessageEmbed()
@@ -126,6 +125,40 @@ router.post("/ipn", async (req, res) => {
                     .setColor("#F4831B");
                     user.send(embed);
                     notSentSignup = notSentSignup.filter((s) => s.guildID !== guildID);
+                    const signupID = await req.client.database.createPayment({
+                        payerID: paymentData[1],
+                        amount: parseInt(payload.mc_gross),
+                        createdAt: paymentDate,
+                        type: "paypal_dash_signup",
+                        details: signupData.payload
+                    });
+                    const paymentID = await req.client.database.createPayment({
+                        payerID: paymentData[1],
+                        amount: parseInt(payload.mc_gross),
+                        createdAt: paymentDate,
+                        type: "paypal_dash_pmnt",
+                        details: payload,
+                        signupID
+                    });
+                    const subscription = await req.client.database.createSubscription({
+                        expiresAt: Date.now()+2592000000,
+                        createdAt: paymentDate,
+                        subLabel: "Premium Monthly 1 Guild",
+                        guildsCount: 1
+                    });
+                    await req.client.database.createSubPaymentLink(subscription.id, paymentID);
+                    await req.client.database.createGuildSubLink(guildID, subscription.id);
+                } else {
+                    const paymentID = await req.client.database.createPayment({
+                        payerID: paymentData[1],
+                        amount: parseInt(payload.mc_gross),
+                        createdAt: paymentDate,
+                        type: "paypal_dash_pmnt",
+                        details: payload
+                    });
+                    const guild = await req.client.database.fetchGuild(guildID);
+                    await req.client.database.createSubPaymentLink(guild.subscription.id, paymentID);
+                    await guild.subscription.addDays(30);
                 }
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()
                 .setAuthor(`${user.tag} paid for ManageInvite Premium`, user.displayAvatarURL())

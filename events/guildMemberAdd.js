@@ -46,9 +46,14 @@ module.exports = class {
                     if(newAndUsed.size === 1){
                         inviteUsed = newAndUsed.first();
                     }
-                } else {
                 }
                 if(inviteUsed && !vanity) invite = inviteUsed;
+            }
+            if(!invite){
+                const targetInvite = guildInvites.some((i) => i.targetUser && (i.targetUser.id === member.id));
+                if (targetInvite.uses === 1) {
+                    invite = targetInvite;
+                }
             }
         }
 

@@ -5,6 +5,7 @@ const logger = require("./logger");
 
 const Guild = require("../models/Guild");
 const Member = require("../models/Member");
+const Subscription = require("../models/Subscription");
 
 module.exports = class DatabaseHandler {
     constructor(client) {
@@ -19,6 +20,11 @@ module.exports = class DatabaseHandler {
         // Cache
         this.guildCache = new Collection();
         this.memberCache = new Collection();
+        this.subscriptionCache = new Collection();
+    }
+    
+    stringOrNull(value){
+        return value ? `'${value}'` : 'null';
     }
 
     async initCache() {
@@ -89,26 +95,98 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    fetchSubscriptions(guildID){
-        return new Promise(async resolve => {
-            const { rows } = await this.query(`
-                SELECT * FROM subscriptions
-                WHERE sub_guild_id = '${guildID}';
-            `);
-            resolve(rows);
-        });
-    }
-    
     fetchPremiumGuilds(){
         return new Promise(async resolve => {
-            const { rows } = await this.query(`
-                SELECT * FROM guilds
-                WHERE guild_premium_expires_at is not null;
-            `);
-            resolve(rows.map((row) => row.guild_id));
+            this.query(`
+                SELECT gs.*
+                FROM guilds_subscriptions gs
+                INNER JOIN subscriptions s ON gs.sub_id = s.id
+                WHERE s.expires_at > now()
+            `).then(async ({ rows }) => {
+                const guildIDs = [];
+                for(let row of rows){
+                    guildIDs.push(row.guild_id);
+                    await this.fetchGuild(row.guild_id);
+                }
+                return guildIDs;
+            });
         });
     }
 
+    createPayment({ payerID, amount, createdAt = new Date(), type, transactionID, details, signupID }){
+        return new Promise(async resolve => {
+            this.query(`
+                INSERT INTO payments
+                (payer_id, amount, created_at, type, transaction_id, details, signup_id) VALUES
+                (${this.stringOrNull(payerID)}, ${amount}, '${createdAt.toISOString()}', '${type}', ${this.stringOrNull(transactionID)}, ${details || {}}, ${this.stringOrNull(signupID)})
+                RETURNING id;
+            `).then((paymentID) => {
+                resolve(paymentID);
+            });
+        });
+    }
+
+    createSubscription({ expiresAt = new Date(), createdAt = new Date(), subLabel, guildsCount = 1, patreonUserID }){
+        return new Promise(async resolve => {
+            this.query(`
+                INSERT INTO subscriptions
+                (expires_at, created_at, sub_label, guilds_count, patreon_user_id) VALUES
+                (${expiresAt.toISOString()}, ${createdAt.toISOString()}, '${this.stringOrNull(subLabel)}', ${guildsCount}, ${this.stringOrNull(patreonUserID)})
+                RETURNING *;
+            `).then(async (row) => {
+                console.log(row)
+                const subscription = new Subscription(row.sub_id, row, this);
+                await subscription.fetchGuilds();
+                this.subscriptionCache.set(row.sub_id, subscription);
+                resolve(subscription);
+            });
+        });
+    }
+
+    fetchSubscription(subID){
+        return new Promise(async resolve => {
+            // If the sub is in the cache
+            if (this.subscriptionCache.get(subID))
+                return resolve(this.subscriptionCache.get(subID));
+            const { rows } = await this.query(`
+                SELECT * FROM subscriptions
+                WHERE sub_id = '${subID}';
+            `);
+            const sub = new Subscription(subID, rows[0], this);
+            // Fetch subscription
+            await sub.fetch();
+            resolve(sub);
+            // Add the sub to the cache
+            this.subscriptionCache.set(subID, sub);
+        });
+    }
+
+    createSubPaymentLink(subID, paymentID){
+        return new Promise(async resolve => {
+            this.query(`
+                INSERT INTO subscriptions_payments
+                (sub_id, payment_id) VALUES
+                (${subID}, ${paymentID})
+                RETURNING id;
+            `).then((id) => {
+                resolve(id);
+            })
+        });
+    }
+
+    createGuildSubLink(guildID, subID){
+        return new Promise(async resolve => {
+            this.query(`
+                INSERT INTO guilds_subscriptions
+                (guild_id, sub_id) VALUES
+                (${guildID}, ${subID})
+                RETURNING id;
+            `).then((id) => {
+                resolve(id);
+            })
+        });
+    }
+    
     // Create or get all the members of a guild
     fetchMembers(guildID, raw) {
         return new Promise(async resolve => {
@@ -157,7 +235,7 @@ module.exports = class DatabaseHandler {
     }
 
     // Create or get a guild
-    fetchGuild(guildID) {
+    fetchGuild(guildID, subscription) {
         return new Promise(async resolve => {
             // If the guild is in the cache
             if (this.guildCache.get(guildID))
@@ -166,7 +244,7 @@ module.exports = class DatabaseHandler {
                 SELECT * FROM guilds
                 WHERE guild_id = '${guildID}';
             `);
-            const guild = new Guild(guildID, rows[0], this);
+            const guild = new Guild(guildID, subscription ? { ...rows[0], ...{ subscription } } : rows[0], this);
             // Insert the guild into the database if it's needed
             if (!guild.inserted) await guild.insert();
             // Fetch guild
