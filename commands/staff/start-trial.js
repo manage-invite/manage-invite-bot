@@ -56,7 +56,7 @@ module.exports = class extends Command {
         await subscription.fetchGuilds();
 
         const expiresAt = this.client.functions.formatDate(new Date(guildData.premiumExpiresAt), "MMM DD YYYY", message.guild.data.language);
-        message.success(`Server **${guildName}** is now premium for 7 days (end on **${expiresAt}**) :rocket:`);
+        message.channel.send(`${this.client.config.emojis.success} | Server **${guildName}** is now premium for 7 days (end on **${expiresAt}**) :rocket:`);
 
     }
 };
