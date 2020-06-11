@@ -22,6 +22,7 @@ module.exports = class Subscription {
         } else {
             this.expiresAt = Date.now() + ms;
         }
+        this.handler.syncSubscriptionForOtherCaches(this.id);
     }
 
     async fetchGuilds(){

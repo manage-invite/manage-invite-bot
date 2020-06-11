@@ -151,10 +151,10 @@ router.post("/ipn", async (req, res) => {
                         createdAt: paymentDate,
                         subLabel: "Premium Monthly 1 Guild",
                         guildsCount: 1
-                    });
+                    }, false);
                     await req.client.database.createSubPaymentLink(subscription.id, paymentID);
                     await req.client.database.createGuildSubLink(guildID, subscription.id);
-                    await subscription.fetch();
+                    await subscription.fetchGuilds();
                 } else {
                     const paymentID = await req.client.database.createPayment({
                         payerID: paymentData[1],
