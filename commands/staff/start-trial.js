@@ -53,6 +53,7 @@ module.exports = class extends Command {
         });
         await req.client.database.createSubPaymentLink(subscription.id, paymentID);
         await req.client.database.createGuildSubLink(guildID, subscription.id);
+        await subscription.fetch();
 
         const expiresAt = this.client.functions.formatDate(new Date(guildData.premiumExpiresAt), "MMM DD YYYY", message.guild.data.language);
         message.success(`Server **${guildName}** is now premium for 7 days (end on **${expiresAt}**) :rocket:`);

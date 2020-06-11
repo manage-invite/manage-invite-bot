@@ -39,7 +39,7 @@ module.exports = class Guild {
         await this.fetchRanks();
         this.blacklistedUsers = [];
         await this.fetchBlacklistedUsers();
-        await this.findSubscriptions();
+        await this.syncSubcriptions();
         this.fetched = true;
     }
 
@@ -51,11 +51,12 @@ module.exports = class Guild {
         return this.subscriptions.length > 0;
     }
 
-    async findSubscriptions(){
+    async syncSubcriptions(){
         const { rows } = await this.handler.query(`
             SELECT * FROM guilds_subscriptions
             WHERE guild_id = '${this.id}'
         `);
+        this.subscriptions = [];
         for(let row of rows){
             const cachedSub = this.handler.subscriptionsCache.find((sub) => sub.id === row.sub_id);
             if(cachedSub){

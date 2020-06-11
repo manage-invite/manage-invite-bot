@@ -154,6 +154,7 @@ router.post("/ipn", async (req, res) => {
                     });
                     await req.client.database.createSubPaymentLink(subscription.id, paymentID);
                     await req.client.database.createGuildSubLink(guildID, subscription.id);
+                    await subscription.fetch();
                 } else {
                     const paymentID = await req.client.database.createPayment({
                         payerID: paymentData[1],
