@@ -51,8 +51,8 @@ module.exports = class extends Command {
             guildsCount: 1,
             subLabel: "trial_version"
         }, false);
-        await req.client.database.createSubPaymentLink(subscription.id, paymentID);
-        await req.client.database.createGuildSubLink(guildID, subscription.id);
+        await this.client.database.createSubPaymentLink(subscription.id, paymentID);
+        await this.client.database.createGuildSubLink(guildID, subscription.id);
         await subscription.fetchGuilds();
 
         const expiresAt = this.client.functions.formatDate(new Date(guildData.premiumExpiresAt), "MMM DD YYYY", message.guild.data.language);
