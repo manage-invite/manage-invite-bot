@@ -39,7 +39,7 @@ module.exports = class Guild {
         await this.fetchRanks();
         this.blacklistedUsers = [];
         await this.fetchBlacklistedUsers();
-        await this.syncSubcriptions();
+        await this.syncSubscriptions();
         this.fetched = true;
     }
 
@@ -51,7 +51,7 @@ module.exports = class Guild {
         return this.subscriptions.length > 0;
     }
 
-    async syncSubcriptions(){
+    async syncSubscriptions(){
         const { rows } = await this.handler.query(`
             SELECT * FROM guilds_subscriptions
             WHERE guild_id = '${this.id}'

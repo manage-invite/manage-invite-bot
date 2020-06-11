@@ -32,7 +32,7 @@ module.exports = class Subscription {
         for(let row of rows) {
             this.guilds.push(row.guild_id);
             const guild = await this.handler.fetchGuild(row.guild_id);
-            await guild.syncSubcriptions();
+            await guild.syncSubscriptions();
         }
     }
 
