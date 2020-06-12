@@ -157,7 +157,10 @@ router.post("/ipn", async (req, res) => {
                     await subscription.fetchGuilds();
                 } else {
                     const paymentID = await req.client.database.createPayment({
-                        payerID: paymentData[1],
+                        payerDiscordID: paymentData[1],
+                        payerDiscordUsername: user.tag,
+                        payerEmail: payload.payer_email,
+                        transactionID: payload.txn_id,
                         amount: parseInt(payload.mc_gross),
                         createdAt: paymentDate,
                         type: "paypal_dash_pmnt",
