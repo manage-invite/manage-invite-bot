@@ -107,7 +107,7 @@ router.post("/ipn", async (req, res) => {
         if(payload.txn_type === "subscr_payment") {
             console.log(payload);
             if(
-                (payload.amount3 !== '2.00' && payload.mc_gross !== '2.00') ||
+                (payload.mc_gross !== '2.00') ||
                 (payload.receiver_email !== (req.client.config.paypal.mode === "live" ? req.client.config.paypal.live.email : req.client.config.paypal.sandbox.email))
             ) return;
             const paymentData = (payload.custom || "").split(",");
