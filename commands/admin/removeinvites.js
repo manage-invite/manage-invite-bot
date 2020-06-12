@@ -81,6 +81,9 @@ module.exports = class extends Command {
 
             msg.edit(null, { embed });
             this.client.database.removeAllMembersFromOtherCaches(message.guild.id);
+        }).catch((err) => {
+            console.error(err);
+            return conf.error("common:CANCELLED", null, true);
         });
 
     }

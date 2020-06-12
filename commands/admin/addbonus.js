@@ -71,6 +71,9 @@ module.exports = class extends Command {
                 .setFooter(data.footer);
 
                 conf.edit(null, { embed });
+            }).catch((err) => {
+                console.error(err);
+                return conf.error("common:CANCELLED", null, true);
             });
         }
     }
