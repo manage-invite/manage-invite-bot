@@ -185,6 +185,24 @@ router.post("/ipn", async (req, res) => {
             });
         }
     });
+        if(payload.txn_type === "subscr_eot"){
+            const paymentData = (payload.custom || "").split(",");
+            paymentData.shift();
+            const guildID = paymentData[0];
+            const userID = paymentData[1];
+            const guildName = paymentData[2];
+            req.client.users.fetch(userID).then(async (user) => {
+                const logEmbed = JSON.stringify(new Discord.MessageEmbed()
+                .setAuthor(`${user.tag} cancelled their subscription for ManageInvite Premium`, user.displayAvatarURL())
+                .setDescription(`Recurring payment for **${guildName}** was cancelled :wave:`)
+                .setColor("#1E90FF")).replace(/[\/\(\)\']/g, "\\$&");
+                let { premiumLogs } = req.client.config;
+                req.client.shard.broadcastEval(`
+                    let aLogs = this.channels.cache.get('${premiumLogs}');
+                    if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
+                `);
+            });
+        }
 });
 
 module.exports = router;
