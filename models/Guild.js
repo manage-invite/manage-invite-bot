@@ -63,7 +63,7 @@ module.exports = class Guild {
                 this.subscriptions.push(cachedSub);
             } else {
                 const sub = await this.handler.fetchSubscription(row.sub_id);
-                this.subscriptions.push(cachedSub);
+                this.subscriptions.push(sub);
             }
         }
     }
