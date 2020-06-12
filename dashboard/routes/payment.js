@@ -166,6 +166,9 @@ router.post("/ipn", async (req, res) => {
                     const guild = await req.client.database.fetchGuild(guildID);
                     await req.client.database.createSubPaymentLink(guild.subscription.id, paymentID);
                     await guild.subscription.addDays(30);
+                    if(guild.subscription.isTrial){
+                        guild.subscription.changeLabel("Premium Monthly 1 Guild");
+                    }
                 }
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()
                 .setAuthor(`${user.tag} paid for ManageInvite Premium`, user.displayAvatarURL())

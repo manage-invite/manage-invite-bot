@@ -19,6 +19,24 @@ module.exports = class Subscription {
         return this.expiresAt > Date.now();
     }
 
+    get isTrial () {
+        return this.label === 'Trial Version';
+    }
+
+    get wasTrial () {
+        return this.label.startsWith('T-');
+    }
+
+    async changeLabel (newName) {
+        this.label = this.isTrial ? 'Trial Version' : `T-${newName}`;
+        await this.handler.query(`
+            UPDATE subscriptions
+            SET sub_label = '${this.label}'
+            WHERE sub_id = ${this.id};
+        `);
+        this.handler.syncSubscriptionForOtherCaches(this.id);
+    }
+
     async addDays(count){
         const ms = count*24*60*60*1000;
         if(this.expiresAt >= Date.now()){

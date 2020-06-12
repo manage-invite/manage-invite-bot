@@ -49,7 +49,7 @@ module.exports = class extends Command {
             expiresAt: new Date(Date.now()+(7*24*60*60*1000)),
             createdAt: new Date(),
             guildsCount: 1,
-            subLabel: "trial_version"
+            subLabel: "Trial Version"
         }, false);
         await this.client.database.createSubPaymentLink(subscription.id, paymentID);
         await this.client.database.createGuildSubLink(guildID, subscription.id);
