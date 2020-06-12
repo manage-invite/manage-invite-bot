@@ -5,8 +5,8 @@
     "MISSING_MEMBER_ADD": "블랙리스트에 추가 할 유효한 멤버을 멘션해야합니다!",
     "MISSING_MEMBER_REMOVE": "블랙리스트에서 제거할 유효한 멤버을 멘션해야합니다!",
     "SUCCESS_MEMBER_ADD": "**{{username}}** 님이 블랙리스트에 추가되었습니다",
-    "SUCCESS_MEMBER_REMOVE": "**{{username}}** was removed from the blacklist!",
-    "EMPTY": "No blacklisted users!",
-    "NOT_BLACKLISTED": "**{{username}}** is not in the blacklist!",
-    "ALREADY_BLACKLISTED": "**{{username}}** is already blacklisted!"
+    "SUCCESS_MEMBER_REMOVE": "**{{username}}** 님이 블랙리스트에서 제거되었습니다!",
+    "EMPTY": "블랙리스트에 등록 된 사용자가 없습니다!",
+    "NOT_BLACKLISTED": "**{{username}}** 님은 블랙리스트에 없습니다!",
+    "ALREADY_BLACKLISTED": "**{{username}}** 님은 이미 블랙리스트에 있습니다!"
 }
