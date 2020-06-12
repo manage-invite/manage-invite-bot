@@ -177,7 +177,7 @@ module.exports = class DatabaseHandler {
                 return resolve(this.subscriptionCache.get(subID));
             const { rows } = await this.query(`
                 SELECT * FROM subscriptions
-                WHERE id = '${subID}';
+                WHERE id = ${subID};
             `);
             const sub = new Subscription(subID, rows[0], this);
             resolve(sub);
