@@ -1,7 +1,7 @@
 {
-    "MISSING_AMOUNT": "You must write the number of bonus invites you want to remove. (Syntax: {{prefix}}removebonus number @member)",
-    "INVALID_AMOUNT": "You must write a __**valid**__ number of bonus invites that you want to remove. (Syntax: {{prefix}}removebonus number @member)",
-    "MISSING_MEMBER": "You must mention the member to whom you want to remove the bonus invites. (Syntax: {{prefix}}removebonus number @member)",
-    "SUCCESS_TITLE": "📥 Bonus Invites Removed",
-    "SUCCESS_CONTENT": "Write `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
+    "MISSING_AMOUNT": "제거 할 보너스 초대 수를 작성해야합니다. (예시: {{prefix}}removebonus 숫자 @멤버)",
+    "INVALID_AMOUNT": "제거하려는 __ **유효한** __ 보너스 초대 수를 작성해야합니다. (예시: {{prefix}}removebonus 숫자 @멤버)",
+    "MISSING_MEMBER": "보너스 초대 수를 제거하려는 멤버를 멘션해야합니다. (예시: {{prefix}}removebonus 숫자 @멤버)",
+    "SUCCESS_TITLE": "📥 보너스 초대 수가 제거되었습니다.",
+    "SUCCESS_CONTENT": "`{{prefix}}invites {{usertag}}`를 적으셔서 **{{username}}** 님의 새로운 초대 수를 확인하실수 있습니다!"
 }
