@@ -180,10 +180,9 @@ module.exports = class DatabaseHandler {
                 WHERE id = ${subID};
             `);
             const sub = new Subscription(subID, rows[0], this);
-            resolve(sub);
-            await sub.fetchGuilds();
-            // Add the sub to the cache
             this.subscriptionCache.set(subID, sub);
+            await sub.fetchGuilds();
+            resolve(sub);
         });
     }
 
