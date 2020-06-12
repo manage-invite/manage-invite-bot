@@ -167,10 +167,10 @@ router.post("/ipn", async (req, res) => {
                         details: payload
                     });
                     const guild = await req.client.database.fetchGuild(guildID);
-                    await req.client.database.createSubPaymentLink(guild.subscription.id, paymentID);
-                    await guild.subscription.addDays(30);
-                    if(guild.subscription.isTrial){
-                        guild.subscription.changeLabel("Premium Monthly 1 Guild");
+                    await req.client.database.createSubPaymentLink(guild.subscriptions[0].id, paymentID);
+                    await guild.subscriptions[0].addDays(30);
+                    if(guild.subscriptions[0].isTrial){
+                        guild.subscriptions[0].changeLabel("Premium Monthly 1 Guild");
                     }
                 }
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()
