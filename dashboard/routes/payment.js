@@ -130,7 +130,7 @@ router.post("/ipn", async (req, res) => {
                         payerDiscordUsername: user.tag,
                         payerEmail: signupData.payload.payer_email,
                         transactionID: signupData.payload.txn_id,
-                        amount: parseInt(signupData.payload.mc_gross),
+                        amount: parseInt(signupData.payload.mc_amount3),
                         createdAt: paymentDate,
                         type: "paypal_dash_signup",
                         details: signupData.payload
