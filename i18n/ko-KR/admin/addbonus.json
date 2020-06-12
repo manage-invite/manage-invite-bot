@@ -1,7 +1,7 @@
 {
-    "MISSING_AMOUNT": "You must write the number of bonus invites you want to add. (Syntax: {{prefix}}addbonus number @member)",
-    "INVALID_AMOUNT": "You must write a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member)",
-    "MISSING_MEMBER": "You must mention the member to whom you want to add the bonus invites. (Syntax: {{prefix}}addbonus number @member)",
+    "MISSING_AMOUNT": "추가하려는 보너스 초대 수를 작성합니다. (예시: {{prefix}}addbonus 보너스 초대 수 @member)",
+    "INVALID_AMOUNT": "추가하려는 __ ** 유효한 수 ** __ 의 보너스 초대 수를 작성해야합니다. (예시: {{prefix}}addbonus 보너스 초대 수 @member)",
+    "MISSING_MEMBER": "당신은 무조건 보너스 초대를 추가하고 싶은 멤버를 맨션해야 합니다.(예시: {{prefix}}addbonus 보너스 초대 수 @member)",
     "SUCCESS_TITLE": "📥 Bonus Invites Added",
     "SUCCESS_CONTENT": "Write `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
 }
