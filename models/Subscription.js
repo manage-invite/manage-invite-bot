@@ -11,6 +11,8 @@ module.exports = class Subscription {
         this.expiresAt = data.expires_at ? new Date(data.expires_at).getTime() : null;
         // Guilds related to the subscription
         this.guilds = [];
+        // Subscription label
+        this.label = data.sub_label;
     }
 
     get active () {
