@@ -127,6 +127,20 @@ module.exports = class DatabaseHandler {
         });
     }
 
+    getPaymentsForGuild(guildID){
+        return new Promise(async resolve => {
+            this.query(`
+                SELECT p.*
+                FROM payments p
+                INNER JOIN subscriptions_payments sp ON p.id = sp.payment_id
+                INNER JOIN guilds_subscriptions gs ON sp.sub_id = gs.sub_id
+                WHERE gs.guild_id = '${guildID}';
+            `).then(({ rows }) => {
+                resolve(rows);
+            });
+        });
+    }
+
     createPayment({ payerDiscordID, payerDiscordUsername, payerEmail, amount, createdAt = new Date(), type, transactionID, details = {}, signupID }){
         return new Promise(async resolve => {
             this.query(`

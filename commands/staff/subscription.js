@@ -15,7 +15,7 @@ module.exports = class extends Command {
     async run (message, args, data) {
 
         let guildID = args[0];
-        if(!guildID) return message.error("staff/addpremium:MISSING_GUILD_ID");
+        if(!guildID) return message.error("Please specify a valid guild ID!");
 
         if(guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-z]/)){
             let invite = await this.client.fetchInvite(guildID);
@@ -37,23 +37,12 @@ module.exports = class extends Command {
 
         const embed = new Discord.MessageEmbed()
         .setAuthor(`Subscription for ${guildData.name}`, guildData.icon)
-        .setDescription(`__**Premium**__: ${guildDB.premium ? "Enabled" : "Disabled"}\n__**Trial period**__: ${guildDB.trialPeriodEnabled ? "Started" : guildDB.trialPeriodUsed ? "Expired" : "Not started"}`)
-        .setColor(data.color)
-        .setFooter(data.footer);
+        .setColor(this.client.config.color);
 
-        const types = {
-            "addpremium_cmd": "addpremium command",
-            "addpremium_cmd_trial": "addpremium command (trial)",
-            "sub_dash_paypal": "dashboard paypal"
-        };
-
-        const subscriptions = await this.client.database.fetchSubscriptions(guildID);
-        if(subscriptions.length > 0){
-            subscriptions.forEach(s => {
-                embed.addField(this.client.functions.formatDate(new Date(s.sub_created_at), "MMM D YYYY h:m:s A", "en-US"), `__Type__: ${types[s.sub_type]} | __User ID__: ${s.sub_payer_id} ${message.guild.members.cache.has(s.sub_payer_id) ? `(<@${s.sub_payer_id}>)` : ""}`)    
-            });
-        } else {
-            embed.addField("Payments", "No payment to display.");
+        for(let sub of guildDB.subscriptions){
+            const payments = await this.client.database.getPaymentsForGuild(guildID);
+            const subContent = payments.map((p) => `__**${p.type}**__\nUser: **${p.payer_discord_username}** (\`${p.payer_discord_id}\`)\nDate: **${this.client.functions.formatDate(new Date(p.created_at), "MMM D YYYY h:m:s A", "en-US")}**`).join('\n');
+            embed.addField(sub.label, subContent);
         }
 
         message.channel.send(embed);
