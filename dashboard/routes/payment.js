@@ -201,6 +201,16 @@ router.post("/ipn", async (req, res) => {
                     let aLogs = this.channels.cache.get('${premiumLogs}');
                     if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
                 `);
+                const paymentID = await req.client.database.createPayment({
+                    payerDiscordID: paymentData[1],
+                    payerDiscordUsername: user.tag,
+                    payerEmail: payload.payer_email,
+                    transactionID: payload.txn_id,
+                    amount: parseInt(payload.mc_gross),
+                    createdAt: paymentDate,
+                    type: "paypal_eot",
+                    details: payload
+                });
             });
         }
 });
