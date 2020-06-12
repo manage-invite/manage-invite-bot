@@ -48,7 +48,7 @@ module.exports = class extends Command {
 
             m.edit(null, { embed });
         } else {
-            const conf = await message.sendT("admin/removebonus:CONFIRMATION_ALL", {
+            const conf = await message.sendT("admin/addbonus:CONFIRMATION_ALL", {
                 count: bonus
             })
             await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
