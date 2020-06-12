@@ -141,12 +141,12 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    createPayment({ payerDiscordID, payerDiscordUsername, payerEmail, amount, createdAt = new Date(), type, transactionID, details = {}, signupID }){
+    createPayment({ payerDiscordID, payerDiscordUsername, payerEmail, amount, createdAt = new Date(), type, transactionID, details = {}, signupID, modDiscordID }){
         return new Promise(async resolve => {
             this.query(`
                 INSERT INTO payments
-                (payer_discord_id, payer_discord_username, payer_email, amount, created_at, type, transaction_id, details, signup_id) VALUES
-                (${this.stringOrNull(payerDiscordID)}, ${this.stringOrNull(payerDiscordUsername)}, ${this.stringOrNull(payerEmail)}, ${amount}, '${createdAt.toISOString()}', '${type}', ${this.stringOrNull(transactionID)}, '${JSON.stringify(details)}', ${this.stringOrNull(signupID)})
+                (payer_discord_id, payer_discord_username, payer_email, amount, created_at, type, transaction_id, details, signup_id, mod_discord_id) VALUES
+                (${this.stringOrNull(payerDiscordID)}, ${this.stringOrNull(payerDiscordUsername)}, ${this.stringOrNull(payerEmail)}, ${amount}, '${createdAt.toISOString()}', '${type}', ${this.stringOrNull(transactionID)}, '${JSON.stringify(details)}', ${this.stringOrNull(signupID)}, ${this.stringOrNull(modDiscordID)})
                 RETURNING id;
             `).then(({ rows }) => {
                 resolve(rows[0].id);

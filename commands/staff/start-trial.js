@@ -40,6 +40,7 @@ module.exports = class extends Command {
         const paymentID = await this.client.database.createPayment({
             payerDiscordID: user.id,
             payerDiscordUsername: user.tag,
+            modID: message.author.id,
             amount: 0,
             type: "trial_activation",
             createdAt: new Date()
