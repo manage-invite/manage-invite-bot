@@ -1,6 +1,6 @@
 {
-    "AUTHOR_BLACKLISTED": "You are blacklisted on this server, you can't run this command.",
-    "BLACKLISTED": "{{username}} is blacklisted on this server.",
+    "AUTHOR_BLACKLISTED": "당신은 이 서버의 블랙리스트에 올랐으므로, 이 명령을 실행할 수 없습니다.",
+    "BLACKLISTED": "이 서버에서 {{username}} 님이 블랙리스트가 되었습니다.",
     "MISSING_TYPE": "You must enter a valid action! (`add`, `remove` or `list`)\n\n:information_source: Users in the blacklist:\n- Won't receive/loose roles\n- Won't appear in the leaderboard\n- Won't have their invites tracked anymore\n- Won't be able to run the `invites` command",
     "MISSING_MEMBER_ADD": "You must mention a valid member to add in the blacklist!",
     "MISSING_MEMBER_REMOVE": "You must mention a valid member to remove from the blacklist!",
