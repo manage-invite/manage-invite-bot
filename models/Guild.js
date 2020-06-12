@@ -47,6 +47,10 @@ module.exports = class Guild {
         return this.subscriptions.some((subscription) => subscription.active);
     }
 
+    get trialPeriodEnabled(){
+        return this.premium && this.subscriptions.every((subscription) => subscription.isTrial);
+    }
+
     get trialPeriodUsed(){
         return this.subscriptions.length > 0;
     }
