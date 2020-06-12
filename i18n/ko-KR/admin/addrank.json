@@ -1,5 +1,5 @@
 {
-    "MISSING_COUNT": "You must write the number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
+    "MISSING_COUNT": "등급을 획득하기 위해 필요한 초대 횟수를 지정해야 합니다. (예시: {{prefix}}addrank 초대 횟수 @역할)",
     "INCORRECT_COUNT": " You must write a __**valid**__ number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
     "ALREADY_EXIST": "There is already a defined role for **{{count}}** invites (`{{roleName}}`)! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
     "MISSING_ROLE": "You must mention the role you want to be added when the invite count is reached! (Syntax: {{prefix}}addrank number @role)",
