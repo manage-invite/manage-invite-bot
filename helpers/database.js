@@ -163,8 +163,8 @@ module.exports = class DatabaseHandler {
                 RETURNING *;
             `).then(async ({ rows }) => {
                 const subscription = new Subscription(rows[0].id, rows[0], this);
-                if(fetchGuilds) await subscription.fetchGuilds();
                 this.subscriptionCache.set(rows[0].id, subscription);
+                if(fetchGuilds) await subscription.fetchGuilds();
                 resolve(subscription);
             });
         });
