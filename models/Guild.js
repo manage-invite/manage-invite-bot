@@ -19,8 +19,6 @@ module.exports = class Guild {
         this.prefix = data.guild_prefix || "+";
         // Guild premium expires at
         this.premiumExpiresAt = new Date(data.guild_premium_expires_at).getTime() || null;
-        // Trial period enabled
-        this.trialPeriodEnabled = data.guild_trial_period_enabled || false;
         // Guild keep ranks
         this.keepRanks = data.guild_keep_ranks || false;
         // Guild stacked ranks
