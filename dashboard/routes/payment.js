@@ -102,6 +102,14 @@ router.post("/ipn", async (req, res) => {
                     let aLogs = this.channels.cache.get('${premiumLogs}');
                     if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
                 `);
+                req.client.shard.broadcastEval(`
+                    if(this.guilds.cache.some((g) => g.roles.cache.has(this.config.premiumRole))){
+                        const guild = this.guilds.cache.find((g) => g.roles.cache.has(this.config.premiumRole));
+                        guild.members.fetch('${user.id}').then((member) => {
+                            member.roles.add(this.config.premiumRole);
+                        }).catch(() => {});
+                    }
+                `);
             });
         }
         if(payload.txn_type === "subscr_payment") {

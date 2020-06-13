@@ -36,6 +36,7 @@ module.exports = {
     prefix:         "+",
     owners: [ "XXXXXXXXXXX", "XXXXXXXXXXX" ],
     modRole:        "XXXXXXXXXXX",
+    premiumRole:    "XXXXXXXXXXX",
     /* Top.gg */
     topToken: "XXXXXXXXXXX",
     topAuth: "XXXXXXXXXXX",
