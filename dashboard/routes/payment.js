@@ -192,7 +192,6 @@ router.post("/ipn", async (req, res) => {
                 `);
             });
         }
-    });
         if(payload.txn_type === "subscr_eot"){
             const paymentData = (payload.custom || "").split(",");
             paymentData.shift();
@@ -221,6 +220,7 @@ router.post("/ipn", async (req, res) => {
                 });
             });
         }
+    });
 });
 
 module.exports = router;
