@@ -18,6 +18,9 @@ module.exports = class {
         this.client.fetching = true;
 
         const premiumGuildsID = await this.client.database.fetchPremiumGuilds();
+        this.client.logger.log(`Shard #${this.client.shard.ids[0]} launched (${this.client.pgQueries} queries)`);
+        this.client.logger.log(`Subscriptions: ${this.client.database.subscriptionCache.size}`);
+        this.client.logger.log(`Guilds: ${this.client.database.guildCache.size}`);
         await this.client.functions.asyncForEach(this.client.guilds.cache.array(), async (guild) => {
             if(premiumGuildsID.includes(guild.id)){
                 const member = await guild.members.fetch(this.client.user.id).catch(() => {});
