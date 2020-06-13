@@ -123,7 +123,6 @@ router.post("/ipn", async (req, res) => {
             const guildID = paymentData[0];
             const userID = paymentData[1];
             const guildName = paymentData[2];
-            const paymentDate = new Date();
             req.client.users.fetch(userID).then(async (user) => {
                 const signupData = notSentSignup.find((s) => s.guildID === guildID);
                 if (signupData) {
@@ -139,7 +138,7 @@ router.post("/ipn", async (req, res) => {
                         payerEmail: signupData.payload.payer_email,
                         transactionID: signupData.payload.txn_id,
                         amount: parseInt(signupData.payload.mc_amount3),
-                        createdAt: paymentDate,
+                        createdAt: new Date(signupData.payload.subscr_date),
                         type: "paypal_dash_signup",
                         details: signupData.payload
                     });
@@ -149,14 +148,14 @@ router.post("/ipn", async (req, res) => {
                         payerEmail: payload.payer_email,
                         transactionID: payload.txn_id,
                         amount: parseInt(payload.mc_gross),
-                        createdAt: paymentDate,
+                        createdAt: new Date(payload.payment_date),
                         type: "paypal_dash_pmnt",
                         details: payload,
                         signupID
                     });
                     const subscription = await req.client.database.createSubscription({
                         expiresAt: new Date(Date.now()+2592000000),
-                        createdAt: paymentDate,
+                        createdAt: new Date(payload.payment_date),
                         subLabel: "Premium Monthly 1 Guild",
                         guildsCount: 1
                     }, false);
@@ -170,7 +169,7 @@ router.post("/ipn", async (req, res) => {
                         payerEmail: payload.payer_email,
                         transactionID: payload.txn_id,
                         amount: parseInt(payload.mc_gross),
-                        createdAt: paymentDate,
+                        createdAt: new Date(payload.payment_date),
                         type: "paypal_dash_pmnt",
                         details: payload
                     });
@@ -214,13 +213,13 @@ router.post("/ipn", async (req, res) => {
                     payerEmail: payload.payer_email,
                     transactionID: payload.txn_id,
                     amount: parseInt(payload.mc_gross),
-                    createdAt: paymentDate,
+                    createdAt: new Date(),
                     type: "paypal_eot",
                     details: payload
                 });
             });
         }
-    });
+    //});
 });
 
 module.exports = router;
