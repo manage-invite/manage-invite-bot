@@ -98,6 +98,7 @@ router.post("/ipn", async (req, res) => {
             const guildID = paymentData[0];
             const userID = paymentData[1];
             const guildName = paymentData[2];
+            const guild = await req.client.database.fetchGuild(guildID);
             req.client.users.fetch(userID).then(async (user) => {
                 const signupData = notSentSignup.find((s) => s.guildID === guildID);
                 if (signupData) {
@@ -128,14 +129,21 @@ router.post("/ipn", async (req, res) => {
                         details: payload,
                         signupID
                     });
-                    const subscription = await req.client.database.createSubscription({
-                        expiresAt: new Date(Date.now()+2592000000),
+                    const subscription = guild.subscriptions[0] || await req.client.database.createSubscription({
+                        expiresAt: new Date(Date.now()+30*24*60*60*1000),
                         createdAt: new Date(payload.payment_date),
                         subLabel: "Premium Monthly 1 Guild",
                         guildsCount: 1
                     }, false);
                     await req.client.database.createSubPaymentLink(subscription.id, paymentID);
-                    await req.client.database.createGuildSubLink(guildID, subscription.id);
+                    if(subscription !== guild.subscriptions[0]){
+                        await req.client.database.createGuildSubLink(guildID, subscription.id);
+                    } else {
+                        await subscription.addDays(30);
+                        if(subscription.isTrial){
+                            subscription.changeLabel("Premium Monthly 1 Guild");
+                        }
+                    }
                     await subscription.fetchGuilds();
                     await req.client.database.syncSubscriptionForOtherCaches(subscription.id);
                 } else {
