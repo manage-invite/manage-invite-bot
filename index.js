@@ -9,7 +9,9 @@ readdir = util.promisify(fs.readdir);
 
 // Load ManageInvite class
 const ManageInvite = require("./structures/Client"),
-client = new ManageInvite();
+client = new ManageInvite({
+    partials: [ "REACTION", "MESSAGE", "CHANNEL" ]
+});
 
 const init = async () => {
 

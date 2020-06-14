@@ -10,6 +10,8 @@ module.exports = class {
 
     async run (message) {
 
+        if(message.partial || message.channel.partial) return;
+
         const startAt = Date.now();
 
         const data = { color: this.client.config.color, footer: this.client.config.footer };

@@ -198,13 +198,28 @@ router.post("/ipn", async (req, res) => {
             const userID = paymentData[1];
             const guildName = paymentData[2];
             req.client.users.fetch(userID).then(async (user) => {
+                const formContent = `Hello, **${user.username}**\r\nWe're sorry to see you go! Could you tell us why you have cancelled your subscription, so that we can try to improve it? :smiley: \r\n\r\nI cancelled my subscription for the following reason: \r\n\r\n:one: I no longer use ManageInvite for my server\r\n:two: I don't want to pay $2 anymore, it's too big a budget for what ManageInvite offers\r\n:three: I found a better bot\r\n:four: Other\r\n** **`;
+                const formMessage = await user.send(formContent).catch(() => {});
+                if(formMessage){
+                    formMessage.react("\u0031\u20E3");
+                    formMessage.react("\u0032\u20E3");
+                    formMessage.react("\u0033\u20E3");
+                    formMessage.react("\u0034\u20E3");
+                }
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()
                 .setAuthor(`${user.tag} cancelled their subscription for ManageInvite Premium`, user.displayAvatarURL())
-                .setDescription(`Recurring payment for **${guildName}** was cancelled :wave:`)
-                .setColor("#1E90FF")).replace(/[\/\(\)\']/g, "\\$&");
-                let { premiumLogs } = req.client.config;
+                .setDescription(`Recurring payment for **${guildName}** was cancelled :wave:\n${formMessage ? `Satisfaction form sent! Awaiting answer... :pencil:` : "I wasn't able to send the satisfaction form... :confused:"}`)
+                .setFooter(`Form ID: ${formMessage.id}`)
+                .setColor("#1E90FF"))
+                .replace("\\r", "backRKey")
+                .replace("\\n", "backNKey")
+                .replace(/[\/\(\)\']/g, "\\$&")
+                .replace("backRKey", "\\\\r")
+                .replace("backNKey", "\\\\n");
+                // to-do: find a better way to prevent \n and \r from being replaced
+
                 req.client.shard.broadcastEval(`
-                    let aLogs = this.channels.cache.get('${premiumLogs}');
+                    let aLogs = this.channels.cache.get(this.config.premiumLogs);
                     if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
                 `);
                 const paymentID = await req.client.database.createPayment({
