@@ -3,6 +3,9 @@ fetch = require("node-fetch"),
 moment = require("moment"),
 date = require('date-and-time');
 
+const stringOrNull = (string) => string ? 'null' : `'${string}'`;
+const pgEscape = (string) => string.replace(/[\/\(\)\']/g, "''");
+
 /**
  * @param {array} array The array to loop
  * @param {function} callback The callback function to call each time
@@ -251,6 +254,8 @@ const formatDate = (dateToFormat, format, locale) => {
 }
 
 module.exports = {
+    stringOrNull,
+    pgEscape,
     asyncForEach,
     formatMessage,
     formatDate,

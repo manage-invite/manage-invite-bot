@@ -1,4 +1,5 @@
 const { Collection } = require("discord.js");
+const { stringOrNull, pgEscape } = require("../helpers/functions");
 
 const JoinPlugin = require("./JoinPlugin");
 const JoinDMPlugin = require("./JoinDMPlugin");
@@ -17,8 +18,6 @@ module.exports = class Guild {
         this.language = data.guild_language || handler.client.config.enabledLanguages.find((language) => language.default).name;
         // Guild prefix
         this.prefix = data.guild_prefix || "+";
-        // Guild premium expires at
-        this.premiumExpiresAt = new Date(data.guild_premium_expires_at).getTime() || null;
         // Guild keep ranks
         this.keepRanks = data.guild_keep_ranks || false;
         // Guild stacked ranks
@@ -75,33 +74,11 @@ module.exports = class Guild {
         this.cmdChannel = newValue;
         await this.handler.query(`
             UPDATE guilds
-            SET guild_cmd_channel = ${newValue ? `'${newValue}'` : 'null'}
+            SET guild_cmd_channel = ${stringOrNull(newValue)}
             WHERE guild_id = '${this.id}';
         `);
         this.handler.removeGuildFromOtherCaches(this.id);
         return this.cmdChannel;
-    }
-
-    async setTrialPeriodEnabled(newStatus){
-        this.trialPeriodEnabled = newStatus;
-        await this.handler.query(`
-            UPDATE guilds
-            SET guild_trial_period_enabled = ${newStatus}
-            WHERE guild_id = '${this.id}';
-        `);
-        this.handler.removeGuildFromOtherCaches(this.id);
-        return this.trialPeriodEnabled;
-    }
-
-    async setTrialPeriodUsed(newStatus){
-        this.trialPeriodUsed = newStatus;
-        await this.handler.query(`
-            UPDATE guilds
-            SET guild_trial_period_used = ${newStatus}
-            WHERE guild_id = '${this.id}';
-        `);
-        this.handler.removeGuildFromOtherCaches(this.id);
-        return this.trialPeriodUsed;
     }
 
     // Fetch and fill plugins
@@ -226,7 +203,7 @@ module.exports = class Guild {
     async setLanguage(newLanguage) {
         await this.handler.query(`
             UPDATE guilds
-            SET guild_language = '${newLanguage}'
+            SET guild_language = '${pgEscape(newLanguage)}'
             WHERE guild_id = '${this.id}';
         `);
         this.handler.removeGuildFromOtherCaches(this.id);
@@ -238,7 +215,7 @@ module.exports = class Guild {
     async setPrefix(newPrefix) {
         await this.handler.query(`
             UPDATE guilds
-            SET guild_prefix = '${newPrefix}'
+            SET guild_prefix = '${pgEscape(newPrefix)}'
             WHERE guild_id = '${this.id}';
         `);
         this.handler.removeGuildFromOtherCaches(this.id);
@@ -251,8 +228,8 @@ module.exports = class Guild {
         if (!this.inserted) {
             await this.handler.query(`
                 INSERT INTO guilds
-                (guild_id, guild_prefix, guild_language, guild_is_premium, guild_premium_expires_at, guild_trial_period_enabled, guild_keep_ranks, guild_stacked_ranks) VALUES
-                ('${this.id}', '${this.prefix}', '${this.language}', false, ${this.premiumExpiresAt}, ${this.trialPeriodEnabled}, ${this.keepRanks}, ${this.stackedRanks});
+                (guild_id, guild_prefix, guild_language, guild_is_premium, guild_keep_ranks, guild_stacked_ranks) VALUES
+                ('${this.id}', '${this.prefix}', '${this.language}', false, ${this.keepRanks}, ${this.stackedRanks});
             `);
             this.handler.removeGuildFromOtherCaches(this.id);
             this.inserted = true;
