@@ -37,18 +37,20 @@ module.exports = class extends Command {
             return message.error(`**${guildName}** has already used the trial period or has already paid.`);
         }
 
+        const createdAt = new Date();
+
         const paymentID = await this.client.database.createPayment({
             payerDiscordID: user.id,
             payerDiscordUsername: user.tag,
             modID: message.author.id,
             amount: 0,
             type: "trial_activation",
-            createdAt: new Date()
+            createdAt
         });
 
         const subscription = await this.client.database.createSubscription({
             expiresAt: new Date(Date.now()+(7*24*60*60*1000)),
-            createdAt: new Date(),
+            createdAt,
             guildsCount: 1,
             subLabel: "Trial Version"
         }, false);
