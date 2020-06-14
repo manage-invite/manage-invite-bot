@@ -3,8 +3,8 @@ fetch = require("node-fetch"),
 moment = require("moment"),
 date = require('date-and-time');
 
-const stringOrNull = (string) => string ? 'null' : `'${string}'`;
-const pgEscape = (string) => string.replace(/[\/\(\)\']/g, "''");
+const stringOrNull = (string) => string ? `'${string}'` : 'null';
+const pgEscape = (string) => string ? string.replace(/[\/\(\)\']/g, "''") : null;
 
 /**
  * @param {array} array The array to loop
