@@ -12,7 +12,7 @@
   "LINKS_FOOTER": "[أضفني الى سيرفرك](https://discordapp.com/api/oauth2/authorize?client_id={{clientID}}&permissions=8&scope=bot) | [Support server]({{discord}}) | [صوت لي](https://top.gg/bot/{{clientID}})",
   "PREFIX": "مرحباً! من فضلك اكتب **{{prefix}}help** لرؤية الأوامر! تستطيع اضافتي الى سيرفرك باستخدام **{{prefix}}add**.",
   "USER_MISSING_PERMISSIONS": "هذا الامر يتطلب الصلاحيه: `{{level}}`!",
-  "NEED_UPGRADE": "{{emote}} | Hello, **{{username}}**! Your server need to be upgraded to use **ManageInvite**! We have managed to reduce latency to create a fast and powerful bot for servers that want a 100% reliable bot. To get more informations, you can join the support server ( {{discord}} ) or connect to the dashboard **<https://dash.manage-invite.xyz>**!",
-  "PLEASE_WAIT": "{{loading}} | Please wait...",
-  "WRONG_CHANNEL": "Commands are not allowed in this channel, please use {{channel}} instead."
+  "NEED_UPGRADE": "{{emote}} مرحباً، **{{username}}**! انت بحاجه الى الاشتراك لاستعمال **ManageInvites**! لقد استطعنا تقليل وقت الاستجابه لانشاء بوت سريع وقوي للسيرفرات التي تحتاج الى بوت ١٠٠٪ يعتمد عليه، للمزيد من المعلومات تستطيع الدخول الى سيرفر الدعم ( {{discord}} ) او ادخل الى الداشبورد **<https://dash.manage-invite.xyz>**!",
+  "PLEASE_WAIT": "{{loading}} برجاء الانتظار...",
+  "WRONG_CHANNEL": "غير مسموح باستعمال الاوامر في هذه القناة من فضلك استعملها في {{channel}}."
 }
