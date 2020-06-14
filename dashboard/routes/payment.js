@@ -139,7 +139,7 @@ router.post("/ipn", async (req, res) => {
                         transactionID: signupData.payload.txn_id,
                         amount: parseInt(signupData.payload.mc_amount3),
                         createdAt: new Date(signupData.payload.subscr_date),
-                        type: "paypal_dash_signup",
+                        type: "paypal_dash_signup_month",
                         details: signupData.payload
                     });
                     const paymentID = await req.client.database.createPayment({
@@ -149,7 +149,7 @@ router.post("/ipn", async (req, res) => {
                         transactionID: payload.txn_id,
                         amount: parseInt(payload.mc_gross),
                         createdAt: new Date(payload.payment_date),
-                        type: "paypal_dash_pmnt",
+                        type: "paypal_dash_pmnt_month",
                         details: payload,
                         signupID
                     });
@@ -171,7 +171,7 @@ router.post("/ipn", async (req, res) => {
                         transactionID: payload.txn_id,
                         amount: parseInt(payload.mc_gross),
                         createdAt: new Date(payload.payment_date),
-                        type: "paypal_dash_pmnt",
+                        type: "paypal_dash_pmnt_month",
                         details: payload
                     });
                     const guild = await req.client.database.fetchGuild(guildID);
