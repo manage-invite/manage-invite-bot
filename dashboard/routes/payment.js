@@ -162,6 +162,7 @@ router.post("/ipn", async (req, res) => {
                     await req.client.database.createSubPaymentLink(subscription.id, paymentID);
                     await req.client.database.createGuildSubLink(guildID, subscription.id);
                     await subscription.fetchGuilds();
+                    await req.client.database.syncSubscriptionForOtherCaches(subscription.id);
                 } else {
                     const paymentID = await req.client.database.createPayment({
                         payerDiscordID: paymentData[1],
@@ -179,6 +180,7 @@ router.post("/ipn", async (req, res) => {
                     if(guild.subscriptions[0].isTrial){
                         guild.subscriptions[0].changeLabel("Premium Monthly 1 Guild");
                     }
+                    await req.client.database.syncSubscriptionForOtherCaches(subscription.id);
                 }
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()
                 .setAuthor(`${user.tag} paid for ManageInvite Premium`, user.displayAvatarURL())
@@ -236,7 +238,7 @@ router.post("/ipn", async (req, res) => {
                 await req.client.database.createSubPaymentLink(guild.subscriptions[0].id, paymentID);
             });
         }
-    //});
+    });
 });
 
 module.exports = router;
