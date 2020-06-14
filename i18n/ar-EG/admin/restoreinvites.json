@@ -1,0 +1,9 @@
+{
+    "CONFIRMATION": "Are you sure you want to restore the server invitations? All members will retrieve the invitations they had before the last time the command `{{prefix}}remove-invite` was typed (or 0 if the command was never typed).\n\n:information_source: **Invitations overview**:\nIt will be restored, in total: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
+    "CONFIRMATION_MEMBER": "Are you sure you want to restore the invitations of **{{username}}**? They will retrieve the invitations they had before the last time the command `{{prefix}}remove-invites` was typed (or 0 if the command was never typed).\n\n:information_source: **Invitations overview**:\nIt will be restored: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
+    "LOADING": "{{loading}} | Restoring server invitations...",
+    "LOADING_MEMBER": "{{loading}} | Restoring invitations of **{{username}}**...",
+    "TITLE": "☄️ Invitations restored",
+    "DESCRIPTION": "{{success}} | Server invitations restored!",
+    "DESCRIPTION_MEMBER": "{{success}} | Invitations of **{{username}}** restored!"
+}
