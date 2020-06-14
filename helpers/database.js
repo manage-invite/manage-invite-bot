@@ -80,7 +80,10 @@ module.exports = class DatabaseHandler {
     }
 
     removeSubscriptionFromCache(subID){
-        this.subscriptionCache.delete(subID);
+        if(this.subscriptionCache.has(subID)){
+            this.subscriptionCache.get(subID).guilds.forEach((guild) => this.removeGuildFromCache(guild.id));
+            this.subscriptionCache.delete(subID);
+        }
     }
 
     removeGuildFromCache(guildID){
