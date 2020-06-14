@@ -35,23 +35,6 @@ router.get("/callback", async (req, res) => {
             if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
         `);
     });
-
-    /* Verify payment and enable premium on the guild
-    const payload = new URLSearchParams();
-    payload.set('cmd', '_notify-synch')
-    payload.set('tx', req.query.tx);
-    payload.set('at', config.pdtToken);
-    fetch(config.formURL, {
-        method: "POST",
-        body: payload.toString()
-    }).then(async (paypalRes) => {
-        transactionsHandled.push(req.query.tx);
-        const data = await paypalRes.text();
-        const success = data.split('\n').shift() === 'SUCCESS';
-        const transaction = {};
-        data.split('\n').forEach((raw) => transaction[raw.split('=')[0]] = transaction[raw.split('=')[1]]);
-    }); */
-
 });
 
 router.post("/ipn", async (req, res) => {
@@ -84,15 +67,7 @@ router.post("/ipn", async (req, res) => {
                 guildName,
                 payload
             });
-            // const guild = await req.client.database.fetchGuild(guildID);
-            // await guild.addPremiumDays(30, "sub_dash_paypal", paymentData[1]);
-            // await guild.setTrialPeriodEnabled(false);
             req.client.users.fetch(userID).then((user) => {
-                /* const embed = new Discord.MessageEmbed()
-                .setAuthor(`Thanks for purchasing ManageInvite Premium, ${user.tag}`, user.displayAvatarURL())
-                .setDescription(`Congratulations, your server **${guildName}** is now premium! :crown:`)
-                .setColor("#F4831B");
-                user.send(embed); */
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()
                 .setAuthor(`${user.tag} created a subscription`, user.displayAvatarURL())
                 .setDescription(`Subscription for guild **${guildName}** created... ${req.client.config.emojis.success}`)
