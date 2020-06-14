@@ -1,7 +1,7 @@
 {
     "AUTHOR_BLACKLISTED": "انت محظور في هذا السيرفر، لا يمكنك استعمال هذا الامر.",
-    "BLACKLISTED": "{{username}} is blacklisted on this server.",
-    "MISSING_TYPE": "You must enter a valid action! (`add`, `remove` or `list`)\n\n:information_source: Users in the blacklist:\n- Won't receive/loose roles\n- Won't appear in the leaderboard\n- Won't have their invites tracked anymore\n- Won't be able to run the `invites` command",
+    "BLACKLISTED": "{{username}} في القائمة السوداء في هذا السيرفر.",
+    "MISSING_TYPE": "يجب عليك تحديد اما اضافة(add) او حذف(remove) ولعرض القائمه استعمل (list).\n\n:information_source: الاعضاء بالقائمة السوداء:\n-لن يخسروا او يكسبوا رولات.\n-لن يظهروا في الليدربورد.\n-لن يحتسب اي دعوات لهم.\n-لت يسمح لهم باستعمال الامر `invites`",
     "MISSING_MEMBER_ADD": "You must mention a valid member to add in the blacklist!",
     "MISSING_MEMBER_REMOVE": "You must mention a valid member to remove from the blacklist!",
     "SUCCESS_MEMBER_ADD": "**{{username}}** was added to the blacklist!",
