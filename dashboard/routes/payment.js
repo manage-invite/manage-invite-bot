@@ -227,7 +227,7 @@ router.post("/ipn", async (req, res) => {
                     payerDiscordUsername: user.tag,
                     payerEmail: payload.payer_email,
                     transactionID: payload.txn_id,
-                    amount: parseInt(payload.mc_gross),
+                    amount: 0,
                     createdAt: new Date(),
                     type: "paypal_eot",
                     details: payload
