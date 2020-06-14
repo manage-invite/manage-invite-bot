@@ -1,5 +1,5 @@
 {
-    "AUTHOR_BLACKLISTED": "You are blacklisted on this server, you can't run this command.",
+    "AUTHOR_BLACKLISTED": "انت محظور في هذا السيرفر، لا يمكنك استعمال هذا الامر.",
     "BLACKLISTED": "{{username}} is blacklisted on this server.",
     "MISSING_TYPE": "You must enter a valid action! (`add`, `remove` or `list`)\n\n:information_source: Users in the blacklist:\n- Won't receive/loose roles\n- Won't appear in the leaderboard\n- Won't have their invites tracked anymore\n- Won't be able to run the `invites` command",
     "MISSING_MEMBER_ADD": "You must mention a valid member to add in the blacklist!",
