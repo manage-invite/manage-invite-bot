@@ -4,8 +4,8 @@
     "ALREADY_EXIST": "يوجد بالفعل رانك بعدد **{{count}}** دعوات (`{{roleName}}`)! احذفه بستعمال `{{prefix}}removerank {{roleID}}` ثم حاول مره أخرى!",
     "MISSING_ROLE": "يجب عليك ذكر(منشن) الرول التي ترغب في اضافتها للعضو عند وصوله لعدد الدعوات المطلوب! (مثال: {{prefix}}addrank number @role)",
     "ALREADY_USED": "هذا الرول مستعمل بالفعل يؤخذ عند الوصول **{{count}}** دعوات، احذفه باستعمال `{{prefix}}removerank {{roleID}}` ثم حاول مره اخرى!",
-    "MISSING_PERM": "My role is not high enough to add the role `{{roleName}}` to the members! Please put my role up and try again!",
-    "TITLE": "🎯 New role added",
-    "CONTENT": "When a member will reach **{{count}}** invites, they will obtain `{{roleName}}`!",
-    "MANAGED": "Managed roles can't be defined as a rank reward."
+    "MISSING_PERM": "من فضلك ارفع الرول الخاص بي فوق `{{roleName}}` ثم حاول مرة اخرى!",
+    "TITLE": "🎯 تم اضافة رول جديد",
+    "CONTENT": "عندما يدعو العضو **{{count}}** اعضاء سيحصل على `{{roleName}}`!",
+    "MANAGED": "لا يمكنك اضافة رول اداري، كمكافأة."
 }
