@@ -139,10 +139,11 @@ module.exports = class DatabaseHandler {
 
     createPayment({ payerDiscordID, payerDiscordUsername, payerEmail, amount, createdAt = new Date(), type, transactionID, details = {}, signupID, modDiscordID }){
         return new Promise(async resolve => {
+            console.log(`(${stringOrNull(payerDiscordID)}, ${stringOrNull(pgEscape(payerDiscordUsername))}, ${stringOrNull(pgEscape(payerEmail))}, ${amount}, '${createdAt.toISOString()}', '${pgEscape(type)}', ${stringOrNull(transactionID)}, '${pgEscape(JSON.stringify(details))}', ${stringOrNull(signupID)}, ${stringOrNull(modDiscordID)})`)
             this.query(`
                 INSERT INTO payments
                 (payer_discord_id, payer_discord_username, payer_email, amount, created_at, type, transaction_id, details, signup_id, mod_discord_id) VALUES
-                (${stringOrNull(payerDiscordID)}, ${pgEscape(stringOrNull(payerDiscordUsername))}, ${pgEscape(stringOrNull(payerEmail))}, ${amount}, '${createdAt.toISOString()}', '${pgEscape(type)}', ${stringOrNull(transactionID)}, '${JSON.stringify(pgEscape(details))}', ${stringOrNull(signupID)}, ${stringOrNull(modDiscordID)})
+                (${stringOrNull(payerDiscordID)}, ${(stringOrNull(pgEscape(payerDiscordUsername)))}, ${stringOrNull(pgEscape(payerEmail))}, ${amount}, '${createdAt.toISOString()}', '${pgEscape(type)}', ${stringOrNull(transactionID)}, '${pgEscape(JSON.stringify(details))}', ${stringOrNull(signupID)}, ${stringOrNull(modDiscordID)})
                 RETURNING id;
             `).then(({ rows }) => {
                 resolve(rows[0].id);
@@ -155,7 +156,7 @@ module.exports = class DatabaseHandler {
             this.query(`
                 INSERT INTO subscriptions
                 (expires_at, created_at, sub_label, guilds_count, patreon_user_id) VALUES
-                (${stringOrNull(expiresAt.toISOString())}, '${createdAt.toISOString()}', ${pgEscape(stringOrNull(subLabel))}, ${guildsCount}, '${stringOrNull(patreonUserID)}')
+                (${stringOrNull(expiresAt.toISOString())}, '${createdAt.toISOString()}', ${stringOrNull(pgEscape(subLabel))}, ${guildsCount}, '${stringOrNull(patreonUserID)}')
                 RETURNING *;
             `).then(async ({ rows }) => {
                 const subscription = new Subscription(rows[0].id, rows[0], this);
