@@ -54,7 +54,11 @@ module.exports = class Subscription {
         `);
         for(let row of rows) {
             this.guilds.push(row.guild_id);
-            await this.handler.fetchGuild(row.guild_id);
+            if(this.handler.guildCache.has(row.guild_id)){
+                await this.handler.guildCache.get(row.guild_id).syncSubscriptions();
+            } else {
+                await this.handler.fetchGuild(row.guild_id);
+            }
         }
     }
 
