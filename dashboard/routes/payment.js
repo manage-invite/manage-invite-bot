@@ -232,6 +232,8 @@ router.post("/ipn", async (req, res) => {
                     type: "paypal_eot",
                     details: payload
                 });
+                const guild = await req.client.database.fetchGuild(guildID);
+                await req.client.database.createSubPaymentLink(guild.subscriptions[0].id, paymentID);
             });
         }
     //});
