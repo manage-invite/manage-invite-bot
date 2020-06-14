@@ -13,6 +13,8 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
 
+        const force = message.content.includes('-f');
+
         let guildID = args[0];
         if(!guildID) return message.error("Please specify a valid guild!");
 
@@ -34,7 +36,7 @@ module.exports = class extends Command {
         const guildName = guildNameFound || guildID;
 
         if(guildData.trialPeriodUsed){
-            return message.error(`**${guildName}** has already used the trial period or has already paid.`);
+            if(!force) return message.error(`**${guildName}** has already used the trial period or has already paid.`);
         }
 
         const createdAt = new Date();
@@ -48,14 +50,20 @@ module.exports = class extends Command {
             createdAt
         });
 
-        const subscription = await this.client.database.createSubscription({
+        let subscription = message.guild.data.subscriptions[0]
+        || await this.client.database.createSubscription({
             expiresAt: new Date(Date.now()+(7*24*60*60*1000)),
             createdAt,
             guildsCount: 1,
             subLabel: "Trial Version"
         }, false);
+        
         await this.client.database.createSubPaymentLink(subscription.id, paymentID);
-        await this.client.database.createGuildSubLink(guildID, subscription.id);
+        if(message.guild.data.subscriptions[0] !== subscription){
+            await this.client.database.createGuildSubLink(guildID, subscription.id);
+        } else {
+            await message.guild.data.subscriptions[0].addDays(7);
+        }
         await subscription.fetchGuilds();
 
         const expiresAt = this.client.functions.formatDate(new Date(guildData.premiumExpiresAt), "MMM DD YYYY", message.guild.data.language);
