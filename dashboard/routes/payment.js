@@ -193,7 +193,7 @@ router.post("/ipn", async (req, res) => {
                 `);
             });
         }
-        if(payload.txn_type === "subscr_eot"){
+        if(payload.txn_type === "subscr_cancel"){
             const paymentData = (payload.custom || "").split(",");
             paymentData.shift();
             const guildID = paymentData[0];
@@ -230,8 +230,8 @@ router.post("/ipn", async (req, res) => {
                     payerEmail: payload.payer_email,
                     transactionID: payload.txn_id,
                     amount: 0,
-                    createdAt: new Date(),
-                    type: "paypal_eot",
+                    createdAt: new Date(payload.subscr_date),
+                    type: "paypal_dash_cancel_month",
                     details: payload
                 });
                 const guild = await req.client.database.fetchGuild(guildID);
