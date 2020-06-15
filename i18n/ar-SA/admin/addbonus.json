@@ -1,7 +1,9 @@
 {
-    "MISSING_AMOUNT": "يجب كتابة عدد البونس انفايتس (مثال: {{prefix}}addbonus number @member)",
-    "INVALID_AMOUNT": "يجب كتابة عدد __**صالح**__ للبونس انفايتس التي تريد اضافتها (مثال: {{prefix}}addbonus number @member)",
-    "MISSING_MEMBER": "يجب أن تذكر العضو الذي تريد إضافة دعوات المكافأة إليه. (بناء الجملة: {{prefix}} أضف مكافأة رقم @عضو)",
+    "MISSING_AMOUNT": "You must write the number of bonus invites you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
+    "INVALID_AMOUNT": "You must write a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
+    "MISSING_TARGET": "You must mention the member to whom you want to add the bonus invites (or `all` if you want to add the invites to everyone). (Syntax: {{prefix}}addbonus number @member/all)",
+    "CONFIRMATION_ALL": ":warning: Are you sure you want to add **{{count}}** bonus invites to everyone? This can take a long time (depending on the size of your server)! Send `-confirm` to continue and `cancel` to cancel.",
     "SUCCESS_TITLE": "تمت إضافة دعوات المكافأة 📥",
-    "SUCCESS_CONTENT": "كتابة `{{prefix}}دعوة {{usertag}}` لمعرفة العدد الجديد من الدعوات **{{username}}**!"
+    "SUCCESS_CONTENT_ALL": "Bonus invites added for everyone!",
+    "SUCCESS_CONTENT_MEMBER": "Write `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
 }
