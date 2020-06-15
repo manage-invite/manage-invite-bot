@@ -1,7 +1,9 @@
 {
-    "MISSING_AMOUNT": "추가하려는 보너스 초대 수를 작성해야합니다. (예시: {{prefix}}addbonus 보너스 초대 수 @멤버)",
-    "INVALID_AMOUNT": "추가하려는 __ **유효한** __ 보너스 초대 수를 작성해야합니다. (예시: {{prefix}}addbonus 보너스 초대 수 @멤버)",
-    "MISSING_MEMBER": "당신은 보너스 초대를 추가하고 싶은 멤버를 멘션해야 합니다.(예시: {{prefix}}addbonus 보너스 초대 수 @멤버)",
+    "MISSING_AMOUNT": "You must write the number of bonus invites you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
+    "INVALID_AMOUNT": "You must write a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
+    "MISSING_TARGET": "You must mention the member to whom you want to add the bonus invites (or `all` if you want to add the invites to everyone). (Syntax: {{prefix}}addbonus number @member/all)",
+    "CONFIRMATION_ALL": ":warning: Are you sure you want to add **{{count}}** bonus invites to everyone? This can take a long time (depending on the size of your server)! Send `-confirm` to continue and `cancel` to cancel.",
     "SUCCESS_TITLE": "📥 보너스 초대 수가 추가되었습니다.",
-    "SUCCESS_CONTENT": "`{{prefix}}invites {{usertag}}`를 적으셔서 **{{username}}** 님의 새로운 초대 수를 확인하실수 있습니다!"
+    "SUCCESS_CONTENT_ALL": "Bonus invites added for everyone!",
+    "SUCCESS_CONTENT_MEMBER": "Write `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
 }
