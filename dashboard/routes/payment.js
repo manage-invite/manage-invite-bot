@@ -129,21 +129,14 @@ router.post("/ipn", async (req, res) => {
                         details: payload,
                         signupID
                     });
-                    const subscription = guild.subscriptions[0] || await req.client.database.createSubscription({
+                    const subscription = await req.client.database.createSubscription({
                         expiresAt: new Date(Date.now()+30*24*60*60*1000),
                         createdAt: new Date(payload.payment_date),
                         subLabel: "Premium Monthly 1 Guild",
                         guildsCount: 1
                     }, false);
                     await req.client.database.createSubPaymentLink(subscription.id, paymentID);
-                    if(subscription !== guild.subscriptions[0]){
-                        await req.client.database.createGuildSubLink(guildID, subscription.id);
-                    } else {
-                        await subscription.addDays(30);
-                        if(subscription.isTrial){
-                            subscription.changeLabel("Premium Monthly 1 Guild");
-                        }
-                    }
+                    await req.client.database.createGuildSubLink(guildID, subscription.id);
                     await subscription.fetchGuilds();
                     await req.client.database.syncSubscriptionForOtherCaches(subscription.id);
                 } else {
@@ -158,12 +151,10 @@ router.post("/ipn", async (req, res) => {
                         details: payload
                     });
                     const guild = await req.client.database.fetchGuild(guildID);
-                    await req.client.database.createSubPaymentLink(guild.subscriptions[0].id, paymentID);
-                    await guild.subscriptions[0].addDays(30);
-                    if(guild.subscriptions[0].isTrial){
-                        guild.subscriptions[0].changeLabel("Premium Monthly 1 Guild");
-                    }
-                    await req.client.database.syncSubscriptionForOtherCaches(subscription.id);
+                    const currentSubscription = guild.subscriptions.find((sub) => sub.label === "Premium Monthly 1 Guild");
+                    await req.client.database.createSubPaymentLink(currentSubscription.id, paymentID);
+                    await currentSubscription.addDays(30);
+                    await req.client.database.syncSubscriptionForOtherCaches(currentSubscription.id);
                 }
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()
                 .setAuthor(`${user.tag} paid for ManageInvite Premium`, user.displayAvatarURL())
@@ -218,7 +209,7 @@ router.post("/ipn", async (req, res) => {
                     details: payload
                 });
                 const guild = await req.client.database.fetchGuild(guildID);
-                await req.client.database.createSubPaymentLink(guild.subscriptions[0].id, paymentID);
+                await req.client.database.createSubPaymentLink(guild.subscriptions.find((sub) => sub.label === "Premium Monthly 1 Guild").id, paymentID);
             });
         }
     });

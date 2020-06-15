@@ -50,8 +50,8 @@ module.exports = class extends Command {
             createdAt
         });
 
-        let subscription = message.guild.data.subscriptions[0]
-        || await this.client.database.createSubscription({
+        const currentSubscription = message.guild.data.subscriptions.find((sub) => sub.label === "Trial Version");
+        let subscription = currentSubscription || await this.client.database.createSubscription({
             expiresAt: new Date(Date.now()+(7*24*60*60*1000)),
             createdAt,
             guildsCount: 1,
@@ -59,14 +59,14 @@ module.exports = class extends Command {
         }, false);
         
         await this.client.database.createSubPaymentLink(subscription.id, paymentID);
-        if(message.guild.data.subscriptions[0] !== subscription){
+        if(!message.guild.data.subscriptions.includes(subscription)){
             await this.client.database.createGuildSubLink(guildID, subscription.id);
         } else {
-            await message.guild.data.subscriptions[0].addDays(7);
+            await subscription.addDays(7);
         }
         await subscription.fetchGuilds();
 
-        const expiresAt = this.client.functions.formatDate(new Date(guildData.subscriptions[0].expiresAt), "MMM DD YYYY", message.guild.data.language);
+        const expiresAt = this.client.functions.formatDate(new Date(subscription.expiresAt), "MMM DD YYYY", message.guild.data.language);
         message.channel.send(`${this.client.config.emojis.success} | Server **${guildName}** is now premium for 7 days (end on **${expiresAt}**) :rocket:`);
 
     }
