@@ -45,9 +45,9 @@ module.exports = class extends Command {
         .setColor(this.client.config.color);
 
         for(let sub of guildDB.subscriptions){
-            const payments = await this.client.database.getPaymentsForGuild(guildID);
-            const subContent = payments.map((p) => `__**${p.type}**__\nUser: **${p.payer_discord_username}** (\`${p.payer_discord_id}\`)\nDate: **${this.client.functions.formatDate(new Date(p.created_at), "MMM D YYYY h:m:s A", "en-US")}**`).join('\n');
-            embed.addField(`${sub.active ? this.client.config.emojis.online : this.client.config.emojis.dnd} ${sub.label}`, subContent);
+            const payments = await this.client.database.getPaymentsForSubscription(sub.id);
+            const subContent = payments.map((p) => `__**${p.type}**__\nUser: **${p.payer_discord_username}** (\`${p.payer_discord_id}\`)\nDate: **${this.client.functions.formatDate(new Date(p.created_at), "MMM D YYYY h:m:s A", "en-US")}**\nID: ${p.id}`).join('\n');
+            embed.addField(`${sub.active ? this.client.config.emojis.online : this.client.config.emojis.dnd} ${sub.label} (${sub.id})`, subContent);
         }
 
         message.channel.send(embed);

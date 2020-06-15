@@ -126,14 +126,13 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    getPaymentsForGuild(guildID){
+    getPaymentsForSubscription(subID){
         return new Promise(async resolve => {
             this.query(`
                 SELECT p.*
                 FROM payments p
                 INNER JOIN subscriptions_payments sp ON p.id = sp.payment_id
-                INNER JOIN guilds_subscriptions gs ON sp.sub_id = gs.sub_id
-                WHERE gs.guild_id = '${guildID}';
+                WHERE sp.sub_id = '${subID}'
             `).then(({ rows }) => {
                 resolve(rows);
             });
