@@ -28,6 +28,7 @@
   "PREMIUM_RANK": "Role Premium",
   "GET_PREMIUM": "Mua phiên bản premium",
   "WAITING_VERIF": "Đang chờ xác minh...",
+  "WAITING_VERIF_TOOLTIP": "PayPal usually takes 5 minutes to send us the payment data. If your payment has not been verified after 15 minutes, please join our support server.",
   "WHY_TITLE": "Tại sao tôi không thể dùng ManageInvite trong server của mình?",
   "WHY_CONTENT": "Vài ngày trước, ManageInvite đã đạt 10,000 servers. Như bạn đã biết, hầu hết các invite bots gặp nhiều vấn đề lớn và thường xuyên phải bảo trì. Chúng ta có thể thấy nhiều server muốn tìm 1 bot quản lý invites luôn luôn hoạt động, và đó chính là lý do chúng tôi thay đổi cách thức sử dụng ManageInvite. Để bot có thể hoạt động với tất cả mọi người, chúng tôi đã nâng cấp hệ thống và yêu cầu $2 mỗi tháng, bot sẽ không có độ trễ và luôn hoạt động. Không chắc chắn? Bạn có thể yêu cầu dùng thử ở server hỗ trợ!",
   "WHY_LINKS": "Để biết thêm thông tin chi tiết về bot và yêu cầu dùng thử, tham gia server hỗ trợ!",
