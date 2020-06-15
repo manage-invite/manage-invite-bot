@@ -141,7 +141,6 @@ module.exports = class DatabaseHandler {
 
     createPayment({ payerDiscordID, payerDiscordUsername, payerEmail, amount, createdAt = new Date(), type, transactionID, details = {}, signupID, modDiscordID }){
         return new Promise(async resolve => {
-            console.log(`(${stringOrNull(payerDiscordID)}, ${stringOrNull(pgEscape(payerDiscordUsername))}, ${stringOrNull(pgEscape(payerEmail))}, ${amount}, '${createdAt.toISOString()}', '${pgEscape(type)}', ${stringOrNull(transactionID)}, '${pgEscape(JSON.stringify(details))}', ${stringOrNull(signupID)}, ${stringOrNull(modDiscordID)})`)
             this.query(`
                 INSERT INTO payments
                 (payer_discord_id, payer_discord_username, payer_email, amount, created_at, type, transaction_id, details, signup_id, mod_discord_id) VALUES
