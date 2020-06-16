@@ -46,11 +46,8 @@ module.exports = class Guild {
         // Plugins
         const getPluginData = (name) => plugins.find(p => p.plugin_name === name) ? this.rawData.plugins.find(p => p.plugin_name === name).plugin_data : null;
         this.join = new JoinPlugin(this, getPluginData("join"));
-        this.join.insert();
         this.joinDM = new JoinDMPlugin(this, getPluginData("joinDM"));
-        this.joinDM.insert();
         this.leave = new LeavePlugin(this, getPluginData("leave"));
-        this.leave.insert();
 
         // Ranks
         this.ranks = [];

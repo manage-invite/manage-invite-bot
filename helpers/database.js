@@ -217,7 +217,7 @@ module.exports = class DatabaseHandler {
             const membersToFetch = memberIDs.filter((m) => !this.memberCache.has(`${m.userID}${m.guildID}`));
             // If there are members to fetch
             if(membersToFetch.length > 0){
-                const membersArray = memberIDs.map((m) => `${m.userID}${m.guildID}`);
+                const membersArray = memberIDs.map((m) => `'${m.userID}${m.guildID}'`).join(', ');
                 /* Fetch basic data - from the members table */
                 let { rows: membersData } = await this.query(`
                     SELECT * FROM members
@@ -399,7 +399,6 @@ module.exports = class DatabaseHandler {
                         }
                     }) ].flat();
                 }
-                return;
                 /* Fetch guilds ranks - from the guild_ranks table */
                 const { rows: ranks } = await this.query(`
                     SELECT guild_id,
@@ -464,10 +463,12 @@ module.exports = class DatabaseHandler {
 
     fetchMember(userID, guildID) {
         return new Promise(async resolve => {
-            const [ member ] = await this.fetchMembers({
-                userID,
-                guildID
-            });
+            const [ member ] = await this.fetchMembers([
+                {
+                    userID,
+                    guildID
+                }
+            ]);
             resolve(member);
         });
     }
