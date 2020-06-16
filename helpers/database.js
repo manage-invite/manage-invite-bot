@@ -313,6 +313,65 @@ module.exports = class DatabaseHandler {
         });
     }
 
+    backupInvites(guildID){
+        return new Promise(async resolve => {
+            this.query(`
+                UPDATE members
+                SET old_invites_fake = invites_fake,
+                    old_invites_leaves = invites_leaves,
+                    old_invites_bonus = invites_bonus,
+                    old_invites_regular = invites_regular,
+                    old_invites_backuped = true
+                
+                WHERE guild_id IN ('${guildID}')
+            `).then(() => {
+                this.query(`
+                    UPDATE members
+                    SET invites_fake = 0,
+                        invites_leaves = 0,
+                        invites_bonus = 0,
+                        invites_regular = 0
+
+                    WHERE guild_id IN ('${guildID}')
+                `).then(async () => {
+                    await this.removeAllMembersFromCache(guildID);
+                    await this.removeAllMembersFromOtherCaches(guildID);
+                    resolve();
+                });
+            });
+            
+        });
+    }
+
+    restoreInvites(guildID){
+        return new Promise(async resolve => {
+            this.query(`
+                UPDATE members
+                SET invites_fake = old_invites_fake,
+                    invites_leaves = old_invites_leaves,
+                    invites_bonus = old_invites_bonus,
+                    invites_regular = old_invites_regular,
+                    old_invites_backuped = false
+                
+                WHERE guild_id IN ('${guildID}')
+            `).then(() => {
+                this.query(`
+                    UPDATE members
+                    SET old_invites_fake = 0,
+                        old_invites_leaves = 0,
+                        old_invites_bonus = 0,
+                        old_invites_regular = 0
+
+                    WHERE guild_id IN ('${guildID}')
+                `).then(async () => {
+                    await this.removeAllMembersFromCache(guildID);
+                    await this.removeAllMembersFromOtherCaches(guildID);
+                    resolve();
+                });
+            });
+        });
+    }
+
     // Fetch all the members in a guild
     fetchGuildMembers(guildID){
         return new Promise(async resolve => {
