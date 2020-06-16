@@ -1,13 +1,13 @@
 const { Collection } = require("discord.js");
 
 module.exports = class Member {
-    constructor(handler, { userID, guildID, joinData, invitedUsers, invitedUsersLeft }) {
+    constructor(handler, { userID, guildID, data, joinData, invitedUsers, invitedUsersLeft }) {
 
         this.userID = userID;
         this.guildID = guildID
 
         this.handler = handler;
-        this.handler.memberCache.set(this.userID, this);
+        this.handler.memberCache.set(`${this.userID}${this.guildID}`, this);
 
         // Member invites
         this.fake = data.invites_fake || 0;
@@ -22,14 +22,16 @@ module.exports = class Member {
         this.oldRegular = data.old_invites_regular || 0;
         this.oldBackuped = data.old_invites_backuped || false;
 
-        this.invitedUsers = this.invitedUsers.map(invitedUserData => invitedUserData.invited_user_id);
-        this.invitedUsersLeft = this.invitedUsersLeft.map(invitedUserData => invitedUserData.invited_user_id);
+        this.invitedUsers = invitedUsers.map(invitedUserData => invitedUserData.invited_user_id);
+        this.invitedUsersLeft = invitedUsersLeft.map(invitedUserData => invitedUserData.invited_user_id);
 
-        this.joinData = {
-            type: joinData.join_type,
-            inviterID: joinData.join_inviter_id,
-            inviteData: joinData.join_invite_data
-        };
+        if(joinData){
+            this.joinData = {
+                type: joinData.join_type,
+                inviterID: joinData.join_inviter_id,
+                inviteData: joinData.join_invite_data
+            };
+        }
 
     }
 

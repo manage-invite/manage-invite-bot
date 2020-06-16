@@ -215,6 +215,7 @@ module.exports = class DatabaseHandler {
         return new Promise(async resolve => {
             // Keep the members that are not in the cache
             const membersToFetch = memberIDs.filter((m) => !this.memberCache.has(`${m.userID}${m.guildID}`));
+            console.log(membersToFetch)
             // If there are members to fetch
             if(membersToFetch.length > 0){
                 const membersArray = memberIDs.map((m) => `'${m.userID}${m.guildID}'`).join(', ');
@@ -300,11 +301,12 @@ module.exports = class DatabaseHandler {
                 /* Create Member instance for all guilds */
                 membersToFetch.forEach((memberID) => {
                     const member = new Member(this, {
-                        id: memberID,
+                        userID: memberID.userID,
+                        guildID: memberID.guildID,
                         data: membersData.find((memberDataObj) => `${memberDataObj.user_id}${memberDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`),
-                        joinData: membersJoinData.find((memberJoinDataObj) => `${memberJoinDataObj.user_id}${memberJoinDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`),
-                        invitedUsers: membersInvitedUsers.find((memberInvitedUserObj) => `${memberInvitedUserObj.user_id}${memberInvitedUserObj.guild_id}` === `${memberID.userID}${memberID.guildID}`),
-                        invitedUsersLeft: membersInvitedUsersLeft.find((memberInvitedUserLeftObj) => `${memberInvitedUserLeftObj.user_id}${memberInvitedUserLeftObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)
+                        joinData: membersJoinData.find((memberJoinDataObj) => `${memberJoinDataObj.user_id}${memberJoinDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.member_join_data_agg || null,
+                        invitedUsers: membersInvitedUsers.find((memberInvitedUserObj) => `${memberInvitedUserObj.user_id}${memberInvitedUserObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.member_invited_users_agg || [],
+                        invitedUsersLeft: membersInvitedUsersLeft.find((memberInvitedUserLeftObj) => `${memberInvitedUserLeftObj.user_id}${memberInvitedUserLeftObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.member_invited_users_left_agg || []
                     });
                 });
             }
@@ -458,13 +460,13 @@ module.exports = class DatabaseHandler {
                     const values = guildsWithMissingPlugins.map((g) => {
                         let pluginInsertValues = [];
                         if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.plugin_name === 'joinDM')){
-                            pluginInsert.push(`( '${g}', 'joinDM', '{ "enabled": false, "message": null }' )`);
+                            pluginInsertValues.push(`( '${g}', 'joinDM', '{ "enabled": false, "message": null }' )`);
                         }
                         if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.plugin_name === 'join')){
-                            pluginInsert.push(`( '${g}', 'leave', '{ "enabled": false, "message": null, "channel": null }' )`);
+                            pluginInsertValues.push(`( '${g}', 'leave', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
                         if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.plugin_name === 'leave')){
-                            pluginInsert.push(`( '${g}', 'join', '{ "enabled": false, "message": null, "channel": null }' )`);
+                            pluginInsertValues.push(`( '${g}', 'join', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
                     });
                     const { rows: createdPlugins } = await this.query(`
