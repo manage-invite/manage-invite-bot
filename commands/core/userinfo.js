@@ -57,7 +57,7 @@ module.exports = class extends Command {
                 username: member.user.tag
             }) : message.translate("core/invite:MEMBER_CONTENT", {
                 username: member.user.username,
-                inviteCount: memberData.calcInvites(),
+                inviteCount: memberData.calculatedInvites,
                 regularCount: memberData.regular,
                 bonusCount: memberData.bonus,
                 fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,

@@ -33,7 +33,7 @@ module.exports = class Member {
 
     }
 
-    calcInvites(){
+    get calculatedInvites(){
         return this.regular + this.bonus - this.leaves - this.fake;
     }
 
