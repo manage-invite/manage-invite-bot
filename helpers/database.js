@@ -215,7 +215,6 @@ module.exports = class DatabaseHandler {
         return new Promise(async resolve => {
             // Keep the members that are not in the cache
             const membersToFetch = memberIDs.filter((m) => !this.memberCache.has(`${m.userID}${m.guildID}`));
-            console.log(membersToFetch)
             // If there are members to fetch
             if(membersToFetch.length > 0){
                 const membersArray = memberIDs.map((m) => `'${m.userID}${m.guildID}'`).join(', ');
