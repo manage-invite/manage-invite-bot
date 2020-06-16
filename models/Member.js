@@ -3,11 +3,11 @@ const { Collection } = require("discord.js");
 module.exports = class Member {
     constructor(handler, { userID, guildID, joinData, invitedUsers, invitedUsersLeft }) {
 
-        this.id = userID;
+        this.userID = userID;
         this.guildID = guildID
 
         this.handler = handler;
-        this.handler.memberCache.set(this.id, this);
+        this.handler.memberCache.set(this.userID, this);
 
         // Member invites
         this.fake = data.invites_fake || 0;
@@ -42,9 +42,9 @@ module.exports = class Member {
         await this.handler.query(`
             INSERT INTO member_invited_users
             (user_id, guild_id, invited_user_id) VALUES
-            ('${this.id}', '${this.guildID}', '${userID}');
+            ('${this.userID}', '${this.guildID}', '${userID}');
         `);
-        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
+        this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
         this.invitedUsers.push(userID);
         return;
     }
@@ -53,13 +53,13 @@ module.exports = class Member {
     async removeInvitedUser(userID){
         await this.handler.query(`
             DELETE FROM member_invited_users
-            WHERE user_id = '${this.id}'
-            AND guild_id = '${this.id}'
+            WHERE user_id = '${this.userID}'
+            AND guild_id = '${this.userID}'
             AND invited_user_id = '${userID}';
         `);
-        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
+        this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
         this.invitedUsers = this.invitedUsers.filter((id) => id !== userID);
-        if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
+        if(this.editOnly) this.handler.removeMemberFromCache(this.userID, this.guildID);
         return;
     }
 
@@ -68,11 +68,11 @@ module.exports = class Member {
         await this.handler.query(`
             INSERT INTO member_invited_users_left
             (user_id, guild_id, invited_user_id) VALUES
-            ('${this.id}', '${this.guildID}', '${userID}');
+            ('${this.userID}', '${this.guildID}', '${userID}');
         `);
-        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
+        this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
         this.invitedUsersLeft.push(userID);
-        if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
+        if(this.editOnly) this.handler.removeMemberFromCache(this.userID, this.guildID);
         return;
     }
 
@@ -80,13 +80,13 @@ module.exports = class Member {
     async removeInvitedUserLeft(userID){
         await this.handler.query(`
             DELETE FROM member_invited_users_left
-            WHERE user_id = '${this.id}'
-            AND guild_id = '${this.id}'
+            WHERE user_id = '${this.userID}'
+            AND guild_id = '${this.userID}'
             AND invited_user_id = '${userID}';
         `);
-        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
+        this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
         this.invitedUsersLeft = this.invitedUsersLeft.filter((id) => id !== userID);
-        if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
+        if(this.editOnly) this.handler.removeMemberFromCache(this.userID, this.guildID);
         return;
     }
 
@@ -98,23 +98,23 @@ module.exports = class Member {
                 SET join_type = '${data.type}'
                 ${data.inviterID ? `, join_inviter_id = '${data.inviterID}'` : ""}
                 ${data.inviteData ? `, join_invite_data = '${JSON.stringify(data.inviteData)}'` : ""}
-                WHERE user_id = '${this.id}'
+                WHERE user_id = '${this.userID}'
                 AND guild_id = '${this.guildID}';
             `);
         } else {
             await this.handler.query(`
                 INSERT INTO member_join_data
                 (user_id, guild_id, join_type ${data.inviterID ? ", join_inviter_id" : ""} ${data.inviteData ? ", join_invite_data" : ""}) VALUES
-                ('${this.id}', '${this.guildID}', '${data.type}' ${data.inviterID ? `, '${data.inviterID}'` : ""} ${data.inviteData ? `, '${JSON.stringify(data.inviteData)}'` : ""})
+                ('${this.userID}', '${this.guildID}', '${data.type}' ${data.inviterID ? `, '${data.inviterID}'` : ""} ${data.inviteData ? `, '${JSON.stringify(data.inviteData)}'` : ""})
             `);
         }
-        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
+        this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
         this.joinData = {
             type: data.type,
             inviterID: data.inviterID,
             inviteData: data.inviteData
         };
-        if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
+        if(this.editOnly) this.handler.removeMemberFromCache(this.userID, this.guildID);
         return;
     }
 
@@ -122,12 +122,12 @@ module.exports = class Member {
     async clearJoinData(){
         await this.handler.query(`
             DELETE FROM member_join_data
-            WHERE user_id = '${this.id}'
+            WHERE user_id = '${this.userID}'
             AND guild_id = '${this.guildID}';
         `);
-        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
+        this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
         this.joinData = null;
-        if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
+        if(this.editOnly) this.handler.removeMemberFromCache(this.userID, this.guildID);
     }
 
     // Update member invites
@@ -146,11 +146,11 @@ module.exports = class Member {
             old_invites_regular = ${this.oldRegular},
             old_invites_backuped = ${this.oldBackuped}
             
-            WHERE user_id = '${this.id}'
+            WHERE user_id = '${this.userID}'
             AND guild_id = '${this.guildID}';
         `);
-        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
-        if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
+        this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
+        if(this.editOnly) this.handler.removeMemberFromCache(this.userID, this.guildID);
         return;
     }
 

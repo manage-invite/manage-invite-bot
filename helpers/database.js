@@ -214,20 +214,20 @@ module.exports = class DatabaseHandler {
     fetchMembers(memberIDs){
         return new Promise(async resolve => {
             // Keep the members that are not in the cache
-            const membersToFetch = memberIDs.filter((m) => !this.memberCache.has(`${m.id}${m.guildID}`));
+            const membersToFetch = memberIDs.filter((m) => !this.memberCache.has(`${m.userID}${m.guildID}`));
             // If there are members to fetch
             if(membersToFetch.length > 0){
-                const membersArray = memberIDs.map((m) => `${m.id}${m.guildID}`);
+                const membersArray = memberIDs.map((m) => `${m.userID}${m.guildID}`);
                 /* Fetch basic data - from the members table */
                 let { rows: membersData } = await this.query(`
                     SELECT * FROM members
                     WHERE user_id || guild_id IN (${membersArray})
                 `);
                 /* If there are members not created, insert them in the members table */
-                const membersNotCreated = membersToFetch.filter((m) => !membersData.some((md) => `${md.user_id}${md.guild_id}` === `${m.id}${m.guildID}`));
+                const membersNotCreated = membersToFetch.filter((m) => !membersData.some((md) => `${md.user_id}${md.guild_id}` === `${m.userID}${m.guildID}`));
                 if(membersNotCreated.length > 0){
                     const values = membersNotCreated.map((m) => {
-                        return `('${m.id}', '${m.guildID}', 0, 0, 0, 0, 0, 0, 0, 0, false)`;
+                        return `('${m.userID}', '${m.guildID}', 0, 0, 0, 0, 0, 0, 0, 0, false)`;
                     }).join(',\n');
                     // Insert members
                     const { rows: createdMembersData } = await this.query(`
@@ -301,62 +301,26 @@ module.exports = class DatabaseHandler {
                 membersToFetch.forEach((memberID) => {
                     const member = new Member(this, {
                         id: memberID,
-                        data: membersData.find((memberDataObj) => `${memberDataObj.user_id}${memberDataObj.guild_id}` === `${memberID.id}${memberID.guildID}`),
-                        joinData: membersJoinData.find((memberJoinDataObj) => `${memberJoinDataObj.user_id}${memberJoinDataObj.guild_id}` === `${memberID.id}${memberID.guildID}`),
-                        invitedUsers: membersInvitedUsers.find((memberInvitedUserObj) => `${memberInvitedUserObj.user_id}${memberInvitedUserObj.guild_id}` === `${memberID.id}${memberID.guildID}`),
-                        invitedUsersLeft: membersInvitedUsersLeft.find((memberInvitedUserLeftObj) => `${memberInvitedUserLeftObj.user_id}${memberInvitedUserLeftObj.guild_id}` === `${memberID.id}${memberID.guildID}`)
+                        data: membersData.find((memberDataObj) => `${memberDataObj.user_id}${memberDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`),
+                        joinData: membersJoinData.find((memberJoinDataObj) => `${memberJoinDataObj.user_id}${memberJoinDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`),
+                        invitedUsers: membersInvitedUsers.find((memberInvitedUserObj) => `${memberInvitedUserObj.user_id}${memberInvitedUserObj.guild_id}` === `${memberID.userID}${memberID.guildID}`),
+                        invitedUsersLeft: membersInvitedUsersLeft.find((memberInvitedUserLeftObj) => `${memberInvitedUserLeftObj.user_id}${memberInvitedUserLeftObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)
                     });
                 });
             }
-            const members = this.memberCache.filter((mC) => memberIDs.map((m) => `${m.id}${m.guildID}` === `${mC.id}${mC.guildID}`)).array();
+            const members = this.memberCache.filter((mC) => memberIDs.map((m) => `${m.userID}${m.guildID}` === `${mC.userID}${mC.guildID}`)).array();
             resolve(members);
         });
     }
-    
-    /* Create or get all the members of a guild
-    fetchMembers(guildID, raw) {
+
+    // Fetch all the members in a guild
+    fetchGuildMembers(guildID){
         return new Promise(async resolve => {
-            let startAt = Date.now();
             const { rows } = await this.query(`
                 SELECT * FROM members
                 WHERE guild_id = '${guildID}';
             `);
-            console.log(`Fetched in ${Date.now()-startAt}ms`);
-            if(raw){
-                resolve(rows);
-            } else {
-                const members = [];
-                await asyncForEach(rows, async row => {
-                   if (this.memberCache.get(`${row.user_id}${guildID}`)){
-                        const memberCache = this.memberCache.get(`${row.user_id}${guildID}`);
-                        members.push(memberCache);
-                    } else {
-                        const member = new Member(row.user_id, row.guild_id, row, this, true);
-                        members.push(member);
-                    }
-                });
-                resolve(members);
-            }
-        });
-    }*/
-
-    // Create or get a member
-    fetchMember(userID, guildID) {
-        return new Promise(async resolve => {
-            // If the member is in the cache
-            if (this.memberCache.get(`${userID}${guildID}`))
-                return resolve(this.memberCache.get(`${userID}${guildID}`));
-            const { rows } = await this.query(`
-                SELECT * FROM members
-                WHERE guild_id = '${guildID}'
-                AND user_id = '${userID}';
-            `);
-            const member = new Member(userID, guildID, rows[0], this);
-            // Fetch member
-            await member.fetch();
-            resolve(member);
-            // Add the member to the cache
-            this.memberCache.set(`${userID}${guildID}`, member);
+            resolve(rows);
         });
     }
 
@@ -495,6 +459,16 @@ module.exports = class DatabaseHandler {
             }
             const guilds = this.guildCache.filter((g) => guildIDs.includes(g.id)).array();
             resolve(guilds);
+        });
+    }
+
+    fetchMember(userID, guildID) {
+        return new Promise(async resolve => {
+            const [ member ] = await this.fetchMembers({
+                userID,
+                guildID
+            });
+            resolve(member);
         });
     }
 
