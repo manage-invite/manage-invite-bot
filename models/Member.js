@@ -59,7 +59,6 @@ module.exports = class Member {
         `);
         this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
         this.invitedUsers = this.invitedUsers.filter((id) => id !== userID);
-        if(this.editOnly) this.handler.removeMemberFromCache(this.userID, this.guildID);
         return;
     }
 
@@ -72,7 +71,6 @@ module.exports = class Member {
         `);
         this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
         this.invitedUsersLeft.push(userID);
-        if(this.editOnly) this.handler.removeMemberFromCache(this.userID, this.guildID);
         return;
     }
 
@@ -86,7 +84,6 @@ module.exports = class Member {
         `);
         this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
         this.invitedUsersLeft = this.invitedUsersLeft.filter((id) => id !== userID);
-        if(this.editOnly) this.handler.removeMemberFromCache(this.userID, this.guildID);
         return;
     }
 
@@ -114,7 +111,6 @@ module.exports = class Member {
             inviterID: data.inviterID,
             inviteData: data.inviteData
         };
-        if(this.editOnly) this.handler.removeMemberFromCache(this.userID, this.guildID);
         return;
     }
 
@@ -127,7 +123,6 @@ module.exports = class Member {
         `);
         this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
         this.joinData = null;
-        if(this.editOnly) this.handler.removeMemberFromCache(this.userID, this.guildID);
     }
 
     // Update member invites
@@ -150,7 +145,6 @@ module.exports = class Member {
             AND guild_id = '${this.guildID}';
         `);
         this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
-        if(this.editOnly) this.handler.removeMemberFromCache(this.userID, this.guildID);
         return;
     }
 
