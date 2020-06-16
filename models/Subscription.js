@@ -1,16 +1,15 @@
 const { Collection } = require("discord.js");
 
 module.exports = class Subscription {
-    constructor(subID, data, handler) {
-        if(!data) data = {};
-        this.id = subID;
+    constructor(handler, { id, data }) {
+
+        this.id = id;
+
         this.handler = handler;
-        this.inserted = Object.keys(data).length !== 0;
-        this.data = data;
+        this.handler.subscriptionCache.set(this.id, this);
+
         // Expiration date
         this.expiresAt = data.expires_at ? new Date(data.expires_at).getTime() : null;
-        // Guilds related to the subscription
-        this.guilds = [];
         // Subscription label
         this.label = data.sub_label;
     }
@@ -45,21 +44,6 @@ module.exports = class Subscription {
             this.expiresAt = Date.now() + ms;
         }
         this.handler.syncSubscriptionForOtherCaches(this.id);
-    }
-
-    async fetchGuilds(){
-        const { rows } = await this.handler.query(`
-            SELECT * FROM guilds_subscriptions
-            WHERE sub_id = '${this.id}'
-        `);
-        for(let row of rows) {
-            this.guilds.push(row.guild_id);
-            if(this.handler.guildCache.has(row.guild_id)){
-                await this.handler.guildCache.get(row.guild_id).syncSubscriptions();
-            } else {
-                await this.handler.fetchGuild(row.guild_id);
-            }
-        }
     }
 
 };

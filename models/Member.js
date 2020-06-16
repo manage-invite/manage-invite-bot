@@ -1,56 +1,40 @@
 const { Collection } = require("discord.js");
 
 module.exports = class Member {
-    constructor(userID, guildID, data, handler, editOnly) {
-        if(!data) data = {};
+    constructor(handler, { userID, guildID, joinData, invitedUsers, invitedUsersLeft }) {
+
         this.id = userID;
         this.guildID = guildID
+
         this.handler = handler;
-        this.inserted = Object.keys(data).length !== 0;
-        this.data = data;
-        // Whether the member is fetched
-        this.fetched = false;
+        this.handler.memberCache.set(this.id, this);
+
         // Member invites
         this.fake = data.invites_fake || 0;
         this.leaves = data.invites_leaves || 0;
         this.bonus = parseInt(data.invites_bonus) || 0;
         this.regular = data.invites_regular || 0;
+
         // Old member invites
         this.oldFake = data.old_invites_fake || 0;
         this.oldLeaves = data.old_invites_leaves || 0;
         this.oldBonus = parseInt(data.old_invites_bonus) || 0;
         this.oldRegular = data.old_invites_regular || 0;
         this.oldBackuped = data.old_invites_backuped || false;
-        // Whether this member is "edit only"
-        this.editOnly = editOnly;
-    }
 
-    async fetch() {
-        if (this.fetched) return;
-        this.joinData = null;
-        await this.fetchJoinData();
-        this.invitedUsers = [];
-        await this.fetchInvitedUsers();
-        this.invitedUsersLeft = [];
-        await this.fetchInvitedUsersLeft();
-        this.fetched = true;
+        this.invitedUsers = this.invitedUsers.map(invitedUserData => invitedUserData.invited_user_id);
+        this.invitedUsersLeft = this.invitedUsersLeft.map(invitedUserData => invitedUserData.invited_user_id);
+
+        this.joinData = {
+            type: joinData.join_type,
+            inviterID: joinData.join_inviter_id,
+            inviteData: joinData.join_invite_data
+        };
+
     }
 
     calcInvites(){
         return this.regular + this.bonus - this.leaves - this.fake;
-    }
-
-    // Fetch and fill invited users
-    async fetchInvitedUsers(){
-        const { rows } = await this.handler.query(`
-            SELECT * FROM member_invited_users
-            WHERE user_id = '${this.id}'
-            AND guild_id = '${this.guildID}';
-        `);
-        rows.forEach(invitedUserData => {
-            this.invitedUsers.push(invitedUserData.invited_user_id);
-        });
-        return;
     }
 
     // Add invited user
@@ -79,19 +63,6 @@ module.exports = class Member {
         return;
     }
 
-    // Fetch and fill invited users left
-    async fetchInvitedUsersLeft(){
-        const { rows } = await this.handler.query(`
-            SELECT * FROM member_invited_users_left
-            WHERE user_id = '${this.id}'
-            AND guild_id = '${this.guildID}';
-        `);
-        rows.forEach(invitedUserLeftData =>  {
-            this.invitedUsersLeft.push(invitedUserLeftData.invited_user_id);
-        });
-        return;
-    }
-
     // Add invited user left
     async addInvitedUserLeft(userID){
         await this.handler.query(`
@@ -116,23 +87,6 @@ module.exports = class Member {
         this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
         this.invitedUsersLeft = this.invitedUsersLeft.filter((id) => id !== userID);
         if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
-        return;
-    }
-
-    // Fetch member join data
-    async fetchJoinData(){
-        const { rows } = await this.handler.query(`
-            SELECT * FROM member_join_data
-            WHERE user_id = '${this.id}'
-            AND guild_id = '${this.guildID}';
-        `);
-        if(!rows[0]) return;
-        this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
-        this.joinData = {
-            type: rows[0].join_type,
-            inviterID: rows[0].join_inviter_id,
-            inviteData: rows[0].join_invite_data
-        };
         return;
     }
 
@@ -200,42 +154,4 @@ module.exports = class Member {
         return;
     }
 
-    // Insert the member in the db if it doesn't exist
-    async insert() {
-        if (!this.inserted) {
-            await this.handler.query(`
-                INSERT INTO members
-                (
-                    user_id,
-                    guild_id,
-                    invites_fake,
-                    invites_leaves,
-                    invites_bonus,
-                    invites_regular,
-                    old_invites_fake,
-                    old_invites_leaves,
-                    old_invites_bonus,
-                    old_invites_regular,
-                    old_invites_backuped
-                ) VALUES
-                (
-                    '${this.id}',
-                    '${this.guildID}',
-                    ${this.fake},
-                    ${this.leaves},
-                    ${this.bonus},
-                    ${this.regular},
-                    ${this.oldFake},
-                    ${this.oldLeaves},
-                    ${this.oldBonus},
-                    ${this.oldRegular},
-                    ${this.oldBackuped}
-                );
-            `);
-            this.handler.removeMemberFromOtherCaches(this.id, this.guildID);
-            if(this.editOnly) this.handler.removeMemberFromCache(this.id, this.guildID);
-            this.inserted = true;
-        }
-        return this;
-    }
 };

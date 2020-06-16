@@ -4,18 +4,26 @@ const { stringOrNull, pgEscape } = require("../helpers/functions");
 const JoinPlugin = require("./JoinPlugin");
 const JoinDMPlugin = require("./JoinDMPlugin");
 const LeavePlugin = require("./LeavePlugin");
+const Subscription = require("./Subscription");
 
 module.exports = class Guild {
-    constructor(guildID, data, handler) {
-        if(!data) data = {};
-        this.id = guildID;
+    constructor(handler, { id, data, plugins, ranks, blacklistedUsers, subscriptions }) {
+
+        this.id = id;
+
         this.handler = handler;
-        this.inserted = Object.keys(data).length !== 0;
-        this.data = data;
-        // Whether the guild is fetched
-        this.fetched = false;
+        this.handler.guildCache.set(this.id, this);
+
+        // Data received from database
+        this.rawData = {
+            plugins,
+            ranks,
+            blacklistedUsers,
+            subscriptions
+        };
+
         // Guild language
-        this.language = data.guild_language || handler.client.config.enabledLanguages.find((language) => language.default).name;
+        this.language = data.guild_language || this.handler.client.config.enabledLanguages.find((language) => language.default).name;
         // Guild prefix
         this.prefix = data.guild_prefix || "+";
         // Guild keep ranks
@@ -24,20 +32,37 @@ module.exports = class Guild {
         this.stackedRanks = data.guild_stacked_ranks || false;
         // Guild cmd channel
         this.cmdChannel = data.guild_cmd_channel || null;
+
         // Subscriptions
         this.subscriptions = [];
-    }
+        subscriptions.forEach(({ sub_id, sub_data }) => {
+            const subscription = this.handler.subscriptionCache.find((sub) => sub.id === sub_id) || new Subscription(this.handler, {
+                id: sub_id,
+                data: sub_data
+            });
+            this.subscriptions.push(subscription);
+        });
 
-    async fetch() {
-        if (this.fetched) return;
-        this.plugins = {};
-        await this.fetchPlugins();
+        // Plugins
+        const getPluginData = (name) => plugins.find(p => p.plugin_name === name) ? this.rawData.plugins.find(p => p.plugin_name === name).plugin_data : null;
+        this.join = new JoinPlugin(this, getPluginData("join"));
+        this.join.insert();
+        this.joinDM = new JoinDMPlugin(this, getPluginData("joinDM"));
+        this.joinDM.insert();
+        this.leave = new LeavePlugin(this, getPluginData("leave"));
+        this.leave.insert();
+
+        // Ranks
         this.ranks = [];
-        await this.fetchRanks();
-        this.blacklistedUsers = [];
-        await this.fetchBlacklistedUsers();
-        await this.syncSubscriptions();
-        this.fetched = true;
+        ranks.forEach(rankData => {
+            this.ranks.push({
+                roleID: rankData.role_id,
+                inviteCount: rankData.invite_count
+            });
+        });
+
+        // Blacklisted users
+        this.blacklistedUsers = blacklistedUsers.map(blacklistData => blacklistData.user_id);
     }
 
     get premium(){
@@ -52,23 +77,6 @@ module.exports = class Guild {
         return this.subscriptions.length > 0;
     }
 
-    async syncSubscriptions(){
-        const { rows } = await this.handler.query(`
-            SELECT * FROM guilds_subscriptions
-            WHERE guild_id = '${this.id}'
-        `);
-        this.subscriptions = [];
-        for(let row of rows){
-            const cachedSub = this.handler.subscriptionCache.find((sub) => sub.id === row.sub_id);
-            if(cachedSub){
-                this.subscriptions.push(cachedSub);
-            } else {
-                const sub = await this.handler.fetchSubscription(row.sub_id);
-                this.subscriptions.push(sub);
-            }
-        }
-    }
-
     // Change the guild cmd channel
     async setCmdChannel(newValue){
         this.cmdChannel = newValue;
@@ -79,37 +87,6 @@ module.exports = class Guild {
         `);
         this.handler.removeGuildFromOtherCaches(this.id);
         return this.cmdChannel;
-    }
-
-    // Fetch and fill plugins
-    async fetchPlugins() {
-        const { rows } = await this.handler.query(`
-            SELECT * FROM guild_plugins
-            WHERE guild_id = '${this.id}';
-        `);
-        const getPluginData = (name) => rows.find(p => p.plugin_name === name) ? rows.find(p => p.plugin_name === name).plugin_data : null;
-        this.join = new JoinPlugin(this, getPluginData("join"));
-        this.join.insert();
-        this.joinDM = new JoinDMPlugin(this, getPluginData("joinDM"));
-        this.joinDM.insert();
-        this.leave = new LeavePlugin(this, getPluginData("leave"));
-        this.leave.insert();
-        return this.plugins;
-    }
-
-    // Fetch and fill ranks
-    async fetchRanks() {
-        const { rows } = await this.handler.query(`
-            SELECT * FROM guild_ranks
-            WHERE guild_id = '${this.id}';
-        `);
-        rows.forEach(rankData => {
-            this.ranks.push({
-                roleID: rankData.role_id,
-                inviteCount: rankData.invite_count
-            });
-        });
-        return this.ranks;
     }
 
     // Add a new rank
@@ -137,18 +114,6 @@ module.exports = class Guild {
         this.handler.removeGuildFromOtherCaches(this.id);
         this.ranks = this.ranks.filter((rank) => rank.inviteCount !== inviteCount);
         return this.ranks;
-    }
-
-    // Fetch and fill blacklisted users
-    async fetchBlacklistedUsers(){
-        const { rows } = await this.handler.query(`
-            SELECT * FROM guild_blacklisted_users
-            WHERE guild_id = '${this.id}';
-        `);
-        rows.forEach(blacklistData => {
-            this.blacklistedUsers.push(blacklistData.user_id);
-        });
-        return this.blacklistedUsers;
     }
 
     // Add a user to the blacklist
@@ -223,17 +188,4 @@ module.exports = class Guild {
         return this;
     }
 
-    // Insert the guild in the db if it doesn't exist
-    async insert() {
-        if (!this.inserted) {
-            await this.handler.query(`
-                INSERT INTO guilds
-                (guild_id, guild_prefix, guild_language, guild_is_premium, guild_keep_ranks, guild_stacked_ranks) VALUES
-                ('${this.id}', '${this.prefix}', '${this.language}', false, ${this.keepRanks}, ${this.stackedRanks});
-            `);
-            this.handler.removeGuildFromOtherCaches(this.id);
-            this.inserted = true;
-        }
-        return this;
-    }
 };
