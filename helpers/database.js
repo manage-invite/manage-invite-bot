@@ -313,6 +313,28 @@ module.exports = class DatabaseHandler {
         });
     }
 
+    countGuildInvites(guildID){
+        return new Promise(async resolve => {
+            const { rows } = await this.query(`
+                SELECT
+                    guild_id,
+                    SUM(old_invites_regular) as regular,
+                    SUM(old_invites_fake) as fake,
+                    SUM(old_invites_bonus) as bonus,
+                    SUM(old_invites_leaves) as leaves
+                FROM members
+                WHERE guild_id = '${guildID}'
+                GROUP BY 1
+            `);
+            resolve({
+                regular: rows[0]?.regular || 0,
+                fake: rows[0]?.fake || 0,
+                bonus: rows[0]?.bonus || 0,
+                leaves: rows[0]?.leaves || 0
+            });
+        });
+    }
+
     backupInvites(guildID){
         return new Promise(async resolve => {
             this.query(`
