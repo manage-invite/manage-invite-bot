@@ -51,18 +51,7 @@ module.exports = class extends Command {
                 await memberData.updateInvites();
             } else {
                 // Find all members in the guild
-                const members = await this.client.database.fetchMembers(message.guild.id, false);
-                await this.client.functions.asyncForEach(members, async (memberData) => {
-                    memberData.oldRegular = memberData.regular;
-                    memberData.regular = 0;
-                    memberData.oldFake = memberData.fake;
-                    memberData.fake = 0;
-                    memberData.oldLeaves = memberData.leaves;
-                    memberData.leaves = 0;
-                    memberData.oldBonus = memberData.bonus;
-                    memberData.bonus = 0;
-                    await memberData.updateInvites();
-                });
+                await this.client.database.backupInvites(message.guild.id);
             }
 
             const embed = new Discord.MessageEmbed()
@@ -80,7 +69,6 @@ module.exports = class extends Command {
             .setFooter(data.footer);
 
             msg.edit(null, { embed });
-            this.client.database.removeAllMembersFromOtherCaches(message.guild.id);
         }).catch((err) => {
             console.error(err);
             return conf.error("common:CANCELLED", null, true);
