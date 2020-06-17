@@ -316,7 +316,7 @@ module.exports = class DatabaseHandler {
                     });
                 });
             }
-            const members = this.memberCache.filter((mC) => memberIDs.map((m) => `${m.userID}${m.guildID}` === `${mC.userID}${mC.guildID}`)).array();
+            const members = this.memberCache.filter((mC) => memberIDs.map((m) => `${m.userID}${m.guildID}`).includes(`${mC.userID}${mC.guildID}`)).array();
             resolve(members);
         });
     }
