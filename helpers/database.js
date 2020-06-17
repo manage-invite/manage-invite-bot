@@ -546,11 +546,11 @@ module.exports = class DatabaseHandler {
                 guildsToFetch.forEach((guildID) => {
                     const guild = new Guild(this, {
                         id: guildID,
-                        data: guildsData.find((pluginObj) => pluginObj.guild_id === guildID),
-                        plugins: plugins.find((pluginObj) => pluginObj.guild_id === guildID)?.guild_plugins_agg,
-                        ranks: ranks.find((rankObj) => rankObj.guild_id === guildID)?.guild_ranks_agg || [],
-                        blacklistedUsers: blacklistedUsers.find((blacklistedUserObj) => blacklistedUserObj.guild_id === guildID)?.guild_blacklisted_agg || [],
-                        subscriptions: subscriptions.find((subscriptionObj) => subscriptionObj.guild_id === guildID)?.guild_subscriptions_agg || []
+                        data: guildsData.find((pluginObj) => pluginObj.guild_id.trim() === guildID),
+                        plugins: plugins.find((pluginObj) => pluginObj.guild_id.trim() === guildID)?.guild_plugins_agg,
+                        ranks: ranks.find((rankObj) => rankObj.guild_id.trim() === guildID)?.guild_ranks_agg || [],
+                        blacklistedUsers: blacklistedUsers.find((blacklistedUserObj) => blacklistedUserObj.guild_id.trim() === guildID)?.guild_blacklisted_agg || [],
+                        subscriptions: subscriptions.find((subscriptionObj) => subscriptionObj.guild_id.trim() === guildID)?.guild_subscriptions_agg || []
                     });
                 });
             }
