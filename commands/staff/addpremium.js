@@ -48,7 +48,7 @@ module.exports = class extends Command {
         }, false);
         await this.client.database.createSubPaymentLink(subscription.id, paymentID);
         await this.client.database.createGuildSubLink(premiumArgs.guildID, subscription.id);
-        await subscription.fetchGuilds();
+        await subscription.deleteGuildsFromCache();
 
         return message.channel.send(`${this.client.emojis.success} | Subscription created. Get more informations with \`${message.guild.data.prefix}sub ${premiumArgs.guildID}\`.`);
 

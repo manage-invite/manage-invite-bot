@@ -138,7 +138,7 @@ router.post("/ipn", async (req, res) => {
                     await req.client.database.createSubPaymentLink(subscription.id, signupID);
                     await req.client.database.createSubPaymentLink(subscription.id, paymentID);
                     await req.client.database.createGuildSubLink(guildID, subscription.id);
-                    await subscription.fetchGuilds();
+                    await subscription.deleteGuildsFromCache();
                     await req.client.database.syncSubscriptionForOtherCaches(subscription.id);
                 } else {
                     const paymentID = await req.client.database.createPayment({
@@ -155,6 +155,7 @@ router.post("/ipn", async (req, res) => {
                     const currentSubscription = guild.subscriptions.find((sub) => sub.label === "Premium Monthly 1 Guild");
                     await req.client.database.createSubPaymentLink(currentSubscription.id, paymentID);
                     await currentSubscription.addDays(30);
+                    await subscription.deleteGuildsFromCache();
                     await req.client.database.syncSubscriptionForOtherCaches(currentSubscription.id);
                 }
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()

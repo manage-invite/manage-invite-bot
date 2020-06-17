@@ -54,4 +54,14 @@ module.exports = class Subscription {
         this.handler.syncSubscriptionForOtherCaches(this.id);
     }
 
+    deleteGuildsFromCache(){
+        onst { rows } = await this.handler.query(`
+            SELECT * FROM guilds_subscriptions
+            WHERE sub_id = '${this.id}'
+        `);
+        for(let row of rows) {
+            this.handler.guildCache.delete(row.guild_id);
+        }
+    }
+
 };
