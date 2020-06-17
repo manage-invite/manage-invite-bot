@@ -156,7 +156,10 @@ module.exports = class DatabaseHandler {
                 (${stringOrNull(expiresAt.toISOString())}, '${createdAt.toISOString()}', ${stringOrNull(pgEscape(subLabel))}, ${guildsCount}, '${stringOrNull(patreonUserID)}')
                 RETURNING *;
             `).then(async ({ rows }) => {
-                const subscription = new Subscription(rows[0].id, rows[0], this);
+                const subscription = new Subscription(this, {
+                    id: rows[0].id,
+                    data: rows[0]
+                });
                 this.subscriptionCache.set(rows[0].id, subscription);
                 if(fetchGuilds) await subscription.fetchGuilds();
                 resolve(subscription);
@@ -177,7 +180,10 @@ module.exports = class DatabaseHandler {
                 `);
                 data = rows;
             }
-            const sub = new Subscription(subID, data[0], this);
+            const sub = new Subscription(this, {
+                id: subID,
+                data: data[0]
+            });
             if(fetchGuilds) await sub.fetchGuilds();
             resolve(sub);
         });
