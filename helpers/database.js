@@ -148,7 +148,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    createSubscription({ expiresAt = new Date(), createdAt = new Date(), subLabel, guildsCount = 1, patreonUserID }, fetchGuilds = true){
+    createSubscription({ expiresAt = new Date(), createdAt = new Date(), subLabel, guildsCount = 1, patreonUserID }, deleteGuildFromCache = true){
         return new Promise(async resolve => {
             this.query(`
                 INSERT INTO subscriptions
@@ -161,7 +161,7 @@ module.exports = class DatabaseHandler {
                     data: rows[0]
                 });
                 this.subscriptionCache.set(rows[0].id, subscription);
-                if(fetchGuilds) await subscription.fetchGuilds();
+                if(deleteGuildFromCache) await subscription.deleteGuildFromCache();
                 resolve(subscription);
             });
         });
