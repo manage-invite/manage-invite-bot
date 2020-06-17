@@ -61,6 +61,7 @@ module.exports = class Subscription {
         `);
         for(let row of rows) {
             this.handler.guildCache.delete(row.guild_id);
+            this.handler.removeGuildFromOtherCaches(row.guild_id);
         }
     }
 
