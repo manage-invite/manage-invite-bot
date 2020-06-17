@@ -52,7 +52,7 @@ module.exports = class extends Command {
         await this.client.database.createGuildSubLink(premiumArgs.guildID, subscription.id);
         await subscription.deleteGuildsFromCache();
 
-        return message.channel.send(`${this.client.emojis.success} | Subscription created. Get more informations with \`${message.guild.data.prefix}sub ${premiumArgs.guildID}\`.`);
+        return message.channel.send(`${this.client.config.emojis.success} | Subscription created. Get more informations with \`${message.guild.data.prefix}sub ${premiumArgs.guildID}\`.`);
 
     }
 };
