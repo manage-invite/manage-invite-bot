@@ -25,7 +25,7 @@ module.exports = class extends Command {
 
         if(premiumArgs.guildID && premiumArgs.guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-z]/)){
             let invite = await this.client.fetchInvite(guildID);
-            guildID = invite.channel.guild.id;
+            premiumArgs.guildID = invite.channel.guild.id;
         }
 
         let send = false;
