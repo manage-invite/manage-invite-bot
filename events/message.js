@@ -13,13 +13,17 @@ module.exports = class {
         if(message.partial || message.channel.partial) return;
 
         const startAt = Date.now();
-
-        const data = { color: this.client.config.color, footer: this.client.config.footer };
-
+        
         if(!message.guild || message.author.bot) return;
 
-        const guildData = data.guild = message.guild.data = await this.client.database.fetchGuild(message.guild.id);
+        const guildData = message.guild.data = await this.client.database.fetchGuild(message.guild.id);
     
+        const data = {
+            guild: guildData,
+            color: this.client.config.color,
+            footer: guildData.aboutToExpire ? `Attention, your ManageInvite subscription is about to expire!` : this.client.config.footer
+        };
+
         if(message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.translate("misc:PREFIX", {
             prefix: guildData.prefix
         }));

@@ -14,8 +14,16 @@ module.exports = class Subscription {
         this.label = data.sub_label;
     }
 
+    get aboutToExpire () {
+        return this.active && (this.expiresAtCalculated - Date.now() < (3*24*60*60*1000));
+    }
+
+    get expiresAtCalculated () {
+        return this.isTrial ? this.expiresAt : (this.expiresAt + (7*24*60*60*1000));
+    }
+
     get active () {
-        return this.expiresAt > Date.now();
+        return this.expiresAtCalculated > Date.now();
     }
 
     get isTrial () {
