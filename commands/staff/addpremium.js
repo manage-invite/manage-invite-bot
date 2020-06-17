@@ -20,6 +20,7 @@ module.exports = class extends Command {
             user: message.mentions.users.first() || await this.client.users.fetch(args[3]).catch(() => {}),
             pmtType: args[4],
             guildsCount: parseInt(args[5]),
+            patreonUserID: args[6] || 'unknown',
             label: args.slice(5).join(" ")
         }
 
@@ -51,7 +52,8 @@ module.exports = class extends Command {
             expiresAt: new Date(Date.now()+(premiumArgs.daysCount*24*60*60*1000)),
             createdAt,
             guildsCount: premiumArgs.guildsCount,
-            subLabel: premiumArgs.label
+            subLabel: premiumArgs.label,
+            patreonUserID: premiumArgs.patreonUserID === 'unknown' ? null : premiumArgs.patreonUserID
         }, false);
         await this.client.database.createSubPaymentLink(subscription.id, paymentID);
         await this.client.database.createGuildSubLink(premiumArgs.guildID, subscription.id);
