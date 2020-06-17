@@ -20,7 +20,7 @@ module.exports = class extends Command {
             user: message.mentions.users.first() || await this.client.users.fetch(args[3]).catch(() => {}),
             pmtType: args[4],
             guildsCount: parseInt(args[5]),
-            label: parseInt(args[6])
+            label: args[6]
         }
 
         let send = false;
