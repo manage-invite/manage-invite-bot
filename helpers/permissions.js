@@ -22,7 +22,7 @@ module.exports = [
     {
         level: 4,
         name: "Bot moderator",
-        check: (message) => [ "456500252048883714", "547514927019982864" ].includes(message.author.id)
+        check: (message) => [ "456500252048883714", "547514927019982864", "246993557381054465", "675636857463373847" ].includes(message.author.id)
     },
     {
         level: 5,
