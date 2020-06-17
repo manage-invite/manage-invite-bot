@@ -15,8 +15,8 @@ module.exports = class extends Command {
     async run (message, args, data) {
         const command = args[0];
         if(command === "l"){
-            delete require.cache[require.resolve("../../languages/english.js")];
-            delete require.cache[require.resolve("../../languages/french.js")];
+            const i18n = require("../../helpers/i18n");
+            this.client.translations = await i18n();
             return message.channel.send(this.client.config.emojis.success+" | Languages reloaded!");
         }
         const cmd = this.client.commands.get(command) || this.client.commands.get(this.client.aliases.get(command));
