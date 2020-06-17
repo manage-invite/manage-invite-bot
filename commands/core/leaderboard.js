@@ -90,7 +90,7 @@ module.exports  = class extends Command {
         .setChannel(message.channel)
         .setPageIndicator(false)
         .setPage(1)
-        .setDisabledNavigationEmojis(['DELETE'])
+        .setDisabledNavigationEmojis(['delete'])
         .setColor(data.color)
         .setFooter(data.footer)
         .setClientAssets({ prompt: message.translate("core/leaderboard:PROMPT") })
