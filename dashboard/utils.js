@@ -50,7 +50,7 @@ async function fetchUser(userData, client, locale){
             const guildDB = await client.database.fetchGuild(guild.id);
             guild.isPremium = guildDB.premium;
             guild.isWaitingForVerification = client.waitingForVerification.includes(guild.id);
-            guild.trialPeriod = guildDB.trialPeriodEnabled && guildDB.premium;
+            guild.trialPeriod = guildDB.trialPeriodEnabled;
         });
         userData.displayedGuilds = userData.guilds.filter((g) => g.admin);
         userData.notAdmin = userData.guilds.filter((g) => !g.admin);

@@ -1,5 +1,5 @@
 {
-    "TITLE": ":wrench: Join system :",
+    "TITLE": ":wrench: Tin nhắn tham gia:",
     "ENABLED_YES_CONTENT": "{{success}} Tin nhắn tham gia đã được kích hoạt. Tắt nó với lệnh `{{prefix}}setjoin`.",
     "ENABLED_NO_CONTENT": "{{error}} Tin nhắn tham gia đã được hủy kích hoạt. Mở nó với lệnh `{{prefix}}setjoin`.",
     "CHANNEL_CONTENT": "Không có channel nào được xác định. Thiết lập nó với lệnh `{{prefix}}configjoin`!",

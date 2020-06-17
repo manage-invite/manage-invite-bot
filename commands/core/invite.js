@@ -18,12 +18,12 @@ module.exports = class extends Command {
 
         const member = await this.client.resolveMember(args.join(" "), message.guild) || message.member;
         const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
-        await this.client.functions.assignRanks(member, memberData.calcInvites(), data.guild.ranks, data.guild.keepRanks, data.guild.stackedRanks);
-        const nextRank = this.client.functions.getNextRank(memberData.calcInvites(), data.guild.ranks, message.guild);
+        await this.client.functions.assignRanks(member, memberData.calculatedInvites, data.guild.ranks, data.guild.keepRanks, data.guild.stackedRanks);
+        const nextRank = this.client.functions.getNextRank(memberData.calculatedInvites, data.guild.ranks, message.guild);
 
         const firstDescription =  member.id === message.member.id ?
         message.translate("core/invite:AUTHOR_CONTENT", {
-            inviteCount: memberData.calcInvites(),
+            inviteCount: memberData.calculatedInvites,
             regularCount: memberData.regular,
             bonusCount: memberData.bonus,
             fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
@@ -31,7 +31,7 @@ module.exports = class extends Command {
         }) :
         message.translate("core/invite:MEMBER_CONTENT", {
             username: member.user.username,
-            inviteCount: memberData.calcInvites(),
+            inviteCount: memberData.calculatedInvites,
             regularCount: memberData.regular,
             bonusCount: memberData.bonus,
             fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
@@ -40,7 +40,7 @@ module.exports = class extends Command {
 
         const secondDescription = member.id === message.member.id && nextRank ?
         "\n"+message.translate("core/invite:AUTHOR_NEXT_RANK", {
-            neededCount: nextRank.inviteCount - memberData.calcInvites(),
+            neededCount: nextRank.inviteCount - memberData.calculatedInvites,
             rankName: message.guild.roles.cache.get(nextRank.roleID).toString() || "deleted-role"
         }) : "";
 

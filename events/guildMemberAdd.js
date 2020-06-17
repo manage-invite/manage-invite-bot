@@ -46,9 +46,14 @@ module.exports = class {
                     if(newAndUsed.size === 1){
                         inviteUsed = newAndUsed.first();
                     }
-                } else {
                 }
                 if(inviteUsed && !vanity) invite = inviteUsed;
+            }
+            if(!invite){
+                const targetInvite = guildInvites.some((i) => i.targetUser && (i.targetUser.id === member.id));
+                if (targetInvite.uses === 1) {
+                    invite = targetInvite;
+                }
             }
         }
 
@@ -85,7 +90,7 @@ module.exports = class {
                     if(inviter.id === member.id) inviterData.fake++;
                 }
                 await inviterData.updateInvites();
-                await this.client.functions.assignRanks(inviterMember, inviterData.calcInvites(), guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
+                await this.client.functions.assignRanks(inviterMember, inviterData.calculatedInvites, guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
             }
         }
 

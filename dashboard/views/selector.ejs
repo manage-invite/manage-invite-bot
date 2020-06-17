@@ -92,7 +92,9 @@
 						<% } else if(guild.isPremium){ %>
 							<a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block"><%= translate("common:MANAGE") %></button></a>
 						<% } else if(guild.isWaitingForVerification) { %>
-							<a><button class="btn btn-warning btn-block" style="background-color: #f77f00 !important;" disabled><%= translate("dashboard:WAITING_VERIF") %></button></a>
+							<div data-tippy-content="<%= translate("dashboard:WAITING_VERIF_TOOLTIP") %>">
+								<a><button class="btn btn-warning btn-block" style="background-color: #f77f00 !important;" disabled><%= translate("dashboard:WAITING_VERIF") %></button></a>
+							</div>
 						<% } else { %>
 							<a><button class="btn btn-primary btn-block" data-toggle="modal" data-target="#<%= guild.id %>"><%= translate("dashboard:GET_PREMIUM") %></button></a>
 						<% } %>
@@ -218,7 +220,9 @@
 						<% } else if(guild.isPremium){ %>
 							<a><button class="btn btn-danger btn-block" disabled><%= translate("dashboard:MISSING_PERM") %></button></a>
 						<% } else if(guild.isWaitingForVerification) { %>
-							<a><button class="btn btn-warning btn-block" style="background-color: #f77f00 !important;" disabled><%= translate("dashboard:WAITING_VERIF") %></button></a>
+							<div data-tippy-content="<%= translate("dashboard:WAITING_VERIF_TOOLTIP") %>">
+								<a><button class="btn btn-warning btn-block" style="background-color: #f77f00 !important;" disabled><%= translate("dashboard:WAITING_VERIF") %></button></a>
+							</div>
 						<% } else { %>
 							<a><button class="btn btn-primary btn-block" data-toggle="modal" data-target="#<%= guild.id %>"><%= translate("dashboard:GET_PREMIUM") %></button></a>
 						<% } %>

@@ -1,6 +1,6 @@
 {
-    "NO_INVITES": "No invites to synchronize.",
-    "CONFIRM": "Are you sure you want to synchronize the server invitations?\n\n:information_source: **Overview of invitations**:\nIt will be restored **{{inviteCount}}** regular invitations.\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
-    "TITLE": "☄️ Invitations synchronized",
-    "DESCRIPTION": "Server invitations synchronized!"
+    "NO_INVITES": "Senkronize edilecek davet yok.",
+    "CONFIRM": "Sunucu davetlerini senkronize etmek istediğinizden emin misiniz?\n\n:information_source: ** Davetlere genel bakış **:\n**{{inviteCount}}** davetler geri yüklenecektir.\n\n{{success}} Onaylamak için `-confirm` yazın.\n{{error}} İptal etmek için `cancel` yazın.",
+    "TITLE": "☄️ Davetler senkronize edildi",
+    "DESCRIPTION": "Sunucu davetleri senkronize edildi!"
 }

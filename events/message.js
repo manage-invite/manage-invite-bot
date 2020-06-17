@@ -10,14 +10,20 @@ module.exports = class {
 
     async run (message) {
 
+        if(message.partial || message.channel.partial) return;
+
         const startAt = Date.now();
-
-        const data = { color: this.client.config.color, footer: this.client.config.footer };
-
+        
         if(!message.guild || message.author.bot) return;
 
-        const guildData = data.guild = message.guild.data = await this.client.database.fetchGuild(message.guild.id);
+        const guildData = message.guild.data = await this.client.database.fetchGuild(message.guild.id);
     
+        const data = {
+            guild: guildData,
+            color: this.client.config.color,
+            footer: guildData.aboutToExpire ? `Attention, your ManageInvite subscription is about to expire!` : this.client.config.footer
+        };
+
         if(message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.translate("misc:PREFIX", {
             prefix: guildData.prefix
         }));
@@ -71,6 +77,13 @@ module.exports = class {
                 discord: Constants.Links.DISCORD,
                 emote: this.client.config.emojis.upgrade
             });
+        }
+
+        if(data.guild.cmdChannel && (message.channel.id !== data.guild.cmdChannel)){
+            message.delete();
+            return message.author.send(message.translate("misc:WRONG_CHANNEL", {
+                channel: `<#${data.guild.cmdChannel}>`
+            }));
         }
 
         this.client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name} (${Date.now()-startAt}ms)`, "cmd");

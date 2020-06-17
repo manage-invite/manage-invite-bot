@@ -3,6 +3,9 @@ fetch = require("node-fetch"),
 moment = require("moment"),
 date = require('date-and-time');
 
+const stringOrNull = (string) => string ? `'${string}'` : 'null';
+const pgEscape = (string) => string ? string.replace(/[\/\(\)\']/g, "''") : null;
+
 /**
  * @param {array} array The array to loop
  * @param {function} callback The callback function to call each time
@@ -98,7 +101,7 @@ const assignRanks = async (member, inviteCount, ranks, keepRanks, stackedRanks) 
                 await member.roles.remove(rank.roleID);
             }
         } else {
-            assigned.push(member.guild.roles.cache.get(rank.roleID));
+            assigned.push(rank.roleID);
             // If the member already has the rank
             if(member.roles.cache.has(rank.roleID)) return;
             // Add the role to the member
@@ -106,9 +109,9 @@ const assignRanks = async (member, inviteCount, ranks, keepRanks, stackedRanks) 
         }
     });
     if (stackedRanks && assigned.length > 0) {
-        await member.roles.add(assigned.shift().id);
+        await member.roles.add(assigned.shift());
         for(let role of assigned){
-            if(member.roles.cache.has(role.id)) await member.roles.remove(role.id);
+            if(member.roles.cache.has(role)) await member.roles.remove(role);
         }
     }
     return;
@@ -251,6 +254,8 @@ const formatDate = (dateToFormat, format, locale) => {
 }
 
 module.exports = {
+    stringOrNull,
+    pgEscape,
     asyncForEach,
     formatMessage,
     formatDate,

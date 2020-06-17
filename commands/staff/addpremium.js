@@ -7,44 +7,50 @@ module.exports = class extends Command {
             enabled: true,
             aliases: [ "add-premium" ],
             clientPermissions: [],
-            permLevel: 4
+            permLevel: 5
         });
     }
 
     async run (message, args, data) {
 
-        let guildID = args[0];
-        if(!guildID) return message.error("staff/addpremium:MISSING_GUILD_ID");
-
-        if(guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-z]/)){
-            let invite = await this.client.fetchInvite(guildID);
-            guildID = invite.channel.guild.id;
+        const premiumArgs = {
+            guildID: args[0],
+            daysCount: parseInt(args[1]),
+            amount: parseInt(args[2]),
+            user: message.mentions.users.first() || await this.client.users.fetch(user).catch(() => {}),
+            pmtType: args[3],
+            guildsCount: parseInt(args[4]),
+            label: parseInt(args[5])
         }
 
-        const numberOfDays = args[1];
-        if(!numberOfDays || isNaN(numberOfDays)) return message.error("staff/addpremium:MISSING_NUMBER_DAYS");
-
-        const guildData = await this.client.database.fetchGuild(guildID);
-        const guildNames = await this.client.shard.broadcastEval(`
-            let guild = this.guilds.cache.get('${guildID}');
-            if(guild) guild.name;
-        `);
-        const guildNameFound = guildNames.find((r) => r);
-        const guildName = guildNameFound || guildID;
-        if(!message.content.includes("no-trial")){
-            await guildData.addPremiumDays(parseInt(numberOfDays), "addpremium_cmd_trial", message.author.id);
-            await guildData.setTrialPeriodEnabled(true);
-        } else {
-            await guildData.addPremiumDays(parseInt(numberOfDays), "addpremium_cmd", message.author.id);
-            await guildData.setTrialPeriodEnabled(false);
-            await guildData.setTrialPeriodUsed(true);
-        }
-
-        message.success("staff/addpremium:ADDED", {
-            guild: guildName,
-            days: parseInt(numberOfDays),
-            expiresAt: this.client.functions.formatDate(new Date(guildData.premiumExpiresAt), "MMM DD YYYY", message.guild.data.language)
+        Object.keys(premiumArgs).forEach((key) => {
+            if(!premiumArgs[key]){
+                return message.channel.send(`${this.client.emojis.error} | Invalid args. ${Object.keys(premiumArgs).join(', ')}. Missing **${key}**.`);
+            }
         });
+
+        const createdAt = new Date();
+
+        const paymentID = await this.client.database.createPayment({
+            payerDiscordID: premiumArgs.user.id,
+            payerDiscordUsername: premiumArgs.user.tag,
+            modID: message.author.id,
+            amount: premiumArgs.amount,
+            type: premiumArgs.pmtType,
+            createdAt
+        });
+
+        const subscription = await this.client.database.createSubscription({
+            expiresAt: new Date(Date.now()+(premiumArgs.daysCount*24*60*60*1000)),
+            createdAt,
+            guildsCount: premiumArgs.guildsCount,
+            subLabel: premiumArgs.label
+        }, false);
+        await this.client.database.createSubPaymentLink(subscription.id, paymentID);
+        await this.client.database.createGuildSubLink(premiumArgs.guildID, subscription.id);
+        await subscription.fetchGuilds();
+
+        return message.channel.send(`${this.client.emojis.success} | Subscription created. Get more informations with \`${message.guild.data.prefix}sub ${premiumArgs.guildID}\`.`);
 
     }
 };

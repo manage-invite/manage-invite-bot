@@ -60,14 +60,32 @@
                                     <% if(guild.language === "fr-FR"){ %>
                                         <option selected="selected">French</option>
                                         <option>Vietnamese</options>
+                                        <option>Hungarian</options>
+                                        <option>Turkish</options>
                                         <option>English</options>
                                     <% } else if(guild.language === "vi-VN") { %>
                                         <option>French</option>
                                         <option selected="selected">Vietnamese</options>
+                                        <option>Hungarian</options>
+                                        <option>English</options>
+                                        <option>Turkish</options>
+                                    <% } else if(guild.language === "tr-TR") { %>
+                                        <option>French</option>
+                                        <option>Vietnamese</options>
+                                        <option>Hungarian</options>
+                                        <option selected="selected">Turkish</options>
+                                        <option>English</options>
+                                    <% } else if(guild.language === "hu-HU") { %>
+                                        <option>French</option>
+                                        <option>Vietnamese</options>
+                                        <option>Hungarian</options>
+                                        <option selected="selected">Turkish</options>
                                         <option>English</options>
                                     <% } else { %>
                                         <option>French</option>
                                         <option>Vietnamese</options>
+                                        <option>Hungarian</options>
+                                        <option>Turkish</options>
                                         <option selected="selected">English</options>
                                     <% } %>
                                 </select>

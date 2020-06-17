@@ -1,13 +1,14 @@
 module.exports = class JoinDMPlugin {
     constructor(guild, data) {
-        if(!data) data = {};
+
         this.guild = guild;
         this.handler = guild.handler;
-        this.inserted = Object.keys(data).length !== 0;
+
         // Whether the plugin is enabled
         this.enabled = data.enabled || false;
         // The join dm message
         this.message = data.message || null;
+
     }
 
     // Returns a string with the plugin's data
@@ -31,17 +32,4 @@ module.exports = class JoinDMPlugin {
         return this;
     }
 
-    // Insert the plugin in the db if it doesn't exist
-    async insert() {
-        if (!this.inserted) {
-            await this.handler.query(`
-                INSERT INTO guild_plugins
-                (guild_id, plugin_name, plugin_data) VALUES
-                ('${this.guild.id}', 'joinDM', '${this.data}');
-            `);
-            this.handler.removeGuildFromOtherCaches(this.guild.id);
-            this.inserted = true;
-        }
-        return this;
-    }
 }

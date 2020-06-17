@@ -1,119 +1,93 @@
 const { Collection } = require("discord.js");
+const { stringOrNull, pgEscape } = require("../helpers/functions");
 
 const JoinPlugin = require("./JoinPlugin");
 const JoinDMPlugin = require("./JoinDMPlugin");
 const LeavePlugin = require("./LeavePlugin");
+const Subscription = require("./Subscription");
 
 module.exports = class Guild {
-    constructor(guildID, data, handler) {
-        if(!data) data = {};
-        this.id = guildID;
+    constructor(handler, { id, data, plugins, ranks, blacklistedUsers, subscriptions }) {
+
+        this.id = id;
+
         this.handler = handler;
-        this.inserted = Object.keys(data).length !== 0;
-        this.data = data;
-        // Whether the guild is fetched
-        this.fetched = false;
+        this.handler.guildCache.set(this.id, this);
+
+        // Data received from database
+        this.rawData = {
+            plugins,
+            ranks,
+            blacklistedUsers,
+            subscriptions
+        };
+
         // Guild language
-        this.language = data.guild_language || handler.client.config.enabledLanguages.find((language) => language.default).name;
+        this.language = data.guild_language || this.handler.client.config.enabledLanguages.find((language) => language.default).name;
         // Guild prefix
         this.prefix = data.guild_prefix || "+";
-        // Guild premium expires at
-        this.premiumExpiresAt = new Date(data.guild_premium_expires_at).getTime() || null;
-        // Trial period enabled
-        this.trialPeriodEnabled = data.guild_trial_period_enabled || false;
-        // Trial period used
-        this.trialPeriodUsed = data.guild_trial_period_used || false;
         // Guild keep ranks
         this.keepRanks = data.guild_keep_ranks || false;
         // Guild stacked ranks
         this.stackedRanks = data.guild_stacked_ranks || false;
-    }
+        // Guild cmd channel
+        this.cmdChannel = data.guild_cmd_channel || null;
 
-    async fetch() {
-        if (this.fetched) return;
-        this.plugins = {};
-        await this.fetchPlugins();
-        this.ranks = [];
-        await this.fetchRanks();
-        this.blacklistedUsers = [];
-        await this.fetchBlacklistedUsers();
-        this.fetched = true;
-    }
+        // Subscriptions
+        this.subscriptions = [];
+        subscriptions.forEach(({ sub_id, sub_data }) => {
+            const subscription = this.handler.subscriptionCache.find((sub) => sub.id === sub_id) || new Subscription(this.handler, {
+                id: sub_id,
+                data: sub_data
+            });
+            this.subscriptions.push(subscription);
+        });
 
-    get premium(){
-        return this.premiumExpiresAt && (new Date(this.premiumExpiresAt).getTime() > Date.now());
-    }
-
-    async setTrialPeriodEnabled(newStatus){
-        this.trialPeriodEnabled = newStatus;
-        await this.handler.query(`
-            UPDATE guilds
-            SET guild_trial_period_enabled = ${newStatus}
-            WHERE guild_id = '${this.id}';
-        `);
-        this.handler.removeGuildFromOtherCaches(this.id);
-        return this.trialPeriodEnabled;
-    }
-
-    async setTrialPeriodUsed(newStatus){
-        this.trialPeriodUsed = newStatus;
-        await this.handler.query(`
-            UPDATE guilds
-            SET guild_trial_period_used = ${newStatus}
-            WHERE guild_id = '${this.id}';
-        `);
-        this.handler.removeGuildFromOtherCaches(this.id);
-        return this.trialPeriodUsed;
-    }
-
-    async addPremiumDays(count, type, userID){
-        const time = count*86400000;
-        const newPremiumExpiresAt = this.premium ? (this.premiumExpiresAt+time) : (Date.now()+time);
-        console.log(newPremiumExpiresAt)
-        await this.handler.query(`
-            UPDATE guilds
-            SET guild_premium_expires_at = '${new Date(newPremiumExpiresAt).toUTCString()}'
-            WHERE guild_id = '${this.id}';
-        `);
-        await this.handler.query(`
-            INSERT INTO subscriptions
-            (sub_guild_id, sub_type, sub_created_at, sub_payer_id, sub_days) VALUES
-            ('${this.id}', '${type}', '${new Date().toUTCString()}' ,${userID ? `'${userID}'` : 'null'}, ${count})
-        `);
-        this.handler.removeGuildFromOtherCaches(this.id);
-        this.premiumExpiresAt = newPremiumExpiresAt;
-        return this.premium;
-    }
-
-    // Fetch and fill plugins
-    async fetchPlugins() {
-        const { rows } = await this.handler.query(`
-            SELECT * FROM guild_plugins
-            WHERE guild_id = '${this.id}';
-        `);
-        const getPluginData = (name) => rows.find(p => p.plugin_name === name) ? rows.find(p => p.plugin_name === name).plugin_data : null;
+        // Plugins
+        const getPluginData = (name) => plugins.find(p => p.plugin_name === name) ? this.rawData.plugins.find(p => p.plugin_name === name).plugin_data : null;
         this.join = new JoinPlugin(this, getPluginData("join"));
-        this.join.insert();
         this.joinDM = new JoinDMPlugin(this, getPluginData("joinDM"));
-        this.joinDM.insert();
         this.leave = new LeavePlugin(this, getPluginData("leave"));
-        this.leave.insert();
-        return this.plugins;
-    }
 
-    // Fetch and fill ranks
-    async fetchRanks() {
-        const { rows } = await this.handler.query(`
-            SELECT * FROM guild_ranks
-            WHERE guild_id = '${this.id}';
-        `);
-        rows.forEach(rankData => {
+        // Ranks
+        this.ranks = [];
+        ranks.forEach(rankData => {
             this.ranks.push({
                 roleID: rankData.role_id,
                 inviteCount: rankData.invite_count
             });
         });
-        return this.ranks;
+
+        // Blacklisted users
+        this.blacklistedUsers = blacklistedUsers.map(blacklistData => blacklistData.user_id);
+    }
+
+    get premium(){
+        return this.subscriptions.some((subscription) => subscription.active);
+    }
+    
+    get aboutToExpire(){
+        return this.premium && this.subscriptions.every((subscription) => subscription.aboutToExpire);
+    }
+
+    get trialPeriodEnabled(){
+        return this.premium && this.subscriptions.every((subscription) => subscription.isTrial);
+    }
+
+    get trialPeriodUsed(){
+        return this.subscriptions.length > 0;
+    }
+
+    // Change the guild cmd channel
+    async setCmdChannel(newValue){
+        this.cmdChannel = newValue;
+        await this.handler.query(`
+            UPDATE guilds
+            SET guild_cmd_channel = ${stringOrNull(newValue)}
+            WHERE guild_id = '${this.id}';
+        `);
+        this.handler.removeGuildFromOtherCaches(this.id);
+        return this.cmdChannel;
     }
 
     // Add a new rank
@@ -141,18 +115,6 @@ module.exports = class Guild {
         this.handler.removeGuildFromOtherCaches(this.id);
         this.ranks = this.ranks.filter((rank) => rank.inviteCount !== inviteCount);
         return this.ranks;
-    }
-
-    // Fetch and fill blacklisted users
-    async fetchBlacklistedUsers(){
-        const { rows } = await this.handler.query(`
-            SELECT * FROM guild_blacklisted_users
-            WHERE guild_id = '${this.id}';
-        `);
-        rows.forEach(blacklistData => {
-            this.blacklistedUsers.push(blacklistData.user_id);
-        });
-        return this.blacklistedUsers;
     }
 
     // Add a user to the blacklist
@@ -207,7 +169,7 @@ module.exports = class Guild {
     async setLanguage(newLanguage) {
         await this.handler.query(`
             UPDATE guilds
-            SET guild_language = '${newLanguage}'
+            SET guild_language = '${pgEscape(newLanguage)}'
             WHERE guild_id = '${this.id}';
         `);
         this.handler.removeGuildFromOtherCaches(this.id);
@@ -219,7 +181,7 @@ module.exports = class Guild {
     async setPrefix(newPrefix) {
         await this.handler.query(`
             UPDATE guilds
-            SET guild_prefix = '${newPrefix}'
+            SET guild_prefix = '${pgEscape(newPrefix)}'
             WHERE guild_id = '${this.id}';
         `);
         this.handler.removeGuildFromOtherCaches(this.id);
@@ -227,17 +189,4 @@ module.exports = class Guild {
         return this;
     }
 
-    // Insert the guild in the db if it doesn't exist
-    async insert() {
-        if (!this.inserted) {
-            await this.handler.query(`
-                INSERT INTO guilds
-                (guild_id, guild_prefix, guild_language, guild_is_premium, guild_premium_expires_at, guild_trial_period_enabled, guild_keep_ranks, guild_stacked_ranks) VALUES
-                ('${this.id}', '${this.prefix}', '${this.language}', false, ${this.premiumExpiresAt}, ${this.trialPeriodEnabled}, ${this.keepRanks}, ${this.stackedRanks});
-            `);
-            this.handler.removeGuildFromOtherCaches(this.id);
-            this.inserted = true;
-        }
-        return this;
-    }
 };

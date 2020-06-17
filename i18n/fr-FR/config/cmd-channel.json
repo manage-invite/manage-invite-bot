@@ -1,0 +1,5 @@
+{
+    "MISSING_CHANNEL": "Veuillez spécifier un salon valide où les commandes seront autorisées !",
+    "SUCCESS_DISABLED": "Les commandes seront désormais autorisées dans tous les salons !",
+    "SUCCESS_ENABLED": "Les commandes ne seront autorisées que dans {{channel}} ! (Utilisez `{{prefix}}}cmd-channel` pour les autoriser dans tous les salons)"
+}

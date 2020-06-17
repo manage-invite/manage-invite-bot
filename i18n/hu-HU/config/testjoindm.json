@@ -1,6 +1,6 @@
 {
-    "TITLE": ":wrench: DM Join system :",
-    "ENABLED_YES_CONTENT": "{{success}} Join messages in dm enabled. Disable them with `{{prefix}}setdmjoin`.",
-    "ENABLED_NO_CONTENT": "{{error}} Join messages in dm disabled. Enable them with `{{prefix}}setdmjoin`.",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configdm`!"
+    "TITLE": ":wrench: Privát Üdvözlő rendszer:",
+    "ENABLED_YES_CONTENT": "{{success}} Az üdvözlő privát üzenet engedélyezve van. Tiltani ezzel tudod: `{{prefix}}setdmjoin`.",
+    "ENABLED_NO_CONTENT": "{{error}} Az üdvözlő privát üzenet tíltva van. Engedélyezni ezzel tudod: `{{prefix}}setdmjoin`.",
+    "MESSAGE_CONTENT": "Nincsen üzenet beállítva. Beállíttani ezzel a paranccsal tudod: `{{prefix}}configdm`!"
 }

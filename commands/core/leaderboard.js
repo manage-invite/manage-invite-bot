@@ -16,8 +16,7 @@ module.exports  = class extends Command {
     async run (message, args, data) {
 
         let startAt = Date.now();
-        let membersData = await this.client.database.fetchMembers(message.guild.id, true);
-        console.log(Date.now()-startAt);
+        let membersData = await this.client.database.fetchGuildMembers(message.guild.id, true);
         startAt = Date.now();
 
         let members = [];
@@ -60,7 +59,7 @@ module.exports  = class extends Command {
             let oldDesc = lastEmbed.description || "";
             let user = this.client.users.cache.get(member.id) || (message.guild.members.cache.get(member.id) || {}).user;
             if(!user) {
-                if((members.indexOf(member) < 1)){
+                if((members.indexOf(member) < 100)){
                     user = await this.client.users.fetch(member.id);
                 } else {
                     user = {
@@ -85,7 +84,6 @@ module.exports  = class extends Command {
             memberCount++;
         });
 
-        console.log("Sent "+(Date.now()-startAt));
         const pagination = new Pagination.Embeds()
         .setArray(embeds)
         .setAuthorizedUsers([message.author.id])

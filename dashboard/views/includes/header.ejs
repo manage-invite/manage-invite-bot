@@ -26,19 +26,6 @@
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-            <li class="dropdown language-selector">
-                <% if(locale === "en-US"){ %>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">English (en-US)</a>
-                    <ul class="dropdown-menu pull-right">
-                        <li><a class="dropdown-item" href="/language?new=fr-FR&url=<%= currentURL %>"><span>Français (fr-FR)</span></a></li>
-                    </ul>
-                <% } else if(locale === "fr-FR") { %>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">Français (fr-FR)</a>
-                    <ul class="dropdown-menu pull-right">
-                        <li><a class="dropdown-item" href="/language?new=en-US&url=<%= currentURL %>"><span>English (en-US)</span></a></li>
-                    </ul>
-                <% } %>
-            </li>
             <!-- User Account Menu -->
             <li class="dropdown user user-menu">
                 <!-- Menu Toggle Button -->

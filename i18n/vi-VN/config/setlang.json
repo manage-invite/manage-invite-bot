@@ -1,4 +1,4 @@
 {
-    "INVALID": "You must write a valid language!\n\n:flag_fr: French (`fr`)\n:flag_gb: English (`en`)\n:flag_vn: Vietnamese (vi)\nYour language is not supported? Join the support server and translate the bot in your language!",
+    "INVALID": "You must write a valid language!\n\n{{list}}\n\nYour language is not supported? Join the support server and translate the bot in your language!",
     "SUCCESS": "Ngôn ngữ đã được cập nhật!"
 }

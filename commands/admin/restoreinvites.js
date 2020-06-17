@@ -22,14 +22,8 @@ module.exports = class extends Command {
             let m = await message.sendT("misc:PLEASE_WAIT", {
                 loading: this.client.config.emojis.loading
             });
-            members = await this.client.database.fetchMembers(message.guild.id, false);
+            memberCount = await this.client.database.countGuildInvites(message.guild.id);
             m.delete();
-            members.forEach((m) => {
-                memberCount.regular += m.oldRegular;
-                memberCount.leaves += m.oldLeaves;
-                memberCount.fake += m.oldFake;
-                memberCount.bonus += m.oldBonus;
-            });
         }
         let conf = await (member ?
             message.sendT("admin/restoreinvites:CONFIRMATION_MEMBER", {
@@ -55,10 +49,10 @@ module.exports = class extends Command {
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
             if(collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete();
-            await (member ? conf.sendT("admin/restoreinvites:LOADING", {
+            await (member ? conf.sendT("admin/restoreinvites:LOADING_MEMBER", {
                 username: member.user.tag,
                 loading: this.client.config.emojis.loading
-            }, true) : conf.sendT("admin/restoreinvites:LOADING_MEMBER", {
+            }, true) : conf.sendT("admin/restoreinvites:LOADING", {
                 loading: this.client.config.emojis.loading
             }, true));
             if(member){
@@ -74,18 +68,7 @@ module.exports = class extends Command {
                 await member.data.updateInvites();
             } else {
                 // Find all members in the guild
-                await this.client.functions.asyncForEach(members, async (memberData) => {
-                    // Restore invites
-                    memberData.regular = memberData.oldRegular;
-                    // Restore fake
-                    memberData.fake = memberData.oldFake;
-                    // Restore leaves
-                    memberData.leaves = memberData.oldLeaves;
-                    // Restore bonus
-                    memberData.bonus = memberData.oldBonus;
-                    // Save the member
-                    await memberData.updateInvites();
-                });
+                await this.client.database.restoreInvites(message.guild.id);
             }
 
             const embed = new Discord.MessageEmbed()
@@ -103,9 +86,8 @@ module.exports = class extends Command {
             .setFooter(data.footer);
 
             conf.edit(null, { embed });
-            this.client.database.removeAllMembersFromOtherCaches(message.guild.id);
-        }).catch((e) => {
-            console.log(e)
+        }).catch((err) => {
+            console.error(err);
             conf.error("common:CANCELLED", null, true);
         });
     }

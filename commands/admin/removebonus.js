@@ -24,28 +24,59 @@ module.exports = class extends Command {
         });
 
         const member = message.mentions.members.first() || await this.client.resolveMember(args.slice(1).join(" "), message.guild);
-        if(!member) return message.error("admin/removebonus:MISSING_MEMBER", {
+        if(!member && args[1] !== "all") return message.error("admin/removebonus:MISSING_TARGET", {
             prefix: data.guild.prefix
         });
-        if(data.guild.blacklistedUsers.includes(member.id)) return message.error("admin/blacklist:BLACKLISTED", {
+        if(member && data.guild.blacklistedUsers.includes(member.id)) return message.error("admin/blacklist:BLACKLISTED", {
             username: member.user.username
         });
 
-        const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
-        memberData.bonus -= parseInt(bonus);
-        await memberData.updateInvites();
+        if(member){
+            const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
+            memberData.bonus -= parseInt(bonus);
+            await memberData.updateInvites();
 
-        const embed = new Discord.MessageEmbed()
-        .setAuthor(message.translate("admin/removebonus:SUCCESS_TITLE"))
-        .setDescription(message.translate("admin/removebonus:SUCCESS_CONTENT", {
-            prefix: data.guild.prefix,
-            usertag: member.user.tag,
-            username: member.user.username
-        }))
-        .setColor(data.color)
-        .setFooter(data.footer);
+            const embed = new Discord.MessageEmbed()
+            .setAuthor(message.translate("admin/removebonus:SUCCESS_TITLE"))
+            .setDescription(message.translate("admin/removebonus:SUCCESS_CONTENT_MEMBER", {
+                prefix: data.guild.prefix,
+                usertag: member.user.tag,
+                username: member.user.username
+            }))
+            .setColor(data.color)
+            .setFooter(data.footer);
 
-        message.channel.send(embed);
+            message.channel.send(embed);
+        } else {
+            const conf = await message.sendT("admin/removebonus:CONFIRMATION_ALL", {
+                count: bonus
+            })
+            await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
+                if(collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
+                collected.first().delete();
+
+                await conf.sendT("misc:PLEASE_WAIT", null, true, false, "loading");
+                await message.guild.fetch();
+                await this.client.functions.asyncForEach(message.guild.members.cache.array(), async (member) => {
+                    const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
+                    memberData.bonus -= parseInt(bonus);
+                    await memberData.updateInvites();
+                });
+                const embed = new Discord.MessageEmbed()
+                .setAuthor(message.translate("admin/removebonus:SUCCESS_TITLE"))
+                .setDescription(message.translate("admin/removebonus:SUCCESS_CONTENT_ALL", {
+                    prefix: data.guild.prefix
+                }))
+                .setColor(data.color)
+                .setFooter(data.footer);
+
+                conf.edit(null, { embed });
+            }).catch((err) => {
+                console.error(err);
+                return conf.error("common:CANCELLED", null, true);
+            });
+        }
+        
     }
 
 };
