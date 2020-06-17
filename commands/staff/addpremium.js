@@ -36,6 +36,7 @@ module.exports = class extends Command {
                 return message.channel.send(`${this.client.config.emojis.error} | Invalid args. ${Object.keys(premiumArgs).join(', ')}. Missing **${key}**.`);
             }
         });
+        if(send) return;
 
         const createdAt = new Date();
 
