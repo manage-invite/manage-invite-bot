@@ -59,7 +59,7 @@ module.exports  = class extends Command {
             let oldDesc = lastEmbed.description || "";
             let user = this.client.users.cache.get(member.id) || (message.guild.members.cache.get(member.id) || {}).user;
             if(!user) {
-                if((members.indexOf(member) < 100)){
+                if((members.indexOf(member) < 20)){
                     user = await this.client.users.fetch(member.id);
                 } else {
                     user = {
