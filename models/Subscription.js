@@ -55,7 +55,7 @@ module.exports = class Subscription {
     }
 
     deleteGuildsFromCache(){
-        onst { rows } = await this.handler.query(`
+        const { rows } = await this.handler.query(`
             SELECT * FROM guilds_subscriptions
             WHERE sub_id = '${this.id}'
         `);
