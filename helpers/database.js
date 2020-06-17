@@ -237,24 +237,6 @@ module.exports = class DatabaseHandler {
                         return `('${m.userID}', '${m.guildID}', 0, 0, 0, 0, 0, 0, 0, 0, false)`;
                     }).join(', ');
                     // Insert members
-                    console.log(`
-                        INSERT INTO members
-                        (
-                            user_id,
-                            guild_id,
-                            invites_fake,
-                            invites_leaves,
-                            invites_bonus,
-                            invites_regular,
-                            old_invites_fake,
-                            old_invites_leaves,
-                            old_invites_bonus,
-                            old_invites_regular,
-                            old_invites_backuped
-                        ) VALUES
-                        ${values}
-                        RETURNING *;
-                    `)
                     const { rows: createdMembersData } = await this.query(`
                         INSERT INTO members
                         (
@@ -452,12 +434,6 @@ module.exports = class DatabaseHandler {
                     const values = guildsNotCreated.map((g) => {
                         return `('${g}', '${this.client.config.prefix}', '${this.client.config.enabledLanguages.find((l) => l.default).name}', false, false)`;
                     }).join(', ');
-                    console.log(`
-                        INSERT INTO guilds
-                        (guild_id, guild_prefix, guild_language, guild_keep_ranks, guild_stacked_ranks) VALUES
-                        ${values}
-                        RETURNING *;
-                    `)
                     // Insert guilds
                     const { rows: createdGuildsData } = await this.query(`
                         INSERT INTO guilds
@@ -499,12 +475,6 @@ module.exports = class DatabaseHandler {
                             pluginInsertValues.push(`( '${g}', 'join', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
                     });
-                    console.log(`
-                        INSERT INTO guild_plugins
-                        (guild_id, plugin_name, plugin_data) VALUES
-                        ${pluginInsertValues.join(', ')}
-                        RETURNING *;
-                    `)
                     const { rows: createdPlugins } = await this.query(`
                         INSERT INTO guild_plugins
                         (guild_id, plugin_name, plugin_data) VALUES
