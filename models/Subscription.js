@@ -54,7 +54,7 @@ module.exports = class Subscription {
         this.handler.syncSubscriptionForOtherCaches(this.id);
     }
 
-    deleteGuildsFromCache(){
+    async deleteGuildsFromCache(){
         const { rows } = await this.handler.query(`
             SELECT * FROM guilds_subscriptions
             WHERE sub_id = '${this.id}'
