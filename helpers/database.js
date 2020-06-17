@@ -6,6 +6,7 @@ const logger = require("./logger");
 const Guild = require("../models/Guild");
 const Member = require("../models/Member");
 const Subscription = require("../models/Subscription");
+const { plugin } = require( "mongoose" );
 
 module.exports = class DatabaseHandler {
     constructor(client) {
@@ -230,6 +231,24 @@ module.exports = class DatabaseHandler {
                         return `('${m.userID}', '${m.guildID}', 0, 0, 0, 0, 0, 0, 0, 0, false)`;
                     }).join(', ');
                     // Insert members
+                    console.log(`
+                        INSERT INTO members
+                        (
+                            user_id,
+                            guild_id,
+                            invites_fake,
+                            invites_leaves,
+                            invites_bonus,
+                            invites_regular,
+                            old_invites_fake,
+                            old_invites_leaves,
+                            old_invites_bonus,
+                            old_invites_regular,
+                            old_invites_backuped
+                        ) VALUES
+                        ${values}
+                        RETURNING *;
+                    `)
                     const { rows: createdMembersData } = await this.query(`
                         INSERT INTO members
                         (
@@ -427,6 +446,12 @@ module.exports = class DatabaseHandler {
                     const values = guildsNotCreated.map((g) => {
                         return `('${g}', '${this.client.config.prefix}', '${this.client.config.enabledLanguages.find((l) => l.default).name}', false, false)`;
                     }).join(', ');
+                    console.log(`
+                        INSERT INTO guilds
+                        (guild_id, guild_prefix, guild_language, guild_keep_ranks, guild_stacked_ranks) VALUES
+                        ${values}
+                        RETURNING *;
+                    `)
                     // Insert guilds
                     const { rows: createdGuildsData } = await this.query(`
                         INSERT INTO guilds
@@ -456,22 +481,28 @@ module.exports = class DatabaseHandler {
                     return !plugins.some((p) => p.guild_id === g) || plugins.find((p) => p.guild_id === g).guild_plugins_agg.length < 3
                 });
                 if(guildsWithMissingPlugins.length > 0){
-                    const values = guildsWithMissingPlugins.map((g) => {
-                        let pluginInsertValues = [];
-                        if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.plugin_name === 'joinDM')){
+                    const pluginInsertValues = [];
+                    guildsWithMissingPlugins.forEach((g) => {
+                        if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.some((p) => p.plugin_name === 'joinDM'))){
                             pluginInsertValues.push(`( '${g}', 'joinDM', '{ "enabled": false, "message": null }' )`);
                         }
-                        if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.plugin_name === 'join')){
+                        if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.some((p) => p.plugin_name === 'join'))){
                             pluginInsertValues.push(`( '${g}', 'leave', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
-                        if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.plugin_name === 'leave')){
+                        if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.some((p) => p.plugin_name === 'leave'))){
                             pluginInsertValues.push(`( '${g}', 'join', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
-                    }).join(', ');
+                    });
+                    console.log(`
+                        INSERT INTO guild_plugins
+                        (guild_id, plugin_name, plugin_data) VALUES
+                        ${pluginInsertValues.join(', ')}
+                        RETURNING *;
+                    `)
                     const { rows: createdPlugins } = await this.query(`
                         INSERT INTO guild_plugins
                         (guild_id, plugin_name, plugin_data) VALUES
-                        ${values}
+                        ${pluginInsertValues.join(', ')}
                         RETURNING *;
                     `);
                     plugins = [ ...plugins, ...createdPlugins.map((plugin) => {

@@ -129,7 +129,6 @@ module.exports = class Member {
 
     // Update member invites
     async updateInvites() {
-        if(!this.inserted) this.insert();
         await this.handler.query(`
             UPDATE members
             
