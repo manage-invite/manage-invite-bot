@@ -151,8 +151,15 @@ router.post("/ipn", async (req, res) => {
                         type: "paypal_dash_pmnt_month",
                         details: payload
                     });
-                    const guild = await req.client.database.fetchGuild(guildID);
-                    const currentSubscription = guild.subscriptions.find((sub) => sub.label === "Premium Monthly 1 Guild");
+                    let currentSubscription = guild.subscriptions.find((sub) => sub.label === "Premium Monthly 1 Guild");
+                    if(!currentSubscription){
+                        currentSubscription = await req.client.database.createSubscription({
+                            expiresAt: new Date(Date.now()+30*24*60*60*1000),
+                            createdAt: new Date(payload.payment_date),
+                            subLabel: "Premium Monthly 1 Guild",
+                            guildsCount: 1
+                        }, false);
+                    }
                     await req.client.database.createSubPaymentLink(currentSubscription.id, paymentID);
                     await currentSubscription.addDays(30);
                     await subscription.deleteGuildsFromCache();
