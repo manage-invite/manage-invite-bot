@@ -23,6 +23,11 @@ module.exports = class extends Command {
             label: args.slice(5).join(" ")
         }
 
+        if(premiumArgs.guildID && premiumArgs.guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-z]/)){
+            let invite = await this.client.fetchInvite(guildID);
+            guildID = invite.channel.guild.id;
+        }
+
         let send = false;
         Object.keys(premiumArgs).forEach((key) => {
             if(!premiumArgs[key] && !send){
