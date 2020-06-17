@@ -426,7 +426,7 @@ module.exports = class DatabaseHandler {
                 if(guildsNotCreated.length > 0){
                     const values = guildsNotCreated.map((g) => {
                         return `('${g}', '${this.client.config.prefix}', '${this.client.config.enabledLanguages.find((l) => l.default).name}', false, false)`;
-                    }).join(',\n');
+                    }).join(', ');
                     // Insert guilds
                     const { rows: createdGuildsData } = await this.query(`
                         INSERT INTO guilds
@@ -467,7 +467,7 @@ module.exports = class DatabaseHandler {
                         if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.plugin_name === 'leave')){
                             pluginInsertValues.push(`( '${g}', 'join', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
-                    });
+                    }).join(', ');
                     const { rows: createdPlugins } = await this.query(`
                         INSERT INTO guild_plugins
                         (guild_id, plugin_name, plugin_data) VALUES
