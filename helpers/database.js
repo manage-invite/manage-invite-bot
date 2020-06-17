@@ -75,7 +75,7 @@ module.exports = class DatabaseHandler {
         this.client.shard.broadcastEval(`
             if(this.shard.ids[0] !== ${shardID}){
                 this.database.removeSubscriptionFromCache('${subID}');
-                this.database.fetchSubscription('${subID}');
+                this.database.fetchSubscription('${subID}', null, true);
             }
         `);
     }
@@ -167,7 +167,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    fetchSubscription(subID, rawData, fetchGuilds = true){
+    fetchSubscription(subID, rawData, deletGuildsFromCache = false){
         return new Promise(async resolve => {
             // If the sub is in the cache
             if (this.subscriptionCache.get(subID))
@@ -184,7 +184,7 @@ module.exports = class DatabaseHandler {
                 id: subID,
                 data: data[0]
             });
-            if(fetchGuilds) await sub.fetchGuilds();
+            if(deletGuildsFromCache) await sub.deletGuildsFromCache();
             resolve(sub);
         });
     }
