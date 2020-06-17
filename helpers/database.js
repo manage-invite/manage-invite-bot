@@ -228,7 +228,7 @@ module.exports = class DatabaseHandler {
                 if(membersNotCreated.length > 0){
                     const values = membersNotCreated.map((m) => {
                         return `('${m.userID}', '${m.guildID}', 0, 0, 0, 0, 0, 0, 0, 0, false)`;
-                    }).join(',\n');
+                    }).join(', ');
                     // Insert members
                     const { rows: createdMembersData } = await this.query(`
                         INSERT INTO members
