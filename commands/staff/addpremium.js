@@ -17,10 +17,10 @@ module.exports = class extends Command {
             guildID: args[0],
             daysCount: parseInt(args[1]),
             amount: parseInt(args[2]),
-            user: message.mentions.users.first() || await this.client.users.fetch(user).catch(() => {}),
-            pmtType: args[3],
-            guildsCount: parseInt(args[4]),
-            label: parseInt(args[5])
+            user: message.mentions.users.first() || await this.client.users.fetch(args[3]).catch(() => {}),
+            pmtType: args[4],
+            guildsCount: parseInt(args[5]),
+            label: parseInt(args[6])
         }
 
         Object.keys(premiumArgs).forEach((key) => {

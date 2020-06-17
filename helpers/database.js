@@ -511,12 +511,21 @@ module.exports = class DatabaseHandler {
                         ${pluginInsertValues.join(', ')}
                         RETURNING *;
                     `);
-                    plugins = [ ...plugins, ...createdPlugins.map((plugin) => {
-                        return {
-                            guild_id: plugin.guild_id,
-                            guild_plugins_agg: plugin
+                    guildsWithMissingPlugins.forEach((g) => {
+                        if(plugins.some((p) => p.guild_id === g)){
+                            createdPlugins.filter((p) => p.guild_id === g).forEach((p) => {
+                                plugins.find((p) => p.guild_id === g).guild_plugins_agg.push({
+                                    plugin_name: p.plugin_name,
+                                    plugin_data: p.plugin_data 
+                                });
+                            });
+                        } else {
+                            plugins.push({
+                                guild_id: g,
+                                guild_plugins_agg: createdPlugins.filter((p) => p.guild_id === g)
+                            });
                         }
-                    }) ].flat();
+                    });
                 }
                 /* Fetch guilds ranks - from the guild_ranks table */
                 const { rows: ranks } = await this.query(`
