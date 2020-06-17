@@ -23,9 +23,11 @@ module.exports = class extends Command {
             label: parseInt(args[6])
         }
 
+        let send = false;
         Object.keys(premiumArgs).forEach((key) => {
-            if(!premiumArgs[key]){
-                return message.channel.send(`${this.client.emojis.error} | Invalid args. ${Object.keys(premiumArgs).join(', ')}. Missing **${key}**.`);
+            if(!premiumArgs[key] && !send){
+                send = true;
+                return message.channel.send(`${this.client.config.emojis.error} | Invalid args. ${Object.keys(premiumArgs).join(', ')}. Missing **${key}**.`);
             }
         });
 
