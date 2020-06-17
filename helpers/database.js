@@ -215,7 +215,33 @@ module.exports = class DatabaseHandler {
         });
     }
 
-   /**
+    addBonusInvitesMembers(guildID, count){
+        return new Promise(async resolve => {
+            this.query(`
+                UPDATE members
+                SET invites_bonus = invites_bonus + ${count};
+
+                WHERE guild_id IN ('${guildID}')
+            `).then(() => {
+                resolve();
+            });
+        });
+    }
+
+    removeBonusInvitesMembers(guildID, count){
+        return new Promise(async resolve => {
+            this.query(`
+                UPDATE members
+                SET invites_bonus = invites_bonus - ${count};
+
+                WHERE guild_id IN ('${guildID}')
+            `).then(() => {
+                resolve();
+            });
+        });
+    }
+
+    /**
      * Fetch or create members
      */
     fetchMembers(memberIDs){

@@ -57,11 +57,7 @@ module.exports = class extends Command {
 
                 await conf.sendT("misc:PLEASE_WAIT", null, true, false, "loading");
                 await message.guild.fetch();
-                await this.client.functions.asyncForEach(message.guild.members.cache.array(), async (member) => {
-                    const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
-                    memberData.bonus -= parseInt(bonus);
-                    await memberData.updateInvites();
-                });
+                await this.client.database.removeBonusInvitesMembers(message.guild.id, bonus);
                 const embed = new Discord.MessageEmbed()
                 .setAuthor(message.translate("admin/removebonus:SUCCESS_TITLE"))
                 .setDescription(message.translate("admin/removebonus:SUCCESS_CONTENT_ALL", {
