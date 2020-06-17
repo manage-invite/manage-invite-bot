@@ -212,6 +212,7 @@ router.post("/ipn", async (req, res) => {
                 });
                 const guild = await req.client.database.fetchGuild(guildID);
                 await req.client.database.createSubPaymentLink(guild.subscriptions.find((sub) => sub.label === "Premium Monthly 1 Guild").id, paymentID);
+                await req.client.database.syncSubscriptionForOtherCaches(currentSubscription.id);
             });
         }
     });
