@@ -487,7 +487,7 @@ module.exports = class DatabaseHandler {
                     group by guild_id
                 `);
                 /* If there are guilds with missing plugins */
-                const guildsWithMissingPlugins = guildIDs.filter((g) => {
+                const guildsWithMissingPlugins = guildsToFetch.filter((g) => {
                     return !plugins.some((p) => p.guild_id === g) ||
                     !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'joinDM') ||
                     !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'leave') ||
@@ -506,7 +506,6 @@ module.exports = class DatabaseHandler {
                             pluginInsertValues.push(`( '${g}', 'join', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
                     });
-                    console.log(guildsWithMissingPlugins)
                     const { rows: createdPlugins } = await this.query(`
                         INSERT INTO guild_plugins
                         (guild_id, plugin_name, plugin_data) VALUES
