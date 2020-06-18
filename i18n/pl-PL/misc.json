@@ -1,6 +1,6 @@
 {
   "BOT_MISSING_PERMISSIONS": "__**Missing permissions**__\n\nI need the following permissions for this command to work properly: {{permissions}}",
-  "CANNOT_SEND": "I can't send messages in the channel.",
+  "CANNOT_SEND": "Ja nie moge wysłać wiadomości w tym kanale.",
   "COMMAND_DISABLED": "This command is currently disabled!",
   "JOIN_OAUTH2": "{{user}} joined the server using OAuth flow.",
   "JOIN_PERMISSIONS": "I need the manage server permissions to know who is the inviter of {{user}}.",
@@ -13,6 +13,6 @@
   "PREFIX": "Hello! Please type **{{prefix}}help** to see all commands! You can add me to your server with **{{prefix}}add**.",
   "USER_MISSING_PERMISSIONS": "This command requires the permission level: `{{level}}`!",
   "NEED_UPGRADE": "{{emote}} | Hello, **{{username}}**! Your server need to be upgraded to use **ManageInvite**! We have managed to reduce latency to create a fast and powerful bot for servers that want a 100% reliable bot. To get more informations, you can join the support server ( {{discord}} ) or connect to the dashboard **<https://dash.manage-invite.xyz>**!",
-  "PLEASE_WAIT": "{{loading}} | Please wait...",
+  "PLEASE_WAIT": "Proszę poczekaj",
   "WRONG_CHANNEL": "Commands are not allowed in this channel, please use {{channel}} instead."
 }
