@@ -79,7 +79,7 @@ module.exports = class {
             });
         }
 
-        if(data.guild.cmdChannel && (message.channel.id !== data.guild.cmdChannel)){
+        if(data.guild.cmdChannel && (message.channel.id !== data.guild.cmdChannel) && permLevel < 1){
             message.delete();
             return message.author.send(message.translate("misc:WRONG_CHANNEL", {
                 channel: `<#${data.guild.cmdChannel}>`
