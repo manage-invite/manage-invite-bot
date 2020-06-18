@@ -488,7 +488,10 @@ module.exports = class DatabaseHandler {
                 `);
                 /* If there are guilds with missing plugins */
                 const guildsWithMissingPlugins = guildIDs.filter((g) => {
-                    return !plugins.some((p) => p.guild_id === g) || plugins.find((p) => p.guild_id === g).guild_plugins_agg.length < 3
+                    return !plugins.some((p) => p.guild_id === g) ||
+                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'joinDM') ||
+                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'leave') ||
+                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'join')
                 });
                 if(guildsWithMissingPlugins.length > 0){
                     const pluginInsertValues = [];
@@ -496,10 +499,10 @@ module.exports = class DatabaseHandler {
                         if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.some((p) => p.plugin_name === 'joinDM'))){
                             pluginInsertValues.push(`( '${g}', 'joinDM', '{ "enabled": false, "message": null }' )`);
                         }
-                        if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.some((p) => p.plugin_name === 'join'))){
+                        if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.some((p) => p.plugin_name === 'leave'))){
                             pluginInsertValues.push(`( '${g}', 'leave', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
-                        if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.some((p) => p.plugin_name === 'leave'))){
+                        if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.some((p) => p.plugin_name === 'join'))){
                             pluginInsertValues.push(`( '${g}', 'join', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
                     });
