@@ -4,13 +4,13 @@
     "BOT_TITLE": "Robot",
     "JOINED_AT_TITLE": "Dołączył",
     "JOIN_WAY_TITLE": "Dołącz z powodu",
-    "JOIN_WAY_OAUTH": "Oauth invitation (via discordapp.com).",
-    "JOIN_WAY_VANITY": "Customized invite configured by an administrator.",
-    "JOIN_WAY_UNKNOWN": "I can't figure out how {{username}} joined the server.",
+    "JOIN_WAY_OAUTH": "Zaproszenie Oauth przez discordapp.com.",
+    "JOIN_WAY_VANITY": "Zaproszenie niestandardowe skonfigurowane przez administratora.",
+    "JOIN_WAY_UNKNOWN": "Nie wiem, jak dołączyła do serwera.",
     "INVITES_TITLE": "Zaproszenia",
     "JOIN_ORDER_TITLE": "Dołącz do zamówienia",
     "INVITED_TITLE": "Zaproszony",
-    "INVITED_PREMIUM": ":crown: | This feature (view invited users) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !",
-    "NO_INVITED_USERS": "No invited users",
-    "INVITED_USERS_MORE": "{{list}}, and more..."
+    "INVITED_PREMIUM": "Ta funkcja (wyświetl zaproszonych użytkowników) jest dostępna tylko dla serwerów premium. Zdobądź premię tutaj <https://docs.manage-invite.xyz/configuration/premium>!",
+    "NO_INVITED_USERS": "Brak zaproszonych użytkowników",
+    "INVITED_USERS_MORE": "i wiele innych..."
 }
