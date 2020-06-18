@@ -53,10 +53,17 @@ module.exports = class extends Command {
             })
             await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
                 if(collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
-                collected.first().delete();
+                //collected.first().delete();
 
                 await conf.sendT("misc:PLEASE_WAIT", null, true, false, "loading");
                 await message.guild.fetch();
+                const members = message.guild.members.cache.map((m) => {
+                    return {
+                        userID: m.id,
+                        guildID: message.guild.id
+                    }
+                });
+                await this.client.database.fetchMembers(members);
                 await this.client.database.addBonusInvitesMembers(message.guild.id, bonus);
                 const embed = new Discord.MessageEmbed()
                 .setAuthor(message.translate("admin/addbonus:SUCCESS_TITLE"))

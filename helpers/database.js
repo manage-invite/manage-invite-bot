@@ -219,10 +219,11 @@ module.exports = class DatabaseHandler {
         return new Promise(async resolve => {
             this.query(`
                 UPDATE members
-                SET invites_bonus = invites_bonus + ${count};
-
-                WHERE guild_id IN ('${guildID}')
+                SET invites_bonus = invites_bonus + ${count}
+                WHERE guild_id IN ('${guildID}');
             `).then(() => {
+                this.removeAllMembersFromCache(guildID);
+                this.removeAllMembersFromOtherCaches(guildID);
                 resolve();
             });
         });
@@ -232,10 +233,11 @@ module.exports = class DatabaseHandler {
         return new Promise(async resolve => {
             this.query(`
                 UPDATE members
-                SET invites_bonus = invites_bonus - ${count};
-
-                WHERE guild_id IN ('${guildID}')
+                SET invites_bonus = invites_bonus - ${count}
+                WHERE guild_id IN ('${guildID}');
             `).then(() => {
+                this.removeAllMembersFromCache(guildID);
+                this.removeAllMembersFromOtherCaches(guildID);
                 resolve();
             });
         });

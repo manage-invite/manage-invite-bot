@@ -57,6 +57,13 @@ module.exports = class extends Command {
 
                 await conf.sendT("misc:PLEASE_WAIT", null, true, false, "loading");
                 await message.guild.fetch();
+                const members = message.guild.members.cache.map((m) => {
+                    return {
+                        userID: m.id,
+                        guildID: message.guild.id
+                    }
+                });
+                await this.client.database.fetchMembers(members);
                 await this.client.database.removeBonusInvitesMembers(message.guild.id, bonus);
                 const embed = new Discord.MessageEmbed()
                 .setAuthor(message.translate("admin/removebonus:SUCCESS_TITLE"))
