@@ -162,7 +162,7 @@ router.post("/ipn", async (req, res) => {
                     }
                     await req.client.database.createSubPaymentLink(currentSubscription.id, paymentID);
                     await currentSubscription.addDays(30);
-                    await subscription.deleteGuildsFromCache();
+                    await currentSubscription.deleteGuildsFromCache();
                     await req.client.database.syncSubscriptionForOtherCaches(currentSubscription.id);
                 }
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()
