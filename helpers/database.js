@@ -184,7 +184,7 @@ module.exports = class DatabaseHandler {
                 id: subID,
                 data: data[0]
             });
-            if(deletGuildsFromCache) await sub.deletGuildsFromCache();
+            if(deletGuildsFromCache) await sub.deleteGuildsFromCache();
             resolve(sub);
         });
     }
