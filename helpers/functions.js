@@ -87,7 +87,7 @@ const getNextRank = (inviteCount, ranks, guild) => {
 const assignRanks = async (member, inviteCount, ranks, keepRanks, stackedRanks) => {
     if(member.user.bot) return;
     let assigned = new Array();
-    asyncForEach((ranks.sort((a, b) => b.inviteCount - a.inviteCount)), async (rank) => {
+    await asyncForEach((ranks.sort((a, b) => b.inviteCount - a.inviteCount)), async (rank) => {
         // If the guild doesn't contain the rank anymore
         if(!member.guild.roles.cache.has(rank.roleID)) return;
         // If the bot doesn't have permissions to assign role to this member
