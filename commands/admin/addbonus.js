@@ -57,11 +57,14 @@ module.exports = class extends Command {
 
                 await conf.sendT("misc:PLEASE_WAIT", null, true, false, "loading");
                 await message.guild.fetch();
-                await this.client.functions.asyncForEach(message.guild.members.cache.array(), async (member) => {
-                    const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
-                    memberData.bonus += parseInt(bonus);
-                    await memberData.updateInvites();
+                const members = message.guild.members.cache.map((m) => {
+                    return {
+                        userID: m.id,
+                        guildID: message.guild.id
+                    }
                 });
+                await this.client.database.fetchMembers(members);
+                await this.client.database.addBonusInvitesMembers(message.guild.id, bonus);
                 const embed = new Discord.MessageEmbed()
                 .setAuthor(message.translate("admin/addbonus:SUCCESS_TITLE"))
                 .setDescription(message.translate("admin/addbonus:SUCCESS_CONTENT_ALL", {
