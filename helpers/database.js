@@ -496,16 +496,17 @@ module.exports = class DatabaseHandler {
                 if(guildsWithMissingPlugins.length > 0){
                     const pluginInsertValues = [];
                     guildsWithMissingPlugins.forEach((g) => {
-                        if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.some((p) => p.plugin_name === 'joinDM'))){
+                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'joinDM')){
                             pluginInsertValues.push(`( '${g}', 'joinDM', '{ "enabled": false, "message": null }' )`);
                         }
-                        if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.some((p) => p.plugin_name === 'leave'))){
+                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'leave')){
                             pluginInsertValues.push(`( '${g}', 'leave', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
-                        if(!plugins.some((p) => p.guild_id === g && p.guild_plugins_agg.some((p) => p.plugin_name === 'join'))){
+                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'join')){
                             pluginInsertValues.push(`( '${g}', 'join', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
                     });
+                    console.log(guildsWithMissingPlugins)
                     const { rows: createdPlugins } = await this.query(`
                         INSERT INTO guild_plugins
                         (guild_id, plugin_name, plugin_data) VALUES
