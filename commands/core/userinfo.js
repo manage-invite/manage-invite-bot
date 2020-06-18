@@ -40,7 +40,7 @@ module.exports = class extends Command {
                 user: user.username
             });
             if(joinData.type === "normal" && joinData.inviteData){
-                const inviter = await this.client.users.fetch(joinData.inviteData.inviter);
+                const inviter = await this.client.users.fetch(joinData.inviteData.inviter).catch(() => {});
                 joinWay = inviter.tag;
             } else if(joinData.type === "vanity"){
                 joinWay = message.translate("core/userinfo:JOIN_WAY_VANITY");
@@ -76,7 +76,7 @@ module.exports = class extends Command {
             }
             const users = [];
             await this.client.functions.asyncForEach(memberData.invitedUsers, async (user) => {
-                const fetchedUser = await message.guild.members.cache.get(user);
+                const fetchedUser = await message.guild.members.fetch(user);
                 if(fetchedUser) users.push("`"+fetchedUser.user.tag+"`");
             });
             embed.addField(message.translate("core/userinfo:INVITED_TITLE"),
