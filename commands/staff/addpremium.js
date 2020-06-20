@@ -30,7 +30,7 @@ module.exports = class extends Command {
 
         let send = false;
         Object.keys(premiumArgs).forEach((key) => {
-            if(!premiumArgs[key] && !send){
+            if(premiumArgs[key] === undefined && !send){
                 send = true;
                 return message.channel.send(`${this.client.config.emojis.error} | Invalid args. ${Object.keys(premiumArgs).join(', ')}. Missing **${key}**.`);
             }
