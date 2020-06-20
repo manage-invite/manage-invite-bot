@@ -42,6 +42,7 @@ module.exports = class extends Command {
         const createdAt = new Date();
 
         const paymentID = await this.client.database.createPayment({
+            modDiscordID: message.author.id,
             payerDiscordID: user.id,
             payerDiscordUsername: user.tag,
             modID: message.author.id,
