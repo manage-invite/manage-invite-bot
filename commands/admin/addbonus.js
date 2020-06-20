@@ -38,7 +38,7 @@ module.exports = class extends Command {
 
             const embed = new Discord.MessageEmbed()
             .setAuthor(message.translate("admin/addbonus:SUCCESS_TITLE"))
-            .setDescription(message.translate("admin/addbonus:SUCCESS_CONTENT", {
+            .setDescription(message.translate("admin/addbonus:SUCCESS_CONTENT_MEMBER", {
                 prefix: data.guild.prefix,
                 usertag: member.user.tag,
                 username: member.user.username
