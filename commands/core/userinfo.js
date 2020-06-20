@@ -76,7 +76,7 @@ module.exports = class extends Command {
             }
             const users = [];
             await this.client.functions.asyncForEach(memberData.invitedUsers, async (user) => {
-                const fetchedUser = await message.guild.members.fetch(user);
+                const fetchedUser = message.guild.member(user);
                 if(fetchedUser) users.push("`"+fetchedUser.user.tag+"`");
             });
             embed.addField(message.translate("core/userinfo:INVITED_TITLE"),
