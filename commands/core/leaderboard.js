@@ -93,7 +93,11 @@ module.exports  = class extends Command {
         .setDisabledNavigationEmojis(['delete'])
         .setColor(data.color)
         .setFooter(data.footer)
-        .setClientAssets({ prompt: message.translate("core/leaderboard:PROMPT") })
+        .setClientAssets({
+            prompt: message.translate("core/leaderboard:PROMPT", {
+                skipInterpolation: true
+            })
+        })
         .setTitle(message.translate("core/leaderboard:TITLE"));
 
         pagination.build();
