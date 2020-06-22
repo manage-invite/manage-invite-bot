@@ -9,7 +9,7 @@
     "JOIN_WAY_UNKNOWN": "Tôi không thể tìm ra cách {{username}} tham gia server.",
     "INVITES_TITLE": "Invites",
     "JOIN_ORDER_TITLE": "Join Order",
-    "INVITED_TITLE": "Invited",
+    "INVITED_TITLE": "Invited users (on the server)",
     "INVITED_PREMIUM": ":crown: | Tính năng này (xem người dùng được mời) chỉ có sẵn cho premium servers. Mua premium tại đây: **<https://docs.manage-invite.xyz/configuration/premium>**!",
     "NO_INVITED_USERS": "Không có",
     "INVITED_USERS_MORE": "{{list}}, và nhiều hơn nữa..."
