@@ -68,17 +68,17 @@ module.exports = class extends Command {
         }
 
         if(memberData.invitedUsers){
-            let nobody = memberData.invitedUsers.length === 0;
-            let andMore = false;
-            if(memberData.invitedUsers.length > 20){
-                andMore = true;
-                memberData.invitedUsers.length = 19;
-            }
             const users = [];
             await this.client.functions.asyncForEach(memberData.invitedUsers, async (user) => {
                 const fetchedUser = message.guild.member(user);
                 if(fetchedUser) users.push("`"+fetchedUser.user.tag+"`");
             });
+            let nobody = users.length === 0;
+            let andMore = false;
+            if(users.length > 20){
+                andMore = true;
+                users.length = 19;
+            }
             embed.addField(message.translate("core/userinfo:INVITED_TITLE"),
                 nobody ? message.translate("core/userinfo:NO_INVITED_USERS") :
                 (andMore ? message.translate("core/userinfo:INVITED_USERS_MORE", {
