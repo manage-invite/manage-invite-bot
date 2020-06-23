@@ -1,7 +1,9 @@
 {
-    "MISSING_AMOUNT": "Du skal skrive antallet af bonusinvitationer, du vil tilføje. (Syntaks: {{prefix}}addbonus antal @medlem)",
-    "INVALID_AMOUNT": "Du skal skrive et __**gyldigt**__ antal af bonusinvitationer som du vil tilføje. (Syntaks: {{prefix}}addbonus antal @medlem)",
-    "MISSING_MEMBER": "Du skal nævne det medlem, som du vil tilføje bonusinvitationerne til. (Syntaks: {{prefix}}addbonus antal @medlem)",
+    "MISSING_AMOUNT": "You must write the number of bonus invites you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
+    "INVALID_AMOUNT": "You must write a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
+    "MISSING_TARGET": "You must mention the member to whom you want to add the bonus invites (or `all` if you want to add the invites to everyone). (Syntax: {{prefix}}addbonus number @member/all)",
+    "CONFIRMATION_ALL": ":warning: Are you sure you want to add **{{count}}** bonus invites to everyone? This can take a long time (depending on the size of your server)! Send `-confirm` to continue and `cancel` to cancel.",
     "SUCCESS_TITLE": "📥 Bonusinvitationer tilføjet",
-    "SUCCESS_CONTENT": "Skriv `{{prefix}}invites {{usertag}}` til og det nye antal af invitationer af **{{username}}**!"
+    "SUCCESS_CONTENT_ALL": "Bonus invites added for everyone!",
+    "SUCCESS_CONTENT_MEMBER": "Write `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
 }
