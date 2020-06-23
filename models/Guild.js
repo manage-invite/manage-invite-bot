@@ -78,6 +78,10 @@ module.exports = class Guild {
         return this.subscriptions.length > 0;
     }
 
+    get premiumExpiresAt(){
+        return this.subscriptions.sort((a, b) => b.expiresAt - a.expiresAt)[0].expiresAt;
+    }
+
     // Change the guild cmd channel
     async setCmdChannel(newValue){
         this.cmdChannel = newValue;
