@@ -9,7 +9,7 @@
     "JOIN_WAY_UNKNOWN": "Nem tudom kitalálni, hogy {{username}} csatlakozott-e a szerverhez.",
     "INVITES_TITLE": "Meghívások",
     "JOIN_ORDER_TITLE": "Csatlakozz a rendeléshez",
-    "INVITED_TITLE": "Invited users (on the server)",
+    "INVITED_TITLE": "Meghívott felhasználók (a szerveren)",
     "INVITED_PREMIUM": ":crown: | Ez a szolgáltatás (meghívott felhasználók megtekintése) csak prémium szervereken érhető el. Itt kaphatsz prémiumot: **<https://docs.manage-invite.xyz/configuration/premium>** !",
     "NO_INVITED_USERS": "Nincs meghívott felhasználó",
     "INVITED_USERS_MORE": "{{list}}, és több..."
