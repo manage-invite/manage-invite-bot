@@ -2,10 +2,10 @@
     "MISSING_COUNT": "Você deve escrever a quantidade de convites necessários para obter o rank. (Sintaxe: {{prefix}}addrank quantidade @cargo)",
     "INCORRECT_COUNT": " Você deve escrever uma quantidade __**válida**__ de invites necessários para obter o rank. (Sintaxe: {{prefix}}addrank quantidade @cargo)",
     "ALREADY_EXIST": "Já existe um cargo definido para **{{count}} convites (`{{roleName}}`)! Remova-o com `{{prefix}}removerank {{roleID}}` e tente novamente!",
-    "MISSING_ROLE": "You must mention the role you want to be added when the invite count is reached! (Syntax: {{prefix}}addrank number @role)",
-    "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
-    "MISSING_PERM": "My role is not high enough to add the role `{{roleName}}` to the members! Please put my role up and try again!",
-    "TITLE": "🎯 New role added",
-    "CONTENT": "When a member will reach **{{count}}** invites, they will obtain `{{roleName}}`!",
-    "MANAGED": "Managed roles can't be defined as a rank reward."
+    "MISSING_ROLE": "Você deve mencionar o cargo ao qual você deseja adicionar quando a quantidade de convites é alcançada! (Sintaxe: {{prefix}}addrank quantidade @cargo)",
+    "ALREADY_USED": "Esse cargo já está sendo usado para a marca de **{{count}}** convites! Remova-o com`{{prefix}}removerank {{roleID}}` e tente novamente!",
+    "MISSING_PERM": "Meu cargo não é alto o suficiente para adicionar o cargo `{{roleName}} aos membros! Coloque meu cargo acima e tente novamente!",
+    "TITLE": "🎯 Cargo adicionado",
+    "CONTENT": "Quando um membro alcançar a marca de **{{count}}** convites, ele irá obter o cargo `{{roleName}}`!",
+    "MANAGED": "Cargos gerenciados não podem ser definidos como uma recompensa de rank."
 }
