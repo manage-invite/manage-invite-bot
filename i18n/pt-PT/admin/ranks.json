@@ -3,5 +3,5 @@
     "RANK": "{{rank}} (**{{invites}}** convites)",
     "NO_RANK_TITLE": "🎯 Sem cargo",
     "NO_RANK_CONTENT": "Para adicionar um cargo (adicionado quando um membro atinge um certo número de convites), utilize `{{prefix}}addrank quantidade @cargo`!",
-    "VIEW_CONF": "View the configuration on the dashboard"
+    "VIEW_CONF": "Veja as configurações no painel"
 }
