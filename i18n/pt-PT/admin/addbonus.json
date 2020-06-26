@@ -1,5 +1,5 @@
 {
-    "MISSING_AMOUNT": "Você deve escrever a quantidade de invites que deseja adicionar. (Sintaxe: {{prefix}}addbonus quantidade @alguém/all)",
+    "MISSING_AMOUNT": "Você deve escrever a quantidade de convites que deseja adicionar. (Sintaxe: {{prefix}}addbonus quantidade @alguém/all)",
     "INVALID_AMOUNT": "Você deve escrever uma quantidade __**válida**__ de convites que deseja adicionar. (Sintaxe: {{prefix}}addbonus quantidade @alguém/all)",
     "MISSING_TARGET": "Você deve mencionar o membro ao qual você deseja adicionar os convites (ou `all` se você deseja adicionar para todos). (Sintaxe: {{prefix}}addbonus quantidade @alguém/all)",
     "CONFIRMATION_ALL": ":warning: Você tem certeza que deseja adicionar **{{count}}** convites para todos? Isso pode demorar um pouco (dependendo do tamanho do seu servidor)! Envie `-confirm` para continuar e `cancel` para cancelar.",
