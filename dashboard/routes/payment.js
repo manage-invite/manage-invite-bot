@@ -159,6 +159,7 @@ router.post("/ipn", async (req, res) => {
                             subLabel: "Premium Monthly 1 Guild",
                             guildsCount: 1
                         }, false);
+                        await req.client.database.createGuildSubLink(guildID, currentSubscription.id);
                     }
                     await req.client.database.createSubPaymentLink(currentSubscription.id, paymentID);
                     await currentSubscription.addDays(30);
