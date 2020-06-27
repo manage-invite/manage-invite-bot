@@ -36,7 +36,7 @@ module.exports = class extends Command {
         }
 
         const description = guildDB.premium
-        ? `This server is premium. Subscription will expire on ${this.client.functions.formatDate(new Date(guildDB.subscriptions[0].expiresAt), "MMM DD YYYY", message.guild.data.language)}.`
+        ? `This server is premium. Subscription will expire on ${this.client.functions.formatDate(new Date(guildDB.subscriptions.sort((a, b) => b.expiresAt - a.expiresAt)[0].expiresAt), "MMM DD YYYY", message.guild.data.language)}.`
         : `This server is not premium.`
 
         const embed = new Discord.MessageEmbed()
