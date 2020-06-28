@@ -1,7 +1,9 @@
 {
-    "MISSING_AMOUNT": "Írnod kell egy eltávolítandó bónusz meghívás számát. (Szintaxis: {{prefix}}removebonus szám @felhasználó)",
-    "INVALID_AMOUNT": "Írnod kell egy __**érvényes**__ számú bónusz meghívót, amelyeket eltávolítani szeretnél. (Szintaxis: {{prefix}}removebonus szám @felhasználó)",
-    "MISSING_MEMBER": "Meg kell említened azt a tagot, akitől el akarod távolítani a bónusz meghívót. (Szintaxis: {{prefix}}removebonus szám @felhasználó)",
+    "MISSING_AMOUNT": "Meg kell adnod az elvenni kívánt bónusz meghívások számát. (Syntax: {{prefix}}removebonus szám @felhasználó/all)",
+    "INVALID_AMOUNT": "Írj be egy __**érvényes**__ számú bónusz meghívást, amelyet el szeretnél venni. (Syntax: {{prefix}}addbonus szám @felhasználó/all)",
+    "MISSING_TARGET": "Meg kell említened egy tagot, akitől el szeretnél venni bónusz meghívókat (vagy `all`, ha mindenkitől el szeretnéd venni a meghívókat). (Syntax: {{prefix}}removebonus szám @felhasználó/all)",
+    "CONFIRMATION_ALL": ":warning: Biztos vagy benne, hogy **{{count}}** bónuszmeghívót el szeretnél venni mindenkitől? Ez hosszú időt vehet igénybe (a szerver méretétől függően)! Írd be a `-confirm` szót az elfogadáshoz, vagy a `cancel` szót az elutasításhoz.",
     "SUCCESS_TITLE": "📥 Eltávolított bónusz meghívások",
-    "SUCCESS_CONTENT": "Íird: `{{prefix}}invites {{usertag}}` hogy megtekintsd az új meghívások számát **{{username}}**!"
+    "SUCCESS_CONTENT_ALL": "A Bónusz meghívókat mindenkitől elvéve!",
+    "SUCCESS_CONTENT_MEMBER": "Írd be `{{prefix}}invites {{usertag}}` hogy megtekintsd az új meghívások számát **{{username}}** felhasználónak!"
 }

@@ -28,6 +28,7 @@
   "PREMIUM_RANK": "Prémium Rang",
   "GET_PREMIUM": "Prémium verzió használata",
   "WAITING_VERIF": "Várakozás az ellenőrzésre...",
+  "WAITING_VERIF_TOOLTIP": "A PayPal általában 5 percet vesz igénybe, hogy elküldje nekünk a fizetési adatokat. Ha fizetését követően 15 percen bellül nem sikerült igazolni, kérlek, csatlakozz a support szerverhez.",
   "WHY_TITLE": "Miért nem tudom használni a ManageInvite szolgáltatást a szerveren?",
   "WHY_CONTENT": "Managelnvite elérte a 10.000 szervert pár napja. Ahogy tudjátok, a bot meghivasa nagy probléma és rendszeresen alul marad a karbantartás. Látjuk, hogy sok szerver nem talál meghívót, a bot folyamatosan elérhető és ezért változtattuk meg a Managelnvite hozzáférését. Szeretnénk ha a bot mindenkinek elérhetú lenne: ezert döntottünk úgy, hogy fejlesztjük az infrastrukturát 2 dollárért egy hónapban, amelynek nincs korlátjai és mindíg elérhető, zavarás nélkül. Hezitálsz? Kérhetsz próbaidőt. Egy ideig a szerver új verziójához a szerver támogatásáért.",
   "WHY_LINKS": "További részletekért kérj próbaverziót a support szerveren!",

@@ -1,7 +1,9 @@
 {
-    "MISSING_AMOUNT": "Meg kell adni egy hozzáadni kívánt bónusz meghívások számát. (Syntax: {{prefix}}addbonus szám @member)",
-    "INVALID_AMOUNT": "Írnia kell egy __**érvényes**__ számú bónusz meghívót, amelyet hozzá szeretnél adni. (Syntax: {{prefix}}addbonus szám @member)",
-    "MISSING_MEMBER": "Meg kell említeni azt a tagot, akinek szeretnél adni a bónusz meghívót. (Szintaxis: {{prefix}}addbonus szám @member)",
+    "MISSING_AMOUNT": "Meg kell adnod a hozzáadni kívánt bónusz meghívások számát. (Syntax: {{prefix}}addbonus szám @felhasználó/all)",
+    "INVALID_AMOUNT": "Írj be egy __**érvényes**__ számú bónusz meghívást, amelyet oda szeretnél adni. (Syntax: {{prefix}}addbonus szám @felhasználó/all)",
+    "MISSING_TARGET": "Meg kell említened egy tagot, akinek szeretnél adni a bónusz meghívókat (vagy `all`, ha mindenkinek hozzá szeretnéd adni a meghívókat). (Syntax: {{prefix}}addbonus szám @felhasználó/all)",
+    "CONFIRMATION_ALL": ":warning: Biztos vagy benne, hogy **{{count}}** bónuszmeghívót szeretnél adni mindenkinek? Ez hosszú időt vehet igénybe (a szerver méretétől függően)! Írd be a `-confirm` szót az elfogadáshoz, vagy a `cancel` szót az elutasításhoz.",
     "SUCCESS_TITLE": "📥 Bonusz Meghívás Hozzáadva",
-    "SUCCESS_CONTENT": "Írd be: `{{prefix}}invites {{usertag}}`, hogy lássd a **{{username}}** új meghívóinak számát!"
+    "SUCCESS_CONTENT_ALL": "A Bónusz meghívókat mindenki megkapta!",
+    "SUCCESS_CONTENT_MEMBER": "Írd be `{{prefix}}invites {{usertag}}` hogy megtekintsd az új meghívások számát **{{username}}** felhasználónak!"
 }

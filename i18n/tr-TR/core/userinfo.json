@@ -9,7 +9,7 @@
     "JOIN_WAY_UNKNOWN": "{{username}} kullanıcısının sunucuya nasıl katıldığını anlayamıyorum.",
     "INVITES_TITLE": "Davetler",
     "JOIN_ORDER_TITLE": "Giriş Sırası",
-    "INVITED_TITLE": "Davet etti",
+    "INVITED_TITLE": "Invited users (on the server)",
     "INVITED_PREMIUM": ":crown: | Bu özellik (davet edilen kullanıcıları görüntüle) sadece premium sunuculara özeldir. Premium'u edinin: **<https://docs.manage-invite.xyz/configuration/premium>**!",
     "NO_INVITED_USERS": "Davetli kullanıcı yok",
     "INVITED_USERS_MORE": "{{list}} ve daha fazlası..."
