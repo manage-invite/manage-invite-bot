@@ -7,6 +7,10 @@ const util = require("util"),
 fs = require("fs"),
 readdir = util.promisify(fs.readdir);
 
+const config = require('./config.js');
+const Sentry = require('@sentry/node');
+Sentry.init({ dsn: config.sentryDSN });
+
 // Load ManageInvite class
 const ManageInvite = require("./structures/Client"),
 client = new ManageInvite({
