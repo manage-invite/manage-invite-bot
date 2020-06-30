@@ -2,7 +2,7 @@
     "DISABLE": "Giriş mesajlarını kapatmak için `{{prefix}}setjoin` yazınız",
     "INSTRUCTIONS_1": "__**Daha fazla bilgi**__\n```\n{user}: Sunucunuza yeni katılan üyeyi etiketler.\n{user.name}: Sunucunuza yeni katılan üyenin ismi.\n{user.tag}: Sunucunuza yeni gelen üyenin etiketi.\n{user.createdat}: Üyenin hesap tarihi.\n{user.id}: Üyenin kimlik numarası.\n\n{guild}: Sunucu ismi.\n{guild.count}: Sunucunuzda bulunan üye sayısı.\n\n{inviter} : Davet edenin etiketlenmesi.\n{inviter.name} : Davet edenin ismi.\n{inviter.tag} : Davet edenin etiketi.\n{inviter.invites} : Davet edenin davet sayısı.\n{inviter.id} : Davet edenin kimlik numarası.\n\n{invite.code} : Kullanılan davet kodu.\n{invite.url} : Kullanılan davet linki.\n{invite.uses} : Kullanılan davetin kullanım sayısı.\n```\nİptal etmek için `cancel` yazın. {{string}}\n\n\n:pencil: **| Şimdi giriş mesajını yazın... :pencil2:**",
     "INSTRUCTIONS_2": ":scroll: **| Şimdi giriş kanalının ismini yazın ya da giriş kanalını etiketleyin... :pencil2:**",
-    "SUCCESS": "**Giriş Mesajı Kurulumu Yapıldı**",
+    "TITLE": "**Done The join Msg Has Been Setup**",
     "TEST": "Yeni mesajı görmek için `{{prefix}}testjoin` komutunu kullanın.",
     "CHANNEL_NOT_FOUND": "`{{channel}}` isimli bir kanal bulunamadı"
 }
