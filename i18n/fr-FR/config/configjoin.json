@@ -2,7 +2,7 @@
     "DISABLE": "Tapez `{{prefix}}setjoin` pour désactiver les messages d'arrivées",
     "INSTRUCTIONS_1": "__**Plus d'informations**__\n```\n{user} : La mention du membre qui vient de rejoindre votre serveur.\n{user.name} : Le nom du membre qui vient de rejoindre votre serveur.\n{user.tag} : Le tag du membre qui vient de rejoindre votre serveur.\n{user.createdat} : L'âge du compte du membre.\n{user.id} : L'ID du compte du membre.\n\n{guild} : Le nom de votre serveur.\n{guild.count} : Le nombre de membres que votre serveur a.\n\n{inviter} : La mention de l'inviteur.\n{inviter.name} : Le nom de l'inviteur.\n{inviter.tag} : Le tag de l'inviteur.\n{inviter.invites} : Le nombre d'invitations de l'inviteur.\n{inviter.id} : L'ID de l'inviteur.\n\n{invite.code} : Le code de l'invitation utilisée.\n{invite.url} : L'URL de l'invitation utilisée.\n{invite.uses} : Le nombre d'utilisations de l'invitation utilisée.\n```\nTapez `cancel` pour annuler. {{string}}\n\n\n:pencil: **| Maintenant envoyez le message d'arrivée... :pencil2:**",
     "INSTRUCTIONS_2": ":scroll: **| Maintenant envoyez le nom du salon des arrivées ou mentionnez-le... :pencil2:**",
-    "SUCCESS": "**Done Le Message d'Arrivée A Été Configuré**\n",
+    "TITLE": "**Done The join Msg Has Been Setup**",
     "TEST": "Utilisez `{{prefix}}testjoin` pour tester le nouveau message.",
     "CHANNEL_NOT_FOUND": "Aucun salon trouvé pour `{{channel}}`"
 }
