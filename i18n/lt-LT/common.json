@@ -1,0 +1,22 @@
+{
+  "CANCELLED": "Cancelled.",
+  "CHANNEL": "Channel",
+  "CONFIGURATION": "Configuration",
+  "DEFINED": "Defined",
+  "DOCUMENTATION": "Documentation",
+  "HELP": "Help",
+  "INVITES": "Invites",
+  "LANGUAGE": "Language",
+  "MANAGE": "Manage",
+  "MEMBERS": "Members",
+  "MESSAGE": "Message",
+  "NO": "No",
+  "NOT_DEFINED": "Not defined",
+  "PREFIX": "Prefix",
+  "ROLE": "Role",
+  "SUPPORT_SERVER": "Support server",
+  "TEST_IT": "Test it:",
+  "UPDATE": "Update",
+  "YES": "Yes",
+  "CANCEL": "Cancel"
+}
