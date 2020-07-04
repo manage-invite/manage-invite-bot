@@ -288,19 +288,13 @@ module.exports = class DatabaseHandler {
                 /* Fetch join data - from the member_join_data table */
                 const { rows: membersJoinData } = await this.query(`
                     SELECT user_id, guild_id,
-                        json_agg(obj_mjd) as member_join_data_agg
-                    FROM(
-                        select user_id,
-                        guild_id,
-                        json_build_object(
-                            'join_type', join_type,
-                            'join_inviter_id', join_inviter_id,
-                            'join_invite_data', join_invite_data
-                        ) as obj_mjd
-                        from member_join_data
-                    ) gp
+                    json_build_object(
+                        'join_type', join_type,
+                        'join_inviter_id', join_inviter_id,
+                        'join_invite_data', join_invite_data
+                    ) as obj_mjd
+                    from member_join_data
                     where user_id || guild_id IN (${membersArray})
-                    group by user_id, guild_id
                 `);
                 /* Fetch invited users - from the member_invited_users table */
                 const { rows: membersInvitedUsers } = await this.query(`
@@ -338,7 +332,7 @@ module.exports = class DatabaseHandler {
                         userID: memberID.userID,
                         guildID: memberID.guildID,
                         data: membersData.find((memberDataObj) => `${memberDataObj.user_id}${memberDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`),
-                        joinData: membersJoinData.find((memberJoinDataObj) => `${memberJoinDataObj.user_id}${memberJoinDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.member_join_data_agg || null,
+                        joinData: membersJoinData.find((memberJoinDataObj) => `${memberJoinDataObj.user_id}${memberJoinDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.obj_mjd || null,
                         invitedUsers: membersInvitedUsers.find((memberInvitedUserObj) => `${memberInvitedUserObj.user_id}${memberInvitedUserObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.member_invited_users_agg || [],
                         invitedUsersLeft: membersInvitedUsersLeft.find((memberInvitedUserLeftObj) => `${memberInvitedUserLeftObj.user_id}${memberInvitedUserLeftObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.member_invited_users_left_agg || []
                     });
