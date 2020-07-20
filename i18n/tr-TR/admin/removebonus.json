@@ -1,9 +1,9 @@
 {
     "MISSING_AMOUNT": "Kaldırmak istediğiniz kadar bonus davet sayısını giriniz. (Örnek: {{prefix}}removebonus number @member/all)",
     "INVALID_AMOUNT": "Kaldırmak istediğiniz bonus davet sayısını geçerli bir şekilde girin. (Örnek: {{prefix}}removebonus number @member/all)",
-    "MISSING_TARGET": "You must mention the member to whom you want to remove the bonus invites (or `all` if you want to remove the invites for everyone). (Syntax: {{prefix}}removebonus number @member/all)",
-    "CONFIRMATION_ALL": ":warning: Are you sure you want to remove **{{count}}** bonus invites to everyone? This can take a long time (depending on the size of your server)! Send `-confirm` to continue and `cancel` to cancel.",
+    "MISSING_TARGET": "Bonus davetlerini kaldırmak istediğin üyeyi etiketlemelisin (herkese eklemek için `all` argümantını kullanın.) (Örnek: {{prefix}}removebonus number @member/all)",
+    "CONFIRMATION_ALL": ":warning: **{{count}}** adet bonusu herkesten almak istediğinden emin misin? Bu işlem uzun sürebilir. (Sunucudaki üye yoğunluğuna göre)! Onaylamak için `confirm` yazın,iptal etmek için `cancel` yazın.",
     "SUCCESS_TITLE": "📥 Bonus Davetler Kaldırıldı",
-    "SUCCESS_CONTENT_ALL": "Bonus invites removed for everyone!",
-    "SUCCESS_CONTENT_MEMBER": "Write `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
+    "SUCCESS_CONTENT_ALL": "Bonus davetler başarıyla herkesten alındı!",
+    "SUCCESS_CONTENT_MEMBER": "**{{username}}** kullanıcısının yeni davetlerini görmek için, `{{prefix}}invites {{usertag}}` yazın!"
 }
