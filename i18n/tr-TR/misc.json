@@ -14,5 +14,5 @@
   "USER_MISSING_PERMISSIONS": "Bu komut için izin seviyesi gereklidir: `{{level}}`!",
   "NEED_UPGRADE": "{{emote}} | Merhaba, **{{username}}**! **ManageInvite** botunu kullanmak için sunucunuzun yükseltilmesi gerekiyor! %100 güvenilir bir bot isteyen sunucular için hızlı ve güçlü bir bot oluşturma gecikmesini azaltmayı başardık. Daha fazla bilgi almak için destek sunucusuna ( {{discord}} ) katılabilir veya gösterge tablosuna bağlanabilirsiniz **<https://dash.manage-invite.xyz>**!",
   "PLEASE_WAIT": "{{loading}} | Lütfen bekleyin...",
-  "WRONG_CHANNEL": "Commands are not allowed in this channel, please use {{channel}} instead."
+  "WRONG_CHANNEL": "Komutlara bu kanalda izin verilmiyor, lütfen {{channel}} kanalını kullanın."
 }
