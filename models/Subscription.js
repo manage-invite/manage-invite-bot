@@ -54,7 +54,7 @@ module.exports = class Subscription {
         await this.handler.query(`
             UPDATE subscriptions
             SET expires_at = '${new Date(this.expiresAt).toISOString()}'
-            WHERE id = ${this.id}
+            WHERE id = ${this.id};
         `);
         this.handler.syncSubscriptionForOtherCaches(this.id);
     }
@@ -62,7 +62,7 @@ module.exports = class Subscription {
     async deleteGuildsFromCache(){
         const { rows } = await this.handler.query(`
             SELECT * FROM guilds_subscriptions
-            WHERE sub_id = '${this.id}'
+            WHERE sub_id = ${this.id};
         `);
         for(let row of rows) {
             this.handler.guildCache.delete(row.guild_id);

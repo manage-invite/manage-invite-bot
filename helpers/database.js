@@ -74,15 +74,16 @@ module.exports = class DatabaseHandler {
         const shardID = this.client.shard.ids[0];
         this.client.shard.broadcastEval(`
             if(this.shard.ids[0] !== ${shardID}){
-                this.database.removeSubscriptionFromCache('${subID}');
-                this.database.fetchSubscription('${subID}', null, true);
+                this.database.removeSubscriptionFromCache(${subID}).then(() => {
+                    this.database.fetchSubscription(${subID}, null, true);
+                });
             }
         `);
     }
 
-    removeSubscriptionFromCache(subID){
+    async removeSubscriptionFromCache(subID){
         if(this.subscriptionCache.has(subID)){
-            this.subscriptionCache.get(subID).guilds.forEach((guild) => this.removeGuildFromCache(guild.id));
+            await this.subscriptionCache.get(subID).deleteGuildsFromCache();
             this.subscriptionCache.delete(subID);
         }
     }
@@ -254,7 +255,7 @@ module.exports = class DatabaseHandler {
             if(membersToFetch.length > 0){
                 const membersArray = memberIDs.map((m) => `'${m.userID}${m.guildID}'`).join(', ');
                 /* Fetch basic data - from the members table */
-                let { rows: membersData } = await this.query(`
+                let { rows: membersData } = await this.query(`
                     SELECT * FROM members
                     WHERE user_id || guild_id IN (${membersArray})
                 `);
@@ -265,7 +266,7 @@ module.exports = class DatabaseHandler {
                         return `('${m.userID}', '${m.guildID}', 0, 0, 0, 0, 0, 0, 0, 0, false)`;
                     }).join(', ');
                     // Insert members
-                    const { rows: createdMembersData } = await this.query(`
+                    const { rows: createdMembersData } = await this.query(`
                         INSERT INTO members
                         (
                             user_id,
@@ -283,10 +284,10 @@ module.exports = class DatabaseHandler {
                         ${values}
                         RETURNING *;
                     `);
-                    membersData = [ ...membersData, ...createdMembersData  ].flat();
+                    membersData = [ ...membersData, ...createdMembersData  ].flat();
                 }
                 /* Fetch join data - from the member_join_data table */
-                const { rows: membersJoinData } = await this.query(`
+                const { rows: membersJoinData } = await this.query(`
                     SELECT user_id, guild_id,
                     json_build_object(
                         'join_type', join_type,
@@ -297,7 +298,7 @@ module.exports = class DatabaseHandler {
                     where user_id || guild_id IN (${membersArray})
                 `);
                 /* Fetch invited users - from the member_invited_users table */
-                const { rows: membersInvitedUsers } = await this.query(`
+                const { rows: membersInvitedUsers } = await this.query(`
                     SELECT user_id, guild_id,
                         json_agg(obj_mjd) as member_invited_users_agg
                     FROM(
@@ -312,7 +313,7 @@ module.exports = class DatabaseHandler {
                     group by user_id, guild_id
                 `);
                 /* Fetch invited users left - from the member_invited_users_left table */
-                const { rows: membersInvitedUsersLeft } = await this.query(`
+                const { rows: membersInvitedUsersLeft } = await this.query(`
                     SELECT user_id, guild_id,
                         json_agg(obj_mjd) as member_invited_users_left_agg
                     FROM(
@@ -446,7 +447,7 @@ module.exports = class DatabaseHandler {
             // If there are guilds to fetch
             if(guildsToFetch.length > 0){
                 /* Fetch basic data - from the guilds table */
-                let { rows: guildsData } = await this.query(`
+                let { rows: guildsData } = await this.query(`
                     SELECT * FROM guilds
                     WHERE guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(', ')})
                 `);
@@ -457,7 +458,7 @@ module.exports = class DatabaseHandler {
                         return `('${g}', '${this.client.config.prefix}', '${this.client.config.enabledLanguages.find((l) => l.default).name}', false, false)`;
                     }).join(', ');
                     // Insert guilds
-                    const { rows: createdGuildsData } = await this.query(`
+                    const { rows: createdGuildsData } = await this.query(`
                         INSERT INTO guilds
                         (guild_id, guild_prefix, guild_language, guild_keep_ranks, guild_stacked_ranks) VALUES
                         ${values}
@@ -466,7 +467,7 @@ module.exports = class DatabaseHandler {
                     guildsData = [ ...guildsData, ...createdGuildsData ].flat();
                 }
                 /* Fetch guilds plugins - from the guilds_plugins table */
-                let { rows: plugins } = await this.query(`
+                let { rows: plugins } = await this.query(`
                     SELECT guild_id,
                         json_agg(obj_p) as guild_plugins_agg
                     FROM(
@@ -523,7 +524,7 @@ module.exports = class DatabaseHandler {
                     });
                 }
                 /* Fetch guilds ranks - from the guild_ranks table */
-                const { rows: ranks } = await this.query(`
+                const { rows: ranks } = await this.query(`
                     SELECT guild_id,
                         json_agg(obj_r) as guild_ranks_agg
                     FROM(
@@ -538,7 +539,7 @@ module.exports = class DatabaseHandler {
                     group by guild_id
                 `);
                 /* Fetch guilds blacklisted users - from the guild_blacklisted_users table */
-                const { rows: blacklistedUsers } = await this.query(`
+                const { rows: blacklistedUsers } = await this.query(`
                     SELECT guild_id,
                         json_agg(obj_b) as guild_blacklisted_agg
                     FROM(
@@ -552,7 +553,7 @@ module.exports = class DatabaseHandler {
                     group by guild_id
                 `);
                 /* Fetch guilds subscriptions - from the guilds_subscriptions table */
-                let { rows: subscriptions } = await this.query(`
+                let { rows: subscriptions } = await this.query(`
                     SELECT guild_id,
                         json_agg(obj_s) as guild_subscriptions_agg
                     FROM(
