@@ -105,28 +105,53 @@
                         <a target="_blank" href="https://docs.manage-invite.xyz/configuration/variables">
                             <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
                         </a>
-                        <form role="form" action="/manage/<%= guild.id %>/joinDM" method="POST">
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label><%= translate("common:MESSAGE") %></label>
-                                    <div class="tooltip-wrapper" data-title="<%= translate('dashboard:JOIN_DM_PREMIUM') %>">
-                                        <textarea rows="3" name="message" class="form-control"><%= guild.joinDM.message || translate("dashboard:JOIN_DM_DEFAULT") %></textarea>
+                    </div>
+                    <!-- /.box-header -->
+                    <form role="form" action="/manage/<%= guild.id %>/joinDM" method="POST">
+                        <div class="box-body">
+                            <!-- text input -->
+                            <label><%= translate("common:MESSAGES") %></label>
+                            <!-- Custom Tabs -->
+                            <div class="nav-tabs-custom" style="padding-top: 10px;">
+                                <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_joindm_main" data-toggle="tab"><%= translate("common:MAIN") %></a></li>
+                                <li><a href="#tab_joindm_vanity" data-toggle="tab"><%= translate("common:VANITY_URL") %></a></li>
+                                <li><a href="#tab_joindm_unknown" data-toggle="tab"><%= translate("common:UNKNOWN") %></a></li>
+                                </ul>
+                                <div class="tab-content">
+                                <div class="tab-pane active" id="tab_joindm_main">
+                                    <div class="form-group">
+                                        <textarea rows="3" name="message" class="form-control" required><%= guild.joinDM.mainMessage || translate("misc:JOIN_DM_MAIN_DEFAULT") %></textarea>
                                     </div>
                                 </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_joindm_vanity">
+                                    <div class="form-group">
+                                        <textarea rows="3" name="message" class="form-control" required><%= guild.joinDM.vanityMessage || translate("misc:JOIN_DM_VANITY_DEFAULT") %></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_joindm_unknown">
+                                    <div class="form-group">
+                                        <textarea rows="3" name="message" class="form-control" required><%= guild.joinDM.unknownMessage || translate("misc:JOIN_DM_UNKNOWN_DEFAULT") %></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer">
-                                <% if(guild.joinDM.enabled){ %>
-                                    <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
-                                    <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
-                                <% } else { %>
-                                    <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
-                                <% } %>
-                            </div>
-                        </form>
-                    </div>
+                            <!-- nav-tabs-custom -->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <% if(guild.joinDM.enabled){ %>
+                                <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
+                                <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
+                            <% } else { %>
+                                <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
+                            <% } %>
+                        </div>
+                    </form>
                 </div>
                 <div class="box box-warning">
                     <div class="box-header with-border">
@@ -164,58 +189,127 @@
                         <a target="_blank" href="https://docs.manage-invite.xyz/configuration/variables">
                             <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
                         </a>
-                        <form role="form" action="/manage/<%= guild.id %>/join" method="POST">
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label><%= translate("common:MESSAGE") %></label>
-                                    <textarea rows="3" name="message" class="form-control" required><%= guild.join.message || translate("dashboard:JOIN_DEFAULT") %></textarea>
-                                </div>
-                                <!-- select -->
-                                <div class="form-group">
-                                    <label><%= translate("common:CHANNEL") %></label>
-                                    <select class="form-control" name="channel">
-                                        <% if(guild.join.enabled && (guild.channels.find((ch) => ch.id === guild.join.channel))){ %>
-                                            <option selected="selected">#<%= (guild.channels.find((ch) => ch.id === guild.join.channel)).name %></option>
-                                            <% guild.channels.filter((ch) => ch.id !== guild.join.channel && ch.type === "text").forEach((ch) => { %>
-                                                <option>#<%= ch.name %></option>
-                                            <% }); } else { %>
-                                            <option selected="selected">#<%= guild.channels.filter((ch) => ch.type === "text")[0].name %></option>
-                                            <% guild.channels.filter((ch) => ch.id !== guild.channels[0].id && ch.type === "text").forEach((ch) => { %>
-                                                <option>#<%= ch.name %></option>
-                                            <% }); %>
-                                        <% } %>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer">
-                                <% if(guild.join.enabled){ %>
-                                    <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
-                                    <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
-                                <% } else { %>
-                                    <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
-                                <% } %>
-                            </div>
-                        </form>
                     </div>
+                    <form role="form" action="/manage/<%= guild.id %>/join" method="POST">
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <!-- text input -->
+                            <label><%= translate("common:MESSAGES") %></label>
+                            <!-- Custom Tabs -->
+                            <div class="nav-tabs-custom" style="padding-top: 10px;">
+                                <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_join_main" data-toggle="tab"><%= translate("common:MAIN") %></a></li>
+                                <li><a href="#tab_join_bots" data-toggle="tab"><%= translate("common:BOTS") %></a></li>
+                                <li><a href="#tab_join_vanity" data-toggle="tab"><%= translate("common:VANITY_URL") %></a></li>
+                                <li><a href="#tab_join_unknown" data-toggle="tab"><%= translate("common:UNKNOWN") %></a></li>
+                                </ul>
+                                <div class="tab-content">
+                                <div class="tab-pane active" id="tab_join_main">
+                                    <div class="form-group">
+                                        <textarea rows="3" name="message" class="form-control" required><%= guild.join.mainMessage || translate("misc:JOIN_MAIN_DEFAULT") %></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_join_bots">
+                                    <div class="form-group">
+                                        <textarea rows="3" name="message" class="form-control" required><%= guild.join.oauth2Message || translate("misc:JOIN_OAUTH2_DEFAULT") %></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_join_vanity">
+                                    <div class="form-group">
+                                        <textarea rows="3" name="message" class="form-control" required><%= guild.join.vanityMessage || translate("misc:JOIN_VANITY_DEFAULT") %></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_join_unknown">
+                                    <div class="form-group">
+                                        <textarea rows="3" name="message" class="form-control" required><%= guild.join.unknownMessage || translate("misc:JOIN_UNKNOWN_DEFAULT") %></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
+                            </div>
+                            <!-- nav-tabs-custom -->
+                            <!-- select -->
+                            <div class="form-group">
+                                <label><%= translate("common:CHANNEL") %></label>
+                                <select class="form-control" name="channel">
+                                    <% if(guild.join.enabled && (guild.channels.find((ch) => ch.id === guild.join.channel))){ %>
+                                        <option selected="selected">#<%= (guild.channels.find((ch) => ch.id === guild.join.channel)).name %></option>
+                                        <% guild.channels.filter((ch) => ch.id !== guild.join.channel && ch.type === "text").forEach((ch) => { %>
+                                            <option>#<%= ch.name %></option>
+                                        <% }); } else { %>
+                                        <option selected="selected">#<%= guild.channels.filter((ch) => ch.type === "text")[0].name %></option>
+                                        <% guild.channels.filter((ch) => ch.id !== guild.channels[0].id && ch.type === "text").forEach((ch) => { %>
+                                            <option>#<%= ch.name %></option>
+                                        <% }); %>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <% if(guild.join.enabled){ %>
+                                <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
+                                <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
+                            <% } else { %>
+                                <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
+                            <% } %>
+                        </div>
+                    </form>
                 </div>
                 <!-- LEAVE CONFIGURATION -->
                 <div class="box box-danger">
                     <div class="box-header with-border">
-                    <h3 class="box-title"><%= translate("dashboard:LEAVE_TITLE") %></h3>
-                    <a target="_blank" href="https://docs.manage-invite.xyz/configuration/variables">
-                        <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
-                    </a>
+                        <h3 class="box-title"><%= translate("dashboard:LEAVE_TITLE") %></h3>
+                        <a target="_blank" href="https://docs.manage-invite.xyz/configuration/variables">
+                            <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
+                        </a>
+                    </div>
                     <form role="form" action="/manage/<%= guild.id %>/leave" method="POST">
                         <!-- /.box-header -->
                         <div class="box-body">
                             <!-- text input -->
-                            <div class="form-group">
-                                <label><%= translate("common:MESSAGE") %></label>
-                                <textarea rows="3" name="message" class="form-control" required><%= guild.leave.message || translate("dashboard:LEAVE_DEFAULT") %></textarea>
+                            <label><%= translate("common:MESSAGES") %></label>
+                            <!-- Custom Tabs -->
+                            <div class="nav-tabs-custom" style="padding-top: 10px;">
+                                <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_leave_main" data-toggle="tab"><%= translate("common:MAIN") %></a></li>
+                                <li><a href="#tab_leave_bots" data-toggle="tab"><%= translate("common:BOTS") %></a></li>
+                                <li><a href="#tab_leave_vanity" data-toggle="tab"><%= translate("common:VANITY_URL") %></a></li>
+                                <li><a href="#tab_leave_unknown" data-toggle="tab"><%= translate("common:UNKNOWN") %></a></li>
+                                </ul>
+                                <div class="tab-content">
+                                <div class="tab-pane active" id="tab_leave_main">
+                                    <div class="form-group">
+                                        <textarea rows="3" name="message" class="form-control" required><%= guild.leave.mainMessage || translate("misc:LEAVE_MAIN_DEFAULT") %></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_leave_bots">
+                                    <div class="form-group">
+                                        <textarea rows="3" name="message" class="form-control" required><%= guild.leave.oauth2Message || translate("misc:LEAVE_OAUTH2_DEFAULT") %></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_leave_vanity">
+                                    <div class="form-group">
+                                        <textarea rows="3" name="message" class="form-control" required><%= guild.leave.vanityMessage || translate("misc:LEAVE_VANITY_DEFAULT") %></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_leave_unknown">
+                                    <div class="form-group">
+                                        <textarea rows="3" name="message" class="form-control" required><%= guild.leave.unknownMessage || translate("misc:LEAVE_UNKNOWN_DEFAULT") %></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
                             </div>
+                            <!-- nav-tabs-custom -->
                             <!-- select -->
                             <div class="form-group">
                                 <label><%= translate("common:CHANNEL") %></label>
@@ -244,7 +338,6 @@
                         </div>
                     </form>
                 </div>
-            </div>
             <!-- /.box -->
             <div class="box box-success">
                 <div class="box-header with-border">
