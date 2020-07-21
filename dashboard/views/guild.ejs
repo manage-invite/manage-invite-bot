@@ -101,32 +101,32 @@
                 <!-- JOIN DM CONFIGURATION -->
                 <div class="box box-danger">
                     <div class="box-header with-border">
-                    <h3 class="box-title"><%= translate("dashboard:JOIN_DM_TITLE") %></h3>
-                    <a target="_blank" href="https://docs.manage-invite.xyz/configuration/variables">
-                        <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
-                    </a>
-                    </div>
-                    <form role="form" action="/manage/<%= guild.id %>/joinDM" method="POST">
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <!-- text input -->
-                            <div class="form-group">
-                                <label><%= translate("common:MESSAGE") %></label>
-                                <div class="tooltip-wrapper" data-title="<%= translate('dashboard:JOIN_DM_PREMIUM') %>">
-                                    <textarea rows="3" name="message" class="form-control"><%= guild.joinDM.message || translate("dashboard:JOIN_DM_DEFAULT") %></textarea>
+                        <h3 class="box-title"><%= translate("dashboard:JOIN_DM_TITLE") %></h3>
+                        <a target="_blank" href="https://docs.manage-invite.xyz/configuration/variables">
+                            <button type="button" class="btn btn-info btn-sm pull-right swalDefaultInfo" data-toggle="tooltip" title data-original-title="Infos"><i class="fa fa-info"></i></button>
+                        </a>
+                        <form role="form" action="/manage/<%= guild.id %>/joinDM" method="POST">
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label><%= translate("common:MESSAGE") %></label>
+                                    <div class="tooltip-wrapper" data-title="<%= translate('dashboard:JOIN_DM_PREMIUM') %>">
+                                        <textarea rows="3" name="message" class="form-control"><%= guild.joinDM.message || translate("dashboard:JOIN_DM_DEFAULT") %></textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-                            <% if(guild.joinDM.enabled){ %>
-                                <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
-                                <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
-                            <% } else { %>
-                                <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
-                            <% } %>
-                        </div>
-                    </form>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <% if(guild.joinDM.enabled){ %>
+                                    <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
+                                    <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
+                                <% } else { %>
+                                    <button type="submit" name="enable" class="btn btn-success"><%= translate("dashboard:BUTTON_ENABLE") %></button>
+                                <% } %>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="box box-warning">
                     <div class="box-header with-border">
