@@ -51,6 +51,11 @@ module.exports = class Subscription {
         } else {
             this.expiresAt = Date.now() + ms;
         }
+        await this.handler.query(`
+            UPDATE subscriptions
+            SET expires_at = '${new Date(this.expiresAt).toISOString()}'
+            WHERE id = ${this.id}
+        `);
         this.handler.syncSubscriptionForOtherCaches(this.id);
     }
 
