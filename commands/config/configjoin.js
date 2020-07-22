@@ -60,7 +60,7 @@ module.exports = class extends Command {
         message.channel.send(embed);
 
         data.guild.join.enabled = true;
-        data.guild.join.message = confMessage;
+        data.guild.join.mainMessage = confMessage;
         data.guild.join.channel = channel.id;
         await data.guild.join.updateData();
 

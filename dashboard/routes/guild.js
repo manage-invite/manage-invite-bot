@@ -84,11 +84,17 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         let disable = data.hasOwnProperty("disable");
         if(enable && data.message){
             guildData.joinDM.enabled = true;
-            guildData.joinDM.message = data.message;
+            guildData.joinDM.mainMessage = data.mainMessage;
+            guildData.joinDM.oauth2Message = data.oauth2Message;
+            guildData.joinDM.vanityMessage = data.vanityMessage;
+            guildData.joinDM.unknownMessage = data.unknownMessage;
             await guildData.joinDM.updateData();
         } else if(update && data.message){
             guildData.joinDM.enabled = true;
-            guildData.joinDM.message = data.message
+            guildData.joinDM.mainMessage = data.mainMessage;
+            guildData.joinDM.oauth2Message = data.oauth2Message;
+            guildData.joinDM.vanityMessage = data.vanityMessage;
+            guildData.joinDM.unknownMessage = data.unknownMessage;
             await guildData.joinDM.updateData();
         } else if(disable){
             guildData.joinDM.enabled = false;
@@ -100,19 +106,25 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         let enable = data.hasOwnProperty("enable");
         let update = data.hasOwnProperty("update");
         let disable = data.hasOwnProperty("disable");
-        if(enable && data.message && data.channel){
+        if(enable && data.mainMessage && data.channel){
             let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
             if(channel && channel.type === "text"){
                 guildData.join.enabled = true;
-                guildData.join.message = data.message;
+                guildData.join.mainMessage = data.mainMessage;
+                guildData.join.oauth2Message = data.oauth2Message;
+                guildData.join.vanityMessage = data.vanityMessage;
+                guildData.join.unknownMessage = data.unknownMessage;
                 guildData.join.channel = channel.id;
                 await guildData.join.updateData();
             }
-        } else if(update && data.message && data.channel){
+        } else if(update && data.mainMessage && data.channel){
             let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
             if(channel && channel.type === "text"){
                 guildData.join.enabled = true;
-                guildData.join.message = data.message;
+                guildData.join.mainMessage = data.mainMessage;
+                guildData.join.oauth2Message = data.oauth2Message;
+                guildData.join.vanityMessage = data.vanityMessage;
+                guildData.join.unknownMessage = data.unknownMessage;
                 guildData.join.channel = channel.id;
                 await guildData.join.updateData();
             }
@@ -126,19 +138,25 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         let enable = data.hasOwnProperty("enable");
         let update = data.hasOwnProperty("update");
         let disable = data.hasOwnProperty("disable");
-        if(enable && data.message && data.channel){
+        if(enable && data.mainMessage && data.channel){
             let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
             if(channel && channel.type === "text"){
                 guildData.leave.enabled = true;
-                guildData.leave.message = data.message;
+                guildData.leave.mainMessage = data.mainMessage;
+                guildData.leave.oauth2Message = data.oauth2Message;
+                guildData.leave.vanityMessage = data.vanityMessage;
+                guildData.leave.unknownMessage = data.unknownMessage;
                 guildData.leave.channel = channel.id;
                 await guildData.leave.updateData();
             }
-        } else if(update && data.message && data.channel){
+        } else if(update && data.mainMessage && data.channel){
             let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
             if(channel && channel.type === "text"){
                 guildData.leave.enabled = true;
-                guildData.leave.message = data.message;
+                guildData.leave.mainMessage = data.mainMessage;
+                guildData.leave.oauth2Message = data.oauth2Message;
+                guildData.leave.vanityMessage = data.vanityMessage;
+                guildData.leave.unknownMessage = data.unknownMessage;
                 guildData.leave.channel = channel.id;
                 await guildData.leave.updateData();
             }

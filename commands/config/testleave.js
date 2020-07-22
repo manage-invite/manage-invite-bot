@@ -40,19 +40,21 @@ module.exports = class extends Command {
             message.guild.channels.cache.get(data.guild.leave.channel).send(this.client.functions.formatMessage(
                 data.guild.leave.message,
                 message.member,
-                message.client.user,
-                {
-                    code: "436SPZX",
-                    url: "https://discord.gg/436SPZX",
-                    uses: 1
-                },
                 (data.guild.language || "english").substr(0, 2),
                 {
-                    regular: 1,
-                    fake: 0,
-                    bonus: 0,
-                    leaves: 0
-                }
+                    inviter: message.client.user,
+                    inviterData: {
+                        regular: 1,
+                        fake: 0,
+                        bonus: 0,
+                        leaves: 0
+                    },
+                    invite: {
+                        code: "436SPZX",
+                        url: "https://discord.gg/436SPZX",
+                        uses: 1
+                    }
+                }                
             )).catch(() => {
                 return message.error("misc:CANNOT_SEND");
             });

@@ -36,29 +36,26 @@ module.exports = class {
         }
 
         // Leave messages
-        if(guildData.leave.enabled && guildData.leave.message && guildData.leave.channel){
+        if(guildData.leave.enabled && guildData.leave.mainMessage && guildData.leave.channel){
             let channel = member.guild.channels.cache.get(guildData.leave.channel);
             if(!channel) return;
             let joinType = memberData.joinData ? memberData.joinData.type : null;
             if(invite){
-                let formattedMessage = this.client.functions.formatMessage(guildData.leave.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData)
+                let formattedMessage = this.client.functions.formatMessage(guildData.leave.mainMessage, member, (guildData.language || "english").substr(0, 2), {
+                    inviter,
+                    inviterData,
+                    invite
+                });
                 channel.send(formattedMessage);
             } else if(joinType === "vanity"){
-                channel.send(member.guild.translate("misc:LEAVE_VANITY", {
-                    user: member.user.tag
-                }));
+                let formattedMessage = this.client.functions.formatMessage((guildData.leave.vanityMessage || member.guild.translate("misc:LEAVE_VANITY_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null)
+                channel.send(formattedMessage);
             } else if(joinType === "oauth"){
-                channel.send(member.guild.translate("misc:LEAVE_OAUTH2", {
-                    user: member.user.tag
-                }));
-            } else if(joinType === "perm"){
-                channel.send(member.guild.translate("misc:LEAVE_UNKNOWN", {
-                    user: member.user.tag
-                }));
+                let formattedMessage = this.client.functions.formatMessage((guildData.leave.oauth2Message || member.guild.translate("misc:LEAVE_OAUTH2_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
+                channel.send(formattedMessage);
             } else {
-                channel.send(member.guild.translate("misc:LEAVE_UNKNOWN", {
-                    user: member.user.tag
-                }));
+                let formattedMessage = this.client.functions.formatMessage((guildData.leave.unknownMessage || member.guild.translate("misc:LEAVE_UNKNOWN_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null)
+                channel.send(formattedMessage);
             }
         }
 

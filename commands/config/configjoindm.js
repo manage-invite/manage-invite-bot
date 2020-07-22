@@ -48,7 +48,7 @@ module.exports = class extends Command {
         message.channel.send(embed);
 
         data.guild.joinDM.enabled = true;
-        data.guild.joinDM.message = confMessage;
+        data.guild.joinDM.mainMessage = confMessage;
         await data.guild.joinDM.updateData();
    }
 

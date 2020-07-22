@@ -5,7 +5,7 @@
   "JOIN_MAIN_DEFAULT": "{user} joined the server! They were invited by **{inviter.tag}** (who has **{inviter.invites}** invites).",
   "JOIN_OAUTH2_DEFAULT": "{user} joined the server using OAuth flow.",
   "JOIN_PERMISSIONS": "I need the manage server permissions to know who is the inviter of {user}.",
-  "JOIN_UNKNOWN_DEFAULT": "I can't figure out how {{user}} joined the server.",
+  "JOIN_UNKNOWN_DEFAULT": "I can't figure out how {user} joined the server.",
   "JOIN_VANITY_DEFAULT": "{user} joined the server using a discord.gg invite defined by the guild owner (or admin).",
   "JOIN_DM_MAIN_DEFAULT": "Welcome {user} in **{server}**! You were invited by **{inviter.tag}**. Don't forget to read the server rules!",
   "JOIN_DM_UNKNOWN_DEFAULT": "Welcome {user} in **{server}**! I can't figure out who invited you... Don't forget to read the server rules!",

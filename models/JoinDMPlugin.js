@@ -6,16 +6,22 @@ module.exports = class JoinDMPlugin {
 
         // Whether the plugin is enabled
         this.enabled = data.enabled || false;
-        // The join dm message
-        this.message = data.message || null;
-
+        // The main join message
+        this.mainMessage = data.mainMessage || null;
+        // The vanity url join message
+        this.vanityMessage = data.vanityMessage || null;
+        // The unknown join message
+        this.unknownMessage = data.unknownMessage || null;
     }
 
     // Returns a string with the plugin's data
     get data() {
         return JSON.stringify({
             enabled: this.enabled,
-            message: this.message
+            message: this.message,
+            mainMessage: this.mainMessage,
+            vanityMessage: this.vanityMessage,
+            unknownMessage: this.unknownMessage
         }).replace(/'/g, "''");
     }
 

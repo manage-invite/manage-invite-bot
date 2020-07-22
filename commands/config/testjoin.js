@@ -24,7 +24,7 @@ module.exports = class extends Command {
                 prefix: data.guild.prefix,
                 success: this.client.config.emojis.success
             })))
-            .addField(message.translate("config/testleave:MESSAGE"), (data.guild.join.message || message.translate("config/testjoin:ENABLED_YES_CONTENT", {
+            .addField(message.translate("config/testleave:MESSAGE"), (data.guild.join.mainMessage || message.translate("config/testjoin:ENABLED_YES_CONTENT", {
                 prefix: data.guild.prefix
             })))
             .addField(message.translate("config/testleave:CHANNEL_TITLE"), (data.guild.join.channel ? `<#${data.guild.join.channel}>` : message.translate("config/testjoin:CHANNEL_CONTENT", {
@@ -36,24 +36,28 @@ module.exports = class extends Command {
             .setTimestamp()
         message.channel.send(embed);
         
-        if(data.guild.join.enabled && data.guild.join.message && data.guild.join.channel && message.guild.channels.cache.get(data.guild.join.channel)){
-            message.guild.channels.cache.get(data.guild.join.channel).send(this.client.functions.formatMessage(
-                data.guild.join.message,
-                message.member,
-                message.client.user,
-                {
-                    code: "436SPZX",
-                    url: "https://discord.gg/436SPZX",
-                    uses: 1
-                },
-                (data.guild.language || "english").substr(0, 2),
-                {
-                    regular: 1,
-                    fake: 0,
-                    bonus: 0,
-                    leaves: 0
-                }
-            )).catch(() => {
+        if(data.guild.join.enabled && data.guild.join.mainMessage && data.guild.join.channel && message.guild.channels.cache.get(data.guild.join.channel)){
+            message.guild.channels.cache.get(data.guild.join.channel).send(
+                this.client.functions.formatMessage(
+                    data.guild.join.mainMessage,
+                    message.member,
+                    (data.guild.language || "english").substr(0, 2),
+                    {
+                        inviter: this.client.user,
+                        inviterData: {
+                            regular: 1,
+                            fake: 0,
+                            bonus: 0,
+                            leaves: 0
+                        },
+                        invite: {
+                            code: "436SPZX",
+                            url: "https://discord.gg/436SPZX",
+                            uses: 1
+                        }
+                    }
+                )
+            ).catch(() => {
                 return message.error("misc:CANNOT_SEND");
             });
         }

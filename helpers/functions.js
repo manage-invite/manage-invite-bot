@@ -19,30 +19,35 @@ const asyncForEach = async (array, callback) => {
 /**
  * @param {string} message The message to format
  * @param {object} member The member who joined/has left
- * @param {object} inviter The user who invite the member
- * @param {object} invite The used invite informations
  * @param {string} locale The moment locale to use
- * @param {object} inviterData The mongoose document of the inviter
+ * @param {object} invData Data related to the invite and inviter
  * @returns {string} The formatted string
  */
-const formatMessage = (message, member, inviter, invite, locale, inviterData) => {
+const formatMessage = (message, member, locale, invData) => {
     moment.locale(locale);
-    return message
+    message = message
     .replace(/{user}/g, member.toString())
     .replace(/{user.name}/g, member.user.username)
     .replace(/{user.tag}/g, member.user.tag)
     .replace(/{user.createdat}/g, moment(member.user.createdAt, "YYYYMMDD").fromNow())
     .replace(/{user.id}/g, member.user.id)
     .replace(/{guild}/g, member.guild.name)
-    .replace(/{guild.count}/g, member.guild.memberCount)
-    .replace(/{inviter}/g, inviter.toString())
-    .replace(/{inviter.tag}/g, inviter.tag)
-    .replace(/{inviter.name}/g, inviter.username)
-    .replace(/{inviter.id}/g, inviter.id)
-    .replace(/{inviter.invites}/g, inviterData.regular + inviterData.bonus - inviterData.fake - inviterData.leaves)
-    .replace(/{invite.code}/g, invite.code)
-    .replace(/{invite.uses}/g, invite.uses)
-    .replace(/{invite.url}/g, invite.url);
+    .replace(/{guild.count}/g, member.guild.memberCount);
+
+    if(invData){
+        const { inviter, inviterData, invite } = invData;
+        message = message.replace(/{inviter}/g, inviter.toString())
+        .replace(/{inviter.tag}/g, inviter.tag)
+        .replace(/{inviter.name}/g, inviter.username)
+        .replace(/{inviter.id}/g, inviter.id)
+        .replace(/{inviter.invites}/g, inviterData.regular + inviterData.bonus - inviterData.fake - inviterData.leaves)
+        .replace(/{invite.code}/g, invite.code)
+        .replace(/{invite.uses}/g, invite.uses)
+        .replace(/{invite.url}/g, invite.url);
+    }
+
+    return message;
+    
 };
 
 /**

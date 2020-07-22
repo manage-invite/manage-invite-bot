@@ -15,7 +15,7 @@ module.exports = class extends Command {
     async run (message, args, data) {
 
         const joinSuccess = data.guild.join.enabled
-        && data.guild.join.message
+        && data.guild.join.mainMessage
         && data.guild.join.channel
         && message.guild.channels.cache.get(data.guild.join.channel);
 
@@ -37,7 +37,7 @@ module.exports = class extends Command {
                 emoji: getEmoji(joinSuccess)
             }), message.translate("config/config:JOIN_CONTENT", {
                 enabled: joinSuccess ? `**${message.translate("common:YES").toLowerCase()}**` : `**${message.translate("common:NO").toLowerCase()}**`,
-                message: data.guild.join.message ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`,
+                message: data.guild.join.mainMessage ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`,
                 channel: data.guild.join.channel ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`
             }), true)
             .addField(message.translate("config/config:LEAVE_TITLE", {

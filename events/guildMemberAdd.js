@@ -116,34 +116,47 @@ module.exports = class {
         }
 
         // DM Join messages
-        if(guildData.joinDM.enabled && guildData.joinDM.message && invite && guildData.premium){
-            let formattedMessage = this.client.functions.formatMessage(guildData.joinDM.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData);
-            member.send(formattedMessage);
+        if(guildData.joinDM.enabled && guildData.joinDM.mainMessage && guildData.premium){
+            if(invite){
+                let formattedMessage = this.client.functions.formatMessage(guildData.joinDM.mainMessage, member, (guildData.language || "english").substr(0, 2), {
+                    inviter,
+                    inviterData,
+                    invite
+                });
+                member.send(formattedMessage);
+            } else if(vanity){
+                let formattedMessage = this.client.functions.formatMessage((guildData.joinDM.vanityMessage || member.guild.translate("misc:JOIN_DM_VANITY_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
+                member.send(formattedMessage);
+            } else {
+                let formattedMessage = this.client.functions.formatMessage((guildData.joinDM.unknownMessage || member.guild.translate("misc:JOIN_DM_UNKNOWN_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
+                member.send(formattedMessage);
+            }
         }
 
         // Join messages
-        if(guildData.join.enabled && guildData.join.message && guildData.join.channel){
+        if(guildData.join.enabled && guildData.join.mainMessage && guildData.join.channel){
             let channel = member.guild.channels.cache.get(guildData.join.channel);
             if(!channel) return;
             if(invite){
-                let formattedMessage = this.client.functions.formatMessage(guildData.join.message, member, inviter, invite, (guildData.language || "english").substr(0, 2), inviterData)
+                let formattedMessage = this.client.functions.formatMessage(guildData.join.mainMessage, member, (guildData.language || "english").substr(0, 2), {
+                    inviter,
+                    inviterData,
+                    invite
+                });
                 channel.send(formattedMessage);
             } else if(vanity){
-                channel.send(member.guild.translate("misc:JOIN_VANITY", {
-                    user: member.user.toString()
-                }));
+                let formattedMessage = this.client.functions.formatMessage((guildData.join.vanityMessage || member.guild.translate("misc:JOIN_VANITY_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null)
+                channel.send(formattedMessage);
             } else if(oauth){
-                channel.send(member.guild.translate("misc:JOIN_OAUTH2", {
-                    user: member.user.toString()
-                }));
+                let formattedMessage = this.client.functions.formatMessage((guildData.join.oauth2Message || member.guild.translate("misc:JOIN_OAUTH2_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null)
+                channel.send(formattedMessage);
             } else if(perm){
                 channel.send(member.guild.translate("misc:JOIN_PERMISSIONS", {
                     user: member.user.toString()
                 }));
             } else {
-                channel.send(member.guild.translate("misc:JOIN_UNKNOWN", {
-                    user: member.user.toString()
-                }));
+                let formattedMessage = this.client.functions.formatMessage((guildData.join.unknownMessage || member.guild.translate("misc:JOIN_UNKNOWN_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null)
+                channel.send(formattedMessage);
             }
         }
 

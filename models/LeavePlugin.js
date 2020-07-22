@@ -8,8 +8,14 @@ module.exports = class LeavePlugin {
         this.enabled = data.enabled || false;
         // The leave channel
         this.channel = data.channel || null;
-        // The leave message
-        this.message = data.message || null;
+        // The main leave message
+        this.mainMessage = data.mainMessage || null;
+        // The oauth2 leave message
+        this.oauth2Message = data.oauth2Message || null;
+        // The vanity url leave message
+        this.vanityMessage = data.vanityMessage || null;
+        // The unknown leave message
+        this.unknownMessage = data.unknownMessage || null;
 
     }
 
@@ -18,7 +24,10 @@ module.exports = class LeavePlugin {
         return JSON.stringify({
             enabled: this.enabled,
             channel: this.channel,
-            message: this.message
+            mainMessage: this.mainMessage,
+            oauth2Message: this.oauth2Message,
+            vanityMessage: this.vanityMessage,
+            unknownMessage: this.unknownMessage
         }).replace(/'/g, "''");
     }
 
