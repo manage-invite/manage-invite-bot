@@ -121,19 +121,19 @@
                                 <div class="tab-content">
                                 <div class="tab-pane active" id="tab_joindm_main">
                                     <div class="form-group">
-                                        <textarea rows="3" name="message" class="form-control" required><%= guild.joinDM.mainMessage || translate("misc:JOIN_DM_MAIN_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="mainMessage" class="form-control" required><%= guild.joinDM.mainMessage || translate("misc:JOIN_DM_MAIN_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_joindm_vanity">
                                     <div class="form-group">
-                                        <textarea rows="3" name="message" class="form-control" required><%= guild.joinDM.vanityMessage || translate("misc:JOIN_DM_VANITY_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="vanityMessage" class="form-control" required><%= guild.joinDM.vanityMessage || translate("misc:JOIN_DM_VANITY_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_joindm_unknown">
                                     <div class="form-group">
-                                        <textarea rows="3" name="message" class="form-control" required><%= guild.joinDM.unknownMessage || translate("misc:JOIN_DM_UNKNOWN_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="unknownMessage" class="form-control" required><%= guild.joinDM.unknownMessage || translate("misc:JOIN_DM_UNKNOWN_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
@@ -206,25 +206,25 @@
                                 <div class="tab-content">
                                 <div class="tab-pane active" id="tab_join_main">
                                     <div class="form-group">
-                                        <textarea rows="3" name="message" class="form-control" required><%= guild.join.mainMessage || translate("misc:JOIN_MAIN_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="mainMessage" class="form-control" required><%= guild.join.mainMessage || translate("misc:JOIN_MAIN_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_join_bots">
                                     <div class="form-group">
-                                        <textarea rows="3" name="message" class="form-control" required><%= guild.join.oauth2Message || translate("misc:JOIN_OAUTH2_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="oauth2Message" class="form-control" required><%= guild.join.oauth2Message || translate("misc:JOIN_OAUTH2_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_join_vanity">
                                     <div class="form-group">
-                                        <textarea rows="3" name="message" class="form-control" required><%= guild.join.vanityMessage || translate("misc:JOIN_VANITY_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="vanityMessage" class="form-control" required><%= guild.join.vanityMessage || translate("misc:JOIN_VANITY_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_join_unknown">
                                     <div class="form-group">
-                                        <textarea rows="3" name="message" class="form-control" required><%= guild.join.unknownMessage || translate("misc:JOIN_UNKNOWN_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="unknownMessage" class="form-control" required><%= guild.join.unknownMessage || translate("misc:JOIN_UNKNOWN_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
@@ -284,25 +284,25 @@
                                 <div class="tab-content">
                                 <div class="tab-pane active" id="tab_leave_main">
                                     <div class="form-group">
-                                        <textarea rows="3" name="message" class="form-control" required><%= guild.leave.mainMessage || translate("misc:LEAVE_MAIN_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="mainMessage" class="form-control" required><%= guild.leave.mainMessage || translate("misc:LEAVE_MAIN_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_leave_bots">
                                     <div class="form-group">
-                                        <textarea rows="3" name="message" class="form-control" required><%= guild.leave.oauth2Message || translate("misc:LEAVE_OAUTH2_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="oauth2Message" class="form-control" required><%= guild.leave.oauth2Message || translate("misc:LEAVE_OAUTH2_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_leave_vanity">
                                     <div class="form-group">
-                                        <textarea rows="3" name="message" class="form-control" required><%= guild.leave.vanityMessage || translate("misc:LEAVE_VANITY_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="vanityMessage" class="form-control" required><%= guild.leave.vanityMessage || translate("misc:LEAVE_VANITY_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_leave_unknown">
                                     <div class="form-group">
-                                        <textarea rows="3" name="message" class="form-control" required><%= guild.leave.unknownMessage || translate("misc:LEAVE_UNKNOWN_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="unknownMessage" class="form-control" required><%= guild.leave.unknownMessage || translate("misc:LEAVE_UNKNOWN_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
@@ -356,9 +356,50 @@
   </div>
   <!-- /.content-wrapper -->
 
+  <script>
+    if(localStorage.getItem("join_selected_message")){
+        // remove default active tab
+        $("#tab_join_main").removeClass("active");
+        $(`li > a[href*=\\#tab_join_main]`).parent().removeClass("active");
+        // add new active tab
+        $(localStorage.getItem("join_selected_message")).addClass("active");
+        $(`li > a[href=\\${localStorage.getItem("join_selected_message")}]`).parent().addClass("active");
+    }
+    if(localStorage.getItem("leave_selected_message")){
+        // remove default active tab
+        $("#tab_leave_main").removeClass("active");
+        $(`li > a[href*=\\#tab_leave_main]`).parent().removeClass("active");
+        $(localStorage.getItem("leave_selected_message")).addClass("active");
+        $(`li > a[href=\\${localStorage.getItem("leave_selected_message")}]`).parent().addClass("active");
+    }
+    if(localStorage.getItem("joindm_selected_message")){
+        // remove default active tab
+        $("#tab_joindm_main").removeClass("active");
+        $(`li > a[href*=\\#tab_joindm_main]`).parent().removeClass("active");
+        $(localStorage.getItem("joindm_selected_message")).addClass("active");
+        $(`li > a[href=\\${localStorage.getItem("joindm_selected_message")}]`).parent().addClass("active");
+    }
+  </script>
+
   <%- include('includes/footer') %>
 
 </div>
+<script>
+    $("a").click( function(e) {
+        e.preventDefault();
+        if(e.target.attributes.href.value.startsWith('#tab')){
+            const data = e.target.attributes.href.value.split('_');
+            if(data[1] === 'join'){
+                localStorage.setItem('join_selected_message', e.target.attributes.href.value);
+            } else if(data[1] === 'joindm') {
+                localStorage.setItem('joindm_selected_message', e.target.attributes.href.value);
+            } else if(data[1] === 'leave'){
+                localStorage.setItem('leave_selected_message', e.target.attributes.href.value);
+            }
+        }
+        return true;
+    });
+</script>
 <!-- ./wrapper -->
 </body>
 </html>
