@@ -23,5 +23,6 @@
   "MAIN": "Main",
   "BOTS": "Bots",
   "VANITY_URL": "Vanity URL",
-  "UNKNOWN": "Unknown"
+  "UNKNOWN": "Unknown",
+  "USES": "Uses"
 }

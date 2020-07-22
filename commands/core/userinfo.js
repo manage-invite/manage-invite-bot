@@ -1,6 +1,7 @@
 const Command = require("../../structures/Command.js"),
 moment = require("moment"),
 Discord = require("discord.js");
+const { uniqBy } = require("lodash");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -35,16 +36,16 @@ module.exports = class extends Command {
         .setFooter(data.footer);
         
         if(member){
-            const joinData = memberData.joinData || (memberData.invitedBy ? { type: "normal", invite: { inviter: memberData.joinData.invitedBy } } : { type: "unknown" } );
+            const joinData = memberData.joinData;
             let joinWay = message.translate("core/userinfo:JOIN_WAY_UNKNOWN", {
                 user: user.username
             });
-            if(joinData.type === "normal" && joinData.inviteData){
-                const inviter = await this.client.users.fetch(joinData.inviteData.inviter).catch(() => {});
+            if(joinData?.eventType === "join" && joinData?.inviterID){
+                const inviter = await this.client.users.fetch(joinData.inviterID).catch(() => {});
                 joinWay = inviter.tag;
-            } else if(joinData.type === "vanity"){
+            } else if(joinData?.type === "vanity"){
                 joinWay = message.translate("core/userinfo:JOIN_WAY_VANITY");
-            } else if(joinData.type === "oauth" || user.bot){
+            } else if(joinData?.type === "oauth" || user.bot){
                 joinWay = message.translate("core/userinfo:JOIN_WAY_OAUTH");
             }
             const guild = await message.guild.fetch();
@@ -67,10 +68,10 @@ module.exports = class extends Command {
             .addField(message.translate("core/userinfo:JOIN_ORDER_TITLE"), `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`);
         }
 
-        if(memberData.invitedUsers){
+        if(memberData.invitedMembers){
             const users = [];
-            await this.client.functions.asyncForEach(memberData.invitedUsers, async (user) => {
-                const fetchedUser = message.guild.member(user);
+            await this.client.functions.asyncForEach(uniqBy(memberData.invitedMembers, "userID"), async (event) => {
+                const fetchedUser = message.guild.member(event.userID);
                 if(fetchedUser) users.push("`"+fetchedUser.user.tag+"`");
             });
             let nobody = users.length === 0;
@@ -86,6 +87,20 @@ module.exports = class extends Command {
                 }) :
                 users.join(", ")));
         }
+
+        const guildInvites = await message.guild.fetchInvites();
+        const userInvites = guildInvites.filter((i) => i?.inviter?.id === message.author.id);
+        embed.addField(message.translate("core/userinfo:INVITE_CODES"),
+            userInvites.size > 0
+            ? userInvites.map((i) => `**${i.code}** | **${i.channel}** | **${i.uses}** ${message.translate("common:USES").toLowerCase()}`).join("\n")
+            : message.translate("core/userinfo:NO_INVITES")
+        )
+
+        embed.addField(message.translate("core/userinfo:NUMBER_JOINS"),
+            memberData.invitedMemberEvents.filter((e) => e.eventType === 'join').length > 1
+            ? memberData.invitedMemberEvents.filter((e) => e.eventType === 'join').length
+            : 1
+        )
         
         message.channel.send(embed);
     }

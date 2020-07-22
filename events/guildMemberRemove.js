@@ -18,10 +18,15 @@ module.exports = class {
         member.guild.data = guildData;
         let memberData = await this.client.database.fetchMember(member.id, member.guild.id);
         
-        let inviter = memberData.joinData && memberData.joinData.type === "normal" && memberData.joinData.inviteData ? await this.client.resolveUser(memberData.joinData.inviteData.inviter) : typeof memberData.invitedBy === "string" ? await this.client.resolveUser(memberData.invitedBy) : null;
+        let inviter = memberData.joinData
+            && memberData.joinData.joinType === "normal"
+            && memberData.joinData.inviteData
+            ? await this.client.resolveUser(memberData.joinData.inviterID)
+            : null;
         let inviterData = inviter ? await this.client.database.fetchMember(inviter.id, member.guild.id) : null;
         let invite = (memberData.joinData || {}).inviteData;
 
+        console.log(memberData.joinData, inviter)
 
         // Update member invites
         if(inviter){
@@ -29,9 +34,14 @@ module.exports = class {
             let inviterMember = member.guild.members.cache.get(inviter.id);
             if(inviterMember){
                 inviterData.leaves++;
-                inviterData.updateInvites();
-                inviterData.addInvitedUserLeft(member.id);
                 await this.client.functions.assignRanks(inviterMember, inviterData.calculatedInvites, guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
+                await inviterData.updateInvites();
+                await this.client.database.createEvent({
+                    userID: member.id,
+                    guildID: member.guild.id,
+                    eventType: 'leave',
+                    eventDate: new Date()
+                });
             }
         }
 
@@ -39,7 +49,7 @@ module.exports = class {
         if(guildData.leave.enabled && guildData.leave.mainMessage && guildData.leave.channel){
             let channel = member.guild.channels.cache.get(guildData.leave.channel);
             if(!channel) return;
-            let joinType = memberData.joinData ? memberData.joinData.type : null;
+            let joinType = memberData.joinData ? memberData.joinData.joinType : null;
             if(invite){
                 let formattedMessage = this.client.functions.formatMessage(guildData.leave.mainMessage, member, (guildData.language || "english").substr(0, 2), {
                     inviter,
@@ -58,9 +68,6 @@ module.exports = class {
                 channel.send(formattedMessage);
             }
         }
-
-        // Remove member inviter
-        await memberData.clearJoinData();
 
     }
 }

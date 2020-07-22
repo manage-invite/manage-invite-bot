@@ -1,7 +1,7 @@
 const { Collection } = require("discord.js");
 
 module.exports = class Member {
-    constructor(handler, { userID, guildID, data, joinData, invitedUsers, invitedUsersLeft }) {
+    constructor(handler, { userID, guildID, data, invitedMembers, invitedMemberEvents }) {
 
         this.userID = userID;
         this.guildID = guildID
@@ -22,109 +22,33 @@ module.exports = class Member {
         this.oldRegular = data.old_invites_regular || 0;
         this.oldBackuped = data.old_invites_backuped || false;
 
-        this.invitedUsers = invitedUsers.map(invitedUserData => invitedUserData.invited_user_id);
-        this.invitedUsersLeft = invitedUsersLeft.map(invitedUserData => invitedUserData.invited_user_id);
+        const formatEvent = (eventData) => {
+            return {
+                userID: eventData.user_id,
+                guildID: eventData.guild_id,
+                eventType: eventData.event_type,
+                eventDate: new Date(eventData.event_date).getTime(),
+                joinType: eventData.join_type,
+                inviterID: eventData.inviter_user_id,
+                inviteData: eventData.invite_data
+            }
+        };
 
-        if(joinData){
-            this.joinData = {
-                type: joinData.join_type,
-                inviterID: joinData.join_inviter_id,
-                inviteData: joinData.join_invite_data
-            };
-        }
+        // Array of invited_member_events where inviter_id is equal to the member ID and guild_id is equal to member guild id
+        this.invitedMembers = invitedMembers.map(invitedMemberData => formatEvent(invitedMemberData));
+        // Array of invited_member_events objects where user_id is equal to the member ID and guild_id is equal to member guild id
+        this.invitedMemberEvents = invitedMemberEvents.map(invitedMemberEvent => formatEvent(invitedMemberEvent));
 
+    }
+
+    get joinData() {
+        return this.invitedMemberEvents
+        .filter((e) => e.eventType === 'join')
+        .sort((a, b) => b.eventDate - a.eventDate)[0]
     }
 
     get calculatedInvites(){
         return this.regular + this.bonus - this.leaves - this.fake;
-    }
-
-    // Add invited user
-    async addInvitedUser(userID){
-        await this.handler.query(`
-            INSERT INTO member_invited_users
-            (user_id, guild_id, invited_user_id) VALUES
-            ('${this.userID}', '${this.guildID}', '${userID}');
-        `);
-        this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
-        this.invitedUsers.push(userID);
-        return;
-    }
-
-    // Remove invited user
-    async removeInvitedUser(userID){
-        await this.handler.query(`
-            DELETE FROM member_invited_users
-            WHERE user_id = '${this.userID}'
-            AND guild_id = '${this.userID}'
-            AND invited_user_id = '${userID}';
-        `);
-        this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
-        this.invitedUsers = this.invitedUsers.filter((id) => id !== userID);
-        return;
-    }
-
-    // Add invited user left
-    async addInvitedUserLeft(userID){
-        await this.handler.query(`
-            INSERT INTO member_invited_users_left
-            (user_id, guild_id, invited_user_id) VALUES
-            ('${this.userID}', '${this.guildID}', '${userID}');
-        `);
-        this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
-        this.invitedUsersLeft.push(userID);
-        return;
-    }
-
-    // Remove invited user left
-    async removeInvitedUserLeft(userID){
-        await this.handler.query(`
-            DELETE FROM member_invited_users_left
-            WHERE user_id = '${this.userID}'
-            AND guild_id = '${this.userID}'
-            AND invited_user_id = '${userID}';
-        `);
-        this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
-        this.invitedUsersLeft = this.invitedUsersLeft.filter((id) => id !== userID);
-        return;
-    }
-
-    // Set member join data
-    async setJoinData(data){
-        if(this.joinData){
-            await this.handler.query(`
-                UPDATE member_join_data
-                SET join_type = '${data.type}'
-                ${data.inviterID ? `, join_inviter_id = '${data.inviterID}'` : ""}
-                ${data.inviteData ? `, join_invite_data = '${JSON.stringify(data.inviteData)}'` : ""}
-                WHERE user_id = '${this.userID}'
-                AND guild_id = '${this.guildID}';
-            `);
-        } else {
-            await this.handler.query(`
-                INSERT INTO member_join_data
-                (user_id, guild_id, join_type ${data.inviterID ? ", join_inviter_id" : ""} ${data.inviteData ? ", join_invite_data" : ""}) VALUES
-                ('${this.userID}', '${this.guildID}', '${data.type}' ${data.inviterID ? `, '${data.inviterID}'` : ""} ${data.inviteData ? `, '${JSON.stringify(data.inviteData)}'` : ""})
-            `);
-        }
-        this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
-        this.joinData = {
-            type: data.type,
-            inviterID: data.inviterID,
-            inviteData: data.inviteData
-        };
-        return;
-    }
-
-    // Clear member join data
-    async clearJoinData(){
-        await this.handler.query(`
-            DELETE FROM member_join_data
-            WHERE user_id = '${this.userID}'
-            AND guild_id = '${this.guildID}';
-        `);
-        this.handler.removeMemberFromOtherCaches(this.userID, this.guildID);
-        this.joinData = null;
     }
 
     // Update member invites

@@ -67,8 +67,9 @@ module.exports = class {
         if(invite){
             // We look for the member in the server members
             let inviterMember = member.guild.members.cache.get(inviter.id);
-            // If it does exist
+            /* If it does exist
             if(inviterMember){
+
                 // If the member had previously invited this member and they have left
                 if(inviterData.invitedUsersLeft.includes(member.id)){
                     // It is removed from the invited members
@@ -89,12 +90,75 @@ module.exports = class {
                     inviterData.addInvitedUser(member.id);
                     if(inviter.id === member.id) inviterData.fake++;
                 }
-                await inviterData.updateInvites();
-                await this.client.functions.assignRanks(inviterMember, inviterData.calculatedInvites, guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
+                
+            }*/
+
+            // If the member had previously invited this member and they have left
+            const lastJoinData = inviterData.invitedMemberEvents.filter((j) => j.type === 'join' && j.guildID === member.guild.id && j.inviterID === inviterMember.id)[0];
+            if(lastJoinData){
+                inviterData.leaves--;
+                inviterData.fake++;
             }
+            
+            // or if the member invited himself
+            else if(inviter.id === member.id) {
+                inviterData.fake++;
+            }
+
+            inviterData.regular++;
+
+            await this.client.functions.assignRanks(inviterMember, inviterData.calculatedInvites, guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
+
+            await inviterData.updateInvites();
+            await this.client.database.createEvent({
+                userID: member.id,
+                guildID: member.guild.id,
+                eventType: 'join',
+                eventDate: new Date(),
+                joinType: 'normal',
+                inviterID: inviterMember.id,
+                inviteData: {
+                    uses: invite.uses,
+                    url: invite.url,
+                    code: invite.code,
+                    inviter: inviter.id
+                }
+            });
+        } else if(oauth){
+            await this.client.database.createEvent({
+                userID: member.id,
+                guildID: member.guild.id,
+                eventType: 'join',
+                eventDate: new Date(),
+                joinType: 'oauth'
+            });
+        } else if(vanity){
+            await this.client.database.createEvent({
+                userID: member.id,
+                guildID: member.guild.id,
+                eventType: 'join',
+                eventDate: new Date(),
+                joinType: 'vanity'
+            });
+        } else if(perm){
+            await this.client.database.createEvent({
+                userID: member.id,
+                guildID: member.guild.id,
+                eventType: 'join',
+                eventDate: new Date(),
+                joinType: 'perm'
+            });
+        } else {
+            await this.client.database.createEvent({
+                userID: member.id,
+                guildID: member.guild.id,
+                eventType: 'join',
+                eventDate: new Date(),
+                joinType: 'unknown'
+            });
         }
 
-        if(invite){
+        /*if(invite){
             await memberData.setJoinData({
                 type: "normal",
                 inviterID: inviter.id,
@@ -113,7 +177,7 @@ module.exports = class {
             await memberData.setJoinData({
                 type: "vanity"
             });
-        }
+        }*/
 
         // DM Join messages
         if(guildData.joinDM.enabled && guildData.joinDM.mainMessage && guildData.premium){

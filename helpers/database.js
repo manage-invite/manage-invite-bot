@@ -6,7 +6,6 @@ const logger = require("./logger");
 const Guild = require("../models/Guild");
 const Member = require("../models/Member");
 const Subscription = require("../models/Subscription");
-const { plugin } = require( "mongoose" );
 
 module.exports = class DatabaseHandler {
     constructor(client) {
@@ -216,6 +215,44 @@ module.exports = class DatabaseHandler {
         });
     }
 
+    async createEvent ({ userID, guildID, eventDate = new Date(), eventType, joinType, inviterID, inviteData }) {
+        return new Promise(async resolve => {
+            // Update database
+            await this.query(`
+                INSERT INTO invited_member_events
+                (user_id, guild_id, event_date, event_type, join_type, inviter_user_id, invite_data) VALUES
+                ('${userID}', '${guildID}', '${eventDate.toISOString()}', '${eventType}', ${stringOrNull(joinType)}, ${stringOrNull(inviterID)}, ${stringOrNull(pgEscape(JSON.stringify(inviteData)))})
+            `);
+            // Update member cache
+            if (this.memberCache.has(`${userID}${guildID}`)) {
+                this.memberCache.get(`${userID}${guildID}`).invitedMemberEvents.push({
+                    userID,
+                    guildID,
+                    eventDate,
+                    eventType,
+                    inviterID,
+                    inviteData
+                });
+            }
+            this.removeMemberFromOtherCaches(userID, guildID);
+            if (eventType === 'join' && inviterID) {
+                // Update inviter cache
+                if (this.memberCache.has(`${inviterID}${guildID}`)) {
+                    this.memberCache.get(`${inviterID}${guildID}`).invitedMembers.push({
+                        userID,
+                        guildID,
+                        eventDate,
+                        eventType,
+                        inviterID,
+                        inviteData
+                    });
+                }
+                this.removeMemberFromOtherCaches(inviterID, guildID);
+            }
+            resolve();
+        });
+    }
+
     addBonusInvitesMembers(guildID, count){
         return new Promise(async resolve => {
             this.query(`
@@ -297,35 +334,50 @@ module.exports = class DatabaseHandler {
                     from member_join_data
                     where user_id || guild_id IN (${membersArray})
                 `);
-                /* Fetch invited users - from the member_invited_users table */
-                const { rows: membersInvitedUsers } = await this.query(`
+                /* Fetch invited users events*/
+                const { rows: invitedMemberEvents } = await this.query(`
                     SELECT user_id, guild_id,
-                        json_agg(obj_mjd) as member_invited_users_agg
+                        json_agg(obj_ime) as invited_member_events
                     FROM(
-                        select user_id,
+                        select 
+                        user_id,
                         guild_id,
+                        inviter_user_id,
                         json_build_object(
-                            'invited_user_id', invited_user_id
-                        ) as obj_mjd
-                        from member_invited_users
+                            'guild_id', guild_id,
+                            'user_id', user_id,
+                            'event_type', event_type,
+                            'event_date', event_date,
+                            'join_type', join_type,
+                            'inviter_user_id', inviter_user_id,
+                            'invite_data', invite_data
+                        ) as obj_ime
+                        from invited_member_events
                     ) gp
                     where user_id || guild_id IN (${membersArray})
                     group by user_id, guild_id
                 `);
-                /* Fetch invited users left - from the member_invited_users_left table */
-                const { rows: membersInvitedUsersLeft } = await this.query(`
-                    SELECT user_id, guild_id,
-                        json_agg(obj_mjd) as member_invited_users_left_agg
+                const { rows: invitedMembers } = await this.query(`
+                    SELECT inviter_user_id as user_id, guild_id,
+                        json_agg(obj_ime) as invited_members
                     FROM(
-                        select user_id,
+                        select 
+                        user_id,
                         guild_id,
+                        inviter_user_id,
                         json_build_object(
-                            'invited_user_id', invited_user_id
-                        ) as obj_mjd
-                        from member_invited_users_left
+                            'guild_id', guild_id,
+                            'user_id', user_id,
+                            'event_type', event_type,
+                            'event_date', event_date,
+                            'join_type', join_type,
+                            'inviter_user_id', inviter_user_id,
+                            'invite_data', invite_data
+                        ) as obj_ime
+                        from invited_member_events
                     ) gp
-                    where user_id || guild_id IN (${membersArray})
-                    group by user_id, guild_id
+                    where inviter_user_id || guild_id IN (${membersArray})
+                    group by inviter_user_id, guild_id
                 `);
                 /* Create Member instance for all guilds */
                 membersToFetch.forEach((memberID) => {
@@ -333,9 +385,9 @@ module.exports = class DatabaseHandler {
                         userID: memberID.userID,
                         guildID: memberID.guildID,
                         data: membersData.find((memberDataObj) => `${memberDataObj.user_id}${memberDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`),
-                        joinData: membersJoinData.find((memberJoinDataObj) => `${memberJoinDataObj.user_id}${memberJoinDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.obj_mjd || null,
-                        invitedUsers: membersInvitedUsers.find((memberInvitedUserObj) => `${memberInvitedUserObj.user_id}${memberInvitedUserObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.member_invited_users_agg || [],
-                        invitedUsersLeft: membersInvitedUsersLeft.find((memberInvitedUserLeftObj) => `${memberInvitedUserLeftObj.user_id}${memberInvitedUserLeftObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.member_invited_users_left_agg || []
+                        joinData: membersJoinData.find((memberJoinDataObj) => `${memberJoinDataObj.user_id}${memberJoinDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.member_join_data_agg || null,
+                        invitedMemberEvents: invitedMemberEvents.find((invitedMemberEventObj) => `${invitedMemberEventObj.user_id}${invitedMemberEventObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.invited_member_events || [],
+                        invitedMembers: invitedMembers.find((invitedMemberObj) => `${invitedMemberObj.user_id}${invitedMemberObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.invited_members || []
                     });
                 });
             }
