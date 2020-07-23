@@ -1,5 +1,5 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+    Discord = require("discord.js");
 
 module.exports = class extends Command {
 
@@ -21,7 +21,7 @@ module.exports = class extends Command {
         let i1 = 10;
         let page = 1;
 
-        let results = await this.client.shard.broadcastEval(() => {
+        const results = await this.client.shard.broadcastEval(() => {
             return this.guilds.cache.array();
         });
         let guilds = [];
@@ -30,26 +30,26 @@ module.exports = class extends Command {
         let description = 
         `Total servers: ${guilds.length}\n\n`+
         guilds.sort((a,b) => b.memberCount-a.memberCount).map((r) => r)
-        .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} members`)
-        .slice(0, 10)
-        .join("\n");
+            .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} members`)
+            .slice(0, 10)
+            .join("\n");
 
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
             .setAuthor(message.author.tag, message.author.displayAvatarURL())
             .setColor(data.color)
             .setFooter(message.client.user.username)
             .setTitle(`Page: ${page}/${Math.ceil(guilds.length/10)}`)
             .setDescription(description);
 
-        let msg = await message.channel.send(embed);
+        const msg = await message.channel.send(embed);
         
         await msg.react("⬅");
         await msg.react("➡");
         await msg.react("❌");
 
-        let collector = msg.createReactionCollector((reaction, user) => user.id === message.author.id);
+        const collector = msg.createReactionCollector((reaction, user) => user.id === message.author.id);
 
-        collector.on("collect", async(reaction, user) => {
+        collector.on("collect", async(reaction) => {
 
             if(reaction._emoji.name === "⬅") {
 
@@ -68,18 +68,18 @@ module.exports = class extends Command {
                 
                 description = `Total servers: ${guilds.length}\n\n`+
                 guilds.sort((a,b) => b.memberCount-a.memberCount).map((r) => r)
-                .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} members`)
-                .slice(i0, i1)
-                .join("\n");
+                    .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} members`)
+                    .slice(i0, i1)
+                    .join("\n");
 
                 // Update the embed with new informations
                 embed.setTitle(`Page: ${page}/${Math.round(guilds.length/10)}`)
-                .setDescription(description);
+                    .setDescription(description);
             
                 // Edit the message 
                 msg.edit(embed);
             
-            };
+            }
 
             if(reaction._emoji.name === "➡"){
 
@@ -98,18 +98,18 @@ module.exports = class extends Command {
 
                 description = `Total servers: ${guilds.length}\n\n`+
                 guilds.sort((a,b) => b.memberCount-a.memberCount).map((r) => r)
-                .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} members`)
-                .slice(i0, i1)
-                .join("\n");
+                    .map((r, i) => `**${i + 1}** - ${r.name} | ${r.memberCount} members`)
+                    .slice(i0, i1)
+                    .join("\n");
 
                 // Update the embed with new informations
                 embed.setTitle(`Page: ${page}/${Math.round(guilds.length/10)}`)
-                .setDescription(description);
+                    .setDescription(description);
             
                 // Edit the message 
                 msg.edit(embed);
 
-            };
+            }
 
             if(reaction._emoji.name === "❌"){
                 return msg.delete(); 

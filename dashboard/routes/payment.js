@@ -1,9 +1,8 @@
 const express = require("express"),
-CheckAuth = require("../auth/CheckAuth"),
-fetch = require("node-fetch"),
-router = express.Router(),
-utils = require("../utils"),
-Discord = require("discord.js");
+    CheckAuth = require("../auth/CheckAuth"),
+    fetch = require("node-fetch"),
+    router = express.Router(),
+    Discord = require("discord.js");
 
 let notSentSignup = [];
 
@@ -12,7 +11,6 @@ router.get("/", CheckAuth, async (_req, res) => {
 });
 
 router.get("/callback", async (req, res) => {
-    const config = req.client.config.paypal.mode === "live" ? req.client.config.paypal.live : req.client.config.paypal.sandbox;
 
     // Mark the guild as waiting for verification
     const parsedCM = (req.query.cm || "").split(",");
@@ -26,10 +24,11 @@ router.get("/callback", async (req, res) => {
 
     req.client.users.fetch(userID).then((user) => {
         const logEmbed = JSON.stringify(new Discord.MessageEmbed()
-        .setAuthor(`${user.tag} purchased ManageInvite Premium`, user.displayAvatarURL())
-        .setDescription(`Server **${guildName}** is waiting for verification... :clock7:`)
-        .setColor("#ff9966")).replace(/[\/\(\)\']/g, "\\$&");
-        let { premiumLogs } = req.client.config;
+            .setAuthor(`${user.tag} purchased ManageInvite Premium`, user.displayAvatarURL())
+            .setDescription(`Server **${guildName}** is waiting for verification... :clock7:`)
+            // eslint-disable-next-line no-useless-escape
+            .setColor("#ff9966")).replace(/[\/\(\)\']/g, "\\$&");
+        const { premiumLogs } = req.client.config;
         req.client.shard.broadcastEval(`
             let aLogs = this.channels.cache.get('${premiumLogs}');
             if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
@@ -52,7 +51,7 @@ router.post("/ipn", async (req, res) => {
         if(!valid) return console.log("Invalid payment");
         if(payload.txn_type === "subscr_signup"){
             if(
-                (payload.mc_amount3 !== '2.00') ||
+                (payload.mc_amount3 !== "2.00") ||
                 (payload.receiver_email !== (req.client.config.paypal.mode === "live" ? req.client.config.paypal.live.email : req.client.config.paypal.sandbox.email))
             ) return;
             const paymentData = (payload.custom || "").split(",");
@@ -69,10 +68,11 @@ router.post("/ipn", async (req, res) => {
             });
             req.client.users.fetch(userID).then((user) => {
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()
-                .setAuthor(`${user.tag} created a subscription`, user.displayAvatarURL())
-                .setDescription(`Subscription for guild **${guildName}** created... ${req.client.config.emojis.success}`)
-                .setColor("#339900")).replace(/[\/\(\)\']/g, "\\$&");
-                let { premiumLogs } = req.client.config;
+                    .setAuthor(`${user.tag} created a subscription`, user.displayAvatarURL())
+                    .setDescription(`Subscription for guild **${guildName}** created... ${req.client.config.emojis.success}`)
+                    // eslint-disable-next-line no-useless-escape
+                    .setColor("#339900")).replace(/[\/\(\)\']/g, "\\$&");
+                const { premiumLogs } = req.client.config;
                 req.client.shard.broadcastEval(`
                     let aLogs = this.channels.cache.get('${premiumLogs}');
                     if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
@@ -90,7 +90,7 @@ router.post("/ipn", async (req, res) => {
         if(payload.txn_type === "subscr_payment") {
             console.log(payload);
             if(
-                (payload.mc_gross !== '2.00') ||
+                (payload.mc_gross !== "2.00") ||
                 (payload.receiver_email !== (req.client.config.paypal.mode === "live" ? req.client.config.paypal.live.email : req.client.config.paypal.sandbox.email))
             ) return;
             const paymentData = (payload.custom || "").split(",");
@@ -103,9 +103,9 @@ router.post("/ipn", async (req, res) => {
                 const signupData = notSentSignup.find((s) => s.guildID === guildID);
                 if (signupData) {
                     const embed = new Discord.MessageEmbed()
-                    .setAuthor(`Thanks for purchasing ManageInvite Premium, ${user.tag}`, user.displayAvatarURL())
-                    .setDescription(`Congratulations, your server **${guildName}** is now premium! :crown:`)
-                    .setColor("#F4831B");
+                        .setAuthor(`Thanks for purchasing ManageInvite Premium, ${user.tag}`, user.displayAvatarURL())
+                        .setDescription(`Congratulations, your server **${guildName}** is now premium! :crown:`)
+                        .setColor("#F4831B");
                     user.send(embed);
                     notSentSignup = notSentSignup.filter((s) => s.guildID !== guildID);
                     const signupID = await req.client.database.createPayment({
@@ -167,10 +167,11 @@ router.post("/ipn", async (req, res) => {
                     await req.client.database.syncSubscriptionForOtherCaches(currentSubscription.id);
                 }
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()
-                .setAuthor(`${user.tag} paid for ManageInvite Premium`, user.displayAvatarURL())
-                .setDescription(`Recurring payment for **${paymentData[2]}** was paid (**$2**) :crown:`)
-                .setColor("#F4831B")).replace(/[\/\(\)\']/g, "\\$&");
-                let { premiumLogs } = req.client.config;
+                    .setAuthor(`${user.tag} paid for ManageInvite Premium`, user.displayAvatarURL())
+                    .setDescription(`Recurring payment for **${paymentData[2]}** was paid (**$2**) :crown:`)
+                    // eslint-disable-next-line no-useless-escape
+                    .setColor("#F4831B")).replace(/[\/\(\)\']/g, "\\$&");
+                const { premiumLogs } = req.client.config;
                 req.client.shard.broadcastEval(`
                     let aLogs = this.channels.cache.get('${premiumLogs}');
                     if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
@@ -193,16 +194,17 @@ router.post("/ipn", async (req, res) => {
                     formMessage.react("\u0034\u20E3");
                 }
                 const logEmbed = JSON.stringify(new Discord.MessageEmbed()
-                .setAuthor(`${user.tag} cancelled their subscription for ManageInvite Premium`, user.displayAvatarURL())
-                .setDescription(`Recurring payment for **${guildName}** was cancelled :wave:\n${formMessage ? `Satisfaction form sent! Awaiting answer... :pencil:` : "I wasn't able to send the satisfaction form... :confused:"}`)
-                .setFooter(`Form ID: ${formMessage.id}`)
-                .setColor("#1E90FF"))
-                .replace("\\r", "backRKey")
-                .replace("\\n", "backNKey")
-                .replace(/[\/\(\)\']/g, "\\$&")
-                .replace("backRKey", "\\\\r")
-                .replace("backNKey", "\\\\n");
-                // to-do: find a better way to prevent \n and \r from being replaced
+                    .setAuthor(`${user.tag} cancelled their subscription for ManageInvite Premium`, user.displayAvatarURL())
+                    .setDescription(`Recurring payment for **${guildName}** was cancelled :wave:\n${formMessage ? "Satisfaction form sent! Awaiting answer... :pencil:" : "I wasn't able to send the satisfaction form... :confused:"}`)
+                    .setFooter(`Form ID: ${formMessage.id}`)
+                    .setColor("#1E90FF"))
+                    .replace("\\r", "backRKey")
+                    .replace("\\n", "backNKey")
+                    // eslint-disable-next-line no-useless-escape
+                    .replace(/[\/\(\)\']/g, "\\$&")
+                    .replace("backRKey", "\\\\r")
+                    .replace("backNKey", "\\\\n");
+                    // to-do: find a better way to prevent \n and \r from being replaced
 
                 req.client.shard.broadcastEval(`
                     let aLogs = this.channels.cache.get(this.config.premiumLogs);
@@ -220,7 +222,6 @@ router.post("/ipn", async (req, res) => {
                 });
                 const guild = await req.client.database.fetchGuild(guildID);
                 await req.client.database.createSubPaymentLink(guild.subscriptions.find((sub) => sub.label === "Premium Monthly 1 Guild").id, paymentID);
-                await req.client.database.syncSubscriptionForOtherCaches(currentSubscription.id);
             });
         }
     });

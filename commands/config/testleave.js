@@ -1,5 +1,5 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+    Discord = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -33,7 +33,7 @@ module.exports = class extends Command {
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)
             .setFooter(data.footer)
-            .setTimestamp()
+            .setTimestamp();
         message.channel.send(embed);
         
         if(data.guild.leave.enabled && data.guild.leave.message && data.guild.leave.channel && message.guild.channels.cache.get(data.guild.leave.channel)){

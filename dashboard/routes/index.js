@@ -1,6 +1,6 @@
 const express = require("express"),
-CheckAuth = require("../auth/CheckAuth"),
-router = express.Router();
+    CheckAuth = require("../auth/CheckAuth"),
+    router = express.Router();
 
 router.get("/", CheckAuth, async (req, res) => {
     res.redirect("/selector");
@@ -14,7 +14,7 @@ router.get("/selector", CheckAuth, async(req, res) => {
         member: req.member,
         discord: req.client.config.discord,
         locale: req.user.locale,
-        paypal: req.client.config.paypal.mode === 'live' ? req.client.config.paypal.live : req.client.config.paypal.sandbox
+        paypal: req.client.config.paypal.mode === "live" ? req.client.config.paypal.live : req.client.config.paypal.sandbox
     });
 });
 

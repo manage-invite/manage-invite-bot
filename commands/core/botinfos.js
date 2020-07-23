@@ -1,5 +1,5 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+    Discord = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -29,21 +29,21 @@ module.exports = class extends Command {
             ];
         });
 
-        let embed = new Discord.MessageEmbed()
-        .setColor(data.color)
-        .setFooter(data.footer)
-        .setAuthor(message.translate("core/botinfos:TITLE", {
-            username: this.client.user.username
-        }))
-        .addField(message.translate("core/botinfos:STATS_TITLE"), message.translate("core/botinfos:STATS_CONTENT", {
-            guilds: guildsCount,
-            users: usersCount
-        }), true)
-        .addField(message.translate("core/botinfos:VERSIONS_TITLE"), message.translate("core/botinfos:VERSIONS_CONTENT", {
-            discord: Discord.version,
-            node: process.version
-        }), true)
-        .addField("\u200B", "\u200B");
+        const embed = new Discord.MessageEmbed()
+            .setColor(data.color)
+            .setFooter(data.footer)
+            .setAuthor(message.translate("core/botinfos:TITLE", {
+                username: this.client.user.username
+            }))
+            .addField(message.translate("core/botinfos:STATS_TITLE"), message.translate("core/botinfos:STATS_CONTENT", {
+                guilds: guildsCount,
+                users: usersCount
+            }), true)
+            .addField(message.translate("core/botinfos:VERSIONS_TITLE"), message.translate("core/botinfos:VERSIONS_CONTENT", {
+                discord: Discord.version,
+                node: process.version
+            }), true)
+            .addField("\u200B", "\u200B");
         results.forEach((shard) => {
             const title = message.translate(`core/botinfos:SHARD_TITLE${this.client.shard.ids.includes(shard[2]) ? "_CURRENT" : ""}`, {
                 online: this.client.config.emojis.online,

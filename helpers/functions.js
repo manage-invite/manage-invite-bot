@@ -1,9 +1,9 @@
-const Discord = require("discord.js"),
-fetch = require("node-fetch"),
-moment = require("moment"),
-date = require('date-and-time');
+const fetch = require("node-fetch"),
+    moment = require("moment"),
+    date = require("date-and-time");
 
-const stringOrNull = (string) => string ? `'${string}'` : 'null';
+const stringOrNull = (string) => string ? `'${string}'` : "null";
+// eslint-disable-next-line no-useless-escape
 const pgEscape = (string) => string ? string.replace(/[\/\(\)\']/g, "''") : null;
 
 /**
@@ -26,24 +26,24 @@ const asyncForEach = async (array, callback) => {
 const formatMessage = (message, member, locale, invData) => {
     moment.locale(locale);
     message = message
-    .replace(/{user}/g, member.toString())
-    .replace(/{user.name}/g, member.user.username)
-    .replace(/{user.tag}/g, member.user.tag)
-    .replace(/{user.createdat}/g, moment(member.user.createdAt, "YYYYMMDD").fromNow())
-    .replace(/{user.id}/g, member.user.id)
-    .replace(/{guild}/g, member.guild.name)
-    .replace(/{guild.count}/g, member.guild.memberCount);
+        .replace(/{user}/g, member.toString())
+        .replace(/{user.name}/g, member.user.username)
+        .replace(/{user.tag}/g, member.user.tag)
+        .replace(/{user.createdat}/g, moment(member.user.createdAt, "YYYYMMDD").fromNow())
+        .replace(/{user.id}/g, member.user.id)
+        .replace(/{guild}/g, member.guild.name)
+        .replace(/{guild.count}/g, member.guild.memberCount);
 
     if(invData){
         const { inviter, inviterData, invite } = invData;
         message = message.replace(/{inviter}/g, inviter.toString())
-        .replace(/{inviter.tag}/g, inviter.tag)
-        .replace(/{inviter.name}/g, inviter.username)
-        .replace(/{inviter.id}/g, inviter.id)
-        .replace(/{inviter.invites}/g, inviterData.regular + inviterData.bonus - inviterData.fake - inviterData.leaves)
-        .replace(/{invite.code}/g, invite.code)
-        .replace(/{invite.uses}/g, invite.uses)
-        .replace(/{invite.url}/g, invite.url);
+            .replace(/{inviter.tag}/g, inviter.tag)
+            .replace(/{inviter.name}/g, inviter.username)
+            .replace(/{inviter.id}/g, inviter.id)
+            .replace(/{inviter.invites}/g, inviterData.regular + inviterData.bonus - inviterData.fake - inviterData.leaves)
+            .replace(/{invite.code}/g, invite.code)
+            .replace(/{invite.uses}/g, invite.uses)
+            .replace(/{invite.url}/g, invite.url);
     }
 
     return message;
@@ -91,7 +91,7 @@ const getNextRank = (inviteCount, ranks, guild) => {
  */
 const assignRanks = async (member, inviteCount, ranks, keepRanks, stackedRanks) => {
     if(member.user.bot) return;
-    let assigned = new Array();
+    const assigned = new Array();
     await asyncForEach((ranks.sort((a, b) => b.inviteCount - a.inviteCount)), async (rank) => {
         // If the guild doesn't contain the rank anymore
         if(!member.guild.roles.cache.has(rank.roleID)) return;
@@ -115,7 +115,7 @@ const assignRanks = async (member, inviteCount, ranks, keepRanks, stackedRanks) 
     });
     if (stackedRanks && assigned.length > 0) {
         await member.roles.add(assigned.shift());
-        for(let role of assigned){
+        for(const role of assigned){
             if(member.roles.cache.has(role)) await member.roles.remove(role);
         }
     }
@@ -127,17 +127,17 @@ const assignRanks = async (member, inviteCount, ranks, keepRanks, stackedRanks) 
  * @param {object} client The Discord client
  */
 const postTopStats = async (client) => {
-    let shard_id = client.shard.ids[0];
-    let shard_count = client.shard.count;
-    let server_count = client.guilds.cache.size;
-    let headers = { "content-type": "application/json", "authorization": client.config.topToken };
-    let options = {
+    const shard_id = client.shard.ids[0];
+    const shard_count = client.shard.count;
+    const server_count = client.guilds.cache.size;
+    const headers = { "content-type": "application/json", "authorization": client.config.topToken };
+    const options = {
         method: "POST",
         body: JSON.stringify({ shard_id, shard_count, server_count }),
         headers
     };
     fetch("https://discordbots.org/api/bots/stats", options).then(async (res) => {
-        let json = await res.json();
+        const json = await res.json();
         if(!res.error) client.logger.log("Top.gg stats successfully posted.", "log");
         else client.logger.log("Top.gg stats cannot be posted. Error: "+json.error, "error");
     });
@@ -155,12 +155,12 @@ const isSameDay = (firstDate, secondDate) => {
  * @returns {array} The formatted names
  */
 const lastXDays = (numberOfDays, monthIndex) => {
-    let days = [];
+    const days = [];
     for (let i = 0; i < numberOfDays; i++) {
-        let date = new Date();
+        const date = new Date();
         date.setDate(date.getDate() - i);
         let day = date.getDate();
-        let month = monthIndex[date.getMonth()];
+        const month = monthIndex[date.getMonth()];
         if(day < 10) day = `0${day}`;
         days.push(`${day} ${month}`);
     }
@@ -175,18 +175,18 @@ const lastXDays = (numberOfDays, monthIndex) => {
  */
 const joinedXDays = (numberOfDays, members) => {
     // Final result
-    let days = [];
+    const days = [];
     // Pointer
     let lastDate = 0;
     // Sort the members by their joined date
     members = members.cache.sort((a,b) => b.joinedTimestamp - a.joinedTimestamp);
     for (let i = 0; i < numberOfDays; i++) {
-        let date = new Date();
+        const date = new Date();
         date.setDate(date.getDate() - i);
         // For each member in the server
         members.forEach((member) => {
             // Get the joinedDate
-            let joinedDate = new Date(member.joinedTimestamp);
+            const joinedDate = new Date(member.joinedTimestamp);
             // If the joinedDate is the same as the date which we are testing
             if(isSameDay(joinedDate, date)){
                 // If the last item in the array is not the same day counter
@@ -212,38 +212,38 @@ const joinedXDays = (numberOfDays, members) => {
  * @returns {Boolean} Whether the arrays are equals
  */
 const isEqual = (value, other) => {
-	let type = Object.prototype.toString.call(value);
-	if (type !== Object.prototype.toString.call(other)) return false;
-	if (['[object Array]', '[object Object]'].indexOf(type) < 0) return false;
-	let valueLen = type === '[object Array]' ? value.length : Object.keys(value).length;
-	let otherLen = type === '[object Array]' ? other.length : Object.keys(other).length;
-	if (valueLen !== otherLen) return false;
-	const compare = (item1, item2) => {
-		let itemType = Object.prototype.toString.call(item1);
-		if (['[object Array]', '[object Object]'].indexOf(itemType) >= 0) {
-			if (!isEqual(item1, item2)) return false;
-		}
-		else {
-			if (itemType !== Object.prototype.toString.call(item2)) return false;
-			if (itemType === '[object Function]') {
-				if (item1.toString() !== item2.toString()) return false;
-			} else {
-				if (item1 !== item2) return false;
-			}
-		}
-	};
-	if (type === '[object Array]') {
-		for (var i = 0; i < valueLen; i++) {
-			if (compare(value[i], other[i]) === false) return false;
-		}
-	} else {
-		for (var key in value) {
-			if (value.hasOwnProperty(key)) {
-				if (compare(value[key], other[key]) === false) return false;
-			}
-		}
-	}
-	return true;
+    const type = Object.prototype.toString.call(value);
+    if (type !== Object.prototype.toString.call(other)) return false;
+    if (["[object Array]", "[object Object]"].indexOf(type) < 0) return false;
+    const valueLen = type === "[object Array]" ? value.length : Object.keys(value).length;
+    const otherLen = type === "[object Array]" ? other.length : Object.keys(other).length;
+    if (valueLen !== otherLen) return false;
+    const compare = (item1, item2) => {
+        const itemType = Object.prototype.toString.call(item1);
+        if (["[object Array]", "[object Object]"].indexOf(itemType) >= 0) {
+            if (!isEqual(item1, item2)) return false;
+        }
+        else {
+            if (itemType !== Object.prototype.toString.call(item2)) return false;
+            if (itemType === "[object Function]") {
+                if (item1.toString() !== item2.toString()) return false;
+            } else {
+                if (item1 !== item2) return false;
+            }
+        }
+    };
+    if (type === "[object Array]") {
+        for (var i = 0; i < valueLen; i++) {
+            if (compare(value[i], other[i]) === false) return false;
+        }
+    } else {
+        for (var key in value) {
+            if (Object.prototype.hasOwnProperty.call(value, key)) {
+                if (compare(value[key], other[key]) === false) return false;
+            }
+        }
+    }
+    return true;
 };
 
 /**
@@ -253,10 +253,10 @@ const isEqual = (value, other) => {
  * @param {string} locale 
  */
 const formatDate = (dateToFormat, format, locale) => {
-    if(locale !== "en-US") require('date-and-time/locale/'+locale.substr(0, 2));
+    if(locale !== "en-US") require("date-and-time/locale/"+locale.substr(0, 2));
     date.locale(locale.substr(0, 2));
     return date.format(dateToFormat, format);
-}
+};
 
 module.exports = {
     stringOrNull,

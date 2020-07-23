@@ -1,6 +1,6 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js"),
-stringSimilarity = require("string-similarity");
+    Discord = require("discord.js"),
+    stringSimilarity = require("string-similarity");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -15,7 +15,7 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
         
-        let inviteCount = args[0];
+        const inviteCount = args[0];
         if(!inviteCount) return message.error("admin/addrank:MISSING_COUNT", {
             prefix: data.guild.prefix
         });
@@ -23,7 +23,7 @@ module.exports = class extends Command {
             prefix: data.guild.prefix
         });
         let currentRank = data.guild.ranks.find((r) => r.inviteCount === inviteCount) || {};
-        let currentRole = message.guild.roles.cache.find((r) => r.id === currentRank.roleID);
+        const currentRole = message.guild.roles.cache.find((r) => r.id === currentRank.roleID);
         if(currentRank && currentRole) return message.error("admin/addrank:ALREADY_EXIST", {
             prefix: data.guild.prefix,
             count: currentRank.inviteCount,
@@ -31,7 +31,7 @@ module.exports = class extends Command {
             roleID: currentRole.id
         });
 
-        let role = message.mentions.roles.first() || message.guild.roles.cache.get(args.slice(1).join(" ")) || message.guild.roles.cache.find((role) => role.name === args.slice(1).join(" ") || (stringSimilarity.compareTwoStrings(role.name, args.slice(1).join(" ")) > 0.85));
+        const role = message.mentions.roles.first() || message.guild.roles.cache.get(args.slice(1).join(" ")) || message.guild.roles.cache.find((role) => role.name === args.slice(1).join(" ") || (stringSimilarity.compareTwoStrings(role.name, args.slice(1).join(" ")) > 0.85));
         if(!role) return message.error("admin/addrank:MISSING_ROLE", {
             prefix: data.guild.prefix
         });
@@ -49,15 +49,15 @@ module.exports = class extends Command {
         await data.guild.addRank(role.id, inviteCount);
 
         const embed = new Discord.MessageEmbed()
-        .setAuthor(message.translate("admin/addrank:TITLE"))
-        .setTitle(message.translate("admin/ranks:VIEW_CONF"))
-        .setURL("https://dash.manage-invite.xyz")
-        .setDescription(message.translate("admin/addrank:CONTENT", {
-            count: inviteCount,
-            roleName: role.name
-        }))
-        .setColor(data.color)
-        .setFooter(data.footer);
+            .setAuthor(message.translate("admin/addrank:TITLE"))
+            .setTitle(message.translate("admin/ranks:VIEW_CONF"))
+            .setURL("https://dash.manage-invite.xyz")
+            .setDescription(message.translate("admin/addrank:CONTENT", {
+                count: inviteCount,
+                roleName: role.name
+            }))
+            .setColor(data.color)
+            .setFooter(data.footer);
 
         message.channel.send(embed);
 

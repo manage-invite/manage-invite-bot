@@ -29,7 +29,10 @@
     "string-similarity": "^4.0.1",
     "zlib-sync": "^0.1.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.5.0"
+  },
   "scripts": {
     "start": "node sharder.js"
   },

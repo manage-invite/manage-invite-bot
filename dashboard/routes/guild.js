@@ -1,18 +1,13 @@
-const availableLanguages = [
-    { name: "fr-FR", aliases: [ "fr", "francais", "français", "Français" ] },
-    { name: "en-US", aliases: [ "en", "english" ] }
-];
-
 const express = require("express"),
-utils = require("../utils"),
-CheckAuth = require("../auth/CheckAuth"),
-router = express.Router();
+    utils = require("../utils"),
+    CheckAuth = require("../auth/CheckAuth"),
+    router = express.Router();
 
 router.get("/:serverID", CheckAuth, async (req, res) => {
 
     // Check if the user has the permissions to edit this guild
-    let results = await req.client.shard.broadcastEval(` let guild = this.guilds.cache.get('${req.params.serverID}'); if(guild) guild.toJSON() `);
-    let guild = results.find((g) => g);
+    const results = await req.client.shard.broadcastEval(` let guild = this.guilds.cache.get('${req.params.serverID}'); if(guild) guild.toJSON() `);
+    const guild = results.find((g) => g);
     if(!guild || !req.userInfos.displayedGuilds || !req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID)){
         return res.render("404", {
             user: req.userInfos,
@@ -29,7 +24,7 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
     }
 
     // Fetch guild informations
-    let guildInfos = await utils.fetchGuild(guild.id, req.client, req.user.guilds, req.user.locale);
+    const guildInfos = await utils.fetchGuild(guild.id, req.client, req.user.guilds, req.user.locale);
 
     res.render("guild", {
         guild: guildInfos,
@@ -46,14 +41,14 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
 router.post("/:serverID/:form", CheckAuth, async (req, res) => {
 
     // Check if the user has the permissions to edit this guild
-    let results = await req.client.shard.broadcastEval(`
+    const results = await req.client.shard.broadcastEval(`
     let guild = this.guilds.cache.get('${req.params.serverID}');
     if(guild){
         let toReturn = guild.toJSON();
         toReturn.channels = guild.channels.cache.toJSON();
         toReturn;
     }`);
-    let guild = results.find((g) => g);
+    const guild = results.find((g) => g);
     if(!guild || !req.userInfos.displayedGuilds || !req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID)){
         return res.render("404", {
             user: req.userInfos,
@@ -65,23 +60,23 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         });
     }
     
-    let guildData = await req.client.database.fetchGuild(guild.id);
-    let data = req.body;
+    const guildData = await req.client.database.fetchGuild(guild.id);
+    const data = req.body;
 
     if(req.params.form === "basic"){
-        if(data.hasOwnProperty("prefix") && data.prefix && data.prefix !== guildData.prefix){
+        if(Object.prototype.hasOwnProperty.call(data, "prefix") && data.prefix && data.prefix !== guildData.prefix){
             await guildData.setPrefix(data.prefix);
         }
-        if(data.hasOwnProperty("language") && req.client.config.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(data.language.toLowerCase()))){
+        if(Object.prototype.hasOwnProperty.call(data, "language") && req.client.config.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(data.language.toLowerCase()))){
             const language = req.client.config.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(data.language.toLowerCase()));
             if(language.name !== guildData.language) await guildData.setLanguage(language.name);
         }
     }
 
     if(req.params.form === "joinDM"){
-        let enable = data.hasOwnProperty("enable");
-        let update = data.hasOwnProperty("update");
-        let disable = data.hasOwnProperty("disable");
+        const enable = Object.prototype.hasOwnProperty.call(data, "enable");
+        const update = Object.prototype.hasOwnProperty.call(data, "update");
+        const disable = Object.prototype.hasOwnProperty.call(data, "disable");
         if(enable && data.message){
             guildData.joinDM.enabled = true;
             guildData.joinDM.mainMessage = data.mainMessage;
@@ -103,11 +98,11 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
     }
 
     if(req.params.form === "join"){
-        let enable = data.hasOwnProperty("enable");
-        let update = data.hasOwnProperty("update");
-        let disable = data.hasOwnProperty("disable");
+        const enable = Object.prototype.hasOwnProperty.call(data, "enable");
+        const update = Object.prototype.hasOwnProperty.call(data, "update");
+        const disable = Object.prototype.hasOwnProperty.call(data, "disable");
         if(enable && data.mainMessage && data.channel){
-            let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
+            const channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
             if(channel && channel.type === "text"){
                 guildData.join.enabled = true;
                 guildData.join.mainMessage = data.mainMessage;
@@ -118,7 +113,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 await guildData.join.updateData();
             }
         } else if(update && data.mainMessage && data.channel){
-            let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
+            const channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
             if(channel && channel.type === "text"){
                 guildData.join.enabled = true;
                 guildData.join.mainMessage = data.mainMessage;
@@ -135,11 +130,11 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
     }
 
     if(req.params.form === "leave"){
-        let enable = data.hasOwnProperty("enable");
-        let update = data.hasOwnProperty("update");
-        let disable = data.hasOwnProperty("disable");
+        const enable = Object.prototype.hasOwnProperty.call(data, "enable");
+        const update = Object.prototype.hasOwnProperty.call(data, "update");
+        const disable = Object.prototype.hasOwnProperty.call(data, "disable");
         if(enable && data.mainMessage && data.channel){
-            let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
+            const channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
             if(channel && channel.type === "text"){
                 guildData.leave.enabled = true;
                 guildData.leave.mainMessage = data.mainMessage;
@@ -150,7 +145,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 await guildData.leave.updateData();
             }
         } else if(update && data.mainMessage && data.channel){
-            let channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
+            const channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
             if(channel && channel.type === "text"){
                 guildData.leave.enabled = true;
                 guildData.leave.mainMessage = data.mainMessage;

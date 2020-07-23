@@ -6,8 +6,8 @@ const Discord = require("discord.js");
  * @param {object} client The discord client instance
  * @param {array} guilds The user guilds
  */
-async function fetchGuild(guildID, client, locale){
-    let results = await client.shard.broadcastEval(`
+async function fetchGuild(guildID, client){
+    const results = await client.shard.broadcastEval(`
     let guild = this.guilds.cache.get('${guildID}');
     if(guild){
         if(guild.name) {
@@ -24,8 +24,8 @@ async function fetchGuild(guildID, client, locale){
         }
     }
     `);
-    let guild = results.find((g) => g);
-    let conf = await client.database.fetchGuild(guild.id);
+    const guild = results.find((g) => g);
+    const conf = await client.database.fetchGuild(guild.id);
     conf.premiumExpiresDisplayed = client.functions.formatDate(new Date(conf.premiumExpiresAt), "MMM DD YYYY", conf.language);
     const difference = new Date(conf.premiumExpiresAt).getTime() - Date.now();
     conf.premiumExpiresDays = Math.round(difference/86400000);
@@ -38,15 +38,15 @@ async function fetchGuild(guildID, client, locale){
  * @param {object} client The discord client instance
  * @returns {object} The user informations
  */
-async function fetchUser(userData, client, locale){
+async function fetchUser(userData, client){
     if(userData.guilds){
         const guildsToFetch = userData.guilds.map((g) => g.id);
         const guildDBs = await client.database.fetchGuilds(guildsToFetch);
         await client.functions.asyncForEach(userData.guilds, async (guild) => {
-            let perms = new Discord.Permissions(guild.permissions);
+            const perms = new Discord.Permissions(guild.permissions);
             if(perms.has("MANAGE_GUILD")) guild.admin = true;
-            let results = await client.shard.broadcastEval(` let guild = this.guilds.cache.get('${guild.id}'); if(guild && guild.name) guild.toJSON(); `);
-            let found = results.find((g) => g);
+            const results = await client.shard.broadcastEval(` let guild = this.guilds.cache.get('${guild.id}'); if(guild && guild.name) guild.toJSON(); `);
+            const found = results.find((g) => g);
             guild.settingsUrl = (found ? `/manage/${guild.id}/` : `https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958847&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(client.config.baseURL+"/api/callback")}&state=invite${guild.id}`);
             guild.iconURL = (guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128` : "/dist/img/discordcry.png");
             const guildDB = guildDBs.find((g) => g.id === guild.id);
@@ -60,8 +60,8 @@ async function fetchUser(userData, client, locale){
             delete userData.displayedGuilds;
         }
     }
-    let user = await client.users.fetch(userData.id);
-    let userInfos = { ...user.toJSON(), ...userData, ...user.presence };
+    const user = await client.users.fetch(userData.id);
+    const userInfos = { ...user.toJSON(), ...userData, ...user.presence };
     return userInfos;
 }
 

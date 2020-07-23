@@ -51,7 +51,7 @@ module.exports = {
     },
     /* PayPal */
     paypal: {
-        mode: 'sandbox',
+        mode: "sandbox",
         live: {
             email: "XXXXXXXXXXX",
             returnURL: "https://dash.manage-invite.xyz/payment/callback",

@@ -12,11 +12,11 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args, data) {
+    async run (message, args) {
         const command = args[0];
         if(command === "l"){
             const path = require("path");
-            const file = path.join(__dirname, '..', '..', 'helpers', 'i18n.js');
+            const file = path.join(__dirname, "..", "..", "helpers", "i18n.js");
             this.client.shard.broadcastEval(`
                 const i18n = require('${file}');
                 i18n().then((r) => {

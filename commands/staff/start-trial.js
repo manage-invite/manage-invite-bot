@@ -11,15 +11,15 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args, data) {
+    async run (message, args) {
 
-        const force = message.content.includes('-f');
+        const force = message.content.includes("-f");
 
         let guildID = args[0];
         if(!guildID) return message.error("Please specify a valid guild!");
 
         if(guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-z]/)){
-            let invite = await this.client.fetchInvite(guildID);
+            const invite = await this.client.fetchInvite(guildID);
             guildID = invite.channel.guild.id;
         }
 
@@ -52,7 +52,7 @@ module.exports = class extends Command {
         });
 
         const currentSubscription = guildData.subscriptions.find((sub) => sub.label === "Trial Version");
-        let subscription = currentSubscription || await this.client.database.createSubscription({
+        const subscription = currentSubscription || await this.client.database.createSubscription({
             expiresAt: new Date(Date.now()+(7*24*60*60*1000)),
             createdAt,
             guildsCount: 1,

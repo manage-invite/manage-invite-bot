@@ -1,5 +1,5 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+    Discord = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -31,10 +31,10 @@ module.exports = class extends Command {
                 await memberData.updateInvites();
             });
             const embed = new Discord.MessageEmbed()
-            .setAuthor(message.translate("admin/sync-invites:TITLE"))
-            .setDescription(message.translate("admin/sync-invites:DESCRIPTION"))
-            .setColor(data.color)
-            .setFooter(data.footer);
+                .setAuthor(message.translate("admin/sync-invites:TITLE"))
+                .setDescription(message.translate("admin/sync-invites:DESCRIPTION"))
+                .setColor(data.color)
+                .setFooter(data.footer);
             conf.edit(null, { embed });
         }).catch((err) => {
             console.error(err);

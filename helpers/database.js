@@ -1,6 +1,6 @@
 const { Pool } = require("pg");
 const { Collection } = require("discord.js");
-const { asyncForEach, stringOrNull, pgEscape } = require("./functions");
+const { stringOrNull, pgEscape } = require("./functions");
 const logger = require("./logger");
 
 const Guild = require("../models/Guild");
@@ -13,9 +13,9 @@ module.exports = class DatabaseHandler {
         const { database } = this.client.config;
         this.pool = new Pool(database);
         this.pool
-        .on("connect", () => {
-            logger.log("Shard #"+this.client.shard.ids[0]+" connected to database.");
-        });
+            .on("connect", () => {
+                logger.log("Shard #"+this.client.shard.ids[0]+" connected to database.");
+            });
 
         // Cache
         this.guildCache = new Collection();
@@ -198,7 +198,7 @@ module.exports = class DatabaseHandler {
                 RETURNING id;
             `).then(({ rows }) => {
                 resolve(rows[0].id);
-            })
+            });
         });
     }
 
@@ -211,7 +211,7 @@ module.exports = class DatabaseHandler {
                 RETURNING id;
             `).then(({ rows }) => {
                 resolve(rows[0].id);
-            })
+            });
         });
     }
 
@@ -235,7 +235,7 @@ module.exports = class DatabaseHandler {
                 });
             }
             this.removeMemberFromOtherCaches(userID, guildID);
-            if (eventType === 'join' && inviterID) {
+            if (eventType === "join" && inviterID) {
                 // Update inviter cache
                 if (this.memberCache.has(`${inviterID}${guildID}`)) {
                     this.memberCache.get(`${inviterID}${guildID}`).invitedMembers.push({
@@ -290,7 +290,7 @@ module.exports = class DatabaseHandler {
             const membersToFetch = memberIDs.filter((m) => !this.memberCache.has(`${m.userID}${m.guildID}`));
             // If there are members to fetch
             if(membersToFetch.length > 0){
-                const membersArray = memberIDs.map((m) => `'${m.userID}${m.guildID}'`).join(', ');
+                const membersArray = memberIDs.map((m) => `'${m.userID}${m.guildID}'`).join(", ");
                 /* Fetch basic data - from the members table */
                 let { rows: membersData } = await this.query(`
                     SELECT * FROM members
@@ -301,7 +301,7 @@ module.exports = class DatabaseHandler {
                 if(membersNotCreated.length > 0){
                     const values = membersNotCreated.map((m) => {
                         return `('${m.userID}', '${m.guildID}', 0, 0, 0, 0, 0, 0, 0, 0, false)`;
-                    }).join(', ');
+                    }).join(", ");
                     // Insert members
                     const { rows: createdMembersData } = await this.query(`
                         INSERT INTO members
@@ -381,7 +381,7 @@ module.exports = class DatabaseHandler {
                 `);
                 /* Create Member instance for all guilds */
                 membersToFetch.forEach((memberID) => {
-                    const member = new Member(this, {
+                    new Member(this, {
                         userID: memberID.userID,
                         guildID: memberID.guildID,
                         data: membersData.find((memberDataObj) => `${memberDataObj.user_id}${memberDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`),
@@ -501,14 +501,14 @@ module.exports = class DatabaseHandler {
                 /* Fetch basic data - from the guilds table */
                 let { rows: guildsData } = await this.query(`
                     SELECT * FROM guilds
-                    WHERE guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(', ')})
+                    WHERE guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(", ")})
                 `);
                 /* If there are guilds not created, insert them in the guilds table */
                 const guildsNotCreated = guildsToFetch.filter((g) => !guildsData.some((gd) => gd.guild_id === g));
                 if(guildsNotCreated.length > 0){
                     const values = guildsNotCreated.map((g) => {
                         return `('${g}', '${this.client.config.prefix}', '${this.client.config.enabledLanguages.find((l) => l.default).name}', false, false)`;
-                    }).join(', ');
+                    }).join(", ");
                     // Insert guilds
                     const { rows: createdGuildsData } = await this.query(`
                         INSERT INTO guilds
@@ -519,7 +519,7 @@ module.exports = class DatabaseHandler {
                     guildsData = [ ...guildsData, ...createdGuildsData ].flat();
                 }
                 /* Fetch guilds plugins - from the guilds_plugins table */
-                let { rows: plugins } = await this.query(`
+                const { rows: plugins } = await this.query(`
                     SELECT guild_id,
                         json_agg(obj_p) as guild_plugins_agg
                     FROM(
@@ -530,33 +530,33 @@ module.exports = class DatabaseHandler {
                         ) as obj_p
                         from guild_plugins
                     ) gp
-                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(', ')})
+                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(", ")})
                     group by guild_id
                 `);
                 /* If there are guilds with missing plugins */
                 const guildsWithMissingPlugins = guildsToFetch.filter((g) => {
                     return !plugins.some((p) => p.guild_id === g) ||
-                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'joinDM') ||
-                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'leave') ||
-                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'join')
+                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "joinDM") ||
+                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "leave") ||
+                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "join");
                 });
                 if(guildsWithMissingPlugins.length > 0){
                     const pluginInsertValues = [];
                     guildsWithMissingPlugins.forEach((g) => {
-                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'joinDM')){
+                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "joinDM")){
                             pluginInsertValues.push(`( '${g}', 'joinDM', '{ "enabled": false, "message": null }' )`);
                         }
-                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'leave')){
+                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "leave")){
                             pluginInsertValues.push(`( '${g}', 'leave', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
-                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'join')){
+                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "join")){
                             pluginInsertValues.push(`( '${g}', 'join', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
                     });
                     const { rows: createdPlugins } = await this.query(`
                         INSERT INTO guild_plugins
                         (guild_id, plugin_name, plugin_data) VALUES
-                        ${pluginInsertValues.join(', ')}
+                        ${pluginInsertValues.join(", ")}
                         RETURNING *;
                     `);
                     guildsWithMissingPlugins.forEach((g) => {
@@ -587,7 +587,7 @@ module.exports = class DatabaseHandler {
                         ) as obj_r
                         from guild_ranks
                     ) gp
-                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(', ')})
+                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(", ")})
                     group by guild_id
                 `);
                 /* Fetch guilds blacklisted users - from the guild_blacklisted_users table */
@@ -601,11 +601,11 @@ module.exports = class DatabaseHandler {
                         ) as obj_b
                         from guild_blacklisted_users
                     ) gp
-                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(', ')})
+                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(", ")})
                     group by guild_id
                 `);
                 /* Fetch guilds subscriptions - from the guilds_subscriptions table */
-                let { rows: subscriptions } = await this.query(`
+                const { rows: subscriptions } = await this.query(`
                     SELECT guild_id,
                         json_agg(obj_s) as guild_subscriptions_agg
                     FROM(
@@ -617,12 +617,12 @@ module.exports = class DatabaseHandler {
                         from guilds_subscriptions gs
                         inner join subscriptions s ON s.id = gs.sub_id
                     ) gp
-                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(', ')})
+                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(", ")})
                     group by guild_id
                 `);
                 /* Create Guild instance for all guilds */
                 guildsToFetch.forEach((guildID) => {
-                    const guild = new Guild(this, {
+                    new Guild(this, {
                         id: guildID,
                         data: guildsData.find((pluginObj) => pluginObj.guild_id.trim() === guildID),
                         plugins: plugins.find((pluginObj) => pluginObj.guild_id.trim() === guildID)?.guild_plugins_agg,

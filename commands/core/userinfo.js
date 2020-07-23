@@ -1,6 +1,6 @@
 const Command = require("../../structures/Command.js"),
-moment = require("moment"),
-Discord = require("discord.js");
+    moment = require("moment"),
+    Discord = require("discord.js");
 const { uniqBy } = require("lodash");
 
 module.exports = class extends Command {
@@ -26,14 +26,14 @@ module.exports = class extends Command {
         const joinDate = member ? moment(member.joinedAt, "YYYYMMDD").fromNow() : null;
 
         const embed = new Discord.MessageEmbed()
-        .setAuthor(message.translate("core/userinfo:TITLE", {
-            username: user.tag,
-            userID: user.id
-        }), user.displayAvatarURL())
-        .addField(message.translate("core/userinfo:BOT_TITLE"), user.bot ? message.translate("common:YES") : message.translate("common:NO"), true)
-        .addField(message.translate("core/userinfo:CREATED_AT_TITLE"), creationDate.charAt(0).toUpperCase() + creationDate.substr(1, creationDate.length), true)
-        .setColor(data.color)
-        .setFooter(data.footer);
+            .setAuthor(message.translate("core/userinfo:TITLE", {
+                username: user.tag,
+                userID: user.id
+            }), user.displayAvatarURL())
+            .addField(message.translate("core/userinfo:BOT_TITLE"), user.bot ? message.translate("common:YES") : message.translate("common:NO"), true)
+            .addField(message.translate("core/userinfo:CREATED_AT_TITLE"), creationDate.charAt(0).toUpperCase() + creationDate.substr(1, creationDate.length), true)
+            .setColor(data.color)
+            .setFooter(data.footer);
         
         if(member){
             const joinData = memberData.joinData;
@@ -54,18 +54,18 @@ module.exports = class extends Command {
             const previous = members[joinPos - 1] ? members[joinPos - 1].user : null;
             const next = members[joinPos + 1] ? members[joinPos + 1].user : null;
             embed.addField(message.translate("core/userinfo:JOINED_AT_TITLE"), joinDate.charAt(0).toUpperCase() + joinDate.substr(1, joinDate.length), true)
-            .addField(message.translate("core/userinfo:INVITES_TITLE"), data.guild.blacklistedUsers.includes(member.id) ? message.translate("admin/blacklist:BLACKLISTED", {
-                username: member.user.tag
-            }) : message.translate("core/invite:MEMBER_CONTENT", {
-                username: member.user.username,
-                inviteCount: memberData.calculatedInvites,
-                regularCount: memberData.regular,
-                bonusCount: memberData.bonus,
-                fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
-                leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
-            }))
-            .addField(message.translate("core/userinfo:JOIN_WAY_TITLE"), joinWay)
-            .addField(message.translate("core/userinfo:JOIN_ORDER_TITLE"), `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`);
+                .addField(message.translate("core/userinfo:INVITES_TITLE"), data.guild.blacklistedUsers.includes(member.id) ? message.translate("admin/blacklist:BLACKLISTED", {
+                    username: member.user.tag
+                }) : message.translate("core/invite:MEMBER_CONTENT", {
+                    username: member.user.username,
+                    inviteCount: memberData.calculatedInvites,
+                    regularCount: memberData.regular,
+                    bonusCount: memberData.bonus,
+                    fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
+                    leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
+                }))
+                .addField(message.translate("core/userinfo:JOIN_WAY_TITLE"), joinWay)
+                .addField(message.translate("core/userinfo:JOIN_ORDER_TITLE"), `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`);
         }
 
         if(memberData.invitedMembers){
@@ -74,7 +74,7 @@ module.exports = class extends Command {
                 const fetchedUser = message.guild.member(event.userID);
                 if(fetchedUser) users.push("`"+fetchedUser.user.tag+"`");
             });
-            let nobody = users.length === 0;
+            const nobody = users.length === 0;
             let andMore = false;
             if(users.length > 20){
                 andMore = true;
@@ -82,25 +82,25 @@ module.exports = class extends Command {
             }
             embed.addField(message.translate("core/userinfo:INVITED_TITLE"),
                 nobody ? message.translate("core/userinfo:NO_INVITED_USERS") :
-                (andMore ? message.translate("core/userinfo:INVITED_USERS_MORE", {
-                    list: users.join(", ")
-                }) :
-                users.join(", ")));
+                    (andMore ? message.translate("core/userinfo:INVITED_USERS_MORE", {
+                        list: users.join(", ")
+                    }) :
+                        users.join(", ")));
         }
 
         const guildInvites = await message.guild.fetchInvites();
         const userInvites = guildInvites.filter((i) => i?.inviter?.id === message.author.id);
         embed.addField(message.translate("core/userinfo:INVITE_CODES"),
             userInvites.size > 0
-            ? userInvites.map((i) => `**${i.code}** | **${i.channel}** | **${i.uses}** ${message.translate("common:USES").toLowerCase()}`).join("\n")
-            : message.translate("core/userinfo:NO_INVITES")
-        )
+                ? userInvites.map((i) => `**${i.code}** | **${i.channel}** | **${i.uses}** ${message.translate("common:USES").toLowerCase()}`).join("\n")
+                : message.translate("core/userinfo:NO_INVITES")
+        );
 
         embed.addField(message.translate("core/userinfo:NUMBER_JOINS"),
-            memberData.invitedMemberEvents.filter((e) => e.eventType === 'join').length > 1
-            ? memberData.invitedMemberEvents.filter((e) => e.eventType === 'join').length
-            : 1
-        )
+            memberData.invitedMemberEvents.filter((e) => e.eventType === "join").length > 1
+                ? memberData.invitedMemberEvents.filter((e) => e.eventType === "join").length
+                : 1
+        );
         
         message.channel.send(embed);
     }

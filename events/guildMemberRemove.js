@@ -1,5 +1,3 @@
-const Discord = require("discord.js");
-
 module.exports = class {
     constructor (client) {
         this.client = client;
@@ -16,22 +14,22 @@ module.exports = class {
         if(!guildData.premium) return;
 
         member.guild.data = guildData;
-        let memberData = await this.client.database.fetchMember(member.id, member.guild.id);
+        const memberData = await this.client.database.fetchMember(member.id, member.guild.id);
         
-        let inviter = memberData.joinData
+        const inviter = memberData.joinData
             && memberData.joinData.joinType === "normal"
             && memberData.joinData.inviteData
             ? await this.client.resolveUser(memberData.joinData.inviterID)
             : null;
-        let inviterData = inviter ? await this.client.database.fetchMember(inviter.id, member.guild.id) : null;
-        let invite = (memberData.joinData || {}).inviteData;
+        const inviterData = inviter ? await this.client.database.fetchMember(inviter.id, member.guild.id) : null;
+        const invite = (memberData.joinData || {}).inviteData;
 
-        console.log(memberData.joinData, inviter)
+        console.log(memberData.joinData, inviter);
 
         // Update member invites
         if(inviter){
             if(guildData.blacklistedUsers.includes(inviter.id)) return;
-            let inviterMember = member.guild.members.cache.get(inviter.id);
+            const inviterMember = member.guild.members.cache.get(inviter.id);
             if(inviterMember){
                 inviterData.leaves++;
                 await this.client.functions.assignRanks(inviterMember, inviterData.calculatedInvites, guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
@@ -39,7 +37,7 @@ module.exports = class {
                 await this.client.database.createEvent({
                     userID: member.id,
                     guildID: member.guild.id,
-                    eventType: 'leave',
+                    eventType: "leave",
                     eventDate: new Date()
                 });
             }
@@ -47,27 +45,27 @@ module.exports = class {
 
         // Leave messages
         if(guildData.leave.enabled && guildData.leave.mainMessage && guildData.leave.channel){
-            let channel = member.guild.channels.cache.get(guildData.leave.channel);
+            const channel = member.guild.channels.cache.get(guildData.leave.channel);
             if(!channel) return;
-            let joinType = memberData.joinData ? memberData.joinData.joinType : null;
+            const joinType = memberData.joinData ? memberData.joinData.joinType : null;
             if(invite){
-                let formattedMessage = this.client.functions.formatMessage(guildData.leave.mainMessage, member, (guildData.language || "english").substr(0, 2), {
+                const formattedMessage = this.client.functions.formatMessage(guildData.leave.mainMessage, member, (guildData.language || "english").substr(0, 2), {
                     inviter,
                     inviterData,
                     invite
                 });
                 channel.send(formattedMessage);
             } else if(joinType === "vanity"){
-                let formattedMessage = this.client.functions.formatMessage((guildData.leave.vanityMessage || member.guild.translate("misc:LEAVE_VANITY_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null)
+                const formattedMessage = this.client.functions.formatMessage((guildData.leave.vanityMessage || member.guild.translate("misc:LEAVE_VANITY_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
                 channel.send(formattedMessage);
             } else if(joinType === "oauth"){
-                let formattedMessage = this.client.functions.formatMessage((guildData.leave.oauth2Message || member.guild.translate("misc:LEAVE_OAUTH2_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
+                const formattedMessage = this.client.functions.formatMessage((guildData.leave.oauth2Message || member.guild.translate("misc:LEAVE_OAUTH2_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
                 channel.send(formattedMessage);
             } else {
-                let formattedMessage = this.client.functions.formatMessage((guildData.leave.unknownMessage || member.guild.translate("misc:LEAVE_UNKNOWN_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null)
+                const formattedMessage = this.client.functions.formatMessage((guildData.leave.unknownMessage || member.guild.translate("misc:LEAVE_UNKNOWN_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
                 channel.send(formattedMessage);
             }
         }
 
     }
-}
+};

@@ -51,7 +51,7 @@ let guildsBlacklistedUsersCount = 0;
                 guildsRanks += `${guildData.id}|${rank.roleID}|${rank.inviteCount}\n`;
             });
             (guildData.blacklistedUsers || []).forEach((userID) => {
-                guildsBlacklistedUsersCount++
+                guildsBlacklistedUsersCount++;
                 guildsBlacklistedUsers += `${guildData.id}|${userID}\n`;
             });
         });
@@ -84,7 +84,7 @@ let guildsBlacklistedUsersCount = 0;
                 membersInvitedUsersLeft += `${memberData.id}|${memberData.guildID}|${ID}\n`;
             });
             if(memberData.joinData){
-                membersJoinDataCount++
+                membersJoinDataCount++;
                 membersJoinData += `${memberData.id}|${memberData.guildID}|${memberData.joinData.type}|${memberData.invitedBy || "\\N"}|${JSON.stringify(memberData.usedInvite) || "\\N"}\n`;
             }
         });

@@ -1,30 +1,30 @@
-if(!process.argv.includes('--sharded')){
-    console.log('Please start ManageInvite with the sharder.js file!');
+if(!process.argv.includes("--sharded")){
+    console.log("Please start ManageInvite with the sharder.js file!");
     process.exit(0);
 }
 
 const util = require("util"),
-fs = require("fs"),
-readdir = util.promisify(fs.readdir);
+    fs = require("fs"),
+    readdir = util.promisify(fs.readdir);
 
-const config = require('./config.js');
-const Sentry = require('@sentry/node');
+const config = require("./config.js");
+const Sentry = require("@sentry/node");
 Sentry.init({ dsn: config.sentryDSN });
 
 // Load ManageInvite class
 const ManageInvite = require("./structures/Client"),
-client = new ManageInvite({
-    partials: [ "REACTION", "MESSAGE", "CHANNEL" ]
-});
+    client = new ManageInvite({
+        partials: [ "REACTION", "MESSAGE", "CHANNEL" ]
+    });
 
 const init = async () => {
 
     require("./helpers/extenders");
 
     // Search for all commands
-    let directories = await readdir("./commands/");
+    const directories = await readdir("./commands/");
     directories.forEach(async (dir) => {
-        let commands = await readdir("./commands/"+dir+"/");
+        const commands = await readdir("./commands/"+dir+"/");
         commands.filter((cmd) => cmd.split(".").pop() === "js").forEach((cmd) => {
             const response = client.loadCommand("./commands/"+dir, cmd);
             if(response){

@@ -1,5 +1,3 @@
-const { Collection } = require("discord.js");
-
 module.exports = class Subscription {
     constructor(handler, { id, data }) {
 
@@ -27,15 +25,15 @@ module.exports = class Subscription {
     }
 
     get isTrial () {
-        return this.label === 'Trial Version';
+        return this.label === "Trial Version";
     }
 
     get wasTrial () {
-        return this.label.startsWith('T-');
+        return this.label.startsWith("T-");
     }
 
     async changeLabel (newName) {
-        this.label = this.isTrial ? 'Trial Version' : `T-${newName}`;
+        this.label = this.isTrial ? "Trial Version" : `T-${newName}`;
         await this.handler.query(`
             UPDATE subscriptions
             SET sub_label = '${this.label}'
@@ -64,7 +62,7 @@ module.exports = class Subscription {
             SELECT * FROM guilds_subscriptions
             WHERE sub_id = ${this.id};
         `);
-        for(let row of rows) {
+        for(const row of rows) {
             this.handler.guildCache.delete(row.guild_id);
             this.handler.removeGuildFromOtherCaches(row.guild_id);
         }

@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const CronJob = require("cron").CronJob;
 
 module.exports = class {
@@ -13,8 +12,8 @@ module.exports = class {
         this.client.functions.postTopStats(this.client);
 
         if(!process.argv.includes("--uncache")) await this.client.wait(1000);
-        let invites = {};
-        let startAt = Date.now();
+        const invites = {};
+        const startAt = Date.now();
         this.client.fetching = true;
 
         const premiumGuildsID = await this.client.database.fetchPremiumGuilds();
@@ -24,7 +23,7 @@ module.exports = class {
         await this.client.functions.asyncForEach(this.client.guilds.cache.array(), async (guild) => {
             if(premiumGuildsID.includes(guild.id)){
                 const member = await guild.members.fetch(this.client.user.id).catch(() => {});
-                let i = process.argv.includes("--uncache") ? new Map() : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : new Map());
+                const i = process.argv.includes("--uncache") ? new Map() : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : new Map());
                 invites[guild.id] = i || new Map();
             }
         });
@@ -32,12 +31,12 @@ module.exports = class {
         this.client.fetched = true;
         this.client.fetching = false;
         if(this.client.shard.ids.includes(0)) console.log("=================================================");
-        console.log(`\x1b[32m%s\x1b[0m`, `SHARD [${this.client.shard.ids[0]}]`, "\x1b[0m", `Invites fetched in ${Date.now() - startAt} ms.`);
+        console.log("\x1b[32m%s\x1b[0m", `SHARD [${this.client.shard.ids[0]}]`, "\x1b[0m", `Invites fetched in ${Date.now() - startAt} ms.`);
         console.log("=================================================");
         if(this.client.shard.ids.includes(this.client.shard.count-1)){
             console.log("Ready. Logged as "+this.client.user.tag+". Some stats:\n");
             this.client.shard.broadcastEval(() => {
-                console.log(`\x1b[32m%s\x1b[0m`, `SHARD [${this.shard.ids[0]}]`, "\x1b[0m", `Serving ${this.users.cache.size} users in ${this.guilds.cache.size} servers.`);
+                console.log("\x1b[32m%s\x1b[0m", `SHARD [${this.shard.ids[0]}]`, "\x1b[0m", `Serving ${this.users.cache.size} users in ${this.guilds.cache.size} servers.`);
             });
         }
 

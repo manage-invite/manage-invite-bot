@@ -43,4 +43,4 @@ module.exports = class LeavePlugin {
         this.handler.removeGuildFromOtherCaches(this.guild.id);
         return this;
     }
-}
+};

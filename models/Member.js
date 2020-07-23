@@ -1,10 +1,8 @@
-const { Collection } = require("discord.js");
-
 module.exports = class Member {
     constructor(handler, { userID, guildID, data, invitedMembers, invitedMemberEvents }) {
 
         this.userID = userID;
-        this.guildID = guildID
+        this.guildID = guildID;
 
         this.handler = handler;
         this.handler.memberCache.set(`${this.userID}${this.guildID}`, this);
@@ -31,7 +29,7 @@ module.exports = class Member {
                 joinType: eventData.join_type,
                 inviterID: eventData.inviter_user_id,
                 inviteData: eventData.invite_data
-            }
+            };
         };
 
         // Array of invited_member_events where inviter_id is equal to the member ID and guild_id is equal to member guild id
@@ -43,8 +41,8 @@ module.exports = class Member {
 
     get joinData() {
         return this.invitedMemberEvents
-        .filter((e) => e.eventType === 'join')
-        .sort((a, b) => b.eventDate - a.eventDate)[0]
+            .filter((e) => e.eventType === "join")
+            .sort((a, b) => b.eventDate - a.eventDate)[0];
     }
 
     get calculatedInvites(){

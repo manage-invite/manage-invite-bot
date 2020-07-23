@@ -1,5 +1,5 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+    Discord = require("discord.js");
 
 const { CanvasRenderService } = require("chartjs-node-canvas");
 const width = 800;
@@ -26,8 +26,8 @@ module.exports = class extends Command {
     async run (message, args, data) {
 
         const embed = new Discord.MessageEmbed()
-        .setColor(data.color)
-        .setFooter(data.footer);
+            .setColor(data.color)
+            .setFooter(data.footer);
 
         let numberOfDays = args[0] || 7;
         if(isNaN(numberOfDays)) return message.error("core/stats:INVALID");

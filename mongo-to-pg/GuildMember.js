@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"),
-Schema = mongoose.Schema;
+    Schema = mongoose.Schema;
 
-let GuildMemberSchema = new Schema({
+const GuildMemberSchema = new Schema({
 
     /* REQUIRED */
     id: { type: String }, // Discord ID of the user

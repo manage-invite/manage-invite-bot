@@ -1,5 +1,5 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+    Discord = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -19,7 +19,7 @@ module.exports = class extends Command {
         }
 
         const filter = (m) => m.author.id === message.author.id,
-        opt = { max: 1, time: 90000, errors: [ "time" ] };
+            opt = { max: 1, time: 90000, errors: [ "time" ] };
         
         const str = data.guild.joinDM.enabled ? message.translate("config/configjoindm:DISABLE", {
             prefix: data.guild.prefix
@@ -50,6 +50,6 @@ module.exports = class extends Command {
         data.guild.joinDM.enabled = true;
         data.guild.joinDM.mainMessage = confMessage;
         await data.guild.joinDM.updateData();
-   }
+    }
 
 };

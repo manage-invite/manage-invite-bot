@@ -1,6 +1,6 @@
 const mongoose = require("mongoose"),
-Schema = mongoose.Schema,
-config = require("../config.js");
+    Schema = mongoose.Schema,
+    config = require("../config.js");
 
 module.exports = mongoose.model("Guild", new Schema({
 

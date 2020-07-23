@@ -1,5 +1,5 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+    Discord = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -15,7 +15,7 @@ module.exports = class extends Command {
     async run (message, args, data) {
 
         const filter = (m) => m.author.id === message.author.id,
-        opt = { max: 1, time: 90000, errors: [ "time" ] };
+            opt = { max: 1, time: 90000, errors: [ "time" ] };
         
         const str = data.guild.join.enabled ? message.translate("config/configjoin:DISABLE", {
             prefix: data.guild.prefix
@@ -35,14 +35,14 @@ module.exports = class extends Command {
 
         collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
         if(!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
-        let confChannel = collected.first();
+        const confChannel = collected.first();
         if(confChannel.content === "cancel") return msg.error("common:CANCELLED", null, true);
-        let channel = confChannel.mentions.channels.first()
+        const channel = confChannel.mentions.channels.first()
         || message.guild.channels.cache.get(confChannel.content)
         || message.guild.channels.cache.find((ch) => ch.name === confChannel.content || `#${ch.name}` === confChannel.content);
         if(!channel) return msg.error("config/configjoin:CHANNEL_NOT_FOUND", {
             channel: confChannel.content
-        }, true)
+        }, true);
         collected.first().delete();
 
         msg.sendT("config/configjoindm:SUCCESS", null, true);
@@ -65,4 +65,4 @@ module.exports = class extends Command {
         await data.guild.join.updateData();
 
     }
-}
+};

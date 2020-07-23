@@ -1,4 +1,3 @@
-const { Collection } = require("discord.js");
 const { stringOrNull, pgEscape } = require("../helpers/functions");
 
 const JoinPlugin = require("./JoinPlugin");
