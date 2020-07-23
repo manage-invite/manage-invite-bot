@@ -12,5 +12,8 @@
     "INVITED_TITLE": "Meghívott felhasználók (a szerveren)",
     "INVITED_PREMIUM": ":crown: | Ez a szolgáltatás (meghívott felhasználók megtekintése) csak prémium szervereken érhető el. Itt kaphatsz prémiumot: **<https://docs.manage-invite.xyz/configuration/premium>** !",
     "NO_INVITED_USERS": "Nincs meghívott felhasználó",
-    "INVITED_USERS_MORE": "{{list}}, és több..."
+    "INVITED_USERS_MORE": "{{list}}, és több...",
+    "INVITE_CODES": "Invite Codes",
+    "NO_INVITES": "This user doesn't have any active invite.",
+    "NUMBER_JOINS": "Number of joins"
 }
