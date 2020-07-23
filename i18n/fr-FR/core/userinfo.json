@@ -12,5 +12,8 @@
     "INVITED_TITLE": "Utilisateurs invités (sur le serveur)",
     "INVITED_PREMIUM": ":crown: | Cette fonctionnalité (voir les utilisateurs invités) n'est disponible que pour les serveurs premium. Obtenez le premium ici : **<https://docs.manage-invite.xyz/configuration/premium>** !",
     "NO_INVITED_USERS": "Aucun utilisateur invité",
-    "INVITED_USERS_MORE": "{{list}}, et plus..."
+    "INVITED_USERS_MORE": "{{list}}, et plus...",
+    "INVITE_CODES": "Invite Codes",
+    "NO_INVITES": "This user doesn't have any active invite.",
+    "NUMBER_JOINS": "Number of joins"
 }
