@@ -10,6 +10,7 @@
   "MANAGE": "Kezel",
   "MEMBERS": "Felhasználók",
   "MESSAGE": "Üzenet",
+  "MESSAGES": "Messages",
   "NO": "Nem",
   "NOT_DEFINED": "Nem meghatározott",
   "PREFIX": "Előtag",
@@ -18,5 +19,10 @@
   "TEST_IT": "Teszteld:",
   "UPDATE": "Frissítés",
   "YES": "Igen",
-  "CANCEL": "Megszüntetés"
+  "CANCEL": "Megszüntetés",
+  "MAIN": "Main",
+  "BOTS": "Bots",
+  "VANITY_URL": "Vanity URL",
+  "UNKNOWN": "Unknown",
+  "USES": "Uses"
 }
