@@ -72,7 +72,7 @@ module.exports = class extends Command {
             const users = [];
             await this.client.functions.asyncForEach(uniqBy(memberData.invitedMembers, "userID"), async (event) => {
                 const fetchedUser = message.guild.member(event.userID);
-                if(fetchedUser) users.push("`"+fetchedUser.user.tag+"`");
+                if(fetchedUser) users.push("`"+Discord.Util.escapeMarkdown(fetchedUser.user.tag)+"`");
             });
             const nobody = users.length === 0;
             let andMore = false;
