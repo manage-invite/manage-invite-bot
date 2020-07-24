@@ -97,8 +97,8 @@ module.exports = class extends Command {
         );
 
         embed.addField(message.translate("core/userinfo:NUMBER_JOINS"),
-            memberData.invitedMemberEvents.filter((e) => e.eventType === "join").length > 1
-                ? memberData.invitedMemberEvents.filter((e) => e.eventType === "join").length
+            memberData.numJoins > 1
+                ? memberData.numJoins
                 : 1
         );
         

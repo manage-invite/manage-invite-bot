@@ -15,6 +15,7 @@ module.exports = class {
         if(!guildData.premium) return;
 
         member.guild.data = guildData;
+        const memberData = await this.client.database.fetchMember(member.id, member.guild.id);
         
         /* Find who is the inviter */
 
@@ -183,7 +184,8 @@ module.exports = class {
                 const formattedMessage = this.client.functions.formatMessage(guildData.joinDM.mainMessage, member, (guildData.language || "english").substr(0, 2), {
                     inviter,
                     inviterData,
-                    invite
+                    invite,
+                    numJoins: memberData.numJoins
                 });
                 member.send(formattedMessage);
             } else if(vanity){
@@ -203,7 +205,8 @@ module.exports = class {
                 const formattedMessage = this.client.functions.formatMessage(guildData.join.mainMessage, member, (guildData.language || "english").substr(0, 2), {
                     inviter,
                     inviterData,
-                    invite
+                    invite,
+                    numJoins: memberData.numJoins
                 });
                 channel.send(formattedMessage);
             } else if(vanity){

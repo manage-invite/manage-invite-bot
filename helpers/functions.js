@@ -35,7 +35,7 @@ const formatMessage = (message, member, locale, invData) => {
         .replace(/{guild.count}/g, member.guild.memberCount);
 
     if(invData){
-        const { inviter, inviterData, invite } = invData;
+        const { inviter, inviterData, invite, numJoins } = invData;
         message = message.replace(/{inviter}/g, inviter.toString())
             .replace(/{inviter.tag}/g, inviter.tag)
             .replace(/{inviter.name}/g, inviter.username)
@@ -43,7 +43,8 @@ const formatMessage = (message, member, locale, invData) => {
             .replace(/{inviter.invites}/g, inviterData.regular + inviterData.bonus - inviterData.fake - inviterData.leaves)
             .replace(/{invite.code}/g, invite.code)
             .replace(/{invite.uses}/g, invite.uses)
-            .replace(/{invite.url}/g, invite.url);
+            .replace(/{invite.url}/g, invite.url)
+            .replace(/{numJoins}/g, numJoins);
     }
 
     return message;

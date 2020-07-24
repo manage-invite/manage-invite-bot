@@ -39,6 +39,12 @@ module.exports = class Member {
 
     }
 
+    get numJoins() {
+        return this.invitedMemberEvents
+            .filter((e) => e.eventType === "join")
+            .length;
+    }
+
     get joinData() {
         return this.invitedMemberEvents
             .filter((e) => e.eventType === "join")
