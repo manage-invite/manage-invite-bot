@@ -89,7 +89,7 @@ module.exports = class extends Command {
         }
 
         const guildInvites = await message.guild.fetchInvites();
-        const userInvites = guildInvites.filter((i) => i?.inviter?.id === message.author.id);
+        const userInvites = guildInvites.filter((i) => i?.inviter?.id === member.id);
         embed.addField(message.translate("core/userinfo:INVITE_CODES"),
             userInvites.size > 0
                 ? userInvites.map((i) => `**${i.code}** | **${i.channel}** | **${i.uses}** ${message.translate("common:USES").toLowerCase()}`).join("\n")
