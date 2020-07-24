@@ -52,7 +52,8 @@ module.exports = class {
                 const formattedMessage = this.client.functions.formatMessage(guildData.leave.mainMessage, member, (guildData.language || "english").substr(0, 2), {
                     inviter,
                     inviterData,
-                    invite
+                    invite,
+                    numJoins: memberData.numJoins
                 });
                 channel.send(formattedMessage);
             } else if(joinType === "vanity"){
