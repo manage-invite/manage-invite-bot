@@ -72,8 +72,8 @@ module.exports = class extends Command {
         embed.addField("\u200B", message.translate("core/stats:CONTENT", {
             total,
             percent,
-            from: daysRange[1],
-            to: daysRange[2]
+            from: daysRange[0],
+            to: daysRange[1]
         }));
         message.channel.send(embed);
 
