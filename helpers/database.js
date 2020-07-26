@@ -231,7 +231,8 @@ module.exports = class DatabaseHandler {
                     eventDate,
                     eventType,
                     inviterID,
-                    inviteData
+                    inviteData,
+                    joinType
                 });
             }
             this.removeMemberFromOtherCaches(userID, guildID);
@@ -244,7 +245,8 @@ module.exports = class DatabaseHandler {
                         eventDate,
                         eventType,
                         inviterID,
-                        inviteData
+                        inviteData,
+                        joinType
                     });
                 }
                 this.removeMemberFromOtherCaches(inviterID, guildID);
