@@ -44,26 +44,24 @@ module.exports = class {
             if(reason.trim() === "Other"){
                 await message.reactions.cache.each(r => r.users.remove(this.client.user.id));
                 await message.edit(message.content+"\nEnter the reason below (send a message):");
-                const waitingAnswerEmbed = JSON.stringify(new Discord.MessageEmbed()
+                const waitingAnswerEmbed = escape(JSON.stringify(new Discord.MessageEmbed()
                     .setAuthor(`Awaiting other feedback from ${user.tag}`, user.displayAvatarURL())
                     .setFooter(`Form ID: ${message.id}`)
-                    // eslint-disable-next-line no-useless-escape
-                    .setColor("#B0E0E6")).replace(/[\/\(\)\']/g, "\\$&");
+                    .setColor("#B0E0E6")));
                 this.client.shard.broadcastEval(`
                     let aLogs = this.channels.cache.get(this.config.premiumLogs);
-                    if(aLogs) aLogs.send({ embed: JSON.parse('${waitingAnswerEmbed}')});
+                    if(aLogs) aLogs.send({ embed: JSON.parse(unescape('${waitingAnswerEmbed}')) });
                 `);
-                const collected = await message.channel.awaitMessages(() => true, { max: 1, time: 5000, errors: ["time"] })
+                const collected = await message.channel.awaitMessages(() => true, { max: 1, time: 24*60*60*1000, errors: ["time"] })
                     .catch(async () => {
-                        const noAnswerEmbed = JSON.stringify(new Discord.MessageEmbed()
+                        const noAnswerEmbed = escape(JSON.stringify(new Discord.MessageEmbed()
                             .setAuthor(`No feedback received for other from ${user.tag}`, user.displayAvatarURL())
                             .setFooter(`Form ID: ${message.id}`)
-                            // eslint-disable-next-line no-useless-escape
-                            .setColor("#ADD8E6")).replace(/[\/\(\)\']/g, "\\$&");
+                            .setColor("#ADD8E6")));
                         this.client.shard.broadcastEval(`
-                        let aLogs = this.channels.cache.get(this.config.premiumLogs);
-                        if(aLogs) aLogs.send({ embed: JSON.parse('${noAnswerEmbed}')});
-                    `);
+                            let aLogs = this.channels.cache.get(this.config.premiumLogs);
+                            if(aLogs) aLogs.send({ embed: JSON.parse(unescape('${noAnswerEmbed}')) });
+                        `);
                         await message.edit((message.content.replace("Enter the reason below (send a message):", ""))+"No feedback received from yourself for 24 hours, form cancelled.");
                     });
                 if(!collected) return;
@@ -74,18 +72,12 @@ module.exports = class {
             message.edit((message.content.replace("Enter the reason below (send a message):", ""))+"\nThank you for your feedback!");
 
             embed.setDescription(reason);
-            const logEmbed = JSON.stringify(embed)
-                .replace("\\r", "backRKey")
-                .replace("\\n", "backNKey")
-                // eslint-disable-next-line no-useless-escape
-                .replace(/[\/\(\)\']/g, "\\$&")
-                .replace("backRKey", "\\\r")
-                .replace("backNKey", "\\\n");
+            const logEmbed = escape(JSON.stringify(embed));
             // to-do: find a better way to prevent \n and \r from being replaced
 
             this.client.shard.broadcastEval(`
                 let aLogs = this.channels.cache.get(this.config.premiumLogs);
-                if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
+                if(aLogs) aLogs.send({ embed: JSON.parse(unescape('${logEmbed}')) });
             `);
         }
         

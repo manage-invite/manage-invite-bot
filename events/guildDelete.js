@@ -14,20 +14,19 @@ module.exports = class {
 
         const user = await this.client.users.fetch(guild.ownerID);
 
-        const guildDelete = JSON.stringify(new Discord.MessageEmbed()
+        const guildDelete = escape(JSON.stringify(new Discord.MessageEmbed()
             .setTitle("Remove | :broken_heart:")
             .addField("Server name :", guild.name) 
             .addField("Owner id :", user.id)
             .addField("Owner name :", user.username)
             .addField("Server id :", guild.id)
             .addField("Number of members :", guild.memberCount)
-            // eslint-disable-next-line no-useless-escape
-            .setColor(this.client.config.color)).replace(/[\/\(\)\']/g, "\\$&");
+            .setColor(this.client.config.color)));
 
         const { removeLogs } = this.client.config;
         this.client.shard.broadcastEval(`
             let rLogs = this.channels.cache.get('${removeLogs}');
-            if(rLogs) rLogs.send({ embed: JSON.parse('${guildDelete}')});
+            if(rLogs) rLogs.send({ embed: JSON.parse(unescape('${guildDelete}')) });
         `);
         
     }

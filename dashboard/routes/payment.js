@@ -23,15 +23,14 @@ router.get("/callback", async (req, res) => {
     res.redirect("/selector");
 
     req.client.users.fetch(userID).then((user) => {
-        const logEmbed = JSON.stringify(new Discord.MessageEmbed()
+        const logEmbed = escape(JSON.stringify(new Discord.MessageEmbed()
             .setAuthor(`${user.tag} purchased ManageInvite Premium`, user.displayAvatarURL())
             .setDescription(`Server **${guildName}** is waiting for verification... :clock7:`)
-            // eslint-disable-next-line no-useless-escape
-            .setColor("#ff9966")).replace(/[\/\(\)\']/g, "\\$&");
+            .setColor("#ff9966")));
         const { premiumLogs } = req.client.config;
         req.client.shard.broadcastEval(`
             let aLogs = this.channels.cache.get('${premiumLogs}');
-            if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
+            if(aLogs) aLogs.send({ embed: JSON.parse(unescape('${logEmbed}'))});
         `);
     });
 });
@@ -67,15 +66,14 @@ router.post("/ipn", async (req, res) => {
                 payload
             });
             req.client.users.fetch(userID).then((user) => {
-                const logEmbed = JSON.stringify(new Discord.MessageEmbed()
+                const logEmbed = escape(JSON.stringify(new Discord.MessageEmbed()
                     .setAuthor(`${user.tag} created a subscription`, user.displayAvatarURL())
                     .setDescription(`Subscription for guild **${guildName}** created... ${req.client.config.emojis.success}`)
-                    // eslint-disable-next-line no-useless-escape
-                    .setColor("#339900")).replace(/[\/\(\)\']/g, "\\$&");
+                    .setColor("#339900")));
                 const { premiumLogs } = req.client.config;
                 req.client.shard.broadcastEval(`
                     let aLogs = this.channels.cache.get('${premiumLogs}');
-                    if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
+                    if(aLogs) aLogs.send({ embed: JSON.parse(escape('${logEmbed}'))});
                 `);
                 req.client.shard.broadcastEval(`
                     if(this.guilds.cache.some((g) => g.roles.cache.has(this.config.premiumRole))){
@@ -166,15 +164,14 @@ router.post("/ipn", async (req, res) => {
                     await currentSubscription.deleteGuildsFromCache();
                     await req.client.database.syncSubscriptionForOtherCaches(currentSubscription.id);
                 }
-                const logEmbed = JSON.stringify(new Discord.MessageEmbed()
+                const logEmbed = escape(JSON.stringify(new Discord.MessageEmbed()
                     .setAuthor(`${user.tag} paid for ManageInvite Premium`, user.displayAvatarURL())
                     .setDescription(`Recurring payment for **${paymentData[2]}** was paid (**$2**) :crown:`)
-                    // eslint-disable-next-line no-useless-escape
-                    .setColor("#F4831B")).replace(/[\/\(\)\']/g, "\\$&");
+                    .setColor("#F4831B")));
                 const { premiumLogs } = req.client.config;
                 req.client.shard.broadcastEval(`
                     let aLogs = this.channels.cache.get('${premiumLogs}');
-                    if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
+                    if(aLogs) aLogs.send({ embed: JSON.parse(unescape('${logEmbed}')) });
                 `);
             });
         }
@@ -193,22 +190,15 @@ router.post("/ipn", async (req, res) => {
                     formMessage.react("\u0033\u20E3");
                     formMessage.react("\u0034\u20E3");
                 }
-                const logEmbed = JSON.stringify(new Discord.MessageEmbed()
+                const logEmbed = escape(JSON.stringify(new Discord.MessageEmbed()
                     .setAuthor(`${user.tag} cancelled their subscription for ManageInvite Premium`, user.displayAvatarURL())
                     .setDescription(`Recurring payment for **${guildName}** was cancelled :wave:\n${formMessage ? "Satisfaction form sent! Awaiting answer... :pencil:" : "I wasn't able to send the satisfaction form... :confused:"}`)
                     .setFooter(`Form ID: ${formMessage.id}`)
-                    .setColor("#1E90FF"))
-                    .replace("\\r", "backRKey")
-                    .replace("\\n", "backNKey")
-                    // eslint-disable-next-line no-useless-escape
-                    .replace(/[\/\(\)\']/g, "\\$&")
-                    .replace("backRKey", "\\\\r")
-                    .replace("backNKey", "\\\\n");
-                    // to-do: find a better way to prevent \n and \r from being replaced
+                    .setColor("#1E90FF")));
 
                 req.client.shard.broadcastEval(`
                     let aLogs = this.channels.cache.get(this.config.premiumLogs);
-                    if(aLogs) aLogs.send({ embed: JSON.parse('${logEmbed}')});
+                    if(aLogs) aLogs.send({ embed: JSON.parse(unescape('${logEmbed}'))});
                 `);
                 const paymentID = await req.client.database.createPayment({
                     payerDiscordID: paymentData[1],

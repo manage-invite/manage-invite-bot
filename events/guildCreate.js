@@ -29,7 +29,7 @@ module.exports = class {
             `My prefix is \`${guildData.prefix}\`. If you want to remove server invites to start over from scratch, you can use \`${guildData.prefix}remove-invites\`. If you want to synchronize current server invites with the bot, you can use \`${guildData.prefix}sync-invites\`\n \n**--------------**\n`
             : "My prefix is `+`. If you want to remove server invites to start over from scratch, you can use `+remove-invites`.\n \n**--------------**\n";            
 
-        const guildCreate = JSON.stringify(new Discord.MessageEmbed()
+        const guildCreate = escape(JSON.stringify(new Discord.MessageEmbed()
             .setTitle("Add | :heart:")
             .addField("Server name :", guild.name) 
             .addField("Owner id :", guild.ownerID)
@@ -37,13 +37,12 @@ module.exports = class {
             .addField("Server id :", guild.id)
             .addField("Number of members :", guild.memberCount)
             .setFooter(isValidGuild ? "Add me with +add" : "Guild was just reloaded")
-            // eslint-disable-next-line no-useless-escape
-            .setColor(isValidGuild ? this.client.config.color : "#000000")).replace(/[\/\(\)\']/g, "\\$&");
+            .setColor(isValidGuild ? this.client.config.color : "#000000")));
 
         const { addLogs } = this.client.config;
         this.client.shard.broadcastEval(`
             let aLogs = this.channels.cache.get('${addLogs}');
-            if(aLogs) aLogs.send({ embed: JSON.parse('${guildCreate}')});
+            if(aLogs) aLogs.send({ embed: JSON.parse(unescape('${guildCreate}')) });
         `);
 
         if(isValidGuild){

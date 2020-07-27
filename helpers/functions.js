@@ -3,8 +3,7 @@ const fetch = require("node-fetch"),
     date = require("date-and-time");
 
 const stringOrNull = (string) => string ? `'${string}'` : "null";
-// eslint-disable-next-line no-useless-escape
-const pgEscape = (string) => string ? string.replace(/[\/\(\)\']/g, "''") : null;
+const pgEscape = (string) => string ? string.replace(/'/g, "''") : null;
 
 /**
  * @param {array} array The array to loop
