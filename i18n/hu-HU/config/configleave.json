@@ -1,8 +1,8 @@
 {
     "DISABLE": "Írd be: `{{prefix}}setleave` az elköszönő üzenet tíltása",
-    "INSTRUCTIONS_1": "__**További információk**__\n```\n{user} : Annak a tagnak a megemlítése, aki éppen csatlakozott a szerverhez.\n{user.name} : A szerverhez csatlakozó tag neve.\n{user.tag} : A szerverhez csatlakozott tag tagje.\n{user.createdat} : Felhasználó létrehozási dátumja.\n{user.id} : A felhasználó ID-je.\n\n{guild} : A szerver neve\n{guild.count} : A szerver tagjainak száma.\n\n{inviter} : Meghívó megemlítése.\n{inviter.name} : Meghívó neve.\n{inviter.tag} : Meghivó tagje.\n{inviter.invites} : Meghívó összes száma.\n{inviter.id} : Meghívó ID-je.\n\n{invite.code} : Meghívó kód.\n{invite.url} : Meghívó urlje\n{invite.uses} : Meghívó használási száma.\n```\nMegszakításhoz írd be ezt: `cancel`. {{string}}\n\n\n:pencil: **| Most írjd meg az elköszönő üzenetet... :pencil2:**",
+    "INSTRUCTIONS_1": "__**További információk**__\n```\n{user} : Annak a tagnak a megemlítése, aki éppen csatlakozott a szerverhez.\n{user.name} : A szerverhez csatlakozó tag neve.\n{user.tag} : A szerverhez csatlakozott tag tagje.\n{user.createdat} : Felhasználó létrehozási dátumja.\n{user.id} : A felhasználó ID-je.\n{numJoins} : A felhasznaló csatlakozásainak száma.\n\n{guild} : A szerver neve\n{guild.count} : A szerver tagjainak száma.\n\n{inviter} : Meghívó megemlítése.\n{inviter.name} : Meghívó neve.\n{inviter.tag} : Meghivó tagje.\n{inviter.invites} : Meghívó összes száma.\n{inviter.id} : Meghívó ID-je.\n\n{invite.code} : Meghívó kód.\n{invite.url} : Meghívó urlje\n{invite.uses} : Meghívó használási száma.\n```\nMegszakításhoz írd be ezt: `cancel`. {{string}}\n\n\n:pencil: **| Most írjd meg a csatlakozási üzenetet... :pencil2:**",
     "INSTRUCTIONS_2": ":scroll: **| Most írd be az elköszönő csatorna nevét, vagy említse meg... :pencil2:**",
-    "SUCCESS": "**Sikeresen be lett állítva az elköszönő üzenet**",
+    "TITLE": "**Sikeresen be lett állítva az elköszönő üzenet**",
     "TEST": "Használd `{{prefix}}testjoin` elköszönési üzenet tesztelése.",
     "CHANNEL_NOT_FOUND": "Nem található ilyen csatorna: `{{channel}}`"
 }

@@ -1,4 +1,4 @@
 {
-    "INVALID": "You must write a valid language!\n\n{{list}}\n\nYour language is not supported? Join the support server and translate the bot in your language!",
+    "INVALID": "Geçerli bir dil yazmalısınız! \n\n {{list}} \nDiliniz desteklenmiyor mu? Destek sunucusuna katılın ve botu kendi dilinizde çevirin!",
     "SUCCESS": "Dil güncellendi!"
 }

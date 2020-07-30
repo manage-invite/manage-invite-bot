@@ -12,5 +12,8 @@
     "INVITED_TITLE": "Invited users (on the server)",
     "INVITED_PREMIUM": "Ta funkcja (wyświetl zaproszonych użytkowników) jest dostępna tylko dla serwerów premium. Zdobądź premię tutaj <https://docs.manage-invite.xyz/configuration/premium>!",
     "NO_INVITED_USERS": "Brak zaproszonych użytkowników",
-    "INVITED_USERS_MORE": "i wiele innych..."
+    "INVITED_USERS_MORE": "i wiele innych...",
+    "INVITE_CODES": "Invite Codes",
+    "NO_INVITES": "This user doesn't have any active invite.",
+    "NUMBER_JOINS": "Number of joins"
 }
