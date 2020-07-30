@@ -1,9 +1,9 @@
 {
-    "MISSING_AMOUNT": "Você deve escrever a quantidade de convites que deseja adicionar. (Sintaxe: {{prefix}}removebonus quantidade @alguém/all)",
-    "INVALID_AMOUNT": "Você deve escrever uma quantidade __**válida**__ de convites que deseja adicionar. (Sintaxe: {{prefix}}removebonus quantidade @alguém/all)",
-    "MISSING_TARGET": "Você deve mencionar o membro ao qual você deseja remover os convites (ou `all`se você deseja remover os convites de todos). (Sintaxe: {{prefix}}removebonus quantidade @alguém/all)",
-    "CONFIRMATION_ALL": ":warning: Você tem certeza que deseja remover**{{count}}** convites de todos? Isso pode demorar um pouco (dependendo do tamanho do seu servidor)! Envie `-confirm`para continuar e `cancel` para cancelar.",
-    "SUCCESS_TITLE": "📥 Convites removidos",
-    "SUCCESS_CONTENT_ALL": "Convites extras removido de todos!",
-    "SUCCESS_CONTENT_MEMBER": "Utilize `{{prefix}}invites {{usertag}}` para visualizar os novos convites de **{{username}}**!"
+    "MISSING_AMOUNT": "You must write the number of bonus invites you want to remove. (Syntax: {{prefix}}removebonus number @member/all)",
+    "INVALID_AMOUNT": "You must write a __**valid**__ number of bonus invites that you want to remove. (Syntax: {{prefix}}removebonus number @member/all)",
+    "MISSING_TARGET": "You must mention the member to whom you want to remove the bonus invites (or `all` if you want to remove the invites for everyone). (Syntax: {{prefix}}removebonus number @member/all)",
+    "CONFIRMATION_ALL": ":warning: Are you sure you want to remove **{{count}}** bonus invites to everyone? This can take a long time (depending on the size of your server)! Send `-confirm` to continue and `cancel` to cancel.",
+    "SUCCESS_TITLE": "📥 Bonus Invites Removed",
+    "SUCCESS_CONTENT_ALL": "Bonus invites removed for everyone!",
+    "SUCCESS_CONTENT_MEMBER": "Write `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
 }
