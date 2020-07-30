@@ -1,11 +1,11 @@
 {
-    "MISSING_COUNT": "등급을 획득하기 위해 필요한 초대 수를 지정해야 합니다. (예시: {{prefix}}addrank 초대 횟수 @역할)",
-    "INCORRECT_COUNT": " 등급을 획득하기 위해 __ **유효한 수** __ 의 초대 수를 작성해야합니다. (예시: {{prefix}}addrank 초대 횟수 @역할)",
-    "ALREADY_EXIST": "**{{count}}** 초대 수 (`{{roleName}}`)에 대해 이미 정의된 역할이 있습니다! `{{prefix}} removerank {{roleID}}`로 제거한 다음 다시 시도해주시길 바랍니다!",
-    "MISSING_ROLE": "초대 횟수에 도달하면 추가 할 역할을 멘션해야합니다. (예시: {{prefix}}addrank 초대 횟수 @역할)",
-    "ALREADY_USED": "이 역할은 이미 **{{count}}** 초대 수에 사용되었습니다! `{{prefix}} removerank {{roleID}}`로 제거한 다음 다시 시도하십시오!",
-    "MISSING_PERM": "내 역할이 멤버에게`{{roleName}}`역할을 추가 할만큼 높지 않습니다! 내 역할을 높인 다음 다시 시도하십시오!",
-    "TITLE": "🎯 새로운 역할이 추가되었습니다.",
-    "CONTENT": "멤버가 **{{count}}** 초대 수에 도달하면`{{roleName}}` 역할을 얻게됩니다!",
-    "MANAGED": "관리자 역할은 등급 보상으로 정의 할 수 없습니다."
+    "MISSING_COUNT": "You must write the number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
+    "INCORRECT_COUNT": " You must write a __**valid**__ number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
+    "ALREADY_EXIST": "There is already a defined role for **{{count}}** invites (`{{roleName}}`)! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
+    "MISSING_ROLE": "You must mention the role you want to be added when the invite count is reached! (Syntax: {{prefix}}addrank number @role)",
+    "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
+    "MISSING_PERM": "My role is not high enough to add the role `{{roleName}}` to the members! Please put my role up and try again!",
+    "TITLE": "🎯 New role added",
+    "CONTENT": "When a member will reach **{{count}}** invites, they will obtain `{{roleName}}`!",
+    "MANAGED": "Managed roles can't be defined as a rank reward."
 }

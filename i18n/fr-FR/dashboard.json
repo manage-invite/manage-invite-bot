@@ -24,7 +24,7 @@
   "PREMIUM_RANK": "Rôle Premium",
   "GET_PREMIUM": "Obtenir Premium",
   "WAITING_VERIF": "En attente de vérification...",
-  "WAITING_VERIF_TOOLTIP": "PayPal prend souvent 5 minutes pour nous envoyer les données du payement. Si votre payement n'est pas vérifié après 15 minutes, Veuillez rejoindre notre serveur de support.",
+  "WAITING_VERIF_TOOLTIP": "PayPal usually takes 5 minutes to send us the payment data. If your payment has not been verified after 15 minutes, please join our support server.",
   "WHY_TITLE": "Pourquoi ne puis-je pas utiliser ManageInvite sur mon serveur ?",
   "WHY_CONTENT": "ManageInvite a atteint les 10 000 serveurs il y a quelques jours. Comme vous le savez, de nombreux bots d'invitation ont de gros problèmes et sont régulièrement en maintenance. Nous constatons que de nombreux serveurs ne peuvent pas trouver de bots de gestion des invitations qui soient en permanence en ligne, et c'est pourquoi nous avons changé la façon dont d'accéder à ManageInvite. Nous voulons que le bot reste accessible à tous : c'est pourquoi nous avons décidé d'améliorer notre infrastructure et de proposer une version du bot à 2€ par mois, sans latence et en permanence en ligne, sans coupure. Vous hésitez ? Vous pouvez demander une période d'essai pour la nouvelle version sur le serveur de support !",
   "WHY_LINKS": "Obtenez plus de détails et demandez un essai sur le serveur support !",

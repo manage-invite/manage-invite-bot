@@ -1,11 +1,11 @@
 {
-    "MISSING_COUNT": "Du must die erforderlich Einladungs Zahl shreiben, um der Stand zuhaben. (Syntaxe: {{prefix}}addrank Zahl @role)",
-    "INCORRECT_COUNT": " Du musst eine __**gültige**__ einladungszahl schreiben, die gebraucht wird um den Rang zu bekommen. (Befehl: `{{prefix}}addrank Zahl @rolle`)",
-    "ALREADY_EXIST": "Es gibt schon eine Rolle für **{{count}}** invites (`{{roleName}}`)! Entferne sie mit `{{prefix}}remouverank {{roleID}}` dannach versuche es erneut!",
-    "MISSING_ROLE": "Du musst die Rolle erwänen, die du zu der Invite count Liste hinzufügen möchtest, Wenn die invites erreicht sind! (Befehl: `{{prefix}}addrank Zahl @role`)",
-    "ALREADY_USED": "Es gibt schon eine Rolle für **{{count}}**! Entferne sie mit `{{prefix}}remouverank {{roleID}}` dannach versuche es erneut!",
-    "MISSING_PERM": "Meine Rolle ist nicht hoch genug um die Rolle `{{roleName}}` zu den Membern hinzuzufügen. Bitte schiebe meine rolle etwas höher und versuche es dann erneut!",
-    "TITLE": "🎯 Neue Rolle Hinzugefügt",
-    "CONTENT": "Wenn ein User **{{count}}** invites erreicht, wird er sofort `{{roleName}}` bekommen!",
-    "MANAGED": "Verwalter Rollen können nicht als Rang Belohnung gesetzt werden."
+    "MISSING_COUNT": "You must write the number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
+    "INCORRECT_COUNT": " You must write a __**valid**__ number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
+    "ALREADY_EXIST": "There is already a defined role for **{{count}}** invites (`{{roleName}}`)! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
+    "MISSING_ROLE": "You must mention the role you want to be added when the invite count is reached! (Syntax: {{prefix}}addrank number @role)",
+    "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
+    "MISSING_PERM": "My role is not high enough to add the role `{{roleName}}` to the members! Please put my role up and try again!",
+    "TITLE": "🎯 New role added",
+    "CONTENT": "When a member will reach **{{count}}** invites, they will obtain `{{roleName}}`!",
+    "MANAGED": "Managed roles can't be defined as a rank reward."
 }
