@@ -1,7 +1,7 @@
 {
-    "TITLE": "🎯 역할 보상들",
-    "RANK": "{{rank}} (**{{invites}}** 번 초대함.)",
-    "NO_RANK_TITLE": "🎯 역할 없음",
-    "NO_RANK_CONTENT": "회원이 일정 수의 초대에 도달했을 때 추가되는 역할 보상을 ​​추가하려면`{{prefix}}addrank 초대 횟수 @역할`을 작성하십시오!",
-    "VIEW_CONF": "대시 보드에서 구성을 봅니다."
+    "TITLE": "🎯 Roles rewards",
+    "RANK": "{{rank}} (**{{invites}}** invites)",
+    "NO_RANK_TITLE": "🎯 No role",
+    "NO_RANK_CONTENT": "To add a role reward (added when a member reach a certain number of invites), write `{{prefix}}addrank number @role`!",
+    "VIEW_CONF": "View the configuration on the dashboard"
 }
