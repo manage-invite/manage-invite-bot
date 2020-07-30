@@ -1,9 +1,9 @@
 {
-    "TITLE": "{{guild}} configuratie",
-    "JOIN_TITLE": "{{status}} Join Berichten",
-    "JOIN_CONTENT": "> Ingeschakeld: {{enabled}}\n> Bericht: {{message}} \n> Kanaal: {{channel}}",
-    "LEAVE_TITLE": "{{status}} Verlaat Berichten",
-    "JOIN_DM_TITLE": "{{status}} Join DM Berichten",
-    "JOIN_DM_CONTENT": "> Ingeschakeld: {{enabled}}\n> Bericht: {{message}}",
-    "CHANNEL_NOT_FOUND": "**kanaal niet gevonden**"
+    "TITLE": "{{guild}} configuration",
+    "JOIN_TITLE": "{{status}} Join Messages",
+    "JOIN_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}\n> Channel: {{channel}}",
+    "LEAVE_TITLE": "{{status}} Leave Messages",
+    "JOIN_DM_TITLE": "{{status}} Join DM Messages",
+    "JOIN_DM_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}",
+    "CHANNEL_NOT_FOUND": "**channel not found**"
 }
