@@ -73,7 +73,7 @@ router.post("/ipn", async (req, res) => {
                 const { premiumLogs } = req.client.config;
                 req.client.shard.broadcastEval(`
                     let aLogs = this.channels.cache.get('${premiumLogs}');
-                    if(aLogs) aLogs.send({ embed: JSON.parse(escape('${logEmbed}'))});
+                    if(aLogs) aLogs.send({ embed: JSON.parse(unescape('${logEmbed}'))});
                 `);
                 req.client.shard.broadcastEval(`
                     if(this.guilds.cache.some((g) => g.roles.cache.has(this.config.premiumRole))){
