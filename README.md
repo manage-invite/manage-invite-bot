@@ -15,8 +15,6 @@ ManageInvite has a powerful dashboard which allow you to manage your servers eas
 <img src="./assets/selector.png" style="margin-right: 2px;width: 40%;" ></img>
 <img src="./assets/manage.png" style="margin-right: 2px;width: 40%;" ></img>
 
-> The code of the dashboard is located in the dashboard folder, in this repository.
-
 ## 💪 Features
 
 > **ManageInvite** has a total of 34 commands!
