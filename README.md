@@ -94,11 +94,3 @@ Everyone can use user commands, there aren't restricted.
 +reload            Reload a command or languages.
 +servers-list      Show the servers list.
 ```
-
-## ⬇️ Installation
-
-* You have to install `Git` and `MongoDB`. Then, run `npm install` to install npm dependencies.
-
-* Fill the configuration (rename the `config.sample.js` file to `config.js` and fill it).
-
-* Run the bot with `node sharder.js`!
