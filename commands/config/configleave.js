@@ -62,7 +62,7 @@ module.exports = class extends Command {
         data.guild.leave.enabled = true;
         data.guild.leave.mainMessage = confMessage;
         data.guild.leave.channel = channel.id;
-        await data.guild.join.updateData();
+        await data.guild.leave.updateData();
 
     }
 };
