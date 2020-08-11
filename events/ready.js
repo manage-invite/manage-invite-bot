@@ -8,6 +8,9 @@ module.exports = class {
     async run () {
 
         this.client.user.setActivity("+help | manage-invite.xyz");
+        setInterval(() => {
+            this.client.user.setActivity("+help | manage-invite.xyz");
+        }, 60000*60);
         this.client.logger.log("Shard #"+this.client.shard.ids[0]+" has started.", "log");
         this.client.functions.postTopStats(this.client);
 
