@@ -28,10 +28,10 @@ module.exports = class extends Command {
             message.sendT("admin/restoreinvites:CONFIRMATION_MEMBER", {
                 prefix: data.guild.prefix,
                 username: member.user.tag,
-                regular: member.regular,
-                leaves: member.leaves,
-                bonus: member.bonus,
-                fake: member.fake,
+                regular: member.data.regular,
+                leaves: member.data.leaves,
+                bonus: member.data.bonus,
+                fake: member.data.fake,
                 error: this.client.config.emojis.error,
                 success: this.client.config.emojis.success
             })
