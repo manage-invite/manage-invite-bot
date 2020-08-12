@@ -35,7 +35,7 @@ module.exports = class extends Command {
         if(!role) return message.error("admin/addrank:MISSING_ROLE", {
             prefix: data.guild.prefix
         });
-        if(role.managed) return message.error("admin/addrank:MANAGED");
+        if(role.managed || role.id === message.guild.id) return message.error("admin/addrank:MANAGED");
         if(role.position > message.guild.me.roles.highest.position) return message.error("admin/addrank:MISSING_PERM", {
             roleName: role.name
         });
