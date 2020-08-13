@@ -3,7 +3,7 @@
     "CONFIRMATION_MEMBER": "Êtes-vous sûr de vouloir supprimer toutes les invitations de **{{username}}** ?\n\n{{success}} Envoyez `-confirm` pour confirmer.\n{{error}} Envoyez `cancel` pour annuler.",
     "LOADING": "{{loading}} | Supprimer les invitations du serveur actuel.... Vous pouvez les restaurer avec la commande `{{prefix}}restore-invites` !",
     "LOADING_MEMBER": "{{loading}} | Suppression des invitations actuelles de **{{username}}**... Vous pouvez les restaurer avec la commande `{{prefix}}restore-invites {{username}}` !",
-    "TITLE": "☄️ Invitations réinitalisées",
+    "TITLE": "☄️ Invitations reinitialized",
     "DESCRIPTION": "{{success}} | Invitations du serveur réinitialisées ! Vous pouvez les restaurer avec la commande `{{prefix}}restore-invites` !",
     "DESCRIPTION_MEMBER": "{{success}} | Invitations de **{{username}}** réinitialisées ! Vous pouvez les restaurer avec la commande `{{prefix}}restore-invites {{username}}` !"
 }
