@@ -1,6 +1,6 @@
 {
-    "TITLE": ":wrench: DM Join system :",
-    "ENABLED_YES_CONTENT": "{{success}} Join messages in dm enabled. Disable them with `{{prefix}}setdmjoin`.",
-    "ENABLED_NO_CONTENT": "{{error}} Join messages in dm disabled. Enable them with `{{prefix}}setdmjoin`.",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configdm`!"
+    "TITLE": ":wrench: Sistema de entrada no privado:",
+    "ENABLED_YES_CONTENT": "{{success}} Mensagens de entrada no privado ativadas. Desativa-as com `{{prefix}}setdmjoin`.",
+    "ENABLED_NO_CONTENT": "{{error}} Mensagens de entrada no privado desativadas. Ativa-as com `{{prefix}}setdmjoin`.",
+    "MESSAGE_CONTENT": "Nenhuma mensagem definida. Defina-a com `{{prefix}}configdm`!"
 }
