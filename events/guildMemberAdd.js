@@ -24,6 +24,10 @@ module.exports = class {
         let oauth = false;
         let perm = false;
 
+        if(!member.guild.me) await member.guild.members.fetch({
+            user: this.client.user.id,
+            cache: true
+        });
         if(!member.guild.me.hasPermission("MANAGE_GUILD")) perm = true;
 
         if(member.user.bot){
