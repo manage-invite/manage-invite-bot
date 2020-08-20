@@ -1,5 +1,5 @@
 {
-    "PREMIUM": ":crown: | Hey, **{{username}}**! This feature (keep ranks even if the members don't have enough invites) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !",
-    "SUCCESS_ENABLED": "**Now, members __WILL KEEP__ their ranks, even if they don't have enough invites!**",
-    "SUCCESS_DISABLED": "**Now, members  __WON'T KEEP__ their ranks if they don't have enough invites!**"
+    "PREMIUM": ":crown: | Hey, **{{username}}** | Este recurso (manter os rank mesmo que os membros não tenham convites suficientes) está disponível apenas para servidores premium. Obtenha o premium aqui: ** <https://docs.manage-invite.xyz/configuration/premium> **!",
+    "SUCCESS_ENABLED": "**Agora, membros __VÃO MANTER__ os ranks, mesmo que eles não tenham convite suficientes!**",
+    "SUCCESS_DISABLED": "**Agora, membros __NÃO VÃO MANTER__ seus ranks se eles não tiverem convites suficiente!**"
 }
