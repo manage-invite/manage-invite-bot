@@ -133,6 +133,17 @@ module.exports = {
                 "tr",
                 "tr_tr"
             ]
+        },
+        {
+            name: "pt-PT",
+            nativeName: "Português",
+            flag: ":flag_pt:",
+            default: false,
+            aliases: [
+                "Portuguese",
+                "pt",
+                "pt_pt"
+            ]
         }
     ]
 };
