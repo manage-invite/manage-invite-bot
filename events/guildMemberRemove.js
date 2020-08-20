@@ -24,12 +24,13 @@ module.exports = class {
         const inviterData = inviter ? await this.client.database.fetchMember(inviter.id, member.guild.id) : null;
         const invite = (memberData.joinData || {}).inviteData;
 
-        console.log(memberData.joinData, inviter);
-
         // Update member invites
         if(inviter){
             if(guildData.blacklistedUsers.includes(inviter.id)) return;
-            const inviterMember = member.guild.members.cache.get(inviter.id);
+            const inviterMember = member.guild.members.cache.get(inviter.id) ?? await member.guild.members.fetch({
+                user: inviter.id,
+                cache: true
+            });
             if(inviterMember){
                 inviterData.leaves++;
                 await this.client.functions.assignRanks(inviterMember, inviterData.calculatedInvites, guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
