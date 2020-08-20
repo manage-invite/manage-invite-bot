@@ -3,7 +3,7 @@
     "CONFIRMATION_MEMBER": "Bạn chắc chắn muốn reset toàn bộ invites của **{{username}}**?\n\n{{success}} Nhập `-confirm` để xác nhận.\n{{error}} Nhập `cancel` để hủy.",
     "LOADING": "{{loading}} | Xoá toàn bộ Invites trong server... Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites`!",
     "LOADING_MEMBER": "{{loading}} | Xoá toàn bộ Invites của **{{username}}**... Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites {{username}}`!",
-    "TITLE": "☄️ Xoá thành công",
+    "TITLE": "☄️ Invitations reinitialized",
     "DESCRIPTION": "{{success}} | Toàn bộ Invites trong server đã được xoá! Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites`!",
     "DESCRIPTION_MEMBER": "{{success}} | Toàn bộ Invites của **{{username}}** đã được xoá! Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites {{username}}`!"
 }
