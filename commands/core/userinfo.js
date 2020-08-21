@@ -19,11 +19,10 @@ module.exports = class extends Command {
         // Fetch user and member
         const user = message.mentions.users.first() || await this.client.resolveUser(args.join(" ")) || message.author;
         const member = await message.guild.members.fetch(user.id).catch(() => {});
-        const memberData = member ? await this.client.database.fetchMember(member.id, member.guild.id) : null;
+        const memberData = await this.client.database.fetchMember(user.id, message.guild.id);
 
         moment.locale(data.guild.language.substr(0, 2));
         const creationDate = moment(user.createdAt, "YYYYMMDD").fromNow();
-        const joinDate = member ? moment(member.joinedAt, "YYYYMMDD").fromNow() : null;
 
         const embed = new Discord.MessageEmbed()
             .setAuthor(message.translate("core/userinfo:TITLE", {
@@ -34,11 +33,10 @@ module.exports = class extends Command {
             .addField(message.translate("core/userinfo:CREATED_AT_TITLE"), creationDate.charAt(0).toUpperCase() + creationDate.substr(1, creationDate.length), true)
             .setColor(data.color)
             .setFooter(data.footer);
-        
-        if(member){
-            const joinData = memberData.joinData;
+
+        const getJoinWay = async (joinData) => {
             let joinWay = message.translate("core/userinfo:JOIN_WAY_UNKNOWN", {
-                user: user.username
+                username: user.username
             });
             if(joinData?.eventType === "join" && joinData?.inviterID){
                 const inviter = await this.client.users.fetch(joinData.inviterID).catch(() => {});
@@ -48,24 +46,36 @@ module.exports = class extends Command {
             } else if(joinData?.type === "oauth" || user.bot){
                 joinWay = message.translate("core/userinfo:JOIN_WAY_OAUTH");
             }
+            return joinWay;
+        };
+        
+        if(member){
+            const joinDate = member ? moment(member.joinedAt, "YYYYMMDD").fromNow() : null;
+            embed.addField(message.translate("core/userinfo:JOINED_AT_TITLE"), joinDate.charAt(0).toUpperCase() + joinDate.substr(1, joinDate.length), true);
+        }
+
+        if(memberData){
+            const joinWay = await getJoinWay(memberData.joinData);
+            embed.addField(message.translate("core/userinfo:INVITES_TITLE"), data.guild.blacklistedUsers.includes(user.id) ? message.translate("admin/blacklist:BLACKLISTED", {
+                username: user.tag
+            }) : message.translate("core/invite:MEMBER_CONTENT", {
+                username: user.username,
+                inviteCount: memberData.calculatedInvites,
+                regularCount: memberData.regular,
+                bonusCount: memberData.bonus,
+                fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
+                leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
+            }))
+                .addField(message.translate("core/userinfo:JOIN_WAY_TITLE"), joinWay);
+        }
+        
+        if(member){
             const guild = await message.guild.fetch();
             const members = guild.members.cache.array().sort((a,b) => a.joinedTimestamp - b.joinedTimestamp);
             const joinPos = members.map((u) => u.id).indexOf(member.id);
             const previous = members[joinPos - 1] ? members[joinPos - 1].user : null;
             const next = members[joinPos + 1] ? members[joinPos + 1].user : null;
-            embed.addField(message.translate("core/userinfo:JOINED_AT_TITLE"), joinDate.charAt(0).toUpperCase() + joinDate.substr(1, joinDate.length), true)
-                .addField(message.translate("core/userinfo:INVITES_TITLE"), data.guild.blacklistedUsers.includes(member.id) ? message.translate("admin/blacklist:BLACKLISTED", {
-                    username: member.user.tag
-                }) : message.translate("core/invite:MEMBER_CONTENT", {
-                    username: member.user.username,
-                    inviteCount: memberData.calculatedInvites,
-                    regularCount: memberData.regular,
-                    bonusCount: memberData.bonus,
-                    fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
-                    leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
-                }))
-                .addField(message.translate("core/userinfo:JOIN_WAY_TITLE"), joinWay)
-                .addField(message.translate("core/userinfo:JOIN_ORDER_TITLE"), `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`);
+            embed.addField(message.translate("core/userinfo:JOIN_ORDER_TITLE"), `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`);
         }
 
         if(memberData.invitedMembers){
@@ -88,20 +98,21 @@ module.exports = class extends Command {
                         users.join(", ")));
         }
 
+        const numberOfJoins = memberData.numJoins > 1 ? memberData.numJoins : member ? 1 : 0;
+        embed.addField(message.translate("core/userinfo:NUMBER_JOINS"), numberOfJoins);
+                
+        if(numberOfJoins > 1){
+            embed.addField(message.translate("core/userinfo:FIRST_JOIN_WAY_TITLE"), await getJoinWay(memberData.firstJoinData));
+        }
+
         const guildInvites = await message.guild.fetchInvites();
-        const userInvites = guildInvites.filter((i) => i?.inviter?.id === member.id);
+        const userInvites = guildInvites.filter((i) => i?.inviter?.id === user.id);
         embed.addField(message.translate("core/userinfo:INVITE_CODES"),
             userInvites.size > 0
                 ? userInvites.map((i) => `**${i.code}** | **${i.channel}** | **${i.uses}** ${message.translate("common:USES").toLowerCase()}`).join("\n")
                 : message.translate("core/userinfo:NO_INVITES")
         );
 
-        embed.addField(message.translate("core/userinfo:NUMBER_JOINS"),
-            memberData.numJoins > 1
-                ? memberData.numJoins
-                : 1
-        );
-        
         message.channel.send(embed);
     }
 

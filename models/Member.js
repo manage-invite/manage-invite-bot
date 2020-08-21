@@ -45,6 +45,12 @@ module.exports = class Member {
             .length;
     }
 
+    get firstJoinData() {
+        return this.invitedMemberEvents
+            .filter((e) => e.eventType === "join")
+            .sort((a, b) => a.eventDate - b.eventDate)[0];
+    }
+
     get joinData() {
         return this.invitedMemberEvents
             .filter((e) => e.eventType === "join")
