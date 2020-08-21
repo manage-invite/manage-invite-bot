@@ -28,7 +28,7 @@ async function fetchGuild(guildID, client){
     const conf = await client.database.fetchGuild(guild.id);
     conf.premiumExpiresDisplayed = client.functions.formatDate(new Date(conf.premiumExpiresAt), "MMM DD YYYY", conf.language);
     const difference = new Date(conf.premiumExpiresAt).getTime() - Date.now();
-    conf.premiumExpiresDays = Math.round(difference/86400000);
+    conf.premiumExpiresDays = Math.round(difference/86400000) > 0 ? Math.round(difference/86400000) : 0;
     return { ...guild, ...conf };
 }
 
