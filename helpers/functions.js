@@ -43,6 +43,7 @@ const formatMessage = (message, member, locale, invData) => {
             .replace(/{invite.code}/g, invite.code)
             .replace(/{invite.uses}/g, invite.uses)
             .replace(/{invite.url}/g, invite.url)
+            .replace(/{invite.channel}/g, invite.channel)
             .replace(/{numJoins}/g, numJoins);
     }
 
