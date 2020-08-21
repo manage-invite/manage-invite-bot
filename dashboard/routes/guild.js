@@ -38,6 +38,20 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
 
 });
 
+router.get("/:serverID/createsub", CheckAuth, async (req, res) => {
+    const guildInfos = await utils.fetchGuild(req.params.serverID, req.client, req.user.guilds, req.user.locale);
+    res.render("create-sub", {
+        guild: guildInfos,
+        user: req.userInfos,
+        translate: req.translate,
+        currentURL: `${req.client.config.baseURL}${req.originalUrl}`,
+        member: req.member,
+        discord: req.client.config.discord,
+        locale: req.user.locale,
+        paypal: req.client.config.paypal.mode === "live" ? req.client.config.paypal.live : req.client.config.paypal.sandbox
+    });
+});
+
 router.post("/:serverID/:form", CheckAuth, async (req, res) => {
 
     // Check if the user has the permissions to edit this guild
