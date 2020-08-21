@@ -30,6 +30,8 @@ class ManageInvite extends Client {
         this.states = {};
         this.spawned = false;
         this.knownGuilds = [];
+        // Sync ranks tasks
+        this.syncRanksTasks = {};
         // Cache
         this.guildsCreated = 0;
         this.guildsDeleted = 0;
