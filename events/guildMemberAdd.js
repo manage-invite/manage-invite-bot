@@ -69,7 +69,7 @@ module.exports = class {
         // If we know who invited the member
         if(invite){
             // We look for the member in the server members
-            const inviterMember = member.guild.members.cache.get(inviter.id);
+            const inviterMember = member.guild.members.cache.get(inviter.id) || await member.guild.members.fetch(inviter.id).catch(() => {});
             /* If it does exist
             if(inviterMember){
 
@@ -110,7 +110,7 @@ module.exports = class {
 
             inviterData.regular++;
 
-            await this.client.functions.assignRanks(inviterMember, inviterData.calculatedInvites, guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
+            if(inviterMember) await this.client.functions.assignRanks(inviterMember, inviterData.calculatedInvites, guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
 
             await inviterData.updateInvites();
             await this.client.database.createEvent({
