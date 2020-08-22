@@ -15,6 +15,20 @@ const asyncForEach = async (array, callback) => {
     }
 };
 
+const syncPremiumRoles = (client) => {
+    client.shard.broadcastEval(() => {
+        if(this.guilds.cache.has(client.config.supportServer)){
+            this.database.query("SELECT * FROM payments WHERE type = 'paypal_dash_pmnt_month' OR type = 'email_address_pmnt_month'").then(({ rows }) => {
+                const userIDs = rows.map((r) => r.payer_discord_id);
+                const guild = this.guilds.cache.get(this.config.supportServer);
+                userIDs
+                    .filter((r) => guild.members.cache.has(r) && !guild.members.cache.get(r).roles.cache.has(this.config.premiumRole))
+                    .forEach((m) => guild.members.cache.get(m).roles.add(this.config.premiumRole));
+            });
+        }
+    });
+};
+
 /**
  * @param {string} message The message to format
  * @param {object} member The member who joined/has left
@@ -271,5 +285,6 @@ module.exports = {
     postTopStats,
     lastXDays,
     joinedXDays,
-    isEqual
+    isEqual,
+    syncPremiumRoles
 };

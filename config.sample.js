@@ -37,6 +37,7 @@ module.exports = {
     owners: [ "XXXXXXXXXXX", "XXXXXXXXXXX" ],
     modRole:        "XXXXXXXXXXX",
     premiumRole:    "XXXXXXXXXXX",
+    supportServer:  "XXXXXXXXXXX",
     sentryDSN:      "XXXXXXXXXXX",
     /* Top.gg */
     topToken: "XXXXXXXXXXX",

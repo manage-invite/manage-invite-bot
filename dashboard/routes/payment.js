@@ -163,6 +163,7 @@ router.post("/ipn", async (req, res) => {
                     await currentSubscription.addDays(30);
                     await currentSubscription.deleteGuildsFromCache();
                     await req.client.database.syncSubscriptionForOtherCaches(currentSubscription.id);
+                    req.client.functions.syncPremiumRoles(req.client);
                 }
                 const logEmbed = escape(JSON.stringify(new Discord.MessageEmbed()
                     .setAuthor(`${user.tag} paid for ManageInvite Premium`, user.displayAvatarURL())
