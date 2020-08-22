@@ -33,7 +33,7 @@ module.exports = class extends Command {
                 prefix: data.guild.prefix,
                 success: this.client.config.emojis.success
             })))
-            .addField(message.translate("config/testleave:MESSAGE"), (data.guild.joinDM.message || message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
+            .addField(message.translate("config/testleave:MESSAGE"), (data.guild.joinDM.mainMessage || message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
                 prefix: data.guild.prefix
             })))
             .setThumbnail(message.author.avatarURL())
@@ -42,9 +42,9 @@ module.exports = class extends Command {
             .setTimestamp();
         message.channel.send(embed);
 
-        if(data.guild.joinDM.enabled && data.guild.joinDM.message){
+        if(data.guild.joinDM.enabled && data.guild.joinDM.mainMessage){
             message.author.send(this.client.functions.formatMessage(
-                data.guild.joinDM.message,
+                data.guild.joinDM.mainMessage,
                 message.member,
                 (data.guild.language || "english").substr(0, 2),
                 {
