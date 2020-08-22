@@ -1,0 +1,20 @@
+{
+    "TITLE": "{{username}} account ({{userID}})",
+    "CREATED_AT_TITLE": "Creation",
+    "BOT_TITLE": "Robot",
+    "JOINED_AT_TITLE": "Join",
+    "JOIN_WAY_TITLE": "Join due to",
+    "JOIN_WAY_OAUTH": "Oauth invitation (via discordapp.com).",
+    "JOIN_WAY_VANITY": "Customized invite configured by an administrator.",
+    "JOIN_WAY_UNKNOWN": "I can't figure out how {{username}} joined the server.",
+    "INVITES_TITLE": "Invites",
+    "JOIN_ORDER_TITLE": "Join Order",
+    "INVITED_TITLE": "Invited users (on the server)",
+    "INVITED_PREMIUM": ":crown: | This feature (view invited users) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !",
+    "NO_INVITED_USERS": "No invited users",
+    "INVITED_USERS_MORE": "{{list}}, and more...",
+    "INVITE_CODES": "Invite Codes",
+    "NO_INVITES": "This user doesn't have any active invite.",
+    "NUMBER_JOINS": "Number of joins",
+    "FIRST_JOIN_WAY_TITLE": "First join due to"
+}
