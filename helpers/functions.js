@@ -45,7 +45,9 @@ const formatMessage = (message, member, locale, invData) => {
         .replace(/{user.createdat}/g, moment(member.user.createdAt, "YYYYMMDD").fromNow())
         .replace(/{user.id}/g, member.user.id)
         .replace(/{guild}/g, member.guild.name)
-        .replace(/{guild.count}/g, member.guild.memberCount);
+        .replace(/{guild.count}/g, member.guild.memberCount)
+        .replace(/{server}/g, member.guild.name)
+        .replace(/{server.count}/g, member.guild.name);
 
     if(invData){
         const { inviter, inviterData, invite, numJoins } = invData;
