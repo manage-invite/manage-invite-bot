@@ -12,7 +12,7 @@
     "LEAVE_TITLE": "👋 Mensagens De Saída",
     "LEAVE_CONTENT": "> **{{prefix}}configleave**: Configurar mensagens de __**saída**__\n> **{{prefix}}setleave**: Desativar/Ativar mensagens de __**saída**__\n> **{{prefix}}testleave**: Testar mensagens de __**saída**__",
     "INVITES_TITLE": "➕ Convites",
-    "INVITES_CONTENT": "> **{{prefix}}invite (@usuário)**: Dá a você o número de invites que você ou o membro mencionado tem.\n> **{{prefix}}leaderboard**: Mostra o top convites do servidor.",
+    "INVITES_CONTENT": "> **{{prefix}}invite (@user)**: Give you the number of invitations you have or the member mentioned has.\n> **{{prefix}}leaderboard**: Show the invites leaderboard of the server.",
     "CORE_TITLE": "🌐 MangeInvite",
     "CORE_CONTENT": "> **{{prefix}}botinfos**: Mostra as informações sobre o ManegeInvite\n> **{{prefix}}ping**: Mostra o ping do ManageInvite.\n> **{{prefix}}support**: Entre no servidor de suporte.\n> **{{prefix}}stats**: Exibir estatísticas do seu servidor.\n> **{{prefix}}add**: Adiciona me no seu servidor.",
     "TIP": "Dica: você pode ver sua configuração com {{prefix}}config",
