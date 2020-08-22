@@ -8,7 +8,7 @@ router.post("/", async (req, res) => {
         const { voteLogs } = req.client.config;
         req.client.shard.broadcastEval(`
             let aLogs = this.channels.cache.get('${voteLogs}');
-            if(aLogs) aLogs.send('${vote}');
+            if(aLogs) aLogs.send(unescape('${vote}'));
         `);
         res.status(200).send({
             message: "Thank you =)"
