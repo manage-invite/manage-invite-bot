@@ -119,7 +119,7 @@ module.exports = class {
                 eventType: "join",
                 eventDate: new Date(),
                 joinType: "normal",
-                inviterID: inviterMember.id,
+                inviterID: inviter.id,
                 inviteData: {
                     uses: invite.uses,
                     url: invite.url,
