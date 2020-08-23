@@ -15,5 +15,6 @@
     "INVITED_USERS_MORE": "{{list}}, és több...",
     "INVITE_CODES": "Invite Codes",
     "NO_INVITES": "This user doesn't have any active invite.",
-    "NUMBER_JOINS": "Number of joins"
+    "NUMBER_JOINS": "Number of joins",
+    "FIRST_JOIN_WAY_TITLE": "First join due to"
 }

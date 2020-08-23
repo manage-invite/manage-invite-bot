@@ -15,5 +15,6 @@
     "INVITED_USERS_MORE": "{{list}}. e mais...",
     "INVITE_CODES": "Códigos De Convite",
     "NO_INVITES": "Este usuário não tem nenhum convite ativo.",
-    "NUMBER_JOINS": "Número de entradas"
+    "NUMBER_JOINS": "Número de entradas",
+    "FIRST_JOIN_WAY_TITLE": "First join due to"
 }
