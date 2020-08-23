@@ -1,5 +1,5 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+    Discord = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -14,25 +14,24 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
 
-        let member = args[0] ? await this.client.resolveMember(args.join(" "), message.guild) : null;
+        const member = args[0] ? await this.client.resolveMember(args.join(" "), message.guild) : null;
         if(member) member.data = await this.client.database.fetchMember(member.id, message.guild.id);
-        let members = null;
         let memberCount = { regular: 0, leaves: 0, fake: 0, bonus: 0 };
         if(!member){
-            let m = await message.sendT("misc:PLEASE_WAIT", {
+            const m = await message.sendT("misc:PLEASE_WAIT", {
                 loading: this.client.config.emojis.loading
             });
             memberCount = await this.client.database.countGuildInvites(message.guild.id);
             m.delete();
         }
-        let conf = await (member ?
+        const conf = await (member ?
             message.sendT("admin/restoreinvites:CONFIRMATION_MEMBER", {
                 prefix: data.guild.prefix,
                 username: member.user.tag,
-                regular: member.regular,
-                leaves: member.leaves,
-                bonus: member.bonus,
-                fake: member.fake,
+                regular: member.data.regular,
+                leaves: member.data.leaves,
+                bonus: member.data.bonus,
+                fake: member.data.fake,
                 error: this.client.config.emojis.error,
                 success: this.client.config.emojis.success
             })
@@ -72,18 +71,18 @@ module.exports = class extends Command {
             }
 
             const embed = new Discord.MessageEmbed()
-            .setAuthor(message.translate("admin/restoreinvites:TITLE"))
-            .setDescription((member ?
-                message.translate("admin/restoreinvites:DESCRIPTION_MEMBER", {
-                    username: member.user.tag,
-                    success: this.client.config.emojis.success
-                })
-                : message.translate("admin/restoreinvites:DESCRIPTION", {
-                    success: this.client.config.emojis.success
-                })
-            ))
-            .setColor(data.color)
-            .setFooter(data.footer);
+                .setAuthor(message.translate("admin/restoreinvites:TITLE"))
+                .setDescription((member ?
+                    message.translate("admin/restoreinvites:DESCRIPTION_MEMBER", {
+                        username: member.user.tag,
+                        success: this.client.config.emojis.success
+                    })
+                    : message.translate("admin/restoreinvites:DESCRIPTION", {
+                        success: this.client.config.emojis.success
+                    })
+                ))
+                .setColor(data.color)
+                .setFooter(data.footer);
 
             conf.edit(null, { embed });
         }).catch((err) => {

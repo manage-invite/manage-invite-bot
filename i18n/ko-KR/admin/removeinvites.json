@@ -1,9 +1,9 @@
 {
-    "CONFIRMATION": "서버 초대 수를 모두 제거 하시겠습니까?\n\n{{success}} 계속 진행하려면 `-confirm` 을 입력하십시오.\n{{error}} 중단하려면 `cancel` 을 입력하십시오.",
-    "CONFIRMATION_MEMBER": "**{{username}}** 님의 모든 초대 수를 삭제 하시겠습니까?\n\n{{success}} 계속 진행하려면 `-confirm` 을 입력하십시오.\n{{error}} 중단하려면 `cancel` 을 입력하십시오.",
-    "LOADING": "{{loading}} | 서버에 있는 초대 수 삭제 중... `{{prefix}} restore-invites` 명령어로 초대 수를 복원 하실 수 있습니다!",
-    "LOADING_MEMBER": "{{loading}} | **{{username}}** 의 초대 수 삭제 중... `{{prefix}} restore-invites {{username}}` 명령어로 초대를 복원 하실 수 있습니다!",
-    "TITLE": "☄️ 초대장이 재초기화 되었습니다.",
-    "DESCRIPTION": "{{success}} | 서버 초대 수가 재초기화 되었습니다! `{{prefix}}restore-invites`명령어로 다시 복원 하실 수 있습니다!",
-    "DESCRIPTION_MEMBER": "{{success}} | **{{username}}**의 초대 수가 재초기화 되었습니다! `{{prefix}}restore-invites {{username}}` 명령어로 다시 복원 하실 수 있습니다!"
+    "CONFIRMATION": "Are you sure you want to remove all the server invites?\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
+    "CONFIRMATION_MEMBER": "Are you sure you want to remove all the invites of **{{username}}**?\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
+    "LOADING": "{{loading}} | Deleting invitations from the current server.... You can restore them with the command `{{prefix}}restore-invites`!",
+    "LOADING_MEMBER": "{{loading}} | Deleting current invitations of **{{username}}**... You can restore them with the command `{{prefix}}restore-invites {{username}}`!",
+    "TITLE": "☄️ Invitations reinitialized",
+    "DESCRIPTION": "{{success}} | Server invitations reinitialized! You can restore them with the command `{{prefix}}restore-invites`!",
+    "DESCRIPTION_MEMBER": "{{success}} | Invitations of **{{username}}** reinitialized! You can restore them with the command `{{prefix}}restore-invites {{username}}`!"
 }

@@ -1,0 +1,27 @@
+<form id="paypal-submit" action="<%= paypal.formURL %>" method="post" target="_top">
+    <input type="hidden" name="business" value="<%= paypal.email %>">
+
+    <input type="hidden" name="lc" value="US">
+
+    <!-- recurring -->
+    <input type="hidden" name="cmd" value="_xclick-subscriptions">
+    <input type="hidden" name="a3" value="2">
+    <input type="hidden" name="p3" value="1">
+    <input type="hidden" name="t3" value="M">
+
+    <input type="hidden" name="item_name" value="ManageInvite Premium">
+
+    <!-- Shipping Address Require -->
+    <input type="hidden" name="no_shipping" value="1">
+
+    <input type="hidden" name="currency_code" value="USD">
+    <input type="hidden" name="custom" value="manageinvite_premium,<%= guild.id %>,<%= user.id %>,<%= guild.name %>">
+    <input type="hidden" name="src" value="1">
+
+    <!-- Redirect URLs -->
+    <input type="hidden" name="notify_url" value="<%= paypal.ipnURL %>">
+    <input type="hidden" name="return" value="<%= paypal.returnURL %>">
+    <input type="hidden" id="cancel-return" name="cancel_return" value="<%= paypal.cancelURL %>">
+
+    <button type="submit" class="btn btn-primary"><%= translate("dashboard:UPGRADE_SERVER", { server: guild.name }) %></button>
+</form>

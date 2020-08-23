@@ -1,5 +1,5 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+    Discord = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -15,7 +15,7 @@ module.exports = class extends Command {
     async run (message, args, data) {
         
         const user = args[0] ? await this.client.resolveUser(args.join(" ")) : null;
-        let conf = await (user ?
+        const conf = await (user ?
             message.sendT("admin/removeinvites:CONFIRMATION_MEMBER", {
                 username: user.tag,
                 error: this.client.config.emojis.error,
@@ -55,18 +55,18 @@ module.exports = class extends Command {
             }
 
             const embed = new Discord.MessageEmbed()
-            .setAuthor(message.translate("admin/removeinvites:TITLE"))
-            .setDescription((user ?
-                message.translate("admin/removeinvites:DESCRIPTION_MEMBER", {
-                    username: user.tag,
-                    success: this.client.config.emojis.success
-                })
-                : message.translate("admin/removeinvites:DESCRIPTION", {
-                    success: this.client.config.emojis.success
-                })
-            ))
-            .setColor(data.color)
-            .setFooter(data.footer);
+                .setAuthor(message.translate("admin/removeinvites:TITLE"))
+                .setDescription((user ?
+                    message.translate("admin/removeinvites:DESCRIPTION_MEMBER", {
+                        username: user.tag,
+                        success: this.client.config.emojis.success
+                    })
+                    : message.translate("admin/removeinvites:DESCRIPTION", {
+                        success: this.client.config.emojis.success
+                    })
+                ))
+                .setColor(data.color)
+                .setFooter(data.footer);
 
             msg.edit(null, { embed });
         }).catch((err) => {

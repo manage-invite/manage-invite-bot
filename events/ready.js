@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const CronJob = require("cron").CronJob;
 
 module.exports = class {
@@ -9,12 +8,15 @@ module.exports = class {
     async run () {
 
         this.client.user.setActivity("+help | manage-invite.xyz");
+        setInterval(() => {
+            this.client.user.setActivity("+help | manage-invite.xyz");
+        }, 60000*60);
         this.client.logger.log("Shard #"+this.client.shard.ids[0]+" has started.", "log");
         this.client.functions.postTopStats(this.client);
 
         if(!process.argv.includes("--uncache")) await this.client.wait(1000);
-        let invites = {};
-        let startAt = Date.now();
+        const invites = {};
+        const startAt = Date.now();
         this.client.fetching = true;
 
         const premiumGuildsID = await this.client.database.fetchPremiumGuilds();
@@ -24,7 +26,7 @@ module.exports = class {
         await this.client.functions.asyncForEach(this.client.guilds.cache.array(), async (guild) => {
             if(premiumGuildsID.includes(guild.id)){
                 const member = await guild.members.fetch(this.client.user.id).catch(() => {});
-                let i = process.argv.includes("--uncache") ? new Map() : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : new Map());
+                const i = process.argv.includes("--uncache") ? new Map() : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : new Map());
                 invites[guild.id] = i || new Map();
             }
         });
@@ -32,12 +34,12 @@ module.exports = class {
         this.client.fetched = true;
         this.client.fetching = false;
         if(this.client.shard.ids.includes(0)) console.log("=================================================");
-        console.log(`\x1b[32m%s\x1b[0m`, `SHARD [${this.client.shard.ids[0]}]`, "\x1b[0m", `Invites fetched in ${Date.now() - startAt} ms.`);
+        console.log("\x1b[32m%s\x1b[0m", `SHARD [${this.client.shard.ids[0]}]`, "\x1b[0m", `Invites fetched in ${Date.now() - startAt} ms.`);
         console.log("=================================================");
         if(this.client.shard.ids.includes(this.client.shard.count-1)){
             console.log("Ready. Logged as "+this.client.user.tag+". Some stats:\n");
             this.client.shard.broadcastEval(() => {
-                console.log(`\x1b[32m%s\x1b[0m`, `SHARD [${this.shard.ids[0]}]`, "\x1b[0m", `Serving ${this.users.cache.size} users in ${this.guilds.cache.size} servers.`);
+                console.log("\x1b[32m%s\x1b[0m", `SHARD [${this.shard.ids[0]}]`, "\x1b[0m", `Serving ${this.users.cache.size} users in ${this.guilds.cache.size} servers.`);
             });
         }
 
@@ -72,7 +74,20 @@ module.exports = class {
                 this.client.database.saveStats(totalGuildsCreated, totalGuildsDeleted, totalCommandsRan, totalPgQueries, new Date());
             }, null, true, "America/Los_Angeles");
         }
-        
+
+        new CronJob("0 */15 * * * *", async () => {
+            if(this.client.fetched){
+                const guildsToFetch = this.client.guilds.cache.filter((guild) => !this.client.invitations[guild.id]).array();
+                this.client.logger.log(`${guildsToFetch.length} guilds need to be fetched`);
+                await this.client.functions.asyncForEach(guildsToFetch, async (guild) => {
+                    const member = await guild.members.fetch(this.client.user.id).catch(() => {});
+                    const i = process.argv.includes("--uncache") ? new Map() : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : new Map());
+                    this.client.invitations[guild.id] = i || new Map();
+                });
+                this.client.fetched = true;
+            }
+        }, null, true, "America/Los_Angeles");
+
         this.client.on("shardReady", (shardID) => {
             this.client.shard.broadcastEval(`
                 let logsChannel = this.channels.cache.get(this.config.shardLogs);
@@ -101,18 +116,6 @@ module.exports = class {
                 if(logsChannel) logsChannel.send(emojis.online+' | Shard #${shardID} has resumed!');
             `);
         });
-
-        new CronJob("0 */15 * * * *", async () => {
-            if(this.client.fetched){
-                const guildsToFetch = this.client.guilds.cache.filter((guild) => !this.client.invitations[guild.id]).array();
-                this.client.logger.log(`${guildsToFetch.length} guilds need to be fetched`);
-                await this.client.functions.asyncForEach(guildsToFetch, async (guild) => {
-                    const member = await guild.members.fetch(this.client.user.id).catch(() => {});
-                    const i = process.argv.includes("--uncache") ? new Map() : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : new Map());
-                    this.client.invitations[guild.id] = i || new Map();
-                });
-            }
-        }, null, true, "America/Los_Angeles");
 
     }
 };

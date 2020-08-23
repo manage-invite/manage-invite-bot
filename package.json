@@ -1,16 +1,16 @@
 {
   "name": "manage-invite",
-  "version": "4.5.1",
+  "version": "4.6.0",
   "description": "ManageInvite is the best bot to manage your server invites! Easy to setup, and complete!",
   "main": "sharder.js",
   "dependencies": {
-    "@sentry/node": "5.19.0",
+    "@sentry/node": "5.21.1",
     "btoa": "^1.2.1",
     "chalk": "^4.0.0",
     "chart.js": "^2.9.3",
     "chartjs-node-canvas": "^3.0.6",
     "cron": "^1.8.2",
-    "date-and-time": "^0.13.1",
+    "date-and-time": "^0.14.0",
     "discord-paginationembed": "^2.0.0-beta.4",
     "discord.js": "^12.2.0",
     "ejs": "^3.1.2",
@@ -29,9 +29,12 @@
     "string-similarity": "^4.0.1",
     "zlib-sync": "^0.1.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.5.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node sharder.js"
   },
   "repository": {
     "type": "git",

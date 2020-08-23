@@ -1,5 +1,5 @@
 const Command = require("../../structures/Command.js"),
-Constants = require("../../Constants");
+    Constants = require("../../Constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -12,7 +12,7 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args, data) {
+    async run (message) {
         message.sendT("core/support:CONTENT", {
             discord: Constants.Links.DISCORD
         });

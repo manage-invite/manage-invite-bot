@@ -11,7 +11,7 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args, data) {
+    async run (message, args) {
 
         const premiumArgs = {
             guildID: args[0],
@@ -21,10 +21,10 @@ module.exports = class extends Command {
             pmtType: args[4],
             guildsCount: parseInt(args[5]),
             label: args.slice(6).join(" ")
-        }
+        };
 
-        if(premiumArgs.guildID && premiumArgs.guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-z]/)){
-            let invite = await this.client.fetchInvite(premiumArgs.guildID);
+        if(premiumArgs.guildID && premiumArgs.guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-zA-Z\d]/)){
+            const invite = await this.client.fetchInvite(premiumArgs.guildID);
             premiumArgs.guildID = invite.channel.guild.id;
         }
 
@@ -32,7 +32,7 @@ module.exports = class extends Command {
         Object.keys(premiumArgs).forEach((key) => {
             if(premiumArgs[key] === undefined && !send){
                 send = true;
-                return message.channel.send(`${this.client.config.emojis.error} | Invalid args. ${Object.keys(premiumArgs).join(', ')}. Missing **${key}**.`);
+                return message.channel.send(`${this.client.config.emojis.error} | Invalid args. ${Object.keys(premiumArgs).join(", ")}. Missing **${key}**.`);
             }
         });
         if(send) return;

@@ -1,5 +1,3 @@
-const { Collection } = require("discord.js");
-
 module.exports = class Subscription {
     constructor(handler, { id, data }) {
 
@@ -27,15 +25,15 @@ module.exports = class Subscription {
     }
 
     get isTrial () {
-        return this.label === 'Trial Version';
+        return this.label === "Trial Version";
     }
 
     get wasTrial () {
-        return this.label.startsWith('T-');
+        return this.label.startsWith("T-");
     }
 
     async changeLabel (newName) {
-        this.label = this.isTrial ? 'Trial Version' : `T-${newName}`;
+        this.label = this.isTrial ? "Trial Version" : `T-${newName}`;
         await this.handler.query(`
             UPDATE subscriptions
             SET sub_label = '${this.label}'
@@ -51,15 +49,20 @@ module.exports = class Subscription {
         } else {
             this.expiresAt = Date.now() + ms;
         }
+        await this.handler.query(`
+            UPDATE subscriptions
+            SET expires_at = '${new Date(this.expiresAt).toISOString()}'
+            WHERE id = ${this.id};
+        `);
         this.handler.syncSubscriptionForOtherCaches(this.id);
     }
 
     async deleteGuildsFromCache(){
         const { rows } = await this.handler.query(`
             SELECT * FROM guilds_subscriptions
-            WHERE sub_id = '${this.id}'
+            WHERE sub_id = ${this.id};
         `);
-        for(let row of rows) {
+        for(const row of rows) {
             this.handler.guildCache.delete(row.guild_id);
             this.handler.removeGuildFromOtherCaches(row.guild_id);
         }

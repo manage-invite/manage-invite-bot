@@ -1,12 +1,11 @@
 const { Pool } = require("pg");
 const { Collection } = require("discord.js");
-const { asyncForEach, stringOrNull, pgEscape } = require("./functions");
+const { stringOrNull, pgEscape } = require("./functions");
 const logger = require("./logger");
 
 const Guild = require("../models/Guild");
 const Member = require("../models/Member");
 const Subscription = require("../models/Subscription");
-const { plugin } = require( "mongoose" );
 
 module.exports = class DatabaseHandler {
     constructor(client) {
@@ -14,9 +13,9 @@ module.exports = class DatabaseHandler {
         const { database } = this.client.config;
         this.pool = new Pool(database);
         this.pool
-        .on("connect", () => {
-            logger.log("Shard #"+this.client.shard.ids[0]+" connected to database.");
-        });
+            .on("connect", () => {
+                logger.log("Shard #"+this.client.shard.ids[0]+" connected to database.");
+            });
 
         // Cache
         this.guildCache = new Collection();
@@ -74,15 +73,16 @@ module.exports = class DatabaseHandler {
         const shardID = this.client.shard.ids[0];
         this.client.shard.broadcastEval(`
             if(this.shard.ids[0] !== ${shardID}){
-                this.database.removeSubscriptionFromCache('${subID}');
-                this.database.fetchSubscription('${subID}', null, true);
+                this.database.removeSubscriptionFromCache(${subID}).then(() => {
+                    this.database.fetchSubscription(${subID}, null, true);
+                });
             }
         `);
     }
 
-    removeSubscriptionFromCache(subID){
+    async removeSubscriptionFromCache(subID){
         if(this.subscriptionCache.has(subID)){
-            this.subscriptionCache.get(subID).guilds.forEach((guild) => this.removeGuildFromCache(guild.id));
+            await this.subscriptionCache.get(subID).deleteGuildsFromCache();
             this.subscriptionCache.delete(subID);
         }
     }
@@ -198,7 +198,7 @@ module.exports = class DatabaseHandler {
                 RETURNING id;
             `).then(({ rows }) => {
                 resolve(rows[0].id);
-            })
+            });
         });
     }
 
@@ -211,7 +211,47 @@ module.exports = class DatabaseHandler {
                 RETURNING id;
             `).then(({ rows }) => {
                 resolve(rows[0].id);
-            })
+            });
+        });
+    }
+
+    async createEvent ({ userID, guildID, eventDate = new Date(), eventType, joinType, inviterID, inviteData }) {
+        return new Promise(async resolve => {
+            // Update database
+            await this.query(`
+                INSERT INTO invited_member_events
+                (user_id, guild_id, event_date, event_type, join_type, inviter_user_id, invite_data) VALUES
+                ('${userID}', '${guildID}', '${eventDate.toISOString()}', '${eventType}', ${stringOrNull(joinType)}, ${stringOrNull(inviterID)}, ${stringOrNull(pgEscape(JSON.stringify(inviteData)))})
+            `);
+            // Update member cache
+            if (this.memberCache.has(`${userID}${guildID}`)) {
+                this.memberCache.get(`${userID}${guildID}`).invitedMemberEvents.push({
+                    userID,
+                    guildID,
+                    eventDate,
+                    eventType,
+                    inviterID,
+                    inviteData,
+                    joinType
+                });
+            }
+            this.removeMemberFromOtherCaches(userID, guildID);
+            if (eventType === "join" && inviterID) {
+                // Update inviter cache
+                if (this.memberCache.has(`${inviterID}${guildID}`)) {
+                    this.memberCache.get(`${inviterID}${guildID}`).invitedMembers.push({
+                        userID,
+                        guildID,
+                        eventDate,
+                        eventType,
+                        inviterID,
+                        inviteData,
+                        joinType
+                    });
+                }
+                this.removeMemberFromOtherCaches(inviterID, guildID);
+            }
+            resolve();
         });
     }
 
@@ -252,9 +292,9 @@ module.exports = class DatabaseHandler {
             const membersToFetch = memberIDs.filter((m) => !this.memberCache.has(`${m.userID}${m.guildID}`));
             // If there are members to fetch
             if(membersToFetch.length > 0){
-                const membersArray = memberIDs.map((m) => `'${m.userID}${m.guildID}'`).join(', ');
+                const membersArray = memberIDs.map((m) => `'${m.userID}${m.guildID}'`).join(", ");
                 /* Fetch basic data - from the members table */
-                let { rows: membersData } = await this.query(`
+                let { rows: membersData } = await this.query(`
                     SELECT * FROM members
                     WHERE user_id || guild_id IN (${membersArray})
                 `);
@@ -263,9 +303,9 @@ module.exports = class DatabaseHandler {
                 if(membersNotCreated.length > 0){
                     const values = membersNotCreated.map((m) => {
                         return `('${m.userID}', '${m.guildID}', 0, 0, 0, 0, 0, 0, 0, 0, false)`;
-                    }).join(', ');
+                    }).join(", ");
                     // Insert members
-                    const { rows: createdMembersData } = await this.query(`
+                    const { rows: createdMembersData } = await this.query(`
                         INSERT INTO members
                         (
                             user_id,
@@ -283,10 +323,10 @@ module.exports = class DatabaseHandler {
                         ${values}
                         RETURNING *;
                     `);
-                    membersData = [ ...membersData, ...createdMembersData  ].flat();
+                    membersData = [ ...membersData, ...createdMembersData  ].flat();
                 }
                 /* Fetch join data - from the member_join_data table */
-                const { rows: membersJoinData } = await this.query(`
+                const { rows: membersJoinData } = await this.query(`
                     SELECT user_id, guild_id,
                     json_build_object(
                         'join_type', join_type,
@@ -296,45 +336,60 @@ module.exports = class DatabaseHandler {
                     from member_join_data
                     where user_id || guild_id IN (${membersArray})
                 `);
-                /* Fetch invited users - from the member_invited_users table */
-                const { rows: membersInvitedUsers } = await this.query(`
+                /* Fetch invited users events*/
+                const { rows: invitedMemberEvents } = await this.query(`
                     SELECT user_id, guild_id,
-                        json_agg(obj_mjd) as member_invited_users_agg
+                        json_agg(obj_ime) as invited_member_events
                     FROM(
-                        select user_id,
+                        select 
+                        user_id,
                         guild_id,
+                        inviter_user_id,
                         json_build_object(
-                            'invited_user_id', invited_user_id
-                        ) as obj_mjd
-                        from member_invited_users
+                            'guild_id', guild_id,
+                            'user_id', user_id,
+                            'event_type', event_type,
+                            'event_date', event_date,
+                            'join_type', join_type,
+                            'inviter_user_id', inviter_user_id,
+                            'invite_data', invite_data
+                        ) as obj_ime
+                        from invited_member_events
                     ) gp
                     where user_id || guild_id IN (${membersArray})
                     group by user_id, guild_id
                 `);
-                /* Fetch invited users left - from the member_invited_users_left table */
-                const { rows: membersInvitedUsersLeft } = await this.query(`
-                    SELECT user_id, guild_id,
-                        json_agg(obj_mjd) as member_invited_users_left_agg
+                const { rows: invitedMembers } = await this.query(`
+                    SELECT inviter_user_id as user_id, guild_id,
+                        json_agg(obj_ime) as invited_members
                     FROM(
-                        select user_id,
+                        select 
+                        user_id,
                         guild_id,
+                        inviter_user_id,
                         json_build_object(
-                            'invited_user_id', invited_user_id
-                        ) as obj_mjd
-                        from member_invited_users_left
+                            'guild_id', guild_id,
+                            'user_id', user_id,
+                            'event_type', event_type,
+                            'event_date', event_date,
+                            'join_type', join_type,
+                            'inviter_user_id', inviter_user_id,
+                            'invite_data', invite_data
+                        ) as obj_ime
+                        from invited_member_events
                     ) gp
-                    where user_id || guild_id IN (${membersArray})
-                    group by user_id, guild_id
+                    where inviter_user_id || guild_id IN (${membersArray})
+                    group by inviter_user_id, guild_id
                 `);
                 /* Create Member instance for all guilds */
                 membersToFetch.forEach((memberID) => {
-                    const member = new Member(this, {
+                    new Member(this, {
                         userID: memberID.userID,
                         guildID: memberID.guildID,
                         data: membersData.find((memberDataObj) => `${memberDataObj.user_id}${memberDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`),
-                        joinData: membersJoinData.find((memberJoinDataObj) => `${memberJoinDataObj.user_id}${memberJoinDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.obj_mjd || null,
-                        invitedUsers: membersInvitedUsers.find((memberInvitedUserObj) => `${memberInvitedUserObj.user_id}${memberInvitedUserObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.member_invited_users_agg || [],
-                        invitedUsersLeft: membersInvitedUsersLeft.find((memberInvitedUserLeftObj) => `${memberInvitedUserLeftObj.user_id}${memberInvitedUserLeftObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.member_invited_users_left_agg || []
+                        joinData: membersJoinData.find((memberJoinDataObj) => `${memberJoinDataObj.user_id}${memberJoinDataObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.member_join_data_agg || null,
+                        invitedMemberEvents: invitedMemberEvents.find((invitedMemberEventObj) => `${invitedMemberEventObj.user_id}${invitedMemberEventObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.invited_member_events || [],
+                        invitedMembers: invitedMembers.find((invitedMemberObj) => `${invitedMemberObj.user_id}${invitedMemberObj.guild_id}` === `${memberID.userID}${memberID.guildID}`)?.invited_members || []
                     });
                 });
             }
@@ -446,18 +501,18 @@ module.exports = class DatabaseHandler {
             // If there are guilds to fetch
             if(guildsToFetch.length > 0){
                 /* Fetch basic data - from the guilds table */
-                let { rows: guildsData } = await this.query(`
+                let { rows: guildsData } = await this.query(`
                     SELECT * FROM guilds
-                    WHERE guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(', ')})
+                    WHERE guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(", ")})
                 `);
                 /* If there are guilds not created, insert them in the guilds table */
                 const guildsNotCreated = guildsToFetch.filter((g) => !guildsData.some((gd) => gd.guild_id === g));
                 if(guildsNotCreated.length > 0){
                     const values = guildsNotCreated.map((g) => {
                         return `('${g}', '${this.client.config.prefix}', '${this.client.config.enabledLanguages.find((l) => l.default).name}', false, false)`;
-                    }).join(', ');
+                    }).join(", ");
                     // Insert guilds
-                    const { rows: createdGuildsData } = await this.query(`
+                    const { rows: createdGuildsData } = await this.query(`
                         INSERT INTO guilds
                         (guild_id, guild_prefix, guild_language, guild_keep_ranks, guild_stacked_ranks) VALUES
                         ${values}
@@ -466,7 +521,7 @@ module.exports = class DatabaseHandler {
                     guildsData = [ ...guildsData, ...createdGuildsData ].flat();
                 }
                 /* Fetch guilds plugins - from the guilds_plugins table */
-                let { rows: plugins } = await this.query(`
+                const { rows: plugins } = await this.query(`
                     SELECT guild_id,
                         json_agg(obj_p) as guild_plugins_agg
                     FROM(
@@ -477,33 +532,33 @@ module.exports = class DatabaseHandler {
                         ) as obj_p
                         from guild_plugins
                     ) gp
-                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(', ')})
+                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(", ")})
                     group by guild_id
                 `);
                 /* If there are guilds with missing plugins */
                 const guildsWithMissingPlugins = guildsToFetch.filter((g) => {
                     return !plugins.some((p) => p.guild_id === g) ||
-                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'joinDM') ||
-                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'leave') ||
-                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'join')
+                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "joinDM") ||
+                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "leave") ||
+                    !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "join");
                 });
                 if(guildsWithMissingPlugins.length > 0){
                     const pluginInsertValues = [];
                     guildsWithMissingPlugins.forEach((g) => {
-                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'joinDM')){
+                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "joinDM")){
                             pluginInsertValues.push(`( '${g}', 'joinDM', '{ "enabled": false, "message": null }' )`);
                         }
-                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'leave')){
+                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "leave")){
                             pluginInsertValues.push(`( '${g}', 'leave', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
-                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === 'join')){
+                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "join")){
                             pluginInsertValues.push(`( '${g}', 'join', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
                     });
                     const { rows: createdPlugins } = await this.query(`
                         INSERT INTO guild_plugins
                         (guild_id, plugin_name, plugin_data) VALUES
-                        ${pluginInsertValues.join(', ')}
+                        ${pluginInsertValues.join(", ")}
                         RETURNING *;
                     `);
                     guildsWithMissingPlugins.forEach((g) => {
@@ -523,7 +578,7 @@ module.exports = class DatabaseHandler {
                     });
                 }
                 /* Fetch guilds ranks - from the guild_ranks table */
-                const { rows: ranks } = await this.query(`
+                const { rows: ranks } = await this.query(`
                     SELECT guild_id,
                         json_agg(obj_r) as guild_ranks_agg
                     FROM(
@@ -534,11 +589,11 @@ module.exports = class DatabaseHandler {
                         ) as obj_r
                         from guild_ranks
                     ) gp
-                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(', ')})
+                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(", ")})
                     group by guild_id
                 `);
                 /* Fetch guilds blacklisted users - from the guild_blacklisted_users table */
-                const { rows: blacklistedUsers } = await this.query(`
+                const { rows: blacklistedUsers } = await this.query(`
                     SELECT guild_id,
                         json_agg(obj_b) as guild_blacklisted_agg
                     FROM(
@@ -548,11 +603,11 @@ module.exports = class DatabaseHandler {
                         ) as obj_b
                         from guild_blacklisted_users
                     ) gp
-                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(', ')})
+                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(", ")})
                     group by guild_id
                 `);
                 /* Fetch guilds subscriptions - from the guilds_subscriptions table */
-                let { rows: subscriptions } = await this.query(`
+                const { rows: subscriptions } = await this.query(`
                     SELECT guild_id,
                         json_agg(obj_s) as guild_subscriptions_agg
                     FROM(
@@ -564,12 +619,12 @@ module.exports = class DatabaseHandler {
                         from guilds_subscriptions gs
                         inner join subscriptions s ON s.id = gs.sub_id
                     ) gp
-                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(', ')})
+                    where guild_id IN (${guildsToFetch.map((g) => `'${g}'`).join(", ")})
                     group by guild_id
                 `);
                 /* Create Guild instance for all guilds */
                 guildsToFetch.forEach((guildID) => {
-                    const guild = new Guild(this, {
+                    new Guild(this, {
                         id: guildID,
                         data: guildsData.find((pluginObj) => pluginObj.guild_id.trim() === guildID),
                         plugins: plugins.find((pluginObj) => pluginObj.guild_id.trim() === guildID)?.guild_plugins_agg,

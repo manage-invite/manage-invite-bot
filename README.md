@@ -6,7 +6,7 @@
 [![patreon](https://img.shields.io/endpoint.svg?url=https://shieldsio-patreon.herokuapp.com/Androz2091&style=for-the-badge)](https://patreon.com/Androz2091)
 [![issues](https://img.shields.io/github/issues/Androz2091/ManageInvite?style=for-the-badge)](https://github.com/Androz2091/ManageInvite)
 
-> ManageInvite is used by +140k users in +500 servers!
+> ManageInvite is used by + 2,000,000 users in + 10,000 servers!
 
 ## 🌐 Dashboard
 
@@ -14,8 +14,6 @@ ManageInvite has a powerful dashboard which allow you to manage your servers eas
 
 <img src="./assets/selector.png" style="margin-right: 2px;width: 40%;" ></img>
 <img src="./assets/manage.png" style="margin-right: 2px;width: 40%;" ></img>
-
-> The code of the dashboard is located in the dashboard folder, in this repository.
 
 ## 💪 Features
 
@@ -94,11 +92,3 @@ Everyone can use user commands, there aren't restricted.
 +reload            Reload a command or languages.
 +servers-list      Show the servers list.
 ```
-
-## ⬇️ Installation
-
-* You have to install `Git` and `MongoDB`. Then, run `npm install` to install npm dependencies.
-
-* Fill the configuration (rename the `config.sample.js` file to `config.js` and fill it).
-
-* Run the bot with `node sharder.js`!

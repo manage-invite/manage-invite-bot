@@ -3,7 +3,7 @@
     "CONFIRMATION_MEMBER": "Biztos vagy benne, hogy el akarod távolítani az összes meghívót **{{username}}**?\n\n{{success}} A megerősítéshez írjd be ezt: `-confirm`.\n{{error}} A megszakításhoz írd be ezt: `Mégsem`.",
     "LOADING": "{{loading}} | Meghívó törlése az aktuális szerverről.... A parancs segítségével visszaállíthatod őket `{{prefix}}restore-invites`!",
     "LOADING_MEMBER": "{{loading}} | A jelenlegi meghívásainak törlése **{{username}}**... A parancs segítségével visszaállíthatod  `{{prefix}}restore-invites {{username}}`!",
-    "TITLE": "☄️ A meghívók újraszámolásra kerültek",
+    "TITLE": "☄️ Invitations reinitialized",
     "DESCRIPTION": "{{success}} | A szerver meghívások újból inicializáltak! A parancs segítségével visszaállíthatod őket `{{prefix}}restore-invites`!",
     "DESCRIPTION_MEMBER": "{{success}} | **{{username}}** meghívója újrainicializálva! A parancs segítségével visszaállíthatod őket `{{prefix}}restore-invites {{username}}`!"
 }

@@ -1,38 +1,34 @@
 {
-  "BASIC_TITLE": "الترتيب الاساسي",
-  "BUTTON_DISABLE": "تعطيل الرسائل",
-  "BUTTON_ENABLE": "تفعيل الرسائل",
-  "BUTTON_UPDATE": "تحديث الرسائل",
-  "JOIN_DEFAULT": "{user} دخل الى السيرفر! لقد تم دعوته بواسطة {inviter.tag} ولديه عدد دعوات {inviter.invites}.",
-  "JOIN_DM_DEFAULT": "اهلا بك {user} في {server} لقد تم دعوتك بواسطة {inviter.tag} لا تنسى ان تقرأ قوانين السيرفر!",
-  "JOIN_DM_PREMIUM": "هذه الميزات متاحه لسيرفرات البرميوم.",
-  "JOIN_DM_TITLE": "رسالة الدخول في الخاص",
-  "JOIN_TITLE": "رسالة الدخول",
-  "LEAVE_DEFAULT": "{user.tag} خرج من السيرفر. ولقد كان مدعو بواسطة {inviter.tag} ويمتلك الداعي عدد دعوات {inviter.invites}.",
-  "LEAVE_TITLE": "رسالة الخروج",
-  "NO_SERVER_CONTENT": "لا يوجد سيرفرات. رجاء تحقق من تسجيلك بالحساب الصحيح.",
-  "NO_SERVER_TITLE": "لا يوجد سيرفر.",
-  "ROLE_REWARDS": "رتبة المكافآت",
-  "ROLE_REWARDS_EMPTY": "لا يوجد رتبة المكافآت. يمكنك اضافتها بالاوامر التالية: addrank {{prefix}}, {{prefix}}removerank و ايضا لمعرفة الرتبة {{prefix}}ranks.",
-  "SELECTOR": "محدد",
-  "PREMIUM": "👑اشتراك مميز",
-  "PREMIUM_EXPIRES": "الاشتراك المميز الخاص بك ينتهي في {{date}} في ({{count}} ايام).",
-  "UPGRADE_SERVER": "تطوير {{server}}",
-  "FREE_SUB": "مجانا",
-  "PREMIUM_SUB": "بريميم (2$ شهرياً)",
-  "ADD_BOT": "اضافة هذا البوت",
-  "NO_LATENCY": "لا استجابة",
-  "ALL_FEATURES": "الوصول إلى جميع ميزات البوت (بما في ذلك ميزات الدعوة)",
-  "ADVANCED_FEATURES": "ميزات متقدمة (5$ تم حجزها سابقًا لإصدار الاشتراك المميز)",
-  "DASH_ACCESS": "التمكن من لوحة التحكم",
-  "PREMIUM_RANK": "رتبة الاشتراك المميز",
-  "GET_PREMIUM": "الحصول على اصدار الاشتراك المميز",
-  "WAITING_VERIF": "انتظر للحصول على الموافقة...",
+  "BASIC_TITLE": "Basic configuration",
+  "BUTTON_DISABLE": "Disable the messages",
+  "BUTTON_ENABLE": "Enable the messages",
+  "BUTTON_UPDATE": "Update the messages",
+  "JOIN_DM_TITLE": "Join messages in DM",
+  "JOIN_TITLE": "Join messages",
+  "LEAVE_TITLE": "Leave messages",
+  "NO_SERVER_CONTENT": "No server found. Please check you're logged with the right account.",
+  "NO_SERVER_TITLE": "No server.",
+  "ROLE_REWARDS": "🎯 Role rewards",
+  "ROLE_REWARDS_EMPTY": "No role rewards defined. You can configure them with the following commands: {{prefix}}addrank, {{prefix}}removerank and {{prefix}}ranks.",
+  "SELECTOR": "Selector",
+  "PREMIUM": "👑 Premium Subscription",
+  "PREMIUM_EXPIRES": "Your premium subscription will expire on {{date}} (in {{count}} days).",
+  "UPGRADE_SERVER": "Upgrade {{server}}",
+  "FREE_SUB": "Free",
+  "PREMIUM_SUB": "Premium ($2/month)",
+  "ADD_BOT": "Add the bot",
+  "NO_LATENCY": "No latency",
+  "ALL_FEATURES": "Access to all bot features (including invite features)",
+  "ADVANCED_FEATURES": "Advanced features (formerly reserved for the $5 premium version)",
+  "DASH_ACCESS": "Dashboard access",
+  "PREMIUM_RANK": "Premium Role",
+  "GET_PREMIUM": "Get premium version",
+  "WAITING_VERIF": "Waiting for verification...",
   "WAITING_VERIF_TOOLTIP": "PayPal usually takes 5 minutes to send us the payment data. If your payment has not been verified after 15 minutes, please join our support server.",
-  "WHY_TITLE": "لماذا لا يمكنني استخدام ManageInvite في الخادم الخاص بي؟",
-  "WHY_CONTENT": "ManageInvite لقد اصبح داخل 10,000 خادم قبل ايام. كما تعلم، فإن العديد من بوتات الدعوة لديها مشاكل كبيرة وهي تحت الصيانة بانتظام.نرى أن العديد من الخوادم لا تستطيع العثور على روبوتات إدارة الدعوات التي تكون دائمًا متصلة بالإنترنت، ولهذا السبب قمنا بتغيير طريقة الوصول إلى ManageInvite. ونريد أن يظل البوت متاحًا للجميع: لهذا السبب قررنا ترقية بنيتنا الأساسية واقتراح دوًا من إصدار البوت ، بدون وقت استجابة ودائمًا عبر الإنترنت، بدون انقطاع. متردد؟ يمكنك طلب فترة تجريبية للإصدار الجديد على خادم الدعم!",
-  "WHY_LINKS": "احصل على المزيد من المعلومات وطلب الفترة التجريبية للبوت مجانا في سيرفر الدعم الفني!",
-  "MANAGE_TRIAL": "إدارة (الفترة التجريبية)",
-  "NOT_ADMIN": "سيرفرات انت لست اداري بها",
-  "MISSING_PERM": "صلاحيه مفقوده"
+  "WHY_TITLE": "Why can't I use ManageInvite on my server?",
+  "WHY_CONTENT": "ManageInvite has reached 10,000 servers few days ago. As you know, many invite bots have big problems and are regularly under maintenance. We see that many servers can't find invitation management bots that are always online, and that's why we've changed the way we access ManageInvite. And we want the bot to remain accessible to everyone: that's why we have decided to upgrade our infrastructure and propose a $2 per month version of the bot, with no latency and always online, without interruption. Hesitating? You can request trial period for the new version on the support server!",
+  "WHY_LINKS": "Get more details and request a trial on the support server!",
+  "MANAGE_TRIAL": "Manage (trial version)",
+  "NOT_ADMIN": "Servers where you are not admin",
+  "MISSING_PERM": "Missing permissions"
 }

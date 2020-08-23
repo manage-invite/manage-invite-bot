@@ -1,8 +1,8 @@
 {
-    "DISABLE": "Type `{{prefix}}setjoin` to disable join messages",
-    "INSTRUCTIONS_1": "__**More informations**__\n```\n{user} : The mention of the member that just joined your server.\n{user.name} : The name of the member that just joined your server.\n{user.tag} : The tag of the member that just joined your server.\n{user.createdat} : The account age of the member.\n{user.id} : The ID of the member.\n\n{guild} : Name of the server.\n{guild.count} : Number of members your server has now.\n\n{inviter} : The mention of the inviter.\n{inviter.name} : The name of the inviter.\n{inviter.tag} : The tag of the inviter.\n{inviter.invites} : The total inviter's invites count.\n{inviter.id} : The ID of the inviter.\n\n{invite.code} : The invite code used.\n{invite.url} : The invite url used.\n{invite.uses} : Number of uses of the invite used.\n```\nType `cancel` to abort. {{string}}\n\n\n:pencil: **| Now write the join message... :pencil2:**",
-    "INSTRUCTIONS_2": ":scroll: **| Now write the join channel name or mention it... :pencil2:**",
-    "SUCCESS": "**Done The join Msg Has Been Setup**",
-    "TEST": "Use `{{prefix}}testjoin` to test the new message.",
-    "CHANNEL_NOT_FOUND": "No channel found for `{{channel}}`"
+    "DISABLE": "Digite `{{prefix}}setjoin` para desativar a mensagem de entrada",
+    "INSTRUCTIONS_1": "__**Mais informações**__\n```\n{user} : Menciona o membro que acabou de entrar no seu servidor.\n{user.name} : O nome do membro que acabou de entrar no seu servidor.\n{user.tag} : A tag do membro que acabou de entrar no seu servidor.\n{user.createdat} : Idade da conta do membro.\n{user.id} : O ID do membro.\n{numJoins} : Numero de entradas do membro no servidor.\n\n{guild} : Nome do servidor.\n{guild.count} : Número de membros que está no servidor agora.\n\n{inviter} : Menciona o convidador.\n{inviter.name} : O nome do convidador.\n{inviter.tag} : A tag do convidador.\n{inviter.invites} : A contagem total de convites do convidador.\n{inviter.id} : O ID do convidador.\n\n{invite.code} : O código de convite usado.\n{invite.url} : O url do convite usado.\n{invite.uses} : Número de usos do convite usado.\n```\nDigite `cancel` para cancelar. {{string}}\n\n\n:pencil: **| Agora escreva a mensagem de boa vinda... :pencil2:**",
+    "INSTRUCTIONS_2": ":scroll: **| Agora escreva o nome ou mencione o canal de entrada... :pencil2:**",
+    "TITLE": "**Pronto A Mensagem De Entrada Foi Configurada**",
+    "TEST": "Utilize `{{prefix}}testjoin` para testar a nova mensagem.",
+    "CHANNEL_NOT_FOUND": "Nenhum canal encontrado para `{{channel}}`"
 }

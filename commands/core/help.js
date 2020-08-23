@@ -1,5 +1,5 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+    Discord = require("discord.js");
 
 const Constants = require("../../Constants");
 
@@ -16,7 +16,7 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
    
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
             .setTitle(message.translate("core/help:TITLE"))
             .setDescription(message.translate("core/help:DESCRIPTION", {
                 guildName: message.guild.name,
@@ -30,7 +30,7 @@ module.exports = class extends Command {
                 prefix: `\\${data.guild.prefix}`
             }), false)
             .addField(message.translate("core/help:JOIN_DM_TITLE"), message.translate("core/help:JOIN_DM_CONTENT", {
-                    prefix: `\\${data.guild.prefix}`
+                prefix: `\\${data.guild.prefix}`
             }), false)
             .addField(message.translate("core/help:JOIN_TITLE"), message.translate("core/help:JOIN_CONTENT", {
                 prefix: `\\${data.guild.prefix}`

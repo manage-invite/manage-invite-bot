@@ -1,5 +1,5 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js");
+    Discord = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -37,20 +37,20 @@ module.exports = class extends Command {
             await memberData.updateInvites();
 
             const embed = new Discord.MessageEmbed()
-            .setAuthor(message.translate("admin/removebonus:SUCCESS_TITLE"))
-            .setDescription(message.translate("admin/removebonus:SUCCESS_CONTENT_MEMBER", {
-                prefix: data.guild.prefix,
-                usertag: member.user.tag,
-                username: member.user.username
-            }))
-            .setColor(data.color)
-            .setFooter(data.footer);
+                .setAuthor(message.translate("admin/removebonus:SUCCESS_TITLE"))
+                .setDescription(message.translate("admin/removebonus:SUCCESS_CONTENT_MEMBER", {
+                    prefix: data.guild.prefix,
+                    usertag: member.user.tag,
+                    username: member.user.username
+                }))
+                .setColor(data.color)
+                .setFooter(data.footer);
 
             message.channel.send(embed);
         } else {
             const conf = await message.sendT("admin/removebonus:CONFIRMATION_ALL", {
                 count: bonus
-            })
+            });
             await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
                 if(collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
                 collected.first().delete();
@@ -61,17 +61,17 @@ module.exports = class extends Command {
                     return {
                         userID: m.id,
                         guildID: message.guild.id
-                    }
+                    };
                 });
                 await this.client.database.fetchMembers(members);
                 await this.client.database.removeBonusInvitesMembers(message.guild.id, bonus);
                 const embed = new Discord.MessageEmbed()
-                .setAuthor(message.translate("admin/removebonus:SUCCESS_TITLE"))
-                .setDescription(message.translate("admin/removebonus:SUCCESS_CONTENT_ALL", {
-                    prefix: data.guild.prefix
-                }))
-                .setColor(data.color)
-                .setFooter(data.footer);
+                    .setAuthor(message.translate("admin/removebonus:SUCCESS_TITLE"))
+                    .setDescription(message.translate("admin/removebonus:SUCCESS_CONTENT_ALL", {
+                        prefix: data.guild.prefix
+                    }))
+                    .setColor(data.color)
+                    .setFooter(data.footer);
 
                 conf.edit(null, { embed });
             }).catch((err) => {

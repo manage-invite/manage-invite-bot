@@ -1,6 +1,6 @@
 const Command = require("../../structures/Command.js"),
-Discord = require("discord.js"),
-stringSimilarity = require("string-similarity");
+    Discord = require("discord.js"),
+    stringSimilarity = require("string-similarity");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -25,14 +25,14 @@ module.exports = class extends Command {
         await data.guild.removeRank(currentRank.inviteCount);
 
         const embed = new Discord.MessageEmbed()
-        .setAuthor(message.translate("admin/removerank:TITLE"))
-        .setTitle(message.translate("admin/ranks:VIEW_CONF"))
-        .setURL("https://dash.manage-invite.xyz")
-        .setDescription(message.translate("admin/removerank:CONTENT", {
-            count: currentRank.inviteCount
-        }))
-        .setColor(data.color)
-        .setFooter(data.footer);
+            .setAuthor(message.translate("admin/removerank:TITLE"))
+            .setTitle(message.translate("admin/ranks:VIEW_CONF"))
+            .setURL("https://dash.manage-invite.xyz")
+            .setDescription(message.translate("admin/removerank:CONTENT", {
+                count: currentRank.inviteCount
+            }))
+            .setColor(data.color)
+            .setFooter(data.footer);
 
         message.channel.send(embed);
 

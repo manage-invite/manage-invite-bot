@@ -1,6 +1,6 @@
 const { Client, Collection } = require("discord.js"),
-util = require("util"),
-path = require("path");
+    util = require("util"),
+    path = require("path");
 
 const DatabaseHandler = require("../helpers/database");
 
@@ -30,6 +30,8 @@ class ManageInvite extends Client {
         this.states = {};
         this.spawned = false;
         this.knownGuilds = [];
+        // Sync ranks tasks
+        this.syncRanksTasks = {};
         // Cache
         this.guildsCreated = 0;
         this.guildsDeleted = 0;
@@ -80,7 +82,7 @@ class ManageInvite extends Client {
         if(!search || typeof search !== "string") return;
         // Try ID search
         if(search.match(/^<@!?(\d+)>$/)){
-            let id = search.match(/^<@!?(\d+)>$/)[1];
+            const id = search.match(/^<@!?(\d+)>$/)[1];
             member = await guild.members.fetch(id).catch(() => {});
             if(member) return member;
         }
@@ -99,14 +101,14 @@ class ManageInvite extends Client {
         if(!search || typeof search !== "string") return;
         // Try ID search
         if(search.match(/^<@!?(\d+)>$/)){
-            let id = search.match(/^<@!?(\d+)>$/)[1];
-            user = this.users.fetch(id).catch((err) => {});
+            const id = search.match(/^<@!?(\d+)>$/)[1];
+            user = this.users.fetch(id).catch(() => {});
             if(user) return user;
         }
         // Try username search
         if(search.match(/^!?([^#]+)#(\d+)$/)){
-            let username = search.match(/^!?([^#]+)#(\d+)$/)[0];
-            let discriminator = search.match(/^!?([^#]+)#(\d+)$/)[1];
+            const username = search.match(/^!?([^#]+)#(\d+)$/)[0];
+            const discriminator = search.match(/^!?([^#]+)#(\d+)$/)[1];
             user = this.users.cache.find((u) => u.username === username && u.discriminator === discriminator);
             if(user) return user;
         }
@@ -115,17 +117,17 @@ class ManageInvite extends Client {
     }
 
     getLevel(message) {
-		let permlvl = 0;
-		const permOrder = this.permLevels.slice(0).sort((p, c) => p.level < c.level ? 1 : -1);
-		while (permOrder.length) {
-			const currentLevel = permOrder.shift();
-			if(message.guild && currentLevel.guildOnly) continue;
-			if(currentLevel.check(message)) {
-				permlvl = currentLevel.level;
-				break;
-			}
-		}
-		return permlvl;
+        let permlvl = 0;
+        const permOrder = this.permLevels.slice(0).sort((p, c) => p.level < c.level ? 1 : -1);
+        while (permOrder.length) {
+            const currentLevel = permOrder.shift();
+            if(message.guild && currentLevel.guildOnly) continue;
+            if(currentLevel.check(message)) {
+                permlvl = currentLevel.level;
+                break;
+            }
+        }
+        return permlvl;
     }
 }
 

@@ -1,5 +1,3 @@
-const config = require("../config");
-const Discord = require("discord.js");
 const Constants = require("../Constants");
 
 module.exports = class {
@@ -21,7 +19,7 @@ module.exports = class {
         const data = {
             guild: guildData,
             color: this.client.config.color,
-            footer: guildData.aboutToExpire ? `Attention, your ManageInvite subscription is about to expire!` : this.client.config.footer
+            footer: guildData.aboutToExpire ? "Attention, your ManageInvite subscription is about to expire!" : this.client.config.footer
         };
 
         if(message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.translate("misc:PREFIX", {

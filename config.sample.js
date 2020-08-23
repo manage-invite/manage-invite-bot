@@ -37,6 +37,7 @@ module.exports = {
     owners: [ "XXXXXXXXXXX", "XXXXXXXXXXX" ],
     modRole:        "XXXXXXXXXXX",
     premiumRole:    "XXXXXXXXXXX",
+    supportServer:  "XXXXXXXXXXX",
     sentryDSN:      "XXXXXXXXXXX",
     /* Top.gg */
     topToken: "XXXXXXXXXXX",
@@ -51,7 +52,7 @@ module.exports = {
     },
     /* PayPal */
     paypal: {
-        mode: 'sandbox',
+        mode: "sandbox",
         live: {
             email: "XXXXXXXXXXX",
             returnURL: "https://dash.manage-invite.xyz/payment/callback",
@@ -132,6 +133,17 @@ module.exports = {
                 "Turk",
                 "tr",
                 "tr_tr"
+            ]
+        },
+        {
+            name: "pt-PT",
+            nativeName: "Português",
+            flag: ":flag_pt:",
+            default: false,
+            aliases: [
+                "Portuguese",
+                "pt",
+                "pt_pt"
             ]
         }
     ]

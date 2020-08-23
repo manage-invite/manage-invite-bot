@@ -11,15 +11,15 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args, data) {
+    async run (message, args) {
 
-        const force = message.content.includes('-f');
+        const force = message.content.includes("-f");
 
         let guildID = args[0];
         if(!guildID) return message.error("Please specify a valid guild!");
 
-        if(guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-z]/)){
-            let invite = await this.client.fetchInvite(guildID);
+        if(guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-zA-Z\d]/)){
+            const invite = await this.client.fetchInvite(guildID);
             guildID = invite.channel.guild.id;
         }
 
@@ -51,8 +51,8 @@ module.exports = class extends Command {
             createdAt
         });
 
-        const currentSubscription = message.guild.data.subscriptions.find((sub) => sub.label === "Trial Version");
-        let subscription = currentSubscription || await this.client.database.createSubscription({
+        const currentSubscription = guildData.subscriptions.find((sub) => sub.label === "Trial Version");
+        const subscription = currentSubscription || await this.client.database.createSubscription({
             expiresAt: new Date(Date.now()+(7*24*60*60*1000)),
             createdAt,
             guildsCount: 1,
@@ -60,7 +60,7 @@ module.exports = class extends Command {
         }, false);
         
         await this.client.database.createSubPaymentLink(subscription.id, paymentID);
-        if(!message.guild.data.subscriptions.includes(subscription)){
+        if(!guildData.subscriptions.includes(subscription)){
             await this.client.database.createGuildSubLink(guildID, subscription.id);
         } else {
             await subscription.addDays(7);
@@ -68,7 +68,7 @@ module.exports = class extends Command {
         await subscription.deleteGuildsFromCache();
 
         const expiresAt = this.client.functions.formatDate(new Date(subscription.expiresAt), "MMM DD YYYY", message.guild.data.language);
-        message.channel.send(`${this.client.config.emojis.success} | Server **${guildName}** is now premium for 7 days (end on **${expiresAt}**) :rocket:`);
+        message.channel.send(`${this.client.config.emojis.success} | Server **${guildName}** is now premium for 7 days (end on **${expiresAt}**) :rocket:`);
 
     }
 };
