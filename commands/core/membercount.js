@@ -30,15 +30,15 @@ module.exports = class extends Command {
                 count: guild.members.cache.filter((m) => m.presence.status === "dnd"  && !m.user.bot).size
             }) + "\n" +
             message.translate("core/membercount:ONLINE", {
-                emoji: this.client.config.emojis.dnd,
+                emoji: this.client.config.emojis.online,
                 count: guild.members.cache.filter((m) => m.presence.status === "online"  && !m.user.bot).size
             }) + "\n" +
             message.translate("core/membercount:IDLE", {
-                emoji: this.client.config.emojis.dnd,
+                emoji: this.client.config.emojis.idle,
                 count: guild.members.cache.filter((m) => m.presence.status === "idle"  && !m.user.bot).size
             }) + "\n" +
             message.translate("core/membercount:OFFLINE", {
-                emoji: this.client.config.emojis.dnd,
+                emoji: this.client.config.emojis.offline,
                 count: guild.members.cache.filter((m) => m.presence.status === "offline"  && !m.user.bot).size
             })
             )
