@@ -23,7 +23,7 @@ module.exports = class extends Command {
             label: args.slice(6).join(" ")
         };
 
-        if(premiumArgs.guildID && premiumArgs.guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-z]/)){
+        if(premiumArgs.guildID && premiumArgs.guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-zA-Z\d]/)){
             const invite = await this.client.fetchInvite(premiumArgs.guildID);
             premiumArgs.guildID = invite.channel.guild.id;
         }

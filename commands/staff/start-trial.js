@@ -18,7 +18,7 @@ module.exports = class extends Command {
         let guildID = args[0];
         if(!guildID) return message.error("Please specify a valid guild!");
 
-        if(guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-z]/)){
+        if(guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-zA-Z\d]/)){
             const invite = await this.client.fetchInvite(guildID);
             guildID = invite.channel.guild.id;
         }
