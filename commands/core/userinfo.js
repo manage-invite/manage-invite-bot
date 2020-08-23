@@ -9,7 +9,7 @@ module.exports = class extends Command {
             name: "userinfo",
             enabled: true,
             aliases: [ "ui", "info", "infos" ],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ "EMBED_LINKS", "MANAGE_GUILD" ],
             permLevel: 0
         });
     }
