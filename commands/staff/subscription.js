@@ -47,7 +47,7 @@ module.exports = class extends Command {
         for(const sub of guildDB.subscriptions){
             const payments = await this.client.database.getPaymentsForSubscription(sub.id);
             const subContent = payments.map((p) => `__**${p.type}**__\nUser: **${p.payer_discord_username}** (\`${p.payer_discord_id}\`)\nDate: **${this.client.functions.formatDate(new Date(p.created_at), "MMM D YYYY h:m:s A", "en-US")}**\nID: ${p.id}`).join("\n");
-            embed.addField(`${sub.aboutToExpire ? this.client.config.emojis.idle : sub.active ? this.client.config.emojis.online : this.client.config.emojis.dnd} ${sub.label} (${sub.id})`, subContent);
+            embed.addField(`${sub.aboutToExpire ? this.client.config.emojis.idle : sub.active ? this.client.config.emojis.online : this.client.config.emojis.dnd + (sub.invalidated ? ` ${this.client.config.emojis.black}` : "")} ${sub.label} (${sub.id})`, subContent);
         }
 
         message.channel.send(embed);

@@ -10,6 +10,8 @@ module.exports = class Subscription {
         this.expiresAt = data.expires_at ? new Date(data.expires_at).getTime() : null;
         // Subscription label
         this.label = data.sub_label;
+        // Whether this subscription is invalidated
+        this.invalidated = data.sub_invalidated;
     }
 
     get aboutToExpire () {
@@ -21,23 +23,19 @@ module.exports = class Subscription {
     }
 
     get active () {
-        return this.expiresAtCalculated > Date.now();
+        return !this.invalidated && this.expiresAtCalculated > Date.now();
     }
 
     get isTrial () {
         return this.label === "Trial Version";
     }
 
-    get wasTrial () {
-        return this.label.startsWith("T-");
-    }
-
-    async changeLabel (newName) {
-        this.label = this.isTrial ? "Trial Version" : `T-${newName}`;
+    async invalidate () {
+        this.invalidated = true;
         await this.handler.query(`
             UPDATE subscriptions
-            SET sub_label = '${this.label}'
-            WHERE sub_id = ${this.id};
+            SET sub_invalidated = true
+            WHERE id = ${this.id};
         `);
         this.handler.syncSubscriptionForOtherCaches(this.id);
     }
