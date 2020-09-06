@@ -1,6 +1,6 @@
 {
   "name": "manage-invite",
-  "version": "4.6.0",
+  "version": "4.6.1",
   "description": "ManageInvite is the best bot to manage your server invites! Easy to setup, and complete!",
   "main": "sharder.js",
   "dependencies": {
