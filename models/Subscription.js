@@ -11,7 +11,7 @@ module.exports = class Subscription {
         // Subscription label
         this.label = data.sub_label;
         // Whether this subscription is invalidated
-        this.invalidated = data.sub_invalidated;
+        this.invalidated = data.sub_invalidated || false;
     }
 
     get aboutToExpire () {
