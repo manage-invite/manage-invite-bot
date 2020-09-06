@@ -6,7 +6,7 @@ router.get("/", CheckAuth, async (req, res) => {
     res.redirect("/selector");
 });
 
-router.get("/selector", CheckAuth, async(req, res) => {
+router.get("/selector", CheckAuth, async (req, res) => {
     res.render("selector", {
         user: req.userInfos,
         translate: req.translate,
@@ -18,7 +18,7 @@ router.get("/selector", CheckAuth, async(req, res) => {
     });
 });
 
-router.get("/language", CheckAuth, async(req, res) => {
+router.get("/language", CheckAuth, async (req, res) => {
     req.user.locale = (req.query.new || "en-US").substr(0, 2);
     res.redirect(req.query.url || "/selector");
 });

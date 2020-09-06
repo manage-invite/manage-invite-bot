@@ -6,7 +6,7 @@ const LeavePlugin = require("./LeavePlugin");
 const Subscription = require("./Subscription");
 
 module.exports = class Guild {
-    constructor(handler, { id, data, plugins, ranks, blacklistedUsers, subscriptions }) {
+    constructor (handler, { id, data, plugins, ranks, blacklistedUsers, subscriptions }) {
 
         this.id = id;
 
@@ -61,28 +61,28 @@ module.exports = class Guild {
         this.blacklistedUsers = blacklistedUsers.map(blacklistData => blacklistData.user_id);
     }
 
-    get premium(){
+    get premium (){
         return this.subscriptions.some((subscription) => subscription.active);
     }
     
-    get aboutToExpire(){
+    get aboutToExpire (){
         return this.premium && this.subscriptions.every((subscription) => subscription.aboutToExpire);
     }
 
-    get trialPeriodEnabled(){
+    get trialPeriodEnabled (){
         return this.premium && this.subscriptions.every((subscription) => subscription.isTrial);
     }
 
-    get trialPeriodUsed(){
+    get trialPeriodUsed (){
         return this.subscriptions.length > 0;
     }
 
-    get premiumExpiresAt(){
+    get premiumExpiresAt (){
         return this.subscriptions.sort((a, b) => b.expiresAt - a.expiresAt)[0].expiresAtCalculated;
     }
 
     // Change the guild cmd channel
-    async setCmdChannel(newValue){
+    async setCmdChannel (newValue){
         this.cmdChannel = newValue;
         await this.handler.query(`
             UPDATE guilds
@@ -94,7 +94,7 @@ module.exports = class Guild {
     }
 
     // Add a new rank
-    async addRank(roleID, inviteCount){
+    async addRank (roleID, inviteCount){
         await this.handler.query(`
             INSERT INTO guild_ranks
             (guild_id, role_id, invite_count) VALUES
@@ -109,7 +109,7 @@ module.exports = class Guild {
     }
 
     // Remove a rank
-    async removeRank(inviteCount){
+    async removeRank (inviteCount){
         await this.handler.query(`
             DELETE FROM guild_ranks
             WHERE guild_id = '${this.id}'
@@ -121,7 +121,7 @@ module.exports = class Guild {
     }
 
     // Add a user to the blacklist
-    async addUserBlacklist(userID){
+    async addUserBlacklist (userID){
         await this.handler.query(`
             INSERT INTO guild_blacklisted_users
             (guild_id, user_id) VALUES
@@ -133,7 +133,7 @@ module.exports = class Guild {
     }
 
     // Remove a user from the blacklist
-    async removeUserBlacklist(userID){
+    async removeUserBlacklist (userID){
         await this.handler.query(`
             DELETE FROM guild_blacklisted_users
             WHERE guild_id = '${this.id}'
@@ -145,7 +145,7 @@ module.exports = class Guild {
     }
 
     // Update keep ranks
-    async setKeepRanks(boolean){
+    async setKeepRanks (boolean){
         await this.handler.query(`
             UPDATE guilds
             SET guild_keep_ranks = ${boolean}
@@ -157,7 +157,7 @@ module.exports = class Guild {
     }
 
     // Update stacked ranks
-    async setStackedRanks(boolean){
+    async setStackedRanks (boolean){
         await this.handler.query(`
             UPDATE guilds
             SET guild_stacked_ranks = ${boolean}
@@ -169,7 +169,7 @@ module.exports = class Guild {
     }
 
     // Update the guild language
-    async setLanguage(newLanguage) {
+    async setLanguage (newLanguage) {
         await this.handler.query(`
             UPDATE guilds
             SET guild_language = '${pgEscape(newLanguage)}'
@@ -181,7 +181,7 @@ module.exports = class Guild {
     }
 
     // Update the guild prefix
-    async setPrefix(newPrefix) {
+    async setPrefix (newPrefix) {
         await this.handler.query(`
             UPDATE guilds
             SET guild_prefix = '${pgEscape(newPrefix)}'

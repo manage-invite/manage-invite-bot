@@ -36,7 +36,7 @@ module.exports = class extends Command {
             .setTimestamp();
         message.channel.send(embed);
         
-        if(data.guild.join.enabled && data.guild.join.mainMessage && data.guild.join.channel && message.guild.channels.cache.get(data.guild.join.channel)){
+        if (data.guild.join.enabled && data.guild.join.mainMessage && data.guild.join.channel && message.guild.channels.cache.get(data.guild.join.channel)){
             message.guild.channels.cache.get(data.guild.join.channel).send(
                 this.client.functions.formatMessage(
                     data.guild.join.mainMessage,

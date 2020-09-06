@@ -16,13 +16,13 @@ module.exports = class {
 
         let reason = "Unknown emoji";
 
-        if(reaction.message.channel.type === "dm"){
+        if (reaction.message.channel.type === "dm"){
 
-            if(user.id === this.client.user.id) return;
-            if(reaction.message.author.id !== this.client.user.id) return;
-            if(reaction.message.content.includes("No feedback received from yourself for 24 hours, form cancelled.")) return;
-            if(reaction.message.content.includes("Thank you for your feedback!")) return;
-            if(reaction.message.content.includes("Can you specify ")) return;
+            if (user.id === this.client.user.id) return;
+            if (reaction.message.author.id !== this.client.user.id) return;
+            if (reaction.message.content.includes("No feedback received from yourself for 24 hours, form cancelled.")) return;
+            if (reaction.message.content.includes("Thank you for your feedback!")) return;
+            if (reaction.message.content.includes("Can you specify ")) return;
 
             switch (reaction.emoji.name) {
             case "\u0031\u20E3":
@@ -41,7 +41,7 @@ module.exports = class {
                 return;
             }
 
-            if(reason.trim() === "Other"){
+            if (reason.trim() === "Other"){
                 await message.reactions.cache.each(r => r.users.remove(this.client.user.id));
                 await message.edit(message.content+"\nEnter the reason below (send a message):");
                 const waitingAnswerEmbed = escape(JSON.stringify(new Discord.MessageEmbed()
@@ -64,7 +64,7 @@ module.exports = class {
                         `);
                         await message.edit((message.content.replace("Enter the reason below (send a message):", ""))+"No feedback received from yourself for 24 hours, form cancelled.");
                     });
-                if(!collected) return;
+                if (!collected) return;
                 reason = collected.first().content;
             }
 

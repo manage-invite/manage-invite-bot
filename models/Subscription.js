@@ -1,5 +1,5 @@
 module.exports = class Subscription {
-    constructor(handler, { id, data }) {
+    constructor (handler, { id, data }) {
 
         this.id = id;
 
@@ -40,9 +40,9 @@ module.exports = class Subscription {
         this.handler.syncSubscriptionForOtherCaches(this.id);
     }
 
-    async addDays(count){
+    async addDays (count){
         const ms = count*24*60*60*1000;
-        if(this.expiresAt >= Date.now()){
+        if (this.expiresAt >= Date.now()){
             this.expiresAt += ms;
         } else {
             this.expiresAt = Date.now() + ms;
@@ -55,12 +55,12 @@ module.exports = class Subscription {
         this.handler.syncSubscriptionForOtherCaches(this.id);
     }
 
-    async deleteGuildsFromCache(){
+    async deleteGuildsFromCache (){
         const { rows } = await this.handler.query(`
             SELECT * FROM guilds_subscriptions
             WHERE sub_id = ${this.id};
         `);
-        for(const row of rows) {
+        for (const row of rows) {
             this.handler.guildCache.delete(row.guild_id);
             this.handler.removeGuildFromOtherCaches(row.guild_id);
         }

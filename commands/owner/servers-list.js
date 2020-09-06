@@ -49,9 +49,9 @@ module.exports = class extends Command {
 
         const collector = msg.createReactionCollector((reaction, user) => user.id === message.author.id);
 
-        collector.on("collect", async(reaction) => {
+        collector.on("collect", async (reaction) => {
 
-            if(reaction._emoji.name === "⬅") {
+            if (reaction._emoji.name === "⬅") {
 
                 // Updates variables
                 i0 = i0-10;
@@ -59,10 +59,10 @@ module.exports = class extends Command {
                 page = page-1;
                 
                 // if there is no guild to display, delete the message
-                if(i0 < 0){
+                if (i0 < 0){
                     return msg.delete();
                 }
-                if(!i0 || !i1){
+                if (!i0 || !i1){
                     return msg.delete();
                 }
                 
@@ -81,7 +81,7 @@ module.exports = class extends Command {
             
             }
 
-            if(reaction._emoji.name === "➡"){
+            if (reaction._emoji.name === "➡"){
 
                 // Updates variables
                 i0 = i0+10;
@@ -89,10 +89,10 @@ module.exports = class extends Command {
                 page = page+1;
 
                 // if there is no guild to display, delete the message
-                if(i1 > guilds.length + 10){
+                if (i1 > guilds.length + 10){
                     return msg.delete();
                 }
-                if(!i0 || !i1){
+                if (!i0 || !i1){
                     return msg.delete();
                 }
 
@@ -111,7 +111,7 @@ module.exports = class extends Command {
 
             }
 
-            if(reaction._emoji.name === "❌"){
+            if (reaction._emoji.name === "❌"){
                 return msg.delete(); 
             }
 

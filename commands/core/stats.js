@@ -30,9 +30,9 @@ module.exports = class extends Command {
             .setFooter(data.footer);
 
         let numberOfDays = args[0] || 7;
-        if(isNaN(numberOfDays)) return message.error("core/stats:INVALID");
+        if (isNaN(numberOfDays)) return message.error("core/stats:INVALID");
         numberOfDays = parseInt(numberOfDays);
-        if(numberOfDays <= 1 || numberOfDays > 1000) return message.error("core/stats:INVALID");
+        if (numberOfDays <= 1 || numberOfDays > 1000) return message.error("core/stats:INVALID");
 
         const guild = await message.guild.fetch();
         const joinedXDays = this.client.functions.joinedXDays(numberOfDays, guild.members);

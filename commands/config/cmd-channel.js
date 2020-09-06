@@ -12,14 +12,14 @@ module.exports = class extends Command {
     }
 
     async run (message, args, data) {
-        if(message.mentions.channels.first()){
+        if (message.mentions.channels.first()){
             await data.guild.setCmdChannel(message.mentions.channels.first().id);
             message.success("config/cmd-channel:SUCCESS_ENABLED", {
                 channel: message.mentions.channels.first().toString(),
                 prefix: data.guild.prefix
             });
         } else {
-            if(data.guild.cmdChannel){
+            if (data.guild.cmdChannel){
                 await data.guild.setCmdChannel(null);
                 message.success("config/cmd-channel:SUCCESS_DISABLED");
             } else {

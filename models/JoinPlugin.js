@@ -1,5 +1,5 @@
 module.exports = class JoinPlugin {
-    constructor(guild, data) {
+    constructor (guild, data) {
 
         this.guild = guild;
         this.handler = guild.handler;
@@ -19,7 +19,7 @@ module.exports = class JoinPlugin {
     }
 
     // Returns a string with the plugin's data
-    get data() {
+    get data () {
         return JSON.stringify({
             enabled: this.enabled,
             channel: this.channel,
@@ -31,7 +31,7 @@ module.exports = class JoinPlugin {
     }
 
     // Update the plugin data
-    async updateData() {
+    async updateData () {
         await this.handler.query(`
             UPDATE guild_plugins
             SET plugin_data = '${this.data}'

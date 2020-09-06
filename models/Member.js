@@ -1,5 +1,5 @@
 module.exports = class Member {
-    constructor(handler, { userID, guildID, data, invitedMembers, invitedMemberEvents }) {
+    constructor (handler, { userID, guildID, data, invitedMembers, invitedMemberEvents }) {
 
         this.userID = userID;
         this.guildID = guildID;
@@ -39,30 +39,30 @@ module.exports = class Member {
 
     }
 
-    get numJoins() {
+    get numJoins () {
         return this.invitedMemberEvents
             .filter((e) => e.eventType === "join")
             .length;
     }
 
-    get firstJoinData() {
+    get firstJoinData () {
         return this.invitedMemberEvents
             .filter((e) => e.eventType === "join")
             .sort((a, b) => a.eventDate - b.eventDate)[0];
     }
 
-    get joinData() {
+    get joinData () {
         return this.invitedMemberEvents
             .filter((e) => e.eventType === "join")
             .sort((a, b) => b.eventDate - a.eventDate)[0];
     }
 
-    get calculatedInvites(){
+    get calculatedInvites (){
         return this.regular + this.bonus - this.leaves - this.fake;
     }
 
     // Update member invites
-    async updateInvites() {
+    async updateInvites () {
         await this.handler.query(`
             UPDATE members
             

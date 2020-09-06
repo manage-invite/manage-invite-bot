@@ -36,7 +36,7 @@ module.exports = class extends Command {
             .setTimestamp();
         message.channel.send(embed);
         
-        if(data.guild.leave.enabled && data.guild.leave.mainMessage && data.guild.leave.channel && message.guild.channels.cache.get(data.guild.leave.channel)){
+        if (data.guild.leave.enabled && data.guild.leave.mainMessage && data.guild.leave.channel && message.guild.channels.cache.get(data.guild.leave.channel)){
             message.guild.channels.cache.get(data.guild.leave.channel).send(this.client.functions.formatMessage(
                 data.guild.leave.mainMessage,
                 message.member,

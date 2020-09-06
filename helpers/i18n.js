@@ -3,7 +3,7 @@ const Backend = require("i18next-fs-backend");
 const path = require("path");
 const fs = require("fs").promises;
 
-async function walkDirectory(dir, namespaces = [], folderName = "") {
+async function walkDirectory (dir, namespaces = [], folderName = "") {
     const files = await fs.readdir(dir);
 
     const languages = [];

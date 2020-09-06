@@ -23,19 +23,19 @@ module.exports = class extends Command {
             label: args.slice(6).join(" ")
         };
 
-        if(premiumArgs.guildID && premiumArgs.guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-zA-Z\d]/)){
+        if (premiumArgs.guildID && premiumArgs.guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-zA-Z\d]/)){
             const invite = await this.client.fetchInvite(premiumArgs.guildID);
             premiumArgs.guildID = invite.channel.guild.id;
         }
 
         let send = false;
         Object.keys(premiumArgs).forEach((key) => {
-            if(premiumArgs[key] === undefined && !send){
+            if (premiumArgs[key] === undefined && !send){
                 send = true;
                 return message.channel.send(`${this.client.config.emojis.error} | Invalid args. ${Object.keys(premiumArgs).join(", ")}. Missing **${key}**.`);
             }
         });
-        if(send) return;
+        if (send) return;
 
         const createdAt = new Date();
 

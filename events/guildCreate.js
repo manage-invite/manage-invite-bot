@@ -15,7 +15,7 @@ module.exports = class {
         // Wait 2 seconds to be sure that a request have been sent to the dashboard
         await this.client.wait(2000);
         const knownGuild = this.client.knownGuilds.find((g) => g.id === guild.id);
-        if(knownGuild){
+        if (knownGuild){
             inviter = await this.client.users.fetch(knownGuild.user);
         } else {
             inviter = await this.client.users.fetch(guild.ownerID);
@@ -45,7 +45,7 @@ module.exports = class {
             if(aLogs) aLogs.send({ embed: JSON.parse(unescape('${guildCreate}')) });
         `);
 
-        if(isValidGuild){
+        if (isValidGuild){
 
             this.client.guildsCreated++;
             const joinEmbed = new Discord.MessageEmbed()
@@ -63,7 +63,7 @@ module.exports = class {
             const client = this.client;
             const guildInvites = await guild.fetchInvites().catch(() => {});
             this.client.invitations[guild.id] = guildInvites || new Map();
-            if(!guildInvites) return;
+            if (!guildInvites) return;
             const users = new Set(guildInvites.map((i) => i.inviter.id));
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
                 const memberData = await client.database.fetchMember(user, guild.id);

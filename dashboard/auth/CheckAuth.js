@@ -1,5 +1,5 @@
 module.exports = async (req, res, next) => {
-    if(req.user){
+    if (req.user){
         return next();
     } else {
         const redirectURL = ((req.originalUrl.includes("login") || req.originalUrl === "/") ? "/selector" : req.originalUrl);

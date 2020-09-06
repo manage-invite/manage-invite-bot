@@ -12,11 +12,11 @@ module.exports = class extends Command {
     }
 
     async run (message, args, data) {
-        if(!data.guild.keepRanks){
+        if (!data.guild.keepRanks){
             await data.guild.setKeepRanks(true);
             return message.success("config/setkeep-ranks:SUCCESS_ENABLED");
         }
-        if(data.guild.keepRanks){
+        if (data.guild.keepRanks){
             await data.guild.setKeepRanks(false);
             return message.success("config/setkeep-ranks:SUCCESS_DISABLED");
         }

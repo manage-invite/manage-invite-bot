@@ -1,4 +1,4 @@
-if(!process.argv.includes("--sharded")){
+if (!process.argv.includes("--sharded")){
     console.log("Please start ManageInvite with the sharder.js file!");
     process.exit(0);
 }
@@ -27,7 +27,7 @@ const init = async () => {
         const commands = await readdir("./commands/"+dir+"/");
         commands.filter((cmd) => cmd.split(".").pop() === "js").forEach((cmd) => {
             const response = client.loadCommand("./commands/"+dir, cmd);
-            if(response){
+            if (response){
                 client.logger.log(response, "error");
             }
         });

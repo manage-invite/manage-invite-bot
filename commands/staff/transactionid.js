@@ -14,14 +14,14 @@ module.exports = class extends Command {
     async run (message, args) {
 
         const transactionID = args[0];
-        if(!transactionID) return message.error("You must specify a valid transaction ID!");
+        if (!transactionID) return message.error("You must specify a valid transaction ID!");
 
         const { rows } = await this.client.database.query(`
             SELECT * FROM payments
             WHERE transaction_id = '${transactionID}';
         `);
 
-        if(!rows[0]) return message.error("No payment found for that transaction ID...");
+        if (!rows[0]) return message.error("No payment found for that transaction ID...");
 
         const { rows: rowsSubs } = await this.client.database.query(`
             SELECT * FROM subscriptions_payments

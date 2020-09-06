@@ -3,7 +3,7 @@ Logger class for easy and aesthetically pleasing console logging
 */
 const { bgBlue, black, green } = require("chalk");
 
-function dateTimePad(value, digits){
+function dateTimePad (value, digits){
     let number = value;
     while (number.toString().length < digits) {
         number = "0" + number;
@@ -11,7 +11,7 @@ function dateTimePad(value, digits){
     return number;
 }
 
-function format(tDate){
+function format (tDate){
     return (tDate.getFullYear() + "-" +
     dateTimePad((tDate.getMonth() + 1), 2) + "-" +
     dateTimePad(tDate.getDate(), 2) + " " +

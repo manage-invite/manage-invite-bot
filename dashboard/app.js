@@ -38,12 +38,12 @@ module.exports.load = async (client) => {
         // Set the express session password and configuration
         .use(session({ secret: config.pswd, resave: false, saveUninitialized: false }))
         // Multi languages support
-        .use(async function(req, res, next){
+        .use(async function (req, res, next){
             req.client = client;
             req.user = req.session.user;
             req.locale = req.user ? (req.user.locale === "fr" ? "fr-FR" : "en-US") : "en-US";
-            if(req.user && req.url !== "/") req.userInfos = await utils.fetchUser(req.user, req.client);
-            if(req.user){
+            if (req.user && req.url !== "/") req.userInfos = await utils.fetchUser(req.user, req.client);
+            if (req.user){
                 req.translate = req.client.translations.get(req.locale);
                 const results = await client.shard.broadcastEval(`
             let guild = this.guilds.cache.get("638685268777500672");
@@ -62,8 +62,8 @@ module.exports.load = async (client) => {
         .use("/api", apiRouter)
         .use("/vote", voteRouter)
         .use("/", mainRouter)
-        .use(CheckAuth, function(req, res){
-            if(!req.user) return res.redirect("/login");
+        .use(CheckAuth, function (req, res){
+            if (!req.user) return res.redirect("/login");
             res.status(404).render("404", {
                 user: req.userInfos,
                 currentURL: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
@@ -71,8 +71,8 @@ module.exports.load = async (client) => {
                 translate: req.translate
             });
         })
-        .use(CheckAuth, function(err, req, res) {
-            if(!req.user) return res.redirect("/login");
+        .use(CheckAuth, function (err, req, res) {
+            if (!req.user) return res.redirect("/login");
             console.log(err);
             res.status(500).render("500", {
                 user: req.userInfos,

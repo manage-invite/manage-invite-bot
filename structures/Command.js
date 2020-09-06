@@ -1,5 +1,5 @@
 module.exports = class Command {
-    constructor(client, {
+    constructor (client, {
         name = null,
         enabled = true,
         aliases = new Array(),

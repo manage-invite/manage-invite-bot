@@ -16,10 +16,10 @@ module.exports = class extends Command {
         const result = new Promise((resolve) => resolve(eval(content)));
         
         return result.then((output) => {
-            if(typeof output !== "string"){
+            if (typeof output !== "string"){
                 output = require("util").inspect(output, { depth: 0 });
             }
-            if(output.includes(this.client.token)){
+            if (output.includes(this.client.token)){
                 output = output.replace(this.client.token, "T0K3N");
             }
             message.channel.send(output, {
@@ -27,7 +27,7 @@ module.exports = class extends Command {
             });
         }).catch((err) => {
             err = err.toString();
-            if(err.includes(this.client.token)){
+            if (err.includes(this.client.token)){
                 err = err.replace(this.client.token, "T0K3N");
             }
             message.channel.send(err, {

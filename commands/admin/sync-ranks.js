@@ -13,7 +13,7 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
 
-        if(args[0] === "cancel" && this.client.syncRanksTasks[message.guild.id]){
+        if (args[0] === "cancel" && this.client.syncRanksTasks[message.guild.id]){
             this.client.syncRanksTasks[message.guild.id].status = "BEING_CANCELLED";
             return message.success("admin/sync-ranks:CANCELLED");
         }
@@ -23,7 +23,7 @@ module.exports = class extends Command {
                 percent: `${Math.round(this.client.syncRanksTasks[message.guild.id].now*100/this.client.syncRanksTasks[message.guild.id].total)}%`,
                 prefix: data.guild.prefix
             });
-        } else if(this.client.syncRanksTasks[message.guild.id] && this.client.syncRanksTasks[message.guild.id].status === "BEING_CANCELLED"){
+        } else if (this.client.syncRanksTasks[message.guild.id] && this.client.syncRanksTasks[message.guild.id].status === "BEING_CANCELLED"){
             return message.success("admin/sync-ranks:BEING_CANCELLED");
         }
 
@@ -32,7 +32,7 @@ module.exports = class extends Command {
             error: this.client.config.emojis.error
         });
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
-            if(collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
+            if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete();
             conf.success("admin/sync-ranks:STARTED", {
                 prefix: data.guild.prefix
@@ -59,7 +59,7 @@ module.exports = class extends Command {
             console.timeEnd("fetch members");
 
             console.time("add roles");
-            while(members.length > 0 && (this.client.syncRanksTasks[message.guild.id] && this.client.syncRanksTasks[message.guild.id].status === "RUNNING")){
+            while (members.length > 0 && (this.client.syncRanksTasks[message.guild.id] && this.client.syncRanksTasks[message.guild.id].status === "RUNNING")){
                 const member = members.shift();
                 this.client.syncRanksTasks[message.guild.id].now++;
                 const memberData = await this.client.database.fetchMember(member.id, member.guild.id);
@@ -67,7 +67,7 @@ module.exports = class extends Command {
             }
             console.timeEnd("add roles");
 
-            if(this.client.syncRanksTasks[message.guild.id] && this.client.syncRanksTasks[message.guild.id].status === "RUNNING"){
+            if (this.client.syncRanksTasks[message.guild.id] && this.client.syncRanksTasks[message.guild.id].status === "RUNNING"){
                 message.success("admin/sync-ranks:SUCCESS");
             }
             delete this.client.syncRanksTasks[message.guild.id];

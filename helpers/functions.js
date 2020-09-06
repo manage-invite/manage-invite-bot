@@ -20,7 +20,7 @@ const asyncForEach = async (array, callback) => {
 
 const syncPremiumRoles = (client) => {
     client.shard.broadcastEval(() => {
-        if(this.guilds.cache.has(client.config.supportServer)){
+        if (this.guilds.cache.has(client.config.supportServer)){
             this.database.query("SELECT * FROM payments WHERE type = 'paypal_dash_pmnt_month' OR type = 'email_address_pmnt_month'").then(({ rows }) => {
                 const userIDs = rows.map((r) => r.payer_discord_id);
                 const guild = this.guilds.cache.get(this.config.supportServer);
@@ -52,7 +52,7 @@ const formatMessage = (message, member, locale, invData) => {
         .replace(/{server}/g, member.guild.name)
         .replace(/{server.count}/g, member.guild.name);
 
-    if(invData){
+    if (invData){
         const { inviter, inviterData, invite, numJoins } = invData;
         message = message.replace(/{inviter}/g, inviter.toString())
             .replace(/{inviter.tag}/g, inviter.tag)
@@ -89,11 +89,11 @@ const getNextRank = (inviteCount, ranks, guild) => {
     let nextRank = null;
     ranks.forEach((rank) => {
         // If the rank is lower
-        if(parseInt(rank.inviteCount) <= inviteCount) return;
+        if (parseInt(rank.inviteCount) <= inviteCount) return;
         // If the rank is higher than rank
-        if(nextRank && (parseInt(nextRank.inviteCount) < parseInt(rank.inviteCount))) return;
+        if (nextRank && (parseInt(nextRank.inviteCount) < parseInt(rank.inviteCount))) return;
         // If the role was deleted
-        if(!guild.roles.cache.get(rank.roleID)) return;
+        if (!guild.roles.cache.get(rank.roleID)) return;
         // Mark the rank as nextRank
         nextRank = rank;
     });
@@ -110,33 +110,33 @@ const getNextRank = (inviteCount, ranks, guild) => {
  * @returns {Promise<void>}
  */
 const assignRanks = async (member, inviteCount, ranks, keepRanks, stackedRanks) => {
-    if(member.user.bot) return;
+    if (member.user.bot) return;
     const assigned = new Array();
     await asyncForEach((ranks.sort((a, b) => b.inviteCount - a.inviteCount)), async (rank) => {
         // If the guild doesn't contain the rank anymore
-        if(!member.guild.roles.cache.has(rank.roleID)) return;
+        if (!member.guild.roles.cache.has(rank.roleID)) return;
         // If the bot doesn't have permissions to assign role to this member
-        if(!member.guild.roles.cache.get(rank.roleID).editable) return;
+        if (!member.guild.roles.cache.get(rank.roleID).editable) return;
         // If the member can't obtain the rank
-        if(inviteCount < parseInt(rank.inviteCount)){
-            if(!keepRanks){
+        if (inviteCount < parseInt(rank.inviteCount)){
+            if (!keepRanks){
                 // If the member doesn't have the rank
-                if(!member.roles.cache.has(rank.roleID)) return;
+                if (!member.roles.cache.has(rank.roleID)) return;
                 // Remove the ranks
                 await member.roles.remove(rank.roleID);
             }
         } else {
             assigned.push(rank.roleID);
             // If the member already has the rank
-            if(member.roles.cache.has(rank.roleID)) return;
+            if (member.roles.cache.has(rank.roleID)) return;
             // Add the role to the member
             if (!stackedRanks) await member.roles.add(rank.roleID);
         }
     });
     if (stackedRanks && assigned.length > 0) {
         await member.roles.add(assigned.shift());
-        for(const role of assigned){
-            if(member.roles.cache.has(role)) await member.roles.remove(role);
+        for (const role of assigned){
+            if (member.roles.cache.has(role)) await member.roles.remove(role);
         }
     }
     return;
@@ -158,7 +158,7 @@ const postTopStats = async (client) => {
     };
     fetch("https://discordbots.org/api/bots/stats", options).then(async (res) => {
         const json = await res.json();
-        if(!res.error) client.logger.log("Top.gg stats successfully posted.", "log");
+        if (!res.error) client.logger.log("Top.gg stats successfully posted.", "log");
         else client.logger.log("Top.gg stats cannot be posted. Error: "+json.error, "error");
     });
 };
@@ -181,7 +181,7 @@ const lastXDays = (numberOfDays, monthIndex) => {
         date.setDate(date.getDate() - i);
         let day = date.getDate();
         const month = monthIndex[date.getMonth()];
-        if(day < 10) day = `0${day}`;
+        if (day < 10) day = `0${day}`;
         days.push(`${day} ${month}`);
     }
     return days.reverse();
@@ -208,9 +208,9 @@ const joinedXDays = (numberOfDays, members) => {
             // Get the joinedDate
             const joinedDate = new Date(member.joinedTimestamp);
             // If the joinedDate is the same as the date which we are testing
-            if(isSameDay(joinedDate, date)){
+            if (isSameDay(joinedDate, date)){
                 // If the last item in the array is not the same day counter
-                if(lastDate !== joinedDate.getDate()){
+                if (lastDate !== joinedDate.getDate()){
                     lastDate = joinedDate.getDate();
                     days.push(1);
                 } else {
@@ -220,7 +220,7 @@ const joinedXDays = (numberOfDays, members) => {
             }
         });
         // If nobody joins this day, set to 0
-        if(days.length < i) days.push(0);
+        if (days.length < i) days.push(0);
     }
     return days.reverse();
 };
@@ -273,7 +273,7 @@ const isEqual = (value, other) => {
  * @param {string} locale 
  */
 const formatDate = (dateToFormat, format, locale) => {
-    if(locale !== "en-US") require("date-and-time/locale/"+locale.substr(0, 2));
+    if (locale !== "en-US") require("date-and-time/locale/"+locale.substr(0, 2));
     date.locale(locale.substr(0, 2));
     return date.format(dateToFormat, format);
 };

@@ -7,12 +7,12 @@ module.exports = class {
 
     async run (member) {
 
-        if(!this.client.fetched) return;
+        if (!this.client.fetched) return;
         console.log("Calculating for member "+member.id);
 
         // Fetch guild and member data from the db
         const guildData = await this.client.database.fetchGuild(member.guild.id);
-        if(!guildData.premium) return;
+        if (!guildData.premium) return;
 
         member.guild.data = guildData;
         const memberData = await this.client.database.fetchMember(member.id, member.guild.id);
@@ -24,35 +24,35 @@ module.exports = class {
         let oauth = false;
         let perm = false;
 
-        if(!member.guild.me) await member.guild.members.fetch({
+        if (!member.guild.me) await member.guild.members.fetch({
             user: this.client.user.id,
             cache: true
         });
-        if(!member.guild.me.hasPermission("MANAGE_GUILD")) perm = true;
+        if (!member.guild.me.hasPermission("MANAGE_GUILD")) perm = true;
 
-        if(member.user.bot){
+        if (member.user.bot){
             oauth = true;
-        } else if(!perm) {
+        } else if (!perm) {
             // Fetch the current invites of the guild
             const guildInvites = await member.guild.fetchInvites().catch(() => {});
             // Fetch the invites of the guild BEFORE that the member has joined
             const oldGuildInvites = this.client.invitations[member.guild.id];
-            if(guildInvites && oldGuildInvites){
+            if (guildInvites && oldGuildInvites){
                 // Update the cache
                 this.client.invitations[member.guild.id] = guildInvites;
                 // Find the invitations which doesn't have the same number of use
                 let inviteUsed = guildInvites.find((i) => oldGuildInvites.get(i.code) && ((Object.prototype.hasOwnProperty.call(oldGuildInvites.get(i.code), "uses") ? oldGuildInvites.get(i.code).uses : "Infinite") < i.uses));
-                if((isEqual(oldGuildInvites.map((i) => `${i.code}|${i.uses}` ).sort(), guildInvites.map((i) => `${i.code}|${i.uses}` ).sort())) && !inviteUsed && member.guild.features.includes("VANITY_URL")){
+                if ((isEqual(oldGuildInvites.map((i) => `${i.code}|${i.uses}` ).sort(), guildInvites.map((i) => `${i.code}|${i.uses}` ).sort())) && !inviteUsed && member.guild.features.includes("VANITY_URL")){
                     vanity = true;
-                } else if(!inviteUsed){
+                } else if (!inviteUsed){
                     const newAndUsed = guildInvites.filter((i) => !oldGuildInvites.get(i.code) && i.uses === 1);
-                    if(newAndUsed.size === 1){
+                    if (newAndUsed.size === 1){
                         inviteUsed = newAndUsed.first();
                     }
                 }
-                if(inviteUsed && !vanity) invite = inviteUsed;
+                if (inviteUsed && !vanity) invite = inviteUsed;
             }
-            if(!invite){
+            if (!invite){
                 const targetInvite = guildInvites.some((i) => i.targetUser && (i.targetUser.id === member.id));
                 if (targetInvite.uses === 1) {
                     invite = targetInvite;
@@ -64,10 +64,10 @@ module.exports = class {
         const inviter = invite ? await this.client.resolveUser(invite.inviter.id) : null;
         const inviterData = inviter ? await this.client.database.fetchMember(inviter.id, member.guild.id) : null;
 
-        if(inviter && guildData.blacklistedUsers.includes(inviter.id)) return;
+        if (inviter && guildData.blacklistedUsers.includes(inviter.id)) return;
 
         // If we know who invited the member
-        if(invite){
+        if (invite){
             // We look for the member in the server members
             const inviterMember = member.guild.members.cache.get(inviter.id) || await member.guild.members.fetch(inviter.id).catch(() => {});
             /* If it does exist
@@ -98,19 +98,19 @@ module.exports = class {
 
             // If the member had previously invited this member and they have left
             const lastJoinData = inviterData.invitedMemberEvents.filter((j) => j.type === "join" && j.guildID === member.guild.id && j.inviterID === inviterMember.id)[0];
-            if(lastJoinData){
+            if (lastJoinData){
                 inviterData.leaves--;
                 inviterData.fake++;
             }
             
             // or if the member invited himself
-            else if(inviter.id === member.id) {
+            else if (inviter.id === member.id) {
                 inviterData.fake++;
             }
 
             inviterData.regular++;
 
-            if(inviterMember) await this.client.functions.assignRanks(inviterMember, inviterData.calculatedInvites, guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
+            if (inviterMember) await this.client.functions.assignRanks(inviterMember, inviterData.calculatedInvites, guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
 
             await inviterData.updateInvites();
             await this.client.database.createEvent({
@@ -127,7 +127,7 @@ module.exports = class {
                     inviter: inviter.id
                 }
             });
-        } else if(oauth){
+        } else if (oauth){
             await this.client.database.createEvent({
                 userID: member.id,
                 guildID: member.guild.id,
@@ -135,7 +135,7 @@ module.exports = class {
                 eventDate: new Date(),
                 joinType: "oauth"
             });
-        } else if(vanity){
+        } else if (vanity){
             await this.client.database.createEvent({
                 userID: member.id,
                 guildID: member.guild.id,
@@ -143,7 +143,7 @@ module.exports = class {
                 eventDate: new Date(),
                 joinType: "vanity"
             });
-        } else if(perm){
+        } else if (perm){
             await this.client.database.createEvent({
                 userID: member.id,
                 guildID: member.guild.id,
@@ -183,8 +183,8 @@ module.exports = class {
         }*/
 
         // DM Join messages
-        if(guildData.joinDM.enabled && guildData.joinDM.mainMessage && guildData.premium){
-            if(invite){
+        if (guildData.joinDM.enabled && guildData.joinDM.mainMessage && guildData.premium){
+            if (invite){
                 const formattedMessage = this.client.functions.formatMessage(guildData.joinDM.mainMessage, member, (guildData.language || "english").substr(0, 2), {
                     inviter,
                     inviterData,
@@ -192,7 +192,7 @@ module.exports = class {
                     numJoins: memberData.numJoins
                 });
                 member.send(formattedMessage);
-            } else if(vanity){
+            } else if (vanity){
                 const formattedMessage = this.client.functions.formatMessage((guildData.joinDM.vanityMessage || member.guild.translate("misc:JOIN_DM_VANITY_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
                 member.send(formattedMessage);
             } else {
@@ -202,10 +202,10 @@ module.exports = class {
         }
 
         // Join messages
-        if(guildData.join.enabled && guildData.join.mainMessage && guildData.join.channel){
+        if (guildData.join.enabled && guildData.join.mainMessage && guildData.join.channel){
             const channel = member.guild.channels.cache.get(guildData.join.channel);
-            if(!channel) return;
-            if(invite){
+            if (!channel) return;
+            if (invite){
                 const formattedMessage = this.client.functions.formatMessage(guildData.join.mainMessage, member, (guildData.language || "english").substr(0, 2), {
                     inviter,
                     inviterData,
@@ -213,13 +213,13 @@ module.exports = class {
                     numJoins: memberData.numJoins
                 });
                 channel.send(formattedMessage);
-            } else if(vanity){
+            } else if (vanity){
                 const formattedMessage = this.client.functions.formatMessage((guildData.join.vanityMessage || member.guild.translate("misc:JOIN_VANITY_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
                 channel.send(formattedMessage);
-            } else if(oauth){
+            } else if (oauth){
                 const formattedMessage = this.client.functions.formatMessage((guildData.join.oauth2Message || member.guild.translate("misc:JOIN_OAUTH2_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
                 channel.send(formattedMessage);
-            } else if(perm){
+            } else if (perm){
                 channel.send(member.guild.translate("misc:JOIN_PERMISSIONS", {
                     user: member.user.toString()
                 }));

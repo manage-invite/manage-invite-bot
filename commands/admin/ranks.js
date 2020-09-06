@@ -20,7 +20,7 @@ module.exports = class extends Command {
             .setFooter(data.footer);
 
         const ranks = data.guild.ranks.sort((a,b) => b.inviteCount - a.inviteCount);
-        if(ranks.length === 0){
+        if (ranks.length === 0){
             embed.setAuthor(message.translate("admin/ranks:NO_RANK_TITLE"))
                 .setDescription(message.translate("admin/ranks:NO_RANK_CONTENT", {
                     prefix: data.guild.prefix
@@ -31,7 +31,7 @@ module.exports = class extends Command {
         let description = `[${message.translate("admin/ranks:VIEW_CONF")}](${Constants.Links.DASHBOARD})\n\n`;
         ranks.forEach((rank) => {
             const role = message.guild.roles.cache.get(rank.roleID);
-            if(!role) return;
+            if (!role) return;
             description += message.translate("admin/ranks:RANK", {
                 rank: role.toString(),
                 invites: rank.inviteCount

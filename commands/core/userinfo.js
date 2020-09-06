@@ -38,23 +38,23 @@ module.exports = class extends Command {
             let joinWay = message.translate("core/userinfo:JOIN_WAY_UNKNOWN", {
                 username: user.username
             });
-            if(joinData?.eventType === "join" && joinData?.inviterID){
+            if (joinData?.eventType === "join" && joinData?.inviterID){
                 const inviter = await this.client.users.fetch(joinData.inviterID).catch(() => {});
                 joinWay = inviter.tag;
-            } else if(joinData?.type === "vanity"){
+            } else if (joinData?.type === "vanity"){
                 joinWay = message.translate("core/userinfo:JOIN_WAY_VANITY");
-            } else if(joinData?.type === "oauth" || user.bot){
+            } else if (joinData?.type === "oauth" || user.bot){
                 joinWay = message.translate("core/userinfo:JOIN_WAY_OAUTH");
             }
             return joinWay;
         };
         
-        if(member){
+        if (member){
             const joinDate = member ? moment(member.joinedAt, "YYYYMMDD").fromNow() : null;
             embed.addField(message.translate("core/userinfo:JOINED_AT_TITLE"), joinDate.charAt(0).toUpperCase() + joinDate.substr(1, joinDate.length), true);
         }
 
-        if(memberData){
+        if (memberData){
             const joinWay = await getJoinWay(memberData.joinData);
             embed.addField(message.translate("core/userinfo:INVITES_TITLE"), data.guild.blacklistedUsers.includes(user.id) ? message.translate("admin/blacklist:BLACKLISTED", {
                 username: user.tag
@@ -69,7 +69,7 @@ module.exports = class extends Command {
                 .addField(message.translate("core/userinfo:JOIN_WAY_TITLE"), joinWay);
         }
         
-        if(member){
+        if (member){
             const guild = await message.guild.fetch();
             const members = guild.members.cache.array().sort((a,b) => a.joinedTimestamp - b.joinedTimestamp);
             const joinPos = members.map((u) => u.id).indexOf(member.id);
@@ -78,15 +78,15 @@ module.exports = class extends Command {
             embed.addField(message.translate("core/userinfo:JOIN_ORDER_TITLE"), `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`);
         }
 
-        if(memberData.invitedMembers){
+        if (memberData.invitedMembers){
             const users = [];
             await this.client.functions.asyncForEach(uniqBy(memberData.invitedMembers, "userID"), async (event) => {
                 const fetchedUser = message.guild.member(event.userID);
-                if(fetchedUser) users.push("`"+Discord.Util.escapeMarkdown(fetchedUser.user.tag)+"`");
+                if (fetchedUser) users.push("`"+Discord.Util.escapeMarkdown(fetchedUser.user.tag)+"`");
             });
             const nobody = users.length === 0;
             let andMore = false;
-            if(users.length > 20){
+            if (users.length > 20){
                 andMore = true;
                 users.length = 19;
             }
@@ -101,7 +101,7 @@ module.exports = class extends Command {
         const numberOfJoins = memberData.numJoins > 1 ? memberData.numJoins : member ? 1 : 0;
         embed.addField(message.translate("core/userinfo:NUMBER_JOINS"), numberOfJoins);
                 
-        if(numberOfJoins > 1){
+        if (numberOfJoins > 1){
             embed.addField(message.translate("core/userinfo:FIRST_JOIN_WAY_TITLE"), await getJoinWay(memberData.firstJoinData));
         }
 

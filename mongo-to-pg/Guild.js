@@ -16,19 +16,19 @@ module.exports = mongoose.model("Guild", new Schema({
     joinDM: { type: Object, default: { // Message sent to a member when they join
         enabled: false,
         message: null
-    }},
+    } },
     
     join: { type: Object, default: {
         enabled: false,
         message: null,
         channel: null
-    }},
+    } },
 
     leave: { type: Object, default: {
         enabled: false,
         message: null,
         channel: null
-    }},
+    } },
 
     ranks: { type: Array, default: [] },
     stacked: { type: Boolean, default: true },

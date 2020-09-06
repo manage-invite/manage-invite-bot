@@ -8,7 +8,7 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
     // Check if the user has the permissions to edit this guild
     const results = await req.client.shard.broadcastEval(` let guild = this.guilds.cache.get('${req.params.serverID}'); if(guild) guild.toJSON() `);
     const guild = results.find((g) => g);
-    if(!guild || !req.userInfos.displayedGuilds || !req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID)){
+    if (!guild || !req.userInfos.displayedGuilds || !req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID)){
         return res.render("404", {
             user: req.userInfos,
             translate: req.translate,
@@ -19,7 +19,7 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
         });
     }
 
-    if(!req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID).isPremium){
+    if (!req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID).isPremium){
         res.redirect("/payment/"+guild.id+"/paypal");
     }
 
@@ -63,7 +63,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         toReturn;
     }`);
     const guild = results.find((g) => g);
-    if(!guild || !req.userInfos.displayedGuilds || !req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID)){
+    if (!guild || !req.userInfos.displayedGuilds || !req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID)){
         return res.render("404", {
             user: req.userInfos,
             translate: req.translate,
@@ -77,47 +77,47 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
     const guildData = await req.client.database.fetchGuild(guild.id);
     const data = req.body;
 
-    if(req.params.form === "basic"){
-        if(Object.prototype.hasOwnProperty.call(data, "prefix") && data.prefix && data.prefix !== guildData.prefix){
+    if (req.params.form === "basic"){
+        if (Object.prototype.hasOwnProperty.call(data, "prefix") && data.prefix && data.prefix !== guildData.prefix){
             await guildData.setPrefix(data.prefix);
         }
-        if(Object.prototype.hasOwnProperty.call(data, "language") && req.client.config.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(data.language.toLowerCase()))){
+        if (Object.prototype.hasOwnProperty.call(data, "language") && req.client.config.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(data.language.toLowerCase()))){
             const language = req.client.config.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(data.language.toLowerCase()));
-            if(language.name !== guildData.language) await guildData.setLanguage(language.name);
+            if (language.name !== guildData.language) await guildData.setLanguage(language.name);
         }
     }
 
-    if(req.params.form === "joinDM"){
+    if (req.params.form === "joinDM"){
         const enable = Object.prototype.hasOwnProperty.call(data, "enable");
         const update = Object.prototype.hasOwnProperty.call(data, "update");
         const disable = Object.prototype.hasOwnProperty.call(data, "disable");
-        if(enable && data.mainMessage){
+        if (enable && data.mainMessage){
             guildData.joinDM.enabled = true;
             guildData.joinDM.mainMessage = data.mainMessage;
             guildData.joinDM.oauth2Message = data.oauth2Message;
             guildData.joinDM.vanityMessage = data.vanityMessage;
             guildData.joinDM.unknownMessage = data.unknownMessage;
             await guildData.joinDM.updateData();
-        } else if(update && data.mainMessage){
+        } else if (update && data.mainMessage){
             guildData.joinDM.enabled = true;
             guildData.joinDM.mainMessage = data.mainMessage;
             guildData.joinDM.oauth2Message = data.oauth2Message;
             guildData.joinDM.vanityMessage = data.vanityMessage;
             guildData.joinDM.unknownMessage = data.unknownMessage;
             await guildData.joinDM.updateData();
-        } else if(disable){
+        } else if (disable){
             guildData.joinDM.enabled = false;
             await guildData.joinDM.updateData();
         }
     }
 
-    if(req.params.form === "join"){
+    if (req.params.form === "join"){
         const enable = Object.prototype.hasOwnProperty.call(data, "enable");
         const update = Object.prototype.hasOwnProperty.call(data, "update");
         const disable = Object.prototype.hasOwnProperty.call(data, "disable");
-        if(enable && data.mainMessage && data.channel){
+        if (enable && data.mainMessage && data.channel){
             const channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
-            if(channel && channel.type === "text"){
+            if (channel && channel.type === "text"){
                 guildData.join.enabled = true;
                 guildData.join.mainMessage = data.mainMessage;
                 guildData.join.oauth2Message = data.oauth2Message;
@@ -126,9 +126,9 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 guildData.join.channel = channel.id;
                 await guildData.join.updateData();
             }
-        } else if(update && data.mainMessage && data.channel){
+        } else if (update && data.mainMessage && data.channel){
             const channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
-            if(channel && channel.type === "text"){
+            if (channel && channel.type === "text"){
                 guildData.join.enabled = true;
                 guildData.join.mainMessage = data.mainMessage;
                 guildData.join.oauth2Message = data.oauth2Message;
@@ -137,19 +137,19 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 guildData.join.channel = channel.id;
                 await guildData.join.updateData();
             }
-        } else if(disable){
+        } else if (disable){
             guildData.join.enabled = false;
             await guildData.join.updateData();
         }
     }
 
-    if(req.params.form === "leave"){
+    if (req.params.form === "leave"){
         const enable = Object.prototype.hasOwnProperty.call(data, "enable");
         const update = Object.prototype.hasOwnProperty.call(data, "update");
         const disable = Object.prototype.hasOwnProperty.call(data, "disable");
-        if(enable && data.mainMessage && data.channel){
+        if (enable && data.mainMessage && data.channel){
             const channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
-            if(channel && channel.type === "text"){
+            if (channel && channel.type === "text"){
                 guildData.leave.enabled = true;
                 guildData.leave.mainMessage = data.mainMessage;
                 guildData.leave.oauth2Message = data.oauth2Message;
@@ -158,9 +158,9 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 guildData.leave.channel = channel.id;
                 await guildData.leave.updateData();
             }
-        } else if(update && data.mainMessage && data.channel){
+        } else if (update && data.mainMessage && data.channel){
             const channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
-            if(channel && channel.type === "text"){
+            if (channel && channel.type === "text"){
                 guildData.leave.enabled = true;
                 guildData.leave.mainMessage = data.mainMessage;
                 guildData.leave.oauth2Message = data.oauth2Message;
@@ -169,7 +169,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 guildData.leave.channel = channel.id;
                 await guildData.leave.updateData();
             }
-        } else if(disable){
+        } else if (disable){
             guildData.leave.enabled = false;
             await guildData.leave.updateData();
         }

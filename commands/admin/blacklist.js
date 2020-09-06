@@ -17,11 +17,11 @@ module.exports = class extends Command {
             .setColor(data.color)
             .setFooter(data.footer);
         const action = args[0];
-        switch(action){
+        switch (action){
         case "add": {
             const user = message.mentions.users.first() || await this.client.users.fetch(args[0]).catch(() => {});
-            if(!user) return message.error("admin/blacklist:MISSING_MEMBER_ADD");
-            if(data.guild.blacklistedUsers.includes(user.id)) return message.error("admin/blacklist:ALREADY_BLACKLISTED", {
+            if (!user) return message.error("admin/blacklist:MISSING_MEMBER_ADD");
+            if (data.guild.blacklistedUsers.includes(user.id)) return message.error("admin/blacklist:ALREADY_BLACKLISTED", {
                 username: user.tag
             });
             await data.guild.addUserBlacklist(user.id);
@@ -32,8 +32,8 @@ module.exports = class extends Command {
         }
         case "remove": {
             const user = message.mentions.users.first() || await this.client.users.fetch(args[1]).catch(() => {});
-            if(!user) return message.error("admin/blacklist:MISSING_MEMBER_REMOVE");
-            if(!data.guild.blacklistedUsers.includes(user.id)) return message.error("admin/blacklist:NOT_BLACKLISTED", {
+            if (!user) return message.error("admin/blacklist:MISSING_MEMBER_REMOVE");
+            if (!data.guild.blacklistedUsers.includes(user.id)) return message.error("admin/blacklist:NOT_BLACKLISTED", {
                 username: user.tag
             });
             await data.guild.removeUserBlacklist(user.id);
@@ -43,7 +43,7 @@ module.exports = class extends Command {
             break;
         }
         case "list": {
-            if(data.guild.blacklistedUsers.length < 1){
+            if (data.guild.blacklistedUsers.length < 1){
                 embed.setDescription(message.translate("admin/blacklist:EMPTY"));
             } else {
                 const users = [];

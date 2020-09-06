@@ -27,7 +27,7 @@ module.exports = class extends Command {
             })
         );
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
-            if(collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
+            if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete();
 
             const msg = await (user ? message.sendT("admin/removeinvites:LOADING_MEMBER", {
@@ -38,7 +38,7 @@ module.exports = class extends Command {
                 loading: this.client.config.emojis.loading,
                 prefix: data.guild.prefix
             }));
-            if(user){
+            if (user){
                 const memberData = await this.client.database.fetchMember(user.id, message.guild.id);
                 memberData.oldRegular = memberData.regular;
                 memberData.regular = 0;

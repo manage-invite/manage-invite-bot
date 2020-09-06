@@ -12,12 +12,12 @@ module.exports = class extends Command {
     }
 
     async run (message, args, data) {
-        if(!data.guild.join.enabled){
+        if (!data.guild.join.enabled){
             data.guild.join.enabled = true;
             await data.guild.join.updateData();
             return message.success("config/setjoin:ENABLED");
         }
-        if(data.guild.join.enabled){
+        if (data.guild.join.enabled){
             data.guild.join.enabled = false;
             await data.guild.join.updateData();
             return message.success("config/setjoin:DISABLED");

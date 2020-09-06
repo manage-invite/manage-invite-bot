@@ -14,9 +14,9 @@ module.exports = class extends Command {
     async run (message, args) {
 
         let guildID = args[0];
-        if(!guildID) return message.error("Please specify a valid guild!");
+        if (!guildID) return message.error("Please specify a valid guild!");
 
-        if(guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-zA-Z\d]/)){
+        if (guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-zA-Z\d]/)){
             const invite = await this.client.fetchInvite(guildID);
             guildID = invite.channel.guild.id;
         }
@@ -32,7 +32,7 @@ module.exports = class extends Command {
         const subscriptionID = parseInt(args[1]);
         const subscription = guildData.subscriptions.find((sub) => sub.id === subscriptionID);
 
-        if(!subscription) return message.error("No sub ID found for that query!");
+        if (!subscription) return message.error("No sub ID found for that query!");
 
         await subscription.invalidate();
 

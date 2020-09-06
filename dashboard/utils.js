@@ -6,7 +6,7 @@ const Discord = require("discord.js");
  * @param {object} client The discord client instance
  * @param {array} guilds The user guilds
  */
-async function fetchGuild(guildID, client){
+async function fetchGuild (guildID, client){
     const results = await client.shard.broadcastEval(`
     let guild = this.guilds.cache.get('${guildID}');
     if(guild){
@@ -38,13 +38,13 @@ async function fetchGuild(guildID, client){
  * @param {object} client The discord client instance
  * @returns {object} The user informations
  */
-async function fetchUser(userData, client){
-    if(userData.guilds){
+async function fetchUser (userData, client){
+    if (userData.guilds){
         const guildsToFetch = userData.guilds.map((g) => g.id);
         const guildDBs = await client.database.fetchGuilds(guildsToFetch);
         await client.functions.asyncForEach(userData.guilds, async (guild) => {
             const perms = new Discord.Permissions(guild.permissions);
-            if(perms.has("MANAGE_GUILD")) guild.admin = true;
+            if (perms.has("MANAGE_GUILD")) guild.admin = true;
             const results = await client.shard.broadcastEval(` let guild = this.guilds.cache.get('${guild.id}'); if(guild && guild.name) guild.toJSON(); `);
             const found = results.find((g) => g);
             guild.settingsUrl = (found ? `/manage/${guild.id}/` : `https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958847&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(client.config.baseURL+"/api/callback")}&state=invite${guild.id}`);
@@ -56,7 +56,7 @@ async function fetchUser(userData, client){
         });
         userData.displayedGuilds = userData.guilds.filter((g) => g.admin);
         userData.notAdmin = userData.guilds.filter((g) => !g.admin);
-        if(userData.displayedGuilds.length < 1 && userData.notAdmin.length < 1){
+        if (userData.displayedGuilds.length < 1 && userData.notAdmin.length < 1){
             delete userData.displayedGuilds;
         }
     }

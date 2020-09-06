@@ -33,7 +33,7 @@ let guildsBlacklistedUsersCount = 0;
     guilds.find().lean().then((guildsData) => {
         console.log(`${guildsData.length} guilds found.`);
         guildsData.forEach((guildData, index) => {
-            if(!String(index/1000).includes(".")) console.log("[G] Restoring guild #"+index);
+            if (!String(index/1000).includes(".")) console.log("[G] Restoring guild #"+index);
             guildsCSVCount++;
             guildsCSV += `${guildData.id}|${guildData.language}|${guildData.prefix === "|" ? "\n" : guildData.prefix.includes("\n") ? "+" : guildData.pefix}|${guildData.premium || false}\n`;
             guildsPluginsCount++;
@@ -46,7 +46,7 @@ let guildsBlacklistedUsersCount = 0;
             guildData.leave.message = guildData.leave.message ? guildData.leave.message.replace(/'/g, "''") : null;
             guildsPlugins += `${guildData.id}|leave|${JSON.stringify(guildData.leave)}\n`;
             (guildData.ranks || []).forEach((rank) => {
-                if(rank.inviteCount > 9223372036854775808) return;
+                if (rank.inviteCount > 9223372036854775808) return;
                 guildsRanksCount++;
                 guildsRanks += `${guildData.id}|${rank.roleID}|${rank.inviteCount}\n`;
             });
@@ -71,8 +71,8 @@ let guildsBlacklistedUsersCount = 0;
     members.find().lean().then((membersData) => {
         console.log(`${membersData.length} members found.`);
         membersData.forEach((memberData, index) => {
-            if(!String(index/100000).includes(".")) console.log("[M] Restoring member #"+index);
-            if(memberData.bonus > 9223372036854775808 || memberData.old_bonus > 9223372036854775808) return;
+            if (!String(index/100000).includes(".")) console.log("[M] Restoring member #"+index);
+            if (memberData.bonus > 9223372036854775808 || memberData.old_bonus > 9223372036854775808) return;
             membersCSVCount++;
             membersCSV += `${memberData.id}|${memberData.guildID}|${memberData.fake || 0}|${memberData.leaves || 0}|${memberData.bonus || 0}|${memberData.invites || 0}|${memberData.old_fake || 0}|${memberData.old_leaves || 0}|${memberData.old_bonus || 0}|${memberData.old_invites || 0}|${memberData.backuped || false}\n`;
             (memberData.invited || []).forEach((ID) => {
@@ -83,7 +83,7 @@ let guildsBlacklistedUsersCount = 0;
                 membersInvitedUsersLeftCount++;
                 membersInvitedUsersLeft += `${memberData.id}|${memberData.guildID}|${ID}\n`;
             });
-            if(memberData.joinData){
+            if (memberData.joinData){
                 membersJoinDataCount++;
                 membersJoinData += `${memberData.id}|${memberData.guildID}|${memberData.joinData.type}|${memberData.invitedBy || "\\N"}|${JSON.stringify(memberData.usedInvite) || "\\N"}\n`;
             }

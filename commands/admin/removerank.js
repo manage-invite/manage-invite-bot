@@ -16,11 +16,11 @@ module.exports = class extends Command {
     async run (message, args, data) {
         
         const role = message.mentions.roles.first() || message.guild.roles.cache.get(args.join(" ")) || message.guild.roles.cache.find((role) => role.name === args.join(" ") || (stringSimilarity.compareTwoStrings(role.name, args.join(" ")) > 0.85));
-        if(!role) return message.error("admin/removerank:MISSING", {
+        if (!role) return message.error("admin/removerank:MISSING", {
             prefix: data.guild.prefix
         });
         const currentRank = data.guild.ranks.find((r) => r.roleID === role.id);
-        if(!currentRank) return message.error("admin/removerank:DOESNT_EXIST");
+        if (!currentRank) return message.error("admin/removerank:DOESNT_EXIST");
 
         await data.guild.removeRank(currentRank.inviteCount);
 

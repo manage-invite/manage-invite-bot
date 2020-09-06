@@ -14,7 +14,7 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
 
-        if(!data.guild.premium){
+        if (!data.guild.premium){
             return message.error("config/setjoindm:PREMIUM");
         }
 
@@ -29,10 +29,10 @@ module.exports = class extends Command {
         });
 
         const collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
-        if(!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
+        if (!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
         const confMessage = collected.first().content;
-        if(confMessage === "cancel") return msg.error("common:CANCELLED", null, true);
-        if(confMessage === data.guild.prefix+"setdmjoin") return;
+        if (confMessage === "cancel") return msg.error("common:CANCELLED", null, true);
+        if (confMessage === data.guild.prefix+"setdmjoin") return;
 
         msg.sendT("config/configjoindm:SUCCESS", null, true);
 

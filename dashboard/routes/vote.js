@@ -2,7 +2,7 @@ const express = require("express"),
     router = express.Router();
 
 router.post("/", async (req, res) => {
-    if(req.headers.authorization === req.client.config.topAuth){
+    if (req.headers.authorization === req.client.config.topAuth){
         const user = await req.client.users.fetch(req.body.user);
         const vote = escape(`:arrow_up: **${user.tag}** (\`${user.id}\`) voted for **ManageInvite**, thank you! **<https://discordbots.org/bot/${req.client.user.id}/vote>**`);
         const { voteLogs } = req.client.config;

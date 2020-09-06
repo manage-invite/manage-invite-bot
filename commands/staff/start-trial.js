@@ -16,16 +16,16 @@ module.exports = class extends Command {
         const force = message.content.includes("-f");
 
         let guildID = args[0];
-        if(!guildID) return message.error("Please specify a valid guild!");
+        if (!guildID) return message.error("Please specify a valid guild!");
 
-        if(guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-zA-Z\d]/)){
+        if (guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-zA-Z\d]/)){
             const invite = await this.client.fetchInvite(guildID);
             guildID = invite.channel.guild.id;
         }
 
-        if(!args[1]) return message.error("Please specify a valid user!");
+        if (!args[1]) return message.error("Please specify a valid user!");
         const user = message.mentions.users.first() || await this.client.users.fetch(args[1]) || message.guild.members.cache.find((m) => `${m.user.username}#${m.user.discriminator}` === args[1])?.user;
-        if(!user) return message.error(`I wasn't able to find a user for \`${args[1]}\``);
+        if (!user) return message.error(`I wasn't able to find a user for \`${args[1]}\``);
 
         const guildData = await this.client.database.fetchGuild(guildID);
         const guildNames = await this.client.shard.broadcastEval(`
@@ -35,8 +35,8 @@ module.exports = class extends Command {
         const guildNameFound = guildNames.find((r) => r);
         const guildName = guildNameFound || guildID;
 
-        if(guildData.trialPeriodUsed){
-            if(!force) return message.error(`**${guildName}** has already used the trial period or has already paid.`);
+        if (guildData.trialPeriodUsed){
+            if (!force) return message.error(`**${guildName}** has already used the trial period or has already paid.`);
         }
 
         const createdAt = new Date();
@@ -60,7 +60,7 @@ module.exports = class extends Command {
         });
         
         await this.client.database.createSubPaymentLink(subscription.id, paymentID);
-        if(!guildData.subscriptions.includes(subscription)){
+        if (!guildData.subscriptions.includes(subscription)){
             await this.client.database.createGuildSubLink(guildID, subscription.id);
         } else {
             await subscription.addDays(7);

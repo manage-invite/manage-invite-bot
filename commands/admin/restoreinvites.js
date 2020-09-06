@@ -15,9 +15,9 @@ module.exports = class extends Command {
     async run (message, args, data) {
 
         const member = args[0] ? await this.client.resolveMember(args.join(" "), message.guild) : null;
-        if(member) member.data = await this.client.database.fetchMember(member.id, message.guild.id);
+        if (member) member.data = await this.client.database.fetchMember(member.id, message.guild.id);
         let memberCount = { regular: 0, leaves: 0, fake: 0, bonus: 0 };
-        if(!member){
+        if (!member){
             const m = await message.sendT("misc:PLEASE_WAIT", {
                 loading: this.client.config.emojis.loading
             });
@@ -46,7 +46,7 @@ module.exports = class extends Command {
             })
         );
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
-            if(collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
+            if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete();
             await (member ? conf.sendT("admin/restoreinvites:LOADING_MEMBER", {
                 username: member.user.tag,
@@ -54,7 +54,7 @@ module.exports = class extends Command {
             }, true) : conf.sendT("admin/restoreinvites:LOADING", {
                 loading: this.client.config.emojis.loading
             }, true));
-            if(member){
+            if (member){
                 // Restore invites
                 member.data.regular = member.data.oldRegular;
                 // Restore fake

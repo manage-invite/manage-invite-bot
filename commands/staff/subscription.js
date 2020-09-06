@@ -15,9 +15,9 @@ module.exports = class extends Command {
     async run (message, args) {
 
         let guildID = args[0];
-        if(!guildID) return message.error("Please specify a valid guild ID!");
+        if (!guildID) return message.error("Please specify a valid guild ID!");
 
-        if(guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-z]/)){
+        if (guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-z]/)){
             const invite = await this.client.fetchInvite(guildID);
             guildID = invite.channel.guild.id;
         }
@@ -44,7 +44,7 @@ module.exports = class extends Command {
             .setDescription(description)
             .setColor(this.client.config.color);
 
-        for(const sub of guildDB.subscriptions){
+        for (const sub of guildDB.subscriptions){
             const payments = await this.client.database.getPaymentsForSubscription(sub.id);
             const subContent = payments.map((p) => `__**${p.type}**__\nUser: **${p.payer_discord_username}** (\`${p.payer_discord_id}\`)\nDate: **${this.client.functions.formatDate(new Date(p.created_at), "MMM D YYYY h:m:s A", "en-US")}**\nID: ${p.id}`).join("\n");
             embed.addField(`${sub.aboutToExpire ? this.client.config.emojis.idle : sub.active ? this.client.config.emojis.online : this.client.config.emojis.dnd + (sub.invalidated ? ` ${this.client.config.emojis.offline}` : "")} ${sub.label} (${sub.id})`, subContent);

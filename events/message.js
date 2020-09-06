@@ -8,11 +8,11 @@ module.exports = class {
 
     async run (message) {
 
-        if(message.partial || message.channel.partial) return;
+        if (message.partial || message.channel.partial) return;
 
         const startAt = Date.now();
         
-        if(!message.guild || message.author.bot) return;
+        if (!message.guild || message.author.bot) return;
 
         const guildData = message.guild.data = await this.client.database.fetchGuild(message.guild.id);
     
@@ -22,12 +22,12 @@ module.exports = class {
             footer: guildData.aboutToExpire ? "Attention, your ManageInvite subscription is about to expire!" : this.client.config.footer
         };
 
-        if(message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.translate("misc:PREFIX", {
+        if (message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.translate("misc:PREFIX", {
             prefix: guildData.prefix
         }));
 
         // If the message does not start with the prefix, cancel
-        if(!message.content.toLowerCase().startsWith(guildData.prefix)){
+        if (!message.content.toLowerCase().startsWith(guildData.prefix)){
             return;
         }
 
@@ -40,36 +40,36 @@ module.exports = class {
         const cmd = this.client.commands.get(command) || this.client.commands.get(this.client.aliases.get(command));
 
         // If no command found, return;
-        if(!cmd) return;
+        if (!cmd) return;
         else message.cmd = cmd;
 
         /* Client permissions */
         const neededPermissions = [];
         cmd.conf.clientPermissions.forEach((permission) => {
-            if(!message.channel.permissionsFor(message.guild.me).has(permission)) {
+            if (!message.channel.permissionsFor(message.guild.me).has(permission)) {
                 neededPermissions.push(permission);
             }
         });
-        if(neededPermissions.length > 0) {
+        if (neededPermissions.length > 0) {
             return message.error("misc:BOT_MISSING_PERMISSIONS", {
                 permissions: neededPermissions.map((p) => "`"+p+"`").join(", ")
             });
         }
 
         /* Command disabled */
-        if(!cmd.conf.enabled){
+        if (!cmd.conf.enabled){
             return message.error("misc:COMMAND_DISABLED");
         }
 
         /* User permissions */
         const permLevel = await this.client.getLevel(message);
-        if(permLevel < cmd.conf.permLevel){
+        if (permLevel < cmd.conf.permLevel){
             return message.error("misc:USER_MISSING_PERMISSIONS", {
                 level: this.client.permLevels[cmd.conf.permLevel].name
             });
         }
 
-        if(!data.guild.premium && permLevel < 4){
+        if (!data.guild.premium && permLevel < 4){
             return message.sendT("misc:NEED_UPGRADE", {
                 username: message.author.username,
                 discord: Constants.Links.DISCORD,
@@ -77,7 +77,7 @@ module.exports = class {
             });
         }
 
-        if(data.guild.cmdChannel && (message.channel.id !== data.guild.cmdChannel) && permLevel < 1){
+        if (data.guild.cmdChannel && (message.channel.id !== data.guild.cmdChannel) && permLevel < 1){
             message.delete();
             return message.author.send(message.translate("misc:WRONG_CHANNEL", {
                 channel: `<#${data.guild.cmdChannel}>`

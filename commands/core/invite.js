@@ -14,7 +14,7 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
 
-        if(data.guild.blacklistedUsers.includes(message.author.id)) return message.error("admin/blacklist:AUTHOR_BLACKLISTED");
+        if (data.guild.blacklistedUsers.includes(message.author.id)) return message.error("admin/blacklist:AUTHOR_BLACKLISTED");
 
         const member = await this.client.resolveMember(args.join(" "), message.guild) || message.member || await message.guild.members.fetch(message.author.id);
         const memberData = await this.client.database.fetchMember(member.id, message.guild.id);

@@ -14,7 +14,7 @@ module.exports = class extends Command {
 
     async run (message, args) {
         const command = args[0];
-        if(command === "l"){
+        if (command === "l"){
             const path = require("path");
             const file = path.join(__dirname, "..", "..", "helpers", "i18n.js");
             this.client.shard.broadcastEval(`
@@ -26,7 +26,7 @@ module.exports = class extends Command {
             return message.channel.send(this.client.config.emojis.success+" | Languages reloaded!");
         }
         const cmd = this.client.commands.get(command) || this.client.commands.get(this.client.aliases.get(command));
-        if(!cmd){
+        if (!cmd){
             message.channel.send(this.client.config.emojis.error+" | Cannot find command `"+command+"`!");
         }
         await this.client.shard.broadcastEval(`

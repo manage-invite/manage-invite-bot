@@ -13,7 +13,7 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
         const prefix = args[0];
-        if(!prefix) return message.error("config/setprefix:MISSING");
+        if (!prefix) return message.error("config/setprefix:MISSING");
         await data.guild.setPrefix(prefix);
         message.success("config/setprefix:SUCCESS");
     }

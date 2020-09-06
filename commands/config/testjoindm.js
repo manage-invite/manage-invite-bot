@@ -15,7 +15,7 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
    
-        if(!data.guild.premium){
+        if (!data.guild.premium){
             return message.error("config/setjoindm:PREMIUM", {
                 username: message.author.username
             });
@@ -42,7 +42,7 @@ module.exports = class extends Command {
             .setTimestamp();
         message.channel.send(embed);
 
-        if(data.guild.joinDM.enabled && data.guild.joinDM.mainMessage){
+        if (data.guild.joinDM.enabled && data.guild.joinDM.mainMessage){
             message.author.send(this.client.functions.formatMessage(
                 data.guild.joinDM.mainMessage,
                 message.member,

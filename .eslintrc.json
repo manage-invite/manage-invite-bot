@@ -33,6 +33,21 @@
             "error",
             "always"
         ],
+        "space-before-function-paren": [
+            "error",
+            "always"
+        ],
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "keyword-spacing": [
+            "error",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
         "require-atomic-updates": 0,
         "no-async-promise-executor": 0
     }

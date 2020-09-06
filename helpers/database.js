@@ -8,7 +8,7 @@ const Member = require("../models/Member");
 const Subscription = require("../models/Subscription");
 
 module.exports = class DatabaseHandler {
-    constructor(client) {
+    constructor (client) {
         Object.defineProperty(this, "client", { value: client });
         const { database } = this.client.config;
         this.pool = new Pool(database);
@@ -23,7 +23,7 @@ module.exports = class DatabaseHandler {
         this.subscriptionCache = new Collection();
     }
 
-    async initCache() {
+    async initCache () {
         await this.client.helpers.asyncForEach.execute(
             this.client.guilds.cache.array(),
             async guild => {
@@ -32,7 +32,7 @@ module.exports = class DatabaseHandler {
         );
     }
 
-    async saveStats(guildsCreated, guildsDeleted, commandsRan, pgQueries, date = new Date()) {
+    async saveStats (guildsCreated, guildsDeleted, commandsRan, pgQueries, date = new Date()) {
         this.query(`
             INSERT INTO stats
             (date, guilds_created, guilds_deleted, commands_ran, pg_queries) VALUES
@@ -41,13 +41,13 @@ module.exports = class DatabaseHandler {
         return;
     }
 
-    removeAllMembersFromOtherCaches(guildID){
+    removeAllMembersFromOtherCaches (guildID){
         this.client.shard.broadcastEval(`
             this.database.removeAllMembersFromCache('${guildID}');
         `);
     }
 
-    removeMemberFromOtherCaches(memberID, guildID){
+    removeMemberFromOtherCaches (memberID, guildID){
         const shardID = this.client.shard.ids[0];
         this.client.shard.broadcastEval(`
             if(this.shard.ids[0] !== ${shardID}){
@@ -56,7 +56,7 @@ module.exports = class DatabaseHandler {
         `);
     }
 
-    removeGuildFromOtherCaches(guildID){
+    removeGuildFromOtherCaches (guildID){
         const shardID = this.client.shard.ids[0];
         this.client.shard.broadcastEval(`
             if(this.shard.ids[0] !== ${shardID}){
@@ -65,11 +65,11 @@ module.exports = class DatabaseHandler {
         `);
     }
 
-    removeAllMembersFromCache(guildID){
+    removeAllMembersFromCache (guildID){
         this.memberCache = this.memberCache.filter((member) => member.guildID !== guildID);
     }
 
-    syncSubscriptionForOtherCaches(subID){
+    syncSubscriptionForOtherCaches (subID){
         const shardID = this.client.shard.ids[0];
         this.client.shard.broadcastEval(`
             if(this.shard.ids[0] !== ${shardID}){
@@ -80,23 +80,23 @@ module.exports = class DatabaseHandler {
         `);
     }
 
-    async removeSubscriptionFromCache(subID){
-        if(this.subscriptionCache.has(subID)){
+    async removeSubscriptionFromCache (subID){
+        if (this.subscriptionCache.has(subID)){
             await this.subscriptionCache.get(subID).deleteGuildsFromCache();
             this.subscriptionCache.delete(subID);
         }
     }
 
-    removeGuildFromCache(guildID){
+    removeGuildFromCache (guildID){
         this.guildCache.delete(guildID);
     }
 
-    removeMemberFromCache(memberID, guildID){
+    removeMemberFromCache (memberID, guildID){
         this.memberCache.delete(`${memberID}${guildID}`);
     }
 
     // Make a new query to the db
-    query(string) {
+    query (string) {
         this.client.pgQueries++;
         return new Promise((resolve, reject) => {
             this.pool.query(string, (error, results) => {
@@ -109,7 +109,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    fetchPremiumGuilds(){
+    fetchPremiumGuilds (){
         return new Promise(async resolve => {
             this.query(`
                 SELECT guild_id
@@ -122,7 +122,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    getPaymentsForSubscription(subID){
+    getPaymentsForSubscription (subID){
         return new Promise(async resolve => {
             this.query(`
                 SELECT p.*
@@ -135,7 +135,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    createPayment({ payerDiscordID, payerDiscordUsername, payerEmail, amount, createdAt = new Date(), type, transactionID, details = {}, signupID, modDiscordID }){
+    createPayment ({ payerDiscordID, payerDiscordUsername, payerEmail, amount, createdAt = new Date(), type, transactionID, details = {}, signupID, modDiscordID }){
         return new Promise(async resolve => {
             this.query(`
                 INSERT INTO payments
@@ -148,7 +148,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    createSubscription({ expiresAt = new Date(), createdAt = new Date(), subLabel, guildsCount = 1, patreonUserID }){
+    createSubscription ({ expiresAt = new Date(), createdAt = new Date(), subLabel, guildsCount = 1, patreonUserID }){
         return new Promise(async resolve => {
             this.query(`
                 INSERT INTO subscriptions
@@ -166,13 +166,13 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    fetchSubscription(subID, rawData, deletGuildsFromCache = false){
+    fetchSubscription (subID, rawData, deletGuildsFromCache = false){
         return new Promise(async resolve => {
             // If the sub is in the cache
             if (this.subscriptionCache.get(subID))
                 return resolve(this.subscriptionCache.get(subID));
             let data = rawData;
-            if(!data){
+            if (!data){
                 const { rows } = await this.query(`
                     SELECT * FROM subscriptions
                     WHERE id = ${subID};
@@ -183,12 +183,12 @@ module.exports = class DatabaseHandler {
                 id: subID,
                 data: data[0]
             });
-            if(deletGuildsFromCache) await sub.deleteGuildsFromCache();
+            if (deletGuildsFromCache) await sub.deleteGuildsFromCache();
             resolve(sub);
         });
     }
 
-    createSubPaymentLink(subID, paymentID){
+    createSubPaymentLink (subID, paymentID){
         return new Promise(async resolve => {
             this.query(`
                 INSERT INTO subscriptions_payments
@@ -201,7 +201,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    createGuildSubLink(guildID, subID){
+    createGuildSubLink (guildID, subID){
         return new Promise(async resolve => {
             this.query(`
                 INSERT INTO guilds_subscriptions
@@ -254,7 +254,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    addBonusInvitesMembers(guildID, count){
+    addBonusInvitesMembers (guildID, count){
         return new Promise(async resolve => {
             this.query(`
                 UPDATE members
@@ -268,7 +268,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    removeBonusInvitesMembers(guildID, count){
+    removeBonusInvitesMembers (guildID, count){
         return new Promise(async resolve => {
             this.query(`
                 UPDATE members
@@ -285,12 +285,12 @@ module.exports = class DatabaseHandler {
     /**
      * Fetch or create members
      */
-    fetchMembers(memberIDs){
+    fetchMembers (memberIDs){
         return new Promise(async resolve => {
             // Keep the members that are not in the cache
             const membersToFetch = memberIDs.filter((m) => !this.memberCache.has(`${m.userID}${m.guildID}`));
             // If there are members to fetch
-            if(membersToFetch.length > 0){
+            if (membersToFetch.length > 0){
                 const membersArray = memberIDs.map((m) => `'${m.userID}${m.guildID}'`).join(", ");
                 /* Fetch basic data - from the members table */
                 let { rows: membersData } = await this.query(`
@@ -299,7 +299,7 @@ module.exports = class DatabaseHandler {
                 `);
                 /* If there are members not created, insert them in the members table */
                 const membersNotCreated = membersToFetch.filter((m) => !membersData.some((md) => `${md.user_id}${md.guild_id}` === `${m.userID}${m.guildID}`));
-                if(membersNotCreated.length > 0){
+                if (membersNotCreated.length > 0){
                     const values = membersNotCreated.map((m) => {
                         return `('${m.userID}', '${m.guildID}', 0, 0, 0, 0, 0, 0, 0, 0, false)`;
                     }).join(", ");
@@ -397,7 +397,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    countGuildInvites(guildID){
+    countGuildInvites (guildID){
         return new Promise(async resolve => {
             const { rows } = await this.query(`
                 SELECT
@@ -419,7 +419,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    backupInvites(guildID){
+    backupInvites (guildID){
         return new Promise(async resolve => {
             this.query(`
                 UPDATE members
@@ -449,7 +449,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    restoreInvites(guildID){
+    restoreInvites (guildID){
         return new Promise(async resolve => {
             this.query(`
                 UPDATE members
@@ -479,7 +479,7 @@ module.exports = class DatabaseHandler {
     }
 
     // Fetch all the members in a guild
-    fetchGuildMembers(guildID){
+    fetchGuildMembers (guildID){
         return new Promise(async resolve => {
             const { rows } = await this.query(`
                 SELECT * FROM members
@@ -493,12 +493,12 @@ module.exports = class DatabaseHandler {
      * Fetch or create guilds
      * @param {Snowflake[]} guildIDs Guilds to fetch
      */
-    fetchGuilds(guildIDs){
+    fetchGuilds (guildIDs){
         return new Promise(async resolve => {
             // Keep the guilds that are not in the cache
             const guildsToFetch = guildIDs.filter((g) => !this.guildCache.has(g));
             // If there are guilds to fetch
-            if(guildsToFetch.length > 0){
+            if (guildsToFetch.length > 0){
                 /* Fetch basic data - from the guilds table */
                 let { rows: guildsData } = await this.query(`
                     SELECT * FROM guilds
@@ -506,7 +506,7 @@ module.exports = class DatabaseHandler {
                 `);
                 /* If there are guilds not created, insert them in the guilds table */
                 const guildsNotCreated = guildsToFetch.filter((g) => !guildsData.some((gd) => gd.guild_id === g));
-                if(guildsNotCreated.length > 0){
+                if (guildsNotCreated.length > 0){
                     const values = guildsNotCreated.map((g) => {
                         return `('${g}', '${this.client.config.prefix}', '${this.client.config.enabledLanguages.find((l) => l.default).name}', false, false)`;
                     }).join(", ");
@@ -541,16 +541,16 @@ module.exports = class DatabaseHandler {
                     !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "leave") ||
                     !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "join");
                 });
-                if(guildsWithMissingPlugins.length > 0){
+                if (guildsWithMissingPlugins.length > 0){
                     const pluginInsertValues = [];
                     guildsWithMissingPlugins.forEach((g) => {
-                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "joinDM")){
+                        if (!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "joinDM")){
                             pluginInsertValues.push(`( '${g}', 'joinDM', '{ "enabled": false, "message": null }' )`);
                         }
-                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "leave")){
+                        if (!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "leave")){
                             pluginInsertValues.push(`( '${g}', 'leave', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
-                        if(!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "join")){
+                        if (!plugins.some((p) => p.guild_id === g) || !plugins.find((p) => p.guild_id === g).guild_plugins_agg.some((p) => p.plugin_name === "join")){
                             pluginInsertValues.push(`( '${g}', 'join', '{ "enabled": false, "message": null, "channel": null }' )`);
                         }
                     });
@@ -561,7 +561,7 @@ module.exports = class DatabaseHandler {
                         RETURNING *;
                     `);
                     guildsWithMissingPlugins.forEach((g) => {
-                        if(plugins.some((p) => p.guild_id === g)){
+                        if (plugins.some((p) => p.guild_id === g)){
                             createdPlugins.filter((p) => p.guild_id === g).forEach((p) => {
                                 plugins.find((p) => p.guild_id === g).guild_plugins_agg.push({
                                     plugin_name: p.plugin_name,
@@ -638,7 +638,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    fetchMember(userID, guildID) {
+    fetchMember (userID, guildID) {
         return new Promise(async resolve => {
             const [ member ] = await this.fetchMembers([
                 {
@@ -650,7 +650,7 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    fetchGuild(guildID) {
+    fetchGuild (guildID) {
         return new Promise(async resolve => {
             const [ guild ] = await this.fetchGuilds([ guildID ]);
             resolve(guild);

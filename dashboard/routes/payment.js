@@ -18,7 +18,7 @@ router.get("/callback", async (req, res) => {
     const guildID = parsedCM[0];
     const userID = parsedCM[1];
     const guildName = parsedCM[2];
-    if(!guildID) return res.redirect("/");
+    if (!guildID) return res.redirect("/");
     req.client.waitingForVerification.push(guildID);
     res.redirect("/selector");
 
@@ -47,15 +47,15 @@ router.post("/ipn", async (req, res) => {
     }).then(async (paypalRes) => {
         const valid = await paypalRes.text() === "VERIFIED";
         console.log(payload, valid);
-        if(!valid) return console.log("Invalid payment");
-        if(payload.txn_type === "subscr_signup"){
-            if(
+        if (!valid) return console.log("Invalid payment");
+        if (payload.txn_type === "subscr_signup"){
+            if (
                 (payload.mc_amount3 !== "2.00") ||
                 (payload.receiver_email !== (req.client.config.paypal.mode === "live" ? req.client.config.paypal.live.email : req.client.config.paypal.sandbox.email))
             ) return;
             const paymentData = (payload.custom || "").split(",");
             paymentData.shift();
-            if(!paymentData[0]) return;
+            if (!paymentData[0]) return;
             const guildID = paymentData[0];
             const userID = paymentData[1];
             const guildName = paymentData[2];
@@ -85,9 +85,9 @@ router.post("/ipn", async (req, res) => {
                 `);
             });
         }
-        if(payload.txn_type === "subscr_payment") {
+        if (payload.txn_type === "subscr_payment") {
             console.log(payload);
-            if(
+            if (
                 (payload.mc_gross !== "2.00") ||
                 (payload.receiver_email !== (req.client.config.paypal.mode === "live" ? req.client.config.paypal.live.email : req.client.config.paypal.sandbox.email))
             ) return;
@@ -150,7 +150,7 @@ router.post("/ipn", async (req, res) => {
                         details: payload
                     });
                     let currentSubscription = guild.subscriptions.find((sub) => sub.label === "Premium Monthly 1 Guild");
-                    if(!currentSubscription){
+                    if (!currentSubscription){
                         currentSubscription = await req.client.database.createSubscription({
                             expiresAt: new Date(Date.now()+30*24*60*60*1000),
                             createdAt: new Date(payload.payment_date),
@@ -176,7 +176,7 @@ router.post("/ipn", async (req, res) => {
                 `);
             });
         }
-        if(payload.txn_type === "subscr_cancel"){
+        if (payload.txn_type === "subscr_cancel"){
             const paymentData = (payload.custom || "").split(",");
             paymentData.shift();
             const guildID = paymentData[0];
@@ -185,7 +185,7 @@ router.post("/ipn", async (req, res) => {
             req.client.users.fetch(userID).then(async (user) => {
                 const formContent = `Hello, **${user.username}**\r\nWe're sorry to see you go! Could you tell us why you have cancelled your subscription, so that we can try to improve it? :smiley: \r\n\r\nI cancelled my subscription for the following reason: \r\n\r\n:one: I no longer use ManageInvite for my server\r\n:two: I don't want to pay $2 anymore, it's too big a budget for what ManageInvite offers\r\n:three: I found a better bot\r\n:four: Other\r\n** **`;
                 const formMessage = await user.send(formContent).catch(() => {});
-                if(formMessage){
+                if (formMessage){
                     formMessage.react("\u0031\u20E3");
                     formMessage.react("\u0032\u20E3");
                     formMessage.react("\u0033\u20E3");
