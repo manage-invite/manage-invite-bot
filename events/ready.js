@@ -88,35 +88,6 @@ module.exports = class {
             }
         }, null, true, "America/Los_Angeles");
 
-        this.client.on("shardReady", (shardID) => {
-            this.client.shard.broadcastEval(`
-                let logsChannel = this.channels.cache.get(this.config.shardLogs);
-                let emojis = this.config.emojis;
-                if(logsChannel) logsChannel.send(emojis.dnd+' | Shard #${shardID} is ready!');
-            `);
-        });
-        this.client.on("shardDisconnect", (shardID) => {
-            this.client.shard.broadcastEval(`
-                let logsChannel = this.channels.cache.get(this.config.shardLogs);
-                let emojis = this.config.emojis;
-                if(logsChannel) logsChannel.send(emojis.offline+' | Shard #${shardID} is disconnected...');
-            `);
-        });
-        this.client.on("shardReconnecting", (shardID) => {
-            this.client.shard.broadcastEval(`
-                let logsChannel = this.channels.cache.get(this.config.shardLogs);
-                let emojis = this.config.emojis;
-                if(logsChannel) logsChannel.send(emojis.idle+' | Shard #${shardID} is reconnecting...');
-            `);
-        });
-        this.client.on("shardResume", (shardID) => {
-            this.client.shard.broadcastEval(`
-                let logsChannel = this.channels.cache.get(this.config.shardLogs);
-                let emojis = this.config.emojis;
-                if(logsChannel) logsChannel.send(emojis.online+' | Shard #${shardID} has resumed!');
-            `);
-        });
-
     }
 };
 

@@ -1,6 +1,9 @@
+const config = require("../config");
+
 const fetch = require("node-fetch"),
     moment = require("moment"),
-    date = require("date-and-time");
+    date = require("date-and-time"),
+    Discord = require("discord.js");
 
 const stringOrNull = (string) => string ? `'${string}'` : "null";
 const pgEscape = (string) => string ? string.replace(/'/g, "''") : null;
@@ -275,6 +278,15 @@ const formatDate = (dateToFormat, format, locale) => {
     return date.format(dateToFormat, format);
 };
 
+/**
+ * Sends a message to the status webhhook
+ * @param {string} content The content to send
+ */
+const sendStatusWebhook = (content) => {
+    const webhook = new Discord.WebhookClient(config.statusWebhook.id, config.statusWebhook.token);
+    return webhook.send(content);
+};
+
 module.exports = {
     stringOrNull,
     pgEscape,
@@ -288,5 +300,6 @@ module.exports = {
     lastXDays,
     joinedXDays,
     isEqual,
-    syncPremiumRoles
+    syncPremiumRoles,
+    sendStatusWebhook
 };

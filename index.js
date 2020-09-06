@@ -45,14 +45,27 @@ const init = async () => {
     const i18n = require("./helpers/i18n");
     client.translations = await i18n();
 
-    client.login(client.config.token); // Log in to the discord api
-
     // Gets commands permission
     client.levelCache = {};
     for (let i = 0; i < client.permLevels.length; i++) {
         const thisLevel = client.permLevels[parseInt(i, 10)];
         client.levelCache[thisLevel.name] = thisLevel.level;
     }
+
+    client.on("shardReady", (shardID) => {
+        client.functions.sendStatusWebhook(`${client.config.emojis.dnd} | Shard #${shardID} is ready!`);
+    });
+    client.on("shardDisconnect", (shardID) => {
+        client.functions.sendStatusWebhook(`${client.config.emojis.offline} | Shard #${shardID} is disconnected...`);
+    });
+    client.on("shardReconnecting", (shardID) => {
+        client.functions.sendStatusWebhook(`${client.config.emojis.idle} | Shard #${shardID} is reconnecting...`);
+    });
+    client.on("shardResume", (shardID) => {
+        client.functions.sendStatusWebhook(`${client.config.emojis.online} | Shard #${shardID} has resumed!`);
+    });
+
+    client.login(client.config.token); // Log in to the discord api
 
 };
 

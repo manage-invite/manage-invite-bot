@@ -1,6 +1,11 @@
 module.exports = {
     token:          "XXXXXXXXXXX",
     shardCount:     2,
+    /* Status */
+    statusWebhook: {
+        id: "XXXXXXXXXXX",
+        token: "XXXXXXXXXXX"
+    },
     /* Emojis */
     emojis: {
         success:    "XXXXXXXXXXX",
@@ -19,7 +24,6 @@ module.exports = {
     /* Logs */
     addLogs:        "XXXXXXXXXXX",
     removeLogs:     "XXXXXXXXXXX",
-    shardLogs:      "XXXXXXXXXXX",
     dashLogs:       "XXXXXXXXXXX",
     statsLogs:      "XXXXXXXXXXX",
     premiumLogs:    "XXXXXXXXXXX",
