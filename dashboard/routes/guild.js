@@ -91,14 +91,14 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         const enable = Object.prototype.hasOwnProperty.call(data, "enable");
         const update = Object.prototype.hasOwnProperty.call(data, "update");
         const disable = Object.prototype.hasOwnProperty.call(data, "disable");
-        if(enable && data.message){
+        if(enable && data.mainMessage){
             guildData.joinDM.enabled = true;
             guildData.joinDM.mainMessage = data.mainMessage;
             guildData.joinDM.oauth2Message = data.oauth2Message;
             guildData.joinDM.vanityMessage = data.vanityMessage;
             guildData.joinDM.unknownMessage = data.unknownMessage;
             await guildData.joinDM.updateData();
-        } else if(update && data.message){
+        } else if(update && data.mainMessage){
             guildData.joinDM.enabled = true;
             guildData.joinDM.mainMessage = data.mainMessage;
             guildData.joinDM.oauth2Message = data.oauth2Message;
