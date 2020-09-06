@@ -54,16 +54,13 @@ module.exports = class extends Command {
 
         const currentSubscription = guildData.subscriptions.find((sub) => sub.label === "Premium "+(isMonth ? "Monthly" : "Yearly")+" 1 Guild");
         const subscription = currentSubscription || await this.client.database.createSubscription({
-            expiresAt: new Date(Date.now()+(7*24*60*60*1000)),
+            expiresAt: new Date(Date.now()+((isMonth ? 31 : 366)*24*60*60*1000)),
             createdAt,
             guildsCount: 1,
             subLabel: "Premium "+(isMonth ? "Monthly" : "Yearly")+" 1 Guild"
         });
         const exists = guildData.subscriptions.includes(subscription);
         
-        await this.client.database.createSubPaymentLink(subscription.id, paymentID);
-        await this.client.database.createSubPaymentLink(subscription.id, paymentID);
-
         await this.client.database.createSubPaymentLink(subscription.id, paymentID);
         if(!exists){
             await this.client.database.createGuildSubLink(guildID, subscription.id);
