@@ -40,7 +40,7 @@ module.exports = class extends Command {
             : "This server is not premium.";
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor(`Subscription for ${guildData.name}`, guildData.icon)
+            .setAuthor(`Subscription for ${guildData.name} (${guildID})`, guildData.icon)
             .setDescription(description)
             .setColor(this.client.config.color);
 
