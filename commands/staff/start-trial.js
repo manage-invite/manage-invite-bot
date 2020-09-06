@@ -57,7 +57,7 @@ module.exports = class extends Command {
             createdAt,
             guildsCount: 1,
             subLabel: "Trial Version"
-        }, false);
+        });
         
         await this.client.database.createSubPaymentLink(subscription.id, paymentID);
         if(!guildData.subscriptions.includes(subscription)){

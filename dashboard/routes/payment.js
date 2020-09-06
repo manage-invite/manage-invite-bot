@@ -132,7 +132,7 @@ router.post("/ipn", async (req, res) => {
                         createdAt: new Date(payload.payment_date),
                         subLabel: "Premium Monthly 1 Guild",
                         guildsCount: 1
-                    }, false);
+                    });
                     await req.client.database.createSubPaymentLink(subscription.id, signupID);
                     await req.client.database.createSubPaymentLink(subscription.id, paymentID);
                     await req.client.database.createGuildSubLink(guildID, subscription.id);
@@ -156,7 +156,7 @@ router.post("/ipn", async (req, res) => {
                             createdAt: new Date(payload.payment_date),
                             subLabel: "Premium Monthly 1 Guild",
                             guildsCount: 1
-                        }, false);
+                        });
                         await req.client.database.createGuildSubLink(guildID, currentSubscription.id);
                     }
                     await req.client.database.createSubPaymentLink(currentSubscription.id, paymentID);

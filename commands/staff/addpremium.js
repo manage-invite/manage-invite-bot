@@ -54,7 +54,7 @@ module.exports = class extends Command {
             createdAt,
             guildsCount: premiumArgs.guildsCount,
             subLabel: premiumArgs.label
-        }, false);
+        });
         await this.client.database.createSubPaymentLink(subscription.id, paymentID);
         await this.client.database.createGuildSubLink(premiumArgs.guildID, subscription.id);
         await subscription.deleteGuildsFromCache();
