@@ -15,6 +15,8 @@ module.exports  = class extends Command {
 
     async run (message, args, data) {
 
+        const showIDs = message.content.includes("-id");
+
         const membersData = await this.client.database.fetchGuildMembers(message.guild.id, true);
 
         let members = [];
@@ -61,7 +63,7 @@ module.exports  = class extends Command {
                     user = await this.client.users.fetch(member.id);
                 } else {
                     user = {
-                        username: member.id
+                        id: member.id
                     };
                 }
             }
@@ -71,7 +73,7 @@ module.exports  = class extends Command {
                     totalMemberCount === 3 ? "🥉" :
                         `**${totalMemberCount}.**`;
             lastEmbed.setDescription(`${oldDesc}\n${message.translate("core/leaderboard:USER", {
-                username: user.username,
+                username: user.username ? user.username + (showIDs ? ` ${user.id} ` : "") : user.id,
                 position,
                 invites: member.invites,
                 regular: member.regular,
