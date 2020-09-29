@@ -28,7 +28,7 @@ module.exports = class extends Command {
         if (!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
         const confMessage = collected.first().content;
         if (confMessage === "cancel") return msg.error("common:CANCELLED", null, true);
-        if (confMessage === data.guild.prefix+"setjoin") return;
+        if (confMessage === data.guild.prefix+"setleave") return;
         collected.first().delete();
 
         msg.sendT("config/configleave:INSTRUCTIONS_2", null, true);
@@ -40,7 +40,7 @@ module.exports = class extends Command {
         const channel = confChannel.mentions.channels.first()
         || message.guild.channels.cache.get(confChannel.content)
         || message.guild.channels.cache.find((ch) => ch.name === confChannel.content || `#${ch.name}` === confChannel.content);
-        if (!channel) return msg.error("config/configleave:CHANNEL_NOT_FOUND", {
+        if (!channel || channel.type === "voice") return msg.error("config/configleave:CHANNEL_NOT_FOUND", {
             channel: confChannel.content
         }, true);
         collected.first().delete();
