@@ -27,7 +27,6 @@ module.exports = class extends Command {
         let collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
         if (!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
         const confMessage = collected.first().content;
-        if (confMessage > 2048) return msg.error("config/configleave:CARACTERES2048", null, true);
         if (confMessage === "cancel") return msg.error("common:CANCELLED", null, true);
         if (confMessage === data.guild.prefix+"setleave") return;
         collected.first().delete();
