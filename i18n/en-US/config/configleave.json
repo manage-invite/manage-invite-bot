@@ -4,5 +4,6 @@
     "INSTRUCTIONS_2": ":scroll: **| Now write the leave channel name or mention it... :pencil2:**",
     "TITLE": "**Done The leave Msg Has Been Setup**",
     "TEST": "Use `{{prefix}}testleave` to test the new message.",
-    "CHANNEL_NOT_FOUND": "No channel found for `{{channel}}`"
+    "CHANNEL_NOT_FOUND": "No channel found for `{{channel}}`",
+    "CARACTERES2048": "Your message contains more than 2048 characters!"
 }
