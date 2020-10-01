@@ -194,7 +194,7 @@ router.post("/ipn", async (req, res) => {
                 const logEmbed = escape(JSON.stringify(new Discord.MessageEmbed()
                     .setAuthor(`${user.tag} cancelled their subscription for ManageInvite Premium`, user.displayAvatarURL())
                     .setDescription(`Recurring payment for **${guildName}** was cancelled :wave:\n${formMessage ? "Satisfaction form sent! Awaiting answer... :pencil:" : "I wasn't able to send the satisfaction form... :confused:"}`)
-                    .setFooter(`Form ID: ${formMessage.id}`)
+                    .setFooter(`Form ID: ${formMessage ? formMessage.id : "not sent"}`)
                     .setColor("#1E90FF")));
 
                 req.client.shard.broadcastEval(`
