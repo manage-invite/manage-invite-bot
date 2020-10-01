@@ -62,7 +62,7 @@ module.exports = class {
             await this.client.wait(5000);
             const client = this.client;
             const guildInvites = await guild.fetchInvites().catch(() => {});
-            this.client.invitations[guild.id] = guildInvites || new Map();
+            this.client.invitations[guild.id] = guildInvites || null;
             if (!guildInvites) return;
             const users = new Set(guildInvites.map((i) => i.inviter.id));
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {

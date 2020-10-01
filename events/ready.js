@@ -1,4 +1,5 @@
 const CronJob = require("cron").CronJob;
+const Discord = require("discord.js");
 
 module.exports = class {
     constructor (client) {
@@ -26,8 +27,8 @@ module.exports = class {
         await this.client.functions.asyncForEach(this.client.guilds.cache.array(), async (guild) => {
             if (premiumGuildsID.includes(guild.id)){
                 const member = await guild.members.fetch(this.client.user.id).catch(() => {});
-                const i = process.argv.includes("--uncache") ? new Map() : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : new Map());
-                invites[guild.id] = i || new Map();
+                const i = process.argv.includes("--uncache") ? null : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : null);
+                invites[guild.id] = i || null;
             }
         });
         this.client.invitations = invites;
@@ -81,8 +82,8 @@ module.exports = class {
                 this.client.logger.log(`${guildsToFetch.length} guilds need to be fetched`);
                 await this.client.functions.asyncForEach(guildsToFetch, async (guild) => {
                     const member = await guild.members.fetch(this.client.user.id).catch(() => {});
-                    const i = process.argv.includes("--uncache") ? new Map() : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : new Map());
-                    this.client.invitations[guild.id] = i || new Map();
+                    const i = process.argv.includes("--uncache") ? null : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : null);
+                    this.client.invitations[guild.id] = i || null;
                 });
                 this.client.fetched = true;
             }

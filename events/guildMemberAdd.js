@@ -51,8 +51,10 @@ module.exports = class {
                     }
                 }
                 if (inviteUsed && !vanity) invite = inviteUsed;
+            } else if (guildInvites && !oldGuildInvites) {
+                this.client.invitations[member.guild.id] = guildInvites;
             }
-            if (!invite){
+            if (!invite && guildInvites){
                 const targetInvite = guildInvites.some((i) => i.targetUser && (i.targetUser.id === member.id));
                 if (targetInvite.uses === 1) {
                     invite = targetInvite;
