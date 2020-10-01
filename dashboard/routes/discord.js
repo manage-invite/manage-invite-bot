@@ -1,7 +1,8 @@
 const express = require("express"),
     router = express.Router(),
     fetch = require("node-fetch"),
-    btoa = require("btoa");
+    btoa = require("btoa"),
+    Discord = require("discord.js");
 
 // Gets login page
 router.get("/login", async function (req, res) {
@@ -71,12 +72,11 @@ router.get("/callback", async (req, res) => {
     // Update session
     req.session.user = { ... userData.infos, ... { guilds } };
     const user = await req.client.users.fetch(req.session.user.id);
-    req.client.shard.broadcastEval(`let channel = this.channels.cache.get(this.config.dashLogs); if(channel) channel.send({ embed: JSON.parse('${JSON.stringify({
-        color: req.client.config.color,
-        author: {
-            name: user.tag+" connected to the dashboard!"
-        }
-    })}') });`);
+    const embed = escape(JSON.stringify(new Discord.MessageEmbed()
+        .setColor(req.client.config.color)
+        .setAuthor(user.tag+" connected to the dashboard!")
+    ));
+    req.client.shard.broadcastEval(`let channel = this.channels.cache.get(this.config.dashLogs); if(channel) channel.send({ embed: JSON.parse(unescape('${embed}')) });`);
     res.redirect(redirectURL);
 });
 
