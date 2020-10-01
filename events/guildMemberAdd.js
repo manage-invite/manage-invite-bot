@@ -63,7 +63,7 @@ module.exports = class {
         }
 
 
-        const inviter = invite ? await this.client.resolveUser(invite.inviter.id) : null;
+        const inviter = invite && invite.inviter ? await this.client.resolveUser(invite.inviter.id) : null;
         const inviterData = inviter ? await this.client.database.fetchMember(inviter.id, member.guild.id) : null;
 
         if (inviter && guildData.blacklistedUsers.includes(inviter.id)) return;
