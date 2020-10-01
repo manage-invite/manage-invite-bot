@@ -191,13 +191,13 @@ module.exports = class {
                     invite,
                     numJoins: memberData.numJoins
                 });
-                member.send(formattedMessage);
+                member.send(formattedMessage).catch(() => {});
             } else if (vanity){
                 const formattedMessage = this.client.functions.formatMessage((guildData.joinDM.vanityMessage || member.guild.translate("misc:JOIN_DM_VANITY_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
-                member.send(formattedMessage);
+                member.send(formattedMessage).catch(() => {});
             } else {
                 const formattedMessage = this.client.functions.formatMessage((guildData.joinDM.unknownMessage || member.guild.translate("misc:JOIN_DM_UNKNOWN_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
-                member.send(formattedMessage);
+                member.send(formattedMessage).catch(() => {});
             }
         }
 

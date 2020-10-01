@@ -104,7 +104,7 @@ router.post("/ipn", async (req, res) => {
                         .setAuthor(`Thanks for purchasing ManageInvite Premium, ${user.tag}`, user.displayAvatarURL())
                         .setDescription(`Congratulations, your server **${guildName}** is now premium! :crown:`)
                         .setColor("#F4831B");
-                    user.send(embed);
+                    user.send(embed).catch(() => {});
                     notSentSignup = notSentSignup.filter((s) => s.guildID !== guildID);
                     const signupID = await req.client.database.createPayment({
                         payerDiscordID: paymentData[1],

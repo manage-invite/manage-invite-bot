@@ -81,7 +81,7 @@ module.exports = class {
             message.delete();
             return message.author.send(message.translate("misc:WRONG_CHANNEL", {
                 channel: `<#${data.guild.cmdChannel}>`
-            }));
+            })).catch(() => {});
         }
 
         this.client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name} (${Date.now()-startAt}ms)`, "cmd");
