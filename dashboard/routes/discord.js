@@ -22,7 +22,7 @@ router.get("/callback", async (req, res) => {
             return res.redirect("/selector");
         }
     }
-    if (!req.query.code) res.redirect(req.client.config.failureURL);
+    if (!req.query.code) return res.redirect(req.client.config.failureURL);
     const redirectURL = req.client.states[req.query.state] || "/selector";
     const params = new URLSearchParams();
     params.set("grant_type", "authorization_code");
