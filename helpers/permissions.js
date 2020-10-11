@@ -24,7 +24,14 @@ module.exports = [
         name: "Bot moderator",
         check: (message) => {
             return (
-                [ "654754795336237058", "456500252048883714", "547514927019982864", "246993557381054465", "675636857463373847", "592782178350399673" ].includes(message.author.id)
+                [
+                    "709481084286533773", // Rome
+                    "280762060864880640", // GTA Tetris
+                    "654754795336237058", // Ethan
+                    "456500252048883714", // Clèm31
+                    "547514927019982864", // Mystèreee
+                    "592782178350399673" // Micka
+                ].includes(message.author.id)
                 || (
                     message.client.guilds.cache.has(message.client.config.supportServer)
                         ? (
