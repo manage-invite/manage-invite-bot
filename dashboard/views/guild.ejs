@@ -345,7 +345,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <%= translate("dashboard:PREMIUM_EXPIRES", { count: guild.premiumExpiresDays, date: guild.premiumExpiresDisplayed }) %>
+                    <%- guild.premiumInfoMessage %>
                 </div>
             </div>
             <!-- /.box -->

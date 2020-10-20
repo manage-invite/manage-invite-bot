@@ -30,6 +30,26 @@ module.exports = class Subscription {
         return this.label === "Trial Version";
     }
 
+    async isPayPalSubscription () {
+        if (this.label !== "Premium Monthly 1 Guild") return {
+            isPayPalSubscription: false,
+            isCancelled: true
+        };
+        const payments = await this.handler.getPaymentsForSubscription(this.id);
+        console.log( {
+            isPayPalSubscription: payments.some((p) => p.type.startsWith("paypal_dash_signup")),
+            isCancelled: 
+                payments.filter((p) => p.type.startsWith("paypal_dash_signup")).length <= payments.filter((p) => p.type.startsWith("paypal_dash_cancel")).length
+                || this.invalidated
+        });
+        return {
+            isPayPalSubscription: payments.some((p) => p.type.startsWith("paypal_dash_signup")),
+            isCancelled: 
+                payments.filter((p) => p.type.startsWith("paypal_dash_signup")).length <= payments.filter((p) => p.type.startsWith("paypal_dash_cancel")).length
+                || this.invalidated
+        };
+    }
+
     async invalidate () {
         this.invalidated = true;
         await this.handler.query(`

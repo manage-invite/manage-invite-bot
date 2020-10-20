@@ -6,7 +6,7 @@ const Discord = require("discord.js");
  * @param {object} client The discord client instance
  * @param {array} guilds The user guilds
  */
-async function fetchGuild (guildID, client){
+async function fetchGuild (guildID, client, translate){
     const results = await client.shard.broadcastEval(`
     let guild = this.guilds.cache.get('${guildID}');
     if(guild){
@@ -26,9 +26,17 @@ async function fetchGuild (guildID, client){
     `);
     const guild = results.find((g) => g);
     const conf = await client.database.fetchGuild(guild.id);
-    conf.premiumExpiresDisplayed = client.functions.formatDate(new Date(conf.premiumExpiresAt), "MMM DD YYYY", conf.language);
     const difference = new Date(conf.premiumExpiresAt).getTime() - Date.now();
-    conf.premiumExpiresDays = Math.round(difference/86400000) > 0 ? Math.round(difference/86400000) : 0;
+    const statuses = await conf.getSubscriptionsPayPalData();
+    if (statuses.some((s) => s.isPayPalSubscription && !s.isCancelled)) {
+        conf.premiumInfoMessage = translate("dashboard:PREMIUM_PAYPAL");
+    } else {
+        conf.premiumInfoMessage = translate("dashboard:PREMIUM_EXPIRES", {
+            guildID,
+            count: Math.round(difference/86400000) > 0 ? Math.round(difference/86400000) : 0,
+            date: client.functions.formatDate(new Date(conf.premiumExpiresAt), "MMM DD YYYY", conf.language)
+        });
+    }
     return { ...guild, ...conf };
 }
 

@@ -61,8 +61,12 @@ module.exports = class Guild {
         this.blacklistedUsers = blacklistedUsers.map(blacklistData => blacklistData.user_id);
     }
 
-    get premium (){
+    get premium () {
         return this.subscriptions.some((subscription) => subscription.active);
+    }
+
+    async getSubscriptionsPayPalData () {
+        return await Promise.all(this.subscriptions.filter((s) => s.active).map((s) => s.isPayPalSubscription()));
     }
     
     get aboutToExpire (){

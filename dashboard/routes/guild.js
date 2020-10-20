@@ -24,7 +24,7 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
     }
 
     // Fetch guild informations
-    const guildInfos = await utils.fetchGuild(guild.id, req.client, req.user.guilds, req.user.locale);
+    const guildInfos = await utils.fetchGuild(guild.id, req.client, req.translate);
 
     res.render("guild", {
         guild: guildInfos,
@@ -39,7 +39,7 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
 });
 
 router.get("/:serverID/createsub", CheckAuth, async (req, res) => {
-    const guildInfos = await utils.fetchGuild(req.params.serverID, req.client, req.user.guilds, req.user.locale);
+    const guildInfos = await utils.fetchGuild(req.params.serverID, req.client, req.translate);
     res.render("create-sub", {
         guild: guildInfos,
         user: req.userInfos,
