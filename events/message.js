@@ -78,7 +78,7 @@ module.exports = class {
         }
 
         if (data.guild.cmdChannel && (message.channel.id !== data.guild.cmdChannel) && permLevel < 1){
-            message.delete();
+            message.delete().catch(() => {});
             return message.author.send(message.translate("misc:WRONG_CHANNEL", {
                 channel: `<#${data.guild.cmdChannel}>`
             })).catch(() => {});

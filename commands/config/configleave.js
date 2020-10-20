@@ -29,7 +29,7 @@ module.exports = class extends Command {
         const confMessage = collected.first().content;
         if (confMessage === "cancel") return msg.error("common:CANCELLED", null, true);
         if (confMessage === data.guild.prefix+"setleave") return;
-        collected.first().delete();
+        collected.first().delete().catch(() => {});
 
         msg.sendT("config/configleave:INSTRUCTIONS_2", null, true);
 
@@ -43,7 +43,7 @@ module.exports = class extends Command {
         if (!channel || channel.type === "voice") return msg.error("config/configleave:CHANNEL_NOT_FOUND", {
             channel: confChannel.content
         }, true);
-        collected.first().delete();
+        collected.first().delete().catch(() => {});
 
         msg.sendT("config/configjoindm:SUCCESS", null, true);
 

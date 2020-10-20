@@ -47,7 +47,7 @@ module.exports = class extends Command {
         );
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
             if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
-            collected.first().delete();
+            collected.first().delete().catch(() => {});
             await (member ? conf.sendT("admin/restoreinvites:LOADING_MEMBER", {
                 username: member.user.tag,
                 loading: this.client.config.emojis.loading

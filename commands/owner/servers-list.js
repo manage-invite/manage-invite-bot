@@ -15,7 +15,7 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
         
-        await message.delete();
+        await message.delete().catch(() => {});
 
         let i0 = 0;
         let i1 = 10;
