@@ -1,11 +1,11 @@
 {
-    "TITLE": ":wrench: Leave system :",
-    "DESCRIPTION": "If it doesn't work, check the bot permissions or join our [support server]({{discord}})",
-    "ENABLED_TITLE": "> Enabled:",
-    "ENABLED_YES_CONTENT": "{{success}} Leave messages enabled. Disable them with `{{prefix}}setleave`.",
-    "ENABLED_NO_CONTENT": "{{error}} Leave messages disabled. Enable them with `{{prefix}}setleave`.",
-    "CHANNEL_TITLE": "> Channel",
-    "CHANNEL_CONTENT": "No channel defined. Set it with `{{prefix}}configleave`!",
-    "MESSAGE": "> Message:",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configleave`!"
+    "TITLE": ":wrench: Quit-System :",
+    "DESCRIPTION": "Wenn dies nicht funktioniert, prüfe die Bot Berechtigungen oder trete dem [Support Server]({{discord}}) bei",
+    "ENABLED_TITLE": "> Aktiviert:",
+    "ENABLED_YES_CONTENT": "{{success}} Quit-Nachrichten aktiviert. Deaktiviere sie mit `{{prefix}}setleave`.",
+    "ENABLED_NO_CONTENT": "{{error}} Quit-Nachrichten deaktiviert. Aktiviere diese mit `{{prefix}}setleave`.",
+    "CHANNEL_TITLE": "> Kanal",
+    "CHANNEL_CONTENT": "Kein Kanal gesetzt. Setze ihn mit `{{prefix}}configleave`!",
+    "MESSAGE": "> Nachricht:",
+    "MESSAGE_CONTENT": "Keine Nachricht gesetzt. Setze sie mit `{{prefix}}configleave`!"
 }
