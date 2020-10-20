@@ -1,6 +1,6 @@
 {
-    "NO_INVITES": "No invites to synchronize.",
-    "CONFIRM": "Are you sure you want to synchronize the server invitations? __Your server data will be cleared and replaced by the invites in \"Server Settings\" > \"Invites\".__\n\n:information_source: **Overview of invitations**:\nIt will be restored **{{inviteCount}}** regular invitations.\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
-    "TITLE": "☄️ Invitations synchronized",
-    "DESCRIPTION": "Server invitations synchronized!"
+    "NO_INVITES": "Es gibt keine Einladungen zur Synchronisierung.",
+    "CONFIRM": "Möchtest du wirklich die Server-Einladungen synchronisieren? __Deine Server-Invite Daten werden gelöscht und ersetzt mit den Einladungen in \"Servereinstellungen\" > \"Einladungen\".__\n\n:information_source: **Übersicht der Einladungen**:\nEs werden **{{inviteCount}}** reguläre Einladungen wiederhergestellt.\n\n{{success}} Nutze `-confirm` zum bestätigen.\n{{error}} Nutze `cancel` zum abbrechen.",
+    "TITLE": "☄️ Einladungen synchronisiert",
+    "DESCRIPTION": "Die Server-Einladungen wurden synchronisiert!"
 }
