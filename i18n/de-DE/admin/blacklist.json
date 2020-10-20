@@ -1,12 +1,12 @@
 {
-    "AUTHOR_BLACKLISTED": "You are blacklisted on this server, you can't run this command.",
-    "BLACKLISTED": "{{username}} is blacklisted on this server.",
-    "MISSING_TYPE": "You must enter a valid action! (`add`, `remove` or `list`)\n\n:information_source: Users in the blacklist:\n- Won't receive/loose roles\n- Won't appear in the leaderboard\n- Won't have their invites tracked anymore\n- Won't be able to run the `invites` command",
-    "MISSING_MEMBER_ADD": "You must mention a valid member to add in the blacklist!",
-    "MISSING_MEMBER_REMOVE": "You must mention a valid member to remove from the blacklist!",
-    "SUCCESS_MEMBER_ADD": "**{{username}}** was added to the blacklist!",
-    "SUCCESS_MEMBER_REMOVE": "**{{username}}** was removed from the blacklist!",
-    "EMPTY": "No blacklisted users!",
-    "NOT_BLACKLISTED": "**{{username}}** is not in the blacklist!",
-    "ALREADY_BLACKLISTED": "**{{username}}** is already blacklisted!"
+    "AUTHOR_BLACKLISTED": "Du bist auf diesem Server geblacklisted. Das bedeutet, du kannst keine Befehle hier ausführen.",
+    "BLACKLISTED": "{{username}} ist auf diesem Server \"Blacklisted\".",
+    "MISSING_TYPE": "Du musst eine gültige Aktion hinzufügen! (`add`, `remove` oder `list`)\n\n:information_source: Benutzer die \"Blacklisted\" sind können..\n.. keine Rollen bekommen/verlieren\n.. nicht in der Bestenliste gezeigt werden\n.. keine Einladungen mehr sammeln\n.. können keine Befehle mehr ausführen",
+    "MISSING_MEMBER_ADD": "Du musst einen gültiges Mitglied erwähnen, um es zur Blacklist hinzuzufügen!",
+    "MISSING_MEMBER_REMOVE": "Du musst einen gültiges Mitglied erwähnen, um es von der Blacklist zu entfernen!",
+    "SUCCESS_MEMBER_ADD": "**{{username}}** wurde zur Blacklist hinzugefügt!",
+    "SUCCESS_MEMBER_REMOVE": "**{{username}}** wurde von der Blacklist entfernt!",
+    "EMPTY": "Es gibt keine User auf der Blacklist!",
+    "NOT_BLACKLISTED": "**{{username}}** ist nicht auf der Blacklist!",
+    "ALREADY_BLACKLISTED": "**{{username}}** ist schon auf der Blacklist!"
 }
