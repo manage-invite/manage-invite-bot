@@ -6,7 +6,7 @@ module.exports = class extends Command {
             name: "cmd-channel",
             enabled: true,
             aliases: [ "cmdchannel" ],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ "EMBED_LINKS", "MANAGE_MESSAGES" ],
             permLevel: 2
         });
     }
