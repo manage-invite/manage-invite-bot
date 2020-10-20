@@ -8,6 +8,11 @@
 
 > ManageInvite is used by + 2,000,000 users in + 10,000 servers!
 
+## How can I install the bot?
+
+The code in this repository is **NOT** intended to be hosted. Some parts of the code are missing and the bot can't work only with these files. This code is open source because it's the heart of ManageInvite and we think it's important to share the biggest part of our code.
+We're sorry but we won't be able to help you to install the bot on your own server and we're sorry if you wasted your time trying before coming across this message...
+
 ## 🌐 Dashboard
 
 ManageInvite has a powerful dashboard which allow you to manage your servers easily! Configure join/leave messages, change server prefix, server language, etc...
