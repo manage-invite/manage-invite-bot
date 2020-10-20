@@ -22,22 +22,22 @@ ManageInvite has a powerful dashboard which allow you to manage your servers eas
 ### ⚙️ Config commands
 
 ```
-+configjoin        Config join messages
-+setjoin           Disable/Enabled join messages
-+testjoin          Try join messages configuration
++configjoin          Config join messages
++setjoin             Disable/Enabled join messages
++testjoin            Try join messages configuration
 ```
 
 
 ```
-+configdm          Config join messages in dm
-+setdm             Disable/Enabled join messages in dm
-+testdm            Try join messages in dm configuration
++configdm            Config join messages in dm
++setdm               Disable/Enabled join messages in dm
++testdm              Try join messages in dm configuration
 ```
 
 ```
-+configleave       Config leave messages
-+setleave          Disable/Enabled leave messages
-+testleave         Try leave messages configuration
++configleave         Config leave messages
++setleave            Disable/Enabled leave messages
++testleave           Try leave messages configuration
 ```
 
 You can use `+config` to show your server global config.
@@ -45,20 +45,26 @@ You can use `+config` to show your server global config.
 ### 🔑 Admin commands
 
 ```
-+addbonus          Add bonus invites to a member.
-+removebonus       Remove bonus invites from a member.
++set-stacked-ranks   Whether members keep all their roles or only the highest one
++set-keep-ranks      Whether members keep their roles when they lose invites
++blacklist           Add or remove a user to the blacklist
 ```
 
 ```
-+addrank           Add a rank to the rank rewards.
-+removerank        Remove a rank from the rank rewards.
-+ranks             Show the rank rewards list.
++addbonus            Add bonus invites to a member.
++removebonus         Remove bonus invites from a member.
 ```
 
 ```
-+removeinvites     Clear member or server invites.
-+restoreinvites    Restore member or server invites.
-+sync-invites      Synchronize ManageInvite database with server invites.
++addrank             Add a rank to the rank rewards.
++removerank          Remove a rank from the rank rewards.
++ranks               Show the rank rewards list.
+```
+
+```
++removeinvites       Clear member or server invites.
++restoreinvites      Restore member or server invites.
++sync-invites        Synchronize ManageInvite database with server invites.
 ```
 
 ### 👤 User commands
@@ -80,7 +86,6 @@ Everyone can use user commands, there aren't restricted.
 +help              Show the list of the commands.
 +botinfos          Show informations about ManageInvite.
 +ping              Show the ManageInvite's ping.
-+partners          Show the ManageInvite's partners.
 +add               Show the ManageInvite's invite link.
 +support           Join the support server.
 ```
