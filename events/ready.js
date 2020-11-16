@@ -1,5 +1,4 @@
 const CronJob = require("cron").CronJob;
-const Discord = require("discord.js");
 
 module.exports = class {
     constructor (client) {
