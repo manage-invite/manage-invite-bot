@@ -70,7 +70,7 @@ module.exports = class extends Command {
         }
         
         if (member){
-            const guild = await message.guild.fetch();
+            const guild = await message.guild.members.fetch();
             const members = guild.members.cache.array().sort((a,b) => a.joinedTimestamp - b.joinedTimestamp);
             const joinPos = members.map((u) => u.id).indexOf(member.id);
             const previous = members[joinPos - 1] ? members[joinPos - 1].user : null;

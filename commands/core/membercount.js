@@ -14,7 +14,7 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
 
-        const guild = await message.guild.fetch();
+        const guild = await message.guild.members.fetch();
         const embed = new Discord.MessageEmbed()
             .setAuthor(message.translate("core/membercount:TITLE", {
                 guild: message.guild.name

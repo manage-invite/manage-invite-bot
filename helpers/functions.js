@@ -199,7 +199,7 @@ const joinedXDays = (numberOfDays, members) => {
     // Pointer
     let lastDate = 0;
     // Sort the members by their joined date
-    members = members.cache.sort((a,b) => b.joinedTimestamp - a.joinedTimestamp);
+    members = members.sort((a,b) => b.joinedTimestamp - a.joinedTimestamp);
     for (let i = 0; i < numberOfDays; i++) {
         const date = new Date();
         date.setDate(date.getDate() - i);

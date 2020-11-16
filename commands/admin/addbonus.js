@@ -56,7 +56,7 @@ module.exports = class extends Command {
                 collected.first().delete().catch(() => {});
 
                 await conf.sendT("misc:PLEASE_WAIT", null, true, false, "loading");
-                await message.guild.fetch();
+                await message.guild.members.fetch();
                 const members = message.guild.members.cache.map((m) => {
                     return {
                         userID: m.id,

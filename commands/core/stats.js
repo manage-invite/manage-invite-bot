@@ -34,8 +34,8 @@ module.exports = class extends Command {
         numberOfDays = parseInt(numberOfDays);
         if (numberOfDays <= 1 || numberOfDays > 1000) return message.error("core/stats:INVALID");
 
-        const guild = await message.guild.fetch();
-        const joinedXDays = this.client.functions.joinedXDays(numberOfDays, guild.members);
+        const members = await message.guild.members.fetch();
+        const joinedXDays = this.client.functions.joinedXDays(numberOfDays, members);
         const lastXDays = this.client.functions.lastXDays(numberOfDays, message.translate("core/stats:months", {
             returnObjects: true
         }));
@@ -67,7 +67,7 @@ module.exports = class extends Command {
         embed.attachFiles(attachment);
         embed.setImage("attachment://image.png");
         const total = joinedXDays.reduce((p, c) => p+c);
-        const percent = Math.round((100*total)/guild.members.cache.size);
+        const percent = Math.round((100*total)/members.size);
         const daysRange = [lastXDays.shift(), lastXDays.pop()];
         embed.addField("\u200B", message.translate("core/stats:CONTENT", {
             total,
