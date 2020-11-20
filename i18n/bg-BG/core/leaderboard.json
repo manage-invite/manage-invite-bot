@@ -1,7 +1,7 @@
 {
-    "USER": "{{position}} **{{username}}** - **{{invites}}** invites (**{{regular}}** regular, **{{bonus}}** bonus, **{{fake}}** fake, **{{leaves}}** leaves)",
-    "PROMPT": "{{user}}, on which page would you like to go? Write `cancel` or `0` to cancel.",
-    "EMPTY_TITLE": "😕 No invite found",
-    "EMPTY_CONTENT": "Start inviting people and you will appear on this page!",
-    "TITLE": "Invites Leaderboard"
+    "USER": "{{position}} **{{username}}** - **{{invites}}** покани (**{{regular}}**нормални, **{{bonus}}** бонус, **{{fake}}** фалшиви, **{{leaves}}** излезли)",
+    "PROMPT": "{{user}}, на коя страница искате да отидете? Напишете 'cancel' или '0' ,  за да откажете.",
+    "EMPTY_TITLE": "😕 Няма намерени покани",
+    "EMPTY_CONTENT": "Започнете да каните хора и ще се появите на тази страница!",
+    "TITLE": "Таблото на покани"
 }
