@@ -1,9 +1,9 @@
 {
-    "TITLE": "{{guild}} configuration",
-    "JOIN_TITLE": "{{status}} Join Messages",
-    "JOIN_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}\n> Channel: {{channel}}",
-    "LEAVE_TITLE": "{{status}} Leave Messages",
-    "JOIN_DM_TITLE": "{{status}} Join DM Messages",
-    "JOIN_DM_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}",
-    "CHANNEL_NOT_FOUND": "**channel not found**"
+    "TITLE": "{{guild}} конфигурация",
+    "JOIN_TITLE": "{{status}} Съобщения при влизане",
+    "JOIN_CONTENT": "> Активирано: {{enabled}}\n> Съобщение: {{message}}\n> Канал: {{channel}}",
+    "LEAVE_TITLE": "{{status}} Съобщения при излизане",
+    "JOIN_DM_TITLE": "{{status}} Лични съобщения при влизане",
+    "JOIN_DM_CONTENT": "> Активирано: {{enabled}}\n> Съобщение: {{message}}",
+    "CHANNEL_NOT_FOUND": "**канала не е открит**"
 }
