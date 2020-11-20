@@ -1,11 +1,11 @@
 {
-    "TITLE": ":wrench: Leave system :",
-    "DESCRIPTION": "If it doesn't work, check the bot permissions or join our [support server]({{discord}})",
-    "ENABLED_TITLE": "> Enabled:",
-    "ENABLED_YES_CONTENT": "{{success}} Leave messages enabled. Disable them with `{{prefix}}setleave`.",
-    "ENABLED_NO_CONTENT": "{{error}} Leave messages disabled. Enable them with `{{prefix}}setleave`.",
-    "CHANNEL_TITLE": "> Channel",
-    "CHANNEL_CONTENT": "No channel defined. Set it with `{{prefix}}configleave`!",
-    "MESSAGE": "> Message:",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configleave`!"
+    "TITLE": ":wrench: Настройката на съобщенията при излизане:",
+    "DESCRIPTION": "Ако не работи, проверете разрешенията на бота или влезте в нашия [помощен сървър]({{discord}})",
+    "ENABLED_TITLE": ">Активирано:",
+    "ENABLED_YES_CONTENT": "{{success}} Съобщенията при излизане са активирани. Изключете ги с '{{prefix}}setleave'.",
+    "ENABLED_NO_CONTENT": "{{error}} Съобщенията при излизане са изключени. Активирайте ги с '{{prefix}}setleave'.",
+    "CHANNEL_TITLE": ">Канал",
+    "CHANNEL_CONTENT": "Няма намерен канал. Настройте го с '{{prefix}}configleave'!",
+    "MESSAGE": "> Съобщение:",
+    "MESSAGE_CONTENT": "Няма намерено, настроено съобщение. Настройте го с '{{prefix}}configleave'!"
 }
