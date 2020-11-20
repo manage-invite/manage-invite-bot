@@ -1,12 +1,12 @@
 {
-    "AUTHOR_BLACKLISTED": "You are blacklisted on this server, you can't run this command.",
-    "BLACKLISTED": "{{username}} is blacklisted on this server.",
-    "MISSING_TYPE": "You must enter a valid action! (`add`, `remove` or `list`)\n\n:information_source: Users in the blacklist:\n- Won't receive/loose roles\n- Won't appear in the leaderboard\n- Won't have their invites tracked anymore\n- Won't be able to run the `invites` command",
-    "MISSING_MEMBER_ADD": "You must mention a valid member to add in the blacklist!",
-    "MISSING_MEMBER_REMOVE": "You must mention a valid member to remove from the blacklist!",
-    "SUCCESS_MEMBER_ADD": "**{{username}}** was added to the blacklist!",
-    "SUCCESS_MEMBER_REMOVE": "**{{username}}** was removed from the blacklist!",
-    "EMPTY": "No blacklisted users!",
-    "NOT_BLACKLISTED": "**{{username}}** is not in the blacklist!",
-    "ALREADY_BLACKLISTED": "**{{username}}** is already blacklisted!"
+    "AUTHOR_BLACKLISTED": "Вие сте в черния списък на този списък, не можете да използвате тази команда.",
+    "BLACKLISTED": "{{username}} е в черния списък на този сървър.",
+    "MISSING_TYPE": "Трябва да въведете валидно действие! (`add`, `remove` или `list`)\n:information_source: Потребителите в черния списък:\n-Не получават/губят роли\n-Не се показват в класацията\n-Техните покани няма да се броят повече\n-Няма да могат да използват командата `invites`",
+    "MISSING_MEMBER_ADD": "Трябва да споменете валидно число, за да добавите човек в черния списък!",
+    "MISSING_MEMBER_REMOVE": "Трябва да споменете валиден потребител, за да го премахнете от черния списък!",
+    "SUCCESS_MEMBER_ADD": "**{{username}}** беше добавен в черния списък!",
+    "SUCCESS_MEMBER_REMOVE": "**{{username}}** беше премахнат от черния списък!",
+    "EMPTY": "Няма хора в черния списък!",
+    "NOT_BLACKLISTED": "**{{username}}** не е в черния списък!",
+    "ALREADY_BLACKLISTED": "**{{username}}** е вече в черния списък!"
 }
