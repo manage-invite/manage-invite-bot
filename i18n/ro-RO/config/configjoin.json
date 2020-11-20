@@ -1,8 +1,8 @@
 {
-    "DISABLE": "Type `{{prefix}}setjoin` to disable join messages",
-    "INSTRUCTIONS_1": "__**More informations**__\n```\n{user} : The mention of the member that just joined your server.\n{user.name} : The name of the member that just joined your server.\n{user.tag} : The tag of the member that just joined your server.\n{user.createdat} : The account age of the member.\n{user.id} : The ID of the member.\n{numJoins} : Number of joins of the member.\n\n{guild} : Name of the server.\n{guild.count} : Number of members your server has now.\n\n{inviter} : The mention of the inviter.\n{inviter.name} : The name of the inviter.\n{inviter.tag} : The tag of the inviter.\n{inviter.invites} : The total inviter's invites count.\n{inviter.id} : The ID of the inviter.\n\n{invite.code} : The invite code used.\n{invite.url} : The invite url used.\n{invite.uses} : Number of uses of the invite used.\n```\nType `cancel` to abort. {{string}}\n\n\n:pencil: **| Now write the join message... :pencil2:**",
-    "INSTRUCTIONS_2": ":scroll: **| Now write the join channel name or mention it... :pencil2:**",
-    "TITLE": "**Done The join Msg Has Been Setup**",
-    "TEST": "Use `{{prefix}}testjoin` to test the new message.",
-    "CHANNEL_NOT_FOUND": "No channel found for `{{channel}}`"
+    "DISABLE": "Scrie `{{prefix}}setjoin` pentru a dezactiva mesajele de alaturare",
+    "INSTRUCTIONS_1": "__**Mai multe informatii**__\n```\n{user} : Mențiunea membrului care tocmai s-a alăturat serverului dvs.\n{user.name} : Numele membrului care tocmai s-a alăturat serverului dvs.\n{user.tag} : Eticheta membrului care tocmai s-a alăturat serverului dvs.\n{user.createdat} : Vârsta contului membrului.\n{user.id} : ID-ul membrului.\n{numJoins} : Numărul de înscrieri ale membrului.\n\n{guild} : Numele serverului.\n{guild.count} : Numărul de membri ai serverului dvs. acum.\n\n{inviter} : Mențiunea invitatorului.\n{inviter.name} : Numele invitatorului.\n{inviter.tag} : Eticheta invitatorului.\n{inviter.invites} : Numărul total de invitații numarate invitatorului.\n{inviter.id} : ID-ul invitatorului.\n\n{invite.code} : Codul de invitație utilizat.\n{invite.url} : Invitatia URL utilizată.\n{invite.uses} : Numărul de utilizări ale invitației utilizate.\n```\nScrie `cancel` pentru a abandona. {{string}}\n\n\n:pencil: **| Acum scrieti mesajul de inscriere... :pencil2:**",
+    "INSTRUCTIONS_2": ":scroll: **| Acum scrie numele canalului de intrare sau mentioneaza-l... :pencil2:**",
+    "TITLE": "**S-a terminat configurarea mesajului de intrare**",
+    "TEST": "Foloseste `{{prefix}}testjoin` pentru a teste noul mesaj.",
+    "CHANNEL_NOT_FOUND": "Nici un canal gasit pentru `{{channel}}`"
 }
