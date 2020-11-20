@@ -1,8 +1,8 @@
 {
-    "DISABLE": "Type `{{prefix}}setleave` to disable leave messages",
-    "INSTRUCTIONS_1": "__**More informations**__\n```\n{user} : The mention of the member that just left your server.\n{user.name} : The name of the member that just left your server.\n{user.tag} : The tag of the member that just left your server.\n{user.createdat} : The account age of the member.\n{user.id} : The ID of the member.\n{numJoins} : Number of joins of the member.\n\n{guild} : Name of the server.\n{guild.count} : Number of members your server has now.\n\n{inviter} : The mention of the inviter.\n{inviter.name} : The name of the inviter.\n{inviter.tag} : The tag of the inviter.\n{inviter.invites} : The total inviter's invites count.\n{inviter.id} : The ID of the inviter.\n\n{invite.code} : The invite code used.\n{invite.url} : The invite url used.\n{invite.uses} : Number of uses of the invite used.\n```\nType `cancel` to abort. {{string}}\n\n\n:pencil: **| Now write the leave message... :pencil2:**",
-    "INSTRUCTIONS_2": ":scroll: **| Now write the leave channel name or mention it... :pencil2:**",
-    "TITLE": "**Done The leave Msg Has Been Setup**",
-    "TEST": "Use `{{prefix}}testleave` to test the new message.",
-    "CHANNEL_NOT_FOUND": "No channel found for `{{channel}}`"
+    "DISABLE": "Nutze `{{prefix}}setleave` um Quit-Nachrichten zu deaktivieren",
+    "INSTRUCTIONS_1": "__**Mehr Informationen**__\n```\n{user} : Die Erwähnung vom Mitglied, welches den Server verließ.\n{user.name} : Der Name vom Mitglied, welches den Server verließ.\n{user.tag} : Der Tag vom Mitglied, welches den Server verließ.\n{user.createdat} : Das Account-Alter vom Mitglied.\n{user.id} : Die ID vom Mitglied.\n{numJoins} : Anzahl an Beitritte vom Mitglied.\n\n{guild} : Name vom Server.\n{guild.count} : Anzahl an Mitglieder vom Server.\n\n{inviter} : Erwähnung vom Mitglied, welches Einladungen verschickt.\n{inviter.name} : Name vom Mitglied, welches Einladungen verschickt.\n{inviter.tag} : Tag vom Mitglied, welches Einladungen verschickt.\n{inviter.invites} : Einladungen vom Mitglied, welches Einladungen verschickt.\n{inviter.id} : ID vom Mitglied, welches Einladungen verschickt.\n\n{invite.code} : Verwendeter Einladungs-Code\n{invite.url} : Verwendeter Einladungs-Link\n{invite.uses} : Anzahl der Verwendungen\n```\nNutze `cancel` um abzubrechen. {{string}}\n\n\n:pencil: **| Nun schreibe die Quit-Nachricht... :pencil2:**",
+    "INSTRUCTIONS_2": ":scroll: **| Nun erwähne den Quit-Nachrichten Kanal... :pencil2:**",
+    "TITLE": "**Fertig. Das Quit-Nachrichten Setup wurde fertiggestellt.**",
+    "TEST": "Nutze `{{prefix}}testleave` um die Nachricht zu testen.",
+    "CHANNEL_NOT_FOUND": "Kein Kanal für `{{channel}}` gefunden"
 }

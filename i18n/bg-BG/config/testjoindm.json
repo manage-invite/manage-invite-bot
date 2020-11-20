@@ -1,0 +1,6 @@
+{
+    "TITLE": ":wrench: Настройки на лично съобщение:",
+    "ENABLED_YES_CONTENT": "{{success}} Личните съобщенията при влизане са активирани. Изключете ги с '{{prefix}}setdmjoin'.",
+    "ENABLED_NO_CONTENT": "{{error}} Личните съобщенията при влизане са изключени. Активирайте ги с '{{prefix}}setdmjoin'.",
+    "MESSAGE_CONTENT": "Няма намерено, настроено съобщение. Настройте го с '{{prefix}}configdmjoin'!"
+}

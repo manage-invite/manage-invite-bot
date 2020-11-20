@@ -1,5 +1,5 @@
 {
-    "PREMIUM": ":crown: | Hey, **{{username}}**! This feature (keep ranks even if the members don't have enough invites) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !",
-    "SUCCESS_ENABLED": "**Now, members __WILL KEEP__ their ranks, even if they don't have enough invites!**",
-    "SUCCESS_DISABLED": "**Now, members  __WON'T KEEP__ their ranks if they don't have enough invites!**"
+    "PREMIUM": ":crown: | Hei, **{{username}}**! Această caracteristică (păstrați rank-uri chiar dacă membrii nu au suficiente invitații) este disponibilă numai pentru serverele premium. Obțineți premium aici: **<https://docs.manage-invite.xyz/configuration/premium>** !",
+    "SUCCESS_ENABLED": "**Acum, membri __WILL KEEP__ rank-urile, chiar daca nu au destule invitatii!**",
+    "SUCCESS_DISABLED": "**Acum, membri __WON'T KEEP__ rank-urile daca nu au destule invitatii!**"
 }

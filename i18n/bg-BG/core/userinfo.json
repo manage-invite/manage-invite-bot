@@ -1,0 +1,20 @@
+{
+    "TITLE": "Профил на {{username}} ({{userID}})",
+    "CREATED_AT_TITLE": "Създаване",
+    "BOT_TITLE": "Робот",
+    "JOINED_AT_TITLE": "Влез",
+    "JOIN_WAY_TITLE": "Присъединете се поради",
+    "JOIN_WAY_OAUTH": "Покана за Oauth (чрез discordapp.com).",
+    "JOIN_WAY_VANITY": "Персонализирана покана, конфигурирана от администратор.",
+    "JOIN_WAY_UNKNOWN": "Не мога да разбера как {{username}} се присъедини към сървъра.",
+    "INVITES_TITLE": "Покани",
+    "JOIN_ORDER_TITLE": "Join Order",
+    "INVITED_TITLE": "Invited users (on the server)",
+    "INVITED_PREMIUM": ":crown: | This feature (view invited users) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !",
+    "NO_INVITED_USERS": "No invited users",
+    "INVITED_USERS_MORE": "{{list}}, and more...",
+    "INVITE_CODES": "Invite Codes",
+    "NO_INVITES": "This user doesn't have any active invite.",
+    "NUMBER_JOINS": "Number of joins",
+    "FIRST_JOIN_WAY_TITLE": "First join due to"
+}

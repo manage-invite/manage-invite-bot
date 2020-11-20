@@ -1,9 +1,9 @@
 {
-    "TITLE": "{{guild}} configuration",
-    "JOIN_TITLE": "{{status}} Join Messages",
-    "JOIN_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}\n> Channel: {{channel}}",
-    "LEAVE_TITLE": "{{status}} Leave Messages",
-    "JOIN_DM_TITLE": "{{status}} Join DM Messages",
-    "JOIN_DM_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}",
-    "CHANNEL_NOT_FOUND": "**channel not found**"
+    "TITLE": "{{guild}} Konfiguration",
+    "JOIN_TITLE": "{{status}} Beitritts Nachrichten",
+    "JOIN_CONTENT": "> Aktiviert: {{enabled}}\n> Nachricht: {{message}}\n> Kanal: {{channel}}",
+    "LEAVE_TITLE": "{{status}} Quit-Nachrichten",
+    "JOIN_DM_TITLE": "{{status}} Beitritts DM Nachrichten",
+    "JOIN_DM_CONTENT": "> Aktiviert: {{enabled}}\n> Nachricht: {{message}}",
+    "CHANNEL_NOT_FOUND": "**Kanal nicht gefunden**"
 }

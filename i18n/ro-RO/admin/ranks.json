@@ -1,7 +1,7 @@
 {
-    "TITLE": "🎯 Roles rewards",
-    "RANK": "{{rank}} (**{{invites}}** invites)",
-    "NO_RANK_TITLE": "🎯 No role",
-    "NO_RANK_CONTENT": "To add a role reward (added when a member reach a certain number of invites), write `{{prefix}}addrank number @role`!",
-    "VIEW_CONF": "View the configuration on the dashboard"
+    "TITLE": "🎯 Recompensele rolurilor",
+    "RANK": "{{rank}} (**{{invites}}** invitatii)",
+    "NO_RANK_TITLE": "🎯 Nici un rol",
+    "NO_RANK_CONTENT": "Pentru a adăuga o recompensă de rol (adăugat când un membru ajunge la un anumit număr de invitații), scrie `{{prefix}}addrank numar @rol`!",
+    "VIEW_CONF": "Vizualizați configurația de pe tabloul de bord"
 }

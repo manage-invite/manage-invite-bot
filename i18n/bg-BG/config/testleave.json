@@ -1,0 +1,11 @@
+{
+    "TITLE": ":wrench: Настройката на съобщенията при излизане:",
+    "DESCRIPTION": "Ако не работи, проверете разрешенията на бота или влезте в нашия [помощен сървър]({{discord}})",
+    "ENABLED_TITLE": ">Активирано:",
+    "ENABLED_YES_CONTENT": "{{success}} Съобщенията при излизане са активирани. Изключете ги с '{{prefix}}setleave'.",
+    "ENABLED_NO_CONTENT": "{{error}} Съобщенията при излизане са изключени. Активирайте ги с '{{prefix}}setleave'.",
+    "CHANNEL_TITLE": ">Канал",
+    "CHANNEL_CONTENT": "Няма намерен канал. Настройте го с '{{prefix}}configleave'!",
+    "MESSAGE": "> Съобщение:",
+    "MESSAGE_CONTENT": "Няма намерено, настроено съобщение. Настройте го с '{{prefix}}configleave'!"
+}

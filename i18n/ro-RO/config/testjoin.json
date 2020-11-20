@@ -1,7 +1,7 @@
 {
-    "TITLE": ":wrench: Join system :",
-    "ENABLED_YES_CONTENT": "{{success}} Join messages enabled. Disable them with `{{prefix}}setjoin`.",
-    "ENABLED_NO_CONTENT": "{{error}} Join messages disabled. Enable them with `{{prefix}}setjoin`.",
-    "CHANNEL_CONTENT": "No channel defined. Set it with `{{prefix}}configjoin`!",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configjoin`!"
+    "TITLE": ":wrench: Sistem de intrare :",
+    "ENABLED_YES_CONTENT": "{{success}} Mesajele de intrare au fost activate. Dezactiveaza-le cu `{{prefix}}setjoin`.",
+    "ENABLED_NO_CONTENT": "{{error}} Mesajele de intrare au fost dezactivate. Activeaza-le cu `{{prefix}}setjoin`.",
+    "CHANNEL_CONTENT": "Niciun canal definit. Seteaza-l cu `{{prefix}}configjoin`!",
+    "MESSAGE_CONTENT": "Niciun mesaj definit. Seteaza-l cu `{{prefix}}configjoin`!"
 }

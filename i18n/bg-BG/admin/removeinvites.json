@@ -1,0 +1,9 @@
+{
+    "CONFIRMATION": "{{success}} Напишете '-confirm' , за да потвърдите.\n{{error}} Напишете 'cancel' , за да откажете.",
+    "CONFIRMATION_MEMBER": "Сигурни ли сте, че искате всички покани на **{{username}}**?\n\n{{success}} Напишете '-confirm' , за да потвърдите.\n{{error}} Напишете 'cancel' , за да откажете.",
+    "LOADING": "{{loading}} | Изтриване на поканите от дадения потребител.... Може да ги възвърнете с командата '{{prefix}}restore-invites'!",
+    "LOADING_MEMBER": "{{loading}} Изтриване на конкретните покани от **{{username}}**... Може да ги възвърнете с командата '{{prefix}}restore-invites {{username}}'!",
+    "TITLE": "☄️Поканите са реинициализирани отново",
+    "DESCRIPTION": "{{success}} | Поканите в сървъра са реинициализирани! Може да ги възвърнете с командата '{{prefix}}restore-invites'!",
+    "DESCRIPTION_MEMBER": "{{success}} | Поканите на **{{username}}** са реинициализирани! Може да ги възтановите с командата `{{prefix}}restore-invites {{username}}`!"
+}

@@ -1,7 +1,7 @@
 {
-    "TITLE": ":wrench: Join system :",
-    "ENABLED_YES_CONTENT": "{{success}} Join messages enabled. Disable them with `{{prefix}}setjoin`.",
-    "ENABLED_NO_CONTENT": "{{error}} Join messages disabled. Enable them with `{{prefix}}setjoin`.",
-    "CHANNEL_CONTENT": "No channel defined. Set it with `{{prefix}}configjoin`!",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configjoin`!"
+    "TITLE": ":wrench: Beitritts System :",
+    "ENABLED_YES_CONTENT": "{{success}} Beitritts Nachrichten aktiviert. Deaktiviere sie mit `{{prefix}}setjoin`.",
+    "ENABLED_NO_CONTENT": "{{error}} Beitritts Nachrichten deaktiviert. Aktiviere sie mit `{{prefix}}setjoin`.",
+    "CHANNEL_CONTENT": "Kein Kanal gesetzt. Setze ihn mit `{{prefix}}configjoin`!",
+    "MESSAGE_CONTENT": "Keine Nachricht gesetzt. Setze sie mit `{{prefix}}configjoin`!"
 }

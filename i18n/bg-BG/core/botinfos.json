@@ -1,0 +1,10 @@
+{
+    "TITLE": "На {{username}} статистиките",
+    "STATS_TITLE": "📊Статистики",
+    "STATS_CONTENT": "`Сървъри: {{guilds}}`\n`Потребители: {{users}}`",
+    "VERSIONS_TITLE": "⚙️ Версии",
+    "VERSIONS_CONTENT": "`Discord: {{discord}}`\n`Node: {{node}}`",
+    "SHARD_TITLE": "{{online}} Shard #{{shardID}}",
+    "SHARD_TITLE_CURRENT": "{{online}} Shard #{{shardID}} (текуща)",
+    "SHARD_CONTENT": "`{{guilds}}` сървъри\n`{{ping}}` пинг\n`{{ram}}` МБ рам\n`{{cachedMembers}}` кеширани потребители\n`{{cachedGuilds}}` кеширани гилди"
+}

@@ -1,5 +1,5 @@
 {
-    "AUTHOR_CONTENT": "You have **{{inviteCount}}** invites! (**{{regularCount}}** regular, **{{bonusCount}}** bonus, **{{fakeCount}}** fake, **{{leavesCount}}** leaves)",
-    "AUTHOR_NEXT_RANK": "You need **{{neededCount}}** more invites to get the next rank: **{{rankName}}**!",
-    "MEMBER_CONTENT": "**{{username}}** has **{{inviteCount}}** invites! (**{{regularCount}}** regular, **{{bonusCount}}** bonus, **{{fakeCount}}** fake, **{{leavesCount}}** leaves)"
+    "AUTHOR_CONTENT": "Tu ai **{{inviteCount}}** invitatii! (**{{regularCount}}** normale, **{{bonusCount}}** bonus, **{{fakeCount}}** false, **{{leavesCount}}** iesiri)",
+    "AUTHOR_NEXT_RANK": "Ai nevoie de inca **{{neededCount}}** invitatii pentru a lua rank-ul urmator: **{{rankName}}**!",
+    "MEMBER_CONTENT": "**{{username}}** are **{{inviteCount}}** invitatii! (**{{regularCount}}** normale, **{{bonusCount}}** bonus, **{{fakeCount}}** false, **{{leavesCount}}** iesiri)"
 }
