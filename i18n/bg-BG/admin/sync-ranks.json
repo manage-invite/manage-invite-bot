@@ -1,8 +1,8 @@
 {
-    "CONFIRM": "Are you sure you want to synchronize the member ranks? It can take a long time depending on the size of your server.\n\n{{success}} Type `-confirm` to confirm.\n{{error}} Type `cancel` to abort.",
-    "STARTED": "Synchronization of member ranks started... Note: you can cancel it using `{{prefix}}sync-ranks cancel`.",
-    "CANCELLED": "Synchronization of member ranks cancelled.",
-    "SUCCESS": "Synchronization of member ranks is complete.",
-    "RUNNING": "Synchronization of member ranks is in progress. Note: you can cancel it using `{{prefix}}sync-ranks cancel`.",
-    "BEING_CANCELLED": "Synchronization of member ranks is being cancelled..."
+    "CONFIRM": "Сигурни ли сте, че искате да синхронизирате потребителите ранковете? Това може да отнеме дълго време, зависи от големината на Вашият сървър.\n\n{{success}} Напишете '-confirm' , за да потвърдите.\n{{error}} Напишете 'cancel' , за да откажете.",
+    "STARTED": "Синхронизирането на потребителските ранкове започна... Бележка: може да откажете, използвайки '{{prefix}}sync-ranks cancel'.",
+    "CANCELLED": "Синхронизирането на потребителските ранкове е отказано.",
+    "SUCCESS": "Синхронизирането на потребителските ранкове е завършено.",
+    "RUNNING": "Синхронизирането на потребителските ранкове е в процес... Бележка: може да откажете, използвайки '{{prefix}}sync-ranks cancel'.",
+    "BEING_CANCELLED": "Синхронизирането на потребителските ранкове е отказано..."
 }
