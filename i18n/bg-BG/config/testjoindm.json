@@ -1,6 +1,6 @@
 {
-    "TITLE": ":wrench: DM Join system :",
-    "ENABLED_YES_CONTENT": "{{success}} Join messages in dm enabled. Disable them with `{{prefix}}setdmjoin`.",
-    "ENABLED_NO_CONTENT": "{{error}} Join messages in dm disabled. Enable them with `{{prefix}}setdmjoin`.",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configdm`!"
+    "TITLE": ":wrench: Настройки на лично съобщение:",
+    "ENABLED_YES_CONTENT": "{{success}} Личните съобщенията при влизане са активирани. Изключете ги с '{{prefix}}setdmjoin'.",
+    "ENABLED_NO_CONTENT": "{{error}} Личните съобщенията при влизане са изключени. Активирайте ги с '{{prefix}}setdmjoin'.",
+    "MESSAGE_CONTENT": "Няма намерено, настроено съобщение. Настройте го с '{{prefix}}configdmjoin'!"
 }
