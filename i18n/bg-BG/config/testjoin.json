@@ -1,7 +1,7 @@
 {
-    "TITLE": ":wrench: Join system :",
-    "ENABLED_YES_CONTENT": "{{success}} Join messages enabled. Disable them with `{{prefix}}setjoin`.",
-    "ENABLED_NO_CONTENT": "{{error}} Join messages disabled. Enable them with `{{prefix}}setjoin`.",
-    "CHANNEL_CONTENT": "No channel defined. Set it with `{{prefix}}configjoin`!",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configjoin`!"
+    "TITLE": ":wrench: Настройката на съобщенията при влизане:",
+    "ENABLED_YES_CONTENT": "{{success}} Съобщенията при влизане са активирани. Изключете ги с '{{prefix}}setjoin'.",
+    "ENABLED_NO_CONTENT": "{{error}} Съобщенията при влизане са изключени. Активирайте ги с '{{prefix}}setjoin'.",
+    "CHANNEL_CONTENT": "Няма намерен канал. Настройте го с '{{prefix}}configjoin'!",
+    "MESSAGE_CONTENT": "Няма намерено, настроено съобщение. Настройте го с '{{prefix}}configjoin'!"
 }
