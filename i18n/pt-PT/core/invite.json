@@ -1,5 +1,5 @@
 {
     "AUTHOR_CONTENT": "Você tem **{{inviteCount}}** convites! (**{{regularCount}}** normais, **{{bonusCount}}** bónus, **{{fakeCount}}** falsos, **{{leavesCount}}** saídas)",
-    "AUTHOR_NEXT_RANK": "Você precisa **{{neededCount}}** mais invites para conseguir o próximo rank: **{{rankName}}**!",
+    "AUTHOR_NEXT_RANK": "Você precisa de mais **{{neededCount}}** para conseguir o próximo rank: **{{rankName}}**!",
     "MEMBER_CONTENT": "**{{username}}** tem **{{inviteCount}}** convites! (**{{regularCount}}** normais, **{{bonusCount}}** bónus, **{{fakeCount}}** falsos, **{{leavesCount}}** saídas)"
 }
