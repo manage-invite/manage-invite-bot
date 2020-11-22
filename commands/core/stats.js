@@ -34,8 +34,8 @@ module.exports = class extends Command {
         numberOfDays = parseInt(numberOfDays);
         if (numberOfDays <= 1 || numberOfDays > 1000) return message.error("core/stats:INVALID");
 
-        const members = await message.guild.members.fetch();
-        const joinedXDays = this.client.functions.joinedXDays(numberOfDays, members);
+        await message.guild.members.fetch();
+        const joinedXDays = this.client.functions.joinedXDays(numberOfDays, message.guild.members);
         const lastXDays = this.client.functions.lastXDays(numberOfDays, message.translate("core/stats:months", {
             returnObjects: true
         }));

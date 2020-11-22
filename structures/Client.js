@@ -88,7 +88,7 @@ class ManageInvite extends Client {
         }
         // Try username search
         if (search.match(/^!?([^#]+)#(\d+)$/)){
-            guild = await guild.members.fetch();
+            await guild.members.fetch();
             member = guild.members.cache.find((m) => m.user.tag === search);
             if (member) return member;
         }
