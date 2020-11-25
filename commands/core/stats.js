@@ -67,7 +67,7 @@ module.exports = class extends Command {
         embed.attachFiles(attachment);
         embed.setImage("attachment://image.png");
         const total = joinedXDays.reduce((p, c) => p+c);
-        const percent = Math.round((100*total)/members.size);
+        const percent = Math.round((100*total)/message.guild.members.cache.size);
         const daysRange = [lastXDays.shift(), lastXDays.pop()];
         embed.addField("\u200B", message.translate("core/stats:CONTENT", {
             total,
