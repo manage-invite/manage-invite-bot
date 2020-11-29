@@ -54,7 +54,7 @@ module.exports = class {
                     INNER JOIN subscriptions_payments sp ON sp.sub_id = s.id
                     INNER JOIN payments p ON p.id = sp.payment_id
                     AND s.expires_at < now() - interval '3 days'
-                    AND s.expires_at > now() - interval '10 days'
+                    AND s.expires_at > now() - interval '5 days'
                     AND gs.guild_id NOT IN (
                         SELECT guild_id FROM guilds_subscriptions gs
                         INNER JOIN subscriptions s ON gs.sub_id = s.id
