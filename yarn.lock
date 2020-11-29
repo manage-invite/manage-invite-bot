@@ -646,10 +646,10 @@ detect-libc@^1.0.2:
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
   integrity sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
 
-discord-paginationembed@^2.0.0-beta.4:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/discord-paginationembed/-/discord-paginationembed-2.0.0.tgz#4e4cc12aa12672d1d958c931654ab0f4f928c38d"
-  integrity sha512-nXwcalPPB/xAcnlySifmicvTZB02ORfkCoNCr/IDFfw+j5vkZ3W7Ypuxnm26//lZ9pUh5Gf+BYdMtZVutoCJmA==
+discord-paginationembed@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/discord-paginationembed/-/discord-paginationembed-2.1.0.tgz#76fde11650645262301cb5cf0ce080e76cd8d989"
+  integrity sha512-a89oag1wm42MNiwwMO2U/NCOh3TFd8VkL3duUB18g4dTIqG6leXIKmgze8ZOALfdpXsvFyhC7Ox45CUa1TIsFA==
 
 "discord.js@git://github.com/discordjs/discord.js.git#b8fd3f65d964f080afb42dd37eb21a13c0d84f8f":
   version "12.4.1"
