@@ -68,7 +68,7 @@ module.exports = class {
                 rows = rows.filter((r) => !paymentsReminds.some((pr) => pr.sub_id === r.sub_id && pr.last_payment_id === r.payment_id));
                 console.log(`Envoi de ${rows.length} notifications`);
                 rows.forEach(async (row) => {
-                    const user = await this.client.users.fetch("422820341791064085");
+                    const user = await this.client.users.fetch(row.payer_discord_id);
                     const guildNames = await this.client.shard.broadcastEval(`
                         let guild = this.guilds.cache.get('${row.guild_id}');
                         if(guild) guild.name;
