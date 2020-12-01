@@ -19,7 +19,7 @@ module.exports = class extends Command {
         const action = args[0];
         switch (action){
         case "add": {
-            const user = message.mentions.users.first() || await this.client.users.fetch(args[0]).catch(() => {});
+            const user = message.mentions.users.first() || await this.client.users.fetch(args[1]).catch(() => {});
             if (!user) return message.error("admin/blacklist:MISSING_MEMBER_ADD");
             if (data.guild.blacklistedUsers.includes(user.id)) return message.error("admin/blacklist:ALREADY_BLACKLISTED", {
                 username: user.tag
