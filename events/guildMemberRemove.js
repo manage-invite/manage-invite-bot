@@ -27,20 +27,20 @@ module.exports = class {
         // Update member invites
         if (inviter){
             if (guildData.blacklistedUsers.includes(inviter.id)) return;
+            inviterData.leaves++;
+            await inviterData.updateInvites();
+            await this.client.database.createEvent({
+                userID: member.id,
+                guildID: member.guild.id,
+                eventType: "leave",
+                eventDate: new Date()
+            });
             const inviterMember = member.guild.members.cache.get(inviter.id) ?? await member.guild.members.fetch({
                 user: inviter.id,
                 cache: true
             });
             if (inviterMember){
-                inviterData.leaves++;
                 await this.client.functions.assignRanks(inviterMember, inviterData.calculatedInvites, guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
-                await inviterData.updateInvites();
-                await this.client.database.createEvent({
-                    userID: member.id,
-                    guildID: member.guild.id,
-                    eventType: "leave",
-                    eventDate: new Date()
-                });
             }
         }
 
