@@ -20,5 +20,5 @@
   "NEED_UPGRADE": "{{emote}} | Hello, **{{username}}**! Your server need to be upgraded to use **ManageInvite**! We have managed to reduce latency to create a fast and powerful bot for servers that want a 100% reliable bot. To get more informations, you can join the support server ( {{discord}} ) or connect to the dashboard **<https://dash.manage-invite.xyz>**!",
   "PLEASE_WAIT": "{{loading}} | Đợi xíu...",
   "WRONG_CHANNEL": "Commands are not allowed in this channel, please use {{channel}} instead.",
-  "COOLDOWNED": "{{emote}} Please wait the cooldown (**{{remainingSeconds}} seconds**) and try again!"
+  "COOLDOWNED": "{{emote}} | Please wait **{{remainingSeconds}} seconds** and try again!"
 }
