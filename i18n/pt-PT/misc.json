@@ -19,5 +19,6 @@
   "USER_MISSING_PERMISSIONS": "Este comando requer o nível de permissão: `{{level}}`!",
   "NEED_UPGRADE": "{{emote}} | Olá, **{{username}}**! O seu servidor precisa ser atualizado para usar o **ManageInvite**! Conseguimos reduzir a latência para criar um bot rápido e poderoso para servidores que desejam um bot 100% confiável. Para obter mais informações, você pode entrar no servidor de suporte ({{discord}}) ou conectar-se ao painel **<https://dash.manage-invite.xyz>**!",
   "PLEASE_WAIT": "{{loading}} | Por favor espere...",
-  "WRONG_CHANNEL": "Comandos não são permitidos neste canal, por favor, use {{channel}} ao invés."
+  "WRONG_CHANNEL": "Comandos não são permitidos neste canal, por favor, use {{channel}} ao invés.",
+  "COOLDOWNED": "{{emote}} Please wait the cooldown (**{{remainingSeconds}} seconds**) and try again!"
 }
