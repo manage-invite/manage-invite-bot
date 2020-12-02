@@ -651,9 +651,10 @@ discord-paginationembed@^2.1.0:
   resolved "https://registry.yarnpkg.com/discord-paginationembed/-/discord-paginationembed-2.1.0.tgz#76fde11650645262301cb5cf0ce080e76cd8d989"
   integrity sha512-a89oag1wm42MNiwwMO2U/NCOh3TFd8VkL3duUB18g4dTIqG6leXIKmgze8ZOALfdpXsvFyhC7Ox45CUa1TIsFA==
 
-"discord.js@git://github.com/discordjs/discord.js.git#b8fd3f65d964f080afb42dd37eb21a13c0d84f8f":
-  version "12.4.1"
-  resolved "git://github.com/discordjs/discord.js.git#b8fd3f65d964f080afb42dd37eb21a13c0d84f8f"
+discord.js@^12.5.1:
+  version "12.5.1"
+  resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-12.5.1.tgz#992b45753e3815526a279914ccc281d3496f5990"
+  integrity sha512-VwZkVaUAIOB9mKdca0I5MefPMTQJTNg0qdgi1huF3iwsFwJ0L5s/Y69AQe+iPmjuV6j9rtKoG0Ta0n9vgEIL6w==
   dependencies:
     "@discordjs/collection" "^0.1.6"
     "@discordjs/form-data" "^3.0.1"
