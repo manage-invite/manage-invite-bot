@@ -19,5 +19,6 @@
   "USER_MISSING_PERMISSIONS": "Această comandă necesită nivelul de permisiune: `{{level}}`!",
   "NEED_UPGRADE": "{{emote}} | Salut, **{{username}}**! Serverul dvs. trebuie să fie actualizat pentru a utiliza **ManageInvite**! Am reușit să reducem latența pentru a crea un bot rapid și puternic pentru serverele care doresc un bot 100% de încredere. Pentru a obține mai multe informații, vă puteți alătura serverului de asistență ( {{discord}} ) sau sa va conectati panoului de bord **<https://dash.manage-invite.xyz>**!",
   "PLEASE_WAIT": "{{loading}} | Te rog asteapta...",
-  "WRONG_CHANNEL": "Comenzile nu sunt permise în acest canal, vă rugăm să le utilizați {{channel}} in schimb."
+  "WRONG_CHANNEL": "Comenzile nu sunt permise în acest canal, vă rugăm să le utilizați {{channel}} in schimb.",
+  "COOLDOWNED": "{{emote}} Please wait the cooldown (**{{remainingSeconds}} seconds**) and try again!"
 }
