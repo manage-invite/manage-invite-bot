@@ -20,7 +20,7 @@ module.exports = class extends Command {
             aliases: [ "joins" ],
             clientPermissions: [ "EMBED_LINKS" ],
             permLevel: 0,
-            cooldown: (message, args) => !isNaN(args[0]) ? ((parseInt(args[0]) >= 1000 ? 1000 : parseInt(args[0])) / 100) : 0
+            cooldown: (message, args) => parseInt(!isNaN(args[0]) ? ((parseInt(args[0]) >= 1000 ? 1000 : parseInt(args[0])) / 100) : 0)
         });
     }
 
