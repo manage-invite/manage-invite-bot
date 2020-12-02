@@ -1,4 +1,7 @@
+const Discord = require("discord.js");
 const Constants = require("../Constants");
+
+const cooldownedUsers = new Discord.Collection();
 
 module.exports = class {
 
@@ -43,31 +46,7 @@ module.exports = class {
         if (!cmd) return;
         else message.cmd = cmd;
 
-        /* Client permissions */
-        const neededPermissions = [];
-        cmd.conf.clientPermissions.forEach((permission) => {
-            if (!message.channel.permissionsFor(message.guild.me).has(permission)) {
-                neededPermissions.push(permission);
-            }
-        });
-        if (neededPermissions.length > 0) {
-            return message.error("misc:BOT_MISSING_PERMISSIONS", {
-                permissions: neededPermissions.map((p) => "`"+p+"`").join(", ")
-            });
-        }
-
-        /* Command disabled */
-        if (!cmd.conf.enabled){
-            return message.error("misc:COMMAND_DISABLED");
-        }
-
-        /* User permissions */
         const permLevel = await this.client.getLevel(message);
-        if (permLevel < cmd.conf.permLevel){
-            return message.error("misc:USER_MISSING_PERMISSIONS", {
-                level: this.client.permLevels[cmd.conf.permLevel].name
-            });
-        }
 
         if (!data.guild.premium && permLevel < 4){
             return message.sendT("misc:NEED_UPGRADE", {
@@ -83,6 +62,47 @@ module.exports = class {
                 channel: `<#${data.guild.cmdChannel}>`
             })).catch(() => {});
         }
+
+        if (!cmd.conf.enabled){
+            return message.error("misc:COMMAND_DISABLED");
+        }
+
+        /* Client permissions */
+        const neededPermissions = [];
+        cmd.conf.clientPermissions.forEach((permission) => {
+            if (!message.channel.permissionsFor(message.guild.me).has(permission)) {
+                neededPermissions.push(permission);
+            }
+        });
+        if (neededPermissions.length > 0) {
+            return message.error("misc:BOT_MISSING_PERMISSIONS", {
+                permissions: neededPermissions.map((p) => "`"+p+"`").join(", ")
+            });
+        }
+
+        /* User permissions */
+        if (permLevel < cmd.conf.permLevel){
+            return message.error("misc:USER_MISSING_PERMISSIONS", {
+                level: this.client.permLevels[cmd.conf.permLevel].name
+            });
+        }
+        
+        const userKey = `${message.author.id}${message.guild.id}`;
+        const cooldownTime = cooldownedUsers.get(userKey);
+        const currentDate = parseInt(Date.now()/1000);
+        if (cooldownTime) {
+            const isExpired = cooldownTime <= currentDate;
+            const remainingSeconds = cooldownTime - currentDate;
+            if (!isExpired) {
+                return message.sendT("misc:COOLDOWNED", {
+                    remainingSeconds,
+                    emote: "<:atlanta_time:598169056125911040>"
+                });
+            }
+        }
+
+        const cooldown = cmd.conf.cooldown(message, args);
+        cooldownedUsers.set(userKey, cooldown + currentDate);
 
         this.client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name} (${Date.now()-startAt}ms)`, "cmd");
 

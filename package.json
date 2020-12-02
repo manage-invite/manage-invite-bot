@@ -12,7 +12,7 @@
     "cron": "^1.8.2",
     "date-and-time": "^0.14.0",
     "discord-paginationembed": "^2.1.0",
-    "discord.js": "git://github.com/discordjs/discord.js.git#b8fd3f65d964f080afb42dd37eb21a13c0d84f8f",
+    "discord.js": "^12.5.1",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",

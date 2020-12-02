@@ -4,11 +4,12 @@ module.exports = class Command {
         enabled = true,
         aliases = new Array(),
         clientPermissions = new Array(),
-        permLevel = "Owner"
+        permLevel = "Owner",
+        cooldown = () => 0
     })
     {
         this.client = client;
-        this.conf = { enabled, aliases, permLevel, clientPermissions };
+        this.conf = { enabled, aliases, permLevel, clientPermissions, cooldown };
         this.help = { name };
     }
 };

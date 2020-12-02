@@ -19,7 +19,8 @@ module.exports = class extends Command {
             enabled: true,
             aliases: [ "joins" ],
             clientPermissions: [ "EMBED_LINKS" ],
-            permLevel: 0
+            permLevel: 0,
+            cooldown: (message, args) => !isNaN(args[0]) ? parseInt(args[0]) / 100 : 0
         });
     }
 
