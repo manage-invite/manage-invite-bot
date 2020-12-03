@@ -95,7 +95,7 @@ module.exports = class {
                         `);
                     });
                 });
-            });
+            }, null, true, "America/Logs_Angeles");
             new CronJob("0 */15 * * * *", async () => {
                 const results = await this.client.shard.broadcastEval(() => {
                     const commandsRan = this.commandsRan;
