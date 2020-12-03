@@ -46,7 +46,7 @@ module.exports = class {
 
         if (this.client.shard.ids.includes(0) && !this.client.spawned){
             this.client.dash.load(this.client);
-            new CronJob("0 0 0 * * *", async () => {
+            new CronJob("0 5 0 * * *", async () => {
                 // tous les abonnements qui ont expiré il y a trois jours au moins
                 this.client.database.query(`
                     SELECT * FROM (
@@ -95,7 +95,7 @@ module.exports = class {
                         `);
                     });
                 });
-            }, null, true, "America/Logs_Angeles");
+            }, null, true, "America/Los_Angeles");
             new CronJob("0 */15 * * * *", async () => {
                 const results = await this.client.shard.broadcastEval(() => {
                     const commandsRan = this.commandsRan;
