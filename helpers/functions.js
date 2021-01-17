@@ -273,7 +273,11 @@ const isEqual = (value, other) => {
  * @param {string} locale 
  */
 const formatDate = (dateToFormat, format, locale) => {
-    if (locale !== "en-US") require("date-and-time/locale/"+locale.substr(0, 2));
+    try {
+        if (locale !== "en-US") require("date-and-time/locale/"+locale.substr(0, 2));
+    } catch (e) {
+        locale = "en-US";
+    }
     date.locale(locale.substr(0, 2));
     return date.format(dateToFormat, format);
 };
