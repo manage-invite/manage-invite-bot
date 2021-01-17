@@ -10,7 +10,7 @@
     "chart.js": "^2.9.3",
     "chartjs-node-canvas": "^3.0.6",
     "cron": "^1.8.2",
-    "date-and-time": "^0.14.0",
+    "date-and-time": "^0.14.2",
     "discord-paginationembed": "^2.1.0",
     "discord.js": "^12.5.1",
     "ejs": "^3.1.5",
