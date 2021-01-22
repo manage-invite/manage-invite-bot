@@ -19,5 +19,6 @@
   "USER_MISSING_PERMISSIONS": "Dieser Befehl erfordert das Berechtigungs Level: `{{level}}`!",
   "NEED_UPGRADE": "{{emote}} | Hello, **{{username}}**! Dein Server muss upgegraded werden um **ManageInvite** zu benutzen! Wir haben es geschafft, die Verzögerung zu reduzieren, um einen schnellen und leistungsstarken Bot für Server zu erstellen, die einen 100% zuverlässigen Bot wollen. Für mehr Informationen, kannst du dem Support Server ( {{discord}} ) beitreten oder verbinde dich mit dem Dashboard **<https://dash.manage-invite.xyz>**!",
   "PLEASE_WAIT": "{{loading}} | Bitte warten...",
-  "WRONG_CHANNEL": "Befehle sind in diesem Kanal nicht erlaubt, bitte benutze {{channel}} stattdessen."
+  "WRONG_CHANNEL": "Befehle sind in diesem Kanal nicht erlaubt, bitte benutze {{channel}} stattdessen.",
+  "COOLDOWNED": "{{emote}} | Please wait **{{remainingSeconds}} seconds** and try again!"
 }
