@@ -12,6 +12,7 @@ class ManageInvite extends Client {
         // Config
         this.config = require("../config"); // Load the config file
         this.permLevels = require("../helpers/permissions"); // Load permissions file
+        this.enabledLanguages = require("../languages.json"); // Load languages file
         // Commands
         this.commands = new Collection(); // Creates new commands collection
         this.aliases = new Collection(); // Creates new command aliases collection

@@ -81,8 +81,8 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         if (Object.prototype.hasOwnProperty.call(data, "prefix") && data.prefix && data.prefix !== guildData.prefix){
             await guildData.setPrefix(data.prefix);
         }
-        if (Object.prototype.hasOwnProperty.call(data, "language") && req.client.config.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(data.language.toLowerCase()))){
-            const language = req.client.config.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(data.language.toLowerCase()));
+        if (Object.prototype.hasOwnProperty.call(data, "language") && req.client.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(data.language.toLowerCase()))){
+            const language = req.client.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(data.language.toLowerCase()));
             if (language.name !== guildData.language) await guildData.setLanguage(language.name);
         }
     }

@@ -22,7 +22,7 @@ module.exports = class Guild {
         };
 
         // Guild language
-        this.language = data.guild_language || this.handler.client.config.enabledLanguages.find((language) => language.default).name;
+        this.language = data.guild_language || this.handler.client.enabledLanguages.find((language) => language.default).name;
         // Guild prefix
         this.prefix = data.guild_prefix || "+";
         // Guild keep ranks

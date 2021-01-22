@@ -508,7 +508,7 @@ module.exports = class DatabaseHandler {
                 const guildsNotCreated = guildsToFetch.filter((g) => !guildsData.some((gd) => gd.guild_id === g));
                 if (guildsNotCreated.length > 0){
                     const values = guildsNotCreated.map((g) => {
-                        return `('${g}', '${this.client.config.prefix}', '${this.client.config.enabledLanguages.find((l) => l.default).name}', false, false)`;
+                        return `('${g}', '${this.client.config.prefix}', '${this.client.enabledLanguages.find((l) => l.default).name}', false, false)`;
                     }).join(", ");
                     // Insert guilds
                     const { rows: createdGuildsData } = await this.query(`
