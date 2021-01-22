@@ -54,5 +54,12 @@
         "flag": ":flag_ro:",
         "default": false,
         "aliases": ["Romanian","ro","ro_ro"]
+    },
+    {
+        "name": "de-DE",
+        "nativeName": "Deutsch",
+        "flag": ":flag_de:",
+        "default": false,
+        "aliases": ["German", "de", "de_de"]
     }
 ]
