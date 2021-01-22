@@ -9,7 +9,8 @@ module.exports  = class extends Command {
             enabled: true,
             aliases: [ "top", "lb" ],
             clientPermissions: [ "EMBED_LINKS", "ADD_REACTIONS", "MANAGE_MESSAGES" ],
-            permLevel: 0
+            permLevel: 0,
+            cooldown: () => 5
         });
     }
 

@@ -40,8 +40,8 @@ module.exports = class extends Command {
                 edit: true
             });
 
-            const guild = await message.guild.members.fetch();
-            const members = guild.members.cache.array();
+            await message.guild.members.fetch();
+            const members = message.guild.members.cache.array();
 
             this.client.syncRanksTasks[message.guild.id] = {
                 now: 10,

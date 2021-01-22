@@ -149,6 +149,28 @@ module.exports = {
                 "pt",
                 "pt_pt"
             ]
+        },
+        {
+            name: "bg-BG",
+            nativeName: "български",
+            flag: ":flag_bg:",
+            default: false,
+            aliases: [
+                "Bulgarian",
+                "bg",
+                "bg_bg"
+            ]
+        },
+        {
+            name: "ro-RO",
+            nativeName: "Română",
+            flag: ":flag_ro:",
+            default: false,
+            aliases: [
+                "Romanian",
+                "ro",
+                "ro_ro"
+            ]
         }
     ]
 };

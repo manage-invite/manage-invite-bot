@@ -1,4 +1,5 @@
 const CronJob = require("cron").CronJob;
+const Discord = require("discord.js");
 
 module.exports = class {
     constructor (client) {
@@ -45,6 +46,56 @@ module.exports = class {
 
         if (this.client.shard.ids.includes(0) && !this.client.spawned){
             this.client.dash.load(this.client);
+            new CronJob("0 5 0 * * *", async () => {
+                // tous les abonnements qui ont expiré il y a trois jours au moins
+                this.client.database.query(`
+                    SELECT * FROM (
+                        SELECT distinct on (s.id) s.id as sub_id, p.id as payment_id, p.type, gs.guild_id, p.payer_discord_id, p.payer_discord_username, s.sub_label, s.expires_at, p.details FROM guilds_subscriptions gs
+                        INNER JOIN subscriptions s ON s.id = gs.sub_id
+                        INNER JOIN subscriptions_payments sp ON sp.sub_id = s.id
+                        INNER JOIN payments p ON p.id = sp.payment_id
+                        AND s.expires_at < now() - interval '3 days'
+                        AND s.expires_at > now() - interval '5 days'
+                        AND gs.guild_id NOT IN (
+                            SELECT guild_id FROM guilds_subscriptions gs
+                            INNER JOIN subscriptions s ON gs.sub_id = s.id
+                            WHERE s.expires_at >= now()
+                        )
+                        ORDER BY s.id, p.created_at
+                    ) p_join WHERE payment_id NOT IN (
+                        SELECT last_payment_id FROM payments_reminds
+                    )
+                `).then(async ({ rows }) => {
+                    console.log(`Envoi de ${rows.length} notifications`);
+                    rows.forEach(async (row) => {
+                        const user = await this.client.users.fetch(row.payer_discord_id);
+                        const guildNames = await this.client.shard.broadcastEval(`
+                            let guild = this.guilds.cache.get('${row.guild_id}');
+                            if(guild) guild.name;
+                        `);
+                        const guildNameFound = guildNames.find((r) => r);
+                        if (!guildNameFound) {
+                            return this.client.database.query(`
+                                INSERT INTO payments_reminds
+                                (last_payment_id, sub_id, success_sent, bot_kicked) VALUES
+                                ('${row.payment_id}', '${row.sub_id}', false, true)
+                            `);
+                        }
+                        const beg = row.sub_label === "Trial Version" ? "Your trial period" : "Your premium subscription";
+                        const embed = new Discord.MessageEmbed()
+                            .setAuthor(`Hello, ${user.username}`)
+                            .setDescription(`${beg} for **${guildNameFound}** expires in 72 hours! Click [here](https://dash.manage-invite.xyz/manage/${row.guild_id}/createsub) to continue to use the bot, the price is $2 per month.`)
+                            .setColor(this.client.config.color)
+                            .setFooter(this.client.config.footer);
+                        const send = () => new Promise((resolve) => user.send(embed).then(resolve(true)).catch(resolve(false)));
+                        this.client.database.query(`
+                            INSERT INTO payments_reminds
+                            (last_payment_id, sub_id, success_sent, bot_kicked) VALUES
+                            ('${row.payment_id}', '${row.sub_id}', ${await send()}, false)
+                        `);
+                    });
+                });
+            }, null, true, "America/Los_Angeles");
             new CronJob("0 */15 * * * *", async () => {
                 const results = await this.client.shard.broadcastEval(() => {
                     const commandsRan = this.commandsRan;
