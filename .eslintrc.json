@@ -48,6 +48,7 @@
                 "after": true
             }
         ],
+        "quote-props": ["error", "as-needed"],
         "require-atomic-updates": 0,
         "no-async-promise-executor": 0
     }

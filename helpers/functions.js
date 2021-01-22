@@ -150,7 +150,7 @@ const postTopStats = async (client) => {
     const shard_id = client.shard.ids[0];
     const shard_count = client.shard.count;
     const server_count = client.guilds.cache.size;
-    const headers = { "content-type": "application/json", "authorization": client.config.topToken };
+    const headers = { "content-type": "application/json", authorization: client.config.topToken };
     const options = {
         method: "POST",
         body: JSON.stringify({ shard_id, shard_count, server_count }),
