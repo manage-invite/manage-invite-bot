@@ -1,6 +1,6 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js"),
-    Constants = require("../../Constants");
+    Constants = require("../../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
