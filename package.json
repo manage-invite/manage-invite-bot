@@ -7,7 +7,7 @@
     "@sentry/node": "^6.0.1",
     "btoa": "^1.2.1",
     "chalk": "^4.0.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "chartjs-node-canvas": "^3.0.6",
     "cron": "^1.8.2",
     "date-and-time": "^0.14.0",
