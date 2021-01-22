@@ -31,7 +31,7 @@ module.exports = class extends Command {
             }) + "\n" +
             message.translate("core/membercount:ONLINE", {
                 emoji: this.client.config.emojis.online,
-                count: guild.members.cache.filter((m) => m.presence.status === "online"  && !m.user.bot).size
+                count: message.guild.members.cache.filter((m) => m.presence.status === "online"  && !m.user.bot).size
             }) + "\n" +
             message.translate("core/membercount:IDLE", {
                 emoji: this.client.config.emojis.idle,
