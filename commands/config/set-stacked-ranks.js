@@ -5,7 +5,7 @@ module.exports = class extends Command {
         super(client, {
             name: "set-stacked-ranks",
             enabled: true,
-            aliases: [ "setstacked", "set-stacked" ],
+            aliases: [ "setstacked-ranks", "setstacked", "set-stacked" ],
             clientPermissions: [ "EMBED_LINKS" ],
             permLevel: 2
         });
@@ -15,8 +15,7 @@ module.exports = class extends Command {
         if (!data.guild.stackedRanks){
             await data.guild.setStackedRanks(true);
             return message.success("config/set-stacked-ranks:SUCCESS_ENABLED");
-        }
-        if (data.guild.stackedRanks){
+        } else {
             await data.guild.setStackedRanks(false);
             return message.success("config/set-stacked-ranks:SUCCESS_DISABLED");
         }

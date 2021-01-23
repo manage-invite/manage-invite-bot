@@ -22,7 +22,7 @@ module.exports.load = async (client) => {
 
     /* App configuration */
     app
-        .use(morgan("dev"))
+        .use(morgan("common"))
         // Body parser (for post method)
         .use(bodyParser.json())
         .use(bodyParser.urlencoded({ extended: true }))

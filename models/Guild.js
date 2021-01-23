@@ -25,10 +25,10 @@ module.exports = class Guild {
         this.language = data.guild_language || this.handler.client.enabledLanguages.find((language) => language.default).name;
         // Guild prefix
         this.prefix = data.guild_prefix || "+";
-        // Guild keep ranks
-        this.keepRanks = data.guild_keep_ranks || false;
-        // Guild stacked ranks
-        this.stackedRanks = data.guild_stacked_ranks || false;
+        // Guild keep ranks - whether the members should keep their ranks even if they have not enough invites (when true)
+        this.keepRanks = data.guild_keep_ranks ?? false;
+        // Guild stacked ranks - whether the members should keep all their ranks (when true) or only the highest one (when false)
+        this.stackedRanks = data.guild_stacked_ranks ?? true;
         // Guild cmd channel
         this.cmdChannel = data.guild_cmd_channel || null;
 

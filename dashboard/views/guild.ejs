@@ -180,6 +180,29 @@
                         <% } %>
                     </div>
                 </div>
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><%= translate("dashboard:ROLE_REWARDS_BEHAVIOR") %></h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <form role="form" action="/manage/<%= guild.id %>/ranks" method="POST">
+                        <div class="box-body">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="keep-ranks" <% if (guild.keepRanks) { %>checked<% } %>> <%= translate('dashboard:ROLE_REWARDS_BEHAVIOR_KEEP_RANKS')
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="stacked-ranks" <% if (!guild.stackedRanks) { %>checked<% } %>> translate('dashboard:ROLE_REWARDS_BEHAVIOR_STACKED_RANKS')
+                                </label>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary"><%= translate("common:UPDATE") %></button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="col-md-6">
                 <!-- JOIN CONFIGURATION -->

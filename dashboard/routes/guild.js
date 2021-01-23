@@ -87,6 +87,21 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         }
     }
 
+    if (req.params.form === "ranks") {
+        const stackedRanks = !Object.prototype.hasOwnProperty.call(data, "stacked-ranks");
+        const keepRanks = Object.prototype.hasOwnProperty.call(data, "keep-ranks");
+        if (stackedRanks && !guildData.stackedRanks) {
+            await guildData.setStackedRanks(true);
+        } else if (!stackedRanks && guildData.stackedRanks) {
+            await guildData.setStackedRanks(false);
+        }
+        if (keepRanks && !guild.keepRanks) {
+            await guildData.setKeepRanks(true);
+        } else if (!keepRanks && guildData.keepRanks) {
+            await guildData.setKeepRanks(false);
+        }
+    }
+
     if (req.params.form === "joinDM"){
         const enable = Object.prototype.hasOwnProperty.call(data, "enable");
         const update = Object.prototype.hasOwnProperty.call(data, "update");

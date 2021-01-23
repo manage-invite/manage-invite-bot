@@ -3,9 +3,9 @@ const Command = require("../../structures/Command.js");
 module.exports = class extends Command {
     constructor (client) {
         super(client, {
-            name: "setkeep-ranks",
+            name: "set-keep-ranks",
             enabled: true,
-            aliases: [],
+            aliases: [ "setkeep-ranks", "setkeep", "set-keep" ],
             clientPermissions: [ "EMBED_LINKS" ],
             permLevel: 2
         });
@@ -15,8 +15,7 @@ module.exports = class extends Command {
         if (!data.guild.keepRanks){
             await data.guild.setKeepRanks(true);
             return message.success("config/setkeep-ranks:SUCCESS_ENABLED");
-        }
-        if (data.guild.keepRanks){
+        } else {
             await data.guild.setKeepRanks(false);
             return message.success("config/setkeep-ranks:SUCCESS_DISABLED");
         }
