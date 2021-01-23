@@ -1,4 +1,4 @@
 {
-    "SUCCESS_ENABLED": "**Maintenant, les membres vont __SEULEMENT__ garder leur __PLUS HAUT__ rôle !**",
-    "SUCCESS_DISABLED": "**Maintenant, les membres vont garder __TOUS__ leurs rôles!**"
+    "SUCCESS_ENABLED": "**Now, members will keep __ALL__ their ranks!**",
+    "SUCCESS_DISABLED": "**Now, members will __ONLY__ keep their __HIGHEST__ rank!**"
 }
