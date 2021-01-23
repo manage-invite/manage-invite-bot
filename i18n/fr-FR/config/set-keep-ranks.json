@@ -1,0 +1,5 @@
+{
+    "PREMIUM": ":crown: | Bonjour, **{{username}}** ! Cette fonctionnalité (garder les rangs même si les membres n'ont pas assez d'invitations) n'est disponible que pour les serveurs premium. Obtenez le premium ici : **<https://docs.manage-invite.xyz/configuration/premium>** !",
+    "SUCCESS_ENABLED": "**Maintenant, les membres __GARDERONT__ leurs rangs, même s'ils n'ont pas assez d'invitations!**",
+    "SUCCESS_DISABLED": "**Maintenant, les membres __ NE GARDERONT PAS__ leurs rangs s'ils n'ont pas assez d'invitations!**"
+}
