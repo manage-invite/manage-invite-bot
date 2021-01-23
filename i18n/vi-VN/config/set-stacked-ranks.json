@@ -1,4 +1,4 @@
 {
-    "SUCCESS_ENABLED": "**Bây giờ, thành viên sẽ giữ rank __cao nhất__ của họ!**",
-    "SUCCESS_DISABLED": "**Bây giờ, thành viên sẽ giữ __tất cả__ rank của họ!**"
+    "SUCCESS_ENABLED": "**Now, members will keep __ALL__ their ranks!**",
+    "SUCCESS_DISABLED": "**Now, members will __ONLY__ keep their __HIGHEST__ rank!**"
 }
