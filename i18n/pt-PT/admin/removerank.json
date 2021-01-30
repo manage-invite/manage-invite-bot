@@ -1,6 +1,6 @@
 {
-    "MISSING": "Você precisa mencionar o cargo que você quer para remover das recompensas. (Sintaxe: {{prefix}}removerank @cargo)",
+    "MISSING": "You must specify the role you want to remove from rewards. (Syntax: {{prefix}}removerank @role)",
     "DOESNT_EXIST": "Esse cargo não é usado para recompensas!",
     "TITLE": "🎯 Cargo removido",
-    "CONTENT": "Cargo removido das recompensas. Os membros não irão mais obtê-lo quando chegarem **{{count}}** invites."
+    "CONTENT": "Role removed from the rewards. The members will no longer obtain it when they reach **{{count}}** invites."
 }
