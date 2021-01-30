@@ -1,9 +1,9 @@
 {
-    "MISSING_COUNT": "Você deve escrever o número de convites necessários para obter o rank. (Sintaxe: {{prefix}}addrank número @cargo)",
-    "INCORRECT_COUNT": " Você deve escrever um número __**válido**__ de convites necessários para obter o rank. (Sintaxe: {{prefix}}addrank número @cargo)",
+    "MISSING_COUNT": "You must specify the number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
+    "INCORRECT_COUNT": " You must specify a __**valid**__ number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
     "ALREADY_EXIST": "Já existe um cargo definido para **{{count}}** convites (`{{roleName}}`)! Remova-o com `{{prefix}}removerank {{roleID}}` e tente novamente!",
     "MISSING_ROLE": "Você deve mencionar o cargo ao qual você deseja adicionar quando a contagem de convites é alcançada! (Sintaxe: {{prefix}}addrank número @cargo)",
-    "ALREADY_USED": "Esse cargo já está sendo usado para a marca de **{{count}}** convites! Remova-o com`{{prefix}}removerank {{roleID}}` e tente novamente!",
+    "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it by sending `{{prefix}}removerank {{roleID}}` and try again!",
     "MISSING_PERM": "Meu cargo não é alto o suficiente para adicionar o cargo `{{roleName}} aos membros! Coloque meu cargo acima e tente novamente!",
     "TITLE": "🎯 Novo cargo adicionado",
     "CONTENT": "Quando um membro alcançar a marca de **{{count}}** convites, ele irá obter o cargo `{{roleName}}`!",
