@@ -1,6 +1,6 @@
 {
-    "MISSING": "Du musst die Rolle angeben, die du aus den Belohnungen entfernen möchtest. (Nutze: {{prefix}}removerank @role)",
+    "MISSING": "You must specify the role you want to remove from rewards. (Syntax: {{prefix}}removerank @role)",
     "DOESNT_EXIST": "Diese Rolle wird nicht für Belohnungen verwendet!",
     "TITLE": "🎯 Role entfernt",
-    "CONTENT": "Die Rolle wurde von den Belohnungen entfernt. User können sie nun nicht mehr erhalten, wenn sie **{{count}}** Einladungen erhalten."
+    "CONTENT": "Role removed from the rewards. The members will no longer obtain it when they reach **{{count}}** invites."
 }
