@@ -2,6 +2,6 @@
     "TITLE": "🎯 Rangért járó jutalmak",
     "RANK": "{{rank}} (**{{invites}}** meghívás)",
     "NO_RANK_TITLE": "🎯 Nincs szerepe",
-    "NO_RANK_CONTENT": "Rang jutalom hozzáadásához (akkor adható hozzá, amikor egy tag elér egy bizonyos számú meghívót), írd a következőt: `{{prefix}}addrank szám @rang`!",
+    "NO_RANK_CONTENT": "You can add a role reward (added when a member reach a certain number of invites) by sending `{{prefix}}addrank number @role`!",
     "VIEW_CONF": "Tekintsd meg a konfigurációt az irányítópulton"
 }
