@@ -1,7 +1,6 @@
 {
     "TITLE": "Entrou no {{server}} nós últimos {{days}} dias",
     "CONTENT": "**{{total}}** membros (i.e. **{{percent}}%** do servidor) entraram no servidor de {{from}} para {{to}}:",
-    "PREMIUM": ":crown: | Hey, **{{username}}**! Este recurso (período de estatísticas personalizadas) está disponível apenas para servidores premium e parceiros. Obtenha premium aqui: **<https://docs.manage-invite.xyz/configuration/premium>**!",
     "INVALID": "Você deve inserir um número válido de dias (maior que 1 e menor que 1000) para ser exibido!",
     "months": [
         "Janeiro",
