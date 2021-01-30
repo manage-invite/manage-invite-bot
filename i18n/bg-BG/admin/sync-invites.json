@@ -1,6 +1,6 @@
 {
     "NO_INVITES": "Няма покани за синхронизиране.",
-    "CONFIRM": "Сигурни ли сте, че искате да синхронизирате поканите на целия сървър? __ Данните на вашия сървър ще бъдат изчистени и заменени от поканите в \"Настройки на сървъра\"  > \"Покани\".__\n\n:information_source:**Преглед на поканите**:\nЩе възвърне **{{inviteCount}}** редовни покани.\n\n{{success}} Напишете '-confirm' , за да потвърдите.\n{{error}} Напишете 'cancel' , за да откажете.",
-    "TITLE": "☄️Поканите са синхронизирани",
-    "DESCRIPTION": "Поканите на целия сървър са синхронизирани!"
+    "CONFIRM": "Are you sure you want to synchronize the server invitations? __Your server data will be cleared and replaced by the invites in \"Server Settings\" > \"Invites\".__\n\n:information_source: **Overview of invitations**:\n**{{inviteCount}}** invites are going to be restored..\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to abort.",
+    "TITLE": "☄️ Invites synchronized",
+    "DESCRIPTION": "Server invites synchronized!"
 }
