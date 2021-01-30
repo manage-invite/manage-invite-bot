@@ -2,6 +2,6 @@
     "TITLE": "Phần thưởng vai trò",
     "RANK": "{{rank}} (**{{invites}}** invites)",
     "NO_RANK_TITLE": "Không có vai trò",
-    "NO_RANK_CONTENT": "Để thêm một roles phần thưởng (thêm khi một thành viên đạt được một số lượng invites nhất định), nhập `{{prefix}}addrank (số invites) @role`!",
+    "NO_RANK_CONTENT": "You can add a role reward (added when a member reach a certain number of invites) by sending `{{prefix}}addrank number @role`!",
     "VIEW_CONF": "Xem toàn bộ config trên dashboard"
 }
