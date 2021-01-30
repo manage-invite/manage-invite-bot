@@ -1,7 +1,6 @@
 {
     "TITLE": "Beitritte auf {{server}} in den letzten {{days}} Tagen",
     "CONTENT": "Insgesamt **{{total}}** Mitglieder (d.h. **{{percent}}%** auf dem Server) sind dem Server vom {{from}} bis {{to}} beigetreten:",
-    "PREMIUM": ":crown: | Hey, **{{username}}**! Diese Funktion (benutzerdefinierter Zeitraum der Statistik) ist nur für premium Server und Partner verfügbar. Erhalte premium hier: **<https://docs.manage-invite.xyz/configuration/premium>**!",
     "INVALID": "Du musst eine gültige Zahl an Tagen angeben (größer als 1 und kleiner als 1000) die angezeigt werden soll!",
     "months": [
         "Januar",
