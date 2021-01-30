@@ -1,6 +1,6 @@
 {
-    "MISSING": "Vous devez indiquer le rôle que vous voulez retirer des récompenses. (Syntaxe : {{prefix}}removerank @rôle)",
+    "MISSING": "You must specify the role you want to remove from rewards. (Syntax: {{prefix}}removerank @role)",
     "DOESNT_EXIST": "Ce rôle n'est pas utilisé pour les récompenses !",
     "TITLE": "🎯 Rôle retiré",
-    "CONTENT": "Rôle retiré des récompenses. Les membres ne l'obtiendront plus lorsqu'ils atteindront **{{count}}** invitations."
+    "CONTENT": "Role removed from the rewards. The members will no longer obtain it when they reach **{{count}}** invites."
 }
