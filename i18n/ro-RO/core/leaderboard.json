@@ -1,6 +1,6 @@
 {
     "USER": "{{position}} **{{username}}** - **{{invites}}** invitatii (**{{regular}}** normale, **{{bonus}}** bonus, **{{fake}}** false, **{{leaves}}** iesiri)",
-    "PROMPT": "{{user}}, pe ce pagină ai vrea să mergi? Scrie `cancel` sau `0` pentru a anula.",
+    "PROMPT": "{{user}}, on which page would you like to go? Send `cancel` or `0` to cancel.",
     "EMPTY_TITLE": "😕 Nicio invitatie gasita",
     "EMPTY_CONTENT": "Incepe sa inviti persoane si vei aparea pe aceasta pagina!",
     "TITLE": "Clasamentul invitatiilor"
