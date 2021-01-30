@@ -1,7 +1,6 @@
 {
     "TITLE": "{{server}} sunucusuna {{days}} günlük girişler",
     "CONTENT": "**{{total}}** üye (i.e. sunucunun **%{{percent}}** kadarı) sunucuya {{from}} ile {{to}} arasında katılan:",
-    "PREMIUM": ":crown: | Hey, **{{username}}**! Bu özellik (özelleştirilmiş istatistikler periyodu) yalnızca premium sunucular ve iş ortakları tarafından kullanılabilir. Premium'u buradan edinin: **<https://docs.manage-invite.xyz/configuration/premium>**!",
     "INVALID": "Görüntülenmek için geçerli bir gün sayısı (1'den büyük ve 1000'den düşük) girmelisiniz!",
     "months": [
         "Ocak",
