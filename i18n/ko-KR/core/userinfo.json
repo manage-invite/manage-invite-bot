@@ -10,7 +10,6 @@
     "INVITES_TITLE": "Invites",
     "JOIN_ORDER_TITLE": "Join Order",
     "INVITED_TITLE": "Invited users (on the server)",
-    "INVITED_PREMIUM": ":crown: | This feature (view invited users) is only available for premium servers. Get premium here: **<https://docs.manage-invite.xyz/configuration/premium>** !",
     "NO_INVITED_USERS": "No invited users",
     "INVITED_USERS_MORE": "{{list}}, and more...",
     "INVITE_CODES": "Invite Codes",
