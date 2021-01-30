@@ -409,6 +409,7 @@
 </div>
 <script>
     $("a").click( function(e) {
+        if (!e.target.attributes.href.value.includes('_')) return;
         e.preventDefault();
         if(e.target.attributes.href.value.startsWith('#tab')){
             const data = e.target.attributes.href.value.split('_');
