@@ -1,5 +1,4 @@
 {
-    "PREMIUM": ":crown: | Hey, **{{username}}**! Tính năng này (giữ hạng ngay cả khi các thành viên không có đủ Invites) chỉ có sẵn cho premium server. Mua premium tại đây: **<https://docs.manage-invite.xyz/configuration/premium>**!",
     "SUCCESS_ENABLED": "**Từ bây giờ, các thành viên sẽ được __giữ hạng__ của họ, ngay cả khi họ không có bất kỳ invites nào!**",
     "SUCCESS_DISABLED": "**Từ bây giờ, các thành viên sẽ **không** được __giữ hạng__ của họ khi không có bất kỳ invites nào!**"
 }
