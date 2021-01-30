@@ -1,7 +1,6 @@
 {
     "TITLE": "Tham gia {{server}} trên {{days}} ngày qua",
     "CONTENT": "**{{total}}** thành viên (i.e. **{{percent}}%** của server) đã tham gia server này từ {{from}} tới {{to}}:",
-    "PREMIUM": ":crown: | Hey, **{{username}}**! Tính năng này (tùy chỉnh bảng số liệu) chỉ có sẵn cho premium servers và partners. Nhận premium tại đây: **<https://docs.manage-invite.xyz/configuration/premium>**!",
     "INVALID": "Bạn cần nhập một số ngày hợp lệ (lớn hơn 1 và nhỏ hơn 1000) để hiển thị!",
     "months": [
         "Tháng 1",
