@@ -1,0 +1,12 @@
+{
+    "AUTHOR_BLACKLISTED": "You are blacklisted on this server, you can't run this command.",
+    "BLACKLISTED": "{{username}} is blacklisted on this server.",
+    "MISSING_TYPE": "You must enter a valid action! (`add`, `remove` or `list`)\n\n:information_source: Users in the blacklist:\n- Won't receive/loose roles\n- Won't appear in the leaderboard\n- Won't have their invites tracked anymore\n- Won't be able to run the `invites` command",
+    "MISSING_MEMBER_ADD": "You must mention a valid member to add in the blacklist!",
+    "MISSING_MEMBER_REMOVE": "You must mention a valid member to remove from the blacklist!",
+    "SUCCESS_MEMBER_ADD": "**{{username}}** was added to the blacklist!",
+    "SUCCESS_MEMBER_REMOVE": "**{{username}}** was removed from the blacklist!",
+    "EMPTY": "No blacklisted users!",
+    "NOT_BLACKLISTED": "**{{username}}** is not in the blacklist!",
+    "ALREADY_BLACKLISTED": "**{{username}}** is already blacklisted!"
+}
