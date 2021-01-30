@@ -2,6 +2,6 @@
     "TITLE": "🎯 Recompensas de cargos",
     "RANK": "{{rank}} (**{{invites}}** convites)",
     "NO_RANK_TITLE": "🎯 Sem cargo",
-    "NO_RANK_CONTENT": "Para adicionar uma recompensa de cargo (adicionado quando um membro atinge um certo número de convites), utilize `{{prefix}}addrank número @cargo`!",
+    "NO_RANK_CONTENT": "You can add a role reward (added when a member reach a certain number of invites) by sending `{{prefix}}addrank number @role`!",
     "VIEW_CONF": "Veja as configurações no painel"
 }
