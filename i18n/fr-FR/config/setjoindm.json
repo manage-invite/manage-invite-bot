@@ -1,5 +1,4 @@
 {
     "ENABLED": "**Les messages d'arrivées en MP sont maintenant __ACTIVÉS__!**",
-    "DISABLED": "**Les messages d'arrivées en MP sont maintenant __DÉSACTIVÉS__!**",
-    "PREMIUM": ":crown: | Bonjour, **{{username}}**! Cette fonctionnalité (messages d'arrivées en MP) est réservée aux serveurs premium. Obtenez le premium ici: **<https://docs.manage-invite.xyz/configuration/premium>** !"
+    "DISABLED": "**Les messages d'arrivées en MP sont maintenant __DÉSACTIVÉS__!**"
 }
