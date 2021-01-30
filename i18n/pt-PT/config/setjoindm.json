@@ -1,5 +1,4 @@
 {
     "ENABLED": "**As mensagens de entrada no privado estão agora __ATIVADAS__!**",
-    "DISABLED": "**As mensagens de entrada no privado estão agora __DESATIVADA__!**",
-    "PREMIUM": ":crown: | Hey **{{username}}**! Este recurso está disponível apenas para servidores premium. Obtenha premium aqui: **<https://docs.manage-invite.xyz/configuration/premium>** !"
+    "DISABLED": "**As mensagens de entrada no privado estão agora __DESATIVADA__!**"
 }
