@@ -2,6 +2,6 @@
     "TITLE": "🎯 Rol ödülleri",
     "RANK": "{{rank}} (**{{invites}}** davet)",
     "NO_RANK_TITLE": "🎯 Rol yok",
-    "NO_RANK_CONTENT": "Bir rol ödülü eklemek için (bir üye belirli sayıda davete ulaştığında eklenir), `{{prefix}}addrank sayı @rol` yazınız!",
+    "NO_RANK_CONTENT": "You can add a role reward (added when a member reach a certain number of invites) by sending `{{prefix}}addrank number @role`!",
     "VIEW_CONF": "Ayarları gösterge panelinde görün"
 }
