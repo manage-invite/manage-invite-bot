@@ -14,12 +14,6 @@ module.exports = class extends Command {
     }
 
     async run (message, args, data) {
-   
-        if (!data.guild.premium){
-            return message.error("config/setjoindm:PREMIUM", {
-                username: message.author.username
-            });
-        }
         
         const embed = new Discord.MessageEmbed()
             .setTitle(message.translate("config/testjoindm:TITLE"))

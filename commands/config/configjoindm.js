@@ -14,10 +14,6 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
 
-        if (!data.guild.premium){
-            return message.error("config/setjoindm:PREMIUM");
-        }
-
         const filter = (m) => m.author.id === message.author.id,
             opt = { max: 1, time: 90000, errors: [ "time" ] };
         
