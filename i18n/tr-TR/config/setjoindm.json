@@ -1,5 +1,4 @@
 {
     "ENABLED": "**Doğrudan mesajlardaki giriş mesajları artık __ETKİN__!**",
-    "DISABLED": "**Doğrudan mesajlardaki giriş mesajları artık __ENGELLİ__!**",
-    "PREMIUM": ":crown: | Hey, **{{username}}**! Bu özellik sadece premium sunuculara özeldir. Buradan premium alın: **<https://docs.manage-invite.xyz/configuration/premium>**!"
+    "DISABLED": "**Doğrudan mesajlardaki giriş mesajları artık __ENGELLİ__!**"
 }
