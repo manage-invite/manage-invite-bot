@@ -1,6 +1,6 @@
 {
-    "MISSING": "You must specify the role you want to remove from rewards. (Syntax: {{prefix}}removerank @role)",
-    "DOESNT_EXIST": "This role is not used for rewards!",
-    "TITLE": "🎯 Role removed",
-    "CONTENT": "Role removed from the rewards. The members will no longer obtain it when they reach **{{count}}** invites."
+    "MISSING": "คุณต้องระบุบทบาทที่คุณต้องการลบออกจากรางวัล (ไวยากรณ์: {{prefix}}removerank @role)",
+    "DOESNT_EXIST": "บทบาทนี้ไม่ได้ใช้เพื่อรับรางวัล!",
+    "TITLE": "🎯 บทบาทถูกลบ",
+    "CONTENT": "บทบาทถูกลบออกจากรางวัล สมาชิกจะไม่ได้รับอีกต่อไปเมื่อถึงคำเชิญ **{{count}}**"
 }
