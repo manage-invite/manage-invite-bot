@@ -1,6 +1,6 @@
 {
     "DISABLE": "พิมพ์ `{{prefix}}setdmjoin` เพื่อปิดใช้งานข้อความเข้าร่วมใน dm",
-    "INSTRUCTIONS": "__ **ข้อมูลเพิ่มเติม** __\n``\n{user}: การกล่าวถึงสมาชิกที่เพิ่งเข้าร่วมเซิร์ฟเวอร์ของคุณ\n{user.name}: ชื่อของสมาชิกที่เพิ่งเข้าร่วมเซิร์ฟเวอร์ของคุณ\n{user.tag}: แท็กของสมาชิกที่เพิ่งเข้าร่วมเซิร์ฟเวอร์ของคุณ\n{user.createdat}: อายุบัญชีของสมาชิก\n{user.id}: ID ของสมาชิก\n{numJoins}: จำนวนการเข้าร่วมของสมาชิก\n\n{guild}: ชื่อเซิร์ฟเวอร์\n{guild.count}: จำนวนสมาชิกที่เซิร์ฟเวอร์ของคุณมีในขณะนี้\n\n{inviter}: การกล่าวถึงผู้เชิญ\n{inviter.name}: ชื่อของผู้เชิญ\n{inviter.tag}: แท็กของผู้เชิญ\n{inviter.invites}: จำนวนคำเชิญของผู้เชิญทั้งหมด\n{inviter.id}: ID ของผู้เชิญ\n\n{invite.code}: รหัสเชิญที่ใช้\n{invite.url}: URL คำเชิญที่ใช้\n{invite.uses}: จำนวนการใช้คำเชิญที่ใช้\n``\nส่ง `cancel` เพื่อยกเลิก {{string}}\n\n\n:pencil: **| ตอนนี้ส่งข้อความเข้าร่วม DM ... :pencil2:**",
+    "INSTRUCTIONS_1": "__**More informations**__\n```{{variables}}```\nSend `cancel` to cancel. {{string}}\n\n:sparkles: Embed messages are now available! You can generate an embed here: <https://embed-generator.manage-invite.xyz/> and send the json code below!\n\n\n:pencil: **| Now send the join message in DM... :pencil2:**",
     "SUCCESS": "✅ **| ทำได้สำเร็จ ...**",
     "TITLE": "**เสร็จสิ้นการเข้าร่วม DM Msg ได้รับการตั้งค่า**",
     "TEST": "ใช้ `{{prefix}}testjoindm` เพื่อทดสอบข้อความใหม่"
