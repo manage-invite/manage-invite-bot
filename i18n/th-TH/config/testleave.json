@@ -1,11 +1,11 @@
 {
-    "TITLE": ":wrench: Leave system :",
-    "DESCRIPTION": "If it doesn't work, check the bot permissions or join our [support server]({{discord}})",
-    "ENABLED_TITLE": "> Enabled:",
-    "ENABLED_YES_CONTENT": "{{success}} Leave messages enabled. Disable them with `{{prefix}}setleave`.",
-    "ENABLED_NO_CONTENT": "{{error}} Leave messages disabled. Enable them with `{{prefix}}setleave`.",
-    "CHANNEL_TITLE": "> Channel",
-    "CHANNEL_CONTENT": "No channel defined. Set it with `{{prefix}}configleave`!",
-    "MESSAGE": "> Message:",
-    "MESSAGE_CONTENT": "No message defined. Set it with `{{prefix}}configleave`!"
+    "TITLE": ":wrench: ระบบออก",
+    "DESCRIPTION": "หากไม่ได้ผลให้ตรวจสอบสิทธิ์ของบอทหรือเข้าร่วม [เซิร์ฟเวอร์สนับสนุน]({{discord}})",
+    "ENABLED_TITLE": "> เปิดใช้งาน:",
+    "ENABLED_YES_CONTENT": "{{success}} เปิดใช้งานข้อความไว้ ปิดใช้งานด้วย `{{prefix}}setleave`",
+    "ENABLED_NO_CONTENT": "{{error}} ปิดใช้งานข้อความทิ้งไว้ เปิดใช้งานด้วย `{{prefix}}setleave`",
+    "CHANNEL_TITLE": "> ช่อง",
+    "CHANNEL_CONTENT": "ไม่ได้กำหนดช่อง ตั้งค่าด้วย `{{prefix}}configleave`!",
+    "MESSAGE": "> ข้อความ:",
+    "MESSAGE_CONTENT": "ไม่ได้กำหนดข้อความ ตั้งค่าด้วย `{{prefix}}configleave`!"
 }
