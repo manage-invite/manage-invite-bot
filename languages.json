@@ -61,5 +61,12 @@
         "flag": ":flag_de:",
         "default": false,
         "aliases": ["German", "de", "de_de"]
+    },
+    {
+        "name": "th_TH",
+        "nativeName": "ไทย",
+        "flag": ":flag_th:",
+        "default": false,
+        "aliases": ["Thai", "th", "th_th"]
     }
 ]
