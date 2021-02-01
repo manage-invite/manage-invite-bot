@@ -1,4 +1,4 @@
 {
-    "SUCCESS_ENABLED": "**Từ bây giờ, các thành viên sẽ được __giữ hạng__ của họ, ngay cả khi họ không có bất kỳ invites nào!**",
-    "SUCCESS_DISABLED": "**Từ bây giờ, các thành viên sẽ **không** được __giữ hạng__ của họ khi không có bất kỳ invites nào!**"
+    "SUCCESS_ENABLED": "Now, members **will keep** their ranks, even if they don't have enough invites!",
+    "SUCCESS_DISABLED": "Now, members **won't keep** their ranks if they don't have enough invites!"
 }
