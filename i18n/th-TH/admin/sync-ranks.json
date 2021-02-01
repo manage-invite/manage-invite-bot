@@ -1,8 +1,8 @@
 {
-    "CONFIRM": "Are you sure you want to synchronize the member ranks? It can take a long time depending on the size of your server.\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to abort.",
-    "STARTED": "Synchronization of member ranks started... Note: you can cancel it using `{{prefix}}sync-ranks cancel`.",
-    "CANCELLED": "Synchronization of member ranks cancelled.",
-    "SUCCESS": "Synchronization of member ranks is complete.",
-    "RUNNING": "Synchronization of member ranks is in progress. Note: you can cancel it using `{{prefix}}sync-ranks cancel`.",
-    "BEING_CANCELLED": "Synchronization of member ranks is being cancelled..."
+    "CONFIRM": "แน่ใจไหมว่าต้องการซิงโครไนซ์อันดับสมาชิก อาจใช้เวลานานขึ้นอยู่กับขนาดเซิร์ฟเวอร์ของคุณ\n\n{{success}} ส่ง `-confirm` เพื่อยืนยัน\n{{error}} ส่ง `cancel` เพื่อยกเลิก",
+    "STARTED": "เริ่มการซิงโครไนซ์อันดับสมาชิกแล้ว ... หมายเหตุ: คุณสามารถยกเลิกได้โดยใช้ `{{prefix}}sync-ranks Cancel`",
+    "CANCELLED": "การซิงโครไนซ์อันดับสมาชิกถูกยกเลิก",
+    "SUCCESS": "การซิงโครไนซ์อันดับสมาชิกเสร็จสมบูรณ์",
+    "RUNNING": "กำลังดำเนินการซิงโครไนซ์ตำแหน่งสมาชิก หมายเหตุ: คุณสามารถยกเลิกได้โดยใช้ `{{prefix}}sync-ranks cancel`",
+    "BEING_CANCELLED": "กำลังยกเลิกการซิงโครไนซ์อันดับสมาชิก ..."
 }
