@@ -1,12 +1,12 @@
 {
-    "AUTHOR_BLACKLISTED": "You are blacklisted on this server, you can't run this command.",
-    "BLACKLISTED": "{{username}} is blacklisted on this server.",
-    "MISSING_TYPE": "You must enter a valid action! (`add`, `remove` or `list`)\n\n:information_source: Users in the blacklist:\n- Won't receive/loose roles\n- Won't appear in the leaderboard\n- Won't have their invites tracked anymore\n- Won't be able to run the `invites` command",
-    "MISSING_MEMBER_ADD": "You must mention a valid member to add in the blacklist!",
-    "MISSING_MEMBER_REMOVE": "You must mention a valid member to remove from the blacklist!",
-    "SUCCESS_MEMBER_ADD": "**{{username}}** was added to the blacklist!",
-    "SUCCESS_MEMBER_REMOVE": "**{{username}}** was removed from the blacklist!",
-    "EMPTY": "No blacklisted users!",
-    "NOT_BLACKLISTED": "**{{username}}** is not in the blacklist!",
-    "ALREADY_BLACKLISTED": "**{{username}}** is already blacklisted!"
+    "AUTHOR_BLACKLISTED": "คุณอยู่ในบัญชีดำบนเซิร์ฟเวอร์นี้คุณไม่สามารถเรียกใช้คำสั่งนี้ได้",
+    "BLACKLISTED": "{{username}} ถูกขึ้นบัญชีดำบนเซิร์ฟเวอร์นี้",
+    "MISSING_TYPE": "คุณต้องดำเนินการที่ถูกต้อง! ('add', 'remove' หรือ 'list')\n\n:information_source: สมาชิกในบัญชีดำ:\n- จะไม่รับบทบาท\n- จะไม่ปรากฏในลีดเดอร์บอร์ด\n- จะไม่มีการติดตามคำเชิญของพวกเขาอีกต่อไป\n- ไม่สามารถเรียกใช้คำสั่ง `invites`",
+    "MISSING_MEMBER_ADD": "คุณต้องกล่าวถึงสมาชิกที่ถูกต้อง เพื่อเพิ่มในบัญชีดำ!",
+    "MISSING_MEMBER_REMOVE": "คุณต้องกล่าวถึงสมาชิกที่ถูกต้องเพื่อลบออกจากบัญชีดำ!",
+    "SUCCESS_MEMBER_ADD": "**{{username}}** ถูกเพิ่มในบัญชีดำ!",
+    "SUCCESS_MEMBER_REMOVE": "**{{username}}** ถูกลบออกจากบัญชีดำ!",
+    "EMPTY": "ไม่มีสมาชิกในบัญชีดำ!",
+    "NOT_BLACKLISTED": "**{{username}}** ไม่อยู่ในบัญชีดำ!",
+    "ALREADY_BLACKLISTED": "**{{username}}** ถูกขึ้นบัญชีดำอยู่แล้ว!"
 }
