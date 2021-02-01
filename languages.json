@@ -63,7 +63,7 @@
         "aliases": ["German", "de", "de_de"]
     },
     {
-        "name": "th_TH",
+        "name": "th-TH",
         "nativeName": "ไทย",
         "flag": ":flag_th:",
         "default": false,
