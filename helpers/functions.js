@@ -5,6 +5,8 @@ const fetch = require("node-fetch"),
     date = require("date-and-time"),
     Discord = require("discord.js");
 
+const variables = require("./variables");
+
 const stringOrNull = (string) => string ? `'${string}'` : "null";
 const pgEscape = (string) => string ? string.replace(/'/g, "''") : null;
 
@@ -42,35 +44,14 @@ const syncPremiumRoles = (client) => {
 const formatMessage = (message, member, numberOfJoins, locale, invData) => {
 
     moment.locale(locale);
-    message = message
-        .replace(/{user}/g, member.toString())
-        .replace(/{user.name}/g, member.user.username)
-        .replace(/{user.tag}/g, member.user.tag)
-        .replace(/{user.createdat}/g, moment(member.user.createdAt, "YYYYMMDD").fromNow())
-        .replace(/{user.avatar}/g, member.user.displayAvatarURL())
-        .replace(/{user.id}/g, member.user.id)
-        .replace(/{numJoins}/g, numberOfJoins || 1)
-        .replace(/{user.numJoins}/g, numberOfJoins || 1);
-    
-    message = message
-        .replace(/{guild}/g, member.guild.name)
-        .replace(/{guild.count}/g, member.guild.memberCount)
-        .replace(/{server}/g, member.guild.name)
-        .replace(/{server.count}/g, member.guild.memberCount);
 
-    if (invData){
-        const { inviter, inviterData, invite } = invData;
-        message = message.replace(/{inviter}/g, inviter.toString())
-            .replace(/{inviter.tag}/g, inviter.tag)
-            .replace(/{inviter.name}/g, inviter.username)
-            .replace(/{inviter.id}/g, inviter.id)
-            .replace(/{inviter.avatar}/g, member.user.displayAvatarURL())
-            .replace(/{inviter.invites}/g, inviterData.regular + inviterData.bonus - inviterData.fake - inviterData.leaves)
-            .replace(/{invite.code}/g, invite.code)
-            .replace(/{invite.uses}/g, invite.uses)
-            .replace(/{invite.url}/g, invite.url)
-            .replace(/{invite.channel}/g, invite.channel.toString());
-    }
+    variables.forEach((variable) => {
+        if (variable.requireInviter && !invData) return;
+        const matches = [variable.name, variable.aliases].flat();
+        matches.forEach((match) => {
+            message = message.replaceAll(`{${match}}`, variable.display(member, numberOfJoins, invData, moment));
+        });
+    });
 
     let data;
     let embed;
@@ -82,7 +63,7 @@ const formatMessage = (message, member, numberOfJoins, locale, invData) => {
         embed = false;
         data = message.substr(0, 2000);
     }
-
+    
     return embed ? { embed: data } : data;
     
 };

@@ -1,3 +1,4 @@
+const variables = require("../../helpers/variables.js");
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js");
 
@@ -21,7 +22,8 @@ module.exports = class extends Command {
             prefix: data.guild.prefix
         }) : "";
         const msg = await message.sendT("config/configjoin:INSTRUCTIONS_1", {
-            string: str
+            string: `${str}`,
+            variables: variables.filter((v) => !v.ignore).map((variable) => `{${variable.name}} | ${message.translate(`config/configjoin:VARIABLE_${variable.name.toUpperCase()}`)}` + (variable.endPart ? '\n' : '')).join('\n')
         });
 
         let collected = await message.channel.awaitMessages(filter, opt).catch(() => {});

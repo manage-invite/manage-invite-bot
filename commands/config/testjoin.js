@@ -58,7 +58,9 @@ module.exports = class extends Command {
                             channel: message.channel
                         }
                     }
-                )).catch(() => {
+                )
+            ).catch((e) => {
+                console.log(e)
                 return message.error("misc:CANNOT_SEND");
             });
         }
