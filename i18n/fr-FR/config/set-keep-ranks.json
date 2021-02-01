@@ -1,4 +1,4 @@
 {
-    "SUCCESS_ENABLED": "**Maintenant, les membres __GARDERONT__ leurs rangs, même s'ils n'ont pas assez d'invitations!**",
-    "SUCCESS_DISABLED": "**Maintenant, les membres __ NE GARDERONT PAS__ leurs rangs s'ils n'ont pas assez d'invitations!**"
+    "SUCCESS_ENABLED": "Now, members **will keep** their ranks, even if they don't have enough invites!",
+    "SUCCESS_DISABLED": "Now, members **won't keep** their ranks if they don't have enough invites!"
 }
