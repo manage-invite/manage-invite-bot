@@ -37,36 +37,53 @@ const syncPremiumRoles = (client) => {
  * @param {object} member The member who joined/has left
  * @param {string} locale The moment locale to use
  * @param {object} invData Data related to the invite and inviter
- * @returns {string} The formatted string
+ * @returns {string|MessageEmbed} The formatted string or embed
  */
-const formatMessage = (message, member, locale, invData) => {
+const formatMessage = (message, member, numberOfJoins, locale, invData) => {
+
     moment.locale(locale);
     message = message
         .replace(/{user}/g, member.toString())
         .replace(/{user.name}/g, member.user.username)
         .replace(/{user.tag}/g, member.user.tag)
         .replace(/{user.createdat}/g, moment(member.user.createdAt, "YYYYMMDD").fromNow())
+        .replace(/{user.avatar}/g, member.user.displayAvatarURL())
         .replace(/{user.id}/g, member.user.id)
+        .replace(/{numJoins}/g, numberOfJoins || 1)
+        .replace(/{user.numJoins}/g, numberOfJoins || 1);
+    
+    message = message
         .replace(/{guild}/g, member.guild.name)
         .replace(/{guild.count}/g, member.guild.memberCount)
         .replace(/{server}/g, member.guild.name)
-        .replace(/{server.count}/g, member.guild.name);
+        .replace(/{server.count}/g, member.guild.memberCount);
 
     if (invData){
-        const { inviter, inviterData, invite, numJoins } = invData;
+        const { inviter, inviterData, invite } = invData;
         message = message.replace(/{inviter}/g, inviter.toString())
             .replace(/{inviter.tag}/g, inviter.tag)
             .replace(/{inviter.name}/g, inviter.username)
             .replace(/{inviter.id}/g, inviter.id)
+            .replace(/{inviter.avatar}/g, member.user.displayAvatarURL())
             .replace(/{inviter.invites}/g, inviterData.regular + inviterData.bonus - inviterData.fake - inviterData.leaves)
             .replace(/{invite.code}/g, invite.code)
             .replace(/{invite.uses}/g, invite.uses)
             .replace(/{invite.url}/g, invite.url)
-            .replace(/{invite.channel}/g, invite.channel)
-            .replace(/{numJoins}/g, numJoins);
+            .replace(/{invite.channel}/g, invite.channel.toString());
     }
 
-    return message;
+    let data;
+    let embed;
+    try {
+        const embedData = JSON.parse(message.substr(0, 10000));
+        embed = true;
+        data = embedData;
+    } catch (e) {
+        embed = false;
+        data = message.substr(0, 2000);
+    }
+
+    return embed ? { embed: data } : data;
     
 };
 

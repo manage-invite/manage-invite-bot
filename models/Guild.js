@@ -31,6 +31,8 @@ module.exports = class Guild {
         this.stackedRanks = data.guild_stacked_ranks ?? true;
         // Guild cmd channel
         this.cmdChannel = data.guild_cmd_channel || null;
+        // Guild fake threshold
+        this.fakeThreshold = data.guild_fake_threshold || null;
 
         // Subscriptions
         this.subscriptions = [];
@@ -59,6 +61,7 @@ module.exports = class Guild {
 
         // Blacklisted users
         this.blacklistedUsers = blacklistedUsers.map(blacklistData => blacklistData.user_id);
+
     }
 
     get premium () {
@@ -83,6 +86,17 @@ module.exports = class Guild {
 
     get premiumExpiresAt (){
         return this.subscriptions.sort((a, b) => b.expiresAt - a.expiresAt)[0].expiresAtCalculated;
+    }
+
+    async setFakeThreshold (newValue) {
+        this.fakeThreshold = newValue;
+        await this.handler.query(`
+            UPDATE guilds
+            SET guild_fake_threshold = ${newValue}
+            WHERE guild_id = '${this.id}';
+        `);
+        this.handler.removeGuildFromOtherCaches(this.id);
+        return this.fakeThreshold;
     }
 
     // Change the guild cmd channel

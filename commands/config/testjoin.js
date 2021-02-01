@@ -41,6 +41,7 @@ module.exports = class extends Command {
                 this.client.functions.formatMessage(
                     data.guild.join.mainMessage,
                     message.member,
+                    0,
                     (data.guild.language || "english").substr(0, 2),
                     {
                         inviter: this.client.user,
@@ -53,11 +54,11 @@ module.exports = class extends Command {
                         invite: {
                             code: "436SPZX",
                             url: "https://discord.gg/436SPZX",
-                            uses: 1
+                            uses: 1,
+                            channel: message.channel
                         }
                     }
-                )
-            ).catch(() => {
+                )).catch(() => {
                 return message.error("misc:CANNOT_SEND");
             });
         }

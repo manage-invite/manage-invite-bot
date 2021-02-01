@@ -25,7 +25,6 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
 
     // Fetch guild informations
     const guildInfos = await utils.fetchGuild(guild.id, req.client, req.translate);
-
     res.render("guild", {
         guild: guildInfos,
         user: req.userInfos,

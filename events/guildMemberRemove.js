@@ -50,12 +50,17 @@ module.exports = class {
             if (!channel) return;
             const joinType = memberData.joinData ? memberData.joinData.joinType : null;
             if (invite){
-                const formattedMessage = this.client.functions.formatMessage(guildData.leave.mainMessage, member, (guildData.language || "english").substr(0, 2), {
-                    inviter,
-                    inviterData,
-                    invite,
-                    numJoins: memberData.numJoins
-                });
+                const formattedMessage = this.client.functions.formatMessage(
+                    guildData.leave.mainMessage,
+                    member,
+                    memberData.numJoins,
+                    (guildData.language || "english").substr(0, 2),
+                    {
+                        inviter,
+                        inviterData,
+                        invite
+                    }
+                );
                 channel.send(formattedMessage);
             } else if (joinType === "vanity"){
                 const formattedMessage = this.client.functions.formatMessage((guildData.leave.vanityMessage || member.guild.translate("misc:LEAVE_VANITY_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
