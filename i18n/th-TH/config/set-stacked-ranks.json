@@ -1,4 +1,4 @@
 {
-    "SUCCESS_ENABLED": "**ตอนนี้สมาชิกจะรักษาตำแหน่ง __ALL__ ไว้!**",
-    "SUCCESS_DISABLED": "**ตอนนี้สมาชิกจะ __ONLY__ รักษาอันดับ __HIGHEST__ ไว้!**"
+    "SUCCESS_ENABLED": "Now, members will keep **all** their ranks!",
+    "SUCCESS_DISABLED": "Now, members will **only** keep their **highest** rank!"
 }
