@@ -1,19 +1,19 @@
 {
-    "TITLE": "Joins on {{server}} these last {{days}} days",
-    "CONTENT": "**{{total}}** members (i.e. **{{percent}}%** of the server) have joined the server from {{from}} to {{to}}:",
-    "INVALID": "You must enter a valid number of days (greater than 1 and lower than 1000) to be displayed!",
+    "TITLE": "เข้าร่วมใน {{server}} วันล่าสุด {{days}}",
+    "CONTENT": "สมาชิก **{{total}}** (i.e. **{{percent}}%** ของเซิร์ฟเวอร์) ได้เข้าร่วมเซิร์ฟเวอร์ตั้งแต่ {{from}} ถึง {{to}}:",
+    "INVALID": "คุณต้องป้อนจำนวนวันที่ถูกต้อง (มากกว่า 1 และต่ำกว่า 1,000) จึงจะแสดงได้!",
     "months": [
-        "Jan",
-        "Feb",
-        "March",
-        "Apr",
-        "May",
-        "June",
-        "July",
-        "August",
-        "Sept",
-        "Oct",
-        "Nov",
-        "Dec"
+        "ม.ค.",
+        "ก.พ.",
+        "ม.ค.",
+        "เม.ย.",
+        "พ.ค.",
+        "มิ.ย.",
+        "ก.ค.",
+        "ส.ค.",
+        "ก.ย.",
+        "ต.ค.",
+        "พ.ย.",
+        "ธ.ค."
     ]
 }

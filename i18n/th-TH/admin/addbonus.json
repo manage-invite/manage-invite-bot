@@ -1,9 +1,9 @@
 {
-    "MISSING_AMOUNT": "You must specify the number of bonus invites you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
-    "INVALID_AMOUNT": "You must specify a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
-    "MISSING_TARGET": "You must mention the member to whom you want to add the bonus invites (or `all` if you want to add the invites to everyone). (Syntax: {{prefix}}addbonus number @member/all)",
-    "CONFIRMATION_ALL": ":warning: Are you sure you want to add **{{count}}** bonus invites to everyone? This can take a long time (depending on the size of your server)! Send `-confirm` to continue and `cancel` to cancel.",
-    "SUCCESS_TITLE": "📥 Bonus Invites Added",
-    "SUCCESS_CONTENT_ALL": "Bonus invites added for everyone!",
-    "SUCCESS_CONTENT_MEMBER": "Send `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
+    "MISSING_AMOUNT": "คุณต้องระบุจำนวนคำเชิญโบนัสที่คุณต้องการเพิ่ม (ไวยากรณ์: {{prefix}}addbonus number @member / all)",
+    "INVALID_AMOUNT": "คุณต้องระบุจำนวนคำเชิญโบนัส __**ที่ถูกต้อง**__ ที่คุณต้องการเพิ่ม (ไวยากรณ์: {{prefix}}addbonus number @member / all)",
+    "MISSING_TARGET": "คุณต้องกล่าวถึงสมาชิกที่คุณต้องการเพิ่มคำเชิญโบนัส (หรือ `all` หากคุณต้องการเพิ่มคำเชิญให้กับทุกคน) (ไวยากรณ์: {{prefix}} addbonus number @member / all)",
+    "CONFIRMATION_ALL": ":warning: แน่ใจหรือว่าต้องการเพิ่ม **{{count}}** คำเชิญโบนัสให้กับทุกคน อาจใช้เวลานาน (ขึ้นอยู่กับขนาดเซิร์ฟเวอร์ของคุณ)! ส่ง \"-confirm\" เพื่อดำเนินการต่อและ \"cancel\" เพื่อยกเลิก",
+    "SUCCESS_TITLE": "📥 เพิ่มคำเชิญโบนัสสำเร็จ",
+    "SUCCESS_CONTENT_ALL": "เพิ่มคำเชิญโบนัสสำหรับทุกคนสำเร็จ",
+    "SUCCESS_CONTENT_MEMBER": "ส่ง `{{prefix}}คำเชิญ {{usertag}}` เพื่อดูจำนวนคำเชิญใหม่ของ **{{username}}**!"
 }

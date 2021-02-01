@@ -2,7 +2,7 @@
     "DISABLE": "Tapez `{{prefix}}setjoin` pour désactiver les messages d'arrivées",
     "INSTRUCTIONS_1": "__**More informations**__\n```\n{user} : The mention of the member that just joined your server.\n{user.name} : The name of the member that just joined your server.\n{user.tag} : The tag of the member that just joined your server.\n{user.createdat} : The account age of the member.\n{user.id} : The ID of the member.\n{numJoins} : Number of joins of the member.\n\n{guild} : Name of the server.\n{guild.count} : Number of members your server has now.\n\n{inviter} : The mention of the inviter.\n{inviter.name} : The name of the inviter.\n{inviter.tag} : The tag of the inviter.\n{inviter.invites} : The total inviter's invites count.\n{inviter.id} : The ID of the inviter.\n\n{invite.code} : The invite code used.\n{invite.url} : The invite url used.\n{invite.uses} : Number of uses of the invite used.\n```\nSend `cancel` to cancel. {{string}}\n\n\n:pencil: **| Now send the join message... :pencil2:**",
     "INSTRUCTIONS_2": ":scroll: **| Now send the join channel name or mention it... :pencil2:**",
-    "TITLE": "**Done The join Msg Has Been Setup**",
+    "TITLE": "**Le message d'arrivée a bien été mis en place**",
     "TEST": "Utilisez `{{prefix}}testjoin` pour tester le nouveau message.",
     "CHANNEL_NOT_FOUND": "Aucun salon trouvé pour `{{channel}}`"
 }

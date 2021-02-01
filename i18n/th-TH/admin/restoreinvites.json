@@ -1,9 +1,9 @@
 {
-    "CONFIRMATION": "Are you sure you want to restore the server invites? All members will recover the invites they had before the last time the command `{{prefix}}remove-invites` was executed (or 0 if the command was never executed).\n\n:information_source: **Invites overview**:\nThis operation will restore, in total: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to cancel.",
-    "CONFIRMATION_MEMBER": "Are you sure you want to restore the invites of **{{username}}**? They will recover the invites they had before the last time the command `{{prefix}}remove-invites` was executed (or 0 if the command was never executed).\n\n:information_source: **Invites overview**:\nThis operation will restore: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to cancel.",
-    "LOADING": "{{loading}} | Restoring server invites...",
-    "LOADING_MEMBER": "{{loading}} | Restoring the invites of **{{username}}**...",
-    "TITLE": "☄️ Invites restored",
-    "DESCRIPTION": "{{success}} | Server invites restored!",
-    "DESCRIPTION_MEMBER": "{{success}} | The invites of **{{username}}** have been successfully restored!"
+    "CONFIRMATION": "คุณแน่ใจหรือไม่ว่าต้องการกู้คืนคำเชิญเซิร์ฟเวอร์ สมาชิกทุกคนจะกู้คืนคำเชิญที่มีก่อนครั้งสุดท้ายที่มีการเรียกใช้คำสั่ง `{{prefix}}remove-invites` (หรือ 0 หากไม่เคยเรียกใช้คำสั่ง)\n\n:information_source: **ภาพรวมคำเชิญ**:\nการดำเนินการนี้จะกู้คืนโดยรวม: **{{regular}}** regular, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake\n\n{{success}} ส่ง `-confirm` เพื่อยืนยัน\n{{error}} ส่ง `cancel` เพื่อยกเลิก",
+    "CONFIRMATION_MEMBER": "แน่ใจไหมว่าต้องการกู้คืนคำเชิญของ **{{username}}** พวกเขาจะกู้คืนคำเชิญที่มีก่อนครั้งสุดท้ายที่มีการเรียกใช้คำสั่ง `{{prefix}}remove-invites` (หรือ 0 หากไม่เคยเรียกใช้คำสั่ง)\n\n:information_source: **ภาพรวมคำเชิญ**:\nการดำเนินการนี้จะคืนค่า: **{{regular}}** regular, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake\n{{success}} ส่ง `-confirm` เพื่อยืนยัน\n{{error}} ส่ง `cancel` เพื่อยกเลิก",
+    "LOADING": "{{loading}} | กำลังกู้คืนคำเชิญเซิร์ฟเวอร์ ...",
+    "LOADING_MEMBER": "{{loading}} | การกู้คืนคำเชิญของ **{{username}}** ...",
+    "TITLE": "☄️ กู้คืนคำเชิญแล้ว",
+    "DESCRIPTION": "{{success}} | คืนค่าคำเชิญเซิร์ฟเวอร์แล้ว!",
+    "DESCRIPTION_MEMBER": "{{success}} | คำเชิญของ **{{username}}** ได้รับการกู้คืนเรียบร้อยแล้ว!"
 }

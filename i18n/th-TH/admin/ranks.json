@@ -1,7 +1,7 @@
 {
-    "TITLE": "🎯 Roles rewards",
-    "RANK": "{{rank}} (**{{invites}}** invites)",
-    "NO_RANK_TITLE": "🎯 No role",
-    "NO_RANK_CONTENT": "You can add a role reward (added when a member reach a certain number of invites) by sending `{{prefix}}addrank number @role`!",
-    "VIEW_CONF": "View the configuration on the dashboard"
+    "TITLE": "🎯 รางวัลบทบาท",
+    "RANK": "{{rank}} (**{{invites}}** คำเชิญ)",
+    "NO_RANK_TITLE": "🎯 ไม่มีบทบาท",
+    "NO_RANK_CONTENT": "คุณสามารถเพิ่มรางวัลตามบทบาท (เพิ่มเมื่อสมาชิกได้รับคำเชิญตามจำนวนที่กำหนด) โดยส่ง `{{prefix}}addrank number @role`!",
+    "VIEW_CONF": "ดูการกำหนดค่าบนแผงควบคุม"
 }

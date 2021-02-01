@@ -1,6 +1,6 @@
 {
-    "NO_INVITES": "No invites to synchronize.",
-    "CONFIRM": "Are you sure you want to synchronize the server invitations? __Your server data will be cleared and replaced by the invites in \"Server Settings\" > \"Invites\".__\n\n:information_source: **Overview of invitations**:\n**{{inviteCount}}** invites are going to be restored..\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to abort.",
-    "TITLE": "☄️ Invites synchronized",
-    "DESCRIPTION": "Server invites synchronized!"
+    "NO_INVITES": "ไม่มีคำเชิญให้ซิงโครไนซ์",
+    "CONFIRM": "คุณแน่ใจหรือไม่ว่าต้องการซิงโครไนซ์คำเชิญของเซิร์ฟเวอร์ __ข้อมูลเซิร์ฟเวอร์ของคุณจะถูกล้างและแทนที่ด้วยคำเชิญใน \"การตั้งค่าเซิร์ฟเวอร์\"> \"คำเชิญ\"__\n\n:information_source: **ภาพรวมของคำเชิญ**:\n**{{inviteCount}} * คำเชิญจะถูกกู้คืน ..\n\n{{success}} ส่ง `-confirm` เพื่อยืนยัน\n{{error}} ส่ง `cancel` เพื่อยกเลิก",
+    "TITLE": "☄️ คำเชิญซิงโครไนซ์",
+    "DESCRIPTION": "คำเชิญเซิร์ฟเวอร์ตรงกัน!"
 }

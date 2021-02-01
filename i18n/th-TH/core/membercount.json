@@ -1,8 +1,8 @@
 {
-    "TITLE": "{{guild}}'s MemberCount",
-    "TOTAL": "Total of **{{totalCount}}**  members (**{{humanCount}}** humans and **{{botCount}}** bots)",
-    "DND": "➔ {{emoji}} | {{count}} members dnd",
-    "ONLINE": "➔ {{emoji}} | {{count}} members online",
-    "IDLE": "➔ {{emoji}} | {{count}} members idle",
-    "OFFLINE": "➔ {{emoji}} | {{count}} members offline"
+    "TITLE": "จำนวนสมาชิกของ {{guild}}",
+    "TOTAL": "จำนวน **{{totalCount}}** สมาชิก (**{{humanCount}}** มนุษย์และ **{{botCount}}** บอท)",
+    "DND": "➔ {{emoji}} | {{count}} สมาชิก dnd",
+    "ONLINE": "➔ {{emoji}} | {{count}} สมาชิกออนไลน์",
+    "IDLE": "➔ {{emoji}} | {{count}} สมาชิก idle",
+    "OFFLINE": "➔ {{emoji}} | {{count}} สมาชิกออฟไลน์"
 }

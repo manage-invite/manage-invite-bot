@@ -9,11 +9,11 @@
     "JOIN_WAY_UNKNOWN": "Impossible de déterminer comment {{username}} a rejoint le serveur.",
     "INVITES_TITLE": "Invitations",
     "JOIN_ORDER_TITLE": "Ordre d'arrivées",
-    "INVITED_TITLE": "Invited users (on the server)",
+    "INVITED_TITLE": "Utilisateurs invités (sur le serveur)",
     "NO_INVITED_USERS": "Aucun utilisateur invité",
     "INVITED_USERS_MORE": "{{list}}, et plus...",
-    "INVITE_CODES": "Invite Codes",
-    "NO_INVITES": "This user doesn't have any active invite.",
-    "NUMBER_JOINS": "Number of joins",
-    "FIRST_JOIN_WAY_TITLE": "First join due to"
+    "INVITE_CODES": "Codes d'invitation",
+    "NO_INVITES": "Cet utilisateur n'a pas d'invitation active.",
+    "NUMBER_JOINS": "Nombre de fois que le membre a rejoint",
+    "FIRST_JOIN_WAY_TITLE": "Première arrivée grâce à"
 }

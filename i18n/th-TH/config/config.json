@@ -1,9 +1,9 @@
 {
-    "TITLE": "{{guild}} configuration",
-    "JOIN_TITLE": "{{status}} Join Messages",
-    "JOIN_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}\n> Channel: {{channel}}",
-    "LEAVE_TITLE": "{{status}} Leave Messages",
-    "JOIN_DM_TITLE": "{{status}} Join DM Messages",
-    "JOIN_DM_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}",
-    "CHANNEL_NOT_FOUND": "**channel not found**"
+    "TITLE": "{{guild}} การกำหนดค่า",
+    "JOIN_TITLE": "{{status}} เข้าร่วม Messages",
+    "JOIN_CONTENT": "> เปิดใช้งาน: {{enabled}}\n> ข้อความ: {{message}}\n> ช่อง: {{channel}}",
+    "LEAVE_TITLE": "{{status}} ข้อความออก",
+    "JOIN_DM_TITLE": "{{status}} ข้อความเข้าร่วม DM",
+    "JOIN_DM_CONTENT": "> เปิดใช้งาน: {{enabled}}\n> ข้อความ: {{message}}",
+    "CHANNEL_NOT_FOUND": "**ไม่พบช่อง**"
 }

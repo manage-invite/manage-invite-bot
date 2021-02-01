@@ -1,9 +1,9 @@
 {
-    "CONFIRMATION": "Are you sure you want to remove all the server invites?\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to abort.",
-    "CONFIRMATION_MEMBER": "Are you sure you want to remove all the invites of **{{username}}**?\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to abort.",
-    "LOADING": "{{loading}} | Deleting invites of the current server.... You will be able to restore them with the command `{{prefix}}restore-invites`!",
-    "LOADING_MEMBER": "{{loading}} | Deleting current invites of **{{username}}**... You will be able to restore them with the command `{{prefix}}restore-invites {{username}}`!",
-    "TITLE": "☄️ Invites reset!",
-    "DESCRIPTION": "{{success}} | Server invitations have been reset! You will be able to restore them with the command `{{prefix}}restore-invites`!",
-    "DESCRIPTION_MEMBER": "{{success}} | Invitations of **{{username}}** have been reset! You will be able to restore them with the command `{{prefix}}restore-invites {{username}}`!"
+    "CONFIRMATION": "แน่ใจไหมว่าต้องการลบคำเชิญเซิร์ฟเวอร์ทั้งหมด\n\n{{success}} ส่ง `-confirm` เพื่อยืนยัน\n{{error}} ส่ง `cancel` เพื่อยกเลิก",
+    "CONFIRMATION_MEMBER": "แน่ใจไหมว่าต้องการลบคำเชิญทั้งหมดของ **{{username}}**\n\n{{success}} ส่ง `-confirm` เพื่อยืนยัน\n{{error}} ส่ง `cancel` เพื่อยกเลิก",
+    "LOADING": "{{loading}} | การลบคำเชิญของเซิร์ฟเวอร์ปัจจุบัน .... คุณจะสามารถกู้คืนได้ด้วยคำสั่ง `{{prefix}}restore-invite`!",
+    "LOADING_MEMBER": "{{loading}} | การลบคำเชิญปัจจุบันของ **{{username}}** ... คุณจะสามารถกู้คืนได้ด้วยคำสั่ง `{{prefix}}restore-invite {{username}}\"!",
+    "TITLE": "☄️ รีเซ็ตคำเชิญ!",
+    "DESCRIPTION": "{{success}} | คำเชิญเซิร์ฟเวอร์ถูกรีเซ็ตแล้ว! คุณจะสามารถกู้คืนได้ด้วยคำสั่ง `{{prefix}}restore-invite`!",
+    "DESCRIPTION_MEMBER": "{{success}} | คำเชิญของ **{{username}}** ถูกรีเซ็ตแล้ว! คุณจะสามารถกู้คืนได้โดยใช้คำสั่ง `{{prefix}}restore-invite {{username}}!"
 }
