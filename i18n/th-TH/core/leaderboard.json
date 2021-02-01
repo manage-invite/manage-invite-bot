@@ -1,7 +1,7 @@
 {
     "USER": "{{position}} **{{username}}** - **{{invites}}** invites (**{{regular}}** regular, **{{bonus}}** bonus, **{{fake}}** fake, **{{leaves}}** leaves)",
-    "PROMPT": "{{user}}, on which page would you like to go? Send `cancel` or `0` to cancel.",
-    "EMPTY_TITLE": "😕 No invite found",
-    "EMPTY_CONTENT": "Start inviting people and you will appear on this page!",
-    "TITLE": "Invites Leaderboard"
+    "PROMPT": "{{user}} คุณต้องการไปที่หน้าใด ส่ง`cancel` หรือ `0` เพื่อยกเลิก",
+    "EMPTY_TITLE": "😕 ไม่พบคำเชิญ",
+    "EMPTY_CONTENT": "เริ่มเชิญผู้คนและคุณจะปรากฏในหน้านี้!",
+    "TITLE": "ลีดเดอร์บอร์ดการเชิญ"
 }
