@@ -1,5 +1,5 @@
 {
-    "MISSING_CHANNEL": "Please specify a valid channel where the commands will be allowed!",
-    "SUCCESS_DISABLED": "Commands will now be allowed in all the channels!",
-    "SUCCESS_ENABLED": "Commands will only be allowed in {{channel}}! (Use `{{prefix}}cmd-channel` to allow them in all the channels)"
+    "MISSING_CHANNEL": "โปรดระบุช่องที่ถูกต้องซึ่งจะอนุญาตให้ใช้คำสั่งได้!",
+    "SUCCESS_DISABLED": "ตอนนี้คำสั่งจะได้รับอนุญาตในทุกช่อง!",
+    "SUCCESS_ENABLED": "คำสั่งจะได้รับอนุญาตใน {{channel}} เท่านั้น! (ใช้ `{{prefix}}cmd-channel` เพื่ออนุญาตให้ใช้ได้ในทุกช่อง)"
 }
