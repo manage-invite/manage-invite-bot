@@ -1,6 +1,6 @@
 {
-    "MISSING": "Trebuie să menționați rolul pe care doriți să îl eliminați din recompense. (Sintaxa: {{prefix}}removerank @rol)",
+    "MISSING": "You must specify the role you want to remove from rewards. (Syntax: {{prefix}}removerank @role)",
     "DOESNT_EXIST": "Acest rol nu este folosit pentru recompense!",
     "TITLE": "🎯 Rol eliminat",
-    "CONTENT": "Rol eliminat din recompense. Membrii nu il vor mai obtine cand ajung la **{{count}}** invitatii."
+    "CONTENT": "Role removed from the rewards. The members will no longer obtain it when they reach **{{count}}** invites."
 }

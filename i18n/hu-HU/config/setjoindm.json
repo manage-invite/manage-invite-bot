@@ -1,5 +1,4 @@
 {
     "ENABLED": "**Az üdvözlő privát üzenet __ENGEDÉLYEZVE__ lett!**",
-    "DISABLED": "**Az üdvözlő privát üzenet __TÍLTVA__ lett!**",
-    "PREMIUM": ":crown: | Szia, **{{username}}**! Ez a szolgáltatás csak prémium szervereken elérhető. Itt kaphatsz prémiumot: **<https://docs.manage-invite.xyz/configuration/premium>** !"
+    "DISABLED": "**Az üdvözlő privát üzenet __TÍLTVA__ lett!**"
 }

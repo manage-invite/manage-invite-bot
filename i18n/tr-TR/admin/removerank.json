@@ -1,6 +1,6 @@
 {
-    "MISSING": "Ödüllerden kaldırmak istediğiniz rolü etiketlemelisiniz. (Örnek: {{prefix}}removerank @rol)",
+    "MISSING": "You must specify the role you want to remove from rewards. (Syntax: {{prefix}}removerank @role)",
     "DOESNT_EXIST": "Bu rol zaten bir ödül değil!",
     "TITLE": "🎯 Rol kaldırıldı",
-    "CONTENT": "Rol ödüllerden kaldırıldı. Üyeler, artık **{{count}}** davete ulaştıklarında bu ödülü elde edemeyecekler."
+    "CONTENT": "Role removed from the rewards. The members will no longer obtain it when they reach **{{count}}** invites."
 }

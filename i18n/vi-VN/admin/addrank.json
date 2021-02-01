@@ -1,9 +1,9 @@
 {
-    "MISSING_COUNT": "Bạn cần nhập số invites cần có để đạt được rank. (Cú pháp: {{prefix}}addrank (số invites) @role)",
-    "INCORRECT_COUNT": " Bạn cần nhập một __**số**__ invites hợp lệ để đạt được rank. (Cú pháp: {{prefix}}addrank (số invites) @role)",
+    "MISSING_COUNT": "You must specify the number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
+    "INCORRECT_COUNT": " You must specify a __**valid**__ number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
     "ALREADY_EXIST": "**{{count}}** invites đã được sử dụng với vai trò khác (`{{roleName}}`)! Xoá nó bằng cú pháp `{{prefix}}removerank {{roleID}}` và thử lại!",
     "MISSING_ROLE": "Bạn phải đề cập đến vai trò mà bạn muốn thêm khi đạt được số invites! (Cú pháp: {{prefix}}addrank (số invites) @role)",
-    "ALREADY_USED": "Vai trò này đã được sử dụng với **{{count}}** invites! Xoá nó bằng cú pháp `{{prefix}}removerank {{roleID}}` và thử lại!",
+    "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it by sending `{{prefix}}removerank {{roleID}}` and try again!",
     "MISSING_PERM": "Role của bot không đủ cao để thêm role `{{roleName}}` cho thành viên! Hãy đặt role của bot cao hơn và thử lại!",
     "TITLE": "🎯 Role đã được thêm",
     "CONTENT": "Khi một thành viên đạt đủ **{{count}}** invites, họ sẽ được thêm `{{roleName}}`!",

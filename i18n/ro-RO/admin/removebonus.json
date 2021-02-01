@@ -1,9 +1,9 @@
 {
-    "MISSING_AMOUNT": "Trebuie sa scrii numarul bonus de invitatii pe care vreti sa le eliminati. (Sintaxa: {{prefix}}removebonus numar @membru/all)",
-    "INVALID_AMOUNT": "Trebuie sa scrii un numar __**valid**__ de invitatii bonus pe care vreti sa le eliminati. (Sintaxa: {{prefix}}removebonus numar @membru/all)",
+    "MISSING_AMOUNT": "You must specify the number of bonus invites you want to remove. (Syntax: {{prefix}}removebonus number @member/all)",
+    "INVALID_AMOUNT": "You must specify a __**valid**__ number of bonus invites that you want to remove. (Syntax: {{prefix}}removebonus number @member/all)",
     "MISSING_TARGET": "Trebuie să menționați membrul căruia doriți să îi eliminați invitațiile bonus (pr `all` dacă doriți să eliminați invitațiile pentru toata lumea). (Sintaxa: {{prefix}}removebonus numar @membru/all)",
-    "CONFIRMATION_ALL": ":warning: Esti sigur ca vrei sa elimini **{{count}}** invitatii bonus tuturor? Acest lucru poate dura mult timp (în funcție de dimensiunea serverului dvs.)! Trimite `-confirm` pentru a continua si `cancel` pentru a anula.",
+    "CONFIRMATION_ALL": ":warning: Are you sure you want to remove **{{count}}** bonus invites to everyone? This operation can take a long time (depending on the size of your server)! Send `-confirm` to continue and `cancel` to cancel.",
     "SUCCESS_TITLE": "📥 Invitatii bonus eliminate",
     "SUCCESS_CONTENT_ALL": "Invitatii bonus eliminate pentru toti!",
-    "SUCCESS_CONTENT_MEMBER": "Scrie `{{prefix}}invites {{usertag}}` pentru a vedea numarul noi de invitatii ale lui **{{username}}**!"
+    "SUCCESS_CONTENT_MEMBER": "Send `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
 }

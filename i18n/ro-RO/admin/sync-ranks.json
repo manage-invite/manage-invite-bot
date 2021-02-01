@@ -1,5 +1,5 @@
 {
-    "CONFIRM": "Esti sigur ca vrei sa sincronizezi rank-ul membrilor? Poate dura mult, în funcție de dimensiunea serverului dvs.\n\n{{success}} Scrie `-confirm` pentru a confirma.\n{{error}} Scrie `cancel` pentru a abandona.",
+    "CONFIRM": "Are you sure you want to synchronize the member ranks? It can take a long time depending on the size of your server.\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to abort.",
     "STARTED": "S-a început sincronizarea rank-urilor de membri... Note: îl puteți anula folosind `{{prefix}}sync-ranks cancel`.",
     "CANCELLED": "Sincronizarea rank-urilor de membri a fost anulată.",
     "SUCCESS": "Sincronizarea rank-urilor de membri este completă.",

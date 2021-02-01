@@ -1,7 +1,6 @@
 {
     "TITLE": "Se alătură pe {{server}} acesta in urma cu {{days}} zile",
     "CONTENT": "**{{total}}** membrii (i.e. **{{percent}}%** a serverului) \ns-au alăturat serverului de pe {{from}} pana pe {{to}}:",
-    "PREMIUM": ":crown: | Hei, **{{username}}**! Această caracteristică (perioada de statistici personalizata) este disponibilă numai pentru serverele premium. Obțineți premium aici: **<https://docs.manage-invite.xyz/configuration/premium>**!",
     "INVALID": "Trebuie să introduceți un număr valid de zile (mai mare de 1 și mai mic de 1000) ca să fie afișat!",
     "months": [
         "Ian",

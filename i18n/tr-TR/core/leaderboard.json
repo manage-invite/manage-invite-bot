@@ -1,6 +1,6 @@
 {
     "USER": "{{position}} **{{username}}** - **{{invites}}** davet (**{{regular}}** normal, **{{bonus}}** bonus, **{{fake}}** sahte, **{{leaves}}** ayrıldı)",
-    "PROMPT": "{{user}}, hangi sayfaya gitmek istersin? İptal etmek için `cancel` ya da `0` yazın.",
+    "PROMPT": "{{user}}, on which page would you like to go? Send `cancel` or `0` to cancel.",
     "EMPTY_TITLE": "😕 Davet bulunamadı",
     "EMPTY_CONTENT": "İnsanları davet etmeye başlayınca, bu sayfada görüneceksiniz!",
     "TITLE": "Davet Sıralaması"

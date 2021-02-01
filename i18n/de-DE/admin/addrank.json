@@ -1,9 +1,9 @@
 {
-    "MISSING_COUNT": "Du musst die erforderliche Einladungs-Zahl schreiben die man benötigt, um den Rang zu erhalten. (Nutze: {{prefix}}addrank Zahl @role)",
-    "INCORRECT_COUNT": " Du musst eine __**gültige**__ Nummer von Einladungen wählen, die benötigt wird um den Rang zu erhalten. (Befehl: `{{prefix}}addrank Zahl @rolle`)",
+    "MISSING_COUNT": "You must specify the number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
+    "INCORRECT_COUNT": " You must specify a __**valid**__ number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
     "ALREADY_EXIST": "Es gibt schon eine Rolle für **{{count}}** Einladungen (`{{roleName}}`)! Entferne sie mit `{{prefix}}removerank {{roleID}}` und versuche es erneut!",
     "MISSING_ROLE": "Du musst die Rolle erwähnen, die vergeben werden sollen wenn die Einladungs-Anzahl erreicht wurde! (Nutze: `{{prefix}}addrank Zahl @role`)",
-    "ALREADY_USED": "Es gibt schon eine Rolle für **{{count}}** Einladungen! Entferne sie mit `{{prefix}}removerank {{roleID}}` und versuche es erneut!",
+    "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it by sending `{{prefix}}removerank {{roleID}}` and try again!",
     "MISSING_PERM": "Meine Rolle ist nicht hoch genug um die Rolle `{{roleName}}` den Mitgliedern hinzuzufügen! Schiebe meine Rolle etwas höher und versuche es dann erneut!",
     "TITLE": "🎯 Neue Rolle Hinzugefügt",
     "CONTENT": "Wenn ein User **{{count}}** invites erreicht, wird er sofort die Rolle `{{roleName}}` erhalten!",

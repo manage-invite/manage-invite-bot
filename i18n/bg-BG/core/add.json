@@ -1,4 +1,4 @@
 {
-    "CONTENT": "Може да ме добавите в сървъра си, като натиснете [here](https://discordapp.com/oauth2/authorize?client_id={{clientID}}&scope=bot&permissions=2146958847).",
+    "CONTENT": "You can add me to your server by clicking [here](https://manage-invite.xyz/add).",
     "REQUEST_BY": "Пожелано от {{username}}"
 }

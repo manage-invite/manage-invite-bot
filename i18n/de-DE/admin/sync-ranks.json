@@ -1,5 +1,5 @@
 {
-    "CONFIRM": "Möchtest du wirklich die User-Ränge synchronisieren? Es kann viel Zeit benötigen, abhängig von der Größe deines Servers.\n\n{{success}} Nutze `-confirm` zum bestätigen.\n{{error}} Nutze `cancel` zum abbrechen.",
+    "CONFIRM": "Are you sure you want to synchronize the member ranks? It can take a long time depending on the size of your server.\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to abort.",
     "STARTED": "Die Synchronisation von User-Rängen ist gestartet.. Info: Du kannst es mit `{{prefix}}sync-ranks cancel` abbrechen.",
     "CANCELLED": "Synchronisation der User-Ränge abgebrochen.",
     "SUCCESS": "Die Synchronisation der User-Ränge ist abgeschlossen.",

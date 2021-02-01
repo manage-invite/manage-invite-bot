@@ -1,9 +1,9 @@
 {
-    "MISSING_COUNT": "Trebuie sa scrii numarul de invite-uri obligatorii pentru a obtine rank-ul. (Sintaxa: {{prefix}}addrank numar @rol)",
-    "INCORRECT_COUNT": " Trebuie sa scrii un numar __**valid**__ de invitatii necesare pentru a obtine rank-ul. (Sintaxa: {{prefix}}addrank numar @rol)",
+    "MISSING_COUNT": "You must specify the number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
+    "INCORRECT_COUNT": " You must specify a __**valid**__ number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
     "ALREADY_EXIST": "Există deja un rol definit pentru **{{count}}** invitatii (`{{roleName}}`)! Îndepărtează-l cu `{{prefix}}removerank {{roleID}}` apoi încearcă din nou!",
     "MISSING_ROLE": "Trebuie sa mentionezi rolul care vrei să fie adăugat atunci când numărul de invitații este atins! (Sintaxa: {{prefix}}addrank numar @rol)",
-    "ALREADY_USED": "Acest rol este deja folosit pentru **{{count}}** invitatii! Îndepărtează-l cu `{{prefix}}removerank {{roleID}}` apoi încearcă din nou!",
+    "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it by sending `{{prefix}}removerank {{roleID}}` and try again!",
     "MISSING_PERM": "Rolului meu nu este suficient de ridicat pentru a adăuga rolul `{{roleName}}` membrilor! Te rog pune-mi rolul mai sus si încearcă din nou!",
     "TITLE": "🎯 Rol nou adăugat",
     "CONTENT": "Atunci când un membru va ajunge la **{{count}}** de invitatii, vor obține `{{roleName}}`!",

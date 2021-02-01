@@ -1,4 +1,4 @@
 {
-    "SUCCESS_ENABLED": "**Şimdi, üyeler __SADECE__ en __YÜKSEK__ rütbelerini taşıyacaklar!**",
-    "SUCCESS_DISABLED": "**Şimdi, üyeler __BÜTÜN__ rütbelerini taşıyacaklar!**"
+    "SUCCESS_ENABLED": "**Now, members will keep __ALL__ their ranks!**",
+    "SUCCESS_DISABLED": "**Now, members will __ONLY__ keep their __HIGHEST__ rank!**"
 }

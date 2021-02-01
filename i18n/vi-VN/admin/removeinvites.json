@@ -1,9 +1,9 @@
 {
-    "CONFIRMATION": "Bạn chắc chắn muốn reset toàn bộ invites của server?\n\n{{success}} Nhập `-confirm` để xác nhận.\n{{error}} Nhập `cancel` để hủy.",
-    "CONFIRMATION_MEMBER": "Bạn chắc chắn muốn reset toàn bộ invites của **{{username}}**?\n\n{{success}} Nhập `-confirm` để xác nhận.\n{{error}} Nhập `cancel` để hủy.",
-    "LOADING": "{{loading}} | Xoá toàn bộ Invites trong server... Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites`!",
-    "LOADING_MEMBER": "{{loading}} | Xoá toàn bộ Invites của **{{username}}**... Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites {{username}}`!",
-    "TITLE": "☄️ Invitations reinitialized",
-    "DESCRIPTION": "{{success}} | Toàn bộ Invites trong server đã được xoá! Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites`!",
-    "DESCRIPTION_MEMBER": "{{success}} | Toàn bộ Invites của **{{username}}** đã được xoá! Bạn có thể khôi phục lại bằng lệnh `{{prefix}}restore-invites {{username}}`!"
+    "CONFIRMATION": "Are you sure you want to remove all the server invites?\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to abort.",
+    "CONFIRMATION_MEMBER": "Are you sure you want to remove all the invites of **{{username}}**?\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to abort.",
+    "LOADING": "{{loading}} | Deleting invites of the current server.... You will be able to restore them with the command `{{prefix}}restore-invites`!",
+    "LOADING_MEMBER": "{{loading}} | Deleting current invites of **{{username}}**... You will be able to restore them with the command `{{prefix}}restore-invites {{username}}`!",
+    "TITLE": "☄️ Invites reset!",
+    "DESCRIPTION": "{{success}} | Server invitations have been reset! You will be able to restore them with the command `{{prefix}}restore-invites`!",
+    "DESCRIPTION_MEMBER": "{{success}} | Invitations of **{{username}}** have been reset! You will be able to restore them with the command `{{prefix}}restore-invites {{username}}`!"
 }

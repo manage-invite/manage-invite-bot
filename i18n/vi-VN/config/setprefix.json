@@ -1,4 +1,4 @@
 {
-    "MISSING": "Bạn cần điền một tiền tố!",
+    "MISSING": "You must specify a prefix!",
     "SUCCESS": "Sever prefix đã được cập nhật!"
 }

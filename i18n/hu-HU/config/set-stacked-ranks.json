@@ -1,4 +1,4 @@
 {
-    "SUCCESS_ENABLED": "**__CSAK__ a __LEGMAGASABB__ rangjuk marad meg a tagoknak!**",
-    "SUCCESS_DISABLED": "**A tagok megtartják az __ÖSSZES__ rangukat!**"
+    "SUCCESS_ENABLED": "**Now, members will keep __ALL__ their ranks!**",
+    "SUCCESS_DISABLED": "**Now, members will __ONLY__ keep their __HIGHEST__ rank!**"
 }

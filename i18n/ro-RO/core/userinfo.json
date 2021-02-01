@@ -10,7 +10,6 @@
     "INVITES_TITLE": "Invitatii",
     "JOIN_ORDER_TITLE": "Ordinea alaturarii",
     "INVITED_TITLE": "Utilizatori invitați (pe server)",
-    "INVITED_PREMIUM": ":crown: | Această caracteristică (vizualizați utilizatorii invitați) este disponibilă numai pentru serverele premium. Obțineți premium aici: **<https://docs.manage-invite.xyz/configuration/premium>** !",
     "NO_INVITED_USERS": "Niciun utilizator invitat",
     "INVITED_USERS_MORE": "{{list}}, si mai multe...",
     "INVITE_CODES": "Coduri de invitație",

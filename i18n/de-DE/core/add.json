@@ -1,4 +1,4 @@
 {
-    "CONTENT": "Du kannst mich in deinen Server einladen indem du [hier](https://discordapp.com/oauth2/authorize?client_id={{clientID}}&scope=bot&permissions=2146958847) klickst.",
+    "CONTENT": "You can add me to your server by clicking [here](https://manage-invite.xyz/add).",
     "REQUEST_BY": "Angefordert von {{username}}"
 }

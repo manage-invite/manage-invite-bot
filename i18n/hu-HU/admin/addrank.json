@@ -1,9 +1,9 @@
 {
-    "MISSING_COUNT": "Meg kell adnod a rang megszerzéséhez szükséges meghívások számát. (Szintaxis: {{prefix}}addrank szám @rang)",
-    "INCORRECT_COUNT": "A rang megszerzéséhez __**érvényes**__ számú meghívót kell írni. (Szintaxis: {{prefix}}addrank szám @rang)",
+    "MISSING_COUNT": "You must specify the number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
+    "INCORRECT_COUNT": " You must specify a __**valid**__ number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
     "ALREADY_EXIST": "A **{{count}}** meghívóknak már szerepel egy meghatározott rangja ({{roleName}})! Távolítsd el a `{{prefix}}removerank {{roleID}}` paranccsal, majd próbáld újra!",
     "MISSING_ROLE": "Meg kell említened azt a szerepet, amelyet hozzá szeretnél adni, ha eléri a meghívószámot! (Szintaxis: {{prefix}}addrank szám @rang)",
-    "ALREADY_USED": "Ezt a rangot már használják a **{{count}}** meghíváshoz! Távolítsd el a `{{prefix}}removerank {{roleID}}` paranccsal, majd próbáld újra!",
+    "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it by sending `{{prefix}}removerank {{roleID}}` and try again!",
     "MISSING_PERM": "Az én rangom nem elég magas ahhoz, hogy hozzáadjam a(z) {{roleName}} rangot a tagoknak! Kérlek, tedd feljebb a rangomat, és próbáld újra!",
     "TITLE": "🎯 Új rang hozzáadva",
     "CONTENT": "Amikor egy tag eléri a **{{count}}** meghívót, akkor megkapja a következő rangot: {{roleName}}!",

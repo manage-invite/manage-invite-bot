@@ -1,4 +1,4 @@
 {
-    "MISSING": "Você deve escrever um prefixo!",
+    "MISSING": "You must specify a prefix!",
     "SUCCESS": "O prefixo do servidor foi atualizado!"
 }

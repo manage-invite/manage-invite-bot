@@ -1,9 +1,9 @@
 {
-    "CONFIRMATION": "Möchtest du die Servereinladungen wirklich wiederherstellen? Alle Mitglieder erhalten die Einladungen, die sie vor der letzten Eingabe des Befehls `{{prefix}}remove-invite` erhalten haben (oder 0, wenn der Befehl nie benutzt wurde).\n\n:information_source: **Einladungsübersicht**:\nEs wird folgende Einladungen wiederherstellen: **{{regular}}** regulär, **{{bonus}}** bonus, **{{leaves}}** verlassen, **{{fake}}** fake.\n\n{{success}} Nutze `-confirm` zum bestätigen.\n{{error}} Nutze `cancel` zum abbrechen.",
-    "CONFIRMATION_MEMBER": "Möchtest du die Einladungen von **{{username}}** wirklich wiederherstellen? Er erhält alle Einladungen die er hatte, bevor der Befehl `{{prefix}}remove-invites` benutzt wurde (oder 0, wenn der Befehl nie benutzt wurde). \n\n:information_source: **Einladungsübersicht**:\nEs werden folgende Einladungen wiederhergestellt: **{{regular}}** regulär, **{{bonus}}** bonus, **{{leaves}}** verlassen, **{{fake}}** fake.\n\n{{success}} Nutze `-confirm` zum bestätigen.\n{{error}} Nutze `cancel` zum abbrechen.",
-    "LOADING": "{{loading}} | Server-Einladungen werden wiederhergestellt...",
-    "LOADING_MEMBER": "{{loading}} | Server-Einladungen von **{{username}}** werden wiederhergestellt...",
-    "TITLE": "☄️ Einladungen wiederhergestellt",
-    "DESCRIPTION": "{{success}} | Server-Einladungen wurden wiederhergestellt!",
-    "DESCRIPTION_MEMBER": "{{success}} | Einladungen von **{{username}}** wurden wiederhergestellt!"
+    "CONFIRMATION": "Are you sure you want to restore the server invites? All members will recover the invites they had before the last time the command `{{prefix}}remove-invites` was executed (or 0 if the command was never executed).\n\n:information_source: **Invites overview**:\nThis operation will restore, in total: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to cancel.",
+    "CONFIRMATION_MEMBER": "Are you sure you want to restore the invites of **{{username}}**? They will recover the invites they had before the last time the command `{{prefix}}remove-invites` was executed (or 0 if the command was never executed).\n\n:information_source: **Invites overview**:\nThis operation will restore: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to cancel.",
+    "LOADING": "{{loading}} | Restoring server invites...",
+    "LOADING_MEMBER": "{{loading}} | Restoring the invites of **{{username}}**...",
+    "TITLE": "☄️ Invites restored",
+    "DESCRIPTION": "{{success}} | Server invites restored!",
+    "DESCRIPTION_MEMBER": "{{success}} | The invites of **{{username}}** have been successfully restored!"
 }

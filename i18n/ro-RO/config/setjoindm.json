@@ -1,5 +1,4 @@
 {
     "ENABLED": "**Mesajele de intrare din mesajele directe sunt acum __ENABLED__!**",
-    "DISABLED": "**Mesajele de intrare din mesajele directe sunt acum __DISABLED__!**",
-    "PREMIUM": ":crown: | Hei, **{{username}}**! Această caracteristică este disponibilă numai pentru serverele premium. Obțineți premium aici: **<https://docs.manage-invite.xyz/configuration/premium>** !"
+    "DISABLED": "**Mesajele de intrare din mesajele directe sunt acum __DISABLED__!**"
 }

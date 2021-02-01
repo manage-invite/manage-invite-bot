@@ -1,6 +1,6 @@
 {
     "USER": "{{position}} **{{username}}** - **{{invites}}** convites (**{{regular}}** normais, **{{bonus}}** bónus, **{{fake}}** falsos, **{{leaves}}** saídas)",
-    "PROMPT": "{{user}}, em qual página você gostaria de ir? Escreva `cancel` ou `0` para cancelar.",
+    "PROMPT": "{{user}}, on which page would you like to go? Send `cancel` or `0` to cancel.",
     "EMPTY_TITLE": "😕 Nenhum convite encontrado",
     "EMPTY_CONTENT": "Comece convidando pessoas e você irá aparecer nesta paginá!",
     "TITLE": "Tabela De Líderes De Convites"

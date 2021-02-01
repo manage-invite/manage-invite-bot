@@ -1,4 +1,4 @@
 {
-    "MISSING": "Trebuie sa scrii un prefix!",
+    "MISSING": "You must specify a prefix!",
     "SUCCESS": "Prefix-ul serverului a fost actualizat!"
 }

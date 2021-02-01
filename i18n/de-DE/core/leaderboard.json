@@ -1,6 +1,6 @@
 {
     "USER": "{{position}} **{{username}}** - **{{invites}}** Einladungen! (**{{regular}}** regulär, **{{bonus}}** bonus, **{{fake}}** fake, **{{leaves}}** verlassen)",
-    "PROMPT": "{{user}}, auf welche Seite möchtest du wechseln? Nutze `cancel` oder `0`, um abzubrechen.",
+    "PROMPT": "{{user}}, on which page would you like to go? Send `cancel` or `0` to cancel.",
     "EMPTY_TITLE": "😕 Keine Einladung gefunden",
     "EMPTY_CONTENT": "Lade ein paar Freunde ein um hier auf der Seite zu erscheinen!",
     "TITLE": "Einladungen-Bestenliste"
