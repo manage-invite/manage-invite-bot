@@ -1,4 +1,4 @@
 {
-    "SUCCESS_ENABLED": "**Acum, membri __WILL KEEP__ rank-urile, chiar daca nu au destule invitatii!**",
-    "SUCCESS_DISABLED": "**Acum, membri __WON'T KEEP__ rank-urile daca nu au destule invitatii!**"
+    "SUCCESS_ENABLED": "Now, members **will keep** their ranks, even if they don't have enough invites!",
+    "SUCCESS_DISABLED": "Now, members **won't keep** their ranks if they don't have enough invites!"
 }

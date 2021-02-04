@@ -1,4 +1,4 @@
 {
-    "SUCCESS_ENABLED": "**A tagok megtartják a rangjukat még akkor is ha nincs elég meghívójuk.**",
-    "SUCCESS_DISABLED": "**A tagok nem tarthatják meg a rangjukat ha nincs elég meghívójuk.**"
+    "SUCCESS_ENABLED": "Now, members **will keep** their ranks, even if they don't have enough invites!",
+    "SUCCESS_DISABLED": "Now, members **won't keep** their ranks if they don't have enough invites!"
 }
