@@ -199,8 +199,8 @@ module.exports = class {
                 const formattedMessage = this.client.functions.formatMessage(
                     guildData.joinDM.mainMessage,
                     member,
-                    (guildData.language || "english").substr(0, 2),
                     memberData.numJoins,
+                    (guildData.language || "english").substr(0, 2),
                     {
                         inviter,
                         inviterData,
