@@ -40,7 +40,7 @@ module.exports = class extends Command {
             message.author.send(this.client.functions.formatMessage(
                 data.guild.joinDM.mainMessage,
                 message.member,
-                0,
+                1,
                 (data.guild.language || "english").substr(0, 2),
                 {
                     inviter: message.client.user,
