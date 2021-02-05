@@ -6,12 +6,12 @@ module.exports = [
         display: (member) => member.toString()
     },
     {
-        name: "username",
+        name: "userName",
         aliases: ["user.name"],
         display: (member) => member.user.username
     },
     {
-        name: "usertag",
+        name: "userTag",
         aliases: ["user.tag"],
         display: (member) => member.user.tag
     },
