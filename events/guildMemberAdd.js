@@ -134,7 +134,8 @@ module.exports = class {
                     uses: invite.uses,
                     url: invite.url,
                     code: invite.code,
-                    inviter: inviter.id
+                    inviter: inviter.id,
+                    channel: invite.channel.toString()
                 },
                 joinFake
             });
