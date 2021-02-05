@@ -1,7 +1,7 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js");
 
-const { CanvasRenderService } = require("chartjs-node-canvas");
+const { ChartJSNodeCanvas } = require("chartjs-node-canvas");
 const width = 800;
 const height = 300;
 // White color and bold font
@@ -45,7 +45,7 @@ module.exports = class extends Command {
             server: message.guild.name,
             days: numberOfDays
         }));
-        const canvasRenderService = new CanvasRenderService(width, height, () => {});
+        const canvasRenderService = new ChartJSNodeCanvas({ width, height });
         const image = await canvasRenderService.renderToBuffer({
             type: "line",
             data: {
