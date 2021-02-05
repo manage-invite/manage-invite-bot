@@ -59,7 +59,7 @@ module.exports = [
         name: "inviterName",
         aliases: ["inviter.name"],
         requireInviter: true,
-        display: (member, numJoins, { inviter }) => inviter.name
+        display: (member, numJoins, { inviter }) => inviter.username
     },
     {
         name: "inviterTag",
