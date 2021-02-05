@@ -98,6 +98,8 @@ module.exports = class {
                 
             }*/
 
+            let joinFake = false;
+
             // If the member had previously invited this member and they have left
             const lastJoinData = inviterData.invitedMemberEvents.filter((j) => j.type === "join" && j.guildID === member.guild.id && j.inviterID === inviterMember.id)[0];
             if (lastJoinData){
@@ -110,6 +112,7 @@ module.exports = class {
                 if (fakeThreshold) {
                     const inThreshold = (member.user.createdTimestamp + (fakeThreshold * 24 * 60 * 60 * 1000)) > Date.now();
                     if (inThreshold) {
+                        joinFake = true;
                         inviterData.fake++;
                     }
                 }
@@ -132,7 +135,8 @@ module.exports = class {
                     url: invite.url,
                     code: invite.code,
                     inviter: inviter.id
-                }
+                },
+                joinFake
             });
         } else if (oauth){
             await this.client.database.createEvent({

@@ -28,6 +28,7 @@ module.exports = class {
         if (inviter){
             if (guildData.blacklistedUsers.includes(inviter.id)) return;
             inviterData.leaves++;
+            if (memberData.joinData.joinFake) inviterData.fake--;
             await inviterData.updateInvites();
             await this.client.database.createEvent({
                 userID: member.id,

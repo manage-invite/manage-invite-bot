@@ -214,13 +214,13 @@ module.exports = class DatabaseHandler {
         });
     }
 
-    async createEvent ({ userID, guildID, eventDate = new Date(), eventType, joinType, inviterID, inviteData }) {
+    async createEvent ({ userID, guildID, eventDate = new Date(), eventType, joinType, inviterID, inviteData, joinFake }) {
         return new Promise(async resolve => {
             // Update database
             await this.query(`
                 INSERT INTO invited_member_events
-                (user_id, guild_id, event_date, event_type, join_type, inviter_user_id, invite_data) VALUES
-                ('${userID}', '${guildID}', '${eventDate.toISOString()}', '${eventType}', ${stringOrNull(joinType)}, ${stringOrNull(inviterID)}, ${stringOrNull(pgEscape(JSON.stringify(inviteData)))})
+                (user_id, guild_id, event_date, event_type, join_type, inviter_user_id, invite_data, join_fake) VALUES
+                ('${userID}', '${guildID}', '${eventDate.toISOString()}', '${eventType}', ${stringOrNull(joinType)}, ${stringOrNull(inviterID)}, ${stringOrNull(pgEscape(JSON.stringify(inviteData)))}, ${joinFake || 'null'})
             `);
             // Update member cache
             if (this.memberCache.has(`${userID}${guildID}`)) {
@@ -231,7 +231,8 @@ module.exports = class DatabaseHandler {
                     eventType,
                     inviterID,
                     inviteData,
-                    joinType
+                    joinType,
+                    joinFake
                 });
             }
             this.removeMemberFromOtherCaches(userID, guildID);
@@ -245,7 +246,8 @@ module.exports = class DatabaseHandler {
                         eventType,
                         inviterID,
                         inviteData,
-                        joinType
+                        joinType,
+                        joinFake
                     });
                 }
                 this.removeMemberFromOtherCaches(inviterID, guildID);

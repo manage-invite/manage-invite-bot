@@ -31,7 +31,7 @@ module.exports = [
     },
     {
         name: "userNumJoins",
-        aliases: ["numJoins"],
+        aliases: ["numJoins", "user.numJoins"],
         display: (member, numJoins) => numJoins
     },
     {
