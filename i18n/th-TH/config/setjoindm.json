@@ -1,4 +1,4 @@
 {
-    "ENABLED": "**ข้อความเข้าร่วมในข้อความโดยตรงตอนนี้ __ENABLED__!**",
-    "DISABLED": "**ข้อความเข้าร่วม DM ตอนนี้ __DISABLED__!**"
+    "ENABLED": "**The join messages in direct messages are now __ENABLED__!**",
+    "DISABLED": "**The join messages in direct messages are now __DISABLED__!**"
 }
