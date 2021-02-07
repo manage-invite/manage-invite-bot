@@ -1,5 +1,5 @@
 {
-    "TITLE": "ℹ หน้าความช่วยเหลือของ ManageInvite",
+    "TITLE": "ℹ ManageInvite's Help Page",
     "DESCRIPTION": "> คำนำหน้าของ {{guildName}}: `{{prefix}}` (`{{prefix}}setprefix`)\n> ภาษาของ {{guildName}}: **{{language}}** (`{{prefix}}setlang`)",
     "ADMIN_TITLE": "🔧 ผู้ดูแลระบบ",
     "ADMIN_CONTENT": "> **{{prefix}}set-fake-threshold**: Considers very recent accounts as fake accounts (change the threshold)\n> **{{prefix}}set-stacked-ranks**: Whether members keep all their roles or only the highest one\n> **{{prefix}}setkeep-ranks**: Whether members keep their roles when they lose invitations\n> **{{prefix}}blacklist [add/remove/list] (@user)**: Add/Remove a user to the blacklist\n> **{{prefix}}addbonus number @user/all**: Add bonus invites to a member\n> **{{prefix}}removebonus number @user/all**: Remove bonus invites to a member\n> **{{prefix}}sync-invites**: Synchronize server invites and bot invites\n> **{{prefix}}removeinvites (@user)**: Remove (server/user) invites\n> **{{prefix}}restoreinvites (@user)**: Restore (server/user) invites",
@@ -10,7 +10,7 @@
     "JOIN_TITLE": "🏁 ข้อความเข้าร่วม",
     "JOIN_CONTENT": "> **{{prefix}}configjoin**: Setup __**join**__ messages\n> **{{prefix}}setjoin**: Disable/Enable __**join**__ messages\n> **{{prefix}}testjoin**: Test __**join**__ messages",
     "LEAVE_TITLE": "👋 ข้อความออก",
-    "LEAVE_CONTENT": "> **{{prefix}}configleave**: Setup __**leave**__ messages\n> **{{prefix}}setleave**: Disable / Enable __**leave**__ messages\n> **{{prefix}}testleave**: Test __**leave**__ messages",
+    "LEAVE_CONTENT": "> **{{prefix}}configleave**: Setup __**leave**__ messages\n> **{{prefix}}setleave**: Disable/Enable __**leave**__ messages\n> **{{prefix}}testleave**: Test __**leave**__ messages",
     "INVITES_TITLE": "➕ เชิญ",
     "INVITES_CONTENT": "> **{{prefix}}invite (@user)**: ระบุจำนวนคำเชิญที่คุณมีหรือสมาชิกที่กล่าวถึง\n> **{{prefix}}leaderboard**: แสดงลีดเดอร์บอร์ดคำเชิญของเซิร์ฟเวอร์",
     "CORE_TITLE": "🌐 ManageInvite",
