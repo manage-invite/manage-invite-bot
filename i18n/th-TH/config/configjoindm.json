@@ -1,7 +1,7 @@
 {
-    "DISABLE": "พิมพ์ `{{prefix}}setdmjoin` เพื่อปิดใช้งานข้อความเข้าร่วมใน dm",
+    "DISABLE": "Type `{{prefix}}setdmjoin` to disable join messages in dm.",
     "INSTRUCTIONS_1": "__**More informations**__\n```{{variables}}```\nSend `cancel` to cancel. {{string}}\n\n:sparkles: Embed messages are now available! You can generate an embed here: <https://embed-generator.manage-invite.xyz/> and send the json code below!\n\n\n:pencil: **| Now send the join message in DM... :pencil2:**",
     "SUCCESS": "✅ **| ทำได้สำเร็จ ...**",
-    "TITLE": "**เสร็จสิ้นการเข้าร่วม DM Msg ได้รับการตั้งค่า**",
+    "TITLE": "**Done The join DM Msg Has Been Setup**",
     "TEST": "ใช้ `{{prefix}}testjoindm` เพื่อทดสอบข้อความใหม่"
 }
