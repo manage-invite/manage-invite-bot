@@ -6,7 +6,7 @@
     "RANKS_TITLE": "🏆 รางวัลอันดับ",
     "RANKS_CONTENT": "> **{{prefix}}addrank number @role**: เพิ่มรางวัลอันดับ\n> **{{prefix}}removerank @role**: ลบรางวัลอันดับ\n> **{{prefix}}ranks**: แสดงรายการรางวัลอันดับ",
     "JOIN_DM_TITLE": "📨 เข้าร่วมข้อความใน DM",
-    "JOIN_DM_CONTENT": "> **{{prefix}}configdm**: Setup __**join dm**__ messages\n> **{{prefix}}setdm**: Disable / Enable __**join dm**__ messages\n> **{{prefix}}testdm**: Test __**join dm*__ messages",
+    "JOIN_DM_CONTENT": "> **{{prefix}}configdm**: Setup __**join dm**__ messages\n> **{{prefix}}setdm**: Disable/Enable __**join dm**__ messages\n> **{{prefix}}testdm**: Test __**join dm**__ messages",
     "JOIN_TITLE": "🏁 ข้อความเข้าร่วม",
     "JOIN_CONTENT": "> **{{prefix}}configjoin**: Setup __**join**__ messages\n> **{{prefix}}setjoin**: Disable/Enable __**join**__ messages\n> **{{prefix}}testjoin**: Test __**join**__ messages",
     "LEAVE_TITLE": "👋 ข้อความออก",
