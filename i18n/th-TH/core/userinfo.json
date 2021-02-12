@@ -1,8 +1,8 @@
 {
     "TITLE": "{{username}} บัญชี ({{userID}})",
-    "CREATED_AT_TITLE": "การสร้าง",
-    "BOT_TITLE": "หุ่นยนต์",
-    "JOINED_AT_TITLE": "เข้าร่วม",
+    "CREATED_AT_TITLE": "Creation",
+    "BOT_TITLE": "Robot",
+    "JOINED_AT_TITLE": "Join",
     "JOIN_WAY_TITLE": "เข้าร่วมเนื่องจาก",
     "JOIN_WAY_OAUTH": "คำเชิญ Oauth (ผ่าน discordapp.com)",
     "JOIN_WAY_VANITY": "คำเชิญที่กำหนดเองซึ่งกำหนดค่าโดยผู้ดูแลระบบ",
@@ -12,8 +12,8 @@
     "INVITED_TITLE": "ผู้ใช้ที่ได้รับเชิญ (บนเซิร์ฟเวอร์)",
     "NO_INVITED_USERS": "ไม่มีผู้ใช้ที่ได้รับเชิญ",
     "INVITED_USERS_MORE": "{{list}} และอื่นๆ ...",
-    "INVITE_CODES": "เชิญรหัส",
+    "INVITE_CODES": "Invite Codes",
     "NO_INVITES": "ผู้ใช้รายนี้ไม่มีคำเชิญที่ใช้งานอยู่",
-    "NUMBER_JOINS": "จำนวนการรวม",
+    "NUMBER_JOINS": "Number of joins",
     "FIRST_JOIN_WAY_TITLE": "เข้าร่วมครั้งแรกเนื่องจาก"
 }
