@@ -1,7 +1,7 @@
 {
     "TITLE": "สถิติของ {{username}}",
     "STATS_TITLE": "📊 สถิติ",
-    "STATS_CONTENT": "`เซิร์ฟเวอร์: {{guilds}}`\n`ผู้ใช้: {{users}}`",
+    "STATS_CONTENT": "`Servers: {{guilds}}`\n`Users: {{users}}`",
     "VERSIONS_TITLE": "⚙️ เวอร์ชัน",
     "VERSIONS_CONTENT": "`Discord: {{discord}}`\n`Node: {{node}}`",
     "SHARD_TITLE": "{{online}} แชร์ #{{shardID}}",
