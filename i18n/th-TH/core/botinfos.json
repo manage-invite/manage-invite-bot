@@ -3,7 +3,7 @@
     "STATS_TITLE": "📊 สถิติ",
     "STATS_CONTENT": "`เซิร์ฟเวอร์: {{guilds}}`\n`ผู้ใช้: {{users}}`",
     "VERSIONS_TITLE": "⚙️ เวอร์ชัน",
-    "VERSIONS_CONTENT": "`ไม่ลงรอยกัน: {{discord}}`\n`โหนด: {{node}}`",
+    "VERSIONS_CONTENT": "`Discord: {{discord}}`\n`Node: {{node}}`",
     "SHARD_TITLE": "{{online}} แชร์ #{{shardID}}",
     "SHARD_TITLE_CURRENT": "{{online}} แชร์ #{{shardID}} (ปัจจุบัน)",
     "SHARD_CONTENT": "`{{guilds}}` servers\n`{{ping}}` ms\n`{{ram}}` mb ram\n`{{cachedMembers}}` cached members\n`{{cachedGuilds}}` cached guilds"
