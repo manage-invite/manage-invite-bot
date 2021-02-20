@@ -1,6 +1,6 @@
 {
     "TITLE": ":wrench: ระบบเข้าร่วม DM :",
-    "ENABLED_YES_CONTENT": "{{success}} เข้าร่วมข้อความในการเปิดใช้งาน dm ปิดการใช้งานด้วย `{{prefix}}setdmjoin`",
-    "ENABLED_NO_CONTENT": "{{error}} เข้าร่วมข้อความใน dm ถูกปิดใช้งาน เปิดใช้งานด้วย `{{prefix}}setdmjoin`",
+    "ENABLED_YES_CONTENT": "{{success}} Join messages in dm enabled. Disable them with `{{prefix}}setdmjoin`.",
+    "ENABLED_NO_CONTENT": "{{error}} Join messages in dm disabled. Enable them with `{{prefix}}setdmjoin`.",
     "MESSAGE_CONTENT": "ไม่ได้กำหนดข้อความ ตั้งค่าด้วย `{{prefix}}configdm`!"
 }

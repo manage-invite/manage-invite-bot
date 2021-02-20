@@ -1,6 +1,6 @@
 {
     "TITLE": "{{guild}} การกำหนดค่า",
-    "JOIN_TITLE": "{{status}} เข้าร่วม Messages",
+    "JOIN_TITLE": "{{status}} Join Messages",
     "JOIN_CONTENT": "> เปิดใช้งาน: {{enabled}}\n> ข้อความ: {{message}}\n> ช่อง: {{channel}}",
     "LEAVE_TITLE": "{{status}} ข้อความออก",
     "JOIN_DM_TITLE": "{{status}} ข้อความเข้าร่วม DM",

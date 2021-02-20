@@ -8,7 +8,7 @@
   "JOIN_UNKNOWN_DEFAULT": "ฉันคิดไม่ออกว่า {user} เข้าร่วมเซิร์ฟเวอร์ได้อย่างไร",
   "JOIN_VANITY_DEFAULT": "{user} เข้าร่วมเซิร์ฟเวอร์โดยใช้คำเชิญ discord.gg ที่กำหนดโดยเจ้าของกิลด์ (หรือผู้ดูแลระบบ)",
   "JOIN_DM_MAIN_DEFAULT": "ยินดีต้อนรับ {user} ใน **{server}**! คุณได้รับเชิญจาก **{inviter.tag}** (ซึ่งตอนนี้มีคำเชิญ **{inviter.invites}**)",
-  "JOIN_DM_UNKNOWN_DEFAULT": "ยินดีต้อนรับ {user} ใน ** {server} **! คิดไม่ออกว่าใครเชิญคุณ ...",
+  "JOIN_DM_UNKNOWN_DEFAULT": "Welcome {user} in **{server}**! I can't figure out who invited you...",
   "JOIN_DM_VANITY_DEFAULT": "ยินดีต้อนรับ {user} ใน **{server}**! คุณเข้าร่วมเซิร์ฟเวอร์โดยใช้คำเชิญ discord.gg ที่กำหนดโดยเจ้าของกิลด์ (หรือผู้ดูแลระบบ)",
   "LEAVE_MAIN_DEFAULT": "{user.tag} ออกจากเซิร์ฟเวอร์ พวกเขาได้รับเชิญจาก **{inviter.tag}** (ผู้ที่มีคำเชิญ **{inviter.invites}**)",
   "LEAVE_OAUTH2_DEFAULT": "{user} ออกจากเซิร์ฟเวอร์ พวกเขาเข้าร่วมผ่าน OAuth",
