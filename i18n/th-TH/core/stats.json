@@ -1,6 +1,6 @@
 {
     "TITLE": "Joins on {{server}} these last {{days}} days",
-    "CONTENT": "สมาชิก **{{total}}** (i.e. **{{percent}}%** ของเซิร์ฟเวอร์) ได้เข้าร่วมเซิร์ฟเวอร์ตั้งแต่ {{from}} ถึง {{to}}:",
+    "CONTENT": "**{{total}}** members (i.e. **{{percent}}%** of the server) have joined the server from {{from}} to {{to}}:",
     "INVALID": "คุณต้องป้อนจำนวนวันที่ถูกต้อง (มากกว่า 1 และต่ำกว่า 1,000) จึงจะแสดงได้!",
     "months": [
         "ม.ค.",
