@@ -46,8 +46,15 @@ module.exports = class extends Command {
 
         for (const sub of guildDB.subscriptions){
             const payments = await this.client.database.getPaymentsForSubscription(sub.id);
-            const subContent = payments.map((p) => `__**${p.type}**__\nUser: **${p.payer_discord_username}** (\`${p.payer_discord_id}\`)\nDate: **${this.client.functions.formatDate(new Date(p.created_at), "MMM D YYYY h:m:s A", "en-US")}**\nID: ${p.id}`).join("\n");
-            embed.addField(`${sub.aboutToExpire ? this.client.config.emojis.idle : sub.active ? this.client.config.emojis.online : this.client.config.emojis.dnd + (sub.invalidated ? ` ${this.client.config.emojis.offline}` : "")} ${sub.label} (${sub.id})`, subContent);
+            const subContents = [''];
+            payments.forEach((p) => {
+                if (subContents[subContents.length - 1].length > 1000) subContents.push('');
+                const previousContent = subContents.pop();
+                subContents.push(previousContent += `\n__**${p.type}**__\nUser: **${p.payer_discord_username}** (\`${p.payer_discord_id}\`)\nDate: **${this.client.functions.formatDate(new Date(p.created_at), "MMM D YYYY h:m:s A", "en-US")}**\nID: ${p.id}`))
+            };
+            subContents.forEach((content) => {
+                embed.addField(`${sub.aboutToExpire ? this.client.config.emojis.idle : sub.active ? this.client.config.emojis.online : this.client.config.emojis.dnd + (sub.invalidated ? ` ${this.client.config.emojis.offline}` : "")} ${sub.label} (${sub.id})`, content);
+            });
         }
 
         message.channel.send(embed);
