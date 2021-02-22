@@ -48,7 +48,7 @@ module.exports = class extends Command {
             const payments = await this.client.database.getPaymentsForSubscription(sub.id);
             const subContents = [''];
             payments.forEach((p) => {
-                if (subContents[subContents.length - 1].length > 1000) subContents.push('');
+                if (subContents[subContents.length - 1].length > 800) subContents.push('');
                 const previousContent = subContents.pop();
                 subContents.push(previousContent += `\n__**${p.type}**__\nUser: **${p.payer_discord_username}** (\`${p.payer_discord_id}\`)\nDate: **${this.client.functions.formatDate(new Date(p.created_at), "MMM D YYYY h:m:s A", "en-US")}**\nID: ${p.id}`))
             };
