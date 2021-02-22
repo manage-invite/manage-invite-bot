@@ -2,7 +2,6 @@ const config = require("../config");
 
 const fetch = require("node-fetch"),
     moment = require("moment"),
-    date = require("date-and-time"),
     Discord = require("discord.js");
 
 const variables = require("./variables");
@@ -270,13 +269,8 @@ const isEqual = (value, other) => {
  * @param {string} locale 
  */
 const formatDate = (dateToFormat, format, locale) => {
-    try {
-        if (locale !== "en-US") require("date-and-time/locale/"+locale.substr(0, 2));
-    } catch (e) {
-        locale = "en-US";
-    }
-    date.locale(locale.substr(0, 2));
-    return date.format(dateToFormat, format);
+    moment.locale(locale.substr(0, 2));
+    return moment(dateToFormat).format(format);
 };
 
 /**

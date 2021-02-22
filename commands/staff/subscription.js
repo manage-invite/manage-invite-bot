@@ -51,8 +51,16 @@ module.exports = class extends Command {
             const active = sub.expiresAt > Date.now();
             const invalidated = sub.cancelled;
             const payments = await this.client.database.fetchSubscriptionPayments(sub.id);
-            const subContent = payments.map((p) => `__**${p.type}**__\nUser: **${p.payerDiscordUsername}** (\`${p.payerDiscordID}\`)\nDate: **${this.client.functions.formatDate(new Date(p.createdAt), "MMM D YYYY h:m:s A", "en-US")}**\nID: ${p.id}`).join("\n");
-            embed.addField(`${aboutToExpire ? this.client.config.emojis.idle : active ? this.client.config.emojis.online : this.client.config.emojis.dnd + (invalidated ? ` ${this.client.config.emojis.offline}` : "")} ${sub.label} (${sub.id})`, subContent);
+            const subContents = [''];
+            payments.forEach((p) => {
+                const currentContent = `\n__**${p.type}**__\nUser: **${p.payerDiscordUsername}** (\`${p.payerDiscordID}\`)\nDate: **${this.client.functions.formatDate(new Date(p.createdAt), "MMMM Do YYYY, h:mm:ss a", "en-US")}**\nID: ${p.id}`;
+                if ((subContents[subContents.length - 1].length + currentContent.length) > 1024) subContents.push('');
+                let previousContent = subContents.pop();
+                subContents.push(previousContent + currentContent)
+            });
+            subContents.forEach((content) => {
+                embed.addField(`${aboutToExpire ? this.client.config.emojis.idle : active ? this.client.config.emojis.online : this.client.config.emojis.dnd + (invalidated ? ` ${this.client.config.emojis.offline}` : "")} ${sub.subLabel} (${sub.id})`, content);
+            });
         }
 
         message.channel.send(embed);
