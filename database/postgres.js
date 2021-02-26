@@ -7,20 +7,24 @@ module.exports = class PostgreSQL {
     constructor () {
 
         this.connect = new Promise((resolve) => this.connectResolve = resolve);
+        this.connected = false;
         this.log = (content) => log(content, 'postgres');
 
         this.client = new Pool(postgresConfig);
-        this.client.on("connect", () => {
-            this.log(`Connected.`);
-            this.connectResolve();
+        this.client.on('connect', () => {
+            if (!this.connected) {
+                this.connected = true;
+                this.log(`Connected.`);
+                this.connectResolve();
+            }
         });
         this.client.connect();
 
     }
 
-    query (query, ...arguments) {
+    query (query, ...args) {
         return new Promise((resolve, reject) => {
-            this.pool.query(string, arguments, (error, results) => {
+            this.client.query(query, args, (error, results) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -30,15 +34,15 @@ module.exports = class PostgreSQL {
         });
     }
 
-    fetchPremiumGuilds () {
-        this.query(`
+    fetchPremiumGuildIDs () {
+        return this.query(`
             SELECT guild_id
             FROM guilds_subscriptions
-        `).then(async ({ rows }) => {
-            return rows;
-        });
-        return
+        `).then(({ rows }) => rows);
     }
 
+    fetchGuilds () {
+
+    }
 
 }
