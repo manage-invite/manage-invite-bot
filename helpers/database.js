@@ -14,7 +14,7 @@ module.exports = class DatabaseHandler {
         this.pool = new Pool(database);
         this.pool
             .on("connect", () => {
-                logger.log("Shard #"+this.client.shard.ids[0]+" connected to database.");
+                log("Shard #"+this.client.shard.ids[0]+" connected to database.");
             });
 
         // Cache

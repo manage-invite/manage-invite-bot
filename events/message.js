@@ -104,7 +104,7 @@ module.exports = class {
         const cooldown = cmd.conf.cooldown(message, args);
         cooldownedUsers.set(userKey, cooldown + currentDate);
 
-        this.client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name} (${Date.now()-startAt}ms)`, "cmd");
+        this.client.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name} (${Date.now()-startAt}ms)`, "cmd");
 
         this.client.commandsRan++;
         // If the command exists, **AND** the user has permission, run it.

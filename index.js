@@ -28,7 +28,7 @@ const init = async () => {
         commands.filter((cmd) => cmd.split(".").pop() === "js").forEach((cmd) => {
             const response = client.loadCommand("./commands/"+dir, cmd);
             if (response){
-                client.logger.log(response, "error");
+                client.log(response, "error");
             }
         });
     });
@@ -44,6 +44,8 @@ const init = async () => {
 
     const i18n = require("./helpers/i18n");
     client.translations = await i18n();
+
+    await client.database.connect();
 
     // Gets commands permission
     client.levelCache = {};
@@ -72,10 +74,10 @@ const init = async () => {
 init();
 
 // if there are errors, log them
-client.on("disconnect", () => client.logger.log("Bot is disconnecting...", "warn"))
-    .on("reconnecting", () => client.logger.log("Bot reconnecting...", "log"))
-    .on("error", (e) => client.logger.log(e, "error"))
-    .on("warn", (info) => client.logger.log(info, "warn"));
+client.on("disconnect", () => client.log("Bot is disconnecting...", "warn"))
+    .on("reconnecting", () => client.log("Bot reconnecting...", "log"))
+    .on("error", (e) => client.log(e, "error"))
+    .on("warn", (info) => client.log(info, "warn"));
 
 // if there is an unhandledRejection, log them
 process.on("unhandledRejection", (err) => {

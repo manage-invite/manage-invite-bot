@@ -2,7 +2,7 @@ const { Client, Collection } = require("discord.js"),
     util = require("util"),
     path = require("path");
 
-const DatabaseHandler = require("../helpers/database");
+const DatabaseHandler = require("../database");
 
 // Creates ManageInvite class
 class ManageInvite extends Client {
@@ -17,7 +17,7 @@ class ManageInvite extends Client {
         this.commands = new Collection(); // Creates new commands collection
         this.aliases = new Collection(); // Creates new command aliases collection
         // Utils
-        this.logger = require("../helpers/logger"); // Load the logger file
+        this.log = require("../helpers/logger");
         this.functions = require("../helpers/functions"); // Load the functions filec
         this.wait = util.promisify(setTimeout); // client.wait(1000) - Wait 1 second
         // Invitations data

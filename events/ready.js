@@ -12,7 +12,7 @@ module.exports = class {
         setInterval(() => {
             this.client.user.setActivity("+help | manage-invite.xyz");
         }, 60000*60);
-        this.client.logger.log("Shard #"+this.client.shard.ids[0]+" has started.", "log");
+        this.client.log("Shard #"+this.client.shard.ids[0]+" has started.", "log");
         this.client.functions.postTopStats(this.client);
 
         if (!process.argv.includes("--uncache")) await this.client.wait(1000);
@@ -20,10 +20,8 @@ module.exports = class {
         const startAt = Date.now();
         this.client.fetching = true;
 
-        const premiumGuildsID = await this.client.database.fetchPremiumGuilds();
-        this.client.logger.log(`Shard #${this.client.shard.ids[0]} launched (${this.client.pgQueries} queries)`);
-        this.client.logger.log(`Subscriptions: ${this.client.database.subscriptionCache.size}`);
-        this.client.logger.log(`Guilds: ${this.client.database.guildCache.size}`);
+        const premiumGuildsID = await this.client.database.fetchPremiumGuildIDs();
+        this.client.log(`Shard #${this.client.shard.ids[0]} is ready!`);
         await this.client.functions.asyncForEach(this.client.guilds.cache.array(), async (guild) => {
             if (premiumGuildsID.includes(guild.id)){
                 const member = await guild.members.fetch(this.client.user.id).catch(() => {});
@@ -129,7 +127,7 @@ module.exports = class {
         new CronJob("0 */15 * * * *", async () => {
             if (this.client.fetched){
                 const guildsToFetch = this.client.guilds.cache.filter((guild) => !this.client.invitations[guild.id]).array();
-                this.client.logger.log(`${guildsToFetch.length} guilds need to be fetched`);
+                this.client.log(`${guildsToFetch.length} guilds need to be fetched`);
                 await this.client.functions.asyncForEach(guildsToFetch, async (guild) => {
                     const member = await guild.members.fetch(this.client.user.id).catch(() => {});
                     const i = process.argv.includes("--uncache") ? null : (member.hasPermission("MANAGE_GUILD") ? await guild.fetchInvites().catch(() => {}) : null);

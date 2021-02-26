@@ -156,8 +156,8 @@ const postTopStats = async (client) => {
     };
     fetch("https://discordbots.org/api/bots/stats", options).then(async (res) => {
         const json = await res.json();
-        if (!res.error) client.logger.log("Top.gg stats successfully posted.", "log");
-        else client.logger.log("Top.gg stats cannot be posted. Error: "+json.error, "error");
+        if (!res.error) client.log("Top.gg stats successfully posted.", "log");
+        else client.log("Top.gg stats cannot be posted. Error: "+json.error, "error");
     });
 };
 
