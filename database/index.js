@@ -21,11 +21,12 @@ module.exports = class DatabaseHandler {
 
     }
 
+    fetchPremiumUserIDs () {
+        return this.postgres.fetchPremiumUserIDs();
+    }
+
     fetchPremiumGuildIDs () {
-        return new Promise(async (resolve) => {
-            const guildIDs = await this.postgres.fetchPremiumGuildIDs();
-            resolve(guildIDs);
-        });
+        return this.postgres.fetchPremiumGuildIDs();
     }
 
 }

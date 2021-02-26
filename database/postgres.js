@@ -41,6 +41,14 @@ module.exports = class PostgreSQL {
         `).then(({ rows }) => rows);
     }
 
+    fetchPremiumUserIDs () {
+        return this.query(`
+            SELECT payer_discord_id
+            FROM payments
+            WHERE type = 'paypal_dash_pmnt_month' OR type = 'email_address_pmnt_month';
+        `).then({ rows }) => rows);
+    }
+
     fetchGuilds () {
 
     }
