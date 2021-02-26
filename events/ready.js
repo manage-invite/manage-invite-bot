@@ -41,9 +41,9 @@ module.exports = class {
                 console.log("\x1b[32m%s\x1b[0m", `SHARD [${this.shard.ids[0]}]`, "\x1b[0m", `Serving ${this.users.cache.size} users in ${this.guilds.cache.size} servers.`);
             });
         }
-
         if (this.client.shard.ids.includes(0) && !this.client.spawned){
             this.client.dash.load(this.client);
+            /*
             new CronJob("0 5 0 * * *", async () => {
                 // tous les abonnements qui ont expiré il y a trois jours au moins
                 this.client.database.query(`
@@ -94,34 +94,7 @@ module.exports = class {
                     });
                 });
             }, null, true, "America/Los_Angeles");
-            new CronJob("0 */15 * * * *", async () => {
-                const results = await this.client.shard.broadcastEval(() => {
-                    const commandsRan = this.commandsRan;
-                    const pgQueries = this.pgQueries;
-                    const guildsCreated = this.guildsCreated;
-                    const guildsDeleted = this.guildsDeleted;
-                    this.commandsRan = 0;
-                    this.pgQueries = 0;
-                    this.guildsCreated = 0;
-                    this.guildsDeleted = 0;
-                    return [
-                        commandsRan,
-                        pgQueries,
-                        guildsCreated,
-                        guildsDeleted
-                    ];
-                });
-                const totalCommandsRan = results.map((r) => r[0]).reduce((p, c) => p + c);
-                const totalPgQueries = results.map((r) => r[1]).reduce((p, c) => p + c);
-                const totalGuildsCreated = results.map((r) => r[2]).reduce((p, c) => p + c);
-                const totalGuildsDeleted = results.map((r) => r[3]).reduce((p, c) => p + c);
-                const content = `New servers: **${totalGuildsCreated}**\nLost servers: **${totalGuildsDeleted}**\nCommands ran: **${totalCommandsRan}**\nPG Queries: **${totalPgQueries}**`;
-                this.client.shard.broadcastEval(`
-                    let channel = this.channels.cache.get(this.config.statsLogs);
-                    if(channel) channel.send(\`${content}\`);
-                `);
-                this.client.database.saveStats(totalGuildsCreated, totalGuildsDeleted, totalCommandsRan, totalPgQueries, new Date());
-            }, null, true, "America/Los_Angeles");
+            */
         }
 
         new CronJob("0 */15 * * * *", async () => {
