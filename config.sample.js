@@ -54,6 +54,9 @@ module.exports = {
         password: "",
         port: 5432
     },
+    redis: {
+        user: ""
+    }
     /* PayPal */
     paypal: {
         mode: "sandbox",

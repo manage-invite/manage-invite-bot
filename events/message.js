@@ -17,10 +17,10 @@ module.exports = class {
         
         if (!message.guild || message.author.bot) return;
 
-        const guildData = message.guild.data = await this.client.database.fetchGuild(message.guild.id);
+        const guildSettings = message.guild.settings = await this.client.database.fetchGuildSettings(message.guild.id);
     
         const data = {
-            guild: guildData,
+            guild: guildSettings,
             color: this.client.config.color,
             footer: guildData.aboutToExpire ? "Attention, your ManageInvite subscription is about to expire!" : this.client.config.footer
         };
