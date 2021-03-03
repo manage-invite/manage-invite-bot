@@ -16,6 +16,36 @@ module.exports = class DatabaseHandler {
             this.postgres.connect
         ]);
     }
+
+    /**
+     * Fetches the guild subscriptions
+     */
+    async fetchGuildSubscriptions (guildID) {
+        const redisData = await this.redis.get(`guild_subscriptions_${guildID}`);
+        if (redisData) return redisData;
+
+        const { rows } = await this.postgres.query(`
+            SELECT *
+            FROM subscriptions
+            INNER JOIN guilds_subscriptions ON guilds_subscriptions.sub_id = subscriptions.id
+            WHERE guilds_subscriptions.guild_id = $1;
+        `, guildID);
+
+        const formattedGuildSubscriptions = rows.map((row) => ({
+            id: row.id,
+            expiresAt: row.expires_at,
+            createdAt: row.created_at,
+            subLabel: row.sub_label,
+            guildsCount: row.guilds_count,
+            patreonUserID: row.patreon_user_id,
+            cancelled: row.cancelled,
+            subInvalidated: row.sub_invalidated
+        }));
+        
+        this.redis.set(`guild_subscriptions_${guildID}`, '.', formattedGuildSubscriptions);
+
+        return formattedGuildSubscriptions;
+    }
     
     /**
      * Fetches the guild settings
@@ -39,7 +69,19 @@ module.exports = class DatabaseHandler {
             `, guildID));
         }
 
-        return rows;
+        const formattedGuildSettings = {
+            guildID: rows[0].guild_id,
+            language: rows[0].guild_language,
+            prefix: rows[0].guild_prefix,
+            keepRanks: rows[0].guild_keep_ranks,
+            stackedRanks: rows[0].guild_stacked_ranks,
+            cmdChannel: rows[0].guild_cmd_channel,
+            fakeThreshold: rows[0].guild_fake_threshold            
+        };
+
+        this.redis.set(`guild_${guildID}`, '.', formattedGuildSettings);
+
+        return formattedGuildSettings;
     }
 
     /**

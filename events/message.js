@@ -18,12 +18,17 @@ module.exports = class {
         
         if (!message.guild || message.author.bot) return;
 
+        console.time('fetch settings')
         const guildSettings = message.guild.settings = await this.client.database.fetchGuildSettings(message.guild.id);
-    
+        const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(message.guild.id);
+        const isPremium = guildSubscriptions.some((sub) => sub.expiresAt > Date.now());
+        const aboutToExpire = isPremium && !(guildSubscriptions.some((sub) => sub.expiresAt > (Date.now() + 3 * 24 * 60 * 60000)));
+        console.timeEnd('fetch settings')
+
         const data = {
-            guild: guildSettings,
+            settings: guildSettings,
             color: this.client.config.color,
-            footer: guildData.aboutToExpire ? "Attention, your ManageInvite subscription is about to expire!" : this.client.config.footer
+            footer: aboutToExpire ? "Attention, your ManageInvite subscription is about to expire!" : this.client.config.footer
         };
 
         if (message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.translate("misc:PREFIX", {

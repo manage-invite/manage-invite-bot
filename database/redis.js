@@ -20,20 +20,20 @@ class RedisHandler {
 
     push (key, path, value) {
         return new Promise((resolve) => {
-            this.client.arrappend(key, path, value).catch((err) => {
+            this.client.arrappend(key, JSON.stringify(value), path).catch((err) => {
                 this.client.set(key, path, '[]').then(() => this.push(key, path, value).then(resolve));
             }).then(() => resolve());
         });
     }
 
-    get (key, path) {
+    async get (key, path) {
         this.log(`Getting ${key}`);
-        return this.client.get(key, path);
+        return this.client.get(key, path).then((data) => data ? JSON.parse(data) : null)
     }
 
     set (key, path, value) {
         this.log(`Setting ${key} to ${value}`);
-        return this.client.set(key, path, value);
+        return this.client.set(key, path, value ? JSON.stringify(value) : null);
     }
 
 }

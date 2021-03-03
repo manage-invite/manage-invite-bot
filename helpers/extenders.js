@@ -8,8 +8,9 @@ Guild.prototype.translate = function (key, args) {
 };
 
 Message.prototype.translate = function (key, args) {
+    console.log(this.guild.settings)
     const language = this.client.translations.get(
-        this.guild ? this.guild.data.language : "en-US"
+        this.guild ? this.guild.settings.language : "en-US"
     );
     if (!language) throw "Message: Invalid language set in data.";
     return language(key, args);
