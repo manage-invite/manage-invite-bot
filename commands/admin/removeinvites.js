@@ -39,7 +39,10 @@ module.exports = class extends Command {
                 prefix: data.guild.prefix
             }));
             if (user){
-                const memberData = await this.client.database.fetchMember(user.id, message.guild.id);
+                const memberData = await this.client.database.fetchMember({
+                    userID: user.id,
+                    guildID: message.guild.id
+                });
                 memberData.oldRegular = memberData.regular;
                 memberData.regular = 0;
                 memberData.oldFake = memberData.fake;

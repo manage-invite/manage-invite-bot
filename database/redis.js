@@ -27,13 +27,21 @@ class RedisHandler {
     }
 
     async get (key, path) {
-        this.log(`Getting ${key}`);
-        return this.client.get(key, path).then((data) => data ? JSON.parse(data) : null)
+        const startAt = Date.now();
+        return this.client.get(key, path).then((data) => {
+            this.log(`${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
+            return data ? JSON.parse(data) : null
+        })
     }
 
     set (key, path, value) {
-        this.log(`Setting ${key} to ${value}`);
+        this.log(`Caching ${key}`);
         return this.client.set(key, path, value ? JSON.stringify(value) : null);
+    }
+
+    numincrby (key, path, value) {
+        this.log(`Incrementing ${key} by ${value}`);
+        return this.client.numincrby(key, path, value);
     }
 
 }

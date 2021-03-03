@@ -32,9 +32,12 @@ module.exports = class extends Command {
                     username: member.user.username
                 });
             }
-            const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
-            memberData.bonus += parseInt(bonus);
-            await memberData.updateInvites();
+            await this.client.database.addInvites({
+                userID: member.user.id,
+                guildID: message.guild.id,
+                number: parseInt(bonus),
+                type: 'bonus'
+            });
 
             const embed = new Discord.MessageEmbed()
                 .setAuthor(message.translate("admin/addbonus:SUCCESS_TITLE"))
@@ -56,15 +59,11 @@ module.exports = class extends Command {
                 collected.first().delete().catch(() => {});
 
                 await conf.sendT("misc:PLEASE_WAIT", null, true, false, "loading");
-                await message.guild.members.fetch();
-                const members = message.guild.members.cache.map((m) => {
-                    return {
-                        userID: m.id,
-                        guildID: message.guild.id
-                    };
+                await this.client.database.addInvitesServer({
+                    guildID: message.guild.id,
+                    number: parseInt(bonus),
+                    type: 'bonus'
                 });
-                await this.client.database.fetchMembers(members);
-                await this.client.database.addBonusInvitesMembers(message.guild.id, bonus);
                 const embed = new Discord.MessageEmbed()
                     .setAuthor(message.translate("admin/addbonus:SUCCESS_TITLE"))
                     .setDescription(message.translate("admin/addbonus:SUCCESS_CONTENT_ALL", {
