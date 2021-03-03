@@ -22,19 +22,19 @@ module.exports = class DatabaseHandler {
      * @path /guilds/3983080339/settings
      */
     async fetchGuildSettings (guildID) {
-        const redisData = await this.redis.client.get(`guild_${guildID}`);
+        const redisData = await this.redis.get(`guild_${guildID}`);
         if (redisData) return redisData;
 
-        let { rows } = await this.postgres.client.query(`
+        let { rows } = await this.postgres.query(`
             SELECT *
             FROM guilds
             WHERE guild_id = $1;
         `, guildID);
         
         if (!rows[0]) {
-            ({ rows } = await this.postgres.client.query(`
+            ({ rows } = await this.postgres.query(`
                 INSERT INTO guilds
-                (guild_id, guild_language, prefix, keep_ranks, stacked_ranks, cmd_channel, fake_threshold) VALUES
+                (guild_id, guild_language, guild_prefix, guild_keep_ranks, guild_stacked_ranks, guild_cmd_channel, guild_fake_threshold) VALUES
                 ($1, 'en-US', '+', false, false, null, null);
             `, guildID));
         }
@@ -52,8 +52,8 @@ module.exports = class DatabaseHandler {
     setGuildSetting (guildID, newValue, setting) {
         if (!['language', 'prefix', 'cmd_channel', 'fake_treshold', 'keep_ranks', 'stacked_ranks']) return new Error('unknown_guild_setting');
         return Promise.all([
-            this.redis.client.set(`guild_${guildID}`, `.${setting}`, newValue),
-            this.postgres.client.query(`
+            this.redis.set(`guild_${guildID}`, `.${setting}`, newValue),
+            this.postgres.query(`
                 UPDATE guilds
                 SET guild_${setting} = $1;
             `, newValue)
@@ -86,10 +86,10 @@ module.exports = class DatabaseHandler {
      * @path /guilds/398389083093/ranks
      */
     async fetchGuildRanks (guildID) {
-        const redisData = await this.redis.client.get(`guild_ranks_${guildID}`);
+        const redisData = await this.redis.get(`guild_ranks_${guildID}`);
         if (redisData) return redisData;
 
-        const { rows } = await this.postgres.client.query(`
+        const { rows } = await this.postgres.query(`
             SELECT *
             FROM guild_ranks
             WHERE guild_id = $1;
@@ -99,7 +99,7 @@ module.exports = class DatabaseHandler {
             roleID: row.role_id,
             inviteCount: row.invite_count
         }));
-        this.redis.client.set(`guild_ranks_${guildID}`, '.', formattedRanks);
+        this.redis.set(`guild_ranks_${guildID}`, '.', formattedRanks);
         return formattedRanks;
     }
 
@@ -108,10 +108,10 @@ module.exports = class DatabaseHandler {
      * @path /guilds/93803803/plugins
      */
     async fetchGuildPlugins (guildID) {
-        const redisData = await this.redis.client.get(`guild_plugins_${guildID}`);
+        const redisData = await this.redis.get(`guild_plugins_${guildID}`);
         if (redisData) return redisData;
 
-        const postgresData = await this.postgres.client.query(`
+        const postgresData = await this.postgres.query(`
             SELECT *
             FROM guild_plugins
             WHERE guild_id = $1;
@@ -121,7 +121,7 @@ module.exports = class DatabaseHandler {
             pluginName: row.plugin_name,
             pluginData: row.plugin_data
         }));
-        this.redis.client.set(`guild_plugins_${guildID}`, '.', formattedPlugins);
+        this.redis.set(`guild_plugins_${guildID}`, '.', formattedPlugins);
         return formattedPlugins;
     }
 
@@ -138,10 +138,10 @@ module.exports = class DatabaseHandler {
      * @path /guilds/309383/members/29830983/
      */
     async fetchGuildMember ({ memberID, guildID }) {
-        const redisData = await this.redis.client.get(`member_${memberID}`);
+        const redisData = await this.redis.get(`member_${memberID}`);
         if (redisData) return redisData;
 
-        let { rows } = await this.postgres.client.query(`
+        let { rows } = await this.postgres.query(`
             SELECT *
             FROM members
             WHERE guild_id = $1
@@ -149,7 +149,7 @@ module.exports = class DatabaseHandler {
         `, guildID, userID);
 
         if (!rows[0]) {
-            ({ rows} = await this.postgres.client.query(`
+            ({ rows} = await this.postgres.query(`
                 INSERT INTO members
                 (
                     guild_id, user_id,
@@ -207,19 +207,16 @@ module.exports = class DatabaseHandler {
 
     }
 
-    /**
-     * Add a rank to a guild
-     */
-    addGuildRank ({ roleID, inviteCount }) {
-
-    }
-
     fetchPremiumUserIDs () {
         return this.postgres.fetchPremiumUserIDs();
     }
 
-    fetchPremiumGuildIDs () {
-        return this.postgres.fetchPremiumGuildIDs();
+    async fetchPremiumGuildIDs () {
+        const { rows } = await this.postgres.query(`
+            SELECT guild_id
+            FROM guilds_subscriptions
+        `);
+        return rows.map((row) => row.guild_id);
     }
 
 }

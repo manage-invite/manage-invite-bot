@@ -9,26 +9,24 @@ module.exports = class GuildModel {
         this.ranks = null;
         this.blacklistedUsers = null;
         this.messages = null;
-
-        this.inserted = insert;
     }
 
     // Fetch guild data
 
     fetchSettings () {
-        return this.database.fetchGuildSettings().then((settings) => this.settings = settings);
+        return this.database.fetchGuildSettings(this.id).then((settings) => this.settings = settings);
     }
 
     fetchRanks () {
-        return this.database.fetchGuildRanks().then((ranks) => this.ranks = ranks);
+        return this.database.fetchGuildRanks(this.id).then((ranks) => this.ranks = ranks);
     }
 
     fetchBlacklistedUsers () {
-        return this.database.fetchGuildBlacklistedUsers().then((users) => this.blacklistedUsers = users);
+        return this.database.fetchGuildBlacklistedUsers(this.id).then((users) => this.blacklistedUsers = users);
     }
 
     fetchMessages () {
-        return this.database.fetchGuildMessages().then((messages) => this.messages = messages);
+        return this.database.fetchGuildMessages(this.id).then((messages) => this.messages = messages);
     }
 
 };

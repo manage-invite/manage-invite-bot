@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const Constants = require("../helpers/constants");
+const Guild = require("../database/models/Guild");
 
 const cooldownedUsers = new Discord.Collection();
 
@@ -26,16 +27,16 @@ module.exports = class {
         };
 
         if (message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.translate("misc:PREFIX", {
-            prefix: guildData.prefix
+            prefix: guildSettings.prefix
         }));
 
         // If the message does not start with the prefix, cancel
-        if (!message.content.toLowerCase().startsWith(guildData.prefix)){
+        if (!message.content.toLowerCase().startsWith(guildSettings.prefix)){
             return;
         }
 
         // If the message content is "/pay @Androz 10", the args will be : [ "pay", "@Androz", "10" ]
-        const args = message.content.slice(guildData.prefix.length).trim().split(/ +/g);
+        const args = message.content.slice(guildSettings.prefix.length).trim().split(/ +/g);
         // The command will be : "pay" and the args : [ "@Androz", "10" ]
         const command = args.shift().toLowerCase();
 

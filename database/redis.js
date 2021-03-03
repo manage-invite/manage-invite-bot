@@ -1,5 +1,5 @@
 const Guild = require('./models/Guild');
-const Redis = require('ioredis-json');
+const { ReJSON } = require('redis-modules-sdk');
 const { redis: redisConfig } = require("../config");
 const log = require('../helpers/logger');
 
@@ -10,10 +10,8 @@ class RedisHandler {
         this.connect = new Promise((resolve) => this.connectResolve = resolve);
         this.log = (content) => log(content, 'redis');
 
-        this.client = new Redis(redisConfig);
-        this.client.on('error', (e) => this.log(e));
-        this.client.on('ready', () => this.log('Ready.'));
-        this.client.on('connect', () => {
+        this.client = new ReJSON(redisConfig);
+        this.client.connect().then(() => {
             this.log('Connected.');
             this.connectResolve();
         });
@@ -26,6 +24,16 @@ class RedisHandler {
                 this.client.set(key, path, '[]').then(() => this.push(key, path, value).then(resolve));
             }).then(() => resolve());
         });
+    }
+
+    get (key, path) {
+        this.log(`Getting ${key}`);
+        return this.client.get(key, path);
+    }
+
+    set (key, path, value) {
+        this.log(`Setting ${key} to ${value}`);
+        return this.client.set(key, path, value);
     }
 
 }
