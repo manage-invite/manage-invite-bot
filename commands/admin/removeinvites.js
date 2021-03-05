@@ -39,22 +39,13 @@ module.exports = class extends Command {
                 prefix: data.guild.prefix
             }));
             if (user){
-                const memberData = await this.client.database.fetchMember({
+                await memberData.removeMemberInvites({
                     userID: user.id,
                     guildID: message.guild.id
                 });
-                memberData.oldRegular = memberData.regular;
-                memberData.regular = 0;
-                memberData.oldFake = memberData.fake;
-                memberData.fake = 0;
-                memberData.oldLeaves = memberData.leaves;
-                memberData.leaves = 0;
-                memberData.oldBonus = memberData.bonus;
-                memberData.bonus = 0;
-                await memberData.updateInvites();
             } else {
                 // Find all members in the guild
-                await this.client.database.backupInvites(message.guild.id);
+                await this.client.database.removeGuildInvites(message.guild.id);
             }
 
             const embed = new Discord.MessageEmbed()
