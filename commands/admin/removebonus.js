@@ -59,7 +59,9 @@ module.exports = class extends Command {
                 collected.first().delete().catch(() => {});
 
                 await conf.sendT("misc:PLEASE_WAIT", null, true, false, "loading");
+                await message.guild.members.fetch();
                 await this.client.database.addInvitesServer({
+                    userID: message.guild.members.cache.map((m) => m.id),
                     guildID: message.guild.id,
                     number: -parseInt(bonus),
                     type: 'bonus'

@@ -18,12 +18,16 @@ module.exports = class {
         
         if (!message.guild || message.author.bot) return;
 
-        console.time('fetch settings')
-        const guildSettings = message.guild.settings = await this.client.database.fetchGuildSettings(message.guild.id);
-        const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(message.guild.id);
+        const [
+            guildSettings,
+            guildSubscriptions
+        ] = await Promise.all([
+            this.client.database.fetchGuildSettings(message.guild.id),
+            this.client.database.fetchGuildSubscriptions(message.guild.id)
+        ]);
+        message.guild.settings = guildSettings;
         const isPremium = guildSubscriptions.some((sub) => sub.expiresAt > Date.now());
         const aboutToExpire = isPremium && !(guildSubscriptions.some((sub) => sub.expiresAt > (Date.now() + 3 * 24 * 60 * 60000)));
-        console.timeEnd('fetch settings')
 
         const data = {
             settings: guildSettings,
@@ -54,7 +58,7 @@ module.exports = class {
 
         const permLevel = await this.client.getLevel(message);
 
-        if (!data.guild.premium && permLevel < 4){
+        if (!isPremium && permLevel < 4){
             return message.sendT("misc:NEED_UPGRADE", {
                 username: message.author.username,
                 discord: Constants.Links.DISCORD,
@@ -62,10 +66,10 @@ module.exports = class {
             });
         }
 
-        if (data.guild.cmdChannel && (message.channel.id !== data.guild.cmdChannel) && permLevel < 1){
+        if (data.settings.cmdChannel && (message.channel.id !== data.settings.cmdChannel) && permLevel < 1){
             message.delete().catch(() => {});
             return message.author.send(message.translate("misc:WRONG_CHANNEL", {
-                channel: `<#${data.guild.cmdChannel}>`
+                channel: `<#${data.settings.cmdChannel}>`
             })).catch(() => {});
         }
 

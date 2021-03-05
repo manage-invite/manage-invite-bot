@@ -17,6 +17,10 @@ module.exports = class DatabaseHandler {
         ]);
     }
 
+    calculateInvites (memberData) {
+        return memberData.leaves - memberData.fake + memberData.regular + memberData.bonus;
+    }
+
     /**
      * Fetches the guild subscriptions
      */
@@ -183,9 +187,9 @@ module.exports = class DatabaseHandler {
     }
 
     /**
-     * 
+     * Add invites to a server
      */
-    async addInvitesServer ({ guildID, number, type }) {
+    async addInvitesServer ({ userIDs, guildID, number, type }) {
         const redisUpdates = usersIDs.map((userID) => this.redis.numincrby(`member_${userID}_${guildID}`, `.${type}`, number).catch(() => {}));
         return Promise.all([
             Promise.all(redisUpdates),
@@ -201,8 +205,20 @@ module.exports = class DatabaseHandler {
      * Fetches the guild blacklisted users
      * @path /guilds/3803983/blacklisted
      */
-    fetchGuildBlacklistedUsers () {
+    async fetchGuildBlacklistedUsers (guildID) {
+        const redisData = await this.redis.get(`guild_blacklisted_${guildID}`);
+        if (redisData) return redisData;
 
+        const { rows } = await this.postgres.query(`
+            SELECT *
+            FROM guild_blacklisted_users
+            WHERE guild_id = $1;
+        `, guildID);
+
+        const formattedBlacklistedUsers = rows.map((row) => row.user_id);
+
+        this.redis.set(`guild_blacklisted_${guildID}`, '.', formattedBlacklistedUsers);
+        return formattedBlacklistedUsers;
     }
 
     /**
@@ -210,7 +226,7 @@ module.exports = class DatabaseHandler {
      * @path /guilds/309383/members/29830983/
      */
     async fetchGuildMember ({ userID, guildID }) {
-        const redisData = await this.redis.get(`member_${memberID}_${guildID}`);
+        const redisData = await this.redis.get(`member_${userID}_${guildID}`);
         if (redisData) return redisData;
 
         let { rows } = await this.postgres.query(`
@@ -221,7 +237,7 @@ module.exports = class DatabaseHandler {
         `, guildID, userID);
 
         if (!rows[0]) {
-            ({ rows} = await this.postgres.query(`
+            ({ rows } = await this.postgres.query(`
                 INSERT INTO members
                 (
                     guild_id, user_id,
@@ -234,23 +250,24 @@ module.exports = class DatabaseHandler {
                     0, 0, 0, 0,
                     0, 0, 0, 0,
                     false
-                );
+                )
+                RETURNING *;
             `, guildID, userID));
         }
-        const formattedMember = rows.map((row) => ({
-            userID: row.user_id,
-            guildID: row.guild_id,
-            fake: row.invites_fake,
-            leaves: row.invites_leaves,
-            bonus: row.invites_bonus,
-            regular: row.invites_regular,
-            oldFake: row.old_invites_fake,
-            oldLeaves: row.old_invites_leaves,
-            oldBonus: row.old_invites_bonus,
-            oldRegular: row.old_invites_regular,
-            oldBackuped: row.old_invites_backuped
-        }));
-        this.redis.set(`member_${userID}_${guildID}`)
+        const formattedMember = {
+            userID: rows[0].user_id,
+            guildID: rows[0].guild_id,
+            fake: rows[0].invites_fake,
+            leaves: rows[0].invites_leaves,
+            bonus: rows[0].invites_bonus,
+            regular: rows[0].invites_regular,
+            oldFake: rows[0].old_invites_fake,
+            oldLeaves: rows[0].old_invites_leaves,
+            oldBonus: rows[0].old_invites_bonus,
+            oldRegular: rows[0].old_invites_regular,
+            oldBackuped: rows[0].old_invites_backuped
+        };
+        this.redis.set(`member_${userID}_${guildID}`, '.', formattedMember)
         return formattedMember;
     }
 
