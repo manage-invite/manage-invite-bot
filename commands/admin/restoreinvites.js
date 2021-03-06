@@ -15,7 +15,10 @@ module.exports = class extends Command {
     async run (message, args, data) {
 
         const member = args[0] ? await this.client.resolveMember(args.join(" "), message.guild) : null;
-        if (member) member.data = await this.client.database.fetchMember(member.id, message.guild.id);
+        if (member) member.data = await this.client.database.fetchMember({
+            userID: member.id,
+            guildID: message.guild.id
+        });
         let memberCount = { regular: 0, leaves: 0, fake: 0, bonus: 0 };
         if (!member){
             const m = await message.sendT("misc:PLEASE_WAIT", {
@@ -55,19 +58,14 @@ module.exports = class extends Command {
                 loading: this.client.config.emojis.loading
             }, true));
             if (member){
-                // Restore invites
-                member.data.regular = member.data.oldRegular;
-                // Restore fake
-                member.data.fake = member.data.oldFake;
-                // Restore leaves
-                member.data.leaves = member.data.oldLeaves;
-                // Restore bonus
-                member.data.bonus = member.data.oldBonus;
                 // Save the member
-                await member.data.updateInvites();
+                await member.data.restoreGuildMemberInvites({
+                    userID: member.id,
+                    guildID: message.guild.id
+                });
             } else {
                 // Find all members in the guild
-                await this.client.database.restoreInvites(message.guild.id);
+                await member.data.restoreGuildInvites(message.guild.id);
             }
 
             const embed = new Discord.MessageEmbed()

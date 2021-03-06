@@ -274,6 +274,69 @@ module.exports = class DatabaseHandler {
     /**
      * Remove and backup the invites of a member
      */
+     async restoreGuildMemberInvites ({ userID, guildID }) {
+        const { rows } = await this.postgres.query(`
+            UPDATE members
+            SET invites_regular = old_invites_regular,
+            old_invites_regular = 0,
+            invites_fake = old_invites_fake,
+            old_invites_fake = 0,
+            invites_leaves = old_invites_leaves,
+            old_invites_leaves = 0,
+            invites_bonus = old_invites_bonus,
+            old_invites_bonus = 0
+            WHERE user_id = $1
+            AND guild_id = $2
+            RETURNING invites_regular, invites_fake, invites_leaves, invites_bonus;
+        `, userID, guildID);
+        const redisData = await this.redis.get(`member_${userID}_${guildID}`);
+        if (redisData) {
+            this.redis.set(`member_${userID}_${guildID}`, '.regular', rows[0].invites_regular);
+            this.redis.set(`member_${userID}_${guildID}`, '.leaves', rows[0].invites_leaves);
+            this.redis.set(`member_${userID}_${guildID}`, '.fake', rows[0].invites_fake);
+            this.redis.set(`member_${userID}_${guildID}`, '.bonus', rows[0].invites_bonus);
+            this.redis.set(`member_${userID}_${guildID}`, '.oldRegular', 0);
+            this.redis.set(`member_${userID}_${guildID}`, '.oldLeaves', 0);
+            this.redis.set(`member_${userID}_${guildID}`, '.oldFake', 0);
+            this.redis.set(`member_${userID}_${guildID}`, '.oldBonus', 0);
+        }
+    }
+
+    /**
+     * Restore the invites of a guild
+     */
+     async restoreGuildInvites (guildID) {
+        const { rows } = await this.postgres.query(`
+            UPDATE members
+            SET invites_regular = old_invites_regular,
+            old_invites_regular = 0,
+            invites_fake = old_invites_fake,
+            old_invites_fake = 0,
+            invites_leaves = old_invites_leaves,
+            old_invites_leaves = 0,
+            invites_bonus = old_invites_bonus,
+            old_invites_bonus = 0
+            WHERE guild_id = $1
+            RETURNING invites_regular, invites_fake, invites_leaves, invites_bonus;
+        `, guildID);
+        rows.forEach(async (row) => {
+            const redisData = await this.redis.get(`member_${row.user_id}_${guildID}`);
+            if (redisData) {
+                this.redis.set(`member_${row.user_id}_${guildID}`, '.oldRegular', 0);
+                this.redis.set(`member_${row.user_id}_${guildID}`, '.oldLeaves', 0);
+                this.redis.set(`member_${row.user_id}_${guildID}`, '.oldFake', 0);
+                this.redis.set(`member_${row.user_id}_${guildID}`, '.oldBonus', 0);
+                this.redis.set(`member_${row.user_id}_${guildID}`, '.regular', rows[0].invites_regular);
+                this.redis.set(`member_${row.user_id}_${guildID}`, '.leaves', rows[0].invites_leaves);
+                this.redis.set(`member_${row.user_id}_${guildID}`, '.fake', rows[0].invites_fake);
+                this.redis.set(`member_${row.user_id}_${guildID}`, '.bonus', rows[0].invites_bonus);
+            }
+        });
+    }
+
+    /**
+     * Remove and backup the invites of a member
+     */
     async removeGuildMemberInvites ({ userID, guildID }) {
         const { rows } = await this.postgres.query(`
             UPDATE members
@@ -300,6 +363,26 @@ module.exports = class DatabaseHandler {
             this.redis.set(`member_${userID}_${guildID}`, '.oldFake', rows[0].old_invites_fake);
             this.redis.set(`member_${userID}_${guildID}`, '.oldBonus', rows[0].old_invites_bonus);
         }
+    }
+
+    async countGuildInvites (guildID) {
+        const { rows } = await this.postgres.query(`
+            SELECT
+                guild_id,
+                SUM(old_invites_regular) as regular,
+                SUM(old_invites_fake) as fake,
+                SUM(old_invites_bonus) as bonus,
+                SUM(old_invites_leaves) as leaves
+            FROM members
+            WHERE guild_id = $1
+            GROUP BY 1;
+        `, guildID);
+        return {
+            regular: rows[0].old_invites_regular,
+            fake: rows[0].old_invites_fake,
+            bonus: rows[0].old_invites_bonus,
+            leaves: rows[0].old_invites_leaves
+        };
     }
 
     /**
