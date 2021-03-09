@@ -14,18 +14,24 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
 
-        const joinSuccess = data.guild.join.enabled
-        && data.guild.join.mainMessage
-        && data.guild.join.channel
-        && message.guild.channels.cache.get(data.guild.join.channel);
+        const plugins = await this.client.database.fetchGuildPlugins(message.guild.id);
 
-        const joinDMSuccess = data.guild.joinDM.enabled
-        && data.guild.joinDM.mainMessage;
+        const join = plugins.find((plugin) => plugin.pluginName === 'join')?.pluginData || {};
+        const joinDM = plugins.find((plugin) => plugin.pluginName === 'joinDM')?.pluginData || {};
+        const leave = plugins.find((plugin) => plugin.pluginName === 'leave')?.pluginData || {};
 
-        const leaveSuccess = data.guild.leave.enabled
-        && data.guild.leave.mainMessage
-        && data.guild.leave.channel
-        && message.guild.channels.cache.get(data.guild.leave.channel);
+        const joinSuccess = join.enabled
+        && join.mainMessage
+        && join.channel
+        && message.guild.channels.cache.get(join.channel);
+
+        const joinDMSuccess = joinDM.enabled
+        && joinDM.mainMessage;
+
+        const leaveSuccess = leave.enabled
+        && leave.mainMessage
+        && leave.channel
+        && message.guild.channels.cache.get(leave.channel);
 
         const getEmoji = (boolean) => boolean ? this.client.config.emojis.success : this.client.config.emojis.error;
 
@@ -37,22 +43,23 @@ module.exports = class extends Command {
                 emoji: getEmoji(joinSuccess)
             }), message.translate("config/config:JOIN_CONTENT", {
                 enabled: joinSuccess ? `**${message.translate("common:YES").toLowerCase()}**` : `**${message.translate("common:NO").toLowerCase()}**`,
-                message: data.guild.join.mainMessage ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`,
-                channel: data.guild.join.channel ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`
+                message: join.mainMessage ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`,
+                channel: join.channel ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`
             }), true)
             .addField(message.translate("config/config:LEAVE_TITLE", {
                 emoji: getEmoji(joinSuccess)
             }), message.translate("config/config:JOIN_CONTENT", {
                 enabled: leaveSuccess ? `**${message.translate("common:YES").toLowerCase()}**` : `**${message.translate("common:NO").toLowerCase()}**`,
-                message: data.guild.leave.mainMessage ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`,
-                channel: data.guild.leave.channel ? (message.guild.channels.cache.get(data.guild.leave.channel) ? `**${message.translate("common:DEFINED").toLowerCase()}**` : message.translate("config/config:CHANNEL_NOT_FOUND")) : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`
+                message: leave.mainMessage ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`,
+                channel: leave.channel ? (message.guild.channels.cache.get(leave.channel) ? `**${message.translate("common:DEFINED").toLowerCase()}**` : message.translate("config/config:CHANNEL_NOT_FOUND")) : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`
             }), true)
             .addField(message.translate("config/config:JOIN_DM_TITLE", {
                 emoji: getEmoji(joinSuccess)
             }), message.translate("config/config:JOIN_DM_CONTENT", {
                 enabled: joinDMSuccess ? `**${message.translate("common:YES").toLowerCase()}**` : `**${message.translate("common:NO").toLowerCase()}**`,
-                message: data.guild.joinDM.mainMessage ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`
+                message: joinDM.mainMessage ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`
             }), true)
+            .addField(message.translate("config/config:BACKUP_TITLE"), message.guild.settings.backupID, true)
             .setColor(data.color)
             .setFooter(data.footer);
         message.channel.send(embed);

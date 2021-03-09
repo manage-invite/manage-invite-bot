@@ -5,5 +5,6 @@
     "LEAVE_TITLE": "{{status}} Leave Messages",
     "JOIN_DM_TITLE": "{{status}} Join DM Messages",
     "JOIN_DM_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}",
-    "CHANNEL_NOT_FOUND": "**channel not found**"
+    "CHANNEL_NOT_FOUND": "**channel not found**",
+    "BACKUP_TITLE": "Current Backup ID"
 }
