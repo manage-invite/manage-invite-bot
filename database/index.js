@@ -1,6 +1,8 @@
 const RedisHandler = require('./redis');
 const PostgresHandler = require('./postgres');
 
+const camelCase = require('camelcase');
+
 module.exports = class DatabaseHandler {
 
     constructor () {
@@ -15,6 +17,10 @@ module.exports = class DatabaseHandler {
             this.redis.connect,
             this.postgres.connect
         ]);
+    }
+
+    generateBackupID () {
+        return [...Array(12)].map(i=>(~~(Math.random()*36)).toString(36)).join('');
     }
 
     calculateInvites (memberData) {
@@ -68,9 +74,9 @@ module.exports = class DatabaseHandler {
         if (!rows[0]) {
             ({ rows } = await this.postgres.query(`
                 INSERT INTO guilds
-                (guild_id, guild_language, guild_prefix, guild_keep_ranks, guild_stacked_ranks, guild_cmd_channel, guild_fake_threshold) VALUES
-                ($1, 'en-US', '+', false, false, null, null);
-            `, guildID));
+                (guild_id, guild_language, guild_prefix, guild_keep_ranks, guild_stacked_ranks, guild_cmd_channel, guild_fake_threshold, guild_backup_id) VALUES
+                ($1, 'en-US', '+', false, false, null, null, $2);
+            `, guildID, this.generateBackupID()));
         }
 
         const formattedGuildSettings = {
@@ -80,7 +86,8 @@ module.exports = class DatabaseHandler {
             keepRanks: rows[0].guild_keep_ranks,
             stackedRanks: rows[0].guild_stacked_ranks,
             cmdChannel: rows[0].guild_cmd_channel,
-            fakeThreshold: rows[0].guild_fake_threshold            
+            fakeThreshold: rows[0].guild_fake_threshold,
+            backupID: rows[0].guild_backup_id      
         };
 
         this.redis.set(`guild_${guildID}`, '.', formattedGuildSettings);
@@ -96,9 +103,9 @@ module.exports = class DatabaseHandler {
      * @returns {Promise<void>}
      */
     setGuildSetting (guildID, newValue, setting) {
-        if (!['language', 'prefix', 'cmd_channel', 'fake_treshold', 'keep_ranks', 'stacked_ranks']) return new Error('unknown_guild_setting');
+        if (!['language', 'prefix', 'cmd_channel', 'fake_treshold', 'keep_ranks', 'stacked_ranks', 'backup_id']) return new Error('unknown_guild_setting');
         return Promise.all([
-            this.redis.set(`guild_${guildID}`, `.${setting}`, newValue).catch(() => {}), // here we have to catch because it will throw an error if the object is not stored in redis
+            this.redis.set(`guild_${guildID}`, `.${camelCase(setting)}`, newValue).catch(() => {}), // here we have to catch because it will throw an error if the object is not stored in redis
             this.postgres.query(`
                 UPDATE guilds
                 SET guild_${setting} = $1;
@@ -174,30 +181,32 @@ module.exports = class DatabaseHandler {
     /**
      * Add X invites to a member / the server
      */
-    addInvites ({ userID, guildID, number, type }) {
+    addInvites ({ userID, guildID, backupID, number, type }) {
         return Promise.all([
-            this.redis.numincrby(`member_${userID}_${guildID}`, `.${type}`, number).catch(() => {}), // here we have to catch because it will throw an error if the object is not stored in redis
+            this.redis.numincrby(`member_${userID}_${guildID}_${backupID}`, `.${type}`, number).catch(() => {}), // here we have to catch because it will throw an error if the object is not stored in redis
             this.postgres.query(`
                 UPDATE members
                 SET invites_${type} = $1
                 WHERE user_id = $2
-                AND guild_id = $3;
-            `, number, userID, guildID)
+                AND guild_id = $3
+                AND backup_id = $4;
+            `, number, userID, guildID, backupID)
         ]);
     }
 
     /**
      * Add invites to a server
      */
-    async addGuildInvites ({ userIDs, guildID, number, type }) {
-        const redisUpdates = usersIDs.map((userID) => this.redis.numincrby(`member_${userID}_${guildID}`, `.${type}`, number).catch(() => {}));
+    async addGuildInvites ({ userIDs, guildID, backupID, number, type }) {
+        const redisUpdates = usersIDs.map((userID) => this.redis.numincrby(`member_${userID}_${guildID}_${backupID}`, `.${type}`, number).catch(() => {}));
         return Promise.all([
             Promise.all(redisUpdates),
             this.postgres.query(`
                 UPDATE members
                 SET invites_${type} = invites_${type} + $1
-                WHERE guild_id = $2;
-            `, number, guildID)
+                WHERE guild_id = $2
+                AND backup_id = $3;
+            `, number, guildID, backupID)
         ]);
     }
 
@@ -225,7 +234,7 @@ module.exports = class DatabaseHandler {
      * Fetches a guild member
      * @path /guilds/309383/members/29830983/
      */
-    async fetchGuildMember ({ userID, guildID }) {
+    async fetchGuildMember ({ userID, guildID, backupID }) {
         const redisData = await this.redis.get(`member_${userID}_${guildID}`);
         if (redisData) return redisData;
 
@@ -233,188 +242,35 @@ module.exports = class DatabaseHandler {
             SELECT *
             FROM members
             WHERE guild_id = $1
-            AND user_id = $2;
-        `, guildID, userID);
+            AND user_id = $2
+            AND backup_id = $3;
+        `, guildID, userID, backupID);
 
         if (!rows[0]) {
             ({ rows } = await this.postgres.query(`
                 INSERT INTO members
                 (
-                    guild_id, user_id,
-                    invites_fake, invites_leaves, invites_bonus, invites_regular,
-                    old_invites_fake, old_invites_leaves, old_invites_bonus, old_invites_regular,
-                    old_invites_backuped
+                    guild_id, user_id, backup_id,
+                    invites_fake, invites_leaves, invites_bonus, invites_regular
                 ) VALUES
                 (
-                    $1, $2,
-                    0, 0, 0, 0,
-                    0, 0, 0, 0,
-                    false
+                    $1, $2, $3,
+                    0, 0, 0, 0
                 )
                 RETURNING *;
-            `, guildID, userID));
+            `, guildID, userID, backupID));
         }
         const formattedMember = {
             userID: rows[0].user_id,
             guildID: rows[0].guild_id,
+            backupID: rows[0].backup_id,
             fake: rows[0].invites_fake,
             leaves: rows[0].invites_leaves,
             bonus: rows[0].invites_bonus,
-            regular: rows[0].invites_regular,
-            oldFake: rows[0].old_invites_fake,
-            oldLeaves: rows[0].old_invites_leaves,
-            oldBonus: rows[0].old_invites_bonus,
-            oldRegular: rows[0].old_invites_regular,
-            oldBackuped: rows[0].old_invites_backuped
+            regular: rows[0].invites_regular
         };
-        this.redis.set(`member_${userID}_${guildID}`, '.', formattedMember)
+        this.redis.set(`member_${userID}_${guildID}_${backupID}`, '.', formattedMember)
         return formattedMember;
-    }
-
-    /**
-     * Remove and backup the invites of a member
-     */
-     async restoreGuildMemberInvites ({ userID, guildID }) {
-        const { rows } = await this.postgres.query(`
-            UPDATE members
-            SET invites_regular = old_invites_regular,
-            old_invites_regular = 0,
-            invites_fake = old_invites_fake,
-            old_invites_fake = 0,
-            invites_leaves = old_invites_leaves,
-            old_invites_leaves = 0,
-            invites_bonus = old_invites_bonus,
-            old_invites_bonus = 0
-            WHERE user_id = $1
-            AND guild_id = $2
-            RETURNING invites_regular, invites_fake, invites_leaves, invites_bonus;
-        `, userID, guildID);
-        const redisData = await this.redis.get(`member_${userID}_${guildID}`);
-        if (redisData) {
-            this.redis.set(`member_${userID}_${guildID}`, '.regular', rows[0].invites_regular);
-            this.redis.set(`member_${userID}_${guildID}`, '.leaves', rows[0].invites_leaves);
-            this.redis.set(`member_${userID}_${guildID}`, '.fake', rows[0].invites_fake);
-            this.redis.set(`member_${userID}_${guildID}`, '.bonus', rows[0].invites_bonus);
-            this.redis.set(`member_${userID}_${guildID}`, '.oldRegular', 0);
-            this.redis.set(`member_${userID}_${guildID}`, '.oldLeaves', 0);
-            this.redis.set(`member_${userID}_${guildID}`, '.oldFake', 0);
-            this.redis.set(`member_${userID}_${guildID}`, '.oldBonus', 0);
-        }
-    }
-
-    /**
-     * Restore the invites of a guild
-     */
-     async restoreGuildInvites (guildID) {
-        const { rows } = await this.postgres.query(`
-            UPDATE members
-            SET invites_regular = old_invites_regular,
-            old_invites_regular = 0,
-            invites_fake = old_invites_fake,
-            old_invites_fake = 0,
-            invites_leaves = old_invites_leaves,
-            old_invites_leaves = 0,
-            invites_bonus = old_invites_bonus,
-            old_invites_bonus = 0
-            WHERE guild_id = $1
-            RETURNING invites_regular, invites_fake, invites_leaves, invites_bonus;
-        `, guildID);
-        rows.forEach(async (row) => {
-            const redisData = await this.redis.get(`member_${row.user_id}_${guildID}`);
-            if (redisData) {
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.oldRegular', 0);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.oldLeaves', 0);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.oldFake', 0);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.oldBonus', 0);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.regular', rows[0].invites_regular);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.leaves', rows[0].invites_leaves);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.fake', rows[0].invites_fake);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.bonus', rows[0].invites_bonus);
-            }
-        });
-    }
-
-    /**
-     * Remove and backup the invites of a member
-     */
-    async removeGuildMemberInvites ({ userID, guildID }) {
-        const { rows } = await this.postgres.query(`
-            UPDATE members
-            SET old_invites_regular = invites_regular,
-            invites_regular = 0,
-            old_invites_fake = invites_fake,
-            invites_fake = 0,
-            old_invites_leaves = invites_leaves,
-            invites_leaves = 0,
-            old_invites_bonus = invites_bonus,
-            invites_bonus = 0
-            WHERE user_id = $1
-            AND guild_id = $2
-            RETURNING old_invites_regular, old_invites_fake, old_invites_leaves, old_invites_bonus;
-        `, userID, guildID);
-        const redisData = await this.redis.get(`member_${userID}_${guildID}`);
-        if (redisData) {
-            this.redis.set(`member_${userID}_${guildID}`, '.regular', 0);
-            this.redis.set(`member_${userID}_${guildID}`, '.leaves', 0);
-            this.redis.set(`member_${userID}_${guildID}`, '.fake', 0);
-            this.redis.set(`member_${userID}_${guildID}`, '.bonus', 0);
-            this.redis.set(`member_${userID}_${guildID}`, '.oldRegular', rows[0].old_invites_regular);
-            this.redis.set(`member_${userID}_${guildID}`, '.oldLeaves', rows[0].old_invites_leaves);
-            this.redis.set(`member_${userID}_${guildID}`, '.oldFake', rows[0].old_invites_fake);
-            this.redis.set(`member_${userID}_${guildID}`, '.oldBonus', rows[0].old_invites_bonus);
-        }
-    }
-
-    async countGuildInvites (guildID) {
-        const { rows } = await this.postgres.query(`
-            SELECT
-                guild_id,
-                SUM(old_invites_regular) as regular,
-                SUM(old_invites_fake) as fake,
-                SUM(old_invites_bonus) as bonus,
-                SUM(old_invites_leaves) as leaves
-            FROM members
-            WHERE guild_id = $1
-            GROUP BY 1;
-        `, guildID);
-        return {
-            regular: rows[0].old_invites_regular,
-            fake: rows[0].old_invites_fake,
-            bonus: rows[0].old_invites_bonus,
-            leaves: rows[0].old_invites_leaves
-        };
-    }
-
-    /**
-     * Remove and backup the invites of a guild
-     */
-    async removeGuildInvites (guildID) {
-        const { rows } = await this.postgres.query(`
-            UPDATE members
-            SET old_invites_regular = invites_regular,
-            invites_regular = 0,
-            old_invites_fake = invites_fake,
-            invites_fake = 0,
-            old_invites_leaves = invites_leaves,
-            invites_leaves = 0,
-            old_invites_bonus = invites_bonus,
-            invites_bonus = 0
-            WHERE guild_id = $1
-            RETURNING user_id, old_invites_regular, old_invites_fake, old_invites_leaves, old_invites_bonus;
-        `, guildID);
-        rows.forEach(async (row) => {
-            const redisData = await this.redis.get(`member_${row.user_id}_${guildID}`);
-            if (redisData) {
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.regular', 0);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.leaves', 0);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.fake', 0);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.bonus', 0);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.oldRegular', row.old_invites_regular);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.oldLeaves', row.old_invites_leaves);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.oldFake', row.old_invites_fake);
-                this.redis.set(`member_${row.user_id}_${guildID}`, '.oldBonus', row.old_invites_bonus);
-            }
-        });
     }
 
     /**

@@ -6,6 +6,7 @@
   "dependencies": {
     "@sentry/node": "^6.1.0",
     "btoa": "^1.2.1",
+    "camelcase": "^6.2.0",
     "chalk": "^4.0.0",
     "chart.js": "^2.9.4",
     "chartjs-node-canvas": "^3.1.0",
