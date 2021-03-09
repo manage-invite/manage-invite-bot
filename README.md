@@ -45,7 +45,7 @@ ManageInvite has a powerful dashboard which allows you to manage your servers ea
 +testleave           Try leave messages configuration
 ```
 
-You can use `+config` to show your servers global config.
+You can use `+config` to show your server global config.
 
 ### 🔑 Admin commands
 
