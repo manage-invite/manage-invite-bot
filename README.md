@@ -15,7 +15,7 @@ We're sorry but we won't be able to help you to install the bot on your own serv
 
 ## 🌐 Dashboard
 
-ManageInvite has a powerful dashboard which allow you to manage your servers easily! Configure join/leave messages, change server prefix, server language, etc...
+ManageInvite has a powerful dashboard which allows you to manage your servers easily! Configure join/leave messages, change server prefix, server language, etc...
 
 <img src="./assets/selector.png" style="margin-right: 2px;width: 40%;" ></img>
 <img src="./assets/manage.png" style="margin-right: 2px;width: 40%;" ></img>
@@ -45,7 +45,7 @@ ManageInvite has a powerful dashboard which allow you to manage your servers eas
 +testleave           Try leave messages configuration
 ```
 
-You can use `+config` to show your server global config.
+You can use `+config` to show your servers global config.
 
 ### 🔑 Admin commands
 
