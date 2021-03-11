@@ -59,7 +59,7 @@ module.exports = class extends Command {
                 enabled: joinDMSuccess ? `**${message.translate("common:YES").toLowerCase()}**` : `**${message.translate("common:NO").toLowerCase()}**`,
                 message: joinDM.mainMessage ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`
             }), true)
-            .addField(message.translate("config/config:BACKUP_TITLE"), message.guild.settings.backupID, true)
+            .addField(message.translate("config/config:STORAGE_TITLE"), message.guild.settings.storageID, true)
             .setColor(data.color)
             .setFooter(data.footer);
         message.channel.send(embed);

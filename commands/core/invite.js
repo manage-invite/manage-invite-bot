@@ -23,6 +23,7 @@ module.exports = class extends Command {
             guildRanks
         ] = await Promise.all([
             this.client.database.fetchGuildMember({
+                storageID: message.guild.settings.storageID,
                 userID: member.id,
                 guildID: message.guild.id
             }),

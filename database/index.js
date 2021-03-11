@@ -19,7 +19,7 @@ module.exports = class DatabaseHandler {
         ]);
     }
 
-    generateBackupID () {
+    generateStorageID () {
         return [...Array(12)].map(i=>(~~(Math.random()*36)).toString(36)).join('');
     }
 
@@ -28,12 +28,12 @@ module.exports = class DatabaseHandler {
     }
 
     /**
-     * Count the guild invites present in the latest backup
+     * Count the guild invites present in the latest storage
      */
-    async countGuildInvites (guildID, currentBackupID) {
-        const guildBackups = await this.fetchGuildBackups(guildID);
-        const latestBackupID = guildBackups
-            .filter((backup) => backup.backupID !== currentBackupID)
+    async countGuildInvites (guildID, currentStorageID) {
+        const guildStorages = await this.fetchGuildStorages(guildID);
+        const latestStorageID = guildStorages
+            .filter((storage) => storage.storageID !== currentStorageID)
             .sort((a, b) => b.createdAt - a.createdAt);
         const { rows } = await this.postgres.query(`
             SELECT
@@ -44,9 +44,9 @@ module.exports = class DatabaseHandler {
                 SUM(invites_leaves) as leaves
             FROM members
             WHERE guild_id = $1
-            AND backup_id = $2
+            AND storage_id = $2
             GROUP BY 1;
-        `, guildID, latestBackupID);
+        `, guildID, latestStorageID);
         return {
             regular: rows[0].invites_regular,
             leaves: rows[0].invites_leaves,
@@ -56,74 +56,74 @@ module.exports = class DatabaseHandler {
     }
 
     /**
-     * Remove the guild invites by creating a new backup and set it to default
+     * Remove the guild invites by creating a new storage and set it to default
      */
     async removeGuildInvites (guildID) {
         const { rows } = await this.postgres.query(`
             UPDATE guilds
-            SET guild_backup_id = $1
+            SET guild_storage_id = $1
             WHERE guild_id = 2
-            RETURNING guild_backup_id;
-        `, this.generateBackupID(), guildID);
-        const newBackupID = rows[0].backup_id;
+            RETURNING guild_storage_id;
+        `, this.generateStorageID(), guildID);
+        const newStorageID = rows[0].storage_id;
 
         const redisData = await this.redis.get(`guild_${guildID}`);
         if (redisData) {
-            await this.redis.set(`guild_${guildID}`, '.backupID', newBackupID);
+            await this.redis.set(`guild_${guildID}`, '.storageID', newStorageID);
         }
 
         await this.postgres.query(`
-            INSERT INTO guild_backups
-            (guild_id, backup_id, created_at) VALUES
+            INSERT INTO guild_storages
+            (guild_id, storage_id, created_at) VALUES
             ($1, $2, $3);
-        `, guildID, newBackupID, new Date().toLocaleString());
+        `, guildID, newStorageID, new Date().toLocaleString());
     }
 
     /**
-     * Fetches the guild backups
+     * Fetches the guild storages
      */
-    async fetchGuildBackups (guildID) {
+    async fetchGuildStorages (guildID) {
         const { rows } = this.postgres.query(`
             SELECT *
-            FROM guild_backups
+            FROM guild_storages
             WHERE guild_id = $1;
         `, guildID);
         return rows.map((row) => ({
             guildID: row.guild_id,
-            backupID: row.backup_id,
+            storageID: row.storage_id,
             createdAt: new Date(row.created_at).getTime()
         }));
     }
 
     /**
-     * Restore the guild backup by changing back the backup id
+     * Restore the guild storage by changing back the storage id
      */
-    async restoreGuildBackup ({ guildID, backupID }) {
+    async restoreGuildStorage ({ guildID, storageID }) {
         const { rows } = await this.postgres.query(`
             UPDATE guilds
-            SET guild_backup_id = $1
+            SET guild_storage_id = $1
             WHERE guild_id = $2
-            RETURNING guild_backup_id;
-        `, backupID, guildID);
-        const newBackupID = rows[0].guild_backup_id;
+            RETURNING guild_storage_id;
+        `, storageID, guildID);
+        const newStorageID = rows[0].guild_storage_id;
 
         const redisData = await this.redis.get(`guild_${guildID}`);
         if (redisData) {
-            await this.redis.set(`guild_${guildID}`, '.backupID', newBackupID);
+            await this.redis.set(`guild_${guildID}`, '.storageID', newStorageID);
         }
     }
 
     /**
-     * Restore the guild invites by changing back the backup id
+     * Restore the guild invites by changing back the storage id
      */
-    async restoreGuildInvites (guildID, currentBackupID) {
-        const guildBackups = await this.fetchGuildBackups(guildID);
-        const latestBackupID = guildBackups
-            .filter((backup) => backup.backupID !== currentBackupID)
+    async restoreGuildInvites (guildID, currentStorageID) {
+        const guildStorages = await this.fetchGuildStorages(guildID);
+        const latestStorageID = guildStorages
+            .filter((storage) => storage.storageID !== currentStorageID)
             .sort((a, b) => b.createdAt - a.createdAt);
-        await this.restoreGuildBackup({
+        await this.restoreGuildStorage({
             guildID,
-            backupID: latestBackupID
+            storageID: latestStorageID
         });
     }
 
@@ -174,20 +174,20 @@ module.exports = class DatabaseHandler {
         if (!rows[0]) {
             ({ rows } = await this.postgres.query(`
                 INSERT INTO guilds
-                (guild_id, guild_language, guild_prefix, guild_keep_ranks, guild_stacked_ranks, guild_cmd_channel, guild_fake_threshold, guild_backup_id) VALUES
+                (guild_id, guild_language, guild_prefix, guild_keep_ranks, guild_stacked_ranks, guild_cmd_channel, guild_fake_threshold, guild_storage_id) VALUES
                 ($1, 'en-US', '+', false, false, null, null, $2)
-                RETURNING guild_backup_id;
-            `, guildID, this.generateBackupID()));
+                RETURNING guild_storage_id;
+            `, guildID, this.generateStorageID()));
             await this.postgres.query(`
-                INSERT INTO guild_backups
-                (guild_id, backup_id, created_at) VALUES
+                INSERT INTO guild_storages
+                (guild_id, storage_id, created_at) VALUES
                 ($1, $2, $3);
-            `, guildID, rows[0].guild_backup_id, new Date().toLocaleString());
+            `, guildID, rows[0].guild_storage_id, new Date().toLocaleString());
         }
 
         const formattedGuildSettings = {
             guildID: rows[0].guild_id,
-            backupID: rows[0].guild_backup_id,
+            storageID: rows[0].guild_storage_id,
             language: rows[0].guild_language,
             prefix: rows[0].guild_prefix,
             keepRanks: rows[0].guild_keep_ranks,
@@ -209,7 +209,7 @@ module.exports = class DatabaseHandler {
      * @returns {Promise<void>}
      */
     setGuildSetting (guildID, newValue, setting) {
-        if (!['language', 'prefix', 'cmd_channel', 'fake_treshold', 'keep_ranks', 'stacked_ranks', 'backup_id']) return new Error('unknown_guild_setting');
+        if (!['language', 'prefix', 'cmd_channel', 'fake_treshold', 'keep_ranks', 'stacked_ranks', 'storage_id']) return new Error('unknown_guild_setting');
         return Promise.all([
             this.redis.set(`guild_${guildID}`, `.${camelCase(setting)}`, newValue).catch(() => {}), // here we have to catch because it will throw an error if the object is not stored in redis
             this.postgres.query(`
@@ -278,7 +278,7 @@ module.exports = class DatabaseHandler {
         const formattedPlugins = rows.map((row) => ({
             guildID: row.guild_id,
             pluginName: row.plugin_name,
-            pluginData: JSON.parse(row.plugin_data)
+            pluginData: row.plugin_data
         }));
         this.redis.set(`guild_plugins_${guildID}`, '.', formattedPlugins);
         return formattedPlugins;
@@ -287,32 +287,32 @@ module.exports = class DatabaseHandler {
     /**
      * Add X invites to a member / the server
      */
-    addInvites ({ userID, guildID, backupID, number, type }) {
+    addInvites ({ userID, guildID, storageID, number, type }) {
         return Promise.all([
-            this.redis.numincrby(`member_${userID}_${guildID}_${backupID}`, `.${type}`, number).catch(() => {}), // here we have to catch because it will throw an error if the object is not stored in redis
+            this.redis.numincrby(`member_${userID}_${guildID}_${storageID}`, `.${type}`, number).catch(() => {}), // here we have to catch because it will throw an error if the object is not stored in redis
             this.postgres.query(`
                 UPDATE members
                 SET invites_${type} = $1
                 WHERE user_id = $2
                 AND guild_id = $3
-                AND backup_id = $4;
-            `, number, userID, guildID, backupID)
+                AND storage_id = $4;
+            `, number, userID, guildID, storageID)
         ]);
     }
 
     /**
      * Add invites to a server
      */
-    async addGuildInvites ({ userIDs, guildID, backupID, number, type }) {
-        const redisUpdates = usersIDs.map((userID) => this.redis.numincrby(`member_${userID}_${guildID}_${backupID}`, `.${type}`, number).catch(() => {}));
+    async addGuildInvites ({ userIDs, guildID, storageID, number, type }) {
+        const redisUpdates = usersIDs.map((userID) => this.redis.numincrby(`member_${userID}_${guildID}_${storageID}`, `.${type}`, number).catch(() => {}));
         return Promise.all([
             Promise.all(redisUpdates),
             this.postgres.query(`
                 UPDATE members
                 SET invites_${type} = invites_${type} + $1
                 WHERE guild_id = $2
-                AND backup_id = $3;
-            `, number, guildID, backupID)
+                AND storage_id = $3;
+            `, number, guildID, storageID)
         ]);
     }
 
@@ -340,8 +340,8 @@ module.exports = class DatabaseHandler {
      * Fetches a guild member
      * @path /guilds/309383/members/29830983/
      */
-    async fetchGuildMember ({ userID, guildID, backupID }) {
-        const redisData = await this.redis.get(`member_${userID}_${guildID}`);
+    async fetchGuildMember ({ userID, guildID, storageID }) {
+        const redisData = await this.redis.get(`member_${userID}_${guildID}_${storageID}`);
         if (redisData) return redisData;
 
         let { rows } = await this.postgres.query(`
@@ -349,14 +349,14 @@ module.exports = class DatabaseHandler {
             FROM members
             WHERE guild_id = $1
             AND user_id = $2
-            AND backup_id = $3;
-        `, guildID, userID, backupID);
+            AND storage_id = $3;
+        `, guildID, userID, storageID);
 
         if (!rows[0]) {
             ({ rows } = await this.postgres.query(`
                 INSERT INTO members
                 (
-                    guild_id, user_id, backup_id,
+                    guild_id, user_id, storage_id,
                     invites_fake, invites_leaves, invites_bonus, invites_regular
                 ) VALUES
                 (
@@ -364,18 +364,18 @@ module.exports = class DatabaseHandler {
                     0, 0, 0, 0
                 )
                 RETURNING *;
-            `, guildID, userID, backupID));
+            `, guildID, userID, storageID));
         }
         const formattedMember = {
             userID: rows[0].user_id,
             guildID: rows[0].guild_id,
-            backupID: rows[0].backup_id,
+            storageID: rows[0].storage_id,
             fake: rows[0].invites_fake,
             leaves: rows[0].invites_leaves,
             bonus: rows[0].invites_bonus,
             regular: rows[0].invites_regular
         };
-        this.redis.set(`member_${userID}_${guildID}_${backupID}`, '.', formattedMember)
+        this.redis.set(`member_${userID}_${guildID}_${storageID}`, '.', formattedMember)
         return formattedMember;
     }
 

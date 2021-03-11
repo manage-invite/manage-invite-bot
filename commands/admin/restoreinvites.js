@@ -24,7 +24,7 @@ module.exports = class extends Command {
             const m = await message.sendT("misc:PLEASE_WAIT", {
                 loading: this.client.config.emojis.loading
             });
-            memberCount = await this.client.database.countGuildInvites(message.guild.id, message.guild.settings.backupID);
+            memberCount = await this.client.database.countGuildInvites(message.guild.id, message.guild.settings.storageID);
             m.delete();
         }
         const conf = await message.sendT("admin/restoreinvites:CONFIRMATION", {
@@ -43,7 +43,7 @@ module.exports = class extends Command {
                 loading: this.client.config.emojis.loading
             }, true);
 
-            await member.data.restoreGuildInvites(message.guild.id, message.guild.settings.backupID);
+            await member.data.restoreGuildInvites(message.guild.id, message.guild.settings.storageID);
 
             const embed = new Discord.MessageEmbed()
                 .setAuthor(message.translate("admin/restoreinvites:TITLE"))
