@@ -19,7 +19,7 @@ module.exports = class extends Command {
             opt = { max: 1, time: 90000, errors: [ "time" ] };
         
         const str = data.guild.joinDM.enabled ? message.translate("config/configjoindm:DISABLE", {
-            prefix: data.guild.prefix
+            prefix: message.guild.settings.prefix
         }) : "";
         const msg = await message.sendT("config/configjoindm:INSTRUCTIONS_1", {
             string: `${str}`,
@@ -30,7 +30,7 @@ module.exports = class extends Command {
         if (!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
         const confMessage = collected.first().content;
         if (confMessage === "cancel") return msg.error("common:CANCELLED", null, true);
-        if (confMessage === data.guild.prefix+"setdmjoin") return;
+        if (confMessage === message.guild.settings.prefix+"setdmjoin") return;
 
         msg.sendT("config/configjoindm:SUCCESS", null, true);
 
@@ -38,7 +38,7 @@ module.exports = class extends Command {
             .setTitle(message.translate("config/configjoindm:TITLE"))
             .addField(message.translate("common:MESSAGE"), confMessage)
             .addField(message.translate("common:TEST_IT"), message.translate("config/configjoindm:TEST", {
-                prefix: data.guild.prefix
+                prefix: message.guild.settings.prefix
             }))
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)

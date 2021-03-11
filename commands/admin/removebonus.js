@@ -17,15 +17,15 @@ module.exports = class extends Command {
     
         const bonus = args[0];
         if (!bonus) return message.error("admin/removebonus:MISSING_AMOUNT", {
-            prefix: data.guild.prefix
+            prefix: message.guild.settings.prefix
         });
         if (isNaN(bonus) || parseInt(bonus) < 1 || !Number.isInteger(parseInt(bonus))) return message.error("admin/removebonus:INVALID_AMOUNT", {
-            prefix: data.guild.prefix
+            prefix: message.guild.settings.prefix
         });
 
         const member = message.mentions.members.first() || await this.client.resolveMember(args.slice(1).join(" "), message.guild);
         if (!member && args[1] !== "all") return message.error("admin/removebonus:MISSING_TARGET", {
-            prefix: data.guild.prefix
+            prefix: message.guild.settings.prefix
         });
         if (member && data.guild.blacklistedUsers.includes(member.id)) return message.error("admin/blacklist:BLACKLISTED", {
             username: member.user.username
@@ -35,6 +35,7 @@ module.exports = class extends Command {
             await this.client.database.addInvites({
                 userID: member.user.id,
                 guildID: message.guild.id,
+                storageID: message.guild.settings.storageID,
                 number: -parseInt(bonus),
                 type: 'bonus'
             });
@@ -42,7 +43,7 @@ module.exports = class extends Command {
             const embed = new Discord.MessageEmbed()
                 .setAuthor(message.translate("admin/removebonus:SUCCESS_TITLE"))
                 .setDescription(message.translate("admin/removebonus:SUCCESS_CONTENT_MEMBER", {
-                    prefix: data.guild.prefix,
+                    prefix: message.guild.settings.prefix,
                     usertag: member.user.tag,
                     username: member.user.username
                 }))
@@ -63,6 +64,7 @@ module.exports = class extends Command {
                 await this.client.database.addGuildInvites({
                     userID: message.guild.members.cache.map((m) => m.id),
                     guildID: message.guild.id,
+                    storageID: message.guild.settings.storageID,
                     number: -parseInt(bonus),
                     type: 'bonus'
                 });
@@ -70,7 +72,7 @@ module.exports = class extends Command {
                 const embed = new Discord.MessageEmbed()
                     .setAuthor(message.translate("admin/removebonus:SUCCESS_TITLE"))
                     .setDescription(message.translate("admin/removebonus:SUCCESS_CONTENT_ALL", {
-                        prefix: data.guild.prefix
+                        prefix: message.guild.settings.prefix
                     }))
                     .setColor(data.color)
                     .setFooter(data.footer);

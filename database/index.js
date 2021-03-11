@@ -67,9 +67,11 @@ module.exports = class DatabaseHandler {
         `, this.generateStorageID(), guildID);
         const newStorageID = rows[0].storage_id;
 
-        const redisData = await this.redis.get(`guild_${guildID}`);
-        if (redisData) {
-            await this.redis.set(`guild_${guildID}`, '.storageID', newStorageID);
+        const redisData = await this.redis.getHash(`guild_${guildID}`);
+        if (redisData && redisData.guildID) {
+            await this.redis.setHash(`guild_${guildID}`, {
+                storageID: newStorageID
+            });
         }
 
         await this.postgres.query(`
@@ -107,9 +109,11 @@ module.exports = class DatabaseHandler {
         `, storageID, guildID);
         const newStorageID = rows[0].guild_storage_id;
 
-        const redisData = await this.redis.get(`guild_${guildID}`);
-        if (redisData) {
-            await this.redis.set(`guild_${guildID}`, '.storageID', newStorageID);
+        const redisData = await this.redis.getHash(`guild_${guildID}`);
+        if (redisData && redisData.guildID) {
+            await this.redis.setHash(`guild_${guildID}`, {
+                storageID: newStorageID
+            });
         }
     }
 
@@ -131,7 +135,7 @@ module.exports = class DatabaseHandler {
      * Fetches the guild subscriptions
      */
     async fetchGuildSubscriptions (guildID) {
-        const redisData = await this.redis.get(`guild_subscriptions_${guildID}`);
+        const redisData = await this.redis.getJSON(`guild_subscriptions_${guildID}`);
         if (redisData) return redisData;
 
         const { rows } = await this.postgres.query(`
@@ -152,7 +156,7 @@ module.exports = class DatabaseHandler {
             subInvalidated: row.sub_invalidated
         }));
         
-        this.redis.set(`guild_subscriptions_${guildID}`, '.', formattedGuildSubscriptions);
+        this.redis.setJSON(`guild_subscriptions_${guildID}`, '.', formattedGuildSubscriptions);
 
         return formattedGuildSubscriptions;
     }
@@ -162,8 +166,8 @@ module.exports = class DatabaseHandler {
      * @path /guilds/3983080339/settings
      */
     async fetchGuildSettings (guildID) {
-        const redisData = await this.redis.get(`guild_${guildID}`);
-        if (redisData) return redisData;
+        const redisData = await this.redis.getHash(`guild_${guildID}`);
+        if (redisData && redisData.guildID) return redisData;
 
         let { rows } = await this.postgres.query(`
             SELECT *
@@ -196,7 +200,7 @@ module.exports = class DatabaseHandler {
             fakeThreshold: rows[0].guild_fake_threshold
         };
 
-        this.redis.set(`guild_${guildID}`, '.', formattedGuildSettings);
+        this.redis.setHash(`guild_${guildID}`, formattedGuildSettings);
 
         return formattedGuildSettings;
     }
@@ -211,7 +215,9 @@ module.exports = class DatabaseHandler {
     setGuildSetting (guildID, newValue, setting) {
         if (!['language', 'prefix', 'cmd_channel', 'fake_treshold', 'keep_ranks', 'stacked_ranks', 'storage_id']) return new Error('unknown_guild_setting');
         return Promise.all([
-            this.redis.set(`guild_${guildID}`, `.${camelCase(setting)}`, newValue).catch(() => {}), // here we have to catch because it will throw an error if the object is not stored in redis
+            this.redis.setHash(`guild_${guildID}`, {
+                [camelCase(setting)]: newValue
+            }).catch(() => {}), // here we have to catch because it will throw an error if the object is not stored in redis
             this.postgres.query(`
                 UPDATE guilds
                 SET guild_${setting} = $1;
@@ -232,7 +238,7 @@ module.exports = class DatabaseHandler {
                 (guild_id, role_id, invite_count) VALUES
                 ($1, $2, $3)
             `, guildID, roleID, inviteCount),
-            this.redis.push(`guild_ranks_${guildID}`, '.', {
+            this.redis.pushJSON(`guild_ranks_${guildID}`, '.', {
                 guildID,
                 roleID,
                 inviteCount
@@ -245,7 +251,7 @@ module.exports = class DatabaseHandler {
      * @path /guilds/398389083093/ranks
      */
     async fetchGuildRanks (guildID) {
-        const redisData = await this.redis.get(`guild_ranks_${guildID}`);
+        const redisData = await this.redis.getJSON(`guild_ranks_${guildID}`);
         if (redisData) return redisData;
 
         const { rows } = await this.postgres.query(`
@@ -258,7 +264,7 @@ module.exports = class DatabaseHandler {
             roleID: row.role_id,
             inviteCount: row.invite_count
         }));
-        this.redis.set(`guild_ranks_${guildID}`, '.', formattedRanks);
+        this.redis.setJSON(`guild_ranks_${guildID}`, '.', formattedRanks);
         return formattedRanks;
     }
 
@@ -267,7 +273,7 @@ module.exports = class DatabaseHandler {
      * @path /guilds/93803803/plugins
      */
     async fetchGuildPlugins (guildID) {
-        const redisData = await this.redis.get(`guild_plugins_${guildID}`);
+        const redisData = await this.redis.getJSON(`guild_plugins_${guildID}`);
         if (redisData) return redisData;
 
         const { rows } = await this.postgres.query(`
@@ -280,7 +286,7 @@ module.exports = class DatabaseHandler {
             pluginName: row.plugin_name,
             pluginData: row.plugin_data
         }));
-        this.redis.set(`guild_plugins_${guildID}`, '.', formattedPlugins);
+        this.redis.setJSON(`guild_plugins_${guildID}`, '.', formattedPlugins);
         return formattedPlugins;
     }
 
@@ -289,7 +295,7 @@ module.exports = class DatabaseHandler {
      */
     addInvites ({ userID, guildID, storageID, number, type }) {
         return Promise.all([
-            this.redis.numincrby(`member_${userID}_${guildID}_${storageID}`, `.${type}`, number).catch(() => {}), // here we have to catch because it will throw an error if the object is not stored in redis
+            this.redis.incrHashBy(`member_${userID}_${guildID}_${storageID}`, type, number), // here we have to catch because it will throw an error if the object is not stored in redis
             this.postgres.query(`
                 UPDATE members
                 SET invites_${type} = $1
@@ -304,7 +310,7 @@ module.exports = class DatabaseHandler {
      * Add invites to a server
      */
     async addGuildInvites ({ userIDs, guildID, storageID, number, type }) {
-        const redisUpdates = usersIDs.map((userID) => this.redis.numincrby(`member_${userID}_${guildID}_${storageID}`, `.${type}`, number).catch(() => {}));
+        const redisUpdates = usersIDs.map((userID) => this.redis.incrHashBy(`member_${userID}_${guildID}_${storageID}`, type, number).catch(() => {}));
         return Promise.all([
             Promise.all(redisUpdates),
             this.postgres.query(`
@@ -321,7 +327,7 @@ module.exports = class DatabaseHandler {
      * @path /guilds/3803983/blacklisted
      */
     async fetchGuildBlacklistedUsers (guildID) {
-        const redisData = await this.redis.get(`guild_blacklisted_${guildID}`);
+        const redisData = await this.redis.getJSON(`guild_blacklisted_${guildID}`);
         if (redisData) return redisData;
 
         const { rows } = await this.postgres.query(`
@@ -332,7 +338,7 @@ module.exports = class DatabaseHandler {
 
         const formattedBlacklistedUsers = rows.map((row) => row.user_id);
 
-        this.redis.set(`guild_blacklisted_${guildID}`, '.', formattedBlacklistedUsers);
+        this.redis.setJSON(`guild_blacklisted_${guildID}`, '.', formattedBlacklistedUsers);
         return formattedBlacklistedUsers;
     }
 
@@ -340,7 +346,7 @@ module.exports = class DatabaseHandler {
      * Fetches the guild leaderboard
      */
     async fetchGuildLeaderboard (guildID, storageID) {
-        const redisData = await this.redis.get(`guild_leaderboard_${guildID}`);
+        const redisData = await this.redis.getString(`guild_leaderboard_${guildID}`);
         if (redisData) return redisData;
 
         const { rows } = await this.postgres.query(`
@@ -359,7 +365,7 @@ module.exports = class DatabaseHandler {
             fake: row.invites_fake
         }));
 
-        this.redis.set(`guild_leaderboard_${guildID}`, '.', formattedMembers);
+        this.redis.setString(`guild_leaderboard_${guildID}`, formattedMembers);
         this.redis.client.redis.expire(`guild_leaderboard_${guildID}`, 60);
 
         return formattedMembers;
@@ -370,8 +376,8 @@ module.exports = class DatabaseHandler {
      * @path /guilds/309383/members/29830983/
      */
     async fetchGuildMember ({ userID, guildID, storageID }) {
-        const redisData = await this.redis.get(`member_${userID}_${guildID}_${storageID}`);
-        if (redisData) return redisData;
+        const redisData = await this.redis.getHash(`member_${userID}_${guildID}_${storageID}`);
+        if (redisData && redisData.userID) return redisData;
 
         let { rows } = await this.postgres.query(`
             SELECT *
@@ -405,7 +411,7 @@ module.exports = class DatabaseHandler {
             bonus: rows[0].invites_bonus,
             regular: rows[0].invites_regular
         };
-        this.redis.set(`member_${userID}_${guildID}_${storageID}`, '.', formattedMember)
+        this.redis.setHash(`member_${userID}_${guildID}_${storageID}`, formattedMember)
         return formattedMember;
     }
 

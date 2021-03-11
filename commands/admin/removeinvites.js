@@ -25,7 +25,7 @@ module.exports = class extends Command {
 
             const msg = await message.sendT("admin/removeinvites:LOADING", {
                 loading: this.client.config.emojis.loading,
-                prefix: data.guild.prefix
+                prefix: message.guild.settings.prefix
             });
 
             await this.client.database.removeGuildInvites(message.guild.id);

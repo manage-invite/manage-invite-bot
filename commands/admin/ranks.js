@@ -23,7 +23,7 @@ module.exports = class extends Command {
         if (ranks.length === 0){
             embed.setAuthor(message.translate("admin/ranks:NO_RANK_TITLE"))
                 .setDescription(message.translate("admin/ranks:NO_RANK_CONTENT", {
-                    prefix: data.guild.prefix
+                    prefix: message.guild.settings.prefix
                 }));
             return message.channel.send(embed);
         }

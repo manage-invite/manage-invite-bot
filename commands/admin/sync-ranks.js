@@ -21,7 +21,7 @@ module.exports = class extends Command {
         if (this.client.syncRanksTasks[message.guild.id] && this.client.syncRanksTasks[message.guild.id].status === "RUNNING") {
             return message.success("admin/sync-ranks:RUNNING", {
                 percent: `${Math.round(this.client.syncRanksTasks[message.guild.id].now*100/this.client.syncRanksTasks[message.guild.id].total)}%`,
-                prefix: data.guild.prefix
+                prefix: message.guild.settings.prefix
             });
         } else if (this.client.syncRanksTasks[message.guild.id] && this.client.syncRanksTasks[message.guild.id].status === "BEING_CANCELLED"){
             return message.success("admin/sync-ranks:BEING_CANCELLED");
@@ -35,7 +35,7 @@ module.exports = class extends Command {
             if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete().catch(() => {});
             conf.success("admin/sync-ranks:STARTED", {
-                prefix: data.guild.prefix
+                prefix: message.guild.settings.prefix
             }, {
                 edit: true
             });

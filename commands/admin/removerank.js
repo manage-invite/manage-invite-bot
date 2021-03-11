@@ -17,7 +17,7 @@ module.exports = class extends Command {
         
         const role = message.mentions.roles.first() || message.guild.roles.cache.get(args.join(" ")) || message.guild.roles.cache.find((role) => role.name === args.join(" ") || (stringSimilarity.compareTwoStrings(role.name, args.join(" ")) > 0.85));
         if (!role) return message.error("admin/removerank:MISSING", {
-            prefix: data.guild.prefix
+            prefix: message.guild.settings.prefix
         });
         const currentRank = data.guild.ranks.find((r) => r.roleID === role.id);
         if (!currentRank) return message.error("admin/removerank:DOESNT_EXIST");

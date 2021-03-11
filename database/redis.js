@@ -18,30 +18,59 @@ class RedisHandler {
 
     }
 
-    push (key, path, value) {
+    pushJSON (key, path, value) {
         return new Promise((resolve) => {
             this.client.arrappend(key, JSON.stringify(value), path).catch((err) => {
-                this.client.set(key, path, '[]').then(() => this.push(key, path, value).then(resolve));
+                this.client.set(key, path, '[]').then(() => this.pushJSON(key, path, value).then(resolve));
             }).then(() => resolve());
         });
     }
 
-    async get (key, path) {
+    async getJSON (key, path) {
         const startAt = Date.now();
         return this.client.get(key, path).then((data) => {
-            this.log(`${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
+            this.log(`Json ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
             return data ? JSON.parse(data) : null
         })
     }
 
-    set (key, path, value) {
-        this.log(`Caching ${key}`);
+    setJSON (key, path, value) {
+        this.log(`Caching json ${key}`);
         return this.client.set(key, path, value ? JSON.stringify(value) : null);
     }
 
-    numincrby (key, path, value) {
-        this.log(`Incrementing ${key} by ${value}`);
-        return this.client.numincrby(key, path, value);
+    getHash (key, field) {
+        const startAt = Date.now();
+        const get = field ? this.client.redis.hget(key, field) : this.client.redis.hgetall(key);
+        return get.then((data) => {
+            this.log(`Hash ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
+            return data;
+        })
+    }
+
+    setHash (key, data) {
+        this.log(`Caching hash ${key}`);
+        const fields = Object.keys(data);
+        if (fields.length > 1) return this.client.redis.hmset(key, ...fields.map((field) => [ field, data[field] ]).flat());
+        else return this.client.redis.hset(key, fields[0], data[fields[0]]);
+    }
+
+    incrHashBy (key, field, num) {
+        this.log(`Incr ${key}#${field} by ${num}`);
+        return this.client.redis.hincrby(key, field, num);
+    }
+
+    getString (key) {
+        const startAt = Date.now();
+        return this.client.redis.get(key).then((data) => {
+            this.log(`String ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
+            return data;
+        })
+    }
+
+    setString (key, data) {
+        this.log(`Caching string ${key}`);
+        return this.client.redis.get(key);
     }
 
 }

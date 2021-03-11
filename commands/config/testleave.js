@@ -18,17 +18,17 @@ module.exports = class extends Command {
             .setTitle(message.translate("config/testleave:TITLE"))
             .setDescription(message.translate("config/testleave:DESCRIPTION"))
             .addField(message.translate("config/testleave:ENABLED_TITLE"), (data.guild.leave.enabled ? message.translate("config/testleave:ENABLED_YES_CONTENT", {
-                prefix: data.guild.prefix,
+                prefix: message.guild.settings.prefix,
                 success: this.client.config.emojis.success
             }) : message.translate("config/testleave:ENABLED_NO_CONTENT", {
-                prefix: data.guild.prefix,
+                prefix: message.guild.settings.prefix,
                 success: this.client.config.emojis.success
             })))
             .addField(message.translate("config/testleave:MESSAGE"), (data.guild.leave.mainMessage || message.translate("config/testleave:ENABLED_YES_CONTENT", {
-                prefix: data.guild.prefix
+                prefix: message.guild.settings.prefix
             })))
             .addField(message.translate("config/testleave:CHANNEL_TITLE"), (data.guild.leave.channel ? `<#${data.guild.leave.channel}>` : message.translate("config/testleave:CHANNEL_CONTENT", {
-                prefix: data.guild.prefix
+                prefix: message.guild.settings.prefix
             })))
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)

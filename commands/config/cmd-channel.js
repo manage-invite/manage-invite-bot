@@ -16,7 +16,7 @@ module.exports = class extends Command {
             await data.guild.setCmdChannel(message.mentions.channels.first().id);
             message.success("config/cmd-channel:SUCCESS_ENABLED", {
                 channel: message.mentions.channels.first().toString(),
-                prefix: data.guild.prefix
+                prefix: message.guild.settings.prefix
             });
         } else {
             if (data.guild.cmdChannel){

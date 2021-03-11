@@ -21,14 +21,14 @@ module.exports = class extends Command {
                 discord: Constants.Links.DISCORD
             }))
             .addField(message.translate("config/testleave:ENABLED_TITLE"), (data.guild.joinDM.enabled ? message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
-                prefix: data.guild.prefix,
+                prefix: message.guild.settings.prefix,
                 success: this.client.config.emojis.success
             }) : message.translate("config/testjoindm:ENABLED_NO_CONTENT", {
-                prefix: data.guild.prefix,
+                prefix: message.guild.settings.prefix,
                 success: this.client.config.emojis.success
             })))
             .addField(message.translate("config/testleave:MESSAGE"), (data.guild.joinDM.mainMessage || message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
-                prefix: data.guild.prefix
+                prefix: message.guild.settings.prefix
             })))
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)

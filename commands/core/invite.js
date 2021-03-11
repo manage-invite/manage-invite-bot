@@ -29,31 +29,26 @@ module.exports = class extends Command {
             }),
             this.client.database.fetchGuildRanks(message.guild.id)
         ]);
-        const inviteCount = this.client.database.calculateInvites(memberData);
 
-        await this.client.functions.assignRanks(member, inviteCount, guildRanks, data.settings.keepRanks, data.settings.stackedRanks);
-        const nextRank = this.client.functions.getNextRank(inviteCount, guildRanks, message.guild);
+        await this.client.functions.assignRanks(member, memberData.invites, guildRanks, data.settings.keepRanks, data.settings.stackedRanks);
+        const nextRank = this.client.functions.getNextRank(memberData.invites, guildRanks, message.guild);
+
+        const translation = {
+            username: member.user.username,
+            inviteCount: memberData.invites,
+            regularCount: memberData.regular,
+            bonusCount: memberData.bonus,
+            fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
+            leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
+        };
 
         const firstDescription =  member.id === message.member.id ?
-            message.translate("core/invite:AUTHOR_CONTENT", {
-                inviteCount,
-                regularCount: memberData.regular,
-                bonusCount: memberData.bonus,
-                fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
-                leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
-            }) :
-            message.translate("core/invite:MEMBER_CONTENT", {
-                username: member.user.username,
-                inviteCount,
-                regularCount: memberData.regular,
-                bonusCount: memberData.bonus,
-                fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
-                leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
-            });
+            message.translate("core/invite:AUTHOR_CONTENT", translation) :
+            message.translate("core/invite:MEMBER_CONTENT", translation);
 
         const secondDescription = member.id === message.member.id && nextRank ?
             "\n"+message.translate("core/invite:AUTHOR_NEXT_RANK", {
-                neededCount: nextRank.inviteCount - inviteCount,
+                neededCount: nextRank.inviteCount - memberData.invites,
                 rankName: message.guild.roles.cache.get(nextRank.roleID).toString() || "deleted-role"
             }) : "";
 

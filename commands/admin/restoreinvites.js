@@ -28,7 +28,7 @@ module.exports = class extends Command {
             m.delete();
         }
         const conf = await message.sendT("admin/restoreinvites:CONFIRMATION", {
-            prefix: data.guild.prefix,
+            prefix: message.guild.settings.prefix,
             regular: memberCount.regular,
             leaves: memberCount.leaves,
             bonus: memberCount.bonus,

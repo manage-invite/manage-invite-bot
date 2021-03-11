@@ -19,7 +19,7 @@ module.exports = class extends Command {
             opt = { max: 1, time: 90000, errors: [ "time" ] };
         
         const str = data.guild.join.enabled ? message.translate("config/configleave:DISABLE", {
-            prefix: data.guild.prefix
+            prefix: message.guild.settings.prefix
         }) : "";
         const msg = await message.sendT("config/configleave:INSTRUCTIONS_1", {
             string: `${str}`,
@@ -30,7 +30,7 @@ module.exports = class extends Command {
         if (!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
         const confMessage = collected.first().content;
         if (confMessage === "cancel") return msg.error("common:CANCELLED", null, true);
-        if (confMessage === data.guild.prefix+"setleave") return;
+        if (confMessage === message.guild.settings.prefix+"setleave") return;
         collected.first().delete().catch(() => {});
 
         msg.sendT("config/configleave:INSTRUCTIONS_2", null, true);
@@ -54,7 +54,7 @@ module.exports = class extends Command {
             .addField(message.translate("common:MESSAGE"), confMessage)
             .addField(message.translate("common:CHANNEL"), channel)
             .addField(message.translate("common:TEST_IT"), message.translate("config/configleave:TEST", {
-                prefix: data.guild.prefix
+                prefix: message.guild.settings.prefix
             }))
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)
