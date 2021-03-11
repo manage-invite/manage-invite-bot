@@ -23,8 +23,8 @@ module.exports = class DatabaseHandler {
         return [...Array(12)].map(i=>(~~(Math.random()*36)).toString(36)).join('');
     }
 
-    calculateInvites (memberData) {
-        return memberData.leaves - memberData.fake + memberData.regular + memberData.bonus;
+    calculateInvites (memberRow) {
+        return memberRow.invites_leaves - memberRow.invites_fake + memberRow.invites_regular + memberRow.invites_bonus;
     }
 
     /**
@@ -337,6 +337,35 @@ module.exports = class DatabaseHandler {
     }
 
     /**
+     * Fetches the guild leaderboard
+     */
+    async fetchGuildLeaderboard (guildID, storageID) {
+        const redisData = await this.redis.get(`guild_leaderboard_${guildID}`);
+        if (redisData) return redisData;
+
+        const { rows } = await this.postgres.query(`
+            SELECT user_id, invites_regular, invites_leaves, invites_bonus, invites_fake
+            FROM members
+            WHERE guild_id = $1
+            AND storage_id = $2;
+        `, guildID, storageID);
+
+        const formattedMembers = rows.map((row) => ({
+            userID: row.user_id,
+            invites: this.calculateInvites(row),
+            regular: row.invites_regular,
+            leaves: row.invites_leaves,
+            bonus: row.invites_bonus,
+            fake: row.invites_fake
+        }));
+
+        this.redis.set(`guild_leaderboard_${guildID}`, '.', formattedMembers);
+        this.redis.client.redis.expire(`guild_leaderboard_${guildID}`, 60);
+
+        return formattedMembers;
+    }
+
+    /**
      * Fetches a guild member
      * @path /guilds/309383/members/29830983/
      */
@@ -370,6 +399,7 @@ module.exports = class DatabaseHandler {
             userID: rows[0].user_id,
             guildID: rows[0].guild_id,
             storageID: rows[0].storage_id,
+            invites: this.calculateInvites(rows[0]),
             fake: rows[0].invites_fake,
             leaves: rows[0].invites_leaves,
             bonus: rows[0].invites_bonus,
@@ -377,16 +407,6 @@ module.exports = class DatabaseHandler {
         };
         this.redis.set(`member_${userID}_${guildID}_${storageID}`, '.', formattedMember)
         return formattedMember;
-    }
-
-    /**
-     * Fetches the guild leaderboard
-     * @path /guilds/30983803/leaderboard
-     * 
-     * @nocache
-     */
-    fetchGuildLeaderboard () {
-
     }
 
     /**
