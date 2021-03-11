@@ -19,13 +19,26 @@ module.exports = class DatabaseHandler {
         ]);
     }
 
-    generateStorageID () {
+    static generateStorageID () {
         return [...Array(12)].map(i=>(~~(Math.random()*36)).toString(36)).join('');
     }
 
-    calculateInvites (memberRow) {
+    static calculateInvites (memberRow) {
         return memberRow.invites_leaves - memberRow.invites_fake + memberRow.invites_regular + memberRow.invites_bonus;
     }
+
+    static formatEvent (eventRow) {
+        return {
+            userID: eventRow.user_id,
+            guildID: eventRow.guild_id,
+            eventType: eventRow.event_type,
+            eventDate: new Date(eventRow.event_date).getTime(),
+            joinType: eventRow.join_type,
+            inviterID: eventRow.inviter_user_id,
+            inviteData: eventRow.invite_data,
+            storageID: eventRow.storage_id
+        };
+    } 
 
     /**
      * Count the guild invites present in the latest storage
@@ -419,16 +432,62 @@ module.exports = class DatabaseHandler {
      * Fetches the member events (the members they invited)
      * @path /guilds/3983093/members/39838093/events/invitedby
      */
-    fetchGuildMembersEventsInvitedBy () {
+    async fetchGuildMemberEvents ({ userID, guildID }) {
+        const redisData = await this.redis.getJSON(`member_${userID}_${guildID}_events`);
+        if (redisData) return redisData;
 
+        const { rows } = await this.postgres.query(`
+            SELECT *
+            FROM members
+            WHERE user_id = $1
+            OR inviter_user_id = $1
+            AND guild_id = $2;
+        `, userID, guildID);
+
+        const formattedEvents = rows.map((row) => this.formatEvent(row));
+        this.redis.setJSON(`member_${userID}_${guildID}_events`, '.', formattedEvents);
+
+        return formattedEvents;
     }
 
-    /**
-     * Fetches the member events (when they have been invited)
-     * @path /guilds/3338339383/members/3873793/events/invited
-     */
-    fetchGuildMembersEventsInvited () {
+    async fetchSubscriptionPayments (subID) {
+        const { rows } = await this.postgres.query(`
+            SELECT *
+            FROM payments p
+            INNER JOIN subscriptions_payments sp ON sp.payment_id = p.id
+            WHERE sp.sub_id = $1;
+        `, subID);
+        
+        return rows.map((row) => ({
+            id: row.id,
+            payerDiscordID: row.payer_discord_id,
+            amount: row.amount,
+            createdAt: row.created_at,
+            type: row.type,
+            transactionID: row.transaction_id,
+            details: row.details,
+            modDiscordID: row.mod_discord_id,
+            signupID: row.signup_id,
+            payerEmail: row.payer_email,
+            payerDiscordUsername: row.payer_discord_username
+        }));
+    }
 
+    async createGuildMemberEvent ({ userID, guildID, eventDate = new Date(), eventType, joinType, inviterID, inviteData, joinFake, storageID }) {
+        this.redis.getJSON(`member_${userID}_${guildID}_events`).then((data) => {
+            if (data) this.redis.pushJSON(`member_${userID}_${guildID}`, '.', { userID, guildID, eventDate, eventType, joinType, inviterID, inviteData, joinFake, storageID });
+        });
+        if (inviterID) {
+            this.redis.getJSON(`member_${inviterID}_${guildID}_events`).then((data) => {
+                if (data) this.redis.pushJSON(`member_${inviterID}_${guildID}`, '.', { userID, guildID, eventDate, eventType, joinType, inviterID, inviteData, joinFake, storageID });
+            });
+        }
+
+        await this.postgres.query(`
+            INSERT INTO invited_member_events
+            (user_id, guild_id, event_date, event_type, join_type, inviter_user_id, invite_data, join_fake, storage_id) VALUES
+            ($1, $2, $3, $4, $5, $6, $7, $8, $9);
+        `, userID, guildID, eventDate.toLocaleString(), eventType, joinType, inviterID, inviteData, joinFake, storageID);
     }
 
     fetchPremiumUserIDs () {

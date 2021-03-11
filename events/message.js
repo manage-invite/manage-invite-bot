@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const Constants = require("../helpers/constants");
-const Guild = require("../database/models/Guild");
 
 const cooldownedUsers = new Discord.Collection();
 

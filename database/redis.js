@@ -1,4 +1,3 @@
-const Guild = require('./models/Guild');
 const { ReJSON } = require('redis-modules-sdk');
 const { redis: redisConfig } = require("../config");
 const log = require('../helpers/logger');
