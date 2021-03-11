@@ -18,8 +18,10 @@ module.exports  = class extends Command {
 
         const showIDs = message.content.includes("-id");
 
-        const blacklistedUsers = await this.client.database.fetchGuildBlacklistedUsers(message.guild.id);
-        const membersData = await this.client.database.fetchGuildLeaderboard(message.guild.id, message.guild.settings.storageID);
+        const [blacklistedUsers, membersData] = await Promise.all([
+            this.client.database.fetchGuildBlacklistedUsers(message.guild.id),
+            this.client.database.fetchGuildLeaderboard(message.guild.id, message.guild.settings.storageID)
+        ]);
 
         let members = [];
         membersData.forEach((member) => {
