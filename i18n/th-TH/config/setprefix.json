@@ -1,4 +1,4 @@
 {
-    "MISSING": "คุณต้องระบุคำนำหน้า!",
-    "SUCCESS": "อัปเดตคำนำหน้าเซิร์ฟเวอร์แล้ว!"
+    "MISSING": "You must specify a prefix!",
+    "SUCCESS": "Server prefix has been updated!"
 }
