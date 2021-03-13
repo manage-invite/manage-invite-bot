@@ -1,6 +1,6 @@
 {
     "CONFIRM": "แน่ใจไหมว่าต้องการซิงโครไนซ์อันดับสมาชิก อาจใช้เวลานานขึ้นอยู่กับขนาดเซิร์ฟเวอร์ของคุณ\n\n{{success}} ส่ง `-confirm` เพื่อยืนยัน\n{{error}} ส่ง `cancel` เพื่อยกเลิก",
-    "STARTED": "เริ่มการซิงโครไนซ์อันดับสมาชิกแล้ว ... หมายเหตุ: คุณสามารถยกเลิกได้โดยใช้ `{{prefix}}sync-ranks Cancel`",
+    "STARTED": "Synchronization of member ranks started... Note: you can cancel it using `{{prefix}}sync-ranks cancel`.",
     "CANCELLED": "การซิงโครไนซ์อันดับสมาชิกถูกยกเลิก",
     "SUCCESS": "การซิงโครไนซ์อันดับสมาชิกเสร็จสมบูรณ์",
     "RUNNING": "กำลังดำเนินการซิงโครไนซ์ตำแหน่งสมาชิก หมายเหตุ: คุณสามารถยกเลิกได้โดยใช้ `{{prefix}}sync-ranks cancel`",
