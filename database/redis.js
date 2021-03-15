@@ -64,6 +64,15 @@ class RedisHandler {
         return this.client.redis.hincrby(key, field, num);
     }
 
+    getStats () {
+        return new Promise((resolve) => {
+            this.client.redis.info('keyspace').then((data) => {
+                const [,keys] = data.match(/db0:keys=([0-9]+)/);
+                resolve(keys);
+            });
+        });
+    }
+
     getString (key, options) {
         const startAt = Date.now();
         return this.client.redis.get(key).then((data) => {
