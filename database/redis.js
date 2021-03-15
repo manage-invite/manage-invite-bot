@@ -17,6 +17,11 @@ class RedisHandler {
 
     }
 
+    popJSON (key, path, index) {
+        this.log(`Poping #${index} from ${key}`);
+        return this.client.arrpop(key, path, index);
+    }
+
     pushJSON (key, path, value) {
         return new Promise((resolve) => {
             this.client.arrappend(key, JSON.stringify(value), path).catch((err) => {
@@ -59,11 +64,11 @@ class RedisHandler {
         return this.client.redis.hincrby(key, field, num);
     }
 
-    getString (key) {
+    getString (key, options) {
         const startAt = Date.now();
         return this.client.redis.get(key).then((data) => {
             this.log(`String ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
-            return data;
+            return options?.json ? JSON.parse(data) : data;
         })
     }
 

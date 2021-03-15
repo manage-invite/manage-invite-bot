@@ -30,6 +30,7 @@
     "pg": "^8.5.1",
     "redis": "^3.0.2",
     "redis-modules-sdk": "^0.4.1",
+    "snake-case": "^3.0.4",
     "string-similarity": "^4.0.4",
     "zlib-sync": "^0.1.6"
   },

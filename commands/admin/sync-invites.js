@@ -26,9 +26,13 @@ module.exports = class extends Command {
             collected.first().delete().catch(() => {});
             const users = new Set(guildInvites.filter((i) => i.inviter).map((i) => i.inviter.id));
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
-                const memberData = await this.client.database.fetchMember(user, message.guild.id);
-                memberData.regular = guildInvites.filter((i) => i.inviter && i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c);
-                await memberData.updateInvites();
+                await this.client.database.addInvites({
+                    userID: user,
+                    guildID: message.guild.id,
+                    storageID: message.guild.settings.storageID,
+                    number: guildInvites.filter((i) => i.inviter && i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c),
+                    type: 'regular'
+                });
             });
             const embed = new Discord.MessageEmbed()
                 .setAuthor(message.translate("admin/sync-invites:TITLE"))

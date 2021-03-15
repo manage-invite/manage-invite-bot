@@ -47,9 +47,9 @@ module.exports = class extends Command {
             .setColor(this.client.config.color);
 
         for (const sub of guildSubscriptions){
-            const aboutToExpire = sub.expiresAt < (Date.now() + 3 * 24 * 60 * 60 * 1000);
             const active = sub.expiresAt > Date.now();
-            const invalidated = sub.cancelled;
+            const aboutToExpire = active && sub.expiresAt < (Date.now() + 3 * 24 * 60 * 60 * 1000);
+            const invalidated = sub.subInvalidated;
             const payments = await this.client.database.fetchSubscriptionPayments(sub.id);
             const subContents = [''];
             payments.forEach((p) => {

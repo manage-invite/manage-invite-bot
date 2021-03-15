@@ -23,10 +23,10 @@ module.exports = class extends Command {
             if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete().catch(() => {});
 
-            const msg = await message.sendT("admin/removeinvites:LOADING", {
+            await conf.sendT("admin/removeinvites:LOADING", {
                 loading: this.client.config.emojis.loading,
                 prefix: message.guild.settings.prefix
-            });
+            }, true);
 
             await this.client.database.removeGuildInvites(message.guild.id);
 
@@ -38,7 +38,7 @@ module.exports = class extends Command {
                 .setColor(data.color)
                 .setFooter(data.footer);
 
-            msg.edit(null, { embed });
+            conf.edit(null, { embed });
         }).catch((err) => {
             console.error(err);
             return conf.error("common:CANCELLED", null, true);

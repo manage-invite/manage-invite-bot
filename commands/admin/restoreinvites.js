@@ -25,6 +25,9 @@ module.exports = class extends Command {
                 loading: this.client.config.emojis.loading
             });
             memberCount = await this.client.database.countGuildInvites(message.guild.id, message.guild.settings.storageID);
+            if (!memberCount) {
+                return message.error("admin/restoreinvites:NO_BACKUP");
+            }
             m.delete();
         }
         const conf = await message.sendT("admin/restoreinvites:CONFIRMATION", {
@@ -37,13 +40,13 @@ module.exports = class extends Command {
             success: this.client.config.emojis.success
         });
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
-            if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
+            if (!collected.first() || !collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete().catch(() => {});
             await conf.sendT("admin/restoreinvites:LOADING", {
                 loading: this.client.config.emojis.loading
             }, true);
 
-            await member.data.restoreGuildInvites(message.guild.id, message.guild.settings.storageID);
+            await this.client.database.restoreGuildInvites(message.guild.id, message.guild.settings.storageID);
 
             const embed = new Discord.MessageEmbed()
                 .setAuthor(message.translate("admin/restoreinvites:TITLE"))
