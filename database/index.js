@@ -3,6 +3,23 @@ const PostgresHandler = require('./postgres');
 
 const snakeCase = require('snake-case').snakeCase;
 
+const formatPayment = (paymentRow) => ({
+    id: row.id,
+    payerDiscordID: row.payer_discord_id,
+    amount: row.amount,
+    createdAt: row.created_at,
+    type: row.type,
+    transactionID: row.transaction_id,
+    details: row.details,
+    modDiscordID: row.mod_discord_id,
+    signupID: row.signup_id,
+    payerEmail: row.payer_email,
+    payerDiscordUsername: row.payer_discord_username
+});
+
+const calculateInvites = (memberRow) => memberRow.invites_leaves - memberRow.invites_fake + memberRow.invites_regular + memberRow.invites_bonus;
+const generateStorageID = () => [...Array(12)].map(i=>(~~(Math.random()*36)).toString(36)).join('');
+
 module.exports = class DatabaseHandler {
 
     constructor () {
@@ -18,27 +35,6 @@ module.exports = class DatabaseHandler {
             this.postgres.connect
         ]);
     }
-
-    generateStorageID () {
-        return [...Array(12)].map(i=>(~~(Math.random()*36)).toString(36)).join('');
-    }
-
-    calculateInvites (memberRow) {
-        return memberRow.invites_leaves - memberRow.invites_fake + memberRow.invites_regular + memberRow.invites_bonus;
-    }
-
-    formatEvent (eventRow) {
-        return {
-            userID: eventRow.user_id,
-            guildID: eventRow.guild_id,
-            eventType: eventRow.event_type,
-            eventDate: new Date(eventRow.event_date).getTime(),
-            joinType: eventRow.join_type,
-            inviterID: eventRow.inviter_user_id,
-            inviteData: eventRow.invite_data,
-            storageID: eventRow.storage_id
-        };
-    } 
 
     /**
      * Count the guild invites present in the latest storage
@@ -78,7 +74,7 @@ module.exports = class DatabaseHandler {
             SET guild_storage_id = $1
             WHERE guild_id = $2
             RETURNING guild_storage_id;
-        `, this.generateStorageID(), guildID);
+        `, generateStorageID(), guildID);
         const newStorageID = rows[0].guild_storage_id;
 
         const redisData = await this.redis.getHash(`guild_${guildID}`);
@@ -266,7 +262,7 @@ module.exports = class DatabaseHandler {
                 (guild_id, guild_language, guild_prefix, guild_keep_ranks, guild_stacked_ranks, guild_cmd_channel, guild_fake_threshold, guild_storage_id) VALUES
                 ($1, 'en-US', '+', false, false, null, null, $2)
                 RETURNING guild_storage_id;
-            `, guildID, this.generateStorageID()));
+            `, guildID, generateStorageID()));
             await this.postgres.query(`
                 INSERT INTO guild_storages
                 (guild_id, storage_id, created_at) VALUES
@@ -491,7 +487,7 @@ module.exports = class DatabaseHandler {
 
         const formattedMembers = rows.map((row) => ({
             userID: row.user_id,
-            invites: this.calculateInvites(row),
+            invites: calculateInvites(row),
             regular: row.invites_regular,
             leaves: row.invites_leaves,
             bonus: row.invites_bonus,
@@ -539,7 +535,7 @@ module.exports = class DatabaseHandler {
             userID: rows[0].user_id,
             guildID: rows[0].guild_id,
             storageID: rows[0].storage_id,
-            invites: this.calculateInvites(rows[0]),
+            invites: calculateInvites(rows[0]),
             fake: rows[0].invites_fake,
             leaves: rows[0].invites_leaves,
             bonus: rows[0].invites_bonus,
@@ -565,7 +561,16 @@ module.exports = class DatabaseHandler {
             AND guild_id = $2;
         `, userID, guildID);
 
-        const formattedEvents = rows.map((row) => this.formatEvent(row));
+        const formattedEvents = rows.map((row) => ({
+            userID: eventRow.user_id,
+            guildID: eventRow.guild_id,
+            eventType: eventRow.event_type,
+            eventDate: new Date(eventRow.event_date).getTime(),
+            joinType: eventRow.join_type,
+            inviterID: eventRow.inviter_user_id,
+            inviteData: eventRow.invite_data,
+            storageID: eventRow.storage_id
+        }));
         this.redis.setJSON(`member_${userID}_${guildID}_events`, '.', formattedEvents);
 
         return formattedEvents;
@@ -579,19 +584,7 @@ module.exports = class DatabaseHandler {
             WHERE sp.sub_id = $1;
         `, subID);
         
-        return rows.map((row) => ({
-            id: row.id,
-            payerDiscordID: row.payer_discord_id,
-            amount: row.amount,
-            createdAt: row.created_at,
-            type: row.type,
-            transactionID: row.transaction_id,
-            details: row.details,
-            modDiscordID: row.mod_discord_id,
-            signupID: row.signup_id,
-            payerEmail: row.payer_email,
-            payerDiscordUsername: row.payer_discord_username
-        }));
+        return rows.map((row) => formatPayment(row));
     }
 
     async createGuildMemberEvent ({ userID, guildID, eventDate = new Date(), eventType, joinType, inviterID, inviteData, joinFake, storageID }) {
@@ -621,6 +614,80 @@ module.exports = class DatabaseHandler {
             FROM guilds_subscriptions
         `);
         return rows.map((row) => row.guild_id);
+    }
+
+    async fetchTransactionData (transactionID) {
+        const { rows } = await this.postgres.query(`
+            SELECT id
+            FROM payments
+            WHERE transaction_id = $1;
+        `, transactionID);
+
+        const paymentID = rows[0]?.id;
+        if (!paymentID) return;
+
+        ({ rows } = await this.postgres.query(`
+            SELECT sub_id
+            FROM subscriptions_payments
+            WHERE payment_id = $1;
+        `, paymentID));
+
+        const subID = rows[0]?.sub_id;
+        if (!subID) return;
+
+        ({ rows } = await this.postgres.query(`
+            SELECT guild_id
+            FROM guilds_subscriptions
+            WHERE sub_id = $1;
+        `, subID));
+
+        const guildID = rows[0]?.guild_id;
+        if (!guildID) return;
+
+        return {
+            subID,
+            guildID
+        }
+    }
+
+    setPaymentRemindSent ({ paymentID, subID, success, kicked }) {
+        return this.postgres.query(`
+            INSERT INTO payments_reminds
+            (last_payment_id, sub_id, success_sent, bot_kicked) VALUES
+            ($1, $2, $3, $4);
+        `, paymentID, subID, success, kicked);
+    }
+
+    /**
+     * Fetch all the subscriptions that have not been paid (they have expired 3 days ago at least).
+     * It also checks if a DM has already been sent to the member in charge of the subscription.
+     */
+    async fetchNewlyCancelledPayments () {
+        const { rows } = await this.postgres.query(`
+            SELECT * FROM (
+                SELECT distinct on (s.id) s.id as sub_id, p.id as payment_id, p.type, gs.guild_id, p.payer_discord_id, p.payer_discord_username, s.sub_label, s.expires_at, p.details
+                FROM guilds_subscriptions gs
+                INNER JOIN subscriptions s ON s.id = gs.sub_id
+                INNER JOIN subscriptions_payments sp ON sp.sub_id = s.id
+                INNER JOIN payments p ON p.id = sp.payment_id
+                AND s.expires_at < now() - interval '3 days'
+                AND s.expires_at > now() - interval '5 days'
+                AND gs.guild_id NOT IN (
+                    SELECT guild_id FROM guilds_subscriptions gs
+                    INNER JOIN subscriptions s ON gs.sub_id = s.id
+                    WHERE s.expires_at >= now()
+                )
+                ORDER BY s.id, p.created_at
+            ) p_join WHERE payment_id NOT IN (
+                SELECT last_payment_id FROM payments_reminds
+            )
+        `);
+        return rows.map((row) => ({
+            payerDiscordID: row.payer_discord_id,
+            subID: row.sub_id,
+            paymentID: row.payment_id,
+            guildID: row.guild_id
+        }));
     }
 
 }

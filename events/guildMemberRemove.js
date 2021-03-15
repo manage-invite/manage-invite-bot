@@ -40,11 +40,8 @@ module.exports = class {
 
         const lastJoinData = memberEvents.filter((j) => j.type === "join" && j.guildID === member.guild.id && j.userID === member.id && j.storageID === guildSettings.storageID)[0];
 
-        const inviter = lastJoinData.joinData
-            && lastJoinData.joinData.joinType === "normal"
-            && lastJoinData.joinData.inviteData
-            ? await this.client.resolveUser(memberData.joinData.inviterID)
-            : null;
+        const inviter = lastJoinData.joinType === "normal" && lastJoinData.inviteData ? await this.client.resolveUser(lastJoinData.inviterID) : null;
+
         const inviterData = inviter ? await this.client.database.fetchGuildMember({
             userID: inviter.id,
             guildID: member.guild.id,
