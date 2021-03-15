@@ -27,7 +27,6 @@ module.exports = class {
             this.client.database.fetchGuildPlugins(member.guild.id)
         ]);
 
-        member.guild.settings = guildSettings;
         const memberData = await this.client.database.fetchGuildMember({
             userID: member.id,
             guildID: member.guild.id,
@@ -214,14 +213,15 @@ module.exports = class {
             });
         }
 
-        const joinDM = guildPlugins.find((plugin) => plugin.pluginName === 'joinDM');
+        const memberNumJoins = memberEvents.find((e) => e.type === 'join' && e.userID === member.id).length;
+        const joinDM = guildPlugins.find((plugin) => plugin.pluginName === 'joinDM')?.pluginData;
         // DM Join messages
         if (joinDM.enabled && joinDM.mainMessage){
             if (invite){
                 const formattedMessage = this.client.functions.formatMessage(
                     joinDM.mainMessage,
                     member,
-                    memberData.numJoins,
+                    memberNumJoins,
                     (guildSettings.language || "english").substr(0, 2),
                     {
                         inviter,
@@ -250,7 +250,7 @@ module.exports = class {
             }
         }
 
-        const join = guildPlugins.find((plugin) => plugin.pluginName === 'join');
+        const join = guildPlugins.find((plugin) => plugin.pluginName === 'join')?.pluginData;
         // Join messages
         if (join.enabled && join.mainMessage && join.channel){
             const channel = member.guild.channels.cache.get(join.channel);
@@ -259,7 +259,7 @@ module.exports = class {
                 const formattedMessage = this.client.functions.formatMessage(
                     join.mainMessage,
                     member,
-                    memberData.numJoins,
+                    memberNumJoins,
                     (guildSettings.language || "english").substr(0, 2),
                     {
                         inviter,
