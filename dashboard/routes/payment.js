@@ -96,7 +96,6 @@ router.post("/ipn", async (req, res) => {
             const guildID = paymentData[0];
             const userID = paymentData[1];
             const guildName = paymentData[2];
-            const guild = await req.client.database.fetchGuild(guildID);
             req.client.users.fetch(userID).then(async (user) => {
                 const signupData = notSentSignup.find((s) => s.guildID === guildID);
                 if (signupData) {
@@ -106,7 +105,14 @@ router.post("/ipn", async (req, res) => {
                         .setColor("#F4831B");
                     user.send(embed).catch(() => {});
                     notSentSignup = notSentSignup.filter((s) => s.guildID !== guildID);
-                    const signupID = await req.client.database.createPayment({
+                    const subscription = await req.client.database.createGuildSubscription(guildID, {
+                        expiresAt: new Date(Date.now()+30*24*60*60*1000),
+                        createdAt: new Date(payload.payment_date),
+                        subLabel: "Premium Monthly 1 Guild",
+                        guildsCount: 1
+                    });
+                    // signup
+                    await req.client.database.createSubscriptionPayment(subscription.id, {
                         payerDiscordID: paymentData[1],
                         payerDiscordUsername: user.tag,
                         payerEmail: signupData.payload.payer_email,
@@ -116,7 +122,8 @@ router.post("/ipn", async (req, res) => {
                         type: "paypal_dash_signup_month",
                         details: signupData.payload
                     });
-                    const paymentID = await req.client.database.createPayment({
+                    // payment
+                    await req.client.database.createSubscriptionPayment(subscription.id, {
                         payerDiscordID: paymentData[1],
                         payerDiscordUsername: user.tag,
                         payerEmail: payload.payer_email,
@@ -127,19 +134,20 @@ router.post("/ipn", async (req, res) => {
                         details: payload,
                         signupID
                     });
-                    const subscription = await req.client.database.createSubscription({
-                        expiresAt: new Date(Date.now()+30*24*60*60*1000),
-                        createdAt: new Date(payload.payment_date),
-                        subLabel: "Premium Monthly 1 Guild",
-                        guildsCount: 1
-                    });
-                    await req.client.database.createSubPaymentLink(subscription.id, signupID);
-                    await req.client.database.createSubPaymentLink(subscription.id, paymentID);
-                    await req.client.database.createGuildSubLink(guildID, subscription.id);
-                    await subscription.deleteGuildsFromCache();
-                    await req.client.database.syncSubscriptionForOtherCaches(subscription.id);
                 } else {
-                    const paymentID = await req.client.database.createPayment({
+                    const guildSubscriptions = await req.client.database.fetchGuildSubscriptions(guildID);
+                    let currentSubscription = guildSubscriptions.find((sub) => sub.subLabel === "Premium Monthly 1 Guild");
+                    if (!currentSubscription){
+                        currentSubscription = await req.client.database.createGuildSubscription(guildID, {
+                            expiresAt: new Date(Date.now()+30*24*60*60*1000),
+                            createdAt: new Date(payload.payment_date),
+                            subLabel: "Premium Monthly 1 Guild",
+                            guildsCount: 1
+                        });
+                    } else await req.client.database.updateGuildSubscription(currentSubscription.id, {
+                        expiresAt: currentSubscription.expiresAt + 30 * 24 * 60 * 60 * 1000
+                    });
+                    await req.client.database.createSubscriptionPayment(currentSubscription.id, {
                         payerDiscordID: paymentData[1],
                         payerDiscordUsername: user.tag,
                         payerEmail: payload.payer_email,
@@ -149,20 +157,6 @@ router.post("/ipn", async (req, res) => {
                         type: "paypal_dash_pmnt_month",
                         details: payload
                     });
-                    let currentSubscription = guild.subscriptions.find((sub) => sub.label === "Premium Monthly 1 Guild");
-                    if (!currentSubscription){
-                        currentSubscription = await req.client.database.createSubscription({
-                            expiresAt: new Date(Date.now()+30*24*60*60*1000),
-                            createdAt: new Date(payload.payment_date),
-                            subLabel: "Premium Monthly 1 Guild",
-                            guildsCount: 1
-                        });
-                        await req.client.database.createGuildSubLink(guildID, currentSubscription.id);
-                    }
-                    await req.client.database.createSubPaymentLink(currentSubscription.id, paymentID);
-                    await currentSubscription.addDays(30);
-                    await currentSubscription.deleteGuildsFromCache();
-                    await req.client.database.syncSubscriptionForOtherCaches(currentSubscription.id);
                     req.client.functions.syncPremiumRoles(req.client);
                 }
                 const logEmbed = escape(JSON.stringify(new Discord.MessageEmbed()
@@ -201,18 +195,20 @@ router.post("/ipn", async (req, res) => {
                     let aLogs = this.channels.cache.get(this.config.premiumLogs);
                     if(aLogs) aLogs.send({ embed: JSON.parse(unescape('${logEmbed}'))});
                 `);
-                const paymentID = await req.client.database.createPayment({
-                    payerDiscordID: paymentData[1],
-                    payerDiscordUsername: user.tag,
-                    payerEmail: payload.payer_email,
-                    transactionID: payload.txn_id,
-                    amount: 0,
-                    createdAt: new Date(payload.subscr_date),
-                    type: "paypal_dash_cancel_month",
-                    details: payload
-                });
-                const guild = await req.client.database.fetchGuild(guildID);
-                await req.client.database.createSubPaymentLink(guild.subscriptions.find((sub) => sub.label === "Premium Monthly 1 Guild").id, paymentID);
+                const guildSubscriptions = await req.client.database.fetchGuildSubscriptions(guildID);
+                const subscriptionID = guildSubscriptions.find((sub) => sub.subLabel === "Premium Monthly 1 Guild")?.id;
+                if (subscriptionID) {
+                    await req.client.database.createSubscriptionPayment(subscriptionID, {
+                        payerDiscordID: paymentData[1],
+                        payerDiscordUsername: user.tag,
+                        payerEmail: payload.payer_email,
+                        transactionID: payload.txn_id,
+                        amount: 0,
+                        createdAt: new Date(payload.subscr_date),
+                        type: "paypal_dash_cancel_month",
+                        details: payload
+                    });
+                }
             });
         }
     });
