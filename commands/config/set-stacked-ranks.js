@@ -13,10 +13,14 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
         if (!data.guild.stackedRanks){
-            await data.guild.setStackedRanks(true);
+            await this.client.database.updateGuildSetting(message.guild.id, {
+                stackedRanks: true
+            });
             return message.success("config/set-stacked-ranks:SUCCESS_ENABLED");
         } else {
-            await data.guild.setStackedRanks(false);
+            await this.client.database.updateGuildSetting(message.guild.id, {
+                stackedRanks: false
+            });
             return message.success("config/set-stacked-ranks:SUCCESS_DISABLED");
         }
     }

@@ -12,14 +12,21 @@ module.exports = class extends Command {
     }
 
     async run (message, args, data) {
-        if (!data.guild.leave.enabled){
-            data.guild.leave.enabled = true;
-            await data.guild.leave.updateData();
+        const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
+        const plugin = guildPlugins.find((p) => p.pluginName === 'leave')?.pluginData;
+
+        if (!plugin.enabled){
+            await this.client.database.updateGuildPlugin(message.guild.id, 'leave', {
+                ...plugin,
+                enabled: true
+            });
             return message.success("config/setleave:ENABLED");
         }
-        if (data.guild.leave.enabled){
-            data.guild.leave.enabled = false;
-            await data.guild.leave.updateData();
+        if (plugin.enabled){
+            await this.client.database.updateGuildPlugin(message.guild.id, 'leave' {
+                ...plugin,
+                enabled: false
+            });
             return message.success("config/setleave:DISABLED");
         }
     }

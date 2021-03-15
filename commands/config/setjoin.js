@@ -12,14 +12,21 @@ module.exports = class extends Command {
     }
 
     async run (message, args, data) {
-        if (!data.guild.join.enabled){
-            data.guild.join.enabled = true;
-            await data.guild.join.updateData();
+        const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
+        const plugin = guildPlugins.find((p) => p.pluginName === 'join')?.pluginData;
+
+        if (!plugin.enabled){
+            await this.client.database.updateGuildPlugin(message.guild.id, 'join', {
+                ...plugin,
+                enabled: true
+            });
             return message.success("config/setjoin:ENABLED");
         }
-        if (data.guild.join.enabled){
-            data.guild.join.enabled = false;
-            await data.guild.join.updateData();
+        if (plugin.enabled){
+            await this.client.database.updateGuildPlugin(message.guild.id, 'join' {
+                ...plugin,
+                enabled: false
+            });
             return message.success("config/setjoin:DISABLED");
         }
     }

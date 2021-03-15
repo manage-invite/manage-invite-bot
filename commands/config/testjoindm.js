@@ -14,20 +14,23 @@ module.exports = class extends Command {
     }
 
     async run (message, args, data) {
+
+        const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
+        const plugin = guildPlugins.find((p) => p.pluginName === 'joinDM')?.pluginData;
         
         const embed = new Discord.MessageEmbed()
             .setTitle(message.translate("config/testjoindm:TITLE"))
             .setDescription(message.translate("config/testleave:DESCRIPTION", {
                 discord: Constants.Links.DISCORD
             }))
-            .addField(message.translate("config/testleave:ENABLED_TITLE"), (data.guild.joinDM.enabled ? message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
+            .addField(message.translate("config/testleave:ENABLED_TITLE"), (plugin?.enabled ? message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
                 prefix: message.guild.settings.prefix,
                 success: this.client.config.emojis.success
             }) : message.translate("config/testjoindm:ENABLED_NO_CONTENT", {
                 prefix: message.guild.settings.prefix,
                 success: this.client.config.emojis.success
             })))
-            .addField(message.translate("config/testleave:MESSAGE"), (data.guild.joinDM.mainMessage || message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
+            .addField(message.translate("config/testleave:MESSAGE"), (plugin?.mainMessage || message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
                 prefix: message.guild.settings.prefix
             })))
             .setThumbnail(message.author.avatarURL())
@@ -36,12 +39,12 @@ module.exports = class extends Command {
             .setTimestamp();
         message.channel.send(embed);
 
-        if (data.guild.joinDM.enabled && data.guild.joinDM.mainMessage){
+        if (plugin?.enabled && plugin?.mainMessage){
             message.author.send(this.client.functions.formatMessage(
-                data.guild.joinDM.mainMessage,
+                plugin?.mainMessage,
                 message.member,
                 1,
-                (data.guild.language || "english").substr(0, 2),
+                (message.guild.settings.language || "english").substr(0, 2),
                 {
                     inviter: message.client.user,
                     inviterData: {

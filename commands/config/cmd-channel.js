@@ -13,14 +13,18 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
         if (message.mentions.channels.first()){
-            await data.guild.setCmdChannel(message.mentions.channels.first().id);
+            await this.client.database.updateGuildSetting(message.guild.id, {
+                cmdChannel: message.mentions.channels.first().id
+            });
             message.success("config/cmd-channel:SUCCESS_ENABLED", {
                 channel: message.mentions.channels.first().toString(),
                 prefix: message.guild.settings.prefix
             });
         } else {
-            if (data.guild.cmdChannel){
-                await data.guild.setCmdChannel(null);
+            if (message.guild.settings.cmdChannel){
+                await this.client.database.updateGuildSetting(message.guild.id, {
+                    cmdChannel: null
+                });
                 message.success("config/cmd-channel:SUCCESS_DISABLED");
             } else {
                 message.error("config/cmd-channel:MISSING_CHANNEL");

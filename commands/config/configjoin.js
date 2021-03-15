@@ -15,10 +15,13 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
 
+        const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
+        const plugin = guildPlugins.find((p) => p.pluginName === 'join')?.pluginData;
+
         const filter = (m) => m.author.id === message.author.id,
             opt = { max: 1, time: 90000, errors: [ "time" ] };
         
-        const str = data.guild.join.enabled ? message.translate("config/configjoin:DISABLE", {
+        const str = plugin?.enabled ? message.translate("config/configjoin:DISABLE", {
             prefix: message.guild.settings.prefix
         }) : "";
         const msg = await message.sendT("config/configjoin:INSTRUCTIONS_1", {
@@ -61,10 +64,12 @@ module.exports = class extends Command {
             .setFooter(data.footer);
         message.channel.send(embed);
 
-        data.guild.join.enabled = true;
-        data.guild.join.mainMessage = confMessage;
-        data.guild.join.channel = channel.id;
-        await data.guild.join.updateData();
+        await this.client.database.updateGuildPlugin(message.guild.id, 'join', {
+            ...(plugin || {}),
+            enabled: true,
+            mainMessage: confMessage,
+            channel: channel.id
+        });
 
     }
 };

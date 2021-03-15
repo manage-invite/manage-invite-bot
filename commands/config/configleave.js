@@ -15,10 +15,13 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
 
+        const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
+        const plugin = guildPlugins.find((p) => p.pluginName === 'leave')?.pluginData;
+
         const filter = (m) => m.author.id === message.author.id,
             opt = { max: 1, time: 90000, errors: [ "time" ] };
         
-        const str = data.guild.join.enabled ? message.translate("config/configleave:DISABLE", {
+        const str = plugin?.enabled ? message.translate("config/configleave:DISABLE", {
             prefix: message.guild.settings.prefix
         }) : "";
         const msg = await message.sendT("config/configleave:INSTRUCTIONS_1", {
@@ -61,10 +64,11 @@ module.exports = class extends Command {
             .setFooter(data.footer);
         message.channel.send(embed);
 
-        data.guild.leave.enabled = true;
-        data.guild.leave.mainMessage = confMessage;
-        data.guild.leave.channel = channel.id;
-        await data.guild.leave.updateData();
-
+        await this.client.database.updateGuildPlugin(message.guild.id, 'leave', {
+            ...(plugin || {}),
+            enabled: true,
+            mainMessage: confMessage,
+            channel: channel.id
+        });
     }
 };
