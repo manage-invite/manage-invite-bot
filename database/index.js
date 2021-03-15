@@ -505,7 +505,6 @@ module.exports = class DatabaseHandler {
      * @path /guilds/309383/members/29830983/
      */
     async fetchGuildMember ({ userID, guildID, storageID }) {
-        console.log(storageID)
         const redisData = await this.redis.getHash(`member_${userID}_${guildID}_${storageID}`);
         if (redisData && redisData.userID) return redisData;
 
@@ -555,21 +554,21 @@ module.exports = class DatabaseHandler {
 
         const { rows } = await this.postgres.query(`
             SELECT *
-            FROM invited_members_events
+            FROM invited_member_events
             WHERE user_id = $1
             OR inviter_user_id = $1
             AND guild_id = $2;
         `, userID, guildID);
 
         const formattedEvents = rows.map((row) => ({
-            userID: eventRow.user_id,
-            guildID: eventRow.guild_id,
-            eventType: eventRow.event_type,
-            eventDate: new Date(eventRow.event_date).getTime(),
-            joinType: eventRow.join_type,
-            inviterID: eventRow.inviter_user_id,
-            inviteData: eventRow.invite_data,
-            storageID: eventRow.storage_id
+            userID: row.user_id,
+            guildID: row.guild_id,
+            eventType: row.event_type,
+            eventDate: new Date(row.event_date).getTime(),
+            joinType: row.join_type,
+            inviterID: row.inviter_user_id,
+            inviteData: row.invite_data,
+            storageID: row.storage_id
         }));
         this.redis.setJSON(`member_${userID}_${guildID}_events`, '.', formattedEvents);
 

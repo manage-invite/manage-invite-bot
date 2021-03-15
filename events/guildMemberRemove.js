@@ -19,7 +19,6 @@ module.exports = class {
             guildBlacklistedUsers,
             guildRanks,
             guildPlugins,
-            memberData,
             memberEvents
         ] = await Promise.all([
             this.client.database.fetchGuildSettings(member.guild.id),
@@ -36,7 +35,7 @@ module.exports = class {
             userID: member.id,
             guildID: member.guild.id,
             storageID: guildSettings.storageID
-        }),;
+        });
 
         const lastJoinData = memberEvents.filter((j) => j.type === "join" && j.guildID === member.guild.id && j.userID === member.id && j.storageID === guildSettings.storageID)[0];
 

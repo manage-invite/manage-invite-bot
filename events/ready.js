@@ -78,7 +78,6 @@ module.exports = class {
                     });
                 });
             }, null, true, "America/Los_Angeles");
-            */
         }
 
         new CronJob("0 */15 * * * *", async () => {

@@ -49,7 +49,6 @@ async function fetchGuild (guildID, client, translate){
     guildPlugins.forEach((p) => {
         formattedGuildPlugins[p.pluginName] = p.pluginData;
     });
-    console.log(guildPlugins, formattedGuildPlugins)
     return { ...guild, ...guildSettings, ...additionalData, ...formattedGuildPlugins, ranks: guildRanks, isPremium };
 }
 
