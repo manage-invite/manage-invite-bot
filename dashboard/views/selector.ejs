@@ -84,7 +84,7 @@
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer">
-						<% if(guild.trialPeriod){ %>
+						<% if(guild.isTrial){ %>
 							<div class="trial">
 								<div class="inner"><a href="<%= guild.settingsUrl %>"><button class="btn btn-success btn-block" style="width: 98%;"><%= translate("dashboard:MANAGE_TRIAL") %></button></a></div>
 								<a><button class="btn btn-primary btn-block" data-toggle="modal" data-target="#<%= guild.id %>"><i class="fa fa-paypal"></i></button></a>
@@ -212,7 +212,7 @@
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer">
-						<% if(guild.trialPeriod){ %>
+						<% if(guild.isTrial){ %>
 							<div class="trial">
 								<div class="inner"><a><button class="btn btn-danger btn-block" style="width: 98%;" disabled><%= translate("dashboard:MISSING_PERM") %></button></a></div>
 								<a><button class="btn btn-primary btn-block" data-toggle="modal" data-target="#<%= guild.id %>"><i class="fa fa-paypal"></i></button></a>

@@ -23,7 +23,7 @@ module.exports = class extends Command {
         }
 
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(guildID);
-        const isPremium = guildSubscriptions.some((sub) => sub.expiresAt > Date.now());
+        const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now());
 
         const guildJsons = await this.client.shard.broadcastEval(`
             let guild = this.guilds.cache.get('${guildID}');
@@ -38,7 +38,7 @@ module.exports = class extends Command {
         };
 
         const description = isPremium
-            ? `This server is premium. Subscription will expire on ${this.client.functions.formatDate(new Date(guildSubscriptions.sort((a, b) => b.expiresAt - a.expiresAt)[0].expiresAt), "MMM DD YYYY", message.guild.settings.language)}.`
+            ? `This server is premium. Subscription will expire on ${this.client.functions.formatDate(new Date(guildSubscriptions.sort((a, b) => new Date(b.expiresAt).getTime() - new Date(a.expiresAt).getTime())[0].expiresAt), "MMM DD YYYY", message.guild.settings.language)}.`
             : "This server is not premium.";
 
         const embed = new Discord.MessageEmbed()
@@ -47,8 +47,8 @@ module.exports = class extends Command {
             .setColor(this.client.config.color);
 
         for (const sub of guildSubscriptions){
-            const active = sub.expiresAt > Date.now();
-            const aboutToExpire = active && sub.expiresAt < (Date.now() + 3 * 24 * 60 * 60 * 1000);
+            const active = new Date(sub.expiresAt).getTime() > Date.now();
+            const aboutToExpire = active && new Date(sub.expiresAt).getTime() < (Date.now() + 3 * 24 * 60 * 60 * 1000);
             const invalidated = sub.subInvalidated;
             const payments = await this.client.database.fetchSubscriptionPayments(sub.id);
             const subContents = [''];

@@ -1,7 +1,7 @@
 const RedisHandler = require('./redis');
 const PostgresHandler = require('./postgres');
 
-const snakeCase = require('snake-case');
+const snakeCase = require('snake-case').snakeCase;
 
 module.exports = class DatabaseHandler {
 
@@ -220,9 +220,30 @@ module.exports = class DatabaseHandler {
             this.redis.setString(`guild_subscriptions_${guildID}`, JSON.stringify(newGuildSubscriptions));
         }
         await this.postgres.query(`
-            UPDATE guilds
-            SET guild_${snakeCase(setting)} = $1;
-        `, newSettingData[setting])
+            UPDATE subscriptions
+            SET ${snakeCase(setting)} = $1
+            WHERE id = $2;
+        `, newSettingData[setting], subID)
+    }
+
+    async fetchGuildSubscriptionStatus (guildID) {
+        const guildSubscriptions = await this.fetchGuildSubscriptions(guildID);
+        const payments = (await Promise.all(guildSubscriptions.map((sub) => this.fetchSubscriptionPayments(sub.id)))).flat();
+        const isPayPal = payments.some((p) => p.type.startsWith('paypal_dash_signup'));
+        const isCancelled = payments.filter((p) => p.type.startsWith('paypal_dash_signup')).length > payments.filter((p) => p.type.startsWith('paypal_dash_cancel')).length;
+        return {
+            isPayPal,
+            isCancelled
+        };
+    }
+
+    async fetchGuildsPremiumStatuses (guildsID) {
+        const guildsSubscriptions = await Promise.all(guildsID.map((g) => this.fetchGuildSubscriptions(g)));
+        return guildsSubscriptions.map((subscriptions, index) => ({
+            guildID: guildsID[index],
+            isPremium: subscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now()),
+            isTrial: subscriptions.some((sub) => sub.subLabel === 'Trial Version' && new Date(sub.expiresAt).getTime() > Date.now())
+        }));
     }
     
     /**
@@ -275,15 +296,16 @@ module.exports = class DatabaseHandler {
      * @param {any} newSettingData
      * @returns {Promise<void>}
      */
-    setGuildSetting (guildID, newSettingData) {
+    updateGuildSetting (guildID, newSettingData) {
         const setting = Object.keys(newSettingData)[0];
         if (!['language', 'prefix', 'cmd_channel', 'fake_treshold', 'keep_ranks', 'stacked_ranks', 'storage_id'].includes(snakeCase(setting))) return new Error('unknown_guild_setting');
         return Promise.all([
             this.redis.setHash(`guild_${guildID}`, newSettingData).catch(() => {}), // here we have to catch because it will throw an error if the object is not stored in redis
             this.postgres.query(`
                 UPDATE guilds
-                SET guild_${snakeCase(setting)} = $1;
-            `, newSettingData[setting])
+                SET guild_${snakeCase(setting)} = $1
+                WHERE guild_id = $2;
+            `, newSettingData[setting], guildID)
         ]);
     }
 
@@ -335,7 +357,7 @@ module.exports = class DatabaseHandler {
      * @path /guilds/93803803/plugins
      */
     async fetchGuildPlugins (guildID) {
-        const redisData = await this.redis.getJSON(`guild_plugins_${guildID}`);
+        const redisData = await this.redis.getString(`guild_plugins_${guildID}`, { json: true });
         if (redisData) return redisData;
 
         const { rows } = await this.postgres.query(`
@@ -348,8 +370,57 @@ module.exports = class DatabaseHandler {
             pluginName: row.plugin_name,
             pluginData: row.plugin_data
         }));
-        this.redis.setJSON(`guild_plugins_${guildID}`, '.', formattedPlugins);
+        this.redis.setString(`guild_plugins_${guildID}`, JSON.stringify(formattedPlugins));
         return formattedPlugins;
+    }
+
+    updateGuildPlugin (guildID, pluginName, newPluginData) {
+        return new Promise((resolve) => {
+            let redisDone = false, postgresDone = false;
+
+            this.redis.getString(`guild_plugins_${guildID}`, { json: true }).then((data) => {
+                let newFormattedPlugins = [...data];
+                newFormattedPlugins = newFormattedPlugins.filter((p) => p.pluginName !== pluginName);
+                newFormattedPlugins.push({
+                    guildID,
+                    pluginName,
+                    pluginData: newPluginData
+                });
+                this.redis.setString(`guild_plugins_${guildID}`, JSON.stringify(newFormattedPlugins)).then(() => {
+                    redisDone = true;
+                    if (postgresDone) resolve();
+                });
+            });
+
+            this.postgres.query(`
+                SELECT *
+                FROM guild_plugins
+                WHERE plugin_name = $1
+                AND guild_id = $2;
+            `, pluginName, guildID).then((rows) => {
+                // if the plugin exists
+                if (rows[0]) {
+                    this.postgres.query(`
+                        UPDATE guild_plugins
+                        SET plugin_data = $1
+                        WHERE plugin_name = $2
+                        AND guild_id = $3;
+                    `, JSON.stringify(newPluginData), pluginName, guildID).then(() => {
+                        postgresDone = true;
+                        if (redisDone) resolve();
+                    });
+                } else {
+                    this.postgres.query(`
+                        INSERT INTO guild_plugins
+                        (plugin_data, plugin_name, guild_id) VALUES
+                        ($1, $2, $3);
+                    `, JSON.stringify(newPluginData), pluginName, guildID).then(() => {
+                        postgresDone = true;
+                        if (redisDone) resolve();
+                    });
+                }
+            });
+        });
     }
 
     /**

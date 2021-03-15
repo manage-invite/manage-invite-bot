@@ -74,7 +74,7 @@ class RedisHandler {
 
     setString (key, data) {
         this.log(`Caching string ${key}`);
-        return this.client.redis.get(key);
+        return this.client.redis.set(key, data);
     }
 
 }
