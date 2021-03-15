@@ -23,7 +23,7 @@ module.exports = class extends Command {
             return message.success("config/setjoin:ENABLED");
         }
         if (plugin.enabled){
-            await this.client.database.updateGuildPlugin(message.guild.id, 'join' {
+            await this.client.database.updateGuildPlugin(message.guild.id, 'join', {
                 ...plugin,
                 enabled: false
             });

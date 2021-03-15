@@ -23,7 +23,7 @@ module.exports = class extends Command {
             return message.success("config/setleave:ENABLED");
         }
         if (plugin.enabled){
-            await this.client.database.updateGuildPlugin(message.guild.id, 'leave' {
+            await this.client.database.updateGuildPlugin(message.guild.id, 'leave', {
                 ...plugin,
                 enabled: false
             });
