@@ -199,7 +199,21 @@ module.exports = class DatabaseHandler {
             (sub_id, guild_id) VALUES
             ($1, $2);
         `, subID, guildID);
-        const guildsSubscriptions = await this.redis.getString(`guild_subscriptions_${guildID}`)
+        const guildsSubscriptions = await this.redis.getString(`guild_subscriptions_${guildID}`, { json: true });
+        const newSubscription = {
+            expiresAt,
+            createdAt,
+            subLabel,
+            guildsCount,
+            patreonUserID,
+            id: subID
+        };
+        const newGuildSubscriptions = [
+            ...guildSubscriptions,
+            newSubscription
+        ];
+        await this.redis.setString(`guild_subscriptions_${guildID}`, JSON.stringify(newGuildSubscriptions));
+        return newSubscription;
     }
 
     async updateGuildSubscription (subID, guildID, newSettingData) {

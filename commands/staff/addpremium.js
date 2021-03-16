@@ -39,7 +39,14 @@ module.exports = class extends Command {
 
         const createdAt = new Date();
 
-        const paymentID = await this.client.database.createPayment({
+        const subscription = await this.client.database.createGuildSubscription(message.guild.id, {
+            expiresAt: new Date(Date.now()+(premiumArgs.daysCount*24*60*60*1000)),
+            createdAt,
+            guildsCount: premiumArgs.guildsCount,
+            subLabel: premiumArgs.label
+        });
+
+        const paymentID = await this.client.database.createPayment(subscription.id, {
             modDiscordID: message.author.id,
             payerDiscordID: premiumArgs.user.id,
             payerDiscordUsername: premiumArgs.user.tag,
@@ -48,16 +55,6 @@ module.exports = class extends Command {
             type: premiumArgs.pmtType,
             createdAt
         });
-
-        const subscription = await this.client.database.createSubscription({
-            expiresAt: new Date(Date.now()+(premiumArgs.daysCount*24*60*60*1000)),
-            createdAt,
-            guildsCount: premiumArgs.guildsCount,
-            subLabel: premiumArgs.label
-        });
-        await this.client.database.createSubPaymentLink(subscription.id, paymentID);
-        await this.client.database.createGuildSubLink(premiumArgs.guildID, subscription.id);
-        await subscription.deleteGuildsFromCache();
 
         return message.channel.send(`${this.client.config.emojis.success} | Subscription created. Get more informations with \`${message.guild.data.prefix}sub ${premiumArgs.guildID}\`.`);
 
