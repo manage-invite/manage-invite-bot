@@ -17,11 +17,6 @@ class RedisHandler {
 
     }
 
-    popJSON (key, path, index) {
-        this.log(`Poping #${index} from ${key}`);
-        return this.client.arrpop(key, path, index);
-    }
-
     pushJSON (key, path, value) {
         return new Promise((resolve) => {
             this.client.arrappend(key, JSON.stringify(value), path).catch((err) => {
