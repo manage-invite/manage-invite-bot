@@ -56,6 +56,7 @@ class ManageInvite extends Client {
             });
             return false;
         } catch (e) {
+            console.error(e)
             return `Unable to load command ${commandName}: ${e}`;
         }
     }

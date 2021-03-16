@@ -97,7 +97,7 @@ module.exports = class {
             })
         ]);
 
-        if (inviter && blacklistedUsers.includes(inviter.id)) return;
+        if (inviter && guildBlacklistedUsers.includes(inviter.id)) return;
 
         // If we know who invited the member
         if (invite){

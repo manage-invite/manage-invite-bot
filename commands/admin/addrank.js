@@ -14,6 +14,7 @@ module.exports = class extends Command {
     }
 
     async run (message, args, data) {
+
         
         const inviteCount = args[0];
         if (!inviteCount) return message.error("admin/addrank:MISSING_COUNT", {
@@ -22,7 +23,10 @@ module.exports = class extends Command {
         if (isNaN(inviteCount) || parseInt(inviteCount) < 1 || !Number.isInteger(parseInt(inviteCount))) return message.error("admin/addrank:INCORRECT_COUNT", {
             prefix: message.guild.settings.prefix
         });
-        let currentRank = data.guild.ranks.find((r) => r.inviteCount === inviteCount) || {};
+
+        const guildRanks = await this.client.database.fetchGuildRanks(message.guild.id);
+
+        let currentRank = guildRanks.find((r) => r.inviteCount === inviteCount) || {};
         const currentRole = message.guild.roles.cache.find((r) => r.id === currentRank.roleID);
         if (currentRank && currentRole) return message.error("admin/addrank:ALREADY_EXIST", {
             prefix: message.guild.settings.prefix,
@@ -39,14 +43,14 @@ module.exports = class extends Command {
         if (role.position > message.guild.me.roles.highest.position) return message.error("admin/addrank:MISSING_PERM", {
             roleName: role.name
         });
-        currentRank = data.guild.ranks.find((r) => r.roleID === role.id);
+        currentRank = guildRanks.find((r) => r.roleID === role.id);
         if (currentRank) return message.error("admin/addrank:ALREADY_USED", {
             prefix: message.guild.settings.prefix,
             count: currentRank.inviteCount,
             roleID: role.id
         });
 
-        await data.guild.addRank(role.id, inviteCount);
+        await this.client.database.addGuildRank(message.guild.id, role.id, inviteCount);
 
         const embed = new Discord.MessageEmbed()
             .setAuthor(message.translate("admin/addrank:TITLE"))

@@ -39,7 +39,7 @@ module.exports = class {
 
         const lastJoinData = memberEvents.filter((j) => j.type === "join" && j.guildID === member.guild.id && j.userID === member.id && j.storageID === guildSettings.storageID)[0];
 
-        const inviter = lastJoinData.joinType === "normal" && lastJoinData.inviteData ? await this.client.resolveUser(lastJoinData.inviterID) : null;
+        const inviter = lastJoinData?.joinType === "normal" && lastJoinData.inviteData ? await this.client.resolveUser(lastJoinData.inviterID) : null;
 
         const inviterData = inviter ? await this.client.database.fetchGuildMember({
             userID: inviter.id,
@@ -82,7 +82,7 @@ module.exports = class {
             }
         }
 
-        const memberNumJoins = memberEvents.find((e) => e.type === 'join' && e.userID === member.id).length;
+        const memberNumJoins = memberEvents.filter((e) => e.type === 'join' && e.userID === member.id).length;
         const leave = guildPlugins.find((p) => p.pluginName === 'leave')?.pluginData;
         // Leave messages
         if (leave.enabled && leave.mainMessage && leave.channel){

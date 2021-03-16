@@ -205,21 +205,24 @@ module.exports = class DatabaseHandler {
     async updateGuildSubscription (subID, guildID, newSettingData) {
         const setting = Object.keys(newSettingData)[0];
         if (!['expires_at', 'created_at', 'sub_label', 'guilds_count', 'patreon_user_id', 'cancelled', 'sub_invalidated'].includes(snakeCase(setting))) return new Error('unknown_guild_setting');
-        const guildSubscriptions = await this.redis.getString(`guild_subscriptions_${guildID}`, { json: true });
-        if (guildSubscriptions) {
-            const guildSubscription = guildSubscriptions.find((sub) => sub.id === subID);
-            guildSubscription[setting] = newSettingData[setting];
-            const newGuildSubscriptions = [
-                ...guildSubscriptions.filter((sub) => sub.id !== subID),
-                guildSubscription
-            ];
-            this.redis.setString(`guild_subscriptions_${guildID}`, JSON.stringify(newGuildSubscriptions));
-        }
-        await this.postgres.query(`
-            UPDATE subscriptions
-            SET ${snakeCase(setting)} = $1
-            WHERE id = $2;
-        `, newSettingData[setting], subID)
+        return Promise.all([
+            this.redis.getString(`guild_subscriptions_${guildID}`, { json: true }).then((guildSubscriptions) => {
+                if (guildSubscriptions) {
+                    const guildSubscription = guildSubscriptions.find((sub) => sub.id === subID);
+                    guildSubscription[setting] = newSettingData[setting];
+                    const newGuildSubscriptions = [
+                        ...guildSubscriptions.filter((sub) => sub.id !== subID),
+                        guildSubscription
+                    ];
+                    return this.redis.setString(`guild_subscriptions_${guildID}`, JSON.stringify(newGuildSubscriptions));
+                }
+            }),
+            this.postgres.query(`
+                UPDATE subscriptions
+                SET ${snakeCase(setting)} = $1
+                WHERE id = $2;
+            `, newSettingData[setting], subID)
+        ]);
     }
 
     async fetchGuildSubscriptionStatus (guildID) {
@@ -307,22 +310,41 @@ module.exports = class DatabaseHandler {
 
     /**
      * Add a new guild rank
-     * @param {string} guildID
-     * @param {roleID} roleID
-     * @param {number} inviteCount
      */
-    async addRank (guildID, roleID, inviteCount) {
+    addGuildRank (guildID, roleID, inviteCount) {
         return Promise.all([
+            this.redis.getString(`guild_ranks_${guildID}`, { json: true }).then((ranks) => {
+                if (!ranks) return;
+                const newRanks = [
+                    ...ranks,
+                    {
+                        guildID,
+                        roleID,
+                        inviteCount
+                    }
+                ];
+                return this.redis.setString(`guild_ranks_${guildID}`, JSON.stringify(newRanks));
+            }),
             this.postgres.query(`
                 INSERT INTO guild_ranks
                 (guild_id, role_id, invite_count) VALUES
                 ($1, $2, $3)
-            `, guildID, roleID, inviteCount),
-            this.redis.pushJSON(`guild_ranks_${guildID}`, '.', {
-                guildID,
-                roleID,
-                inviteCount
-            })
+            `, guildID, roleID, inviteCount)
+        ]);
+    }
+
+    async removeGuildRank (guildID, roleID) {
+        return Promise.all([
+            this.redis.getString(`guild_ranks_${guildID}`, { json: true }).then((ranks) => {
+                if (!ranks) return;
+                let newRanks = ranks.filter((rank) => rank.roleID !== roleID);
+                return this.redis.setString(`guild_ranks_${guildID}`, JSON.stringify(newRanks));
+            }),
+            this.postgres.query(`
+                DELETE FROM guild_ranks
+                WHERE role_id = $1
+                AND guild_id = $2;
+            `, roleID, guildID)
         ]);
     }
 
@@ -331,7 +353,7 @@ module.exports = class DatabaseHandler {
      * @path /guilds/398389083093/ranks
      */
     async fetchGuildRanks (guildID) {
-        const redisData = await this.redis.getJSON(`guild_ranks_${guildID}`);
+        const redisData = await this.redis.getString(`guild_ranks_${guildID}`, { json: true });
         if (redisData) return redisData;
 
         const { rows } = await this.postgres.query(`
@@ -344,7 +366,7 @@ module.exports = class DatabaseHandler {
             roleID: row.role_id,
             inviteCount: row.invite_count
         }));
-        this.redis.setJSON(`guild_ranks_${guildID}`, '.', formattedRanks);
+        this.redis.setString(`guild_ranks_${guildID}`, JSON.stringify(formattedRanks));
         return formattedRanks;
     }
 
