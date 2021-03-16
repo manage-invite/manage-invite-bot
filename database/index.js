@@ -66,7 +66,8 @@ module.exports = class DatabaseHandler {
     }
 
     /**
-     * Remove the guild invites by creating a new storage and set it to default
+     * Remove the guild invites by creating a new storage
+     * and change the guild settings so it's the default one
      */
     async removeGuildInvites (guildID) {
         const { rows } = await this.postgres.query(`
@@ -92,7 +93,7 @@ module.exports = class DatabaseHandler {
     }
 
     /**
-     * Fetches the guild storages
+     * Fetches all the guild storages
      */
     async fetchGuildStorages (guildID) {
         const { rows } = await this.postgres.query(`
@@ -108,23 +109,20 @@ module.exports = class DatabaseHandler {
     }
 
     /**
-     * Restore the guild storage by changing back the storage id
+     * Restore a guild storage by chnging the guild settings
      */
-    async restoreGuildStorage ({ guildID, storageID }) {
-        const { rows } = await this.postgres.query(`
-            UPDATE guilds
-            SET guild_storage_id = $1
-            WHERE guild_id = $2
-            RETURNING guild_storage_id;
-        `, storageID, guildID);
-        const newStorageID = rows[0].guild_storage_id;
-
-        const redisData = await this.redis.getHash(`guild_${guildID}`);
-        if (redisData && redisData.guildID) {
-            await this.redis.setHash(`guild_${guildID}`, {
+    restoreGuildStorage ({ guildID, storageID }) {
+        return Promise.all([
+            this.redis.setHash(`guild_${guildID}`, {
                 storageID: newStorageID
-            });
-        }
+            }),
+            this.postgres.query(`
+                UPDATE guilds
+                SET guild_storage_id = $1
+                WHERE guild_id = $2
+                RETURNING guild_storage_id;
+            `, storageID, guildID)
+        ]);
     }
 
     /**
@@ -171,6 +169,9 @@ module.exports = class DatabaseHandler {
         return formattedGuildSubscriptions;
     }
 
+    /**
+     * Create a payment for the given subscription
+     */
     async createSubscriptionPayment (subID, { payerDiscordID, payerDiscordUsername, payerEmail, amount, createdAt = new Date(), type, transactionID, details = {}, signupID, modDiscordID }) {
         const { rows } = await this.postgres.query(`
             INSERT INTO payments
@@ -186,6 +187,9 @@ module.exports = class DatabaseHandler {
         `, subID, paymentID);
     }
 
+    /**
+     * Create a subscription for the given guild
+     */
     async createGuildSubscription (guildID, { expiresAt = new Date(), createdAt = new Date(), subLabel, guildsCount = 1, patreonUserID }) {
         const { rows } = await this.postgres.query(`
             INSERT INTO subscriptions
@@ -216,6 +220,9 @@ module.exports = class DatabaseHandler {
         return newSubscription;
     }
 
+    /**
+     * Update a property of the guild subscription
+     */
     async updateGuildSubscription (subID, guildID, newSettingData) {
         const setting = Object.keys(newSettingData)[0];
         if (!['expires_at', 'created_at', 'sub_label', 'guilds_count', 'patreon_user_id', 'cancelled', 'sub_invalidated'].includes(snakeCase(setting))) return new Error('unknown_guild_setting');
@@ -239,6 +246,9 @@ module.exports = class DatabaseHandler {
         ]);
     }
 
+    /**
+     * Get the subscription status of a guild (to check whether it's maintained by PayPal and cancelled)
+     */
     async fetchGuildSubscriptionStatus (guildID) {
         const guildSubscriptions = await this.fetchGuildSubscriptions(guildID);
         const payments = (await Promise.all(guildSubscriptions.map((sub) => this.fetchSubscriptionPayments(sub.id)))).flat();
@@ -250,6 +260,9 @@ module.exports = class DatabaseHandler {
         };
     }
 
+    /**
+     * Check the premium status for the given guild ids
+     */
     async fetchGuildsPremiumStatuses (guildsID) {
         const guildsSubscriptions = await Promise.all(guildsID.map((g) => this.fetchGuildSubscriptions(g)));
         return guildsSubscriptions.map((subscriptions, index) => ({
@@ -260,12 +273,11 @@ module.exports = class DatabaseHandler {
     }
     
     /**
-     * Fetches the guild settings
-     * @path /guilds/3983080339/settings
+     * Get the guild settings for the given guild id
      */
     async fetchGuildSettings (guildID) {
         const redisData = await this.redis.getHash(`guild_${guildID}`);
-        if (redisData && redisData.guildID) return redisData;
+        if (redisData?.guildID) return redisData;
 
         let { rows } = await this.postgres.query(`
             SELECT *
@@ -304,16 +316,13 @@ module.exports = class DatabaseHandler {
     }
 
     /**
-     * Changes the setting in a guild
-     * @param {string} guildID 
-     * @param {any} newSettingData
-     * @returns {Promise<void>}
+     * Update a property of a guild settings
      */
     updateGuildSetting (guildID, newSettingData) {
         const setting = Object.keys(newSettingData)[0];
         if (!['language', 'prefix', 'cmd_channel', 'fake_treshold', 'keep_ranks', 'stacked_ranks', 'storage_id'].includes(snakeCase(setting))) return new Error('unknown_guild_setting');
         return Promise.all([
-            this.redis.setHash(`guild_${guildID}`, newSettingData).catch(() => {}), // here we have to catch because it will throw an error if the object is not stored in redis
+            this.redis.setHash(`guild_${guildID}`, newSettingData),
             this.postgres.query(`
                 UPDATE guilds
                 SET guild_${snakeCase(setting)} = $1
@@ -347,6 +356,9 @@ module.exports = class DatabaseHandler {
         ]);
     }
 
+    /**
+     * Remove an existing guild rank
+     */
     async removeGuildRank (guildID, roleID) {
         return Promise.all([
             this.redis.getString(`guild_ranks_${guildID}`, { json: true }).then((ranks) => {
@@ -363,8 +375,7 @@ module.exports = class DatabaseHandler {
     }
 
     /**
-     * Fetches the guild ranks
-     * @path /guilds/398389083093/ranks
+     * Get the ranks of a guild
      */
     async fetchGuildRanks (guildID) {
         const redisData = await this.redis.getString(`guild_ranks_${guildID}`, { json: true });
@@ -385,8 +396,7 @@ module.exports = class DatabaseHandler {
     }
 
     /**
-     * Fetches the guild plugins
-     * @path /guilds/93803803/plugins
+     * Get the plugins of a guild
      */
     async fetchGuildPlugins (guildID) {
         const redisData = await this.redis.getString(`guild_plugins_${guildID}`, { json: true });
@@ -406,10 +416,11 @@ module.exports = class DatabaseHandler {
         return formattedPlugins;
     }
 
+    /**
+     * Update a guild plugin
+     */
     updateGuildPlugin (guildID, pluginName, newPluginData) {
-        return new Promise((resolve) => {
-            let redisDone = false, postgresDone = false;
-
+        return Promise.all([
             this.redis.getString(`guild_plugins_${guildID}`, { json: true }).then((data) => {
                 let newFormattedPlugins = [...data];
                 newFormattedPlugins = newFormattedPlugins.filter((p) => p.pluginName !== pluginName);
@@ -422,8 +433,7 @@ module.exports = class DatabaseHandler {
                     redisDone = true;
                     if (postgresDone) resolve();
                 });
-            });
-
+            }),
             this.postgres.query(`
                 SELECT *
                 FROM guild_plugins
@@ -432,27 +442,21 @@ module.exports = class DatabaseHandler {
             `, pluginName, guildID).then((rows) => {
                 // if the plugin exists
                 if (rows[0]) {
-                    this.postgres.query(`
+                    return this.postgres.query(`
                         UPDATE guild_plugins
                         SET plugin_data = $1
                         WHERE plugin_name = $2
                         AND guild_id = $3;
-                    `, JSON.stringify(newPluginData), pluginName, guildID).then(() => {
-                        postgresDone = true;
-                        if (redisDone) resolve();
-                    });
+                    `, JSON.stringify(newPluginData), pluginName, guildID);
                 } else {
-                    this.postgres.query(`
+                    return this.postgres.query(`
                         INSERT INTO guild_plugins
                         (plugin_data, plugin_name, guild_id) VALUES
                         ($1, $2, $3);
-                    `, JSON.stringify(newPluginData), pluginName, guildID).then(() => {
-                        postgresDone = true;
-                        if (redisDone) resolve();
-                    });
+                    `, JSON.stringify(newPluginData), pluginName, guildID);
                 }
-            });
-        });
+            })
+        ]);
     }
 
     /**
@@ -460,7 +464,7 @@ module.exports = class DatabaseHandler {
      */
     addInvites ({ userID, guildID, storageID, number, type }) {
         return Promise.all([
-            this.redis.incrHashBy(`member_${userID}_${guildID}_${storageID}`, type, number), // here we have to catch because it will throw an error if the object is not stored in redis
+            this.redis.incrHashBy(`member_${userID}_${guildID}_${storageID}`, type, number),
             this.postgres.query(`
                 UPDATE members
                 SET invites_${type} = $1
@@ -474,8 +478,8 @@ module.exports = class DatabaseHandler {
     /**
      * Add invites to a server
      */
-    async addGuildInvites ({ userIDs, guildID, storageID, number, type }) {
-        const redisUpdates = usersIDs.map((userID) => this.redis.incrHashBy(`member_${userID}_${guildID}_${storageID}`, type, number).catch(() => {}));
+    addGuildInvites ({ userIDs, guildID, storageID, number, type }) {
+        const redisUpdates = usersIDs.map((userID) => this.redis.incrHashBy(`member_${userID}_${guildID}_${storageID}`, type, number));
         return Promise.all([
             Promise.all(redisUpdates),
             this.postgres.query(`
@@ -488,8 +492,7 @@ module.exports = class DatabaseHandler {
     }
 
     /**
-     * Fetches the guild blacklisted users
-     * @path /guilds/3803983/blacklisted
+     * Get the guild blacklisted users
      */
     async fetchGuildBlacklistedUsers (guildID) {
         const redisData = await this.redis.getString(`guild_blacklisted_${guildID}`, { json: true });
@@ -507,6 +510,9 @@ module.exports = class DatabaseHandler {
         return formattedBlacklistedUsers;
     }
 
+    /**
+     * Add a user to the guild blacklist
+     */
     addGuildBlacklistedUser ({ guildID, userID }) {
         return Promise.all([
             this.redis.getString(`guild_blacklisted_${guildID}`, { json: true }).then((blacklisted) => {
@@ -522,6 +528,9 @@ module.exports = class DatabaseHandler {
         ]);
     }
 
+    /**
+     * Remove a user from the guild blacklist
+     */
     removeGuildBlacklistedUser ({ guildID, userID }) {
         return Promise.all([
             this.redis.getString(`guild_blacklisted_${guildID}`, { json: true }).then((blacklisted) => {
@@ -539,7 +548,7 @@ module.exports = class DatabaseHandler {
     }
 
     /**
-     * Fetches the guild leaderboard
+     * Get the guild leaderboard
      */
     async fetchGuildLeaderboard (guildID, storageID) {
         const redisData = await this.redis.getString(`guild_leaderboard_${guildID}`);
@@ -568,12 +577,11 @@ module.exports = class DatabaseHandler {
     }
 
     /**
-     * Fetches a guild member
-     * @path /guilds/309383/members/29830983/
+     * Get a guild member
      */
     async fetchGuildMember ({ userID, guildID, storageID }) {
         const redisData = await this.redis.getHash(`member_${userID}_${guildID}_${storageID}`);
-        if (redisData && redisData.userID) return redisData;
+        if (redisData?.userID) return redisData;
 
         let { rows } = await this.postgres.query(`
             SELECT *
@@ -612,8 +620,7 @@ module.exports = class DatabaseHandler {
     }
 
     /**
-     * Fetches the member events (the members they invited)
-     * @path /guilds/3983093/members/39838093/events/invitedby
+     * Get the member events (the events where they were invited and the events where they invited someone else)
      */
     async fetchGuildMemberEvents ({ userID, guildID }) {
         const redisData = await this.redis.getJSON(`member_${userID}_${guildID}_events`);
@@ -642,6 +649,9 @@ module.exports = class DatabaseHandler {
         return formattedEvents;
     }
 
+    /**
+     * Get the payments of a subscription
+     */
     async fetchSubscriptionPayments (subID) {
         const { rows } = await this.postgres.query(`
             SELECT *
@@ -653,6 +663,9 @@ module.exports = class DatabaseHandler {
         return rows.map((row) => formatPayment(row));
     }
 
+    /**
+     * Insert a new event record in the database
+     */
     async createGuildMemberEvent ({ userID, guildID, eventDate = new Date(), eventType, joinType, inviterID, inviteData, joinFake, storageID }) {
         this.redis.getJSON(`member_${userID}_${guildID}_events`).then((data) => {
             if (data) this.redis.pushJSON(`member_${userID}_${guildID}`, '.', { userID, guildID, eventDate, eventType, joinType, inviterID, inviteData, joinFake, storageID });
@@ -670,10 +683,22 @@ module.exports = class DatabaseHandler {
         `, userID, guildID, eventDate.toISOString(), eventType, joinType, inviterID, inviteData, joinFake, storageID);
     }
 
-    fetchPremiumUserIDs () {
-        return this.postgres.fetchPremiumUserIDs();
+    /**
+     * Fetch the premium users
+     */
+    async fetchPremiumUserIDs () {
+        const { rows } = await this.postgres.query(`
+            SELECT payer_discord_id
+            FROM payments
+            WHERE type = 'paypal_dash_pmnt_month'
+            OR type = 'email_address_pmnt_month';
+        `);
+        return rows.map((row) => row.payer_discord_id);
     }
 
+    /**
+     * Fetch the premium guilds
+     */
     async fetchPremiumGuildIDs () {
         const { rows } = await this.postgres.query(`
             SELECT guild_id
@@ -682,6 +707,9 @@ module.exports = class DatabaseHandler {
         return rows.map((row) => row.guild_id);
     }
 
+    /**
+     * Fetch the data of a transaction
+     */
     async fetchTransactionData (transactionID) {
         const { rows } = await this.postgres.query(`
             SELECT id
@@ -716,6 +744,9 @@ module.exports = class DatabaseHandler {
         }
     }
 
+    /**
+     * Mark a payment as already reminded
+     */
     setPaymentRemindSent ({ paymentID, subID, success, kicked }) {
         return this.postgres.query(`
             INSERT INTO payments_reminds
