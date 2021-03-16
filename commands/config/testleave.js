@@ -30,7 +30,7 @@ module.exports = class extends Command {
             .addField(message.translate("config/testleave:MESSAGE"), (plugin?.mainMessage || message.translate("config/testleave:ENABLED_YES_CONTENT", {
                 prefix: message.guild.settings.prefix
             })))
-            .addField(message.translate("config/testleave:CHANNEL_TITLE"), (plugin?.channel ? `<#${plugin?.channel}>` : message.translate("config/testleave:CHANNEL_CONTENT", {
+            .addField(message.translate("config/testleave:CHANNEL_TITLE"), (plugin?.channel ? `<#${plugin.channel}>` : message.translate("config/testleave:CHANNEL_CONTENT", {
                 prefix: message.guild.settings.prefix
             })))
             .setThumbnail(message.author.avatarURL())
@@ -39,9 +39,9 @@ module.exports = class extends Command {
             .setTimestamp();
         message.channel.send(embed);
         
-        if (plugin?.enabled && plugin?.mainMessage && plugin?.channel && message.guild.channels.cache.get(plugin?.channel)){
-            message.guild.channels.cache.get(data.guild.leave.channel).send(this.client.functions.formatMessage(
-                plugin?.mainMessage,
+        if (plugin?.enabled && plugin.mainMessage && plugin.channel && message.guild.channels.cache.get(plugin.channel)){
+            message.guild.channels.cache.get(plugin.channel).send(this.client.functions.formatMessage(
+                plugin.mainMessage,
                 message.member,
                 1,
                 (message.guild.settings.language || "english").substr(0, 2),

@@ -39,9 +39,9 @@ module.exports = class extends Command {
             .setTimestamp();
         message.channel.send(embed);
 
-        if (plugin?.enabled && plugin?.mainMessage){
+        if (plugin?.enabled && plugin.mainMessage){
             message.author.send(this.client.functions.formatMessage(
-                plugin?.mainMessage,
+                plugin.mainMessage,
                 message.member,
                 1,
                 (message.guild.settings.language || "english").substr(0, 2),

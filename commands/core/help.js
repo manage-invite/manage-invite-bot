@@ -21,7 +21,7 @@ module.exports = class extends Command {
             .setDescription(message.translate("core/help:DESCRIPTION", {
                 guildName: message.guild.name,
                 prefix: message.guild.settings.prefix,
-                language: `${this.client.enabledLanguages.find((l) => l.name === data.guild.language).aliases[0]} \`${data.guild.language}\``
+                language: `${this.client.enabledLanguages.find((l) => l.name === message.guild.settings.language).aliases[0]} \`${message.guild.settingslanguage}\``
             }))
             .addField(message.translate("core/help:ADMIN_TITLE"), message.translate("core/help:ADMIN_CONTENT", {
                 prefix: `\\${message.guild.settings.prefix}`

@@ -12,7 +12,8 @@ module.exports = class extends Command {
     }
 
     async run (message, args, data) {
-        if (!data.guild.keepRanks){
+
+        if (!message.guild.settings.keepRanks){
             await this.client.database.updateGuildSetting(message.guild.id, {
                 keepRanks: true
             });

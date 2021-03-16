@@ -14,6 +14,7 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
 
+        const guildBlacklistedUsers = await this.client.database.fetchGuildSubscriptions(message.guild.id);
     
         const bonus = args[0];
         if (!bonus) return message.error("admin/removebonus:MISSING_AMOUNT", {
@@ -27,7 +28,7 @@ module.exports = class extends Command {
         if (!member && args[1] !== "all") return message.error("admin/removebonus:MISSING_TARGET", {
             prefix: message.guild.settings.prefix
         });
-        if (member && data.guild.blacklistedUsers.includes(member.id)) return message.error("admin/blacklist:BLACKLISTED", {
+        if (member && guildBlacklistedUsers.includes(member.id)) return message.error("admin/blacklist:BLACKLISTED", {
             username: member.user.username
         });
 
