@@ -478,7 +478,7 @@ module.exports = class DatabaseHandler {
      * @path /guilds/3803983/blacklisted
      */
     async fetchGuildBlacklistedUsers (guildID) {
-        const redisData = await this.redis.getJSON(`guild_blacklisted_${guildID}`);
+        const redisData = await this.redis.getString(`guild_blacklisted_${guildID}`, { json: true });
         if (redisData) return redisData;
 
         const { rows } = await this.postgres.query(`
@@ -489,8 +489,39 @@ module.exports = class DatabaseHandler {
 
         const formattedBlacklistedUsers = rows.map((row) => row.user_id);
 
-        this.redis.setJSON(`guild_blacklisted_${guildID}`, '.', formattedBlacklistedUsers);
+        this.redis.setString(`guild_blacklisted_${guildID}`, JSON.stringify(formattedBlacklistedUsers));
         return formattedBlacklistedUsers;
+    }
+
+    addGuildBlacklistedUser ({ guildID, userID }) {
+        return Promise.all([
+            this.redis.getString(`guild_blacklisted_${guildID}`, { json: true }).then((blacklisted) => {
+                if (!blacklisted) return;
+                const newBlacklisted = [ ...blacklisted, userID ];
+                return this.redis.setString(`guild_blacklisted_${guildID}`, JSON.stringify(newBlacklisted));
+            }),
+            this.postgres.query(`
+                INSERT INTO guild_blacklisted_users
+                (user_id, guild_id) VALUES
+                ($1, $2);
+            `, userID, guildID)
+        ]);
+    }
+
+    removeGuildBlacklistedUser ({ guildID, userID }) {
+        return Promise.all([
+            this.redis.getString(`guild_blacklisted_${guildID}`, { json: true }).then((blacklisted) => {
+                if (!blacklisted) return;
+                let newBlacklisted = [ ...blacklisted ];
+                newBlacklisted = newBlacklisted.filter((id) => id !== userID);
+                return this.redis.setString(`guild_blacklisted_${guildID}`, JSON.stringify(newBlacklisted));
+            }),
+            this.postgres.query(`
+                DELETE FROM guild_blacklisted_users
+                WHERE user_id = $1
+                AND guild_id = $2;
+            `, userID, guildID)
+        ]);
     }
 
     /**
