@@ -42,7 +42,7 @@ module.exports = class extends Command {
             if (!guildBlacklistedUsers.includes(user.id)) return message.error("admin/blacklist:NOT_BLACKLISTED", {
                 username: user.tag
             });
-            await guildBlacklistedUsers.removeGuildBlacklistedUser({
+            await this.client.database.removeGuildBlacklistedUser({
                 guildID: message.guild.id,
                 userID: user.id
             });
@@ -56,7 +56,7 @@ module.exports = class extends Command {
                 embed.setDescription(message.translate("admin/blacklist:EMPTY"));
             } else {
                 const users = [];
-                await this.client.functions.asyncForEach(guildBlacklistedUserss, async (userID) => {
+                await this.client.functions.asyncForEach(guildBlacklistedUsers, async (userID) => {
                     const user = await this.client.users.fetch(userID);
                     users.push(`${user.tag} (${user.toString()})`);
                 });
