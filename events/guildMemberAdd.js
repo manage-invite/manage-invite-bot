@@ -213,7 +213,7 @@ module.exports = class {
             });
         }
 
-        const memberNumJoins = memberEvents.find((e) => e.type === 'join' && e.userID === member.id).length;
+        const memberNumJoins = memberEvents.filter((e) => e.type === 'join' && e.userID === member.id).length;
         const joinDM = guildPlugins.find((plugin) => plugin.pluginName === 'joinDM')?.pluginData;
         // DM Join messages
         if (joinDM.enabled && joinDM.mainMessage){
