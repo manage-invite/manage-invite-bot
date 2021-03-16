@@ -21,6 +21,9 @@ module.exports = class PostgreSQL {
 
     }
 
+    /**
+     * Query the POSTGRES database
+     */
     query (query, ...args) {
         return new Promise((resolve, reject) => {
             const startAt = Date.now();
