@@ -6,21 +6,6 @@ module.exports = {
         id: "XXXXXXXXXXX",
         token: "XXXXXXXXXXX"
     },
-    /* Emojis */
-    emojis: {
-        success:    "XXXXXXXXXXX",
-        error:      "XXXXXXXXXXX",
-        online:     "XXXXXXXXXXX",
-        dnd:        "XXXXXXXXXXX",
-        offline:    "XXXXXXXXXXX",
-        idle:       "XXXXXXXXXXX",
-        loading:    "XXXXXXXXXXX",
-        warn:       "XXXXXXXXXXX",
-        upgrade:    "XXXXXXXXXXX"
-    },
-    /* Embeds */
-    color:          "XXXXXXXXXXX",
-    footer:         "XXXXXXXXXXX",
     /* Logs */
     addLogs:        "XXXXXXXXXXX",
     removeLogs:     "XXXXXXXXXXX",
