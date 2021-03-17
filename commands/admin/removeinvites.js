@@ -18,7 +18,7 @@ module.exports = class extends Command {
         const conf = await message.sendT("admin/removeinvites:CONFIRMATION", {
             error: this.client.config.emojis.error,
             success: this.client.config.emojis.success
-        })
+        });
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
             if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete().catch(() => {});

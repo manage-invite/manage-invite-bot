@@ -16,9 +16,9 @@ module.exports = class extends Command {
 
         const plugins = await this.client.database.fetchGuildPlugins(message.guild.id);
 
-        const join = plugins.find((plugin) => plugin.pluginName === 'join')?.pluginData;
-        const joinDM = plugins.find((plugin) => plugin.pluginName === 'joinDM')?.pluginData;
-        const leave = plugins.find((plugin) => plugin.pluginName === 'leave')?.pluginData;
+        const join = plugins.find((plugin) => plugin.pluginName === "join")?.pluginData;
+        const joinDM = plugins.find((plugin) => plugin.pluginName === "joinDM")?.pluginData;
+        const leave = plugins.find((plugin) => plugin.pluginName === "leave")?.pluginData;
 
         const joinSuccess = join?.enabled
         && join?.mainMessage

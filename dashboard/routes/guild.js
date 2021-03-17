@@ -19,7 +19,7 @@ router.get("/:serverID", CheckAuth, async (req, res) => {
         });
     }
 
-    console.log(req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID))
+    console.log(req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID));
     if (!req.userInfos.displayedGuilds.find((g) => g.id === req.params.serverID).isPremium){
         return res.redirect("/");
     }
@@ -120,7 +120,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         const update = Object.prototype.hasOwnProperty.call(data, "update");
         const disable = Object.prototype.hasOwnProperty.call(data, "disable");
         if ((enable || update) && data.mainMessage){
-            await req.client.database.updateGuildPlugin(req.params.serverID, 'joinDM', {
+            await req.client.database.updateGuildPlugin(req.params.serverID, "joinDM", {
                 enabled: true,
                 mainMessage: data.mainMessage,
                 oauth2Message: data.oauth2Message,
@@ -128,8 +128,8 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 unknownMessage: data.unknownMessage
             });
         } else if (disable){
-            const previousData = guildPlugins.find((p) => p.pluginName === 'joinDM').pluginData;
-            await req.client.database.updateGuildPlugin(req.params.serverID, 'joinDM', {
+            const previousData = guildPlugins.find((p) => p.pluginName === "joinDM").pluginData;
+            await req.client.database.updateGuildPlugin(req.params.serverID, "joinDM", {
                 ...previousData,
                 enabled: false
             });
@@ -143,7 +143,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         if ((enable || update) && data.mainMessage && data.channel){
             const channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
             if (channel && channel.type === "text"){
-                await req.client.database.updateGuildPlugin(req.params.serverID, 'join', {
+                await req.client.database.updateGuildPlugin(req.params.serverID, "join", {
                     enabled: true,
                     mainMessage: data.mainMessage,
                     oauth2Message: data.oauth2Message,
@@ -153,8 +153,8 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 });
             }
         } else if (disable){
-            const previousData = guildPlugins.find((p) => p.pluginName === 'join').pluginData;
-            await req.client.database.updateGuildPlugin(req.params.serverID, 'join', {
+            const previousData = guildPlugins.find((p) => p.pluginName === "join").pluginData;
+            await req.client.database.updateGuildPlugin(req.params.serverID, "join", {
                 ...previousData,
                 enabled: false
             });
@@ -168,7 +168,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         if ((enable || update) && data.mainMessage && data.channel){
             const channel = guild.channels.find((ch) =>`#${ch.name}` === data.channel);
             if (channel && channel.type === "text"){
-                await req.client.database.updateGuildPlugin(req.params.serverID, 'leave', {
+                await req.client.database.updateGuildPlugin(req.params.serverID, "leave", {
                     enabled: true,
                     mainMessage: data.mainMessage,
                     oauth2Message: data.oauth2Message,
@@ -178,8 +178,8 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
                 });
             }
         } else if (disable){
-            const previousData = guildPlugins.find((p) => p.pluginName === 'leave').pluginData;
-            await req.client.database.updateGuildPlugin(req.params.serverID, 'leave', {
+            const previousData = guildPlugins.find((p) => p.pluginName === "leave").pluginData;
+            await req.client.database.updateGuildPlugin(req.params.serverID, "leave", {
                 ...previousData,
                 enabled: false
             });

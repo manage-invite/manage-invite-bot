@@ -15,7 +15,7 @@ module.exports = class extends Command {
     async run (message, args, data) {
 
         const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
-        const plugin = guildPlugins.find((p) => p.pluginName === 'join')?.pluginData;
+        const plugin = guildPlugins.find((p) => p.pluginName === "join")?.pluginData;
    
         const embed = new Discord.MessageEmbed()
             .setTitle(message.translate("config/testjoin:TITLE"))
@@ -63,7 +63,7 @@ module.exports = class extends Command {
                     }
                 )
             ).catch((e) => {
-                console.log(e)
+                console.log(e);
                 return message.error("misc:CANNOT_SEND");
             });
         }

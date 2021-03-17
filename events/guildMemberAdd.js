@@ -114,14 +114,14 @@ module.exports = class {
                     guildID: member.guild.id,
                     storageID: guildSettings.storageID,
                     number: -1,
-                    type: 'leaves'
+                    type: "leaves"
                 });
                 this.client.database.addInvites({
                     userID: inviter.id,
                     guildID: member.guild.id,
                     storageID: guildSettings.storageID,
                     number: 1,
-                    type: 'fake'
+                    type: "fake"
                 });
             } else if (inviter.id === member.id) {
                 this.client.database.addInvites({
@@ -129,7 +129,7 @@ module.exports = class {
                     guildID: member.guild.id,
                     storageID: guildSettings.storageID,
                     number: 1,
-                    type: 'fake'
+                    type: "fake"
                 });
             } else {
                 const fakeThreshold = guildSettings.fakeThreshold;
@@ -142,7 +142,7 @@ module.exports = class {
                             guildID: member.guild.id,
                             storageID: guildSettings.storageID,
                             number: 1,
-                            type: 'fake'
+                            type: "fake"
                         });
                     }
                 }
@@ -153,7 +153,7 @@ module.exports = class {
                 guildID: member.guild.id,
                 storageID: guildSettings.storageID,
                 number: 1,
-                type: 'regular'
+                type: "regular"
             });
 
             if (inviterMember) await this.client.functions.assignRanks(inviterMember, inviterData.invites, guildRanks, guildSettings.keepRanks, guildSettings.stackedRanks);
@@ -213,8 +213,8 @@ module.exports = class {
             });
         }
 
-        const memberNumJoins = memberEvents.filter((e) => e.type === 'join' && e.userID === member.id).length;
-        const joinDM = guildPlugins.find((plugin) => plugin.pluginName === 'joinDM')?.pluginData;
+        const memberNumJoins = memberEvents.filter((e) => e.type === "join" && e.userID === member.id).length;
+        const joinDM = guildPlugins.find((plugin) => plugin.pluginName === "joinDM")?.pluginData;
         // DM Join messages
         if (joinDM.enabled && joinDM.mainMessage){
             if (invite){
@@ -250,7 +250,7 @@ module.exports = class {
             }
         }
 
-        const join = guildPlugins.find((plugin) => plugin.pluginName === 'join')?.pluginData;
+        const join = guildPlugins.find((plugin) => plugin.pluginName === "join")?.pluginData;
         // Join messages
         if (join.enabled && join.mainMessage && join.channel){
             const channel = member.guild.channels.cache.get(join.channel);

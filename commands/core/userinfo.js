@@ -32,7 +32,7 @@ module.exports = class extends Command {
             this.client.database.fetchGuildBlacklistedUsers(message.guild.id)
         ]);
 
-        const joins = memberEvents.filter((e) => e.type === 'join' && e.userID === message.author.id);
+        const joins = memberEvents.filter((e) => e.type === "join" && e.userID === message.author.id);
 
         moment.locale(message.guild.settings.language.substr(0, 2));
         const creationDate = moment(user.createdAt, "YYYYMMDD").fromNow();

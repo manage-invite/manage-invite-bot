@@ -1,6 +1,6 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js"),
-    variables = require('../../helpers/variables');
+    variables = require("../../helpers/variables");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -16,7 +16,7 @@ module.exports = class extends Command {
     async run (message, args, data) {
 
         const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
-        const plugin = guildPlugins.find((p) => p.pluginName === 'leave')?.pluginData;
+        const plugin = guildPlugins.find((p) => p.pluginName === "leave")?.pluginData;
 
         const filter = (m) => m.author.id === message.author.id,
             opt = { max: 1, time: 90000, errors: [ "time" ] };
@@ -26,7 +26,7 @@ module.exports = class extends Command {
         }) : "";
         const msg = await message.sendT("config/configleave:INSTRUCTIONS_1", {
             string: `${str}`,
-            variables: variables.filter((v) => !v.ignore).map((variable) => `{${variable.name}} | ${message.translate(`config/configjoin:VARIABLE_${variable.name.toUpperCase()}`)}` + (variable.endPart ? '\n' : '')).join('\n')
+            variables: variables.filter((v) => !v.ignore).map((variable) => `{${variable.name}} | ${message.translate(`config/configjoin:VARIABLE_${variable.name.toUpperCase()}`)}` + (variable.endPart ? "\n" : "")).join("\n")
         });
 
         let collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
@@ -64,7 +64,7 @@ module.exports = class extends Command {
             .setFooter(data.footer);
         message.channel.send(embed);
 
-        await this.client.database.updateGuildPlugin(message.guild.id, 'leave', {
+        await this.client.database.updateGuildPlugin(message.guild.id, "leave", {
             ...(plugin || {}),
             enabled: true,
             mainMessage: confMessage,

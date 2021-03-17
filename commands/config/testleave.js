@@ -15,7 +15,7 @@ module.exports = class extends Command {
     async run (message, args, data) {
 
         const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
-        const plugin = guildPlugins.find((p) => p.pluginName === 'leave')?.pluginData;
+        const plugin = guildPlugins.find((p) => p.pluginName === "leave")?.pluginData;
    
         const embed = new Discord.MessageEmbed()
             .setTitle(message.translate("config/testleave:TITLE"))

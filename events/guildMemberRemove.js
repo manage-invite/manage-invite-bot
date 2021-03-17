@@ -56,7 +56,7 @@ module.exports = class {
                 guildID: member.guild.id,
                 storageID: guildSettings.storageID,
                 number: 1,
-                type: 'leaves'
+                type: "leaves"
             });
             if (lastJoinData.joinFake) {
                 this.client.database.addInvites({
@@ -64,9 +64,9 @@ module.exports = class {
                     guildID: member.guild.id,
                     storageID: guildSettings.storageID,
                     number: -1,
-                    type: 'fake'
+                    type: "fake"
                 });
-            };
+            }
             await this.client.database.createEvent({
                 userID: member.id,
                 guildID: member.guild.id,
@@ -82,8 +82,8 @@ module.exports = class {
             }
         }
 
-        const memberNumJoins = memberEvents.filter((e) => e.type === 'join' && e.userID === member.id).length;
-        const leave = guildPlugins.find((p) => p.pluginName === 'leave')?.pluginData;
+        const memberNumJoins = memberEvents.filter((e) => e.type === "join" && e.userID === member.id).length;
+        const leave = guildPlugins.find((p) => p.pluginName === "leave")?.pluginData;
         // Leave messages
         if (leave.enabled && leave.mainMessage && leave.channel){
             const channel = member.guild.channels.cache.get(leave.channel);

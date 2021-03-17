@@ -1,17 +1,17 @@
-const { ReJSON } = require('redis-modules-sdk');
+const { ReJSON } = require("redis-modules-sdk");
 const { redis: redisConfig } = require("../config");
-const log = require('../helpers/logger');
+const log = require("../helpers/logger");
 
 class RedisHandler {
 
     constructor () {
 
         this.connect = new Promise((resolve) => this.connectResolve = resolve);
-        this.log = (content) => log(content, 'redis');
+        this.log = (content) => log(content, "redis");
 
         this.client = new ReJSON(redisConfig);
         this.client.connect().then(() => {
-            this.log('Connected.');
+            this.log("Connected.");
             this.connectResolve();
         });
 
@@ -23,7 +23,7 @@ class RedisHandler {
     pushJSON (key, path, value) {
         return new Promise((resolve) => {
             this.client.arrappend(key, JSON.stringify(value), path).catch((err) => {
-                this.client.set(key, path, '[]').then(() => this.pushJSON(key, path, value).then(resolve));
+                this.client.set(key, path, "[]").then(() => this.pushJSON(key, path, value).then(resolve));
             }).then(() => resolve());
         });
     }
@@ -35,8 +35,8 @@ class RedisHandler {
         const startAt = Date.now();
         return this.client.get(key, path).then((data) => {
             this.log(`Json ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
-            return data ? JSON.parse(data) : null
-        })
+            return data ? JSON.parse(data) : null;
+        });
     }
 
     /**
@@ -56,7 +56,7 @@ class RedisHandler {
         return get.then((data) => {
             this.log(`Hash ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
             return data;
-        })
+        });
     }
 
     /**
@@ -85,7 +85,7 @@ class RedisHandler {
         return this.client.redis.get(key).then((data) => {
             this.log(`String ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
             return options?.json ? JSON.parse(data) : data;
-        })
+        });
     }
 
     /**
@@ -101,7 +101,7 @@ class RedisHandler {
      */
     getStats () {
         return new Promise((resolve) => {
-            this.client.redis.info('keyspace').then((data) => {
+            this.client.redis.info("keyspace").then((data) => {
                 const [,keys] = data.match(/db0:keys=([0-9]+)/);
                 resolve(keys);
             });

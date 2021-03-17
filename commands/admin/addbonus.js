@@ -39,7 +39,7 @@ module.exports = class extends Command {
                 guildID: message.guild.id,
                 storageID: message.guild.settings.storageID,
                 number: parseInt(bonus),
-                type: 'bonus'
+                type: "bonus"
             });
 
             const embed = new Discord.MessageEmbed()
@@ -68,7 +68,7 @@ module.exports = class extends Command {
                     guildID: message.guild.id,
                     storageID: message.guild.settings.storageID,
                     number: parseInt(bonus),
-                    type: 'bonus'
+                    type: "bonus"
                 });
                 const embed = new Discord.MessageEmbed()
                     .setAuthor(message.translate("admin/addbonus:SUCCESS_TITLE"))

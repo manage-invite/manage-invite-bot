@@ -31,7 +31,7 @@ module.exports = class extends Command {
                     guildID: message.guild.id,
                     storageID: message.guild.settings.storageID,
                     number: guildInvites.filter((i) => i.inviter && i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c),
-                    type: 'regular'
+                    type: "regular"
                 });
             });
             const embed = new Discord.MessageEmbed()

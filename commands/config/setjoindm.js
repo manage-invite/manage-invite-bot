@@ -13,17 +13,17 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
         const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
-        const plugin = guildPlugins.find((p) => p.pluginName === 'joinDM')?.pluginData;
+        const plugin = guildPlugins.find((p) => p.pluginName === "joinDM")?.pluginData;
 
         if (!plugin.enabled){
-            await this.client.database.updateGuildPlugin(message.guild.id, 'joinDM', {
+            await this.client.database.updateGuildPlugin(message.guild.id, "joinDM", {
                 ...plugin,
                 enabled: true
             });
             return message.success("config/setjoindm:ENABLED");
         }
         if (plugin.enabled){
-            await this.client.database.updateGuildPlugin(message.guild.id, 'joinDM', {
+            await this.client.database.updateGuildPlugin(message.guild.id, "joinDM", {
                 ...plugin,
                 enabled: false
             });
