@@ -31,7 +31,7 @@ module.exports = class extends Command {
         if (!args[3] || (args[3] !== "year" && args[3] !== "month")) return message.error("Please specify `year` or `month`!");
         const isMonth = args[3] === "month";
 
-        const guildData = await this.client.database.fetchGuild(guildID);
+        const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(guildID);
         const guildNames = await this.client.shard.broadcastEval(`
             let guild = this.guilds.cache.get('${guildID}');
             if(guild) guild.name;
@@ -40,8 +40,22 @@ module.exports = class extends Command {
         const guildName = guildNameFound || guildID;
 
         const createdAt = new Date();
+        let exists = true;
 
-        const paymentID = await this.client.database.createPayment({
+        let subscription = guildSubscriptions.find((sub) => sub.subLabel === "Premium "+(isMonth ? "Monthly" : "Yearly")+" 1 Guild");
+        if (!subscription) {
+            exists = false;
+            subscription = await this.client.database.createGuildSubscription(guildID, {
+                expiresAt: new Date(Date.now()+((isMonth ? 31 : 366)*24*60*60*1000)),
+                createdAt,
+                guildsCount: 1,
+                subLabel: "Premium "+(isMonth ? "Monthly" : "Yearly")+" 1 Guild"
+            });
+        } else await this.client.database.updateGuildSubscription(subscription.id, guildID, {
+            expiresAt: new Date((new Date(subscription.expiresAt).getTime() > Date.now() ? new Date(subscription.expiresAt).getTime() : Date.now()) + ((isMonth ? 31 : 366) * 24 * 60 * 60 * 1000)).toISOString()
+        });
+
+        await this.client.database.createSubscriptionPayment(subscription.id, {
             modDiscordID: message.author.id,
             payerDiscordID: user.id,
             payerDiscordUsername: user.tag,
@@ -52,23 +66,6 @@ module.exports = class extends Command {
             createdAt
         });
 
-        const currentSubscription = guildData.subscriptions.find((sub) => sub.label === "Premium "+(isMonth ? "Monthly" : "Yearly")+" 1 Guild");
-        const subscription = currentSubscription || await this.client.database.createSubscription({
-            expiresAt: new Date(Date.now()+((isMonth ? 31 : 366)*24*60*60*1000)),
-            createdAt,
-            guildsCount: 1,
-            subLabel: "Premium "+(isMonth ? "Monthly" : "Yearly")+" 1 Guild"
-        });
-        const exists = guildData.subscriptions.includes(subscription);
-        
-        await this.client.database.createSubPaymentLink(subscription.id, paymentID);
-        if (!exists){
-            await this.client.database.createGuildSubLink(guildID, subscription.id);
-        } else {
-            await subscription.addDays(isMonth ? 31 : 366);
-        }
-        await subscription.deleteGuildsFromCache();
-
-        return message.channel.send(`${this.client.config.emojis.success} | Subscription ${exists ? "updated" : "created"} for guild **${guildName}**. Get more informations with \`${message.guild.data.prefix}sub ${guildID}\`.`);
+        return message.channel.send(`${this.client.config.emojis.success} | Subscription ${exists ? "updated" : "created"} for guild **${guildName}**. Get more informations with \`${message.guild.settings.prefix}sub ${guildID}\`.`);
     }
 };
