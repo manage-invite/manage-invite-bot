@@ -1,4 +1,5 @@
 const Command = require("../../structures/Command.js");
+const Constants = require("../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -66,6 +67,6 @@ module.exports = class extends Command {
             createdAt
         });
 
-        return message.channel.send(`${this.client.config.emojis.success} | Subscription ${exists ? "updated" : "created"} for guild **${guildName}**. Get more informations with \`${message.guild.settings.prefix}sub ${guildID}\`.`);
+        return message.channel.send(`${Constants.Emojis.SUCCESS} | Subscription ${exists ? "updated" : "created"} for guild **${guildName}**. Get more informations with \`${message.guild.settings.prefix}sub ${guildID}\`.`);
     }
 };

@@ -1,4 +1,5 @@
 const Command = require("../../structures/Command.js");
+const Constants = require("../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -66,7 +67,7 @@ module.exports = class extends Command {
         });
 
         const expiresAt = this.client.functions.formatDate(new Date(subscription.expiresAt), "MMM DD YYYY", message.guild.settings.language);
-        message.channel.send(`${this.client.config.emojis.success} | Server **${guildName}** is now premium for 7 days (end on **${expiresAt}**) :rocket:`);
+        message.channel.send(`${Constants.Emojis.SUCCESS} | Server **${guildName}** is now premium for 7 days (end on **${expiresAt}**) :rocket:`);
 
     }
 };

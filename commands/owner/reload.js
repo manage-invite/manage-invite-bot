@@ -1,4 +1,5 @@
-const Command = require("../../structures/Command.js");
+const Command = require("../../structures/Command.js"),
+    Constants = require("../../helpers/constants");
 
 module.exports = class extends Command {
 
@@ -23,19 +24,23 @@ module.exports = class extends Command {
                     this.translations = r;
                 });
             `);
-            return message.channel.send(this.client.config.emojis.success+" | Languages reloaded!");
+            return message.channel.send(Constants.Emojis.SUCCESS+" | Languages reloaded!");
         }
         const cmd = this.client.commands.get(command) || this.client.commands.get(this.client.aliases.get(command));
         if (!cmd){
-            message.channel.send(this.client.config.emojis.error+" | Cannot find command `"+command+"`!");
+            message.channel.send(Constants.Emojis.WARN+" | Cannot find command `"+command+"`... Try loading only.");
         }
         await this.client.shard.broadcastEval(`
             delete require.cache['${cmd.conf.location}'];
-            this.unloadCommand('${cmd.conf.location}', '${cmd.help.name}').then(() => {
+            if (${cmd ? "true" : "false"}) {
+                this.unloadCommand('${cmd.conf.location}', '${cmd.help.name}').then(() => {
+                    this.loadCommand('${cmd.conf.location}', '${cmd.help.name}');
+                });
+            } else {
                 this.loadCommand('${cmd.conf.location}', '${cmd.help.name}');
-            });
+            }
         `);
-        message.channel.send(this.client.config.emojis.success+" | `"+command+"` reloaded!");
+        message.channel.send(Constants.Emojis.SUCCESS+" | `"+command+"` reloaded!");
     }
 
 };

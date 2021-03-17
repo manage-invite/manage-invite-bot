@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js"),
-    Discord = require("discord.js");
+    Discord = require("discord.js"),
+    Constants = require("../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -17,8 +18,8 @@ module.exports = class extends Command {
         if (guildInvites.size === 0) return message.error("admin/sync-invites:NO_INVITES");
         const inviteCount = guildInvites.map((i) => i.uses).reduce((p, c) => p + c);
         const conf = await message.sendT("admin/sync-invites:CONFIRM", {
-            success: this.client.config.emojis.success,
-            error: this.client.config.emojis.error,
+            success: Constants.Emojis.SUCCESS,
+            error: Constants.Emojis.ERROR,
             inviteCount
         });
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {

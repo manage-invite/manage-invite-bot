@@ -25,10 +25,10 @@ module.exports = class extends Command {
             }))
             .addField(message.translate("config/testleave:ENABLED_TITLE"), (plugin?.enabled ? message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
                 prefix: message.guild.settings.prefix,
-                success: this.client.config.emojis.success
+                success: Constants.Emojis.SUCCESS
             }) : message.translate("config/testjoindm:ENABLED_NO_CONTENT", {
                 prefix: message.guild.settings.prefix,
-                success: this.client.config.emojis.success
+                success: Constants.Emojis.SUCCESS
             })))
             .addField(message.translate("config/testleave:MESSAGE"), (plugin?.mainMessage || message.translate("config/testjoindm:ENABLED_YES_CONTENT", {
                 prefix: message.guild.settings.prefix

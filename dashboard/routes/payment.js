@@ -2,7 +2,8 @@ const express = require("express"),
     CheckAuth = require("../auth/CheckAuth"),
     fetch = require("node-fetch"),
     router = express.Router(),
-    Discord = require("discord.js");
+    Discord = require("discord.js"),
+    Constants = require("../../helpers/constants");
 
 let notSentSignup = [];
 
@@ -68,7 +69,7 @@ router.post("/ipn", async (req, res) => {
             req.client.users.fetch(userID).then((user) => {
                 const logEmbed = escape(JSON.stringify(new Discord.MessageEmbed()
                     .setAuthor(`${user.tag} created a subscription`, user.displayAvatarURL())
-                    .setDescription(`Subscription for guild **${guildName}** created... ${req.client.config.emojis.success}`)
+                    .setDescription(`Subscription for guild **${guildName}** created... ${Constants.Emojis.SUCCESS}`)
                     .setColor("#339900")));
                 const { premiumLogs } = req.client.config;
                 req.client.shard.broadcastEval(`

@@ -30,8 +30,8 @@ module.exports = class {
 
         const data = {
             settings: guildSettings,
-            color: this.client.config.color,
-            footer: aboutToExpire ? "Attention, your ManageInvite subscription is about to expire!" : this.client.config.footer
+            color: Constants.Embed.COLOR,
+            footer: aboutToExpire ? "Attention, your ManageInvite subscription is about to expire!" : Constants.Embed.FOOTER
         };
 
         if (message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.translate("misc:PREFIX", {
@@ -61,7 +61,7 @@ module.exports = class {
             return message.sendT("misc:NEED_UPGRADE", {
                 username: message.author.username,
                 discord: Constants.Links.DISCORD,
-                emote: this.client.config.emojis.upgrade
+                emote: Constants.Emojis.UPGRADE
             });
         }
 

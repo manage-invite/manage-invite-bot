@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const Constants = require("../helpers/constants");
 
 module.exports = class {
     constructor (client) {
@@ -54,9 +55,9 @@ module.exports = class {
                 .addField("__**INFORMATIONS**__", welcomeMessage)
                 .addField("__**HELP**__", "If you need some help join the support server!\n \n**--------------**\n")
                 .addField("__**LINKS**__", `> Add the bot [[Click here]](https://discordapp.com/api/oauth2/authorize?client_id=${this.client.user.id}&permissions=2146958847&scope=bot)\n> Support server  [[Click here]](${this.client.config.discord})\n> Dashboard  [[Click here]](${this.client.config.baseURL}) `)
-                .setFooter(this.client.config.footer)
+                .setFooter(Constants.Embed.FOOTER)
                 .setTimestamp()
-                .setColor(this.client.config.color);
+                .setColor(Constants.Embed.COLOR);
             inviter.send(joinEmbed);
 
             await this.client.wait(5000);

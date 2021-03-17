@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js"),
-    Discord = require("discord.js");
+    Discord = require("discord.js"),
+    Constants = require("../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -22,10 +23,10 @@ module.exports = class extends Command {
             .setDescription(message.translate("config/testleave:DESCRIPTION"))
             .addField(message.translate("config/testleave:ENABLED_TITLE"), (plugin?.enabled ? message.translate("config/testleave:ENABLED_YES_CONTENT", {
                 prefix: message.guild.settings.prefix,
-                success: this.client.config.emojis.success
+                success: Constants.Emojis.SUCCESS
             }) : message.translate("config/testleave:ENABLED_NO_CONTENT", {
                 prefix: message.guild.settings.prefix,
-                success: this.client.config.emojis.success
+                success: Constants.Emojis.SUCCESS
             })))
             .addField(message.translate("config/testleave:MESSAGE"), (plugin?.mainMessage || message.translate("config/testleave:ENABLED_YES_CONTENT", {
                 prefix: message.guild.settings.prefix

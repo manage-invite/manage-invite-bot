@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js"),
-    Discord = require("discord.js");
+    Discord = require("discord.js"),
+    Constants = require("../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -33,7 +34,7 @@ module.exports = class extends Command {
         && leave?.channel
         && message.guild.channels.cache.get(leave?.channel);
 
-        const getEmoji = (boolean) => boolean ? this.client.config.emojis.success : this.client.config.emojis.error;
+        const getEmoji = (boolean) => boolean ? Constants.Emojis.SUCCESS : Constants.Emojis.ERROR;
 
         const embed = new Discord.MessageEmbed()
             .setTitle(message.translate("config/config:TITLE", {

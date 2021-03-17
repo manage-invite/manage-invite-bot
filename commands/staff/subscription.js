@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js"),
-    Discord = require("discord.js");
+    Discord = require("discord.js"),
+    Constants = require("../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -59,7 +60,7 @@ module.exports = class extends Command {
                 subContents.push(previousContent + currentContent);
             });
             subContents.forEach((content) => {
-                embed.addField(`${aboutToExpire ? this.client.config.emojis.idle : active ? this.client.config.emojis.online : this.client.config.emojis.dnd + (invalidated ? ` ${this.client.config.emojis.offline}` : "")} ${sub.subLabel} (${sub.id})`, content);
+                embed.addField(`${aboutToExpire ? Constants.Emojis.IDLE : active ? Constants.Emojis.ONLINE : Constants.Emojis.DND + (invalidated ? ` ${Constants.Emojis.OFFLINE}` : "")} ${sub.subLabel} (${sub.id})`, content);
             });
         }
 

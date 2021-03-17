@@ -1,5 +1,6 @@
 const CronJob = require("cron").CronJob;
 const Discord = require("discord.js");
+const Constants = require("../helpers/constants");
 
 module.exports = class {
     constructor (client) {
@@ -66,8 +67,8 @@ module.exports = class {
                         const embed = new Discord.MessageEmbed()
                             .setAuthor(`Hello, ${user.username}`)
                             .setDescription(`${beg} for **${guildNameFound}** expires in 72 hours! Click [here](https://dash.manage-invite.xyz/manage/${paymentData.guildID}/createsub) to continue to use the bot, the price is $2 per month.`)
-                            .setColor(this.client.config.color)
-                            .setFooter(this.client.config.footer);
+                            .setColor(Constants.Embed.COLOR)
+                            .setFooter(Constants.Embed.FOOTER);
                         const send = () => new Promise((resolve) => user.send(embed).then(resolve(true)).catch(resolve(false)));
                         this.client.database.setPaymentRemindSent({
                             paymentID: paymentData.paymentID, 

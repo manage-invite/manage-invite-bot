@@ -7,6 +7,7 @@ const util = require("util"),
     fs = require("fs"),
     readdir = util.promisify(fs.readdir);
 
+const Constants = require("./helpers/constants");
 const config = require("./config.js");
 const Sentry = require("@sentry/node");
 Sentry.init({ dsn: config.sentryDSN });
@@ -55,16 +56,16 @@ const init = async () => {
     }
 
     client.on("shardReady", (shardID) => {
-        client.functions.sendStatusWebhook(`${client.config.emojis.dnd} | Shard #${shardID} is ready!`);
+        client.functions.sendStatusWebhook(`${Constants.Emojis.DND} | Shard #${shardID} is ready!`);
     });
     client.on("shardDisconnect", (shardID) => {
-        client.functions.sendStatusWebhook(`${client.config.emojis.offline} | Shard #${shardID} is disconnected...`);
+        client.functions.sendStatusWebhook(`${Constants.Emojis.OFFLINE} | Shard #${shardID} is disconnected...`);
     });
     client.on("shardReconnecting", (shardID) => {
-        client.functions.sendStatusWebhook(`${client.config.emojis.idle} | Shard #${shardID} is reconnecting...`);
+        client.functions.sendStatusWebhook(`${Constants.Emojis.IDLE} | Shard #${shardID} is reconnecting...`);
     });
     client.on("shardResume", (shardID) => {
-        client.functions.sendStatusWebhook(`${client.config.emojis.online} | Shard #${shardID} has resumed!`);
+        client.functions.sendStatusWebhook(`${Constants.Emojis.ONLINE} | Shard #${shardID} has resumed!`);
     });
 
     client.login(client.config.token); // Log in to the discord api

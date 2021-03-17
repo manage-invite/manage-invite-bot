@@ -1,4 +1,5 @@
 const Command = require("../../structures/Command.js");
+const Constants = require("../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -19,6 +20,6 @@ module.exports = class extends Command {
         const transactionData = await this.client.database.fetchTransactionData(transactionID);
         if (!transactionData) return message.error("No payment found for that transaction ID...");
 
-        return message.channel.send(`${this.client.config.emojis.success} | Here is the subscription related to this transaction ID: \`${transactionData.subID}\`. (\`${transactionData.guildID}\`)`);
+        return message.channel.send(`${Constants.Emojis.SUCCESS} | Here is the subscription related to this transaction ID: \`${transactionData.subID}\`. (\`${transactionData.guildID}\`)`);
     }
 };

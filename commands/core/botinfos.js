@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js"),
-    Discord = require("discord.js");
+    Discord = require("discord.js"),
+    Constants = require("../../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -45,7 +46,7 @@ module.exports = class extends Command {
             .addField("\u200B", "\u200B");
         results.forEach((shard) => {
             const title = message.translate(`core/botinfos:SHARD_TITLE${this.client.shard.ids.includes(shard[2]) ? "_CURRENT" : ""}`, {
-                online: this.client.config.emojis.online,
+                online: Constants.Emojis.ONLINE,
                 shardID: shard[2]+1
             });
             embed.addField(title, message.translate("core/botinfos:SHARD_CONTENT", {

@@ -1,4 +1,5 @@
 const Command = require("../../structures/Command.js");
+const Constants = require("../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -33,8 +34,8 @@ module.exports = class extends Command {
         ]);
 
         const conf = await message.sendT("admin/sync-ranks:CONFIRM", {
-            success: this.client.config.emojis.success,
-            error: this.client.config.emojis.error
+            success: Constants.Emojis.SUCCESS,
+            error: Constants.Emojis.ERROR
         });
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
             if (!collected.first()) return;
