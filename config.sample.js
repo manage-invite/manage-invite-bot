@@ -56,7 +56,7 @@ module.exports = {
     },
     redis: {
         user: ""
-    }
+    },
     /* PayPal */
     paypal: {
         mode: "sandbox",

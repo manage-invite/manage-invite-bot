@@ -45,9 +45,9 @@ module.exports = class {
             this.client.dash.load(this.client);
             new CronJob("0 5 0 * * *", async () => {
                 // tous les abonnements qui ont expiré il y a trois jours au moins
-                this.client.database.fetchNewlyCancelledPayments().then(async (paymentData) => {
-                    console.log(`Envoi de ${rows.length} notifications`);
-                    rows.forEach(async (row) => {
+                this.client.database.fetchNewlyCancelledPayments().then(async (paymentsData) => {
+                    console.log(`Envoi de ${paymentsData.length} notifications`);
+                    paymentsData.forEach(async (paymentData) => {
                         const user = await this.client.users.fetch(paymentData.payerDiscordID);
                         const guildNames = await this.client.shard.broadcastEval(`
                             let guild = this.guilds.cache.get('${paymentData.guildID}');
@@ -62,10 +62,10 @@ module.exports = class {
                                 kicked: true
                             });
                         }
-                        const beg = row.sub_label === "Trial Version" ? "Your trial period" : "Your premium subscription";
+                        const beg = paymentData.subLabel === "Trial Version" ? "Your trial period" : "Your premium subscription";
                         const embed = new Discord.MessageEmbed()
                             .setAuthor(`Hello, ${user.username}`)
-                            .setDescription(`${beg} for **${guildNameFound}** expires in 72 hours! Click [here](https://dash.manage-invite.xyz/manage/${row.guild_id}/createsub) to continue to use the bot, the price is $2 per month.`)
+                            .setDescription(`${beg} for **${guildNameFound}** expires in 72 hours! Click [here](https://dash.manage-invite.xyz/manage/${paymentData.guildID}/createsub) to continue to use the bot, the price is $2 per month.`)
                             .setColor(this.client.config.color)
                             .setFooter(this.client.config.footer);
                         const send = () => new Promise((resolve) => user.send(embed).then(resolve(true)).catch(resolve(false)));

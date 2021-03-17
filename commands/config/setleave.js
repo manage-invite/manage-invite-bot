@@ -11,7 +11,7 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args, data) {
+    async run (message) {
         const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
         const plugin = guildPlugins.find((p) => p.pluginName === "leave")?.pluginData;
 

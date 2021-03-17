@@ -31,12 +31,6 @@ module.exports = class {
             })
         ]);
 
-        const memberData = await this.client.database.fetchGuildMember({
-            userID: member.id,
-            guildID: member.guild.id,
-            storageID: guildSettings.storageID
-        });
-
         const lastJoinData = memberEvents.filter((j) => j.type === "join" && j.guildID === member.guild.id && j.userID === member.id && j.storageID === guildSettings.storageID)[0];
 
         const inviter = lastJoinData?.joinType === "normal" && lastJoinData.inviteData ? await this.client.resolveUser(lastJoinData.inviterID) : null;
@@ -94,7 +88,7 @@ module.exports = class {
                     leave.mainMessage,
                     member,
                     memberNumJoins,
-                    (guildData.language || "english").substr(0, 2),
+                    (guildSettings.language || "english").substr(0, 2),
                     {
                         inviter,
                         inviterData,

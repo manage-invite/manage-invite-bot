@@ -26,12 +26,6 @@ module.exports = class {
             this.client.database.fetchGuildRanks(member.guild.id),
             this.client.database.fetchGuildPlugins(member.guild.id)
         ]);
-
-        const memberData = await this.client.database.fetchGuildMember({
-            userID: member.id,
-            guildID: member.guild.id,
-            storageID: guildSettings.storageID
-        });
         
         /* Find who is the inviter */
 

@@ -14,7 +14,6 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
         
-        const user = args[0] ? await this.client.resolveUser(args.join(" ")) : null;
         const conf = await message.sendT("admin/removeinvites:CONFIRMATION", {
             error: this.client.config.emojis.error,
             success: this.client.config.emojis.success

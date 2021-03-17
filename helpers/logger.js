@@ -1,4 +1,4 @@
-const { bgBlue, black, green, cyan, greenBright, blueBright } = require("chalk");
+const { black, green, cyan, greenBright, blueBright } = require("chalk");
 
 const getDatePrefix = () => {
     const date = new Date();

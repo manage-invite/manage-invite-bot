@@ -11,7 +11,7 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args, data) {
+    async run (message, args) {
 
         if (args[0] === "cancel" && this.client.syncRanksTasks[message.guild.id]){
             this.client.syncRanksTasks[message.guild.id].status = "BEING_CANCELLED";

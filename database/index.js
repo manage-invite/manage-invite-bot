@@ -781,7 +781,8 @@ module.exports = class DatabaseHandler {
             payerDiscordID: row.payer_discord_id,
             subID: row.sub_id,
             paymentID: row.payment_id,
-            guildID: row.guild_id
+            guildID: row.guild_id,
+            subLabel: row.sub_label
         }));
     }
 

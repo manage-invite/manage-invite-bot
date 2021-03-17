@@ -22,7 +22,7 @@ class RedisHandler {
      */
     pushJSON (key, path, value) {
         return new Promise((resolve) => {
-            this.client.arrappend(key, JSON.stringify(value), path).catch((err) => {
+            this.client.arrappend(key, JSON.stringify(value), path).catch(() => {
                 this.client.set(key, path, "[]").then(() => this.pushJSON(key, path, value).then(resolve));
             }).then(() => resolve());
         });

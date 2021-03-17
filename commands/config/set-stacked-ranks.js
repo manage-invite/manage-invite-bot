@@ -11,7 +11,7 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args, data) {
+    async run (message) {
         if (!message.guild.settings.stackedRanks){
             await this.client.database.updateGuildSetting(message.guild.id, {
                 stackedRanks: true
