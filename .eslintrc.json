@@ -1,7 +1,6 @@
 {
     "env": {
         "commonjs": true,
-        "esnext": true,
         "node": true
     },
     "extends": "eslint:recommended",
