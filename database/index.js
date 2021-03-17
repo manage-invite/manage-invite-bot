@@ -1,7 +1,7 @@
-const RedisHandler = require('./redis');
-const PostgresHandler = require('./postgres');
+const RedisHandler = require("./redis");
+const PostgresHandler = require("./postgres");
 
-const snakeCase = require('snake-case').snakeCase;
+const snakeCase = require("snake-case").snakeCase;
 
 const formatPayment = (paymentRow) => ({
     id: row.id,
@@ -18,7 +18,7 @@ const formatPayment = (paymentRow) => ({
 });
 
 const calculateInvites = (memberRow) => memberRow.invites_leaves - memberRow.invites_fake + memberRow.invites_regular + memberRow.invites_bonus;
-const generateStorageID = () => [...Array(12)].map(i=>(~~(Math.random()*36)).toString(36)).join('');
+const generateStorageID = () => [...Array(12)].map(i=>(~~(Math.random()*36)).toString(36)).join("");
 
 module.exports = class DatabaseHandler {
 
@@ -177,7 +177,7 @@ module.exports = class DatabaseHandler {
             INSERT INTO payments
             (payer_discord_id, payer_discord_username, payer_email, amount, created_at, type, transaction_id, details, signup_id, mod_discord_id) VALUES
             ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-            RETURNING id;
+            RETURNING *;
         `, payerDiscordID, payerDiscordUsername, payerEmail, amount, createdAt.toISOString(), type, transactionID, JSON.stringify(details), signupID, modDiscordID);
         const paymentID = rows[0].id;
         await this.postgres.query(`
@@ -185,6 +185,7 @@ module.exports = class DatabaseHandler {
             (sub_id, payment_id) VALUES
             ($1, $2);
         `, subID, paymentID);
+        return formatPayment(rows[0]);
     }
 
     /**
@@ -203,7 +204,7 @@ module.exports = class DatabaseHandler {
             (sub_id, guild_id) VALUES
             ($1, $2);
         `, subID, guildID);
-        const guildsSubscriptions = await this.redis.getString(`guild_subscriptions_${guildID}`, { json: true });
+        const guildSubscriptions = await this.redis.getString(`guild_subscriptions_${guildID}`, { json: true });
         const newSubscription = {
             expiresAt,
             createdAt,
@@ -225,7 +226,7 @@ module.exports = class DatabaseHandler {
      */
     async updateGuildSubscription (subID, guildID, newSettingData) {
         const setting = Object.keys(newSettingData)[0];
-        if (!['expires_at', 'created_at', 'sub_label', 'guilds_count', 'patreon_user_id', 'cancelled', 'sub_invalidated'].includes(snakeCase(setting))) return new Error('unknown_guild_setting');
+        if (!["expires_at", "created_at", "sub_label", "guilds_count", "patreon_user_id", "cancelled", "sub_invalidated"].includes(snakeCase(setting))) return new Error("unknown_guild_setting");
         return Promise.all([
             this.redis.getString(`guild_subscriptions_${guildID}`, { json: true }).then((guildSubscriptions) => {
                 if (guildSubscriptions) {
@@ -252,8 +253,8 @@ module.exports = class DatabaseHandler {
     async fetchGuildSubscriptionStatus (guildID) {
         const guildSubscriptions = await this.fetchGuildSubscriptions(guildID);
         const payments = (await Promise.all(guildSubscriptions.map((sub) => this.fetchSubscriptionPayments(sub.id)))).flat();
-        const isPayPal = payments.some((p) => p.type.startsWith('paypal_dash_signup'));
-        const isCancelled = payments.filter((p) => p.type.startsWith('paypal_dash_signup')).length > payments.filter((p) => p.type.startsWith('paypal_dash_cancel')).length;
+        const isPayPal = payments.some((p) => p.type.startsWith("paypal_dash_signup"));
+        const isCancelled = payments.filter((p) => p.type.startsWith("paypal_dash_signup")).length > payments.filter((p) => p.type.startsWith("paypal_dash_cancel")).length;
         return {
             isPayPal,
             isCancelled
@@ -268,7 +269,7 @@ module.exports = class DatabaseHandler {
         return guildsSubscriptions.map((subscriptions, index) => ({
             guildID: guildsID[index],
             isPremium: subscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now()),
-            isTrial: subscriptions.some((sub) => sub.subLabel === 'Trial Version' && new Date(sub.expiresAt).getTime() > Date.now())
+            isTrial: subscriptions.some((sub) => sub.subLabel === "Trial Version" && new Date(sub.expiresAt).getTime() > Date.now())
         }));
     }
     
@@ -320,7 +321,7 @@ module.exports = class DatabaseHandler {
      */
     updateGuildSetting (guildID, newSettingData) {
         const setting = Object.keys(newSettingData)[0];
-        if (!['language', 'prefix', 'cmd_channel', 'fake_treshold', 'keep_ranks', 'stacked_ranks', 'storage_id'].includes(snakeCase(setting))) return new Error('unknown_guild_setting');
+        if (!["language", "prefix", "cmd_channel", "fake_treshold", "keep_ranks", "stacked_ranks", "storage_id"].includes(snakeCase(setting))) return new Error("unknown_guild_setting");
         return Promise.all([
             this.redis.setHash(`guild_${guildID}`, newSettingData),
             this.postgres.query(`
@@ -363,7 +364,7 @@ module.exports = class DatabaseHandler {
         return Promise.all([
             this.redis.getString(`guild_ranks_${guildID}`, { json: true }).then((ranks) => {
                 if (!ranks) return;
-                let newRanks = ranks.filter((rank) => rank.roleID !== roleID);
+                const newRanks = ranks.filter((rank) => rank.roleID !== roleID);
                 return this.redis.setString(`guild_ranks_${guildID}`, JSON.stringify(newRanks));
             }),
             this.postgres.query(`
@@ -615,7 +616,7 @@ module.exports = class DatabaseHandler {
             bonus: rows[0].invites_bonus,
             regular: rows[0].invites_regular
         };
-        this.redis.setHash(`member_${userID}_${guildID}_${storageID}`, formattedMember)
+        this.redis.setHash(`member_${userID}_${guildID}_${storageID}`, formattedMember);
         return formattedMember;
     }
 
@@ -644,7 +645,7 @@ module.exports = class DatabaseHandler {
             inviteData: row.invite_data,
             storageID: row.storage_id
         }));
-        this.redis.setJSON(`member_${userID}_${guildID}_events`, '.', formattedEvents);
+        this.redis.setJSON(`member_${userID}_${guildID}_events`, ".", formattedEvents);
 
         return formattedEvents;
     }
@@ -668,11 +669,11 @@ module.exports = class DatabaseHandler {
      */
     async createGuildMemberEvent ({ userID, guildID, eventDate = new Date(), eventType, joinType, inviterID, inviteData, joinFake, storageID }) {
         this.redis.getJSON(`member_${userID}_${guildID}_events`).then((data) => {
-            if (data) this.redis.pushJSON(`member_${userID}_${guildID}`, '.', { userID, guildID, eventDate, eventType, joinType, inviterID, inviteData, joinFake, storageID });
+            if (data) this.redis.pushJSON(`member_${userID}_${guildID}`, ".", { userID, guildID, eventDate, eventType, joinType, inviterID, inviteData, joinFake, storageID });
         });
         if (inviterID) {
             this.redis.getJSON(`member_${inviterID}_${guildID}_events`).then((data) => {
-                if (data) this.redis.pushJSON(`member_${inviterID}_${guildID}`, '.', { userID, guildID, eventDate, eventType, joinType, inviterID, inviteData, joinFake, storageID });
+                if (data) this.redis.pushJSON(`member_${inviterID}_${guildID}`, ".", { userID, guildID, eventDate, eventType, joinType, inviterID, inviteData, joinFake, storageID });
             });
         }
 
@@ -741,7 +742,7 @@ module.exports = class DatabaseHandler {
         return {
             subID,
             guildID
-        }
+        };
     }
 
     /**
@@ -787,4 +788,4 @@ module.exports = class DatabaseHandler {
         }));
     }
 
-}
+};

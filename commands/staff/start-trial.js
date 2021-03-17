@@ -55,7 +55,7 @@ module.exports = class extends Command {
             expiresAt: new Date((new Date(subscription.expiresAt).getTime() > Date.now() ? new Date(subscription.expiresAt).getTime() : Date.now()) + 7 * 24 * 60 * 60 * 1000).toISOString()
         });
 
-        const paymentID = await this.client.database.createSubscriptionPayment(subscription.id, {
+        await this.client.database.createSubscriptionPayment(subscription.id, {
             modDiscordID: message.author.id,
             payerDiscordID: user.id,
             payerDiscordUsername: user.tag,

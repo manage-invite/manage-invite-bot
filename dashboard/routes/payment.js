@@ -112,7 +112,7 @@ router.post("/ipn", async (req, res) => {
                         guildsCount: 1
                     });
                     // signup
-                    await req.client.database.createSubscriptionPayment(subscription.id, {
+                    const signupPayment = await req.client.database.createSubscriptionPayment(subscription.id, {
                         payerDiscordID: paymentData[1],
                         payerDiscordUsername: user.tag,
                         payerEmail: signupData.payload.payer_email,
@@ -132,7 +132,7 @@ router.post("/ipn", async (req, res) => {
                         createdAt: new Date(payload.payment_date),
                         type: "paypal_dash_pmnt_month",
                         details: payload,
-                        signupID
+                        signupID: signupPayment.id
                     });
                 } else {
                     const guildSubscriptions = await req.client.database.fetchGuildSubscriptions(guildID);
