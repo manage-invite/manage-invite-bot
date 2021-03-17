@@ -4,21 +4,21 @@ const PostgresHandler = require("./postgres");
 const snakeCase = require("snake-case").snakeCase;
 
 const formatPayment = (paymentRow) => ({
-    id: row.id,
-    payerDiscordID: row.payer_discord_id,
-    amount: row.amount,
-    createdAt: row.created_at,
-    type: row.type,
-    transactionID: row.transaction_id,
-    details: row.details,
-    modDiscordID: row.mod_discord_id,
-    signupID: row.signup_id,
-    payerEmail: row.payer_email,
-    payerDiscordUsername: row.payer_discord_username
+    id: paymentRow.id,
+    payerDiscordID: paymentRow.payer_discord_id,
+    amount: paymentRow.amount,
+    createdAt: paymentRow.created_at,
+    type: paymentRow.type,
+    transactionID: paymentRow.transaction_id,
+    details: paymentRow.details,
+    modDiscordID: paymentRow.mod_discord_id,
+    signupID: paymentRow.signup_id,
+    payerEmail: paymentRow.payer_email,
+    payerDiscordUsername: paymentRow.payer_discord_username
 });
 
 const calculateInvites = (memberRow) => memberRow.invites_leaves - memberRow.invites_fake + memberRow.invites_regular + memberRow.invites_bonus;
-const generateStorageID = () => [...Array(12)].map(i=>(~~(Math.random()*36)).toString(36)).join("");
+const generateStorageID = () => [...Array(12)].map(()=>(~~(Math.random()*36)).toString(36)).join("");
 
 module.exports = class DatabaseHandler {
 
@@ -114,7 +114,7 @@ module.exports = class DatabaseHandler {
     restoreGuildStorage ({ guildID, storageID }) {
         return Promise.all([
             this.redis.setHash(`guild_${guildID}`, {
-                storageID: newStorageID
+                storageID
             }),
             this.postgres.query(`
                 UPDATE guilds
@@ -430,10 +430,7 @@ module.exports = class DatabaseHandler {
                     pluginName,
                     pluginData: newPluginData
                 });
-                this.redis.setString(`guild_plugins_${guildID}`, JSON.stringify(newFormattedPlugins)).then(() => {
-                    redisDone = true;
-                    if (postgresDone) resolve();
-                });
+                return this.redis.setString(`guild_plugins_${guildID}`, JSON.stringify(newFormattedPlugins));
             }),
             this.postgres.query(`
                 SELECT *
@@ -479,8 +476,8 @@ module.exports = class DatabaseHandler {
     /**
      * Add invites to a server
      */
-    addGuildInvites ({ userIDs, guildID, storageID, number, type }) {
-        const redisUpdates = usersIDs.map((userID) => this.redis.incrHashBy(`member_${userID}_${guildID}_${storageID}`, type, number));
+    addGuildInvites ({ usersID, guildID, storageID, number, type }) {
+        const redisUpdates = usersID.map((userID) => this.redis.incrHashBy(`member_${userID}_${guildID}_${storageID}`, type, number));
         return Promise.all([
             Promise.all(redisUpdates),
             this.postgres.query(`
@@ -712,7 +709,7 @@ module.exports = class DatabaseHandler {
      * Fetch the data of a transaction
      */
     async fetchTransactionData (transactionID) {
-        const { rows } = await this.postgres.query(`
+        let { rows } = await this.postgres.query(`
             SELECT id
             FROM payments
             WHERE transaction_id = $1;
