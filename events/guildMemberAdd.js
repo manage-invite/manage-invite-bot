@@ -95,6 +95,13 @@ module.exports = class {
 
         // If we know who invited the member
         if (invite){
+
+            if (inviterData.notCreated) await this.client.database.createGuildMember({
+                userID: inviter.id,
+                guildID: member.guild.id,
+                storageID: guildSettings.storageID
+            });
+
             // We look for the member in the server members
             const inviterMember = member.guild.members.cache.get(inviter.id) || await member.guild.members.fetch(inviter.id).catch(() => {});
 

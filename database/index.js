@@ -575,13 +575,34 @@ module.exports = class DatabaseHandler {
     }
 
     /**
+     * Create a guild member (before updating it)
+     */
+    async createGuildMember ({ userID, guildID, storageID }) {
+        await this.postgres.query(`
+            INSERT INTO members
+            (
+                guild_id, user_id, storage_id,
+                invites_fake, invites_leaves, invites_bonus, invites_regular
+            ) VALUES
+            (
+                $1, $2, $3,
+                0, 0, 0, 0
+            )
+            RETURNING *;
+        `, guildID, userID, storageID);
+        await this.redis.setHash(`member_${userID}_${guildID}_${storageID}`, {
+            notCreated: false
+        });
+    }
+
+    /**
      * Get a guild member
      */
     async fetchGuildMember ({ userID, guildID, storageID }) {
         const redisData = await this.redis.getHash(`member_${userID}_${guildID}_${storageID}`);
         if (redisData?.userID) return redisData;
 
-        let { rows } = await this.postgres.query(`
+        const { rows } = await this.postgres.query(`
             SELECT *
             FROM members
             WHERE guild_id = $1
@@ -589,29 +610,17 @@ module.exports = class DatabaseHandler {
             AND storage_id = $3;
         `, guildID, userID, storageID);
 
-        if (!rows[0]) {
-            ({ rows } = await this.postgres.query(`
-                INSERT INTO members
-                (
-                    guild_id, user_id, storage_id,
-                    invites_fake, invites_leaves, invites_bonus, invites_regular
-                ) VALUES
-                (
-                    $1, $2, $3,
-                    0, 0, 0, 0
-                )
-                RETURNING *;
-            `, guildID, userID, storageID));
-        }
         const formattedMember = {
-            userID: rows[0].user_id,
-            guildID: rows[0].guild_id,
-            storageID: rows[0].storage_id,
-            invites: calculateInvites(rows[0]),
-            fake: rows[0].invites_fake,
-            leaves: rows[0].invites_leaves,
-            bonus: rows[0].invites_bonus,
-            regular: rows[0].invites_regular
+            userID: rows[0] ? rows[0].user_id : 0,
+            guildID: rows[0] ? rows[0].guild_id : 0,
+            storageID: rows[0] ? rows[0].storage_id : storageID,
+            invites: rows[0] ? calculateInvites(rows[0]) : 0,
+            fake: rows[0] ? rows[0].invites_fake : 0,
+            leaves: rows[0] ? rows[0].invites_leaves : 0,
+            bonus: rows[0] ? rows[0].invites_bonus : 0,
+            regular: rows[0] ? rows[0].invites_regular : 0,
+            
+            notCreated: !rows[0]
         };
         this.redis.setHash(`member_${userID}_${guildID}_${storageID}`, formattedMember);
         return formattedMember;

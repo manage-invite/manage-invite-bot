@@ -45,6 +45,13 @@ module.exports = class {
         // Update member invites
         if (inviter){
             if (guildBlacklistedUsers.includes(inviter.id)) return;
+
+            if (inviterData.notCreated) await this.client.database.createGuildMember({
+                userID: inviter.id,
+                guildID: member.guild.id,
+                storageID: guildSettings.storageID
+            });
+
             this.client.database.addInvites({
                 userID: inviter.id,
                 guildID: member.guild.id,

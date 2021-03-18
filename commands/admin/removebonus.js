@@ -33,6 +33,16 @@ module.exports = class extends Command {
         });
 
         if (member){
+            const memberData = await this.client.database.fetchGuildMember({
+                userID: member.user.id,
+                guildID: message.guild.id,
+                storageID: message.guild.settings.storageID
+            });
+            if (memberData.notCreated) await this.client.database.createGuildMember({
+                userID: member.user.id,
+                guildID: message.guild.id,
+                storageID: message.guild.settings.storageID
+            });
             await this.client.database.addInvites({
                 userID: member.user.id,
                 guildID: message.guild.id,
