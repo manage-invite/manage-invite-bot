@@ -203,6 +203,11 @@
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
 
+"@types/repeat-string@^1.0.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@types/repeat-string/-/repeat-string-1.6.0.tgz#79fa5c9e9b5fad3247b497ca67b021f78cacfdf2"
+  integrity sha512-Nwr4xMZBJKzluvdF9QPKjqFi8EpR63jk0mQPBEXB/+kevUPBftRQrbt24m+NkRh0C9ftrNIqnnsDw9iyQv/j7g==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -1252,11 +1257,12 @@ lru_map@^0.3.3:
   resolved "https://registry.yarnpkg.com/lru_map/-/lru_map-0.3.3.tgz#b5c8351b9464cbd750335a79650a0ec0e56118dd"
   integrity sha1-tcg1G5Rky9dQM1p5ZQoOwOVhGN0=
 
-markdown-table@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-2.0.0.tgz#194a90ced26d31fe753d8b9434430214c011865b"
-  integrity sha512-Ezda85ToJUBhM6WGaG6veasyym+Tbs3cMAw/ZhOPqXiYsr0jgocBV3j3nx+4lk47plLlIqjwuTm/ywVI+zjJ/A==
+markdown-table@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-3.0.0.tgz#7f6537d4565c3cec712ac7b34b345f404b46506a"
+  integrity sha512-sSFatFzGRPVHCKgj80iNcYDdySAGS36qBzPON99RO0Zl5YwkK38zmhMQ0QSJik3YxGroyBnqP51ZGLueDtOqmg==
   dependencies:
+    "@types/repeat-string" "^1.0.0"
     repeat-string "^1.0.0"
 
 media-typer@0.3.0:
