@@ -7,6 +7,23 @@ const pool = new Pool(config.postgresV4748);
 
 const tasks = [
     {
+        name: "Delete useless guilds",
+        execute: () => {
+            return pool.query(`
+                DELETE FROM guilds WHERE guild_language = 'en-US' AND guild_prefix = '+' AND guild_keep_ranks = false AND guild_stacked_ranks = false
+            `);
+        }
+    },
+    {
+        name: "Delete useless members",
+        execute: () => {
+            return pool.query(`
+                DELETE FROM members WHERE invites_regular = 0 AND invites_fake = 0 AND invites_bonus = 0 AND invites_leaves = 0
+                AND old_invites_regular = 0 AND invites_fake = 0 AND invites_leaves = 0 AND invites_bonus = 0;
+            `);
+        }
+    },
+    {
         name: "Create random_string function",
         execute: () => {
             return pool.query(`
@@ -100,19 +117,13 @@ const tasks = [
     },
     {
         name: "Fill the storage_id columns for members table",
-        execute: (log) => {
+        execute: () => {
             return pool.query(`
-                SELECT guild_id, guild_storage_id FROM guilds
-            `).then(({ rows: guildsRows }) => {
-                log("Got guilds storage ids");
-                const guildsStorageIDs = Object.fromEntries(guildsRows.map((r) => [ r.guild_id, r.guild_storage_id ]));
-                return pool.query(`
-                    SELECT user_id, guild_id FROM members
-                `).then(({ rows: membersRows }) => {
-                    log("Got members");
-                    return pool.query(membersRows.map((row) => `UPDATE members SET storage_id = '${guildsStorageIDs[row.guild_id]}' WHERE user_id = '${row.user_id}' AND guild_id = '${row.guild_id}'`).join("; "));
-                });
-            });
+                UPDATE members AS me
+                SET storage_id = gs.guild_storage_id
+                FROM guilds AS gs
+                WHERE gs.guild_id = me.guild_id;
+            `);
         }
     },
     {
@@ -169,11 +180,3 @@ const tasks = [
 const taskID = process.argv.includes("--taskID") ? process.argv[process.argv.indexOf("--taskID")+1] : null;
 
 meeg.migrate(tasks, taskID);
-
-/*
-"DELETE FROM guilds WHERE guild_language = 'en-US' AND guild_prefix = '+' AND guild_keep_ranks = false AND guild_stacked_ranks = false";
-
-"DELETE rom members...";
-
-changer le guild settings avec ajout de current ? (guild settings ne sera pas créé par défaut)
-*/
