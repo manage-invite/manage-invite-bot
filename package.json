@@ -15,7 +15,7 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "i18next": "^19.8.9",
+    "i18next": "^19.9.2",
     "i18next-fs-backend": "^1.0.8",
     "inquirer": "^8.0.0",
     "moment": "^2.29.1",
