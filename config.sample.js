@@ -31,7 +31,7 @@ module.exports = {
     topToken: "XXXXXXXXXXX",
     topAuth: "XXXXXXXXXXX",
     /* Database */
-    database: {
+    postgres: {
         user: "",
         host: "localhost",
         database: "manage_invite",
