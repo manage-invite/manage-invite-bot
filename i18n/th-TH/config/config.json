@@ -5,5 +5,6 @@
     "LEAVE_TITLE": "{{status}} ข้อความออก",
     "JOIN_DM_TITLE": "{{status}} ข้อความเข้าร่วม DM",
     "JOIN_DM_CONTENT": "> เปิดใช้งาน: {{enabled}}\n> ข้อความ: {{message}}",
-    "CHANNEL_NOT_FOUND": "**ไม่พบช่อง**"
+    "CHANNEL_NOT_FOUND": "**ไม่พบช่อง**",
+    "STORAGE_TITLE": "Current Storage ID"
 }
