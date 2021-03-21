@@ -1,5 +1,6 @@
 const config = require("../config");
 const { Pool } = require("pg");
+const inquirer = require("inquirer");
 
 const meeg = require("./meeg");
 
@@ -179,4 +180,12 @@ const tasks = [
 
 const taskID = process.argv.includes("--taskID") ? process.argv[process.argv.indexOf("--taskID")+1] : null;
 
-meeg.migrate(tasks, taskID);
+inquirer.prompt([
+    {
+        message: `Script is going to be applied on database ${config.postgres.database}. Continue?`,
+        name: "confirm",
+        type: "confirm"
+    }
+]).then((res) => {
+    if (res.confirm) meeg.migrate(tasks, taskID);
+});

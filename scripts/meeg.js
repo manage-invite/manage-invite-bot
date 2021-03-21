@@ -1,9 +1,9 @@
 const ora = require("ora");
 const inquirer = require("inquirer");
 
-const status = ora().start();
-
 module.exports.migrate = async (tasks, taskID) => {
+
+    const status = ora().start();
 
     status.info(`${tasks.length} migration tasks will be run ✊\n\n`);
 
