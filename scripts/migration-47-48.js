@@ -11,7 +11,25 @@ const tasks = [
         name: "Delete useless guilds",
         execute: () => {
             return pool.query(`
-                DELETE FROM guilds WHERE guild_language = 'en-US' AND guild_prefix = '+' AND guild_keep_ranks = false AND guild_stacked_ranks = false
+                DELETE FROM guilds WHERE guild_language = 'en-US' AND guild_prefix = '+' AND guild_keep_ranks = false AND guild_stacked_ranks = false;
+
+                DELETE FROM guilds
+                WHERE guild_id IN
+                    (SELECT guild_id
+                    FROM 
+                        (SELECT guild_id,
+                        ROW_NUMBER() OVER( PARTITION BY guilds
+                        ORDER BY guild_id ) AS row_num
+                        FROM guilds ) t
+                        WHERE t.row_num > 1 );
+            `);
+        }
+    },
+    {
+        name: "Add guild_id primary key",
+        execute: () => {
+            return pool.query(`
+                ALTER TABLE guilds ADD PRIMARY KEY (guild_id);
             `);
         }
     },
