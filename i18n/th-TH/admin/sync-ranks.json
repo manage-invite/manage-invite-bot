@@ -3,6 +3,6 @@
     "STARTED": "Synchronization of member ranks started... Note: you can cancel it using `{{prefix}}sync-ranks cancel`.",
     "CANCELLED": "การซิงโครไนซ์อันดับสมาชิกถูกยกเลิก",
     "SUCCESS": "การซิงโครไนซ์อันดับสมาชิกเสร็จสมบูรณ์",
-    "RUNNING": "กำลังดำเนินการซิงโครไนซ์ตำแหน่งสมาชิก หมายเหตุ: คุณสามารถยกเลิกได้โดยใช้ `{{prefix}}sync-ranks cancel`",
+    "RUNNING": "Synchronization of member ranks is in progress {{percent}}. Note: you can cancel it using `{{prefix}}sync-ranks cancel`.",
     "BEING_CANCELLED": "กำลังยกเลิกการซิงโครไนซ์อันดับสมาชิก ..."
 }
