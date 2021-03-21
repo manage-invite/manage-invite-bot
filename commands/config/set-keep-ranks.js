@@ -11,12 +11,17 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args, data) {
-        if (!data.guild.keepRanks){
-            await data.guild.setKeepRanks(true);
+    async run (message) {
+
+        if (!message.guild.settings.keepRanks){
+            await this.client.database.updateGuildSetting(message.guild.id, {
+                keepRanks: true
+            });
             return message.success("config/set-keep-ranks:SUCCESS_ENABLED");
         } else {
-            await data.guild.setKeepRanks(false);
+            await this.client.database.updateGuildSetting(message.guild.id, {
+                keepRanks: false
+            });
             return message.success("config/set-keep-ranks:SUCCESS_DISABLED");
         }
     }

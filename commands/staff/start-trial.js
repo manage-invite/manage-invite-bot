@@ -1,4 +1,5 @@
 const Command = require("../../structures/Command.js");
+const Constants = require("../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -27,7 +28,7 @@ module.exports = class extends Command {
         const user = message.mentions.users.first() || await this.client.users.fetch(args[1]) || message.guild.members.cache.find((m) => `${m.user.username}#${m.user.discriminator}` === args[1])?.user;
         if (!user) return message.error(`I wasn't able to find a user for \`${args[1]}\``);
 
-        const guildData = await this.client.database.fetchGuild(guildID);
+        const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(guildID);
         const guildNames = await this.client.shard.broadcastEval(`
             let guild = this.guilds.cache.get('${guildID}');
             if(guild) guild.name;
@@ -35,13 +36,27 @@ module.exports = class extends Command {
         const guildNameFound = guildNames.find((r) => r);
         const guildName = guildNameFound || guildID;
 
-        if (guildData.trialPeriodUsed){
+        if (guildSubscriptions.length > 0){
             if (!force) return message.error(`**${guildName}** has already used the trial period or has already paid.`);
         }
 
         const createdAt = new Date();
 
-        const paymentID = await this.client.database.createPayment({
+        const currentSubscription = guildSubscriptions.find((sub) => sub.subLabel === "Trial Version");
+        let subscription = currentSubscription;
+
+        if (!subscription) {
+            subscription = await this.client.database.createGuildSubscription(guildID, {
+                expiresAt: new Date(Date.now()+(7*24*60*60*1000)),
+                createdAt,
+                guildsCount: 1,
+                subLabel: "Trial Version"
+            });
+        } else await this.client.database.updateGuildSubscription(subscription.id, guildID, {
+            expiresAt: new Date((new Date(subscription.expiresAt).getTime() > Date.now() ? new Date(subscription.expiresAt).getTime() : Date.now()) + 7 * 24 * 60 * 60 * 1000).toISOString()
+        });
+
+        await this.client.database.createSubscriptionPayment(subscription.id, {
             modDiscordID: message.author.id,
             payerDiscordID: user.id,
             payerDiscordUsername: user.tag,
@@ -51,24 +66,8 @@ module.exports = class extends Command {
             createdAt
         });
 
-        const currentSubscription = guildData.subscriptions.find((sub) => sub.label === "Trial Version");
-        const subscription = currentSubscription || await this.client.database.createSubscription({
-            expiresAt: new Date(Date.now()+(7*24*60*60*1000)),
-            createdAt,
-            guildsCount: 1,
-            subLabel: "Trial Version"
-        });
-        
-        await this.client.database.createSubPaymentLink(subscription.id, paymentID);
-        if (!guildData.subscriptions.includes(subscription)){
-            await this.client.database.createGuildSubLink(guildID, subscription.id);
-        } else {
-            await subscription.addDays(7);
-        }
-        await subscription.deleteGuildsFromCache();
-
-        const expiresAt = this.client.functions.formatDate(new Date(subscription.expiresAt), "MMM DD YYYY", message.guild.data.language);
-        message.channel.send(`${this.client.config.emojis.success} | Server **${guildName}** is now premium for 7 days (end on **${expiresAt}**) :rocket:`);
+        const expiresAt = this.client.functions.formatDate(new Date(subscription.expiresAt), "MMM DD YYYY", message.guild.settings.language);
+        message.channel.send(`${Constants.Emojis.SUCCESS} | Server **${guildName}** is now premium for 7 days (end on **${expiresAt}**) :rocket:`);
 
     }
 };

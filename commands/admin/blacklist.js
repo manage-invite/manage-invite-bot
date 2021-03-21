@@ -13,6 +13,9 @@ module.exports = class extends Command {
     }
 
     async run (message, args, data) {
+
+        const guildBlacklistedUsers = await this.client.database.fetchGuildBlacklistedUsers(message.guild.id);
+
         const embed = new Discord.MessageEmbed()
             .setColor(data.color)
             .setFooter(data.footer);
@@ -21,10 +24,13 @@ module.exports = class extends Command {
         case "add": {
             const user = message.mentions.users.first() || await this.client.users.fetch(args[1]).catch(() => {});
             if (!user) return message.error("admin/blacklist:MISSING_MEMBER_ADD");
-            if (data.guild.blacklistedUsers.includes(user.id)) return message.error("admin/blacklist:ALREADY_BLACKLISTED", {
+            if (guildBlacklistedUsers.includes(user.id)) return message.error("admin/blacklist:ALREADY_BLACKLISTED", {
                 username: user.tag
             });
-            await data.guild.addUserBlacklist(user.id);
+            await this.client.database.addGuildBlacklistedUser({
+                guildID: message.guild.id,
+                userID: user.id
+            });
             message.success("admin/blacklist:SUCCESS_MEMBER_ADD", {
                 username: user.tag
             });
@@ -33,21 +39,24 @@ module.exports = class extends Command {
         case "remove": {
             const user = message.mentions.users.first() || await this.client.users.fetch(args[1]).catch(() => {});
             if (!user) return message.error("admin/blacklist:MISSING_MEMBER_REMOVE");
-            if (!data.guild.blacklistedUsers.includes(user.id)) return message.error("admin/blacklist:NOT_BLACKLISTED", {
+            if (!guildBlacklistedUsers.includes(user.id)) return message.error("admin/blacklist:NOT_BLACKLISTED", {
                 username: user.tag
             });
-            await data.guild.removeUserBlacklist(user.id);
+            await this.client.database.removeGuildBlacklistedUser({
+                guildID: message.guild.id,
+                userID: user.id
+            });
             message.success("admin/blacklist:SUCCESS_MEMBER_REMOVE", {
                 username: user.tag
             });
             break;
         }
         case "list": {
-            if (data.guild.blacklistedUsers.length < 1){
+            if (guildBlacklistedUsers.length < 1){
                 embed.setDescription(message.translate("admin/blacklist:EMPTY"));
             } else {
                 const users = [];
-                await this.client.functions.asyncForEach(data.guild.blacklistedUsers, async (userID) => {
+                await this.client.functions.asyncForEach(guildBlacklistedUsers, async (userID) => {
                     const user = await this.client.users.fetch(userID);
                     users.push(`${user.tag} (${user.toString()})`);
                 });

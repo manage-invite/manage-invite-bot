@@ -2,7 +2,6 @@ const config = require("../config");
 
 const fetch = require("node-fetch"),
     moment = require("moment"),
-    date = require("date-and-time"),
     Discord = require("discord.js");
 
 const variables = require("./variables");
@@ -23,8 +22,7 @@ const asyncForEach = async (array, callback) => {
 const syncPremiumRoles = (client) => {
     client.shard.broadcastEval(() => {
         if (this.guilds.cache.has(client.config.supportServer)){
-            this.database.query("SELECT * FROM payments WHERE type = 'paypal_dash_pmnt_month' OR type = 'email_address_pmnt_month'").then(({ rows }) => {
-                const userIDs = rows.map((r) => r.payer_discord_id);
+            this.database.fetchPremiumUserIDs().then((userIDs) => {
                 const guild = this.guilds.cache.get(this.config.supportServer);
                 userIDs
                     .filter((r) => guild.members.cache.has(r) && !guild.members.cache.get(r).roles.cache.has(this.config.premiumRole))
@@ -156,8 +154,8 @@ const postTopStats = async (client) => {
     };
     fetch("https://discordbots.org/api/bots/stats", options).then(async (res) => {
         const json = await res.json();
-        if (!res.error) client.logger.log("Top.gg stats successfully posted.", "log");
-        else client.logger.log("Top.gg stats cannot be posted. Error: "+json.error, "error");
+        if (!res.error) client.log("Top.gg stats successfully posted.", "log");
+        else client.log("Top.gg stats cannot be posted. Error: "+json.error, "error");
     });
 };
 
@@ -271,13 +269,8 @@ const isEqual = (value, other) => {
  * @param {string} locale 
  */
 const formatDate = (dateToFormat, format, locale) => {
-    try {
-        if (locale !== "en-US") require("date-and-time/locale/"+locale.substr(0, 2));
-    } catch (e) {
-        locale = "en-US";
-    }
-    date.locale(locale.substr(0, 2));
-    return date.format(dateToFormat, format);
+    moment.locale(locale.substr(0, 2));
+    return moment(dateToFormat).format(format);
 };
 
 /**

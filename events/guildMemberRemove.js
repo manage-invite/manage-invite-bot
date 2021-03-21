@@ -10,26 +10,64 @@ module.exports = class {
         if (!this.client.fetched) return;
 
         // Fetch guild and member data from the db
-        const guildData = await this.client.database.fetchGuild(member.guild.id);
-        if (!guildData.premium) return;
+        const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(member.guild.id);
+        const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now());
+        if (!isPremium) return;
 
-        member.guild.data = guildData;
-        const memberData = await this.client.database.fetchMember(member.id, member.guild.id);
-        
-        const inviter = memberData.joinData
-            && memberData.joinData.joinType === "normal"
-            && memberData.joinData.inviteData
-            ? await this.client.resolveUser(memberData.joinData.inviterID)
-            : null;
-        const inviterData = inviter ? await this.client.database.fetchMember(inviter.id, member.guild.id) : null;
-        const invite = (memberData.joinData || {}).inviteData;
+        const [
+            guildSettings,
+            guildBlacklistedUsers,
+            guildRanks,
+            guildPlugins,
+            memberEvents
+        ] = await Promise.all([
+            this.client.database.fetchGuildSettings(member.guild.id),
+            this.client.database.fetchGuildBlacklistedUsers(member.guild.id),
+            this.client.database.fetchGuildRanks(member.guild.id),
+            this.client.database.fetchGuildPlugins(member.guild.id),
+            this.client.database.fetchGuildMemberEvents({
+                userID: member.id,
+                guildID: member.guild.id
+            })
+        ]);
+
+        const lastJoinData = memberEvents.filter((j) => j.type === "join" && j.guildID === member.guild.id && j.userID === member.id && j.storageID === guildSettings.storageID)[0];
+
+        const inviter = lastJoinData?.joinType === "normal" && lastJoinData.inviteData ? await this.client.resolveUser(lastJoinData.inviterID) : null;
+
+        const inviterData = inviter ? await this.client.database.fetchGuildMember({
+            userID: inviter.id,
+            guildID: member.guild.id,
+            storageID: guildSettings.storageID
+        }) : null;
+        const invite = lastJoinData?.inviteData;
 
         // Update member invites
         if (inviter){
-            if (guildData.blacklistedUsers.includes(inviter.id)) return;
-            inviterData.leaves++;
-            if (memberData.joinData.joinFake) inviterData.fake--;
-            await inviterData.updateInvites();
+            if (guildBlacklistedUsers.includes(inviter.id)) return;
+
+            if (inviterData.notCreated) await this.client.database.createGuildMember({
+                userID: inviter.id,
+                guildID: member.guild.id,
+                storageID: guildSettings.storageID
+            });
+
+            this.client.database.addInvites({
+                userID: inviter.id,
+                guildID: member.guild.id,
+                storageID: guildSettings.storageID,
+                number: 1,
+                type: "leaves"
+            });
+            if (lastJoinData.joinFake) {
+                this.client.database.addInvites({
+                    userID: inviter.id,
+                    guildID: member.guild.id,
+                    storageID: guildSettings.storageID,
+                    number: -1,
+                    type: "fake"
+                });
+            }
             await this.client.database.createEvent({
                 userID: member.id,
                 guildID: member.guild.id,
@@ -41,21 +79,23 @@ module.exports = class {
                 cache: true
             });
             if (inviterMember){
-                await this.client.functions.assignRanks(inviterMember, inviterData.calculatedInvites, guildData.ranks, guildData.keepRanks, guildData.stackedRanks);
+                await this.client.functions.assignRanks(inviterMember, inviterData.invites, guildRanks, guildSettings.keepRanks, guildSettings.stackedRanks);
             }
         }
 
+        const memberNumJoins = memberEvents.filter((e) => e.type === "join" && e.userID === member.id).length;
+        const leave = guildPlugins.find((p) => p.pluginName === "leave")?.pluginData;
         // Leave messages
-        if (guildData.leave.enabled && guildData.leave.mainMessage && guildData.leave.channel){
-            const channel = member.guild.channels.cache.get(guildData.leave.channel);
+        if (leave.enabled && leave.mainMessage && leave.channel){
+            const channel = member.guild.channels.cache.get(leave.channel);
             if (!channel) return;
-            const joinType = memberData.joinData ? memberData.joinData.joinType : null;
+            const joinType = lastJoinData?.type;
             if (invite){
                 const formattedMessage = this.client.functions.formatMessage(
-                    guildData.leave.mainMessage,
+                    leave.mainMessage,
                     member,
-                    memberData.numJoins,
-                    (guildData.language || "english").substr(0, 2),
+                    memberNumJoins,
+                    (guildSettings.language || "english").substr(0, 2),
                     {
                         inviter,
                         inviterData,
@@ -64,13 +104,13 @@ module.exports = class {
                 );
                 channel.send(formattedMessage);
             } else if (joinType === "vanity"){
-                const formattedMessage = this.client.functions.formatMessage((guildData.leave.vanityMessage || member.guild.translate("misc:LEAVE_VANITY_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
+                const formattedMessage = this.client.functions.formatMessage((leave.vanityMessage || member.guild.translate("misc:LEAVE_VANITY_DEFAULT")), member, (guildSettings.language || "english").substr(0, 2), null);
                 channel.send(formattedMessage);
             } else if (joinType === "oauth"){
-                const formattedMessage = this.client.functions.formatMessage((guildData.leave.oauth2Message || member.guild.translate("misc:LEAVE_OAUTH2_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
+                const formattedMessage = this.client.functions.formatMessage((leave.oauth2Message || member.guild.translate("misc:LEAVE_OAUTH2_DEFAULT")), member, (guildSettings.language || "english").substr(0, 2), null);
                 channel.send(formattedMessage);
             } else {
-                const formattedMessage = this.client.functions.formatMessage((guildData.leave.unknownMessage || member.guild.translate("misc:LEAVE_UNKNOWN_DEFAULT")), member, (guildData.language || "english").substr(0, 2), null);
+                const formattedMessage = this.client.functions.formatMessage((leave.unknownMessage || member.guild.translate("misc:LEAVE_UNKNOWN_DEFAULT")), member, (guildSettings.language || "english").substr(0, 2), null);
                 channel.send(formattedMessage);
             }
         }

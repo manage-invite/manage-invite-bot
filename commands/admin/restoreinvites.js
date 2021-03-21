@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js"),
-    Discord = require("discord.js");
+    Discord = require("discord.js"),
+    Constants = require("../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -15,72 +16,44 @@ module.exports = class extends Command {
     async run (message, args, data) {
 
         const member = args[0] ? await this.client.resolveMember(args.join(" "), message.guild) : null;
-        if (member) member.data = await this.client.database.fetchMember(member.id, message.guild.id);
+        if (member) member.data = await this.client.database.fetchMember({
+            userID: member.id,
+            guildID: message.guild.id
+        });
         let memberCount = { regular: 0, leaves: 0, fake: 0, bonus: 0 };
         if (!member){
             const m = await message.sendT("misc:PLEASE_WAIT", {
-                loading: this.client.config.emojis.loading
+                loading: Constants.Emojis.LOADING
             });
-            memberCount = await this.client.database.countGuildInvites(message.guild.id);
+            memberCount = await this.client.database.countGuildInvites(message.guild.id, message.guild.settings.storageID);
+            if (!memberCount) {
+                return message.error("admin/restoreinvites:NO_BACKUP");
+            }
             m.delete();
         }
-        const conf = await (member ?
-            message.sendT("admin/restoreinvites:CONFIRMATION_MEMBER", {
-                prefix: data.guild.prefix,
-                username: member.user.tag,
-                regular: member.data.regular,
-                leaves: member.data.leaves,
-                bonus: member.data.bonus,
-                fake: member.data.fake,
-                error: this.client.config.emojis.error,
-                success: this.client.config.emojis.success
-            })
-            : message.sendT("admin/restoreinvites:CONFIRMATION", {
-                prefix: data.guild.prefix,
-                regular: memberCount.regular,
-                leaves: memberCount.leaves,
-                bonus: memberCount.bonus,
-                fake: memberCount.fake,
-                error: this.client.config.emojis.error,
-                success: this.client.config.emojis.success
-            })
-        );
+        const conf = await message.sendT("admin/restoreinvites:CONFIRMATION", {
+            prefix: message.guild.settings.prefix,
+            regular: memberCount.regular,
+            leaves: memberCount.leaves,
+            bonus: memberCount.bonus,
+            fake: memberCount.fake,
+            error: Constants.Emojis.ERROR,
+            success: Constants.Emojis.SUCCESS
+        });
         await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
-            if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
+            if (!collected.first() || !collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete().catch(() => {});
-            await (member ? conf.sendT("admin/restoreinvites:LOADING_MEMBER", {
-                username: member.user.tag,
-                loading: this.client.config.emojis.loading
-            }, true) : conf.sendT("admin/restoreinvites:LOADING", {
-                loading: this.client.config.emojis.loading
-            }, true));
-            if (member){
-                // Restore invites
-                member.data.regular = member.data.oldRegular;
-                // Restore fake
-                member.data.fake = member.data.oldFake;
-                // Restore leaves
-                member.data.leaves = member.data.oldLeaves;
-                // Restore bonus
-                member.data.bonus = member.data.oldBonus;
-                // Save the member
-                await member.data.updateInvites();
-            } else {
-                // Find all members in the guild
-                await this.client.database.restoreInvites(message.guild.id);
-            }
+            await conf.sendT("admin/restoreinvites:LOADING", {
+                loading: Constants.Emojis.LOADING
+            }, true);
+
+            await this.client.database.restoreGuildInvites(message.guild.id, message.guild.settings.storageID);
 
             const embed = new Discord.MessageEmbed()
                 .setAuthor(message.translate("admin/restoreinvites:TITLE"))
-                .setDescription((member ?
-                    message.translate("admin/restoreinvites:DESCRIPTION_MEMBER", {
-                        username: member.user.tag,
-                        success: this.client.config.emojis.success
-                    })
-                    : message.translate("admin/restoreinvites:DESCRIPTION", {
-                        success: this.client.config.emojis.success
-                    })
-                ))
+                .setDescription(message.translate("admin/restoreinvites:DESCRIPTION", {
+                    success: Constants.Emojis.SUCCESS
+                }))
                 .setColor(data.color)
                 .setFooter(data.footer);
 

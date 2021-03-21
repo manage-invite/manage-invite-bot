@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js"),
-    Discord = require("discord.js");
+    Discord = require("discord.js"),
+    Constants = require("../../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -23,9 +24,7 @@ module.exports = class extends Command {
                 Math.round((process.memoryUsage().heapUsed / 1024 / 1024)),
                 this.guilds.cache.size,
                 this.shard.ids[0],
-                Math.round(this.ws.ping),
-                this.database.memberCache.size,
-                this.database.guildCache.size
+                Math.round(this.ws.ping)
             ];
         });
 
@@ -37,7 +36,8 @@ module.exports = class extends Command {
             }))
             .addField(message.translate("core/botinfos:STATS_TITLE"), message.translate("core/botinfos:STATS_CONTENT", {
                 guilds: guildsCount,
-                users: usersCount
+                users: usersCount,
+                keys: await this.client.database.redis.getStats()
             }), true)
             .addField(message.translate("core/botinfos:VERSIONS_TITLE"), message.translate("core/botinfos:VERSIONS_CONTENT", {
                 discord: Discord.version,
@@ -46,15 +46,13 @@ module.exports = class extends Command {
             .addField("\u200B", "\u200B");
         results.forEach((shard) => {
             const title = message.translate(`core/botinfos:SHARD_TITLE${this.client.shard.ids.includes(shard[2]) ? "_CURRENT" : ""}`, {
-                online: this.client.config.emojis.online,
+                online: Constants.Emojis.ONLINE,
                 shardID: shard[2]+1
             });
             embed.addField(title, message.translate("core/botinfos:SHARD_CONTENT", {
                 guilds: shard[1],
                 ping: shard[3],
-                ram: shard[0],
-                cachedMembers: shard[4],
-                cachedGuilds: shard[5]
+                ram: shard[0]
             }), true);
         });
 

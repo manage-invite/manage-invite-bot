@@ -17,25 +17,34 @@ module.exports = class {
         
         if (!message.guild || message.author.bot) return;
 
-        const guildData = message.guild.data = await this.client.database.fetchGuild(message.guild.id);
-    
+        const [
+            guildSettings,
+            guildSubscriptions
+        ] = await Promise.all([
+            this.client.database.fetchGuildSettings(message.guild.id),
+            this.client.database.fetchGuildSubscriptions(message.guild.id)
+        ]);
+        message.guild.settings = guildSettings;
+        const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now());
+        const aboutToExpire = isPremium && !(guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > (Date.now() + 3 * 24 * 60 * 60000)));
+
         const data = {
-            guild: guildData,
-            color: this.client.config.color,
-            footer: guildData.aboutToExpire ? "Attention, your ManageInvite subscription is about to expire!" : this.client.config.footer
+            settings: guildSettings,
+            color: Constants.Embed.COLOR,
+            footer: aboutToExpire ? "Attention, your ManageInvite subscription is about to expire!" : Constants.Embed.FOOTER
         };
 
         if (message.content.match(new RegExp(`^<@!?${this.client.user.id}>( |)$`))) return message.reply(message.translate("misc:PREFIX", {
-            prefix: guildData.prefix
+            prefix: guildSettings.prefix
         }));
 
         // If the message does not start with the prefix, cancel
-        if (!message.content.toLowerCase().startsWith(guildData.prefix)){
+        if (!message.content.toLowerCase().startsWith(guildSettings.prefix)){
             return;
         }
 
         // If the message content is "/pay @Androz 10", the args will be : [ "pay", "@Androz", "10" ]
-        const args = message.content.slice(guildData.prefix.length).trim().split(/ +/g);
+        const args = message.content.slice(guildSettings.prefix.length).trim().split(/ +/g);
         // The command will be : "pay" and the args : [ "@Androz", "10" ]
         const command = args.shift().toLowerCase();
 
@@ -48,18 +57,18 @@ module.exports = class {
 
         const permLevel = await this.client.getLevel(message);
 
-        if (!data.guild.premium && permLevel < 4){
+        if (!isPremium && permLevel < 4){
             return message.sendT("misc:NEED_UPGRADE", {
                 username: message.author.username,
                 discord: Constants.Links.DISCORD,
-                emote: this.client.config.emojis.upgrade
+                emote: Constants.Emojis.UPGRADE
             });
         }
 
-        if (data.guild.cmdChannel && (message.channel.id !== data.guild.cmdChannel) && permLevel < 1){
+        if (data.settings.cmdChannel && (message.channel.id !== data.settings.cmdChannel) && permLevel < 1){
             message.delete().catch(() => {});
             return message.author.send(message.translate("misc:WRONG_CHANNEL", {
-                channel: `<#${data.guild.cmdChannel}>`
+                channel: `<#${data.settings.cmdChannel}>`
             })).catch(() => {});
         }
 
@@ -104,7 +113,7 @@ module.exports = class {
         const cooldown = cmd.conf.cooldown(message, args);
         cooldownedUsers.set(userKey, cooldown + currentDate);
 
-        this.client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name} (${Date.now()-startAt}ms)`, "cmd");
+        this.client.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name} (${Date.now()-startAt}ms)`, "cmd");
 
         this.client.commandsRan++;
         // If the command exists, **AND** the user has permission, run it.

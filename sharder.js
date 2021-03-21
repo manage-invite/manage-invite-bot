@@ -5,5 +5,7 @@ const manager = new ShardingManager("./index.js", {
     shardArgs: [ ...process.argv, ...[ "--sharded" ] ]
 });
 
-console.log("Hello, "+require("os").userInfo().username+". Thanks for using ManageInvite.");
+const log = require("./helpers/logger");
+log("ManageInvite has been started! 🚀\n");
+
 manager.spawn();

@@ -18,18 +18,21 @@ module.exports  = class extends Command {
 
         const showIDs = message.content.includes("-id");
 
-        const membersData = await this.client.database.fetchGuildMembers(message.guild.id, true);
+        const [blacklistedUsers, membersData] = await Promise.all([
+            this.client.database.fetchGuildBlacklistedUsers(message.guild.id),
+            this.client.database.fetchGuildLeaderboard(message.guild.id, message.guild.settings.storageID)
+        ]);
 
         let members = [];
         membersData.forEach((member) => {
-            if (data.guild.blacklistedUsers.includes(member.user_id)) return;
+            if (blacklistedUsers.includes(member.userID)) return;
             members.push({
-                invites: (member.invites_regular + parseInt(member.invites_bonus) - member.invites_leaves - member.invites_fake),
-                fake: member.invites_fake,
-                regular: member.invites_regular,
-                bonus: parseInt(member.invites_bonus),
-                leaves: member.invites_leaves,
-                id: member.user_id
+                invites: member.invites,
+                fake: member.fake,
+                regular: member.regular,
+                bonus: member.bonus,
+                leaves: member.leaves,
+                id: member.userID
             });
         });
         members = members.filter((m) => m.invites !== 0).sort((a, b) => b.invites - a.invites);

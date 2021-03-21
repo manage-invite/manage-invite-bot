@@ -7,6 +7,7 @@ const util = require("util"),
     fs = require("fs"),
     readdir = util.promisify(fs.readdir);
 
+const Constants = require("./helpers/constants");
 const config = require("./config.js");
 const Sentry = require("@sentry/node");
 Sentry.init({ dsn: config.sentryDSN });
@@ -28,7 +29,7 @@ const init = async () => {
         commands.filter((cmd) => cmd.split(".").pop() === "js").forEach((cmd) => {
             const response = client.loadCommand("./commands/"+dir, cmd);
             if (response){
-                client.logger.log(response, "error");
+                client.log(response, "error");
             }
         });
     });
@@ -45,6 +46,8 @@ const init = async () => {
     const i18n = require("./helpers/i18n");
     client.translations = await i18n();
 
+    await client.database.connect();
+
     // Gets commands permission
     client.levelCache = {};
     for (let i = 0; i < client.permLevels.length; i++) {
@@ -53,16 +56,16 @@ const init = async () => {
     }
 
     client.on("shardReady", (shardID) => {
-        client.functions.sendStatusWebhook(`${client.config.emojis.dnd} | Shard #${shardID} is ready!`);
+        client.functions.sendStatusWebhook(`${Constants.Emojis.DND} | Shard #${shardID} is ready!`);
     });
     client.on("shardDisconnect", (shardID) => {
-        client.functions.sendStatusWebhook(`${client.config.emojis.offline} | Shard #${shardID} is disconnected...`);
+        client.functions.sendStatusWebhook(`${Constants.Emojis.OFFLINE} | Shard #${shardID} is disconnected...`);
     });
     client.on("shardReconnecting", (shardID) => {
-        client.functions.sendStatusWebhook(`${client.config.emojis.idle} | Shard #${shardID} is reconnecting...`);
+        client.functions.sendStatusWebhook(`${Constants.Emojis.IDLE} | Shard #${shardID} is reconnecting...`);
     });
     client.on("shardResume", (shardID) => {
-        client.functions.sendStatusWebhook(`${client.config.emojis.online} | Shard #${shardID} has resumed!`);
+        client.functions.sendStatusWebhook(`${Constants.Emojis.ONLINE} | Shard #${shardID} has resumed!`);
     });
 
     client.login(client.config.token); // Log in to the discord api
@@ -72,10 +75,10 @@ const init = async () => {
 init();
 
 // if there are errors, log them
-client.on("disconnect", () => client.logger.log("Bot is disconnecting...", "warn"))
-    .on("reconnecting", () => client.logger.log("Bot reconnecting...", "log"))
-    .on("error", (e) => client.logger.log(e, "error"))
-    .on("warn", (info) => client.logger.log(info, "warn"));
+client.on("disconnect", () => client.log("Bot is disconnecting...", "warn"))
+    .on("reconnecting", () => client.log("Bot reconnecting...", "log"))
+    .on("error", (e) => client.log(e, "error"))
+    .on("warn", (info) => client.log(info, "warn"));
 
 // if there is an unhandledRejection, log them
 process.on("unhandledRejection", (err) => {

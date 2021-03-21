@@ -1,4 +1,5 @@
 const Command = require("../../structures/Command.js");
+const Constants = require("../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -36,6 +37,6 @@ module.exports = class extends Command {
 
         await subscription.invalidate();
 
-        return message.channel.send(`${this.client.config.emojis.success} | Subscription invalidated for guild **${guildName}**. Get more informations with \`${message.guild.data.prefix}sub ${guildID}\`.`);
+        return message.channel.send(`${Constants.Emojis.SUCCESS} | Subscription invalidated for guild **${guildName}**. Get more informations with \`${message.guild.data.prefix}sub ${guildID}\`.`);
     }
 };

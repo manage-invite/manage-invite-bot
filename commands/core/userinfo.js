@@ -19,9 +19,22 @@ module.exports = class extends Command {
         // Fetch user and member
         const user = message.mentions.users.first() || await this.client.resolveUser(args.join(" ")) || message.author;
         const member = await message.guild.members.fetch(user.id).catch(() => {});
-        const memberData = await this.client.database.fetchMember(user.id, message.guild.id);
+        const [memberData, memberEvents, guildBlacklistedUsers] = await Promise.all([
+            this.client.database.fetchGuildMember({
+                userID: user.id,
+                guildID: message.guild.id,
+                storageID: message.guild.settings.storageID
+            }),
+            this.client.database.fetchGuildMemberEvents({
+                userID: user.id,
+                guildID: message.guild.id
+            }),
+            this.client.database.fetchGuildBlacklistedUsers(message.guild.id)
+        ]);
 
-        moment.locale(data.guild.language.substr(0, 2));
+        const joins = memberEvents.filter((e) => e.type === "join" && e.userID === message.author.id);
+
+        moment.locale(message.guild.settings.language.substr(0, 2));
         const creationDate = moment(user.createdAt, "YYYYMMDD").fromNow();
 
         const embed = new Discord.MessageEmbed()
@@ -55,12 +68,12 @@ module.exports = class extends Command {
         }
 
         if (memberData){
-            const joinWay = await getJoinWay(memberData.joinData);
-            embed.addField(message.translate("core/userinfo:INVITES_TITLE"), data.guild.blacklistedUsers.includes(user.id) ? message.translate("admin/blacklist:BLACKLISTED", {
+            const joinWay = await getJoinWay(joins[joins.length - 1]);
+            embed.addField(message.translate("core/userinfo:INVITES_TITLE"), guildBlacklistedUsers.includes(user.id) ? message.translate("admin/blacklist:BLACKLISTED", {
                 username: user.tag
             }) : message.translate("core/invite:MEMBER_CONTENT", {
                 username: user.username,
-                inviteCount: memberData.calculatedInvites,
+                inviteCount: memberData.invites,
                 regularCount: memberData.regular,
                 bonusCount: memberData.bonus,
                 fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
@@ -98,11 +111,11 @@ module.exports = class extends Command {
                         users.join(", ")));
         }
 
-        const numberOfJoins = memberData.numJoins > 1 ? memberData.numJoins : member ? 1 : 0;
+        const numberOfJoins = joins.length > 1 ? joins.length : member ? 1 : 0;
         embed.addField(message.translate("core/userinfo:NUMBER_JOINS"), numberOfJoins);
                 
         if (numberOfJoins > 1){
-            embed.addField(message.translate("core/userinfo:FIRST_JOIN_WAY_TITLE"), await getJoinWay(memberData.firstJoinData));
+            embed.addField(message.translate("core/userinfo:FIRST_JOIN_WAY_TITLE"), await getJoinWay(joins[0]));
         }
 
         const guildInvites = await message.guild.fetchInvites();

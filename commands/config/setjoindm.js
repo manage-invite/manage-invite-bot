@@ -11,16 +11,22 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args, data) {
-        
-        if (!data.guild.joinDM.enabled){
-            data.guild.joinDM.enabled = true;
-            await data.guild.joinDM.updateData();
+    async run (message) {
+        const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
+        const plugin = guildPlugins.find((p) => p.pluginName === "joinDM")?.pluginData;
+
+        if (!plugin.enabled){
+            await this.client.database.updateGuildPlugin(message.guild.id, "joinDM", {
+                ...plugin,
+                enabled: true
+            });
             return message.success("config/setjoindm:ENABLED");
         }
-        if (data.guild.joinDM.enabled){
-            data.guild.joinDM.enabled = false;
-            await data.guild.joinDM.updateData();
+        if (plugin.enabled){
+            await this.client.database.updateGuildPlugin(message.guild.id, "joinDM", {
+                ...plugin,
+                enabled: false
+            });
             return message.success("config/setjoindm:DISABLED");
         }
     }

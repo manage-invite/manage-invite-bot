@@ -1,5 +1,6 @@
 const { Guild, Message, MessageEmbed } = require("discord.js");
 const config = require("../config");
+const Constants = require("./constants");
 
 Guild.prototype.translate = function (key, args) {
     const language = this.client.translations.get(this.data.language);
@@ -9,7 +10,7 @@ Guild.prototype.translate = function (key, args) {
 
 Message.prototype.translate = function (key, args) {
     const language = this.client.translations.get(
-        this.guild ? this.guild.data.language : "en-US"
+        this.guild ? this.guild.settings.language : "en-US"
     );
     if (!language) throw "Message: Invalid language set in data.";
     return language(key, args);
@@ -27,7 +28,7 @@ Message.prototype.error = function (key, args, edit = false, embed = false) {
         };
         return edit ? this.edit({ embed }) : this.channel.send({ embed });
     } else {
-        const updatedContent = `${config.emojis.error} | ${this.translate(
+        const updatedContent = `${Constants.Emojis.ERROR} | ${this.translate(
             key,
             args
         )}`;
@@ -49,7 +50,7 @@ Message.prototype.success = function (key, args, edit = false, embed = false) {
         };
         return edit ? this.edit({ embed }) : this.channel.send({ embed });
     } else {
-        const updatedContent = `${config.emojis.success} | ${this.translate(
+        const updatedContent = `${Constants.Emojis.SUCCESS} | ${this.translate(
             key,
             args
         )}`;
@@ -67,7 +68,7 @@ Message.prototype.sendT = function (
     embed = false,
     emoji = null
 ) {
-    const prefix = emoji ? `${config.emojis[emoji]} | ` : "";
+    const prefix = emoji ? `${Constants.Emojis[emoji.toUpperCase()]} | ` : "";
     if (
         embed &&
         this.channel.permissionsFor(this.guild.me).has("EMBED_LINKS")

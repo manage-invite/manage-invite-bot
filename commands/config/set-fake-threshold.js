@@ -11,17 +11,21 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args, data) {
+    async run (message, args) {
         const fakeThreshold = args[0];
         if (!fakeThreshold || (isNaN(fakeThreshold) && fakeThreshold !== "disable")) {
             return message.error("config/set-fake-threshold:MISSING_DAYS");
         }
         if (fakeThreshold === "disable") {
-            await data.guild.setFakeThreshold(null);
+            await this.client.database.updateGuildSetting(message.guild.id, {
+                fakeThreshold: null
+            });
             message.success("config/set-fake-threshold:DISABLED");
         } else {
             const dayCount = parseInt(fakeThreshold);
-            await data.guild.setFakeThreshold(dayCount);
+            await this.client.database.updateGuildSetting(message.guild.id, {
+                fakeThreshold: dayCount
+            });
             message.success("config/set-fake-threshold:UPDATED", {
                 dayCount
             });

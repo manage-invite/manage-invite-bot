@@ -25,19 +25,31 @@ async function fetchGuild (guildID, client, translate){
     }
     `);
     const guild = results.find((g) => g);
-    const conf = await client.database.fetchGuild(guild.id);
-    const difference = new Date(conf.premiumExpiresAt).getTime() - Date.now();
-    const statuses = await conf.getSubscriptionsPayPalData();
-    if (statuses.some((s) => s.isPayPalSubscription && !s.isCancelled)) {
-        conf.premiumInfoMessage = translate("dashboard:PREMIUM_PAYPAL");
+    const [guildSettings, guildSubscriptions, guildPlugins, guildSubscriptionStatus, guildRanks] = await Promise.all([
+        client.database.fetchGuildSettings(guild.id),
+        client.database.fetchGuildSubscriptions(guild.id),
+        client.database.fetchGuildPlugins(guild.id),
+        client.database.fetchGuildSubscriptionStatus(guild.id),
+        client.database.fetchGuildRanks(guild.id)
+    ]);
+    const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now());
+    const premiumExpiresAt = guildSubscriptions.sort((subA, subB) => new Date(subB.expiresAt).getTime() - new Date(subA.expiresAt).getTime())[0];
+    const difference = premiumExpiresAt - Date.now();
+    const additionalData = {};
+    if (guildSubscriptionStatus.isPayPal && !guildSubscriptionStatus.isCancelled) {
+        additionalData.premiumInfoMessage = translate("dashboard:PREMIUM_PAYPAL");
     } else {
-        conf.premiumInfoMessage = translate("dashboard:PREMIUM_EXPIRES", {
+        additionalData.premiumInfoMessage = translate("dashboard:PREMIUM_EXPIRES", {
             guildID,
             count: Math.round(difference/86400000) > 0 ? Math.round(difference/86400000) : 0,
-            date: client.functions.formatDate(new Date(conf.premiumExpiresAt), "MMM DD YYYY", conf.language)
+            date: client.functions.formatDate(new Date(premiumExpiresAt), "MMM DD YYYY", guildSettings.language)
         });
     }
-    return { ...guild, ...conf };
+    const formattedGuildPlugins = {};
+    guildPlugins.forEach((p) => {
+        formattedGuildPlugins[p.pluginName] = p.pluginData;
+    });
+    return { ...guild, ...guildSettings, ...additionalData, ...formattedGuildPlugins, ranks: guildRanks, isPremium };
 }
 
 /**
@@ -49,7 +61,7 @@ async function fetchGuild (guildID, client, translate){
 async function fetchUser (userData, client){
     if (userData.guilds){
         const guildsToFetch = userData.guilds.map((g) => g.id);
-        const guildDBs = await client.database.fetchGuilds(guildsToFetch);
+        const guildPremiumStatuses = await client.database.fetchGuildsPremiumStatuses(guildsToFetch);
         await client.functions.asyncForEach(userData.guilds, async (guild) => {
             const perms = new Discord.Permissions(guild.permissions);
             if (perms.has("MANAGE_GUILD")) guild.admin = true;
@@ -57,10 +69,10 @@ async function fetchUser (userData, client){
             const found = results.find((g) => g);
             guild.settingsUrl = (found ? `/manage/${guild.id}/` : `https://discordapp.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=2146958847&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(client.config.baseURL+"/api/callback")}&state=invite${guild.id}`);
             guild.iconURL = (guild.icon ? `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128` : "/dist/img/discordcry.png");
-            const guildDB = guildDBs.find((g) => g.id === guild.id);
-            guild.isPremium = guildDB.premium;
+            const guildDB = guildPremiumStatuses.find((g) => g.guildID === guild.id);
+            guild.isPremium = guildDB.isPremium;
+            guild.isTrial = guildDB.isTrial;
             guild.isWaitingForVerification = client.waitingForVerification.includes(guild.id);
-            guild.trialPeriod = guildDB.trialPeriodEnabled;
         });
         userData.displayedGuilds = userData.guilds.filter((g) => g.admin);
         userData.notAdmin = userData.guilds.filter((g) => !g.admin);

@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js"),
-    Discord = require("discord.js");
+    Discord = require("discord.js"),
+    Constants = require("../../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -26,19 +27,19 @@ module.exports = class extends Command {
                     botCount: message.guild.members.cache.filter((m) => m.user.bot).size
                 }) + "\n" +
             message.translate("core/membercount:DND", {
-                emoji: this.client.config.emojis.dnd,
+                emoji: Constants.Emojis.DND,
                 count: message.guild.members.cache.filter((m) => m.presence.status === "dnd"  && !m.user.bot).size
             }) + "\n" +
             message.translate("core/membercount:ONLINE", {
-                emoji: this.client.config.emojis.online,
+                emoji: Constants.Emojis.ONLINE,
                 count: message.guild.members.cache.filter((m) => m.presence.status === "online"  && !m.user.bot).size
             }) + "\n" +
             message.translate("core/membercount:IDLE", {
-                emoji: this.client.config.emojis.idle,
+                emoji: Constants.Emojis.IDLE,
                 count: message.guild.members.cache.filter((m) => m.presence.status === "idle"  && !m.user.bot).size
             }) + "\n" +
             message.translate("core/membercount:OFFLINE", {
-                emoji: this.client.config.emojis.offline,
+                emoji: Constants.Emojis.OFFLINE,
                 count: message.guild.members.cache.filter((m) => m.presence.status === "offline"  && !m.user.bot).size
             })
             )

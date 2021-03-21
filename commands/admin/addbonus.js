@@ -14,32 +14,48 @@ module.exports = class extends Command {
 
     async run (message, args, data) {
 
+        const blacklistedUsers = await this.client.database.fetchGuildBlacklistedUsers(message.guild.id);
+
         const bonus = args[0];
         if (!bonus) return message.error("admin/addbonus:MISSING_AMOUNT", {
-            prefix: data.guild.prefix
+            prefix: message.guild.settings.prefix
         });
         if (isNaN(bonus) || (parseInt(bonus) < 1) || !Number.isInteger(parseInt(bonus))) return message.error("admin/addbonus:INVALID_AMOUNT", {
-            prefix: data.guild.prefix
+            prefix: message.guild.settings.prefix
         });
 
         const member = message.mentions.members.first() || await this.client.resolveMember(args.slice(1).join(" "), message.guild);
         if (!member && args[1] !== "all") return message.error("admin/addbonus:MISSING_TARGET", {
-            prefix: data.guild.prefix
+            prefix: message.guild.settings.prefix
         });
         if (member){
-            if (data.guild.blacklistedUsers.includes(member.id)){
+            if (blacklistedUsers.includes(member.id)){
                 return message.error("admin/blacklist:BLACKLISTED", {
                     username: member.user.username
                 });
             }
-            const memberData = await this.client.database.fetchMember(member.id, message.guild.id);
-            memberData.bonus += parseInt(bonus);
-            await memberData.updateInvites();
+            const memberData = await this.client.database.fetchGuildMember({
+                userID: member.user.id,
+                guildID: message.guild.id,
+                storageID: message.guild.settings.storageID
+            });
+            if (memberData.notCreated) await this.client.database.createGuildMember({
+                userID: member.user.id,
+                guildID: message.guild.id,
+                storageID: message.guild.settings.storageID
+            });
+            await this.client.database.addInvites({
+                userID: member.user.id,
+                guildID: message.guild.id,
+                storageID: message.guild.settings.storageID,
+                number: parseInt(bonus),
+                type: "bonus"
+            });
 
             const embed = new Discord.MessageEmbed()
                 .setAuthor(message.translate("admin/addbonus:SUCCESS_TITLE"))
                 .setDescription(message.translate("admin/addbonus:SUCCESS_CONTENT_MEMBER", {
-                    prefix: data.guild.prefix,
+                    prefix: message.guild.settings.prefix,
                     usertag: member.user.tag,
                     username: member.user.username
                 }))
@@ -57,18 +73,17 @@ module.exports = class extends Command {
 
                 await conf.sendT("misc:PLEASE_WAIT", null, true, false, "loading");
                 await message.guild.members.fetch();
-                const members = message.guild.members.cache.map((m) => {
-                    return {
-                        userID: m.id,
-                        guildID: message.guild.id
-                    };
+                await this.client.database.addGuildInvites({
+                    userIDs: message.guild.members.cache.map((m) => m.id),
+                    guildID: message.guild.id,
+                    storageID: message.guild.settings.storageID,
+                    number: parseInt(bonus),
+                    type: "bonus"
                 });
-                await this.client.database.fetchMembers(members);
-                await this.client.database.addBonusInvitesMembers(message.guild.id, bonus);
                 const embed = new Discord.MessageEmbed()
                     .setAuthor(message.translate("admin/addbonus:SUCCESS_TITLE"))
                     .setDescription(message.translate("admin/addbonus:SUCCESS_CONTENT_ALL", {
-                        prefix: data.guild.prefix
+                        prefix: message.guild.settings.prefix
                     }))
                     .setColor(data.color)
                     .setFooter(data.footer);
