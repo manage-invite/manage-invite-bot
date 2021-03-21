@@ -163,7 +163,7 @@ const tasks = [
         name: "Change invite_bonus column type",
         execute: () => {
             return pool.query(`
-                ALTER TABLE members ALTER COLUMN invite_bonus TYPE INT;
+                ALTER TABLE members ALTER COLUMN invites_bonus TYPE INT;
             `);
         }
     }
