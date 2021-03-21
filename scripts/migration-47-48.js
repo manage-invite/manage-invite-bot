@@ -3,7 +3,7 @@ const { Pool } = require("pg");
 
 const meeg = require("./meeg");
 
-const pool = new Pool(config.postgresV4748);
+const pool = new Pool(config.postgres);
 
 const tasks = [
     {

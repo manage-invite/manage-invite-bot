@@ -20,7 +20,6 @@ module.exports = {
     pswd:           "XXXXXXXXXXX",
     failureURL:     "https://docs.manage-invite.xyz",
     /* Other */
-    mongodb:        "XXXXXXXXXXX",
     discord:        "XXXXXXXXXXX",
     prefix:         "+",
     owners: [ "XXXXXXXXXXX", "XXXXXXXXXXX" ],
