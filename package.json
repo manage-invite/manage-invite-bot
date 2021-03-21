@@ -28,6 +28,7 @@
     "redis-modules-sdk": "^0.4.1",
     "snake-case": "^3.0.4",
     "string-similarity": "^4.0.4",
+    "utf-8-validate": "^5.0.4",
     "zlib-sync": "^0.1.6"
   },
   "devDependencies": {
