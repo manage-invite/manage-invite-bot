@@ -1,9 +1,7 @@
 {
-    "CONFIRMATION": "Are you sure you want to restore the server invites? All members will recover the invites they had before the last time the command `{{prefix}}remove-invites` was executed (or 0 if the command was never executed).\n\n:information_source: **Invites overview**:\nThis operation will restore, in total: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to cancel.",
-    "CONFIRMATION_MEMBER": "Are you sure you want to restore the invites of **{{username}}**? They will recover the invites they had before the last time the command `{{prefix}}remove-invites` was executed (or 0 if the command was never executed).\n\n:information_source: **Invites overview**:\nThis operation will restore: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to cancel.",
+    "CONFIRMATION": "Are you sure you want to restore the server invites? All members will recover the invites they had before the last time the command `{{prefix}}remove-invites` was executed.\n\n:information_source: **Invites overview**:\nThis operation will restore, in total: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to cancel.",
     "LOADING": "{{loading}} | Restoring server invites...",
-    "LOADING_MEMBER": "{{loading}} | Restoring the invites of **{{username}}**...",
     "TITLE": "☄️ Invites restored",
     "DESCRIPTION": "{{success}} | Server invites restored!",
-    "DESCRIPTION_MEMBER": "{{success}} | The invites of **{{username}}** have been successfully restored!"
+    "NO_BACKUP": "There is no backup to restore!"
 }
