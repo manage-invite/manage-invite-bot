@@ -3,6 +3,6 @@
     "STARTED": "Синхронизирането на потребителските ранкове започна... Бележка: може да откажете, използвайки '{{prefix}}sync-ranks cancel'.",
     "CANCELLED": "Синхронизирането на потребителските ранкове е отказано.",
     "SUCCESS": "Синхронизирането на потребителските ранкове е завършено.",
-    "RUNNING": "Синхронизирането на потребителските ранкове е в процес... Бележка: може да откажете, използвайки '{{prefix}}sync-ranks cancel'.",
+    "RUNNING": "Synchronization of member ranks is in progress {{percent}}. Note: you can cancel it using `{{prefix}}sync-ranks cancel`.",
     "BEING_CANCELLED": "Синхронизирането на потребителските ранкове е отказано..."
 }
