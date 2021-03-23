@@ -560,7 +560,7 @@ module.exports = class DatabaseHandler {
 
         const formattedMembers = rows.map((row) => ({
             userID: row.user_id,
-            invites: row.invites_leaves - row.invites_fake + row.invites_regular + row.invites_bonus,
+            invites: row.invites_regular + row.invites_bonus - row.invites_leaves - row.invites_fake,
             regular: row.invites_regular,
             leaves: row.invites_leaves,
             bonus: row.invites_bonus,
@@ -601,7 +601,7 @@ module.exports = class DatabaseHandler {
         const redisData = await this.redis.getHash(`member_${userID}_${guildID}_${storageID}`);
         if (redisData?.userID) return {
             ...redisData,
-            invites: redisData.leaves - redisData.fake + redisData.regular + redisData.bonus
+            invites: redisData.regular + redisData.bonus - redisData.leaves - redisData.fake
         };
 
         const { rows } = await this.postgres.query(`
@@ -626,7 +626,7 @@ module.exports = class DatabaseHandler {
         this.redis.setHash(`member_${userID}_${guildID}_${storageID}`, formattedMember);
         return {
             ...formattedMember,
-            invites: formattedMember.leaves - formattedMember.fake + formattedMember.regular + formattedMember.bonus 
+            invites: formattedMember.regular + formattedMember.bonus - formattedMember.leaves - formattedMember.fake
         };
     }
 
