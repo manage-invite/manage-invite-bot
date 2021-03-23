@@ -117,6 +117,7 @@ module.exports = class {
                     number: -1,
                     type: "leaves"
                 });
+                inviterData.leaves--;
                 this.client.database.addInvites({
                     userID: inviter.id,
                     guildID: member.guild.id,
@@ -124,6 +125,7 @@ module.exports = class {
                     number: 1,
                     type: "fake"
                 });
+                inviterData.fake++;
             } else if (inviter.id === member.id) {
                 this.client.database.addInvites({
                     userID: inviter.id,
@@ -132,6 +134,7 @@ module.exports = class {
                     number: 1,
                     type: "fake"
                 });
+                inviterData.fake++;
             } else {
                 const fakeThreshold = guildSettings.fakeThreshold;
                 if (fakeThreshold) {
@@ -145,6 +148,7 @@ module.exports = class {
                             number: 1,
                             type: "fake"
                         });
+                        inviterData.fake++;
                     }
                 }
             }
@@ -156,6 +160,7 @@ module.exports = class {
                 number: 1,
                 type: "regular"
             });
+            inviterData.regular++;
 
             if (inviterMember) await this.client.functions.assignRanks(inviterMember, inviterData.invites, guildRanks, guildSettings.keepRanks, guildSettings.stackedRanks);
 

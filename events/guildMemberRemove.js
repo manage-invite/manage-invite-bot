@@ -59,6 +59,8 @@ module.exports = class {
                 number: 1,
                 type: "leaves"
             });
+            inviterData.leaves++;
+
             if (lastJoinData.joinFake) {
                 this.client.database.addInvites({
                     userID: inviter.id,
@@ -67,6 +69,7 @@ module.exports = class {
                     number: -1,
                     type: "fake"
                 });
+                inviterData.fake--;
             }
             await this.client.database.createEvent({
                 userID: member.id,
