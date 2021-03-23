@@ -77,12 +77,9 @@ module.exports = class DatabaseHandler {
         `, generateStorageID(), guildID);
         const newStorageID = rows[0].guild_storage_id;
 
-        const redisData = await this.redis.getHash(`guild_${guildID}`);
-        if (redisData && redisData.guildID) {
-            await this.redis.setHash(`guild_${guildID}`, {
-                storageID: newStorageID
-            });
-        }
+        await this.redis.setHash(`guild_${guildID}`, {
+            storageID: newStorageID
+        });
 
         await this.postgres.query(`
             INSERT INTO guild_storages
@@ -600,8 +597,16 @@ module.exports = class DatabaseHandler {
     async fetchGuildMember ({ userID, guildID, storageID }) {
         const redisData = await this.redis.getHash(`member_${userID}_${guildID}_${storageID}`);
         if (redisData?.userID) return {
-            ...redisData,
-            invites: redisData.regular + redisData.bonus - redisData.leaves - redisData.fake
+            userID: redisData.userID,
+            guildID: redisData.guildID,
+            storageID: redisData.storageID,
+            fake: parseInt(redisData.fake),
+            leaves: parseInt(redisData.leaves),
+            bonus: parseInt(redisData.bonus),
+            regular: parseInt(redisData.regular),
+            
+            notCreated: redisData === "true",
+            invites: parseInt(redisData.regular) + parseInt(redisData.bonus) - parseInt(redisData.leaves) - parseInt(redisData.fake)
         };
 
         const { rows } = await this.postgres.query(`
