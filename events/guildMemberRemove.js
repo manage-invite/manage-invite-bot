@@ -5,6 +5,8 @@ module.exports = class {
 
     async run (member) {
 
+        const startAt = Date.now();
+
         // Prevent undefined left the server
         if (!member.user) return;
         if (!this.client.fetched) return;
@@ -117,6 +119,8 @@ module.exports = class {
                 channel.send(formattedMessage);
             }
         }
+
+        console.log(`Leave handled in ${Date.now()-startAt}ms`);
 
     }
 };

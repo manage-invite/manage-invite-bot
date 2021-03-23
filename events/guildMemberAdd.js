@@ -9,6 +9,7 @@ module.exports = class {
 
         if (!this.client.fetched) return;
         console.log("Calculating for member "+member.id+" | "+member.user.tag);
+        const startAt = Date.now();
 
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(member.guild.id);
         const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now());
@@ -306,6 +307,8 @@ module.exports = class {
                 channel.send(formattedMessage);
             }
         }
+
+        console.log(`Join handled in ${Date.now()-startAt}ms`);
 
     }
 };
