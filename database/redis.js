@@ -54,6 +54,7 @@ class RedisHandler {
         const startAt = Date.now();
         const get = field ? this.client.redis.hget(key, field) : this.client.redis.hgetall(key);
         return get.then((data) => {
+            console.log(data);
             this.log(`Hash ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
             return data;
         });
@@ -65,6 +66,7 @@ class RedisHandler {
     setHash (key, data) {
         this.log(`Caching hash ${key}`);
         const fields = Object.keys(data);
+        console.log(data);
         if (fields.length > 1) return this.client.redis.hmset(key, ...fields.map((field) => [ field, data[field] ]).flat());
         else return this.client.redis.hset(key, fields[0], data[fields[0]]);
     }
