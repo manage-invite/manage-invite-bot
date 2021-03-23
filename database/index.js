@@ -549,7 +549,7 @@ module.exports = class DatabaseHandler {
      * Get the guild leaderboard
      */
     async fetchGuildLeaderboard (guildID, storageID) {
-        const redisData = await this.redis.getString(`guild_leaderboard_${guildID}`);
+        const redisData = await this.redis.getString(`guild_leaderboard_${guildID}`, { json: true });
         if (redisData) return redisData;
 
         const { rows } = await this.postgres.query(`
@@ -568,7 +568,7 @@ module.exports = class DatabaseHandler {
             fake: row.invites_fake
         }));
 
-        this.redis.setString(`guild_leaderboard_${guildID}`, formattedMembers);
+        this.redis.setString(`guild_leaderboard_${guildID}`, JSON.stringify(formattedMembers));
         this.redis.client.redis.expire(`guild_leaderboard_${guildID}`, 60);
 
         return formattedMembers;
