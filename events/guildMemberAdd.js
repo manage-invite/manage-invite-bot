@@ -165,7 +165,7 @@ module.exports = class {
 
             if (inviterMember) await this.client.functions.assignRanks(inviterMember, inviterData.invites, guildRanks, guildSettings.keepRanks, guildSettings.stackedRanks);
 
-            await this.client.database.createGuildMemberEvent({
+            this.client.database.createGuildMemberEvent({
                 userID: member.id,
                 guildID: member.guild.id,
                 eventType: "join",
@@ -183,7 +183,7 @@ module.exports = class {
                 storageID: guildSettings.storageID
             });
         } else if (oauth){
-            await this.client.database.createGuildMemberEvent({
+            this.client.database.createGuildMemberEvent({
                 userID: member.id,
                 guildID: member.guild.id,
                 eventType: "join",
@@ -192,7 +192,7 @@ module.exports = class {
                 storageID: guildSettings.storageID
             });
         } else if (vanity){
-            await this.client.database.createGuildMemberEvent({
+            this.client.database.createGuildMemberEvent({
                 userID: member.id,
                 guildID: member.guild.id,
                 eventType: "join",
@@ -201,7 +201,7 @@ module.exports = class {
                 storageID: guildSettings.storageID
             });
         } else if (perm){
-            await this.client.database.createGuildMemberEvent({
+            this.client.database.createGuildMemberEvent({
                 userID: member.id,
                 guildID: member.guild.id,
                 eventType: "join",
@@ -210,7 +210,7 @@ module.exports = class {
                 storageID: guildSettings.storageID
             });
         } else {
-            await this.client.database.createGuildMemberEvent({
+            this.client.database.createGuildMemberEvent({
                 userID: member.id,
                 guildID: member.guild.id,
                 eventType: "join",
