@@ -17,7 +17,6 @@ const formatPayment = (paymentRow) => ({
     payerDiscordUsername: paymentRow.payer_discord_username
 });
 
-const calculateInvites = (memberRow) => memberRow.invites_leaves - memberRow.invites_fake + memberRow.invites_regular + memberRow.invites_bonus;
 const generateStorageID = () => [...Array(12)].map(()=>(~~(Math.random()*36)).toString(36)).join("");
 
 module.exports = class DatabaseHandler {
@@ -561,7 +560,7 @@ module.exports = class DatabaseHandler {
 
         const formattedMembers = rows.map((row) => ({
             userID: row.user_id,
-            invites: calculateInvites(row),
+            invites: row.invites_leaves - row.invites_fake + row.invites_regular + row.invites_bonus,
             regular: row.invites_regular,
             leaves: row.invites_leaves,
             bonus: row.invites_bonus,
@@ -600,7 +599,10 @@ module.exports = class DatabaseHandler {
      */
     async fetchGuildMember ({ userID, guildID, storageID }) {
         const redisData = await this.redis.getHash(`member_${userID}_${guildID}_${storageID}`);
-        if (redisData?.userID) return redisData;
+        if (redisData?.userID) return {
+            ...redisData,
+            invites: redisData.leaves - redisData.fake + redisData.regular + redisData.bonus
+        };
 
         const { rows } = await this.postgres.query(`
             SELECT *
@@ -614,7 +616,6 @@ module.exports = class DatabaseHandler {
             userID: rows[0] ? rows[0].user_id : 0,
             guildID: rows[0] ? rows[0].guild_id : 0,
             storageID: rows[0] ? rows[0].storage_id : storageID,
-            invites: rows[0] ? calculateInvites(rows[0]) : 0,
             fake: rows[0] ? rows[0].invites_fake : 0,
             leaves: rows[0] ? rows[0].invites_leaves : 0,
             bonus: rows[0] ? rows[0].invites_bonus : 0,
@@ -623,7 +624,10 @@ module.exports = class DatabaseHandler {
             notCreated: !rows[0]
         };
         this.redis.setHash(`member_${userID}_${guildID}_${storageID}`, formattedMember);
-        return formattedMember;
+        return {
+            ...formattedMember,
+            invites: formattedMember.leaves - formattedMember.fake + formattedMember.regular + formattedMember.bonus 
+        };
     }
 
     /**
