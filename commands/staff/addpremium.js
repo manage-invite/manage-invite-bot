@@ -1,5 +1,5 @@
 const Command = require("../../structures/Command.js");
-const Constants = require("../helpers/constants");
+const Constants = require("../../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
