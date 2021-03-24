@@ -135,7 +135,8 @@ const tasks = [
                 UPDATE invited_member_events
                 SET storage_id = 'lJ5kRUem8rEm';
             `);
-        }
+        },
+        timeConfirmation: true
     },
     {
         name: "Delete old_invites_* columns in the members table",

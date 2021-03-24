@@ -15,6 +15,17 @@ module.exports.migrate = async (tasks, taskID) => {
     
     for (const [index, task] of tasks.entries()) {
         
+        if (task.timeConfirmation) {
+            const { next } = await inquirer.prompt([
+                {
+                    message: `${task.name} can take a lot of time to be run. Do you want to execute it?`,
+                    type: "confirm",
+                    name: "next"
+                }
+            ]);
+            if (!next) continue;
+        }
+        
         status.start(task.name);
 
         const startAt = Date.now();
