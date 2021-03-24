@@ -223,6 +223,18 @@ const tasks = [
         }
     },
     {
+        name: "Delete useless guild ranks users",
+        execute: () => {
+            return pool.query(`
+                DELETE FROM guild_ranks T1
+                    USING   guild_ranks T2
+                WHERE   T1.ctid < T2.ctid 
+                    AND T1.guild_id = T2.guild_id 
+                    AND T1.role_id  = T2.role_id;
+            `);
+        }
+    },
+    {
         name: "Create guild ranks unique constraint",
         execute: () => {
             return pool.query(`
