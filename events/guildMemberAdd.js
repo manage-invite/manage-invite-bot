@@ -225,7 +225,7 @@ module.exports = class {
         const memberNumJoins = memberEvents.filter((e) => e.eventType === "join" && e.userID === member.id).length;
         const joinDM = guildPlugins.find((plugin) => plugin.pluginName === "joinDM")?.pluginData;
         // DM Join messages
-        if (joinDM.enabled && joinDM.mainMessage){
+        if (joinDM?.enabled && joinDM.mainMessage){
             if (invite){
                 const formattedMessage = this.client.functions.formatMessage(
                     joinDM.mainMessage,
