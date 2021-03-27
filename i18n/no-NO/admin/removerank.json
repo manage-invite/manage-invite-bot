@@ -1,6 +1,6 @@
 {
     "MISSING": "You must specify the role you want to remove from rewards. (Syntax: {{prefix}}removerank @role)",
     "DOESNT_EXIST": "This role is not used for rewards!",
-    "TITLE": "🎯 Role removed",
+    "TITLE": "🎯 Rolle fjernet",
     "CONTENT": "Role removed from the rewards. The members will no longer obtain it when they reach **{{count}}** invites."
 }
