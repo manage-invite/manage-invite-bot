@@ -280,7 +280,7 @@ const tasks = [
         name: "Create subscriptions payments unique constraint",
         execute: () => {
             return pool.query(`
-                ALTER TABLE guilds_subscriptions
+                ALTER TABLE guilds_payments
                 ADD UNIQUE (payment_id, sub_id);
             `);
         }
