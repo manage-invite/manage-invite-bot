@@ -27,7 +27,7 @@ module.exports = class {
 
         const guildSettings = await this.client.database.fetchGuildSettings(guild.id);
         const welcomeMessage = guildSettings ?
-            `My prefix is \`${guildSettings.prefix}\`. If you want to remove server invites to start over from scratch, you can use \`${guildSettings.prefix}remove-invites\`. If you want to synchronize current server invites with the bot, you can use \`${guildSettings.prefix}sync-invites\`\n \n**--------------**\n`
+            `My prefix is \`${guildSettings.prefix || "+"}\`. If you want to remove server invites to start over from scratch, you can use \`${guildSettings.prefix || "+"}remove-invites\`. If you want to synchronize current server invites with the bot, you can use \`${guildSettings.prefix || "+"}sync-invites\`\n \n**--------------**\n`
             : "My prefix is `+`. If you want to remove server invites to start over from scratch, you can use `+remove-invites`.\n \n**--------------**\n";            
 
         const guildCreate = escape(JSON.stringify(new Discord.MessageEmbed()
