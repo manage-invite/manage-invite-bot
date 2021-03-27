@@ -75,7 +75,6 @@ module.exports = class {
             }
         }
 
-
         const inviter = invite && invite.inviter ? await this.client.resolveUser(invite.inviter.id) : null;
         const inviterData = inviter ? await this.client.database.fetchGuildMember({
             userID: inviter.id,
@@ -261,7 +260,7 @@ module.exports = class {
 
         const join = guildPlugins.find((plugin) => plugin.pluginName === "join")?.pluginData;
         // Join messages
-        if (join.enabled && join.mainMessage && join.channel){
+        if (join?.enabled && join.mainMessage && join.channel){
             const channel = member.guild.channels.cache.get(join.channel);
             if (!channel) return;
             if (invite){
