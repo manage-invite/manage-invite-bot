@@ -1,6 +1,7 @@
 # Node
 node_modules/
 package-lock.json
+yarn*.log
 
 # Conf
 config.js
