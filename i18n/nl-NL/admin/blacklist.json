@@ -1,12 +1,12 @@
 {
-    "AUTHOR_BLACKLISTED": "You are blacklisted on this server, you can't run this command.",
-    "BLACKLISTED": "{{username}} is blacklisted on this server.",
-    "MISSING_TYPE": "You must enter a valid action! (`add`, `remove` or `list`)\n\n:information_source: Users in the blacklist:\n- Won't receive/loose roles\n- Won't appear in the leaderboard\n- Won't have their invites tracked anymore\n- Won't be able to run the `invites` command",
-    "MISSING_MEMBER_ADD": "You must mention a valid member to add in the blacklist!",
-    "MISSING_MEMBER_REMOVE": "You must mention a valid member to remove from the blacklist!",
-    "SUCCESS_MEMBER_ADD": "**{{username}}** was added to the blacklist!",
-    "SUCCESS_MEMBER_REMOVE": "**{{username}}** was removed from the blacklist!",
-    "EMPTY": "No blacklisted users!",
-    "NOT_BLACKLISTED": "**{{username}}** is not in the blacklist!",
-    "ALREADY_BLACKLISTED": "**{{username}}** is already blacklisted!"
+    "AUTHOR_BLACKLISTED": "Je staat op de zwartenlijst! Je kan geen commands meer gebruiken.",
+    "BLACKLISTED": "{{username}} staat nu op de zwartenlijst op deze server.",
+    "MISSING_TYPE": "Je moet een geldig actie aangeven! (`add`, `remove` of `list`)\n\n:information_source: Gebruikers die op de lijst:\n- Krijgen geen invite rollen\n- Zullen niet op de leadboard verschijnen\n- Hun invites zullen niet worden bijgehouden\n- Ze kunnen het command: `invites` niet meer gebruiken",
+    "MISSING_MEMBER_ADD": "Je moet een __GELDIGE__ gebruiker pingen, om aan de zwartenlijst toe te voegen!",
+    "MISSING_MEMBER_REMOVE": "Je moet een __GELDIGE__ gebruiker pingen, om van de zwartenlijst te halen!",
+    "SUCCESS_MEMBER_ADD": "**{{username}}** was toegevoegd op de zwartenlijst!",
+    "SUCCESS_MEMBER_REMOVE": "{{username}} was verwijderd van de zwartenlijst!",
+    "EMPTY": "Geen gezwart lijsten gebruikers!",
+    "NOT_BLACKLISTED": "**{{username}}** is niet gezwart lijst!",
+    "ALREADY_BLACKLISTED": "**{{username}}** is al gezwart lijst!"
 }
