@@ -21,6 +21,7 @@ module.exports = class {
         const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now());
         if (!isPremium) return;
 
+        const fetchStartAt = Date.now();
         const [
             guildSettings,
             guildBlacklistedUsers,
@@ -37,6 +38,7 @@ module.exports = class {
                 guildID: member.guild.id
             })
         ]);
+        logMessage += `Fetch data: ${Date.now()-fetchStartAt}ms\n`;
 
         member.guild.settings = guildSettings;
 

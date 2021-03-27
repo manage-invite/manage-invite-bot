@@ -18,6 +18,7 @@ module.exports = class {
         const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now());
         if (!isPremium) return;
 
+        const fetchGuildStartAt = Date.now();
         // Fetch guild and member data from the db
         const [
             guildSettings,
@@ -30,6 +31,7 @@ module.exports = class {
             this.client.database.fetchGuildRanks(member.guild.id),
             this.client.database.fetchGuildPlugins(member.guild.id)
         ]);
+        logMessage += `Fetch guild data: ${Date.now()-fetchGuildStartAt}ms\n`;
 
         member.guild.settings = guildSettings;
         
@@ -87,6 +89,7 @@ module.exports = class {
             storageID: guildSettings.storageID
         }) : null;
 
+        const fetchEventsStartAt = Date.now();
         const [inviterEvents, memberEvents] = await Promise.all([
             inviter ? this.client.database.fetchGuildMemberEvents({
                 userID: inviter.id,
@@ -97,6 +100,7 @@ module.exports = class {
                 guildID: member.guild.id
             })
         ]);
+        logMessage += `Fetch guild data: ${Date.now()-fetchEventsStartAt}ms\n`;
 
         if (inviter && guildBlacklistedUsers.includes(inviter.id)) {
             logMessage += "Blacklisted: true\n----------";
