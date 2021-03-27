@@ -1,19 +1,19 @@
 {
-    "TITLE": "Joins on {{server}} these last {{days}} days",
-    "CONTENT": "**{{total}}** members (i.e. **{{percent}}%** of the server) have joined the server from {{from}} to {{to}}:",
-    "INVALID": "You must enter a valid number of days (greater than 1 and lower than 1000) to be displayed!",
+    "TITLE": "Entrou em {{server}} nos últimos {{days}} dias",
+    "CONTENT": "** {{total}} ** membros (ou seja, ** {{percent}}% ** do servidor) se juntaram ao servidor de {{from}} para {{to}}:",
+    "INVALID": "Você deve inserir um número válido de dias (maior que 1 e menor que 1000) para ser exibido!",
     "months": [
-        "Jan",
-        "Feb",
-        "March",
-        "Apr",
-        "May",
-        "June",
-        "July",
-        "August",
-        "Sept",
-        "Oct",
-        "Nov",
-        "Dec"
+        "Janeiro",
+        "Fevereiro",
+        "Março",
+        "Abril",
+        "Maio",
+        "Junho",
+        "Julho",
+        "Agosto",
+        "Setembro",
+        "Outubro",
+        "Novembro",
+        "Dezembro"
     ]
 }
