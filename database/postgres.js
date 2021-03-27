@@ -26,9 +26,9 @@ module.exports = class PostgreSQL {
      */
     query (query, ...args) {
         return new Promise((resolve, reject) => {
-            const startAt = Date.now();
+            // const startAt = Date.now();
             this.client.query(query, args, (error, results) => {
-                this.log(`Query run in ${parseInt(Date.now() - startAt)}ms`);
+                // this.log(`Query run in ${parseInt(Date.now() - startAt)}ms`);
                 if (error) reject(error);
                 else resolve(results);
             });

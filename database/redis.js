@@ -32,9 +32,9 @@ class RedisHandler {
      * Get a REDIS-JSON key
      */
     async getJSON (key, path) {
-        const startAt = Date.now();
+        // const startAt = Date.now();
         return this.client.get(key, path).then((data) => {
-            this.log(`Json ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
+            // this.log(`Json ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
             return data ? JSON.parse(data) : null;
         });
     }
@@ -43,7 +43,7 @@ class RedisHandler {
      * Define a REDIS-JSON key
      */
     setJSON (key, path, value) {
-        this.log(`Caching json ${key}`);
+        // this.log(`Caching json ${key}`);
         return this.client.set(key, path, value ? JSON.stringify(value) : null);
     }
 
@@ -51,10 +51,10 @@ class RedisHandler {
      * Get a REDIS hash key
      */
     getHash (key, field) {
-        const startAt = Date.now();
+        // const startAt = Date.now();
         const get = field ? this.client.redis.hget(key, field) : this.client.redis.hgetall(key);
         return get.then((data) => {
-            this.log(`Hash ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
+            // this.log(`Hash ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
             return data;
         });
     }
@@ -63,7 +63,7 @@ class RedisHandler {
      * Set REDIS hash key(s)
      */
     setHash (key, data) {
-        this.log(`Caching hash ${key}`);
+        // this.log(`Caching hash ${key}`);
         const fields = Object.keys(data);
         if (fields.length > 1) return this.client.redis.hmset(key, ...fields.map((field) => [ field, data[field] ]).flat());
         else return this.client.redis.hset(key, fields[0], data[fields[0]]);
@@ -73,7 +73,7 @@ class RedisHandler {
      * Increment a REDIS hash
      */
     incrHashBy (key, field, num) {
-        this.log(`Incr ${key}#${field} by ${num}`);
+        // this.log(`Incr ${key}#${field} by ${num}`);
         return this.client.redis.hincrby(key, field, num);
     }
 
@@ -81,9 +81,9 @@ class RedisHandler {
      * Get a REDIS string key
      */
     getString (key, options) {
-        const startAt = Date.now();
+        // const startAt = Date.now();
         return this.client.redis.get(key).then((data) => {
-            this.log(`String ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
+            // this.log(`String ${key} retrieved in ${parseInt(Date.now() - startAt)}ms`);
             return options?.json ? JSON.parse(data) : data;
         });
     }
@@ -92,7 +92,7 @@ class RedisHandler {
      * Set a REDIS string key
      */
     setString (key, data) {
-        this.log(`Caching string ${key}`);
+        // this.log(`Caching string ${key}`);
         return this.client.redis.set(key, data);
     }
 
