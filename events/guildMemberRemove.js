@@ -96,7 +96,7 @@ module.exports = class {
         const memberNumJoins = memberEvents.filter((e) => e.eventType === "join" && e.userID === member.id).length;
         const leave = guildPlugins.find((p) => p.pluginName === "leave")?.pluginData;
         // Leave messages
-        if (leave.enabled && leave.mainMessage && leave.channel){
+        if (leave?.enabled && leave.mainMessage && leave.channel){
             const channel = member.guild.channels.cache.get(leave.channel);
             if (!channel) return;
             const joinType = lastJoinData?.type;
