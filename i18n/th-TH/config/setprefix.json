@@ -1,4 +1,4 @@
 {
-    "MISSING": "You must specify a prefix!",
-    "SUCCESS": "Server prefix has been updated!"
+    "MISSING": "คุณต้องระบุ Prefix",
+    "SUCCESS": "อัปเดต Prefix ของเซิร์ฟเวอร์แล้ว!"
 }
