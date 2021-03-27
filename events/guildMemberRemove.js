@@ -6,7 +6,9 @@ module.exports = class {
     async run (member) {
 
         // Prevent undefined left the server
-        if (!member.user) return;
+        if (!member.user) {
+            member.user = await this.client.users.fetch(member.user.id);
+        }
         if (!this.client.fetched) return;
 
         const startAt = Date.now();
@@ -37,7 +39,6 @@ module.exports = class {
         member.guild.settings = guildSettings;
 
         const lastJoinData = memberEvents.filter((j) => j.eventType === "join" && j.guildID === member.guild.id && j.userID === member.id && j.storageID === guildSettings.storageID).sort((a, b) => b.eventDate - a.eventDate)[0];
-        console.log(lastJoinData);
 
         const inviter = lastJoinData?.joinType === "normal" && lastJoinData.inviteData ? await this.client.resolveUser(lastJoinData.inviterID) : null;
 
