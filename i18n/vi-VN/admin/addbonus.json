@@ -1,9 +1,9 @@
 {
     "MISSING_AMOUNT": "You must specify the number of bonus invites you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
     "INVALID_AMOUNT": "You must specify a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
-    "MISSING_TARGET": "You must mention the member to whom you want to add the bonus invites (or `all` if you want to add the invites to everyone). (Syntax: {{prefix}}addbonus number @member/all)",
-    "CONFIRMATION_ALL": ":warning: Are you sure you want to add **{{count}}** bonus invites to everyone? This can take a long time (depending on the size of your server)! Send `-confirm` to continue and `cancel` to cancel.",
+    "MISSING_TARGET": "Bạn phải tag thành viên mà bạn muốn thêm bonus invites (hoặc`all` nếu muốn thêm cho tất cả mọi người). (Cú pháp: {{prefix}}addbonus <số invite> @member/all)",
+    "CONFIRMATION_ALL": ":warning: Bạn chắc chắn muốn thêm **{{count}}** bonus invites cho tất cả mọi người? Hành động này có thể mất nhiều thời gian (tùy vào số lượng member trong server)! Chat `-confirm` để tiếp tục hoặc `cancel` để hủy.",
     "SUCCESS_TITLE": "📥 Đã thêm",
-    "SUCCESS_CONTENT_ALL": "Bonus invites added for everyone!",
+    "SUCCESS_CONTENT_ALL": "Bonus invites đã được thêm cho tất cả mọi người!",
     "SUCCESS_CONTENT_MEMBER": "Send `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
 }
