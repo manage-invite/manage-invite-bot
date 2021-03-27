@@ -15,7 +15,7 @@
   "ROLE_REWARDS_BEHAVIOR_STACKED_RANKS": "Members should keep only the highest role reward",
   "SELECTOR": "Selector",
   "PREMIUM": "👑 Premium Subscription",
-  "PREMIUM_EXPIRES": "Your premium subscription will expire on {{date}} (in {{count}} days). Click <a href=\"https://dash.manage-invite.xyz/manage/{{guildID}}/createsub\" onclick=\"window.open('https://dash.manage-invite.xyz/manage/{{guildID}}/createsub')\" target=\"_blank\">here</a> to renew your subscription!",
+  "PREMIUM_EXPIRES": "Your premium subscription will expire on {{date}} (in {{count}} days).",
   "PREMIUM_PAYPAL": "Your premium subscription is currently charged by a subscription on PayPal.",
   "UPGRADE_SERVER": "Upgrade {{server}}",
   "FREE_SUB": "Free",

@@ -3,6 +3,6 @@
     "STARTED": "Synchronization of member ranks started... Note: you can cancel it using `{{prefix}}sync-ranks cancel`.",
     "CANCELLED": "Synchronization of member ranks cancelled.",
     "SUCCESS": "Synchronization of member ranks is complete.",
-    "RUNNING": "Synchronization of member ranks is in progress. Note: you can cancel it using `{{prefix}}sync-ranks cancel`.",
+    "RUNNING": "Synchronization of member ranks is in progress {{percent}}. Note: you can cancel it using `{{prefix}}sync-ranks cancel`.",
     "BEING_CANCELLED": "Synchronization of member ranks is being cancelled..."
 }

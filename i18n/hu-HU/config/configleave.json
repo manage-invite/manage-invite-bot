@@ -2,7 +2,7 @@
     "DISABLE": "Írd be: `{{prefix}}setleave` az elköszönő üzenet tíltása",
     "INSTRUCTIONS_1": "__**More informations**__\n```{{variables}}```\nSend `cancel` to cancel. {{string}}\n\n:sparkles: Embed messages are now available! You can generate an embed here: <https://embed-generator.manage-invite.xyz/> and send the json code below!\n\n\n:pencil: **| Now send the leave message... :pencil2:**",
     "INSTRUCTIONS_2": ":scroll: **| Now send the leave channel name or mention it... :pencil2:**",
-    "TITLE": "**Done The leave Msg Has Been Setup**",
+    "TITLE": "**Sikeresen be lett állítva az elköszönő üzenet**",
     "TEST": "Használd `{{prefix}}testjoin` elköszönési üzenet tesztelése.",
     "CHANNEL_NOT_FOUND": "Nem található ilyen csatorna: `{{channel}}`"
 }

@@ -1,5 +1,5 @@
 {
-    "DISABLE": "Type `{{prefix}}setjoin` to disable join messages",
+    "DISABLE": "Digite `{{prefix}}setjoin` para desabilitar as mensagens de entrada",
     "INSTRUCTIONS_1": "__**More informations**__\n```{{variables}}```\nSend `cancel` to cancel. {{string}}\n\n:sparkles: Embed messages are now available! You can generate an embed here: <https://embed-generator.manage-invite.xyz/> and send the json code below!\n\n\n:pencil: **| Now send the join message... :pencil2:**",
     "INSTRUCTIONS_2": ":scroll: **| Now send the join channel name or mention it... :pencil2:**",
     "VARIABLE_USER": "The mention of the member who joined your server.",
@@ -22,7 +22,7 @@
     "VARIABLE_INVITEURL": "The url of the used invite.",
     "VARIABLE_INVITEUSES": "Number of uses of the used invite.",
     "VARIABLE_CHANNEL": "The channel of the used invite.",
-    "TITLE": "**Done The join Msg Has Been Setup**",
-    "TEST": "Use `{{prefix}}testjoin` to test the new message.",
-    "CHANNEL_NOT_FOUND": "No channel found for `{{channel}}`"
+    "TITLE": "**Concluído, a mensagem de entrada foi configurada**",
+    "TEST": "Use `{{prefix}} testjoin` para testar a nova mensagem de entrada.",
+    "CHANNEL_NOT_FOUND": "Nenhum canal encontrado para `{{channel}}`"
 }

@@ -1,10 +1,10 @@
 {
     "TITLE": "{{username}} statisztikák",
     "STATS_TITLE": "📊 Statisztika",
-    "STATS_CONTENT": "`Szerverek: {{guilds}}`\n`Felhasználók: {{users}}`",
+    "STATS_CONTENT": "`Servers: {{guilds}}`\n`Users: {{users}}`\n`Redis: {{keys}}`",
     "VERSIONS_TITLE": "⚙️ Verzió",
     "VERSIONS_CONTENT": "`Discord: {{discord}}`\n`Node: {{node}}`",
     "SHARD_TITLE": "{{online}} Shard #{{shardID}}",
     "SHARD_TITLE_CURRENT": "{{online}} Shard #{{shardID}} (jelenlegi)",
-    "SHARD_CONTENT": "`{{guilds}}` szerverek\n`{{ping}}` ms\n`{{ram}}` mb ram\n`{{cachedMembers}}` tárolt tagok\n`{{cachedGuilds}}` tárolt szerverek"
+    "SHARD_CONTENT": "`{{guilds}}` servers\n`{{ping}}` ms\n`{{ram}}` mb ram"
 }

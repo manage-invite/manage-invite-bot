@@ -7,7 +7,7 @@
     "VARIABLE_USERTAG": "The tag of the member who joined your server.",
     "VARIABLE_USERCREATEDSINCE": "How long has the account been created.",
     "VARIABLE_USERCREATEDAT": "The date on which the account has been created.",
-    "VARIABLE_USERID": "The ID of the member.",
+    "VARIABLE_USERID": "L'ID du membre.",
     "VARIABLE_USERNUMJOINS": "Number of joins of the member.",
     "VARIABLE_USERAVATAR": "The avatar URL of the member.",
     "VARIABLE_SERVERNAME": "Name of the server.",

@@ -1,4 +1,4 @@
 {
-    "MISSING": "You must specify a prefix!",
+    "MISSING": "Meg kell adnod egy előtagot!",
     "SUCCESS": "A szerver előtagja sikerresen frissítve lett!"
 }

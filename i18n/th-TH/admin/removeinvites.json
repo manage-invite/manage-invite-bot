@@ -1,9 +1,6 @@
 {
     "CONFIRMATION": "แน่ใจไหมว่าต้องการลบคำเชิญเซิร์ฟเวอร์ทั้งหมด\n\n{{success}} ส่ง `-confirm` เพื่อยืนยัน\n{{error}} ส่ง `cancel` เพื่อยกเลิก",
-    "CONFIRMATION_MEMBER": "แน่ใจไหมว่าต้องการลบคำเชิญทั้งหมดของ **{{username}}**\n\n{{success}} ส่ง `-confirm` เพื่อยืนยัน\n{{error}} ส่ง `cancel` เพื่อยกเลิก",
     "LOADING": "{{loading}} | การลบคำเชิญของเซิร์ฟเวอร์ปัจจุบัน .... คุณจะสามารถกู้คืนได้ด้วยคำสั่ง `{{prefix}}restore-invite`!",
-    "LOADING_MEMBER": "{{loading}} | การลบคำเชิญปัจจุบันของ **{{username}}** ... คุณจะสามารถกู้คืนได้ด้วยคำสั่ง `{{prefix}}restore-invite {{username}}\"!",
     "TITLE": "☄️ รีเซ็ตคำเชิญ!",
-    "DESCRIPTION": "{{success}} | คำเชิญเซิร์ฟเวอร์ถูกรีเซ็ตแล้ว! คุณจะสามารถกู้คืนได้ด้วยคำสั่ง `{{prefix}}restore-invite`!",
-    "DESCRIPTION_MEMBER": "{{success}} | คำเชิญของ **{{username}}** ถูกรีเซ็ตแล้ว! คุณจะสามารถกู้คืนได้โดยใช้คำสั่ง `{{prefix}}restore-invite {{username}}!"
+    "DESCRIPTION": "{{success}} | คำเชิญเซิร์ฟเวอร์ถูกรีเซ็ตแล้ว! คุณจะสามารถกู้คืนได้ด้วยคำสั่ง `{{prefix}}restore-invite`!"
 }

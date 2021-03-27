@@ -1,10 +1,10 @@
 {
     "TITLE": "Estatísticas de {{username}}",
     "STATS_TITLE": "📊 Estatísticas",
-    "STATS_CONTENT": "`Servidores: {{guilds}}`\n`Usuários: {{users}}`",
+    "STATS_CONTENT": "`Servers: {{guilds}}`\n`Users: {{users}}`\n`Redis: {{keys}}`",
     "VERSIONS_TITLE": "⚙️ Versões",
     "VERSIONS_CONTENT": "`Discord: {{discord}}`\n`Node: {{node}}`",
     "SHARD_TITLE": "{{online}} Shard #{{shardID}}",
     "SHARD_TITLE_CURRENT": "{{online}} Shard #{{shardID}} (atual)",
-    "SHARD_CONTENT": "`{{guilds}}` servidores\n`{{ping}}` ms\n`{{ram}}` mb ram\n`{{cachedMembers}}` membros em cache\n`{{cachedGuilds}}` servidores em cache"
+    "SHARD_CONTENT": "`{{guilds}}` servers\n`{{ping}}` ms\n`{{ram}}` mb ram"
 }

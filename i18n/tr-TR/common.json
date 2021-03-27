@@ -10,7 +10,7 @@
   "MANAGE": "Yönetme",
   "MEMBERS": "Üyeler",
   "MESSAGE": "Mesaj",
-  "MESSAGES": "Messages",
+  "MESSAGES": "Mesajlar",
   "NO": "Hayır",
   "NOT_DEFINED": "Tanımlanmamış",
   "PREFIX": "Önek",
@@ -20,9 +20,9 @@
   "UPDATE": "Güncelleme",
   "YES": "Evet",
   "CANCEL": "İptal etmek",
-  "MAIN": "Main",
-  "BOTS": "Bots",
-  "VANITY_URL": "Vanity URL",
-  "UNKNOWN": "Unknown",
-  "USES": "Uses"
+  "MAIN": "Ana",
+  "BOTS": "Botlar",
+  "VANITY_URL": "Özel URL",
+  "UNKNOWN": "Bilinmeyen",
+  "USES": "Kullanım"
 }
