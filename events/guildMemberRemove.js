@@ -5,14 +5,15 @@ module.exports = class {
 
     async run (member) {
 
+        let logMessage = "----------";
+        logMessage += `Leave of ${member.user.tag} | (${member.id})\n`;
+
         // Prevent undefined left the server
         if (!member.user) {
+            logMessage += "User not cached : fetched\n";
             member.user = await this.client.users.fetch(member.user.id);
         }
         if (!this.client.fetched) return;
-
-        const startAt = Date.now();
-        console.log("Calculating leave for member "+member.id+" | "+member.user.tag);
 
         // Fetch guild and member data from the db
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(member.guild.id);
@@ -39,6 +40,8 @@ module.exports = class {
         member.guild.settings = guildSettings;
 
         const lastJoinData = memberEvents.filter((j) => j.eventType === "join" && j.guildID === member.guild.id && j.userID === member.id && j.storageID === guildSettings.storageID).sort((a, b) => b.eventDate - a.eventDate)[0];
+        
+        logMessage += `Last join data : ${!!lastJoinData}\n`;
 
         const inviter = lastJoinData?.joinType === "normal" && lastJoinData.inviteData ? await this.client.resolveUser(lastJoinData.inviterID) : null;
 
@@ -98,8 +101,10 @@ module.exports = class {
         const leave = guildPlugins.find((p) => p.pluginName === "leave")?.pluginData;
         // Leave messages
         if (leave?.enabled && leave.mainMessage && leave.channel){
+            logMessage += "Leave: true\n";
             const channel = member.guild.channels.cache.get(leave.channel);
             if (!channel) return;
+            logMessage += "Leave: sent\n";
             const joinType = lastJoinData?.type;
             if (invite){
                 const formattedMessage = this.client.functions.formatMessage(
@@ -126,7 +131,7 @@ module.exports = class {
             }
         }
 
-        console.log(`Leave handled in ${Date.now()-startAt}ms`);
+        console.log(logMessage + "----------");
 
     }
 };

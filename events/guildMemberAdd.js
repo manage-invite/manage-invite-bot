@@ -7,9 +7,10 @@ module.exports = class {
 
     async run (member) {
 
+        let logMessage = "----------";
+
         if (!this.client.fetched) return;
-        console.log("Calculating join for member "+member.id+" | "+member.user.tag);
-        const startAt = Date.now();
+        logMessage += `Join of ${member.user.tag} | (${member.id})\n`;
 
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(member.guild.id);
         const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now());
@@ -75,6 +76,8 @@ module.exports = class {
             }
         }
 
+        logMessage += `Vanity: ${vanity}\nInvite: ${!!invite}\nPerm: ${perm}\n`;
+
         const inviter = invite && invite.inviter ? await this.client.resolveUser(invite.inviter.id) : null;
         const inviterData = inviter ? await this.client.database.fetchGuildMember({
             userID: inviter.id,
@@ -93,7 +96,11 @@ module.exports = class {
             })
         ]);
 
-        if (inviter && guildBlacklistedUsers.includes(inviter.id)) return;
+        if (inviter && guildBlacklistedUsers.includes(inviter.id)) {
+            logMessage += "Blacklisted: true\n----------";
+            console.log(logMessage);
+            return;
+        }
 
         // If we know who invited the member
         if (invite){
@@ -261,8 +268,10 @@ module.exports = class {
         const join = guildPlugins.find((plugin) => plugin.pluginName === "join")?.pluginData;
         // Join messages
         if (join?.enabled && join.mainMessage && join.channel){
+            logMessage += "Join: true\n";
             const channel = member.guild.channels.cache.get(join.channel);
             if (!channel) return;
+            logMessage += "Join: sent\n";
             if (invite){
                 const formattedMessage = this.client.functions.formatMessage(
                     join.mainMessage,
@@ -309,7 +318,7 @@ module.exports = class {
             }
         }
 
-        console.log(`Join handled in ${Date.now()-startAt}ms`);
+        console.log(logMessage + "----------");
 
     }
 };
