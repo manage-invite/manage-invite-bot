@@ -9,7 +9,7 @@
     "JOIN_WAY_UNKNOWN": "I can't figure out how {{username}} joined the server.",
     "INVITES_TITLE": "Invites",
     "JOIN_ORDER_TITLE": "Join Order",
-    "INVITED_TITLE": "Invited users (on the server)",
+    "INVITED_TITLE": "Invited",
     "NO_INVITED_USERS": "No invited users",
     "INVITED_USERS_MORE": "{{list}}, and more...",
     "INVITE_CODES": "Invite Codes",
