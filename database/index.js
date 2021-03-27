@@ -565,7 +565,7 @@ module.exports = class DatabaseHandler {
         }));
 
         this.redis.setString(`guild_leaderboard_${guildID}`, JSON.stringify(formattedMembers));
-        this.redis.client.redis.expire(`guild_leaderboard_${guildID}`, 60);
+        this.redis.client.redis.expire(`guild_leaderboard_${guildID}`, 10);
 
         return formattedMembers;
     }
