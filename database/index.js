@@ -433,9 +433,9 @@ module.exports = class DatabaseHandler {
                 FROM guild_plugins
                 WHERE plugin_name = $1
                 AND guild_id = $2;
-            `, pluginName, guildID).then((rows) => {
+            `, pluginName, guildID).then(({ rowCount }) => {
                 // if the plugin exists
-                if (rows[0]) {
+                if (rowCount > 0) {
                     return this.postgres.query(`
                         UPDATE guild_plugins
                         SET plugin_data = $1
