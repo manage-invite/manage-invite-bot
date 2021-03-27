@@ -645,8 +645,8 @@ module.exports = class DatabaseHandler {
         const { rows } = await this.postgres.query(`
             SELECT *
             FROM invited_member_events
-            WHERE user_id = $1
-            OR inviter_user_id = $1
+            WHERE (user_id = $1
+            OR inviter_user_id = $1)
             AND guild_id = $2;
         `, userID, guildID);
 
