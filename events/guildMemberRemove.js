@@ -36,7 +36,8 @@ module.exports = class {
 
         member.guild.settings = guildSettings;
 
-        const lastJoinData = memberEvents.filter((j) => j.type === "join" && j.guildID === member.guild.id && j.userID === member.id && j.storageID === guildSettings.storageID)[0];
+        const lastJoinData = memberEvents.filter((j) => j.eventType === "join" && j.guildID === member.guild.id && j.userID === member.id && j.storageID === guildSettings.storageID).sort((a, b) => b.eventDate - a.eventDate)[0];
+        console.log(lastJoinData);
 
         const inviter = lastJoinData?.joinType === "normal" && lastJoinData.inviteData ? await this.client.resolveUser(lastJoinData.inviterID) : null;
 
@@ -91,7 +92,7 @@ module.exports = class {
             }
         }
 
-        const memberNumJoins = memberEvents.filter((e) => e.type === "join" && e.userID === member.id).length;
+        const memberNumJoins = memberEvents.filter((e) => e.eventType === "join" && e.userID === member.id).length;
         const leave = guildPlugins.find((p) => p.pluginName === "leave")?.pluginData;
         // Leave messages
         if (leave.enabled && leave.mainMessage && leave.channel){

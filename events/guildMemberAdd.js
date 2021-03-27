@@ -111,7 +111,7 @@ module.exports = class {
             let joinFake = false;
 
             // If the member had previously invited this member and they have left
-            const lastJoinData = inviterEvents.filter((j) => j.type === "join" && j.guildID === member.guild.id && j.inviterID === inviterMember.id && j.storageID === guildSettings.storageID)[0];
+            const lastJoinData = inviterEvents.filter((j) => j.eventType === "join" && j.guildID === member.guild.id && j.inviterID === inviterMember.id && j.storageID === guildSettings.storageID)[0];
             if (lastJoinData){
                 this.client.database.addInvites({
                     userID: inviter.id,
@@ -222,7 +222,7 @@ module.exports = class {
             });
         }
 
-        const memberNumJoins = memberEvents.filter((e) => e.type === "join" && e.userID === member.id).length;
+        const memberNumJoins = memberEvents.filter((e) => e.eventType === "join" && e.userID === member.id).length;
         const joinDM = guildPlugins.find((plugin) => plugin.pluginName === "joinDM")?.pluginData;
         // DM Join messages
         if (joinDM.enabled && joinDM.mainMessage){
