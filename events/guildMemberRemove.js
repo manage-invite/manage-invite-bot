@@ -6,14 +6,14 @@ module.exports = class {
     async run (member) {
 
         const startAt = Date.now();
-        let logMessage = "----------";
+        let logMessage = "----------\n";
 
         // Prevent undefined left the server
         if (!member.user) {
             logMessage += "User not cached : fetched\n";
             member.user = await this.client.users.fetch(member.user.id);
-            logMessage += `Leave of ${member.user.tag} | (${member.id})\n`;
         }
+        logMessage += `Leave of ${member.user.tag} | (${member.id})\n`;
         if (!this.client.fetched) return;
 
         // Fetch guild and member data from the db
