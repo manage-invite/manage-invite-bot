@@ -27,6 +27,8 @@ module.exports = class {
             this.client.database.fetchGuildRanks(member.guild.id),
             this.client.database.fetchGuildPlugins(member.guild.id)
         ]);
+
+        member.guild.settings = guildSettings;
         
         /* Find who is the inviter */
 

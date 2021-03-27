@@ -34,6 +34,8 @@ module.exports = class {
             })
         ]);
 
+        member.guild.settings = guildSettings;
+
         const lastJoinData = memberEvents.filter((j) => j.type === "join" && j.guildID === member.guild.id && j.userID === member.id && j.storageID === guildSettings.storageID)[0];
 
         const inviter = lastJoinData?.joinType === "normal" && lastJoinData.inviteData ? await this.client.resolveUser(lastJoinData.inviterID) : null;
