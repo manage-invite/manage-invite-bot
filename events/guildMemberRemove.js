@@ -5,13 +5,14 @@ module.exports = class {
 
     async run (member) {
 
+        const startAt = Date.now();
         let logMessage = "----------";
-        logMessage += `Leave of ${member.user.tag} | (${member.id})\n`;
 
         // Prevent undefined left the server
         if (!member.user) {
             logMessage += "User not cached : fetched\n";
             member.user = await this.client.users.fetch(member.user.id);
+            logMessage += `Leave of ${member.user.tag} | (${member.id})\n`;
         }
         if (!this.client.fetched) return;
 
@@ -130,7 +131,7 @@ module.exports = class {
                 channel.send(formattedMessage);
             }
         }
-
+        logMessage += `Time: ${Date.now()-startAt}ms\n`;
         console.log(logMessage + "----------");
 
     }

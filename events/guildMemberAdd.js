@@ -7,6 +7,7 @@ module.exports = class {
 
     async run (member) {
 
+        const startAt = Date.now();
         let logMessage = "----------";
 
         if (!this.client.fetched) return;
@@ -317,7 +318,7 @@ module.exports = class {
                 channel.send(formattedMessage);
             }
         }
-
+        logMessage += `Time: ${Date.now()-startAt}ms\n`;
         console.log(logMessage + "----------");
 
     }
