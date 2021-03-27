@@ -247,8 +247,8 @@ const tasks = [
         name: "Delete useless guild subscriptions",
         execute: () => {
             return pool.query(`
-                DELETE FROM guild_subscriptions T1
-                    USING   guild_subscriptions T2
+                DELETE FROM guilds_subscriptions T1
+                    USING   guilds_subscriptions T2
                 WHERE   T1.ctid < T2.ctid 
                     AND T1.guild_id = T2.guild_id 
                     AND T1.sub_id  = T2.sub_id;
@@ -259,7 +259,7 @@ const tasks = [
         name: "Create guild subscriptions unique constraint",
         execute: () => {
             return pool.query(`
-                ALTER TABLE guild_subscriptions
+                ALTER TABLE guilds_subscriptions
                 ADD UNIQUE (guild_id, sub_id);
             `);
         }
@@ -280,7 +280,7 @@ const tasks = [
         name: "Create subscriptions payments unique constraint",
         execute: () => {
             return pool.query(`
-                ALTER TABLE guild_subscriptions
+                ALTER TABLE guilds_subscriptions
                 ADD UNIQUE (payment_id, sub_id);
             `);
         }
