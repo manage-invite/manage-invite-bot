@@ -106,7 +106,7 @@ module.exports = class {
             const channel = member.guild.channels.cache.get(leave.channel);
             if (!channel) return;
             logMessage += "Leave: sent\n";
-            const joinType = lastJoinData?.type;
+            const joinType = lastJoinData?.joinType;
             if (invite){
                 const formattedMessage = this.client.functions.formatMessage(
                     leave.mainMessage,
