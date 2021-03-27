@@ -1,6 +1,6 @@
 {
     "DISABLE": "พิมพ์ `{{prefix}}setleave` เพื่อปิดใช้งานข้อความออก",
-    "INSTRUCTIONS_1": "__**More informations**__\n```{{variables}}```\nSend `cancel` to cancel. {{string}}\n\n:sparkles: Embed messages are now available! You can generate an embed here: <https://embed-generator.manage-invite.xyz/> and send the json code below!\n\n\n:pencil: **| Now send the leave message... :pencil2:**",
+    "INSTRUCTIONS_1": "__**ข้อมูลเพิ่มเติม**__\n``{{variables}}``\nส่ง \"ยกเลิก\" เพื่อยกเลิก {{string}}\n\n:sparkles: ข้อความ Embed พร้อมใช้งานแล้ว! คุณสามารถสร้าง Embed ได้ที่นี่: <https://embed-generator.manage-invite.xyz/> และส่งรหัส json ด้านล่าง!\n\n\n:pencil: ** | ตอนนี้ส่งข้อความออก ... :pencil2:**",
     "INSTRUCTIONS_2": ":scroll: **| ตอนนี้ส่งชื่อช่องออก หรือกล่าวถึงช่อง :pencil2:**",
     "TITLE": "**ตั้งค่าข้อความออกเสร็จเรียบร้อยแล้ว**",
     "TEST": "ใช้ `{{prefix}}testleave` เพื่อทดสอบข้อความใหม่",
