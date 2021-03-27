@@ -15,9 +15,9 @@ module.exports = class extends Command {
         const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
         const plugin = guildPlugins.find((p) => p.pluginName === "leave")?.pluginData;
 
-        if (!plugin.enabled){
+        if (!plugin?.enabled){
             await this.client.database.updateGuildPlugin(message.guild.id, "leave", {
-                ...plugin,
+                ...(plugin || {}),
                 enabled: true
             });
             return message.success("config/setleave:ENABLED");

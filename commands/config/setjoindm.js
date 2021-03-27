@@ -15,9 +15,9 @@ module.exports = class extends Command {
         const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
         const plugin = guildPlugins.find((p) => p.pluginName === "joinDM")?.pluginData;
 
-        if (!plugin.enabled){
+        if (!plugin?.enabled){
             await this.client.database.updateGuildPlugin(message.guild.id, "joinDM", {
-                ...plugin,
+                ...(plugin || {}),
                 enabled: true
             });
             return message.success("config/setjoindm:ENABLED");
