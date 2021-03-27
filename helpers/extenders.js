@@ -3,7 +3,7 @@ const config = require("../config");
 const Constants = require("./constants");
 
 Guild.prototype.translate = function (key, args) {
-    const language = this.client.translations.get(this.data.language);
+    const language = this.client.translations.get(this.settings.language);
     if (!language) throw "Message: Invalid language set in data.";
     return language(key, args);
 };
