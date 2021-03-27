@@ -1,9 +1,9 @@
 {
     "MISSING_AMOUNT": "You must specify the number of bonus invites you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
     "INVALID_AMOUNT": "You must specify a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
-    "MISSING_TARGET": "You must mention the member to whom you want to add the bonus invites (or `all` if you want to add the invites to everyone). (Syntax: {{prefix}}addbonus number @member/all)",
-    "CONFIRMATION_ALL": ":warning: Are you sure you want to add **{{count}}** bonus invites to everyone? This can take a long time (depending on the size of your server)! Send `-confirm` to continue and `cancel` to cancel.",
+    "MISSING_TARGET": "Je moet het lid vermelden bij wie je bonus uitnodigingen wilt toevoegen (of `all` als je uitnodigingen bij iedereen wilt toevoegen). (Syntaxis: {{prefix}}addbonus nummer @lid/all)",
+    "CONFIRMATION_ALL": ":warning: Weet je zeker dat je **{{count}}** bonus uitnodigingen wilt toevoegen aan iedereen? Dit kan lang duren (hangt af van de grootte van je server)! Stuur `-confirm` om door te gaan en `cancel` om te stoppen.",
     "SUCCESS_TITLE": "📥 Bonus Uitnodigingen Toegevoegd",
-    "SUCCESS_CONTENT_ALL": "Bonus invites added for everyone!",
+    "SUCCESS_CONTENT_ALL": "Bonus uitnodigingen toegevoegd voor iedereen!",
     "SUCCESS_CONTENT_MEMBER": "Send `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
 }
