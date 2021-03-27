@@ -22,7 +22,7 @@ module.exports = class extends Command {
             guildID = invite.channel.guild.id;
         }
         
-        const guildData = await this.client.database.fetchGuild(guildID);
+        const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(guildID);
         const guildNames = await this.client.shard.broadcastEval(`
             let guild = this.guilds.cache.get('${guildID}');
             if(guild) guild.name;
@@ -31,12 +31,14 @@ module.exports = class extends Command {
         const guildName = guildNameFound || guildID;
 
         const subscriptionID = parseInt(args[1]);
-        const subscription = guildData.subscriptions.find((sub) => sub.id === subscriptionID);
+        const subscription = guildSubscriptions.find((sub) => sub.id === subscriptionID);
 
         if (!subscription) return message.error("No sub ID found for that query!");
 
-        await subscription.invalidate();
+        await this.client.database.updateGuildSubscription(subscription.id, guildID, {
+            sub_invalidated: true
+        });
 
-        return message.channel.send(`${Constants.Emojis.SUCCESS} | Subscription invalidated for guild **${guildName}**. Get more informations with \`${message.guild.data.prefix}sub ${guildID}\`.`);
+        return message.channel.send(`${Constants.Emojis.SUCCESS} | Subscription invalidated for guild **${guildName}**. Get more informations with \`${message.guild.settings.prefix}sub ${guildID}\`.`);
     }
 };
