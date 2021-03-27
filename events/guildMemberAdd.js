@@ -118,51 +118,54 @@ module.exports = class {
 
             let joinFake = false;
 
-            // If the member had previously invited this member and they have left
-            const lastJoinData = inviterEvents.filter((j) => j.eventType === "join" && j.guildID === member.guild.id && j.inviterID === inviterMember.id && j.storageID === guildSettings.storageID)[0];
-            if (lastJoinData){
-                this.client.database.addInvites({
-                    userID: inviter.id,
-                    guildID: member.guild.id,
-                    storageID: guildSettings.storageID,
-                    number: -1,
-                    type: "leaves"
-                });
-                inviterData.leaves--;
-                this.client.database.addInvites({
-                    userID: inviter.id,
-                    guildID: member.guild.id,
-                    storageID: guildSettings.storageID,
-                    number: 1,
-                    type: "fake"
-                });
-                inviterData.fake++;
-            } else if (inviter.id === member.id) {
-                this.client.database.addInvites({
-                    userID: inviter.id,
-                    guildID: member.guild.id,
-                    storageID: guildSettings.storageID,
-                    number: 1,
-                    type: "fake"
-                });
-                inviterData.fake++;
-            } else {
-                const fakeThreshold = guildSettings.fakeThreshold;
-                if (fakeThreshold) {
-                    const inThreshold = (member.user.createdTimestamp + (fakeThreshold * 24 * 60 * 60 * 1000)) > Date.now();
-                    if (inThreshold) {
-                        joinFake = true;
-                        this.client.database.addInvites({
-                            userID: inviter.id,
-                            guildID: member.guild.id,
-                            storageID: guildSettings.storageID,
-                            number: 1,
-                            type: "fake"
-                        });
-                        inviterData.fake++;
+            if (inviterMember) {
+                // If the member had previously invited this member and they have left
+                const lastJoinData = inviterEvents.filter((j) => j.eventType === "join" && j.guildID === member.guild.id && j.inviterID === inviterMember.id && j.storageID === guildSettings.storageID)[0];
+                if (lastJoinData){
+                    this.client.database.addInvites({
+                        userID: inviter.id,
+                        guildID: member.guild.id,
+                        storageID: guildSettings.storageID,
+                        number: -1,
+                        type: "leaves"
+                    });
+                    inviterData.leaves--;
+                    this.client.database.addInvites({
+                        userID: inviter.id,
+                        guildID: member.guild.id,
+                        storageID: guildSettings.storageID,
+                        number: 1,
+                        type: "fake"
+                    });
+                    inviterData.fake++;
+                } else if (inviter.id === member.id) {
+                    this.client.database.addInvites({
+                        userID: inviter.id,
+                        guildID: member.guild.id,
+                        storageID: guildSettings.storageID,
+                        number: 1,
+                        type: "fake"
+                    });
+                    inviterData.fake++;
+                } else {
+                    const fakeThreshold = guildSettings.fakeThreshold;
+                    if (fakeThreshold) {
+                        const inThreshold = (member.user.createdTimestamp + (fakeThreshold * 24 * 60 * 60 * 1000)) > Date.now();
+                        if (inThreshold) {
+                            joinFake = true;
+                            this.client.database.addInvites({
+                                userID: inviter.id,
+                                guildID: member.guild.id,
+                                storageID: guildSettings.storageID,
+                                number: 1,
+                                type: "fake"
+                            });
+                            inviterData.fake++;
+                        }
                     }
                 }
             }
+           
 
             this.client.database.addInvites({
                 userID: inviter.id,
