@@ -68,12 +68,12 @@ module.exports = class {
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
                 await this.client.database.removeGuildInvites(guild.id);
                 const memberData = await this.client.database.fetchGuildMember({
-                    userID: user.id,
+                    userID: user,
                     guildID: guild.id,
                     storageID: guild.settings.storageID
                 });
                 if (memberData.notCreated) await this.client.database.createGuildMember({
-                    userID: user.id,
+                    userID: user,
                     guildID: guild.id,
                     storageID: guild.settings.storageID
                 });

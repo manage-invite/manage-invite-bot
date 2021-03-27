@@ -28,12 +28,12 @@ module.exports = class extends Command {
             const users = new Set(guildInvites.filter((i) => i.inviter).map((i) => i.inviter.id));
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
                 const memberData = await this.client.database.fetchGuildMember({
-                    userID: user.id,
+                    userID: user,
                     guildID: message.guild.id,
                     storageID: message.guild.settings.storageID
                 });
                 if (memberData.notCreated) await this.client.database.createGuildMember({
-                    userID: user.id,
+                    userID: user,
                     guildID: message.guild.id,
                     storageID: message.guild.settings.storageID
                 });
