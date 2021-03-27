@@ -16,7 +16,7 @@ module.exports = class extends Command {
     async run (message, args, data) {
 
         const member = args[0] ? await this.client.resolveMember(args.join(" "), message.guild) : null;
-        if (member) member.data = await this.client.database.fetchMember({
+        if (member) member.data = await this.client.database.fetchGuildMember({
             userID: member.id,
             guildID: message.guild.id
         });

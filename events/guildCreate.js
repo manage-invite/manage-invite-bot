@@ -25,9 +25,9 @@ module.exports = class {
         await guild.members.fetch(this.client.user.id);
         const isValidGuild = new Date(guild.me.joinedTimestamp).getDate() === new Date().getDate();
 
-        const guildData = await this.client.database.fetchGuild(guild.id);
-        const welcomeMessage = guildData ?
-            `My prefix is \`${guildData.prefix}\`. If you want to remove server invites to start over from scratch, you can use \`${guildData.prefix}remove-invites\`. If you want to synchronize current server invites with the bot, you can use \`${guildData.prefix}sync-invites\`\n \n**--------------**\n`
+        const guildSettings = await this.client.database.fetchGuildSettings(guild.id);
+        const welcomeMessage = guildSettings ?
+            `My prefix is \`${guildSettings.prefix}\`. If you want to remove server invites to start over from scratch, you can use \`${guildSettings.prefix}remove-invites\`. If you want to synchronize current server invites with the bot, you can use \`${guildSettings.prefix}sync-invites\`\n \n**--------------**\n`
             : "My prefix is `+`. If you want to remove server invites to start over from scratch, you can use `+remove-invites`.\n \n**--------------**\n";            
 
         const guildCreate = escape(JSON.stringify(new Discord.MessageEmbed()
@@ -61,15 +61,29 @@ module.exports = class {
             inviter.send(joinEmbed);
 
             await this.client.wait(5000);
-            const client = this.client;
             const guildInvites = await guild.fetchInvites().catch(() => {});
             this.client.invitations[guild.id] = guildInvites || null;
             if (!guildInvites) return;
             const users = new Set(guildInvites.map((i) => i.inviter.id));
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
-                const memberData = await client.database.fetchMember(user, guild.id);
-                memberData.regular = guildInvites.filter((i) => i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c);
-                await memberData.updateInvites();
+                await this.client.database.removeGuildInvites(guild.id);
+                const memberData = await this.client.database.fetchGuildMember({
+                    userID: user.id,
+                    guildID: guild.id,
+                    storageID: guild.settings.storageID
+                });
+                if (memberData.notCreated) await this.client.database.createGuildMember({
+                    userID: user.id,
+                    guildID: guild.id,
+                    storageID: guild.settings.storageID
+                });
+                await this.client.database.addInvites({
+                    userID: user,
+                    guildID: guild.id,
+                    storageID: guild.settings.storageID,
+                    number: guildInvites.filter((i) => i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c),
+                    type: "regular"
+                });
             });
 
         }
