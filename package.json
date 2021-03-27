@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.20.0"
+    "eslint": "^7.23.0"
   },
   "scripts": {
     "start": "node sharder.js"
