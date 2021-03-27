@@ -8,7 +8,7 @@ module.exports = class {
     async run (member) {
 
         if (!this.client.fetched) return;
-        console.log("Calculating for member "+member.id+" | "+member.user.tag);
+        console.log("Calculating join for member "+member.id+" | "+member.user.tag);
         const startAt = Date.now();
 
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(member.guild.id);

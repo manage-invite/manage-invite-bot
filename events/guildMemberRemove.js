@@ -5,11 +5,12 @@ module.exports = class {
 
     async run (member) {
 
-        const startAt = Date.now();
-
         // Prevent undefined left the server
         if (!member.user) return;
         if (!this.client.fetched) return;
+
+        const startAt = Date.now();
+        console.log("Calculating leave for member "+member.id+" | "+member.user.tag);
 
         // Fetch guild and member data from the db
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(member.guild.id);
