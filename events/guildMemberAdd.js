@@ -12,7 +12,7 @@ module.exports = class {
 
         if (!this.client.fetched) return;
         logMessage += `Join of ${member.user.tag} | (${member.id})\n`;
-        logMessage += `Guild: ${member.guild.id}`;
+        logMessage += `Guild: ${member.guild.id}\n`;
 
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(member.guild.id);
         const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now());
