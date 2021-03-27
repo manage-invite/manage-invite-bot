@@ -77,11 +77,12 @@ module.exports = class {
                 });
                 inviterData.fake--;
             }
-            await this.client.database.createEvent({
+            await this.client.database.createGuildMemberEvent({
                 userID: member.id,
                 guildID: member.guild.id,
                 eventType: "leave",
-                eventDate: new Date()
+                eventDate: new Date(),
+                storageID: guildSettings.storageID
             });
             const inviterMember = member.guild.members.cache.get(inviter.id) ?? await member.guild.members.fetch({
                 user: inviter.id,
