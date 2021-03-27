@@ -1,11 +1,11 @@
 {
     "MISSING_COUNT": "You must specify the number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
     "INCORRECT_COUNT": " You must specify a __**valid**__ number of invites required to obtain the rank. (Syntax: {{prefix}}addrank number @role)",
-    "ALREADY_EXIST": "There is already a defined role for **{{count}}** invites (`{{roleName}}`)! Remove it with `{{prefix}}removerank {{roleID}}` then try again!",
-    "MISSING_ROLE": "You must mention the role you want to be added when the invite count is reached! (Syntax: {{prefix}}addrank number @role)",
+    "ALREADY_EXIST": "Er is al een rol voor **{{count}}** uitnodigingen. (`{{roleName}}`)! Verwijder het met `{{prefix}}removerank {{roleID}}` en probeer het opnieuw!",
+    "MISSING_ROLE": "Je moet de rol vermelden die je wilt dat toegevoegd wordt, wanneer het aantal uitnodigingen is behaald. (Syntaxis: {{prefix}}addrank nummer @rol)",
     "ALREADY_USED": "This role is already used for **{{count}}** invites! Remove it by sending `{{prefix}}removerank {{roleID}}` and try again!",
-    "MISSING_PERM": "My role is not high enough to add the role `{{roleName}}` to the members! Please put my role up and try again!",
-    "TITLE": "🎯 New role added",
-    "CONTENT": "When a member will reach **{{count}}** invites, they will obtain `{{roleName}}`!",
-    "MANAGED": "Managed roles can't be defined as a rank reward."
+    "MISSING_PERM": "Mijn rol is niet hoog genoeg om de rol `{{roleName}}` te geven aan leden. Zet alsjeblieft mijn rol omhoog en probeer het opnieuw!",
+    "TITLE": "🎯 Nieuwe rol toegevoegd",
+    "CONTENT": "Wanneer een lid **{{count}}** uitnodigingen behaald, ontvangt hij de rol `{{roleName}}**!",
+    "MANAGED": "Administrator rollen kunnen niet als rang beloning worden ingesteld."
 }
