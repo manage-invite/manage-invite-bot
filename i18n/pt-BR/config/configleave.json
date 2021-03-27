@@ -1,8 +1,8 @@
 {
-    "DISABLE": "Type `{{prefix}}setleave` to disable leave messages",
+    "DISABLE": "Digite `{{prefix}}setleave` para desabilitar as mensagens de saída",
     "INSTRUCTIONS_1": "__**More informations**__\n```{{variables}}```\nSend `cancel` to cancel. {{string}}\n\n:sparkles: Embed messages are now available! You can generate an embed here: <https://embed-generator.manage-invite.xyz/> and send the json code below!\n\n\n:pencil: **| Now send the leave message... :pencil2:**",
     "INSTRUCTIONS_2": ":scroll: **| Now send the leave channel name or mention it... :pencil2:**",
-    "TITLE": "**Done The leave Msg Has Been Setup**",
-    "TEST": "Use `{{prefix}}testleave` to test the new message.",
-    "CHANNEL_NOT_FOUND": "No channel found for `{{channel}}`"
+    "TITLE": "**Concluído, a mensagem de saída foi configurada**",
+    "TEST": "Use `{{prefix}}testleave ` para testar a nova mensagem.",
+    "CHANNEL_NOT_FOUND": "Nenhum canal encontrado para `{{channel}}`"
 }
