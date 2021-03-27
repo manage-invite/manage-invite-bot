@@ -461,7 +461,7 @@ module.exports = class DatabaseHandler {
             this.redis.incrHashBy(`member_${userID}_${guildID}_${storageID}`, type, number),
             this.postgres.query(`
                 UPDATE members
-                SET invites_${type} = $1
+                SET invites_${type} = invites_${type} + $1
                 WHERE user_id = $2
                 AND guild_id = $3
                 AND storage_id = $4;
