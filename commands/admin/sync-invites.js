@@ -26,6 +26,7 @@ module.exports = class extends Command {
             if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete().catch(() => {});
             const users = new Set(guildInvites.filter((i) => i.inviter).map((i) => i.inviter.id));
+            await this.client.database.removeGuildInvites(message.guild.id);
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
                 const memberData = await this.client.database.fetchGuildMember({
                     userID: user,
