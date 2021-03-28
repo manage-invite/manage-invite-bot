@@ -26,22 +26,22 @@ module.exports = class extends Command {
             if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete().catch(() => {});
             const users = new Set(guildInvites.filter((i) => i.inviter).map((i) => i.inviter.id));
-            await this.client.database.removeGuildInvites(message.guild.id);
+            const newStorageID = await this.client.database.removeGuildInvites(message.guild.id);
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
                 const memberData = await this.client.database.fetchGuildMember({
                     userID: user,
                     guildID: message.guild.id,
-                    storageID: message.guild.settings.storageID
+                    storageID: newStorageID
                 });
                 if (memberData.notCreated) await this.client.database.createGuildMember({
                     userID: user,
                     guildID: message.guild.id,
-                    storageID: message.guild.settings.storageID
+                    storageID: newStorageID
                 });
                 await this.client.database.addInvites({
                     userID: user,
                     guildID: message.guild.id,
-                    storageID: message.guild.settings.storageID,
+                    storageID: newStorageID,
                     number: guildInvites.filter((i) => i.inviter && i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c),
                     type: "regular"
                 });

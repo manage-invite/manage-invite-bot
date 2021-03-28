@@ -86,6 +86,8 @@ module.exports = class DatabaseHandler {
             (guild_id, storage_id, created_at) VALUES
             ($1, $2, $3);
         `, guildID, newStorageID, new Date().toISOString());
+
+        return newStorageID;
     }
 
     /**

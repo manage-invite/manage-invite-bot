@@ -66,21 +66,21 @@ module.exports = class {
             if (!guildInvites) return;
             const users = new Set(guildInvites.map((i) => i.inviter.id));
             await this.client.functions.asyncForEach(Array.from(users), async (user) => {
-                await this.client.database.removeGuildInvites(guild.id);
+                const newStorageID = await this.client.database.removeGuildInvites(guild.id);
                 const memberData = await this.client.database.fetchGuildMember({
                     userID: user,
                     guildID: guild.id,
-                    storageID: guild.settings.storageID
+                    storageID: newStorageID
                 });
                 if (memberData.notCreated) await this.client.database.createGuildMember({
                     userID: user,
                     guildID: guild.id,
-                    storageID: guild.settings.storageID
+                    storageID: newStorageID
                 });
                 await this.client.database.addInvites({
                     userID: user,
                     guildID: guild.id,
-                    storageID: guild.settings.storageID,
+                    storageID: newStorageID,
                     number: guildInvites.filter((i) => i.inviter.id === user).map((i) => i.uses).reduce((p, c) => p + c),
                     type: "regular"
                 });
