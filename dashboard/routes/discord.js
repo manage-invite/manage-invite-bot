@@ -1,7 +1,6 @@
 const express = require("express"),
     router = express.Router(),
     fetch = require("node-fetch"),
-    btoa = require("btoa"),
     Discord = require("discord.js");
 
 // Gets login page
@@ -32,7 +31,7 @@ router.get("/callback", async (req, res) => {
         method: "POST",
         body: params.toString(),
         headers: {
-            Authorization: `Basic ${btoa(`${req.client.user.id}:${req.client.config.secret}`)}`,
+            Authorization: `Basic ${Buffer.from(`${req.client.user.id}:${req.client.config.secret}`, "binary").toString("base64")}`,
             "Content-Type": "application/x-www-form-urlencoded"
         }
     });
