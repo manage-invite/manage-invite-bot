@@ -124,7 +124,7 @@ module.exports = class {
 
             if (inviterMember) {
                 // If the member had previously invited this member and they have left
-                const lastJoinData = inviterEvents.filter((j) => j.eventType === "join" && j.guildID === member.guild.id && j.inviterID === inviterMember.id && j.storageID === guildSettings.storageID)[0];
+                const lastJoinData = inviterEvents.filter((j) => j.eventType === "join" && j.guildID === member.guild.id && j.inviterID === inviterMember.id && j.userID === member.id && j.storageID === guildSettings.storageID)[0];
                 if (lastJoinData){
                     this.client.database.addInvites({
                         userID: inviter.id,
