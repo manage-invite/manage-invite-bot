@@ -23,7 +23,7 @@ module.exports = class {
         }
         
         await guild.members.fetch(this.client.user.id);
-        const isValidGuild = new Date(guild.me.joinedTimestamp).getDate() === new Date().getDate();
+        const isValidGuild = guild.me.joinedTimestamp > (Date.now() - 20000);
 
         const guildSettings = await this.client.database.fetchGuildSettings(guild.id);
         const welcomeMessage = guildSettings ?
