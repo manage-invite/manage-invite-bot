@@ -685,17 +685,17 @@ module.exports = class DatabaseHandler {
      * Insert a new event record in the database
      */
     async createGuildMemberEvent ({ userID, guildID, eventDate = new Date(), eventType, joinType, inviterID, inviteData, joinFake, storageID }) {
-        this.redis.getString(`member_${userID}_${guildID}_events`, { json: true }).then((data) => {
+        await this.redis.getString(`member_${userID}_${guildID}_events`, { json: true }).then((data) => {
             if (data) {
-                const newData = [...data, ];
-                this.redis.setString(`member_${userID}_${guildID}_events`, JSON.stringify(newData));
+                const newData = [...data, { userID, guildID, eventDate, eventType, joinType, inviterID, inviteData, joinFake, storageID }];
+                return this.redis.setString(`member_${userID}_${guildID}_events`, JSON.stringify(newData));
             }
         });
         if (inviterID) {
-            this.redis.getString(`member_${inviterID}_${guildID}_events`, { json: true }).then((data) => {
+            await this.redis.getString(`member_${inviterID}_${guildID}_events`, { json: true }).then((data) => {
                 if (data) {
                     const newData = [...data, { userID, guildID, eventDate, eventType, joinType, inviterID, inviteData, joinFake, storageID }];
-                    this.redis.setString(`member_${inviterID}_${guildID}_events`, JSON.stringify(newData));
+                    return this.redis.setString(`member_${inviterID}_${guildID}_events`, JSON.stringify(newData));
                 }
             });
         }
