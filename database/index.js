@@ -276,7 +276,16 @@ module.exports = class DatabaseHandler {
      */
     async fetchGuildSettings (guildID) {
         const redisData = await this.redis.getHash(`guild_${guildID}`);
-        if (redisData?.guildID) return redisData;
+        if (redisData?.guildID) return {
+            guildID: redisData.guildID,
+            storageID: redisData.storageID,
+            language: redisData.language,
+            prefix: redisData.prefix,
+            keepRanks: redisData.keepRanks === "true",
+            stackedRanks: redisData.stackedRanks === "true",
+            cmdChannel: redisData.cmdChannel,
+            fakeThreshold: redisData.fakeThreshold
+        };
 
         let { rows } = await this.postgres.query(`
             SELECT *
