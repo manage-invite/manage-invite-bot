@@ -80,9 +80,7 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
 
     if (req.params.form === "basic"){
         if (Object.prototype.hasOwnProperty.call(data, "prefix") && data.prefix && data.prefix !== guildSettings.prefix){
-            await req.client.database.updateGuildSetting(req.params.serverID, {
-                prefix: data.prefix
-            });
+            await req.client.database.updateGuildSetting(req.params.serverID, "prefix", data.prefix);
         }
         if (Object.prototype.hasOwnProperty.call(data, "language") && req.client.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(data.language.toLowerCase()))){
             const language = req.client.enabledLanguages.find((l) => l.name.toLowerCase() === data.language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(data.language.toLowerCase()));
@@ -96,22 +94,14 @@ router.post("/:serverID/:form", CheckAuth, async (req, res) => {
         const stackedRanks = !Object.prototype.hasOwnProperty.call(data, "stacked-ranks");
         const keepRanks = Object.prototype.hasOwnProperty.call(data, "keep-ranks");
         if (stackedRanks && !guildSettings.stackedRanks) {
-            await req.client.database.updateGuildSetting(req.params.serverID, {
-                stackedRanks: true
-            });
+            await req.client.database.updateGuildSetting(req.params.serverID, "stackedRanks", true);
         } else if (!stackedRanks && guildSettings.stackedRanks) {
-            await req.client.database.updateGuildSetting(req.params.serverID, {
-                stackedRanks: false
-            });
+            await req.client.database.updateGuildSetting(req.params.serverID, "stackedRanks", false);
         }
         if (keepRanks && !guildSettings.keepRanks) {
-            await req.client.database.updateGuildSetting(req.params.serverID, {
-                keepRanks: true
-            });
+            await req.client.database.updateGuildSetting(req.params.serverID, "keepRanks", true);
         } else if (!keepRanks && guildSettings.keepRanks) {
-            await req.client.database.updateGuildSetting(req.params.serverID, {
-                keepRanks: false
-            });
+            await req.client.database.updateGuildSetting(req.params.serverID, "keepRanks", false);
         }
     }
 

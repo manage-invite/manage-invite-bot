@@ -2,7 +2,7 @@ const { Client, Collection } = require("discord.js"),
     util = require("util"),
     path = require("path");
 
-const DatabaseHandler = require("../database");
+const DatabaseHandler = require("@manage-invite/manage-invite-db-client");
 
 // Creates ManageInvite class
 class ManageInvite extends Client {
@@ -25,7 +25,7 @@ class ManageInvite extends Client {
         this.fetched = false;
         this.fetching = false;
         // Databases
-        this.database = new DatabaseHandler(this);
+        this.database = new DatabaseHandler(this.config.redis, this.config.postgres, this.log);
         // Dashboard
         this.dash = require("../dashboard/app");
         this.states = {};

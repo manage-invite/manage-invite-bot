@@ -52,9 +52,9 @@ module.exports = class extends Command {
                 guildsCount: 1,
                 subLabel: "Premium "+(isMonth ? "Monthly" : "Yearly")+" 1 Guild"
             });
-        } else await this.client.database.updateGuildSubscription(subscription.id, guildID, {
-            expiresAt: new Date((new Date(subscription.expiresAt).getTime() > Date.now() ? new Date(subscription.expiresAt).getTime() : Date.now()) + ((isMonth ? 31 : 366) * 24 * 60 * 60 * 1000)).toISOString()
-        });
+        } else await this.client.database.updateGuildSubscription(subscription.id, guildID, "expiresAt",
+            new Date((new Date(subscription.expiresAt).getTime() > Date.now() ? new Date(subscription.expiresAt).getTime() : Date.now()) + ((isMonth ? 31 : 366) * 24 * 60 * 60 * 1000)).toISOString()
+        );
 
         await this.client.database.createSubscriptionPayment(subscription.id, {
             modDiscordID: message.author.id,

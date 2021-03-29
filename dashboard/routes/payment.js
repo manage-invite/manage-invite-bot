@@ -145,9 +145,9 @@ router.post("/ipn", async (req, res) => {
                             subLabel: "Premium Monthly 1 Guild",
                             guildsCount: 1
                         });
-                    } else await req.client.database.updateGuildSubscription(currentSubscription.id, guildID, {
-                        expiresAt: new Date((new Date(currentSubscription.expiresAt).getTime() > Date.now() ? new Date(currentSubscription.expiresAt).getTime() : Date.now()) + 7 * 24 * 60 * 60 * 1000).toISOString()
-                    });
+                    } else await req.client.database.updateGuildSubscription(currentSubscription.id, guildID, "expiresAt",
+                        new Date((new Date(currentSubscription.expiresAt).getTime() > Date.now() ? new Date(currentSubscription.expiresAt).getTime() : Date.now()) + 7 * 24 * 60 * 60 * 1000).toISOString()
+                    );
                     await req.client.database.createSubscriptionPayment(currentSubscription.id, {
                         payerDiscordID: paymentData[1],
                         payerDiscordUsername: user.tag,

@@ -17,15 +17,11 @@ module.exports = class extends Command {
             return message.error("config/set-fake-threshold:MISSING_DAYS");
         }
         if (fakeThreshold === "disable") {
-            await this.client.database.updateGuildSetting(message.guild.id, {
-                fakeThreshold: null
-            });
+            await this.client.database.updateGuildSetting(message.guild.id, "fakeThreshold", null);
             message.success("config/set-fake-threshold:DISABLED");
         } else {
             const dayCount = parseInt(fakeThreshold);
-            await this.client.database.updateGuildSetting(message.guild.id, {
-                fakeThreshold: dayCount
-            });
+            await this.client.database.updateGuildSetting(message.guild.id, "fakeThreshold", dayCount);
             message.success("config/set-fake-threshold:UPDATED", {
                 dayCount
             });

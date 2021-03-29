@@ -14,9 +14,7 @@ module.exports = class extends Command {
     async run (message, args) {
         const prefix = args[0];
         if (!prefix) return message.error("config/setprefix:MISSING");
-        await this.client.database.updateGuildSetting(message.guild.id, {
-            prefix
-        });
+        await this.client.database.updateGuildSetting(message.guild.id, "prefix", prefix);
         message.success("config/setprefix:SUCCESS");
     }
 };
