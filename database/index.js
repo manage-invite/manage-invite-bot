@@ -669,7 +669,8 @@ module.exports = class DatabaseHandler {
             joinType: row.join_type,
             inviterID: row.inviter_user_id,
             inviteData: row.invite_data,
-            storageID: row.storage_id
+            storageID: row.storage_id,
+            joinFake: row.join_fake
         }));
         this.redis.setString(`member_${userID}_${guildID}_events`, JSON.stringify(formattedEvents));
 
