@@ -641,7 +641,7 @@ module.exports = class DatabaseHandler {
      * Get the member events (the events where they were invited and the events where they invited someone else)
      */
     async fetchGuildMemberEvents ({ userID, guildID }) {
-        const redisData = await this.redis.getJSON(`member_${userID}_${guildID}_events`);
+        const redisData = await this.redis.getString(`member_${userID}_${guildID}_events`, { json: true });
         if (redisData) return redisData;
 
         const { rows } = await this.postgres.query(`
@@ -662,7 +662,7 @@ module.exports = class DatabaseHandler {
             inviteData: row.invite_data,
             storageID: row.storage_id
         }));
-        this.redis.setJSON(`member_${userID}_${guildID}_events`, ".", formattedEvents);
+        this.redis.setString(`member_${userID}_${guildID}_events`, JSON.stringify(formattedEvents));
 
         return formattedEvents;
     }
