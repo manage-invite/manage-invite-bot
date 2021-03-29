@@ -616,7 +616,7 @@ module.exports = class DatabaseHandler {
             bonus: parseInt(redisData.bonus),
             regular: parseInt(redisData.regular),
             
-            notCreated: redisData === "true",
+            notCreated: redisData.notCreated === "true",
             invites: parseInt(redisData.regular) + parseInt(redisData.bonus) - parseInt(redisData.leaves) - parseInt(redisData.fake)
         };
 
