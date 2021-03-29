@@ -60,6 +60,7 @@ module.exports = class {
                 .setColor(Constants.Embed.COLOR);
             inviter.send(joinEmbed);
 
+            /*
             await this.client.wait(5000);
             const guildInvites = await guild.fetchInvites().catch(() => {});
             this.client.invitations[guild.id] = guildInvites || null;
@@ -85,6 +86,7 @@ module.exports = class {
                     type: "regular"
                 });
             });
+            */
 
         }
     }
