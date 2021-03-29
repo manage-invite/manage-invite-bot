@@ -687,14 +687,14 @@ module.exports = class DatabaseHandler {
     async createGuildMemberEvent ({ userID, guildID, eventDate = new Date(), eventType, joinType, inviterID, inviteData, joinFake, storageID }) {
         await this.redis.getString(`member_${userID}_${guildID}_events`, { json: true }).then((data) => {
             if (data) {
-                const newData = [...data, { userID, guildID, eventDate, eventType, joinType, inviterID, inviteData, joinFake, storageID }];
+                const newData = [...data, { userID, guildID, eventDate: eventDate.getTime(), eventType, joinType, inviterID, inviteData, joinFake, storageID }];
                 return this.redis.setString(`member_${userID}_${guildID}_events`, JSON.stringify(newData));
             }
         });
         if (inviterID) {
             await this.redis.getString(`member_${inviterID}_${guildID}_events`, { json: true }).then((data) => {
                 if (data) {
-                    const newData = [...data, { userID, guildID, eventDate, eventType, joinType, inviterID, inviteData, joinFake, storageID }];
+                    const newData = [...data, { userID, guildID, eventDate: eventDate.getTime(), eventType, joinType, inviterID, inviteData, joinFake, storageID }];
                     return this.redis.setString(`member_${inviterID}_${guildID}_events`, JSON.stringify(newData));
                 }
             });
