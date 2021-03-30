@@ -241,7 +241,7 @@ module.exports = class DatabaseHandler {
                 UPDATE subscriptions
                 SET ${snakeCase(setting)} = $1
                 WHERE id = $2;
-            `, newSettingData[setting], subID)
+            `, newSettingData[setting], subID).then((res) => console.log("Update subscription", res))
         ]);
     }
 
