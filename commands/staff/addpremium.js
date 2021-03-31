@@ -40,7 +40,7 @@ module.exports = class extends Command {
 
         const createdAt = new Date();
 
-        const subscription = await this.client.database.createGuildSubscription(message.guild.id, {
+        const subscription = await this.client.database.createGuildSubscription(premiumArgs.guildID, {
             expiresAt: new Date(Date.now()+(premiumArgs.daysCount*24*60*60*1000)),
             createdAt,
             guildsCount: premiumArgs.guildsCount,
