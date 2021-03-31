@@ -57,7 +57,7 @@ module.exports = class extends Command {
             createdAt
         });
 
-        return message.channel.send(`${Constants.Emojis.SUCCESS} | Subscription created. Get more informations with \`${message.guild.data.prefix}sub ${premiumArgs.guildID}\`.`);
+        return message.channel.send(`${Constants.Emojis.SUCCESS} | Subscription created. Get more informations with \`${message.guild.settings.prefix}sub ${premiumArgs.guildID}\`.`);
 
     }
 };

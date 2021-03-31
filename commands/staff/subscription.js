@@ -60,7 +60,7 @@ module.exports = class extends Command {
                 subContents.push(previousContent + currentContent);
             });
             subContents.forEach((content) => {
-                embed.addField(`${aboutToExpire ? Constants.Emojis.IDLE : active ? Constants.Emojis.ONLINE : Constants.Emojis.DND + (invalidated ? ` ${Constants.Emojis.OFFLINE}` : "")} ${sub.subLabel} (${sub.id})`, content);
+                embed.addField(`${aboutToExpire ? Constants.Emojis.IDLE : active ? Constants.Emojis.ONLINE : Constants.Emojis.DND + (invalidated ? ` ${Constants.Emojis.OFFLINE}` : "")} ${sub.subLabel} (${sub.id})`, content || "No payment");
             });
         }
 
