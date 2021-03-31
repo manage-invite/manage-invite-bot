@@ -47,7 +47,7 @@ module.exports = class extends Command {
             subLabel: premiumArgs.label
         });
 
-        await this.client.database.createPayment(subscription.id, {
+        await this.client.database.createSubscriptionPayment(subscription.id, {
             modDiscordID: message.author.id,
             payerDiscordID: premiumArgs.user.id,
             payerDiscordUsername: premiumArgs.user.tag,
