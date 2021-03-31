@@ -121,19 +121,19 @@
                                 <div class="tab-content">
                                 <div class="tab-pane active" id="tab_joindm_main">
                                     <div class="form-group">
-                                        <textarea rows="3" name="mainMessage" class="form-control" required><%= guild.joinDM.mainMessage || translate("misc:JOIN_DM_MAIN_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="mainMessage" class="form-control" required><%= guild.joinDM && guild.joinDM.mainMessage || translate("misc:JOIN_DM_MAIN_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_joindm_vanity">
                                     <div class="form-group">
-                                        <textarea rows="3" name="vanityMessage" class="form-control" required><%= guild.joinDM.vanityMessage || translate("misc:JOIN_DM_VANITY_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="vanityMessage" class="form-control" required><%= guild.joinDM && guild.joinDM.vanityMessage || translate("misc:JOIN_DM_VANITY_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_joindm_unknown">
                                     <div class="form-group">
-                                        <textarea rows="3" name="unknownMessage" class="form-control" required><%= guild.joinDM.unknownMessage || translate("misc:JOIN_DM_UNKNOWN_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="unknownMessage" class="form-control" required><%= guild.joinDM && guild.joinDM.unknownMessage || translate("misc:JOIN_DM_UNKNOWN_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
@@ -144,7 +144,7 @@
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
-                            <% if(guild.joinDM.enabled){ %>
+                            <% if(guild.joinDM && guild.joinDM.enabled){ %>
                                 <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
                                 <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
                             <% } else { %>
@@ -229,25 +229,25 @@
                                 <div class="tab-content">
                                 <div class="tab-pane active" id="tab_join_main">
                                     <div class="form-group">
-                                        <textarea rows="3" name="mainMessage" class="form-control" required><%= guild.join.mainMessage || translate("misc:JOIN_MAIN_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="mainMessage" class="form-control" required><%= guild.join && guild.join.mainMessage || translate("misc:JOIN_MAIN_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_join_bots">
                                     <div class="form-group">
-                                        <textarea rows="3" name="oauth2Message" class="form-control" required><%= guild.join.oauth2Message || translate("misc:JOIN_OAUTH2_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="oauth2Message" class="form-control" required><%= guild.join && guild.join.oauth2Message || translate("misc:JOIN_OAUTH2_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_join_vanity">
                                     <div class="form-group">
-                                        <textarea rows="3" name="vanityMessage" class="form-control" required><%= guild.join.vanityMessage || translate("misc:JOIN_VANITY_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="vanityMessage" class="form-control" required><%= guild.join && guild.join.vanityMessage || translate("misc:JOIN_VANITY_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_join_unknown">
                                     <div class="form-group">
-                                        <textarea rows="3" name="unknownMessage" class="form-control" required><%= guild.join.unknownMessage || translate("misc:JOIN_UNKNOWN_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="unknownMessage" class="form-control" required><%= guild.join && guild.join.unknownMessage || translate("misc:JOIN_UNKNOWN_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
@@ -259,7 +259,7 @@
                             <div class="form-group">
                                 <label><%= translate("common:CHANNEL") %></label>
                                 <select class="form-control" name="channel">
-                                    <% if(guild.join.enabled && (guild.channels.find((ch) => ch.id === guild.join.channel))){ %>
+                                    <% if(guild.join && guild.join.enabled && (guild.channels.find((ch) => ch.id === guild.join.channel))){ %>
                                         <option selected="selected">#<%= (guild.channels.find((ch) => ch.id === guild.join.channel)).name %></option>
                                         <% guild.channels.filter((ch) => ch.id !== guild.join.channel && ch.type === "text").forEach((ch) => { %>
                                             <option>#<%= ch.name %></option>
@@ -274,7 +274,7 @@
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
-                            <% if(guild.join.enabled){ %>
+                            <% if(guild.join && guild.join.enabled){ %>
                                 <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
                                 <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
                             <% } else { %>
@@ -307,25 +307,25 @@
                                 <div class="tab-content">
                                 <div class="tab-pane active" id="tab_leave_main">
                                     <div class="form-group">
-                                        <textarea rows="3" name="mainMessage" class="form-control" required><%= guild.leave.mainMessage || translate("misc:LEAVE_MAIN_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="mainMessage" class="form-control" required><%= guild.leave && guild.leave.mainMessage || translate("misc:LEAVE_MAIN_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_leave_bots">
                                     <div class="form-group">
-                                        <textarea rows="3" name="oauth2Message" class="form-control" required><%= guild.leave.oauth2Message || translate("misc:LEAVE_OAUTH2_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="oauth2Message" class="form-control" required><%= guild.leave && guild.leave.oauth2Message || translate("misc:LEAVE_OAUTH2_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_leave_vanity">
                                     <div class="form-group">
-                                        <textarea rows="3" name="vanityMessage" class="form-control" required><%= guild.leave.vanityMessage || translate("misc:LEAVE_VANITY_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="vanityMessage" class="form-control" required><%= guild.leave && guild.leave.vanityMessage || translate("misc:LEAVE_VANITY_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_leave_unknown">
                                     <div class="form-group">
-                                        <textarea rows="3" name="unknownMessage" class="form-control" required><%= guild.leave.unknownMessage || translate("misc:LEAVE_UNKNOWN_DEFAULT") %></textarea>
+                                        <textarea rows="3" name="unknownMessage" class="form-control" required><%= guild.leave && guild.leave.unknownMessage || translate("misc:LEAVE_UNKNOWN_DEFAULT") %></textarea>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
@@ -337,7 +337,7 @@
                             <div class="form-group">
                                 <label><%= translate("common:CHANNEL") %></label>
                                 <select class="form-control" name="channel">
-                                    <% if(guild.leave.enabled && (guild.channels.find((ch) => ch.id === guild.leave.channel))){ %>
+                                    <% if(guild.leave && guild.leave.enabled && (guild.channels.find((ch) => ch.id === guild.leave.channel))){ %>
                                         <option selected="selected">#<%= (guild.channels.find((ch) => ch.id === guild.leave.channel)).name %></option>
                                         <% guild.channels.filter((ch) => ch.id !== guild.leave.channel && ch.type === "text").forEach((ch) => { %>
                                             <option>#<%= ch.name %></option>
@@ -352,7 +352,7 @@
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
-                            <% if(guild.leave.enabled){ %>
+                            <% if(guild.leave && guild.leave.enabled){ %>
                                 <button type="submit" name="disable" class="btn btn-danger"><%= translate("dashboard:BUTTON_DISABLE") %></button>
                                 <button type="submit" name="update" class="btn btn-primary pull-right"><%= translate("dashboard:BUTTON_UPDATE") %></button>
                             <% } else { %>
