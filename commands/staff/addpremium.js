@@ -40,14 +40,14 @@ module.exports = class extends Command {
 
         const createdAt = new Date();
 
-        const subscription = await this.client.database.createGuildSubscription(message.guild.id, {
+        const subscription = await this.client.database.createGuildSubscription(premiumArgs.guildID, {
             expiresAt: new Date(Date.now()+(premiumArgs.daysCount*24*60*60*1000)),
             createdAt,
             guildsCount: premiumArgs.guildsCount,
             subLabel: premiumArgs.label
         });
 
-        await this.client.database.createPayment(subscription.id, {
+        await this.client.database.createSubscriptionPayment(subscription.id, {
             modDiscordID: message.author.id,
             payerDiscordID: premiumArgs.user.id,
             payerDiscordUsername: premiumArgs.user.tag,
@@ -57,7 +57,7 @@ module.exports = class extends Command {
             createdAt
         });
 
-        return message.channel.send(`${Constants.Emojis.SUCCESS} | Subscription created. Get more informations with \`${message.guild.data.prefix}sub ${premiumArgs.guildID}\`.`);
+        return message.channel.send(`${Constants.Emojis.SUCCESS} | Subscription created. Get more informations with \`${message.guild.settings.prefix}sub ${premiumArgs.guildID}\`.`);
 
     }
 };
