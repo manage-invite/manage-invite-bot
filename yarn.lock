@@ -417,11 +417,6 @@ brace-expansion@^1.1.7:
     balanced-match "^1.0.0"
     concat-map "0.0.1"
 
-btoa@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/btoa/-/btoa-1.2.1.tgz#01a9909f8b2c93f6bf680ba26131eb30f7fa3d73"
-  integrity sha512-SB4/MIGlsiVkMcHmT+pSmIPoNDoHg+7cMzmt3Uxt628MTz2487DKSqK/fuhFBrkuqrYv5UCEnACpF4dTFNKc/g==
-
 buffer-writer@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/buffer-writer/-/buffer-writer-2.0.0.tgz#ce7eb81a38f7829db09c873f2fbb792c0c98ec04"
@@ -1940,10 +1935,10 @@ redis-errors@^1.0.0, redis-errors@^1.2.0:
   resolved "https://registry.npmjs.org/redis-errors/-/redis-errors-1.2.0.tgz#eb62d2adb15e4eaf4610c04afe1529384250abad"
   integrity sha1-62LSrbFeTq9GEMBK/hUpOEJQq60=
 
-redis-modules-sdk@^0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/redis-modules-sdk/-/redis-modules-sdk-0.4.4.tgz#60a7ecd7e025c8a4529a109cec6f580ff96f2ad1"
-  integrity sha512-7kmTYd2Jja+Jv1zDWBUxcVsfjOPIWH2lT8lVzPrw2yrEh1UzsQD0n1RYwUiIvu3djpbmiJ/LyRsqFqcQKWEOIQ==
+redis-modules-sdk@^0.4.6:
+  version "0.4.6"
+  resolved "https://registry.yarnpkg.com/redis-modules-sdk/-/redis-modules-sdk-0.4.6.tgz#1e8b9b88d11ceeeca60e1bc4e3b181c2d522c596"
+  integrity sha512-78KTxifeQbJKbCe8LUmj8VS/8XR4HJNHXAQA22uNY02GhUon2ZfNq5EYY+B0r9pyqhDjLGoBn3WHUZdJVd0arw==
   dependencies:
     ioredis "^4.17.3"
 
