@@ -44,6 +44,7 @@ module.exports = class {
         }
         if (this.client.shard.ids.includes(0) && !this.client.spawned){
             this.client.dash.load(this.client);
+            this.client.ipc.load(this.client);
             new CronJob("0 5 0 * * *", async () => {
                 // tous les abonnements qui ont expiré il y a trois jours au moins
                 this.client.database.fetchNewlyCancelledPayments().then(async (paymentsData) => {

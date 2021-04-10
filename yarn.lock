@@ -129,10 +129,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@manage-invite/manage-invite-db-client@^1.0.5":
-  version "1.0.5"
-  resolved "https://npm.pkg.github.com/download/@manage-invite/manage-invite-db-client/1.0.5/2bdda1570452385a34ce32a2893efee4aed2edbca7c69e32e6fb27ed1a04212e#4d7a78633c2ab6b3b54180c5cd66ce6e4ea0530b"
-  integrity sha512-R9Z5LZ3nbEQq4xbXclKAWUCuNP3CGWiQbFjT/HS4hMdK0s5oGGdw7I0PjfDruvR9GyLyrlYtHM/U7cID3lBsPA==
+"@manage-invite/manage-invite-db-client@^1.0.7":
+  version "1.0.7"
+  resolved "https://npm.pkg.github.com/download/@manage-invite/manage-invite-db-client/1.0.7/2713f7981d62bbbc44f1aaceb714f4e93b6a336a6e812910fe90e943229ee2b6#b97142bdb9939be6c25238541a8fd6b01b93da03"
+  integrity sha512-STGBvRcVCYVEKSqinS3lKv5Mh8R7RgNu/OtFNhmJHM4A6y4t+tSBTAhs6hTUIXko5meBq+QGXD++dpxeLJG0hw==
   dependencies:
     change-case "^4.1.2"
     ioredis "^4.24.5"
@@ -385,6 +385,11 @@ basic-auth@~2.0.1:
   integrity sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==
   dependencies:
     safe-buffer "5.1.2"
+
+binarytf@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/binarytf/-/binarytf-2.0.0.tgz#c5476cc5cdf023d075b9b8fa62612b86d36f666c"
+  integrity sha512-CS0MvijAFAHBBw4LgIHBP7wzdW3KWEB0KeMjblK0rHOyyhnkoMu3puW7uhJXlnS5WDn5M2XQFaQBtw00FwRfcA==
 
 bindings@^1.5.0:
   version "1.5.0"
@@ -2532,6 +2537,13 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+
+veza@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/veza/-/veza-1.1.0.tgz#f1910bdfa5293cf812b01b8e033b7c216793b2ab"
+  integrity sha512-JxDVZZXwFJ+FxsX+kPdsjRK9XZdwayEYzPsPLxpZjzzgncWphjvMlzn8ioVAgeonZ/Aa7vEZOb4Hp13ergwybA==
+  dependencies:
+    binarytf "^2.0.0"
 
 wcwidth@^1.0.1:
   version "1.0.1"

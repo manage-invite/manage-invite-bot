@@ -28,6 +28,7 @@ class ManageInvite extends Client {
         this.database = new DatabaseHandler(this.config.redis, this.config.postgres, this.log);
         // Dashboard
         this.dash = require("../dashboard/app");
+        this.ipc = require("../helpers/ipc-client");
         this.states = {};
         this.spawned = false;
         this.knownGuilds = [];
