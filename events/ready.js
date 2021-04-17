@@ -42,9 +42,9 @@ module.exports = class {
                 console.log("\x1b[32m%s\x1b[0m", `SHARD [${this.shard.ids[0]}]`, "\x1b[0m", `Serving ${this.users.cache.size} users in ${this.guilds.cache.size} servers.`);
             });
         }
+        this.client.ipc.load(this.client);
         if (this.client.shard.ids.includes(0) && !this.client.spawned){
             this.client.dash.load(this.client);
-            this.client.ipc.load(this.client);
             new CronJob("0 5 0 * * *", async () => {
                 // tous les abonnements qui ont expiré il y a trois jours au moins
                 this.client.database.fetchNewlyCancelledPayments().then(async (paymentsData) => {

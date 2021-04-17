@@ -30,6 +30,13 @@ module.exports.load = (discordClient) => {
             // eslint-disable-next-line no-eval
             message.reply(eval(`client.${message.data.data}`));
         }
+        if (message.data.event === "verifyGuilds") {
+            const verifiedGuilds = [];
+            message.data.guildIDs.forEach((guildID) => {
+                if (discordClient.guilds.cache.has(guildID)) verifiedGuilds.push(guildID);
+            });
+            message.reply(verifiedGuilds);
+        }
     });
 
     setInterval(() => {
