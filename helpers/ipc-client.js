@@ -37,6 +37,19 @@ module.exports.load = (discordClient) => {
             });
             message.reply(verifiedGuilds);
         }
+        if (message.data.event === "verifyPermissions") {
+            const userID = message.data.userID;
+            const permissionName = message.data.permissionName;
+            const verified = [];
+            await Promise.all(message.data.guildIDs.map(async (guildID) => {
+                const guild = discordClient.guilds.cache.get(guildID);
+                if (!guild) return;
+                const member = await guild.members.fetch(userID).catch(() => {});
+                if (!member) return;
+                else if (member.hasPermission(permissionName)) verified.push(guildID);
+            }));
+            message.reply(verified);
+        }
     });
 
     setInterval(() => {
