@@ -50,6 +50,13 @@ module.exports.load = (discordClient) => {
             }));
             message.reply(verified);
         }
+        if (message.data.event === "getChannelsOf") {
+            const shardID = message.data.shardID;
+            if (!discordClient.shard.ids.includes(shardID)) return message.reply([]);
+            const guild = discordClient.guilds.cache.get(message.data.guildID);
+            if (!guild) return message.reply([]);
+            return message.reply(guild.channels.cache.filter((c) => c.type === "text").map((c) => ({ id: c.id, name: c.name })));
+        }
     });
 
     setInterval(() => {
