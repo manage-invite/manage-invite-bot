@@ -32,8 +32,8 @@ async function fetchGuild (guildID, client, translate){
         client.database.fetchGuildSubscriptionStatus(guild.id),
         client.database.fetchGuildRanks(guild.id)
     ]);
-    const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now());
-    const premiumExpiresAt = guildSubscriptions.sort((subA, subB) => new Date(subB.expiresAt).getTime() - new Date(subA.expiresAt).getTime())[0];
+    const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > (Date.now()-3*24*60*60*1000));
+    const premiumExpiresAt = guildSubscriptions.sort((subA, subB) => new Date(subB.expiresAt).getTime() - new Date(subA.expiresAt).getTime())[0].expiresAt;
     const difference = premiumExpiresAt - Date.now();
     const additionalData = {};
     if (guildSubscriptionStatus.isPayPal && !guildSubscriptionStatus.isCancelled) {

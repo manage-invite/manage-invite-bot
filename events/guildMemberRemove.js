@@ -18,7 +18,7 @@ module.exports = class {
 
         // Fetch guild and member data from the db
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(member.guild.id);
-        const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now());
+        const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > (Date.now()-3*24*60*60*1000));
         if (!isPremium) return;
 
         const fetchStartAt = Date.now();
