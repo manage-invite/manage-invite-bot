@@ -25,8 +25,8 @@ module.exports = class {
             this.client.database.fetchGuildSubscriptions(message.guild.id)
         ]);
         message.guild.settings = guildSettings;
-        const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > Date.now());
-        const aboutToExpire = isPremium && !(guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > (Date.now() + 3 * 24 * 60 * 60000)));
+        const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > (Date.now()-3*24*60*60*1000));
+        const aboutToExpire = isPremium && !(guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > (Date.now() + 5 * 24 * 60 * 60000)));
 
         const data = {
             settings: guildSettings,

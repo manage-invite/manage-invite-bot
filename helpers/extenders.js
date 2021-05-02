@@ -1,5 +1,4 @@
 const { Guild, Message, MessageEmbed } = require("discord.js");
-const config = require("../config");
 const Constants = require("./constants");
 
 Guild.prototype.translate = function (key, args) {
@@ -74,7 +73,7 @@ Message.prototype.sendT = function (
         this.channel.permissionsFor(this.guild.me).has("EMBED_LINKS")
     ) {
         const embed = {
-            color: config.color,
+            color: Constants.Embed.COLOR,
             description: prefix + this.translate(key, args)
         };
         return edit ? this.edit({ embed }) : this.channel.send({ embed });
@@ -96,6 +95,6 @@ MessageEmbed.prototype.successColor = function () {
 };
 
 MessageEmbed.prototype.defaultColor = function () {
-    this.setColor(config.color);
+    this.setColor(Constants.Embed.COLOR);
     return this;
 };
