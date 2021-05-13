@@ -1,3 +1,4 @@
+const { Constants } = require("discord.js");
 const { Client } = require("veza");
 
 module.exports.load = (discordClient) => {
@@ -56,6 +57,16 @@ module.exports.load = (discordClient) => {
             const guild = discordClient.guilds.cache.get(message.data.guildID);
             if (!guild) return message.reply([]);
             return message.reply(guild.channels.cache.filter((c) => c.type === "text").map((c) => ({ id: c.id, name: c.name })));
+        }
+        if (message.data.event === "getShardStatus") {
+            const status = Object.keys(Constants.Status)[discordClient.ws?.status];
+            return message.reply({
+                id: discordClient.shard.ids[0],
+                status: status.charAt(0).toUpperCase() + status.slice(1, status.length).toLowerCase(),
+                ram: Math.round(process.memoryUsage().heapUsed / 1024 / 1024),
+                ping: discordClient.ws?.ping,
+                serverCount: discordClient.guilds.cache.size
+            });
         }
     });
 
