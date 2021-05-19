@@ -126,10 +126,10 @@ const assignRanks = async (member, inviteCount, ranks, keepRanks, stackedRanks) 
             // If the member already has the rank
             if (member.roles.cache.has(rank.roleID)) return;
             // Add the role to the member
-            if (!stackedRanks) await member.roles.add(rank.roleID);
+            if (stackedRanks) await member.roles.add(rank.roleID);
         }
     });
-    if (stackedRanks && assigned.length > 0) {
+    if (!stackedRanks && assigned.length > 0) {
         await member.roles.add(assigned.shift());
         for (const role of assigned){
             if (member.roles.cache.has(role)) await member.roles.remove(role);
