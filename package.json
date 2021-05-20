@@ -15,7 +15,7 @@
     "ejs": "^3.1.6",
     "erlpack": "discord/erlpack",
     "express": "^4.17.1",
-    "express-session": "^1.17.1",
+    "express-session": "^1.17.2",
     "i18next": "^20.1.0",
     "i18next-fs-backend": "^1.1.1",
     "inquirer": "^8.0.0",
