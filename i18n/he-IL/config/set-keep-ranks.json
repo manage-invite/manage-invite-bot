@@ -1,0 +1,4 @@
+{
+    "SUCCESS_ENABLED": "Now, members **will keep** their ranks, even if they don't have enough invites!",
+    "SUCCESS_DISABLED": "Now, members **won't keep** their ranks if they don't have enough invites!"
+}
