@@ -1,0 +1,5 @@
+{
+    "MISSING_CHANNEL": "Please specify a valid channel where the commands will be allowed!",
+    "SUCCESS_DISABLED": "Commands will now be allowed in all the channels!",
+    "SUCCESS_ENABLED": "Commands will only be allowed in {{channel}}! (Use `{{prefix}}cmd-channel` to allow them in all the channels)"
+}
