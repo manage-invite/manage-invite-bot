@@ -1,8 +1,8 @@
 {
     "TITLE": "{{guild}}' כמות אנשים",
     "TOTAL": "Total of **{{totalCount}}**  members (**{{humanCount}}** humans and **{{botCount}}** bots)",
-    "DND": "➔ {{emoji}} | {{count}} members dnd",
+    "DND": "➔ {{emoji}} | {{count}} משתמשים נא לא להפריע",
     "ONLINE": "➔ {{emoji}} | {{count}} משתמשים מחוברים",
-    "IDLE": "➔ {{emoji}} | {{count}} members idle",
-    "OFFLINE": "➔ {{emoji}} | {{count}} members offline"
+    "IDLE": "➔ {{emoji}} | {{count}} משתמשים לא מכוון",
+    "OFFLINE": "➔ {{emoji}} | {{count}} משתמשים לא מחוברים"
 }
