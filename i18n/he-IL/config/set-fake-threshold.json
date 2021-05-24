@@ -1,0 +1,5 @@
+{
+    "MISSING_DAYS": "You must specify a number of days (or 'disable' to disable the fake threshold)!",
+    "UPDATED": "The fake threshold has been updated, accounts created in the last **{{dayCount}} days** will automatically be considered as fake accounts!",
+    "DISABLED": "The fake threshold has been disabled!"
+}
