@@ -2,6 +2,6 @@
     "TITLE": "🎯 תגמולי רולים",
     "RANK": "{{rank}} (**{{invites}}** הזמנות)",
     "NO_RANK_TITLE": "🎯 אין רול",
-    "NO_RANK_CONTENT": "You can add a role reward (added when a member reach a certain number of invites) by sending `{{prefix}}addrank number @role`!",
+    "NO_RANK_CONTENT": " אתה יכול להוסיף רול תגמול (הרול נוסף כאשר הממבר מגיע למספר מסויים של הזמנות) בעת שליחה `{{prefix}}addrank number @role`!",
     "VIEW_CONF": "View the configuration on the dashboard"
 }
