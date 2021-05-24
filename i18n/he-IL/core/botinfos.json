@@ -1,10 +1,10 @@
 {
-    "TITLE": "{{username}}'s stats",
-    "STATS_TITLE": "📊 Statistics",
-    "STATS_CONTENT": "`Servers: {{guilds}}`\n`Users: {{users}}`\n`Redis: {{keys}}`",
-    "VERSIONS_TITLE": "⚙️ Versions",
-    "VERSIONS_CONTENT": "`Discord: {{discord}}`\n`Node: {{node}}`",
-    "SHARD_TITLE": "{{online}} Shard #{{shardID}}",
-    "SHARD_TITLE_CURRENT": "{{online}} Shard #{{shardID}} (current)",
-    "SHARD_CONTENT": "`{{guilds}}` servers\n`{{ping}}` ms\n`{{ram}}` mb ram"
+    "TITLE": "{{username}} סטטיסטיקה",
+    "STATS_TITLE": "סטָטִיסטִיקָה 📊",
+    "STATS_CONTENT": "`שרתים: {{guilds}}`\n`משתמשים: {{users}}`\n`רדיס: {{keys}}`",
+    "VERSIONS_TITLE": "גרסאות ⚙️",
+    "VERSIONS_CONTENT": "`דיסקורד: {{discord}}`\n`נוד: {{node}}`",
+    "SHARD_TITLE": "{{online}} שארד #{{shardID}}",
+    "SHARD_TITLE_CURRENT": "{{online}} שארד#{{shardID}} (השרת הזה)",
+    "SHARD_CONTENT": "`{{guilds}}` שרתים\n`{{ping}}` פינג\n`{{ram}}` מגה בייט"
 }
