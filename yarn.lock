@@ -1935,10 +1935,10 @@ redis-errors@^1.0.0, redis-errors@^1.2.0:
   resolved "https://registry.npmjs.org/redis-errors/-/redis-errors-1.2.0.tgz#eb62d2adb15e4eaf4610c04afe1529384250abad"
   integrity sha1-62LSrbFeTq9GEMBK/hUpOEJQq60=
 
-redis-modules-sdk@^0.4.6:
-  version "0.4.6"
-  resolved "https://registry.yarnpkg.com/redis-modules-sdk/-/redis-modules-sdk-0.4.6.tgz#1e8b9b88d11ceeeca60e1bc4e3b181c2d522c596"
-  integrity sha512-78KTxifeQbJKbCe8LUmj8VS/8XR4HJNHXAQA22uNY02GhUon2ZfNq5EYY+B0r9pyqhDjLGoBn3WHUZdJVd0arw==
+redis-modules-sdk@^0.6.7:
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/redis-modules-sdk/-/redis-modules-sdk-0.6.7.tgz#364484b606f1b23047d2e91c6dd5d39ee1130655"
+  integrity sha512-7cVW5DRMzr6dIW3Mp24FujeXizJrz5F87798nfMv4MuuFMgZSPV5lXCpBC27UJAkqShU6gR9rfuz9iitupgu/g==
   dependencies:
     ioredis "^4.17.3"
 
