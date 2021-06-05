@@ -68,6 +68,20 @@ module.exports.load = (discordClient) => {
                 serverCount: discordClient.guilds.cache.size
             });
         }
+        if (message.data.event === "fetchUsers") {
+            const masterShardID = message.data.shardID;
+            const foundUsers = [];
+            for (const userID of message.data.userIDs) {
+                const user = discordClient.users.cache.get(userID) || (discordClient.shard.ids.includes(masterShardID) ? await discordClient.users.fetch(userID).catch(() => {}) : null);
+                if (user) foundUsers.push({
+                    id: user.id,
+                    username: user.username,
+                    avatarURL: user.displayAvatarURL(),
+                    discriminator: user.discriminator
+                });
+            }
+            return message.reply(foundUsers);
+        }
     });
 
     setInterval(() => {
