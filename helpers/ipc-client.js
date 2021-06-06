@@ -1,4 +1,4 @@
-const { Constants } = require("discord.js");
+const { Constants, MessageEmbed } = require("discord.js");
 const { Client } = require("veza");
 
 module.exports.load = (discordClient) => {
@@ -81,6 +81,81 @@ module.exports.load = (discordClient) => {
                 });
             }
             return message.reply(foundUsers);
+        }
+        if (message.data.event === "paypalNotification") {
+            const shardID = message.data.shardID;
+            if (!discordClient.shard.ids.includes(shardID)) return;
+            const { premiumLogs } = discordClient.config;
+            const aLogs = discordClient.channels.cache.get(premiumLogs);
+            switch (message.data.notificationType) {
+            case "verification": {
+                discordClient.users.fetch(message.data.userID).then((user) => {
+                    const logEmbed = new MessageEmbed()
+                        .setAuthor(`${user.tag} purchased ManageInvite Premium`, user.displayAvatarURL())
+                        .setDescription(`Server **${message.data.guildName}** is waiting for verification... :clock7:`)
+                        .setColor("#ff9966");
+                    if (aLogs) aLogs.send(logEmbed);
+                });
+                break;
+            }
+            case "subscribed": {
+                discordClient.users.fetch(message.data.userID).then((user) => {
+                    const logEmbed = new MessageEmbed()
+                        .setAuthor(`${user.tag} created a subscription`, user.displayAvatarURL())
+                        .setDescription(`Subscription for guild **${message.data.guildName}** created... :white_check_mark:`)
+                        .setColor("#ff9966");
+                    if (aLogs) aLogs.send(logEmbed);
+                });
+                discordClient.shard.broadcastEval(`
+                    if(this.guilds.cache.some((g) => g.roles.cache.has(this.config.premiumRole))){
+                        const guild = this.guilds.cache.find((g) => g.roles.cache.has(this.config.premiumRole));
+                        guild.members.fetch('${message.data.userID}').then((member) => {
+                            member.roles.add(this.config.premiumRole);
+                        }).catch(() => {});
+                    }
+                `);
+                break;
+            }
+            case "paid": {
+                discordClient.users.fetch(message.data.userID).then((user) => {
+                    const logEmbed = new MessageEmbed()
+                        .setAuthor(`${user.tag} paid for ManageInvite Premium`, user.displayAvatarURL())
+                        .setDescription(`Recurring payment for **${message.data.guildName}** was paid (**$2**) :crown:`)
+                        .setColor("#ff9966");
+                    if (aLogs) aLogs.send(logEmbed);
+                });
+                break;
+            }
+            case "cancelled": {
+                discordClient.users.fetch(message.data.userID).then(async (user) => {
+                    const formContent = `Hello, **${user.username}**\r\nWe're sorry to see you go! Could you tell us why you have cancelled your subscription, so that we can try to improve it? :smiley: \r\n\r\nI cancelled my subscription for the following reason: \r\n\r\n:one: I no longer use ManageInvite for my server\r\n:two: I don't want to pay $2 anymore, it's too big a budget for what ManageInvite offers\r\n:three: I found a better bot\r\n:four: Other\r\n** **`;
+                    const formMessage = await user.send(formContent).catch(() => {});
+                    if (formMessage){
+                        formMessage.react("\u0031\u20E3");
+                        formMessage.react("\u0032\u20E3");
+                        formMessage.react("\u0033\u20E3");
+                        formMessage.react("\u0034\u20E3");
+                    }
+                    const logEmbed = new MessageEmbed()
+                        .setAuthor(`${user.tag} cancelled their subscription for ManageInvite Premium`, user.displayAvatarURL())
+                        .setDescription(`Recurring payment for **${message.data.guildName}** was cancelled :wave:\n${formMessage ? "Satisfaction form sent! Awaiting answer... :pencil:" : "I wasn't able to send the satisfaction form... :confused:"}`)
+                        .setFooter(`Form ID: ${formMessage ? formMessage.id : "not sent"}`)
+                        .setColor("#1E90FF");
+                    if (aLogs) aLogs.send(logEmbed);
+                });
+                break;
+            }
+            case "dms": {
+                discordClient.users.fetch(message.data.userID).then((user) => {
+                    const logEmbed = new MessageEmbed()
+                        .setAuthor(`Thanks for purchasing ManageInvite Premium, ${user.tag}`, user.displayAvatarURL())
+                        .setDescription(`Congratulations, your server **${message.data.guildName}** is now premium! :crown:`)
+                        .setColor("#ff9966");
+                    if (aLogs) aLogs.send(logEmbed);
+                });
+                break;
+            }
+            }
         }
     });
 
