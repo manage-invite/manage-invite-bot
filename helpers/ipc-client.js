@@ -151,7 +151,7 @@ module.exports.load = (discordClient) => {
                         .setAuthor(`Thanks for purchasing ManageInvite Premium, ${user.tag}`, user.displayAvatarURL())
                         .setDescription(`Congratulations, your server **${message.data.guildName}** is now premium! :crown:`)
                         .setColor("#ff9966");
-                    if (aLogs) aLogs.send(logEmbed);
+                    user.send(logEmbed);
                 });
                 break;
             }
