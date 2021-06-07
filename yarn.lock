@@ -642,7 +642,7 @@ debug@2.6.9:
   dependencies:
     ms "2.0.0"
 
-debug@4, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
+debug@4, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.1.tgz#f0d229c505e0c6d8c49ac553d1b13dc183f6b2ee"
   integrity sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==
@@ -1262,13 +1262,13 @@ inquirer@^8.0.0:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
-ioredis@^4.17.3:
-  version "4.23.0"
-  resolved "https://registry.npmjs.org/ioredis/-/ioredis-4.23.0.tgz#f61b65633a25c93f43fccebcacac2f4342e418f9"
-  integrity sha512-R5TDCODwnEH3J3A5TSoB17+6a+SeJTtIOW6vsy5Q1yag/AM8FejHjZC5R2O1QepSXV8hwOnGSm/4buJc/LeXTQ==
+ioredis@^4.27.4:
+  version "4.27.5"
+  resolved "https://registry.yarnpkg.com/ioredis/-/ioredis-4.27.5.tgz#b62192bb6198f8a5a02947902117150aef39b7f1"
+  integrity sha512-JJ3HzOzU6kgUk3gKhpx8kxEYn9ruI5TkpOtGvbw/hLyWxfC19T9uCZTgmw4Mci4al4aOCCMfAjYzJ7aqQkLbJg==
   dependencies:
     cluster-key-slot "^1.1.0"
-    debug "^4.1.1"
+    debug "^4.3.1"
     denque "^1.1.0"
     lodash.defaults "^4.2.0"
     lodash.flatten "^4.4.0"
@@ -1276,7 +1276,7 @@ ioredis@^4.17.3:
     redis-commands "1.7.0"
     redis-errors "^1.2.0"
     redis-parser "^3.0.0"
-    standard-as-callback "^2.0.1"
+    standard-as-callback "^2.1.0"
 
 ipaddr.js@1.9.1:
   version "1.9.1"
@@ -1935,12 +1935,12 @@ redis-errors@^1.0.0, redis-errors@^1.2.0:
   resolved "https://registry.npmjs.org/redis-errors/-/redis-errors-1.2.0.tgz#eb62d2adb15e4eaf4610c04afe1529384250abad"
   integrity sha1-62LSrbFeTq9GEMBK/hUpOEJQq60=
 
-redis-modules-sdk@^0.4.6:
-  version "0.4.6"
-  resolved "https://registry.yarnpkg.com/redis-modules-sdk/-/redis-modules-sdk-0.4.6.tgz#1e8b9b88d11ceeeca60e1bc4e3b181c2d522c596"
-  integrity sha512-78KTxifeQbJKbCe8LUmj8VS/8XR4HJNHXAQA22uNY02GhUon2ZfNq5EYY+B0r9pyqhDjLGoBn3WHUZdJVd0arw==
+redis-modules-sdk@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/redis-modules-sdk/-/redis-modules-sdk-0.7.0.tgz#c2f439b116850ba06c57531d6ac8b277cc6a15b7"
+  integrity sha512-un3bLBMiaK0d9mN5AhE/GrKUNjANlPpiYW/E1qMh32RQOvlcfGRbDhBREfeF9mNCGBXhETwzwjBysr7a2p5YZg==
   dependencies:
-    ioredis "^4.17.3"
+    ioredis "^4.27.4"
 
 redis-parser@^3.0.0:
   version "3.0.0"
@@ -2154,10 +2154,10 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-standard-as-callback@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/standard-as-callback/-/standard-as-callback-2.0.1.tgz#ed8bb25648e15831759b6023bdb87e6b60b38126"
-  integrity sha512-NQOxSeB8gOI5WjSaxjBgog2QFw55FV8TkS6Y07BiB3VJ8xNTvUYm0wl0s8ObgQ5NhdpnNfigMIKjgPESzgr4tg==
+standard-as-callback@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/standard-as-callback/-/standard-as-callback-2.1.0.tgz#8953fc05359868a77b5b9739a665c5977bb7df45"
+  integrity sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==
 
 "statuses@>= 1.5.0 < 2", statuses@~1.5.0:
   version "1.5.0"
