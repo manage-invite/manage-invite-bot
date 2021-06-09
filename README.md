@@ -8,9 +8,11 @@
 
 > ManageInvite is used by + 2,000,000 users in + 10,000 servers!
 
-Choose stability and power, choose ManageInvite.
+Choose stability and power, choose ManageInvite. 🚀
 
 ## How does it work?
+
+If there is one thing that is important to us as leaders of the ManageInvite project, it is to share our code and knowledge as much as we can. We believe that our users have the right to understand how our product works.
 
 ## How can I install the bot?
 
