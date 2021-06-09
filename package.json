@@ -24,7 +24,7 @@
     "ms": "^2.1.3",
     "ora": "^5.4.0",
     "pg": "^8.5.1",
-    "redis-modules-sdk": "^0.4.6",
+    "redis-modules-sdk": "^0.7.1",
     "snake-case": "^3.0.4",
     "string-similarity": "^4.0.4",
     "utf-8-validate": "^5.0.4",
