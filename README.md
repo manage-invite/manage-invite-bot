@@ -22,18 +22,6 @@ ManageInvite is a Discord bot that offers many features related to invites manag
 
 ManageInvite is now available for $2 per month. [I want to buy it for my Discord server!](https://manage-invite.xyz) 👑
 
-## Screenshots
-
-### [Dashboard](https://manage-invite.xyz)
-
-<img src="./assets/dash-home.png" height="300" />
-<img src="./assets/dash-settings.png" height="300" />
-
-### [Discord BOT](https://manage-invite.xyz)
-
-<img src="./assets/example-invites.png" height="200" />
-<img src="./assets/example-sync.png" height="200" />
-
 ## How does it work?
 
 If there is one thing that is important to us as leaders of the ManageInvite project, it is to share our code and knowledge as much as we can. We believe that our users have the right to understand how our product works. Here is a diagram of the infrastructure we use, and the links to the corresponding repositories. 
@@ -49,3 +37,17 @@ If there is one thing that is important to us as leaders of the ManageInvite pro
 * **[ManageInvite Dashboard](https://github.com/manage-invite/manage-invite-dashboard)**
 
 Please note that the code in this repository is **NOT** intended to be hosted. These files are here to help you **understand** how the bot works in general, not how to launch it on your own machine. We are sorry but we will not be able to help you to install the bot on your own server and we are sorry if you wasted your time trying before coming across this message.
+
+
+## Screenshots
+
+### [Dashboard](https://manage-invite.xyz)
+
+<img src="./assets/dash-home.png" />
+<img src="./assets/dash-settings.png" />
+
+### [Discord BOT](https://manage-invite.xyz)
+
+<img src="./assets/example-invites.png" />
+<img src="./assets/example-sync.png" />
+<img src="./assets/example-ranks-conf.png" />
