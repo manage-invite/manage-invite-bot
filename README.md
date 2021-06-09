@@ -12,7 +12,9 @@ Choose stability and power, choose ManageInvite. 🚀
 
 ## How does it work?
 
-If there is one thing that is important to us as leaders of the ManageInvite project, it is to share our code and knowledge as much as we can. We believe that our users have the right to understand how our product works.
+If there is one thing that is important to us as leaders of the ManageInvite project, it is to share our code and knowledge as much as we can. We believe that our users have the right to understand how our product works. Here is a schematic of the infrastructure we use, and the links to the corresponding repositories. 
+
+![schematic](./howitworks.jpg)
 
 ## How can I install the bot?
 
