@@ -10,13 +10,37 @@
 
 Choose stability and power, choose ManageInvite. 🚀
 
+## Features
+
+ManageInvite is a Discord bot that offers many features related to invites management. The bot can finds who was invited by a specific member, and sends welcome/leave messages with this information.
+
+* Easy to setup ✌️
+* Real-time leaderboard 📈
+* Many advanced settings (blacklist, fake threshold, etc.) ⚙️
+* Complete API for developers 💻
+* Web-dashboard to setup the bot 🌐
+
+ManageInvite is now available for $2 per month. [I want to buy it for my Discord server!](https://manage-invite.xyz) 👑
+
+## Screenshots
+
+### [Dashboard](https://manage-invite.xyz)
+
+<img src="./assets/dash-home.png" height="300" />
+<img src="./assets/dash-settings.png" height="300" />
+
+### [Discord BOT](https://manage-invite.xyz)
+
+<img src="./assets/example-invites.png" height="200" />
+<img src="./assets/example-sync.png" height="200" />
+
 ## How does it work?
 
 If there is one thing that is important to us as leaders of the ManageInvite project, it is to share our code and knowledge as much as we can. We believe that our users have the right to understand how our product works. Here is a diagram of the infrastructure we use, and the links to the corresponding repositories. 
 
 ### Diagram
 
-<img src="./howitworks.png" />
+<img src="./assets/diagram.png" />
 
 ### Repositories:
 
