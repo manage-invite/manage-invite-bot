@@ -28,7 +28,7 @@ If there is one thing that is important to us as leaders of the ManageInvite pro
 
 ### Diagram
 
-<img src="./assets/diagram.png" />
+<img src="./assets/diagram.jpg" />
 
 ### Repositories:
 
