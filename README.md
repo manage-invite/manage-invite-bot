@@ -24,7 +24,4 @@ If there is one thing that is important to us as leaders of the ManageInvite pro
 * **[ManageInvite API](https://github.com/manage-invite/manage-invite-api)**
 * **[ManageInvite Dashboard](https://github.com/manage-invite/manage-invite-dashboard)**
 
-## How can I install the bot?
-
-The code in this repository is **NOT** intended to be hosted. Some parts of the code are missing and the bot can't work only with these files. This code is open source because it's the heart of ManageInvite and we think it's important to share the biggest part of our code.
-We're sorry but we won't be able to help you to install the bot on your own server and we're sorry if you wasted your time trying before coming across this message...
+Please note that the code in this repository is **NOT** intended to be hosted. These files are here to help you **understand** how the bot works in general, not how to launch it on your own machine. We are sorry but we will not be able to help you to install the bot on your own server and we are sorry if you wasted your time trying before coming across this message.
