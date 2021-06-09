@@ -16,7 +16,7 @@ If there is one thing that is important to us as leaders of the ManageInvite pro
 
 ### Diagram
 
-<img src="./howitworks.jpg" style="border-radius: 5px" />
+<img src="./howitworks.png" />
 
 ### Repositories:
 
