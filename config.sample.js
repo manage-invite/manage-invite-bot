@@ -1,4 +1,5 @@
 module.exports = {
+    ipcServerPort: 3200,
     token:          "XXXXXXXXXXX",
     shardCount:     2,
     /* Status */
