@@ -3,7 +3,6 @@
 # ManageInvite
 [![version](https://img.shields.io/github/package-json/v/Androz2091/ManageInvite?style=for-the-badge)](https://github.com/Androz2091/ManageInvite)
 [![discord](https://img.shields.io/discord/638685268777500672?style=for-the-badge&color=7289DA&label=Discord)](https://discord.gg/v26Sqqs)
-[![patreon](https://img.shields.io/endpoint.svg?url=https://shieldsio-patreon.herokuapp.com/Androz2091&style=for-the-badge)](https://patreon.com/Androz2091)
 [![issues](https://img.shields.io/github/issues/Androz2091/ManageInvite?style=for-the-badge)](https://github.com/Androz2091/ManageInvite)
 
 > ManageInvite is used by + 2,000,000 users in + 10,000 servers!
