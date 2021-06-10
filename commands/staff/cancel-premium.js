@@ -35,9 +35,7 @@ module.exports = class extends Command {
 
         if (!subscription) return message.error("No sub ID found for that query!");
 
-        await this.client.database.updateGuildSubscription(subscription.id, guildID, {
-            sub_invalidated: true
-        });
+        await this.client.database.updateGuildSubscription(subscription.id, guildID, "subInvalidated", true);
 
         return message.channel.send(`${Constants.Emojis.SUCCESS} | Subscription invalidated for guild **${guildName}**. Get more informations with \`${message.guild.settings.prefix}sub ${guildID}\`.`);
     }

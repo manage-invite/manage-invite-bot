@@ -19,9 +19,7 @@ module.exports = class extends Command {
             });
         }
         const newLanguage = this.client.enabledLanguages.find((l) => l.name.toLowerCase() === language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(language.toLowerCase())).name;
-        await this.client.database.updateGuildSetting(message.guild.id, {
-            language: newLanguage
-        });
+        await this.client.database.updateGuildSetting(message.guild.id, "language", newLanguage);
         message.guild.settings.language = newLanguage;
         message.success("config/setlang:SUCCESS");
     }

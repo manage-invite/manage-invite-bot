@@ -14,14 +14,10 @@ module.exports = class extends Command {
     async run (message) {
 
         if (!message.guild.settings.keepRanks){
-            await this.client.database.updateGuildSetting(message.guild.id, {
-                keepRanks: true
-            });
+            await this.client.database.updateGuildSetting(message.guild.id, "keepRanks", true);
             return message.success("config/set-keep-ranks:SUCCESS_ENABLED");
         } else {
-            await this.client.database.updateGuildSetting(message.guild.id, {
-                keepRanks: false
-            });
+            await this.client.database.updateGuildSetting(message.guild.id, "keepRanks", false);
             return message.success("config/set-keep-ranks:SUCCESS_DISABLED");
         }
     }

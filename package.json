@@ -4,6 +4,7 @@
   "description": "ManageInvite is the best bot to manage your server invites! Easy to setup, and complete!",
   "main": "sharder.js",
   "dependencies": {
+    "@manage-invite/manage-invite-db-client": "^1.0.16",
     "@sentry/node": "^6.2.3",
     "bufferutil": "^4.0.3",
     "chalk": "^4.0.0",
@@ -28,14 +29,16 @@
     "snake-case": "^3.0.4",
     "string-similarity": "^4.0.4",
     "utf-8-validate": "^5.0.4",
+    "veza": "^1.1.0",
     "zlib-sync": "^0.1.6"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.23.0"
+    "eslint": "^7.23.0",
+    "nodemon": "^2.0.7"
   },
   "scripts": {
-    "start": "node sharder.js"
+    "start": "nodemon sharder.js"
   },
   "repository": {
     "type": "git",
