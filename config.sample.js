@@ -14,12 +14,6 @@ module.exports = {
     statsLogs:      "XXXXXXXXXXX",
     premiumLogs:    "XXXXXXXXXXX",
     voteLogs:       "XXXXXXXXXXX",
-    /* Dashboard */
-    secret:         "XXXXXXXXXXX",
-    baseURL:        "XXXXXXXXXXX",
-    port:           3100,
-    pswd:           "XXXXXXXXXXX",
-    failureURL:     "https://docs.manage-invite.xyz",
     /* Other */
     discord:        "XXXXXXXXXXX",
     prefix:         "+",
