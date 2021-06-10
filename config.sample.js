@@ -41,27 +41,5 @@ module.exports = {
     },
     redis: {
         user: ""
-    },
-    /* PayPal */
-    paypal: {
-        mode: "sandbox",
-        live: {
-            email: "XXXXXXXXXXX",
-            returnURL: "https://dash.manage-invite.xyz/payment/callback",
-            cancelURL: "https://dash.manage-invite.xyz/selector",
-            ipnURL: "https://dash.manage-invite.xyz/payment/ipn",
-            formURL: "https://www.paypal.com/cgi-bin/webscr",
-            fetchURL: "https://ipnpb.paypal.com/cgi-bin/webscr?cmd=_notify-validate",
-            ptdToken: "XXXXXXXXXXX"
-        },
-        sandbox: {
-            email: "XXXXXXXXXXX",
-            returnURL: "http://localhost:3100/payment/callback",
-            cancelURL: "http://localhost:3100/",
-            ipnURL: "http://ngork.io/payment/ipn",
-            formURL: "https://www.sandbox.paypal.com/cgi-bin/webscr",
-            fetchURL: "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate",
-            pdtToken: "XXXXXXXXXXX"
-        }
     }
 };
