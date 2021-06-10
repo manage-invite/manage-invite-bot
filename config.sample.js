@@ -10,8 +10,6 @@ module.exports = {
     /* Logs */
     addLogs:        "XXXXXXXXXXX",
     removeLogs:     "XXXXXXXXXXX",
-    dashLogs:       "XXXXXXXXXXX",
-    statsLogs:      "XXXXXXXXXXX",
     premiumLogs:    "XXXXXXXXXXX",
     voteLogs:       "XXXXXXXXXXX",
     /* Other */
