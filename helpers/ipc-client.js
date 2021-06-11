@@ -83,6 +83,7 @@ module.exports.load = (discordClient) => {
             return message.reply(foundUsers);
         }
         if (message.data.event === "paypalNotification") {
+            console.log(`PayPal notification received! ${message.data}`);
             const shardID = message.data.shardID;
             if (!discordClient.shard.ids.includes(shardID)) return;
             const { premiumLogs } = discordClient.config;
@@ -104,6 +105,7 @@ module.exports.load = (discordClient) => {
                         .setAuthor(`${user.tag} created a subscription`, user.displayAvatarURL())
                         .setDescription(`Subscription for guild **${message.data.guildName}** created... :white_check_mark:`)
                         .setColor("#ff9966");
+                    console.log(!!aLogs, "Sending logs embed!");
                     if (aLogs) aLogs.send(logEmbed);
                 });
                 discordClient.shard.broadcastEval(`

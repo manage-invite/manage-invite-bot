@@ -111,14 +111,20 @@ module.exports = class {
         // If we know who invited the member
         if (invite){
 
-            if (inviterData.notCreated) await this.client.database.createGuildMember({
-                userID: inviter.id,
-                guildID: member.guild.id,
-                storageID: guildSettings.storageID
-            });
+            if (inviterData.notCreated) {
+                const createMemberStart = Date.now();
+                await this.client.database.createGuildMember({
+                    userID: inviter.id,
+                    guildID: member.guild.id,
+                    storageID: guildSettings.storageID
+                });
+                logMessage += `Create member: ${Date.now()-createMemberStart}ms\n`;
+            }
 
             // We look for the member in the server members
+            const fetchInvitedMemberStart = Date.now();
             const inviterMember = member.guild.members.cache.get(inviter.id) || await member.guild.members.fetch(inviter.id).catch(() => {});
+            logMessage += `Fetch invited member: ${Date.now()-fetchInvitedMemberStart}`;
 
             let joinFake = false;
 
@@ -180,7 +186,11 @@ module.exports = class {
             });
             inviterData.regular++;
 
-            if (inviterMember) await this.client.functions.assignRanks(inviterMember, inviterData.invites, guildRanks, guildSettings.keepRanks, guildSettings.stackedRanks);
+            if (inviterMember) {
+                const assignRanksStart = Date.now();
+                await this.client.functions.assignRanks(inviterMember, inviterData.invites, guildRanks, guildSettings.keepRanks, guildSettings.stackedRanks);
+                console.log(`Assign ranks: ${Date.now()-assignRanksStart}`);
+            }
 
             this.client.database.createGuildMemberEvent({
                 userID: member.id,
