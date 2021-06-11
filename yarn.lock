@@ -548,10 +548,10 @@ chart.js@^3.3.2:
   resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-3.3.2.tgz#667f3a0b6371b9719d8949c04a5bcbaec0d8c615"
   integrity sha512-H0hSO7xqTIrwxoACqnSoNromEMfXvfuVnrbuSt2TuXfBDDofbnto4zuZlRtRvC73/b37q3wGAWZyUU41QPvNbA==
 
-chartjs-node-canvas@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/chartjs-node-canvas/-/chartjs-node-canvas-3.1.0.tgz#b06d16276c92567b291015a78dcff0c6eea40a30"
-  integrity sha512-yL5hdb8dnhknBuUkz4CGL/rFSNudd8eKmKUsgVfrK5Fy8VswDI+DEfT4t2L/8H8sMRkzpAl42pEbERIghv3b0w==
+chartjs-node-canvas@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/chartjs-node-canvas/-/chartjs-node-canvas-3.2.0.tgz#876deff999e3be1a3c182b30c9bafd9dfdd00901"
+  integrity sha512-MT0K28VG8BXwCdh5BdRXNw4nzJWKzcN3t/xgTr8zJ8M6uOXl7hRdtIW8rEUcylkLED8LGsnJmSkcnqlhPy841g==
   dependencies:
     canvas "^2.6.1"
     tslib "^1.14.1"
