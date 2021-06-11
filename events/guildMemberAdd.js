@@ -138,7 +138,7 @@ module.exports = class {
             // We look for the member in the server members
             const fetchInvitedMemberStart = Date.now();
             const inviterMember = member.guild.members.cache.get(inviter.id) || await member.guild.members.fetch(inviter.id).catch(() => {});
-            logMessage += `Fetch invited member: ${Date.now()-fetchInvitedMemberStart}\n`;
+            logMessage += `Fetch invited member: ${Date.now()-fetchInvitedMemberStart}ms\n`;
 
             let joinFake = false;
 
@@ -203,7 +203,7 @@ module.exports = class {
             if (inviterMember) {
                 const assignRanksStart = Date.now();
                 await this.client.functions.assignRanks(inviterMember, inviterData.invites, guildRanks, guildSettings.keepRanks, guildSettings.stackedRanks);
-                console.log(`Assign ranks: ${Date.now()-assignRanksStart}`);
+                console.log(`Assign ranks: ${Date.now()-assignRanksStart}ms\n`);
             }
 
             this.client.database.createGuildMemberEvent({
