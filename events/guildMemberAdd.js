@@ -14,7 +14,10 @@ module.exports = class {
         logMessage += `Join of ${member.user.tag} | (${member.id})\n`;
         logMessage += `Guild: ${member.guild.id}\n`;
 
+        const fetchGuildSubscriptionStart = Date.now();
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(member.guild.id);
+        logMessage += `Fetch guild subscriptions: ${Date.now()-fetchGuildSubscriptionStart}ms\n`;
+
         const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > (Date.now()-3*24*60*60*1000));
         if (!isPremium) return;
 
@@ -42,17 +45,23 @@ module.exports = class {
         let oauth = false;
         let perm = false;
 
-        if (!member.guild.me) await member.guild.members.fetch({
-            user: this.client.user.id,
-            cache: true
-        }).catch(() => {});
+        if (!member.guild.me) {
+            const fetchMyselfStart = Date.now();
+            await member.guild.members.fetch({
+                user: this.client.user.id,
+                cache: true
+            }).catch(() => {});
+            logMessage += `Fetch myself: ${Date.now()-fetchMyselfStart}ms\n`;
+        }
         if (!member.guild.me.hasPermission("MANAGE_GUILD")) perm = true;
 
         if (member.user.bot){
             oauth = true;
         } else if (!perm) {
+            const fetchGuildInvitesStart = Date.now();
             // Fetch the current invites of the guild
             const guildInvites = await member.guild.fetchInvites().catch(() => {});
+            logMessage += `Fetch guild invites: ${Date.now()-fetchGuildInvitesStart}`;
             // Fetch the invites of the guild BEFORE that the member has joined
             const oldGuildInvites = this.client.invitations[member.guild.id];
             if (guildInvites && oldGuildInvites){
@@ -82,12 +91,17 @@ module.exports = class {
 
         logMessage += `Vanity: ${vanity}\nInvite: ${!!invite}\nPerm: ${perm}\n`;
 
+        const resolveUserStart = Date.now();
         const inviter = invite && invite.inviter ? await this.client.resolveUser(invite.inviter.id) : null;
+        logMessage += `Resolve user : ${Date.now()-resolveUserStart}ms\n`;
+
+        const inviterDataStart = Date.now();
         const inviterData = inviter ? await this.client.database.fetchGuildMember({
             userID: inviter.id,
             guildID: member.guild.id,
             storageID: guildSettings.storageID
         }) : null;
+        logMessage += `Fetch inviter member data: ${Date.now()-inviterDataStart}ms\n`;
 
         const fetchEventsStartAt = Date.now();
         const [inviterEvents, memberEvents] = await Promise.all([
@@ -100,7 +114,7 @@ module.exports = class {
                 guildID: member.guild.id
             })
         ]);
-        logMessage += `Fetch guild data: ${Date.now()-fetchEventsStartAt}ms\n`;
+        logMessage += `Fetch member events: ${Date.now()-fetchEventsStartAt}ms\n`;
 
         if (inviter && guildBlacklistedUsers.includes(inviter.id)) {
             logMessage += "Blacklisted: true\n----------";
@@ -124,7 +138,7 @@ module.exports = class {
             // We look for the member in the server members
             const fetchInvitedMemberStart = Date.now();
             const inviterMember = member.guild.members.cache.get(inviter.id) || await member.guild.members.fetch(inviter.id).catch(() => {});
-            logMessage += `Fetch invited member: ${Date.now()-fetchInvitedMemberStart}`;
+            logMessage += `Fetch invited member: ${Date.now()-fetchInvitedMemberStart}\n`;
 
             let joinFake = false;
 
