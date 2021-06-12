@@ -83,7 +83,7 @@ module.exports.load = (discordClient) => {
             return message.reply(foundUsers);
         }
         if (message.data.event === "paypalNotification") {
-            console.log(`PayPal notification received! ${message.data}`);
+            console.log("PayPal notification received!", JSON.stringify(message.data));
             const { premiumLogs } = discordClient.config;
             const aLogs = discordClient.channels.cache.get(premiumLogs);
             if (!aLogs) return console.log(`Shard #${discordClient.shard.ids[0]}: PayPal Notif, channel logs can not be found`);
