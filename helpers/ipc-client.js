@@ -87,7 +87,7 @@ module.exports.load = (discordClient) => {
             const { premiumLogs } = discordClient.config;
             const aLogs = discordClient.channels.cache.get(premiumLogs);
             if (!aLogs) return console.log(`Shard #${discordClient.shard.ids[0]}: PayPal Notif, channel logs can not be found`);
-            const user = discordClient.users.fetch(message.data.userID).catch(() => {});
+            const user = await discordClient.users.fetch(message.data.userID).catch(() => {});
             if (!user) return console.log(`Shard #${discordClient.shard.ids[0]}: PayPal Notif, user can not be found ${message.data.userID}`);
             switch (message.data.notificationType) {
             case "verification": {
