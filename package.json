@@ -7,7 +7,7 @@
     "@manage-invite/manage-invite-db-client": "^1.0.18",
     "@sentry/node": "^6.2.3",
     "bufferutil": "^4.0.3",
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.1",
     "chart.js": "^2.9.4",
     "chartjs-node-canvas": "^3.2.0",
     "cron": "^1.8.2",
