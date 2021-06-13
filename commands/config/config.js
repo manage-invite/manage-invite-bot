@@ -45,14 +45,14 @@ module.exports = class extends Command {
             }), message.translate("config/config:JOIN_CONTENT", {
                 enabled: join?.enabled ? `**${message.translate("common:YES").toLowerCase()}**` : `**${message.translate("common:NO").toLowerCase()}**`,
                 message: join?.mainMessage ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`,
-                channel: join?.channel ? (message.guild.channels.cache.get(join?.channel) ? `**${message.translate("common:DEFINED").toLowerCase()}**` : message.translate("config/config:CHANNEL_NOT_FOUND")) : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`
+                channel: join?.channel ? (message.guild.channels.cache.get(join?.channel) ? `<#${join?.channel}>` : message.translate("config/config:CHANNEL_NOT_FOUND")) : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`
             }), true)
             .addField(message.translate("config/config:LEAVE_TITLE", {
                 status: getEmoji(leaveSuccess)
             }), message.translate("config/config:JOIN_CONTENT", {
                 enabled: leave?.enabled ? `**${message.translate("common:YES").toLowerCase()}**` : `**${message.translate("common:NO").toLowerCase()}**`,
                 message: leave?.mainMessage ? `**${message.translate("common:DEFINED").toLowerCase()}**` : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`,
-                channel: leave?.channel ? (message.guild.channels.cache.get(leave?.channel) ? `**${message.translate("common:DEFINED").toLowerCase()}**` : message.translate("config/config:CHANNEL_NOT_FOUND")) : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`
+                channel: leave?.channel ? (message.guild.channels.cache.get(leave?.channel) ? `<#${leave?.channel}>` : message.translate("config/config:CHANNEL_NOT_FOUND")) : `**${message.translate("common:NOT_DEFINED").toLowerCase()}**`
             }), true)
             .addField(message.translate("config/config:JOIN_DM_TITLE", {
                 status: getEmoji(joinDMSuccess)
