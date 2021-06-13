@@ -10,6 +10,7 @@
   "MANAGE": "Manage",
   "MEMBERS": "Members",
   "MESSAGE": "Message",
+  "MESSAGES": "Messages",
   "NO": "No",
   "NOT_DEFINED": "Not defined",
   "PREFIX": "Prefix",
@@ -17,5 +18,11 @@
   "SUPPORT_SERVER": "Support server",
   "TEST_IT": "Test it:",
   "UPDATE": "Update",
-  "YES": "Yes"
+  "YES": "Yes",
+  "CANCEL": "Cancel",
+  "MAIN": "Main",
+  "BOTS": "Bots",
+  "VANITY_URL": "Vanity URL",
+  "UNKNOWN": "Unknown",
+  "USES": "Uses"
 }

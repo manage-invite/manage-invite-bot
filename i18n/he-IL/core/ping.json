@@ -1,6 +1,6 @@
 {
-    "CONTENT": ":ping_pong: Pong!",
-    "TITLE": "🏓 Pong!",
-    "WEBSOCKET": "💻 | Websocket Ping",
-    "BOT": "📟 | Bot Ping"
+    "CONTENT": ":ping_pong: פונג!",
+    "TITLE": "פונג! 🏓!",
+    "WEBSOCKET": "💻 | פינג של הרשת",
+    "BOT": "📟 | פינג של הבוט"
 }
