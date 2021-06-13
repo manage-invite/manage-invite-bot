@@ -20,7 +20,7 @@ class ManageInvite extends Client {
             ],
             partials: [ "REACTION", "MESSAGE", "CHANNEL", "GUILD_MEMBER" ],
             allowedMentions: {
-                parse: ["users"],
+                parse: ["users", "roles", "everyone"],
                 repliedUser: true
             }
         });

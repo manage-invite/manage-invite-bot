@@ -94,7 +94,7 @@ module.exports = class extends Command {
         if (memberData.invitedMembers){
             const users = [];
             await this.client.functions.asyncForEach(uniqBy(memberData.invitedMembers, "userID"), async (event) => {
-                const fetchedUser = message.guild.member(event.userID);
+                const fetchedUser = message.guild.members.cache.get(event.userID);
                 if (fetchedUser) users.push("`"+Discord.Util.escapeMarkdown(fetchedUser.user.tag)+"`");
             });
             const nobody = users.length === 0;
