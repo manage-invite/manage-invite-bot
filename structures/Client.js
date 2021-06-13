@@ -18,7 +18,11 @@ class ManageInvite extends Client {
                 Intents.FLAGS.GUILD_INVITES,
                 Intents.FLAGS.DIRECT_MESSAGES
             ],
-            partials: [ "REACTION", "MESSAGE", "CHANNEL", "GUILD_MEMBER" ]
+            partials: [ "REACTION", "MESSAGE", "CHANNEL", "GUILD_MEMBER" ],
+            allowedMentions: {
+                parse: ["users"],
+                repliedUser: true
+            }
         });
         // Config
         this.config = require("../config"); // Load the config file
