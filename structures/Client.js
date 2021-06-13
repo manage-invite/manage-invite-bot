@@ -1,4 +1,4 @@
-const { Client, Collection } = require("discord.js"),
+const { Client, Collection, Intents } = require("discord.js"),
     util = require("util"),
     path = require("path");
 
@@ -7,8 +7,19 @@ const DatabaseHandler = require("@manage-invite/manage-invite-db-client");
 // Creates ManageInvite class
 class ManageInvite extends Client {
 
-    constructor (options) {
-        super(options);
+    constructor () {
+        super({
+            intents: [
+                Intents.FLAGS.GUILDS,
+                Intents.FLAGS.GUILD_MEMBERS,
+                Intents.FLAGS.GUILD_MESSAGES,
+                Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+                Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
+                Intents.FLAGS.GUILD_INVITES,
+                Intents.FLAGS.DIRECT_MESSAGES
+            ],
+            partials: [ "REACTION", "MESSAGE", "CHANNEL", "GUILD_MEMBER" ]
+        });
         // Config
         this.config = require("../config"); // Load the config file
         this.permLevels = require("../helpers/permissions"); // Load permissions file
