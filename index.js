@@ -14,9 +14,7 @@ Sentry.init({ dsn: config.sentryDSN });
 
 // Load ManageInvite class
 const ManageInvite = require("./structures/Client"),
-    client = new ManageInvite({
-        partials: [ "REACTION", "MESSAGE", "CHANNEL", "GUILD_MEMBER" ]
-    });
+    client = new ManageInvite();
 
 const init = async () => {
 

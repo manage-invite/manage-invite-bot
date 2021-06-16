@@ -47,7 +47,7 @@ module.exports.load = (discordClient) => {
                 if (!guild) return;
                 const member = await guild.members.fetch(userID).catch(() => {});
                 if (!member) return;
-                else if (member.hasPermission(permissionName)) verified.push(guildID);
+                else if (member.permissions.has(permissionName)) verified.push(guildID);
             }));
             message.reply(verified);
         }

@@ -1,3 +1,5 @@
+const { Permissions } = require("discord.js");
+
 module.exports = [
     {
         level: 0,
@@ -7,12 +9,12 @@ module.exports = [
     {
         level: 1,
         name: "Moderator",
-        check: (message) => (message.guild ? message.member.hasPermission("MANAGE_MESSAGES") : false),
+        check: (message) => (message.guild ? message.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES) : false),
     },
     {
         level: 2,
         name: "Administrator",
-        check: (message) => (message.guild ? message.member.hasPermission("ADMINISTRATOR") : false),
+        check: (message) => (message.guild ? message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR) : false),
     },
     {
         level: 3,
