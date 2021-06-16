@@ -75,70 +75,6 @@ const randomID = () => {
 };
 
 /**
- * Gets the next rank for a member
- * @param {number} inviteCount The member's invite count
- * @param {array} ranks The ranks of the guild
- * @param {Guild} guild The guild
- * @returns {?object} The next rank, if found
- */
-const getNextRank = (inviteCount, ranks, guild) => {
-    let nextRank = null;
-    ranks.forEach((rank) => {
-        // If the rank is lower
-        if (parseInt(rank.inviteCount) <= inviteCount) return;
-        // If the rank is higher than rank
-        if (nextRank && (parseInt(nextRank.inviteCount) < parseInt(rank.inviteCount))) return;
-        // If the role was deleted
-        if (!guild.roles.cache.get(rank.roleID)) return;
-        // Mark the rank as nextRank
-        nextRank = rank;
-    });
-    return nextRank;
-};
-
-/**
- * Assigns ranks rewards to a member
- * @param {object} member The member on who the ranks will be assigned
- * @param {number} inviteCount The member's invite count
- * @param {array} ranks The ranks of the guild
- * @param {boolean} keepRanks Whether the members should keep their ranks, even if they doesn't have enough invites
- * @param {boolean} stackedRanks Whether the ranks should be stacked (otherwise, only the highest rank will be kept)
- * @returns {Promise<void>}
- */
-const assignRanks = async (member, inviteCount, ranks, keepRanks, stackedRanks) => {
-    if (member.user.bot) return;
-    const assigned = new Array();
-    await asyncForEach((ranks.sort((a, b) => b.inviteCount - a.inviteCount)), async (rank) => {
-        // If the guild doesn't contain the rank anymore
-        if (!member.guild.roles.cache.has(rank.roleID)) return;
-        // If the bot doesn't have permissions to assign role to this member
-        if (!member.guild.roles.cache.get(rank.roleID).editable) return;
-        // If the member can't obtain the rank
-        if (inviteCount < parseInt(rank.inviteCount)){
-            if (!keepRanks){
-                // If the member doesn't have the rank
-                if (!member.roles.cache.has(rank.roleID)) return;
-                // Remove the ranks
-                await member.roles.remove(rank.roleID);
-            }
-        } else {
-            assigned.push(rank.roleID);
-            // If the member already has the rank
-            if (member.roles.cache.has(rank.roleID)) return;
-            // Add the role to the member
-            if (stackedRanks) await member.roles.add(rank.roleID);
-        }
-    });
-    if (!stackedRanks && assigned.length > 0) {
-        await member.roles.add(assigned.shift());
-        for (const role of assigned){
-            if (member.roles.cache.has(role)) await member.roles.remove(role);
-        }
-    }
-    return;
-};
-
-/**
  * Post client stats to Top.gg
  * @param {object} client The Discord client
  */
@@ -289,8 +225,6 @@ module.exports = {
     formatMessage,
     formatDate,
     randomID,
-    getNextRank,
-    assignRanks,
     postTopStats,
     lastXDays,
     joinedXDays,

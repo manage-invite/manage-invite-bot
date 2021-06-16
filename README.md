@@ -49,4 +49,3 @@ Please note that the code in this repository is **NOT** intended to be hosted. T
 
 <img src="./assets/example-invites.png" />
 <img src="./assets/example-sync.png" />
-<img src="./assets/example-ranks-conf.png" />

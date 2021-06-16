@@ -27,12 +27,10 @@ module.exports = class {
         const [
             guildSettings,
             guildBlacklistedUsers,
-            guildRanks,
             guildPlugins
         ] = await Promise.all([
             this.client.database.fetchGuildSettings(member.guild.id),
             this.client.database.fetchGuildBlacklistedUsers(member.guild.id),
-            this.client.database.fetchGuildRanks(member.guild.id),
             this.client.database.fetchGuildPlugins(member.guild.id)
         ]);
         logMessage += `Fetch guild data: ${Date.now()-fetchGuildStartAt}ms\n`;
@@ -200,12 +198,6 @@ module.exports = class {
                 type: "regular"
             });
             inviterData.regular++;
-
-            if (inviterMember) {
-                const assignRanksStart = Date.now();
-                await this.client.functions.assignRanks(inviterMember, inviterData.invites, guildRanks, guildSettings.keepRanks, guildSettings.stackedRanks);
-                console.log(`Assign ranks: ${Date.now()-assignRanksStart}ms\n`);
-            }
 
             this.client.database.createGuildMemberEvent({
                 userID: member.id,

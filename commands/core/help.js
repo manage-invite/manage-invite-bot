@@ -26,9 +26,6 @@ module.exports = class extends Command {
             .addField(message.translate("core/help:ADMIN_TITLE"), message.translate("core/help:ADMIN_CONTENT", {
                 prefix: `\\${message.guild.settings.prefix}`
             }), false)
-            .addField(message.translate("core/help:RANKS_TITLE"), message.translate("core/help:RANKS_CONTENT", {
-                prefix: `\\${message.guild.settings.prefix}`
-            }), false)
             .addField(message.translate("core/help:JOIN_DM_TITLE"), message.translate("core/help:JOIN_DM_CONTENT", {
                 prefix: `\\${message.guild.settings.prefix}`
             }), false)

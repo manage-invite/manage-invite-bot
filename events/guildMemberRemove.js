@@ -25,13 +25,11 @@ module.exports = class {
         const [
             guildSettings,
             guildBlacklistedUsers,
-            guildRanks,
             guildPlugins,
             memberEvents
         ] = await Promise.all([
             this.client.database.fetchGuildSettings(member.guild.id),
             this.client.database.fetchGuildBlacklistedUsers(member.guild.id),
-            this.client.database.fetchGuildRanks(member.guild.id),
             this.client.database.fetchGuildPlugins(member.guild.id),
             this.client.database.fetchGuildMemberEvents({
                 userID: member.id,
@@ -91,13 +89,6 @@ module.exports = class {
                 eventDate: new Date(),
                 storageID: guildSettings.storageID
             });
-            const inviterMember = member.guild.members.cache.get(inviter.id) ?? await member.guild.members.fetch({
-                user: inviter.id,
-                cache: true
-            });
-            if (inviterMember){
-                await this.client.functions.assignRanks(inviterMember, inviterData.invites, guildRanks, guildSettings.keepRanks, guildSettings.stackedRanks);
-            }
         }
 
         const memberNumJoins = memberEvents.filter((e) => e.eventType === "join" && e.userID === member.id).length || 1;
