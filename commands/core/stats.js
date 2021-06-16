@@ -65,7 +65,6 @@ module.exports = class extends Command {
             options
         });
         const attachment = new Discord.MessageAttachment(image, "image.png");
-        embed.attachFiles(attachment);
         embed.setImage("attachment://image.png");
         const total = joinedXDays.reduce((p, c) => p+c);
         const percent = Math.round((100*total)/message.guild.members.cache.size);
@@ -76,7 +75,9 @@ module.exports = class extends Command {
             from: daysRange[0],
             to: daysRange[1]
         }));
-        message.channel.send(embed);
+        message.channel.send(embed, {
+            files: [attachment]
+        });
 
     }
 };
