@@ -833,7 +833,8 @@ discord-paginationembed@^2.1.0:
 
 discord.js@discordjs/discord.js:
   version "13.0.0-dev"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/02693bc02f45980d8165820a103220f0027b96b7"
+  uid f7eeccba4b7015496df811f10cc2da2b0fab0630
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/f7eeccba4b7015496df811f10cc2da2b0fab0630"
   dependencies:
     "@discordjs/collection" "^0.1.6"
     "@discordjs/form-data" "^3.0.1"
