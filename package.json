@@ -5,7 +5,7 @@
   "main": "sharder.js",
   "dependencies": {
     "@manage-invite/manage-invite-db-client": "^1.0.21",
-    "@sentry/node": "^6.2.3",
+    "@sentry/node": "^6.7.1",
     "bufferutil": "^4.0.3",
     "chalk": "^4.1.1",
     "chart.js": "^3.3.2",
