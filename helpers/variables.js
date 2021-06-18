@@ -52,6 +52,7 @@ module.exports = [
     },
     {
         name: "userAvatar",
+        aliases: ["user.avatar"],
         display: (member) => member.user.displayAvatarURL(),
         endPart: true,
         alert: true
