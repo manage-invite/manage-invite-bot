@@ -112,7 +112,7 @@ module.exports = class extends Command {
         }
 
         const numberOfJoins = joins.length > 1 ? joins.length : member ? 1 : 0;
-        embed.addField(message.translate("core/userinfo:NUMBER_JOINS"), numberOfJoins);
+        embed.addField(message.translate("core/userinfo:NUMBER_JOINS"), numberOfJoins.toString());
                 
         if (numberOfJoins > 1){
             embed.addField(message.translate("core/userinfo:FIRST_JOIN_WAY_TITLE"), await getJoinWay(joins[0]));
