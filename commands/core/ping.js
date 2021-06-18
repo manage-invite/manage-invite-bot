@@ -22,6 +22,6 @@ module.exports = class extends Command {
             .setFooter(data.footer)
             .addField(message.translate("core/ping:WEBSOCKET"), `${Math.floor(this.client.ws.ping)} ms`)
             .addField(message.translate("core/ping:BOT"), `${Math.floor(msg.createdTimestamp - message.createdTimestamp)} ms`);
-        msg.edit(null, { embed });
+        msg.edit({ embeds: [embed] });
     }
 };
