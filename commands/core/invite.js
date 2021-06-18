@@ -17,15 +17,15 @@ module.exports = class extends Command {
         const blacklistedUsers = await this.client.database.fetchGuildBlacklistedUsers(message.guild.id);
         if (blacklistedUsers.includes(message.author.id)) return message.error("admin/blacklist:AUTHOR_BLACKLISTED");
 
-        const member = await this.client.resolveMember(args.join(" "), message.guild) || message.member || await message.guild.members.fetch(message.author.id).catch(() => {});
+        const user = await this.client.resolveUser(args.join(" ")) || message.author;
         const memberData = await this.client.database.fetchGuildMember({
             storageID: message.guild.settings.storageID,
-            userID: member.id,
+            userID: user.id,
             guildID: message.guild.id
         });
 
         const translation = {
-            username: member.user.username,
+            username: user.username,
             inviteCount: memberData.invites,
             regularCount: memberData.regular,
             bonusCount: memberData.bonus,
@@ -33,13 +33,13 @@ module.exports = class extends Command {
             leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
         };
 
-        const description =  member.id === message.member.id ?
+        const description = user.id === message.member.id ?
             message.translate("core/invite:AUTHOR_CONTENT", translation) :
             message.translate("core/invite:MEMBER_CONTENT", translation);
 
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor(member.user.tag, member.user.displayAvatarURL())
+            .setAuthor(user.tag, user.displayAvatarURL())
             .setDescription(description)
             .setColor(data.color)
             .setFooter(data.footer);
