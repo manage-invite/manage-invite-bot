@@ -24,27 +24,27 @@ module.exports = class extends Command {
             prefix: message.guild.settings.prefix
         });
 
-        const member = message.mentions.members.first() || await this.client.resolveMember(args.slice(1).join(" "), message.guild);
-        if (!member && args[1] !== "all") return message.error("admin/removebonus:MISSING_TARGET", {
+        const user = message.mentions.users.first() || await this.client.resolveUser(args.slice(1).join(" "));
+        if (!user && args[1] !== "all") return message.error("admin/removebonus:MISSING_TARGET", {
             prefix: message.guild.settings.prefix
         });
-        if (member && guildBlacklistedUsers.includes(member.id)) return message.error("admin/blacklist:BLACKLISTED", {
-            username: member.user.username
+        if (user && guildBlacklistedUsers.includes(user.id)) return message.error("admin/blacklist:BLACKLISTED", {
+            username: user.username
         });
 
-        if (member){
+        if (user){
             const memberData = await this.client.database.fetchGuildMember({
-                userID: member.user.id,
+                userID: user.id,
                 guildID: message.guild.id,
                 storageID: message.guild.settings.storageID
             });
             if (memberData.notCreated) await this.client.database.createGuildMember({
-                userID: member.user.id,
+                userID: user.id,
                 guildID: message.guild.id,
                 storageID: message.guild.settings.storageID
             });
             await this.client.database.addInvites({
-                userID: member.user.id,
+                userID: user.id,
                 guildID: message.guild.id,
                 storageID: message.guild.settings.storageID,
                 number: -parseInt(bonus),
@@ -55,8 +55,8 @@ module.exports = class extends Command {
                 .setAuthor(message.translate("admin/removebonus:SUCCESS_TITLE"))
                 .setDescription(message.translate("admin/removebonus:SUCCESS_CONTENT_MEMBER", {
                     prefix: message.guild.settings.prefix,
-                    usertag: member.user.tag,
-                    username: member.user.username
+                    usertag: user.tag,
+                    username: user.username
                 }))
                 .setColor(data.color)
                 .setFooter(data.footer);
