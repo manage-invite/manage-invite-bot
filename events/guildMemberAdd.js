@@ -124,7 +124,7 @@ module.exports = class {
         }
 
         // If we know who invited the member
-        if (invite){
+        if (inviter){
 
             const previousInviteCount = inviterData.invites;
             let newInviteCount = inviterData.invites;
