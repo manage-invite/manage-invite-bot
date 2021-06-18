@@ -36,6 +36,11 @@ module.exports = [
         alert: true
     },
     {
+        name: "userJoinedSince",
+        display: (member, numJoins, invData, moment) => moment(member.user.joinedAt).fromNow(),
+        alert: true
+    },
+    {
         name: "userCreatedAt",
         display: (member, numJoins, invData, moment) => moment(member.user.createdAt).format("LL"),
         alert: true
