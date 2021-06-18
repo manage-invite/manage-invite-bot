@@ -39,7 +39,7 @@ module.exports = class extends Command {
             } else {
                 client.loadCommand(cmd.conf.location, cmd.help.name);
             }
-        });
+        }, { context: cmd });
         message.channel.send(Constants.Emojis.SUCCESS+" | `"+command+"` reloaded!");
     }
 
