@@ -38,8 +38,8 @@ module.exports = class {
         console.log("=================================================");
         if (this.client.shard.ids.includes(this.client.shard.count-1)){
             console.log("Ready. Logged as "+this.client.user.tag+". Some stats:\n");
-            this.client.shard.broadcastEval(() => {
-                console.log("\x1b[32m%s\x1b[0m", `SHARD [${this.shard.ids[0]}]`, "\x1b[0m", `Serving ${this.users.cache.size} users in ${this.guilds.cache.size} servers.`);
+            this.client.shard.broadcastEval((client) => {
+                console.log("\x1b[32m%s\x1b[0m", `SHARD [${client.shard.ids[0]}]`, "\x1b[0m", `Serving ${client.users.cache.size} users in ${client.guilds.cache.size} servers.`);
             });
         }
         this.client.ipc.load(this.client);
@@ -50,10 +50,10 @@ module.exports = class {
                     console.log(`Envoi de ${paymentsData.length} notifications`);
                     paymentsData.forEach(async (paymentData) => {
                         const user = await this.client.users.fetch(paymentData.payerDiscordID);
-                        const guildNames = await this.client.shard.broadcastEval(`
-                            let guild = this.guilds.cache.get('${paymentData.guildID}');
-                            if(guild) guild.name;
-                        `);
+                        const guildNames = await this.client.shard.broadcastEval((client, guildID) => {
+                            const guild = this.guilds.cache.get(guildID);
+                            if (guild) return guild.name;
+                        }, { context: paymentData.guildID });
                         const guildNameFound = guildNames.find((r) => r);
                         if (!guildNameFound) {
                             return this.client.database.setPaymentRemindSent({

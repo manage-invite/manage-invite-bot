@@ -33,10 +33,11 @@ module.exports = class extends Command {
         const isMonth = args[3] === "month";
 
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(guildID);
-        const guildNames = await this.client.shard.broadcastEval(`
-            let guild = this.guilds.cache.get('${guildID}');
-            if(guild) guild.name;
-        `);
+        const guildNames = await this.client.shard.broadcastEval((client, guildID) => {
+            const guild = client.guilds.cache.get(guildID);
+            if (guild) return guild.name;
+        }, { context: guildID });
+
         const guildNameFound = guildNames.find((r) => r);
         const guildName = guildNameFound || guildID;
 

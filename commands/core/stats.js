@@ -75,7 +75,8 @@ module.exports = class extends Command {
             from: daysRange[0],
             to: daysRange[1]
         }));
-        message.channel.send(embed, {
+        message.channel.send({
+            embeds: [embed],
             files: [attachment]
         });
 

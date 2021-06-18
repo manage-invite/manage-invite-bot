@@ -20,13 +20,13 @@ const asyncForEach = async (array, callback) => {
 };
 
 const syncPremiumRoles = (client) => {
-    client.shard.broadcastEval(() => {
-        if (this.guilds.cache.has(client.config.supportServer)){
-            this.database.fetchPremiumUserIDs().then((userIDs) => {
-                const guild = this.guilds.cache.get(this.config.supportServer);
+    client.shard.broadcastEval((client) => {
+        if (client.guilds.cache.has(client.config.supportServer)){
+            client.database.fetchPremiumUserIDs().then((userIDs) => {
+                const guild = client.guilds.cache.get(client.config.supportServer);
                 userIDs
-                    .filter((r) => guild.members.cache.has(r) && !guild.members.cache.get(r).roles.cache.has(this.config.premiumRole))
-                    .forEach((m) => guild.members.cache.get(m).roles.add(this.config.premiumRole));
+                    .filter((r) => guild.members.cache.has(r) && !guild.members.cache.get(r).roles.cache.has(client.config.premiumRole))
+                    .forEach((m) => guild.members.cache.get(m).roles.add(client.config.premiumRole));
             });
         }
     });

@@ -26,12 +26,11 @@ module.exports = class extends Command {
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(guildID);
         const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > (Date.now()-3*24*60*60*1000));
 
-        const guildJsons = await this.client.shard.broadcastEval(`
-            let guild = this.guilds.cache.get('${guildID}');
-            if(guild){
-                [ guild.name, guild.iconURL() ]
-            }
-        `);
+        const guildJsons = await this.client.shard.broadcastEval((client, guildID) => {
+            console.log(client, guildID);
+            const guild = client.guilds.cache.get(guildID);
+            if (guild) return [ guild.name, guild.iconURL() ];
+        }, { context: guildID });
         const guildJson = guildJsons.find((r) => r);
         const guildData = (guildJson ? { name: guildJson[0], icon: guildJson[1] } : null) || {
             name: "Unknown Name",

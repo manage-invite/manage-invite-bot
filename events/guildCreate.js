@@ -30,7 +30,7 @@ module.exports = class {
             `My prefix is \`${guildSettings.prefix || "+"}\`. If you want to remove server invites to start over from scratch, you can use \`${guildSettings.prefix || "+"}remove-invites\`. If you want to synchronize current server invites with the bot, you can use \`${guildSettings.prefix || "+"}sync-invites\`\n \n**--------------**\n`
             : "My prefix is `+`. If you want to remove server invites to start over from scratch, you can use `+remove-invites`.\n \n**--------------**\n";            
 
-        const guildCreate = escape(JSON.stringify(new Discord.MessageEmbed()
+        const guildCreate = new Discord.MessageEmbed()
             .setTitle("Add | :heart:")
             .addField("Server name :", guild.name) 
             .addField("Owner id :", guild.ownerID)
@@ -38,13 +38,12 @@ module.exports = class {
             .addField("Server id :", guild.id)
             .addField("Number of members :", guild.memberCount)
             .setFooter(isValidGuild ? "Add me with +add" : "Guild was just reloaded")
-            .setColor(isValidGuild ? this.client.config.color : "#000000")));
+            .setColor(isValidGuild ? this.client.config.color : "#000000");
 
-        const { addLogs } = this.client.config;
-        this.client.shard.broadcastEval(`
-            let aLogs = this.channels.cache.get('${addLogs}');
-            if(aLogs) aLogs.send({ embed: JSON.parse(unescape('${guildCreate}')) });
-        `);
+        this.client.shard.broadcastEval((client, guildCreateEmbed) => {
+            const aLogs = this.channels.cache.get(client.config.addLogs);
+            if (aLogs) aLogs.send({ embeds: [guildCreateEmbed] });
+        }, { context: guildCreate });
 
         if (isValidGuild){
 

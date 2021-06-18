@@ -104,14 +104,14 @@ module.exports.load = (discordClient) => {
                     .setDescription(`Subscription for guild **${message.data.guildName}** created... :white_check_mark:`)
                     .setColor("#ff9966");
                 aLogs.send(logEmbed);
-                discordClient.shard.broadcastEval(`
-                    if(this.guilds.cache.some((g) => g.roles.cache.has(this.config.premiumRole))){
-                        const guild = this.guilds.cache.find((g) => g.roles.cache.has(this.config.premiumRole));
-                        guild.members.fetch('${message.data.userID}').then((member) => {
-                            member.roles.add(this.config.premiumRole);
+                discordClient.shard.broadcastEval((client, userID) => {
+                    if (client.guilds.cache.some((g) => g.roles.cache.has(client.config.premiumRole))){
+                        const guild = client.guilds.cache.find((g) => g.roles.cache.has(client.config.premiumRole));
+                        guild.members.fetch(userID).then((member) => {
+                            member.roles.add(client.config.premiumRole);
                         }).catch(() => {});
                     }
-                `);
+                }, { context: message.data.userID });
                 break;
             }
             case "paid": {

@@ -21,8 +21,8 @@ module.exports = class extends Command {
         let i1 = 10;
         let page = 1;
 
-        const results = await this.client.shard.broadcastEval(() => {
-            return this.guilds.cache.array();
+        const results = await this.client.shard.broadcastEval((client) => {
+            return client.guilds.cache.array();
         });
         let guilds = [];
         results.forEach((a) => guilds = [...guilds, ...a]);

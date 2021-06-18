@@ -19,12 +19,12 @@ module.exports = class extends Command {
         const usersCounts = await this.client.shard.fetchClientValues("users.cache.size");
         const usersCount = usersCounts.reduce((p, count) => p + count);
         
-        const results = await this.client.shard.broadcastEval(() => {
+        const results = await this.client.shard.broadcastEval((client) => {
             return [
                 Math.round((process.memoryUsage().heapUsed / 1024 / 1024)),
-                this.guilds.cache.size,
-                this.shard.ids[0],
-                Math.round(this.ws.ping)
+                client.guilds.cache.size,
+                client.shard.ids[0],
+                Math.round(client.ws.ping)
             ];
         });
 
