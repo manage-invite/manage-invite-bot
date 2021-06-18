@@ -129,10 +129,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@manage-invite/manage-invite-db-client@^1.0.21":
-  version "1.0.21"
-  resolved "https://npm.pkg.github.com/download/@manage-invite/manage-invite-db-client/1.0.21/7027b011edfb790e5919e568adb86bedcd28e3ef5298d302b60983940a5fdfee#c7a11f2dcbd362f06b05a02ff961bf23fd5e1467"
-  integrity sha512-mWzlfF5KVBhhBdkXP15jNG16lloa2Z6qjPL6Mmxzto865Hr0pYPkwTK2Qn8Fsfz24UMt08DSSETjHAosOoCAbg==
+"@manage-invite/manage-invite-db-client@^1.0.27":
+  version "1.0.27"
+  resolved "https://npm.pkg.github.com/download/@manage-invite/manage-invite-db-client/1.0.27/1ee3981463b34cadb410517c297e9eebdc39d2e3ede821f5ccec4031786d93e3#535b66c21475ac1007fdb0813a7b22b714c00a61"
+  integrity sha512-qnb3O5NwglqF7i0HyP56XumMBe0HMy1ymNhAPi6nKuiboTxUraPvjh93b0Im5oR2/PRPZ8wci8FJRFbURj+vWA==
   dependencies:
     change-case "^4.1.2"
     ioredis "^4.24.5"
@@ -833,7 +833,6 @@ discord-paginationembed@^2.1.0:
 
 discord.js@discordjs/discord.js:
   version "13.0.0-dev"
-  uid a3cbcca13da1af416c219bd64a0a6e84bb87a057
   resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/a3cbcca13da1af416c219bd64a0a6e84bb87a057"
   dependencies:
     "@discordjs/collection" "^0.1.6"

@@ -18,7 +18,7 @@ module.exports = class extends Command {
         if (blacklistedUsers.includes(message.author.id)) return message.error("admin/blacklist:AUTHOR_BLACKLISTED");
 
         const member = await this.client.resolveMember(args.join(" "), message.guild) || message.member || await message.guild.members.fetch(message.author.id).catch(() => {});
-        const memberData = this.client.database.fetchGuildMember({
+        const memberData = await this.client.database.fetchGuildMember({
             storageID: message.guild.settings.storageID,
             userID: member.id,
             guildID: message.guild.id
@@ -37,13 +37,14 @@ module.exports = class extends Command {
             message.translate("core/invite:AUTHOR_CONTENT", translation) :
             message.translate("core/invite:MEMBER_CONTENT", translation);
 
+
         const embed = new Discord.MessageEmbed()
             .setAuthor(member.user.tag, member.user.displayAvatarURL())
             .setDescription(description)
             .setColor(data.color)
             .setFooter(data.footer);
 
-        message.channel.send(embed);
+        message.channel.send({ embeds: [embed] });
     }
 
 };

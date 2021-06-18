@@ -2,32 +2,43 @@
 
 module.exports = [
     {
+        name: "inviteCount",
+        display: (member, numberOfJoins, invData, moment, inviteCount) => inviteCount,
+        alert: true
+    },
+    {
         name: "user",
-        display: (member) => member.toString()
+        display: (member) => member.toString(),
+        alert: true
     },
     {
         name: "userName",
         aliases: ["user.name"],
-        display: (member) => member.user.username
+        display: (member) => member.user.username,
+        alert: true
     },
     {
         name: "userTag",
         aliases: ["user.tag"],
-        display: (member) => member.user.tag
+        display: (member) => member.user.tag,
+        alert: true
     },
     {
         name: "userId",
         aliases: ["user.id"],
-        display: (member) => member.id
+        display: (member) => member.id,
+        alert: true
     },
     {
         name: "userCreatedSince",
         aliases: ["user.createdat"],
-        display: (member, numJoins, invData, moment) => moment(member.user.createdAt).fromNow()
+        display: (member, numJoins, invData, moment) => moment(member.user.createdAt).fromNow(),
+        alert: true
     },
     {
         name: "userCreatedAt",
-        display: (member, numJoins, invData, moment) => moment(member.user.createdAt).format("LL")
+        display: (member, numJoins, invData, moment) => moment(member.user.createdAt).format("LL"),
+        alert: true
     },
     {
         name: "userNumJoins",
@@ -37,18 +48,21 @@ module.exports = [
     {
         name: "userAvatar",
         display: (member) => member.user.displayAvatarURL(),
-        endPart: true
+        endPart: true,
+        alert: true
     },
     {
         name: "serverName",
         aliases: ["server", "guild"],
-        display: (member) => member.guild.name
+        display: (member) => member.guild.name,
+        alert: true
     },
     {
         name: "serverMemberCount",
         aliases: ["server.count", "guild.count"],
         display: (member) => member.guild.memberCount,
-        endPart: true
+        endPart: true,
+        alert: true
     },
     {
         name: "inviter",

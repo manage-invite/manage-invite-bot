@@ -26,11 +26,13 @@ module.exports = class {
             guildSettings,
             guildBlacklistedUsers,
             guildPlugins,
+            guildAlerts,
             memberEvents
         ] = await Promise.all([
             this.client.database.fetchGuildSettings(member.guild.id),
             this.client.database.fetchGuildBlacklistedUsers(member.guild.id),
             this.client.database.fetchGuildPlugins(member.guild.id),
+            this.client.database.fetchGuildAlerts(member.guild.id),
             this.client.database.fetchGuildMemberEvents({
                 userID: member.id,
                 guildID: member.guild.id
@@ -57,6 +59,14 @@ module.exports = class {
         if (inviter){
             if (guildBlacklistedUsers.includes(inviter.id)) return;
 
+            const inviterMember = member.guild.members.cache.get(inviter.id) ?? await member.guild.members.fetch({
+                user: inviter.id,
+                cache: true
+            });
+
+            const previousInviteCount = inviterData.invites;
+            let newInviteCount = previousInviteCount;
+
             if (inviterData.notCreated) await this.client.database.createGuildMember({
                 userID: inviter.id,
                 guildID: member.guild.id,
@@ -71,6 +81,7 @@ module.exports = class {
                 type: "leaves"
             });
             inviterData.leaves++;
+            newInviteCount--;
 
             if (lastJoinData.joinFake) {
                 this.client.database.addInvites({
@@ -81,6 +92,7 @@ module.exports = class {
                     type: "fake"
                 });
                 inviterData.fake--;
+                newInviteCount++;
             }
             await this.client.database.createGuildMemberEvent({
                 userID: member.id,
@@ -89,6 +101,16 @@ module.exports = class {
                 eventDate: new Date(),
                 storageID: guildSettings.storageID
             });
+
+            if (previousInviteCount > newInviteCount) {
+                const guildAlertNewCount = guildAlerts.find((alert) => alert.inviteCount === previousInviteCount && alert.type === "down");
+                if (guildAlertNewCount) {
+                    const alertMessage = this.client.functions.formatMessage(guildAlertNewCount.message, inviterMember, null, (guildSettings.language || "english").substr(0, 2), null, true, newInviteCount);
+                    const alertChannel = this.client.channels.cache.get(guildAlertNewCount.channelID);
+                    if (alertChannel) alertChannel.send(alertMessage);
+                }
+            }
+
         }
 
         const memberNumJoins = memberEvents.filter((e) => e.eventType === "join" && e.userID === member.id).length || 1;

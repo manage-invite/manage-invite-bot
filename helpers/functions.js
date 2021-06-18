@@ -39,15 +39,15 @@ const syncPremiumRoles = (client) => {
  * @param {object} invData Data related to the invite and inviter
  * @returns {string|MessageEmbed} The formatted string or embed
  */
-const formatMessage = (message, member, numberOfJoins, locale, invData) => {
+const formatMessage = (message, member, numberOfJoins, locale, invData, alert, inviteCount) => {
 
     moment.locale(locale);
 
-    variables.forEach((variable) => {
+    variables.filter((v) => alert ? v.alert : true).forEach((variable) => {
         if (variable.requireInviter && !invData) return;
         const matches = [variable.name, variable.aliases].flat();
         matches.forEach((match) => {
-            message = message.replaceAll(`{${match}}`, variable.display(member, numberOfJoins, invData, moment));
+            message = message.replaceAll(`{${match}}`, variable.display(member, numberOfJoins, invData, moment, inviteCount));
         });
     });
 
@@ -62,7 +62,7 @@ const formatMessage = (message, member, numberOfJoins, locale, invData) => {
         data = message.substr(0, 2000);
     }
     
-    return embed ? { embed: data } : data;
+    return embed ? { embeds: [data] } : data;
     
 };
 

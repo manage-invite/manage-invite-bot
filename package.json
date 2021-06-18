@@ -4,7 +4,7 @@
   "description": "ManageInvite is the best bot to manage your server invites! Easy to setup, and complete!",
   "main": "sharder.js",
   "dependencies": {
-    "@manage-invite/manage-invite-db-client": "^1.0.21",
+    "@manage-invite/manage-invite-db-client": "^1.0.27",
     "@sentry/node": "^6.7.1",
     "bufferutil": "^4.0.3",
     "chalk": "^4.1.1",

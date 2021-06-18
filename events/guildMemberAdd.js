@@ -27,11 +27,13 @@ module.exports = class {
         const [
             guildSettings,
             guildBlacklistedUsers,
-            guildPlugins
+            guildPlugins,
+            guildAlerts
         ] = await Promise.all([
             this.client.database.fetchGuildSettings(member.guild.id),
             this.client.database.fetchGuildBlacklistedUsers(member.guild.id),
-            this.client.database.fetchGuildPlugins(member.guild.id)
+            this.client.database.fetchGuildPlugins(member.guild.id),
+            this.client.database.fetchGuildAlerts(member.guild.id)
         ]);
         logMessage += `Fetch guild data: ${Date.now()-fetchGuildStartAt}ms\n`;
 
@@ -124,6 +126,9 @@ module.exports = class {
         // If we know who invited the member
         if (invite){
 
+            const previousInviteCount = inviterData.invites;
+            let newInviteCount = inviterData.invites;
+
             if (inviterData.notCreated) {
                 const createMemberStart = Date.now();
                 await this.client.database.createGuildMember({
@@ -153,6 +158,7 @@ module.exports = class {
                         type: "leaves"
                     });
                     inviterData.leaves--;
+                    newInviteCount++;
                     this.client.database.addInvites({
                         userID: inviter.id,
                         guildID: member.guild.id,
@@ -161,6 +167,7 @@ module.exports = class {
                         type: "fake"
                     });
                     inviterData.fake++;
+                    newInviteCount--;
                 } else if (inviter.id === member.id) {
                     this.client.database.addInvites({
                         userID: inviter.id,
@@ -170,6 +177,7 @@ module.exports = class {
                         type: "fake"
                     });
                     inviterData.fake++;
+                    newInviteCount--;
                 } else {
                     const fakeThreshold = guildSettings.fakeThreshold;
                     if (fakeThreshold) {
@@ -184,11 +192,11 @@ module.exports = class {
                                 type: "fake"
                             });
                             inviterData.fake++;
+                            newInviteCount--;
                         }
                     }
                 }
             }
-           
 
             this.client.database.addInvites({
                 userID: inviter.id,
@@ -198,6 +206,16 @@ module.exports = class {
                 type: "regular"
             });
             inviterData.regular++;
+            newInviteCount++;
+
+            if (previousInviteCount < newInviteCount) {
+                const guildAlertNewCount = guildAlerts.find((alert) => alert.inviteCount === newInviteCount && alert.type === "up");
+                if (guildAlertNewCount) {
+                    const alertMessage = this.client.functions.formatMessage(guildAlertNewCount.message, inviterMember, null, (guildSettings.language || "english").substr(0, 2), null, true, newInviteCount);
+                    const alertChannel = this.client.channels.cache.get(guildAlertNewCount.channelID);
+                    if (alertChannel) alertChannel.send(alertMessage);
+                }
+            }
 
             this.client.database.createGuildMemberEvent({
                 userID: member.id,
