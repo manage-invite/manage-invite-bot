@@ -27,7 +27,6 @@ module.exports = class extends Command {
         const isPremium = guildSubscriptions.some((sub) => new Date(sub.expiresAt).getTime() > (Date.now()-3*24*60*60*1000));
 
         const guildJsons = await this.client.shard.broadcastEval((client, guildID) => {
-            console.log(client, guildID);
             const guild = client.guilds.cache.get(guildID);
             if (guild) return [ guild.name, guild.iconURL() ];
         }, { context: guildID });
