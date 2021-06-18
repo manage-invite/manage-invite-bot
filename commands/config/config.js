@@ -63,6 +63,6 @@ module.exports = class extends Command {
             .addField(message.translate("config/config:STORAGE_TITLE"), message.guild.settings.storageID, true)
             .setColor(data.color)
             .setFooter(data.footer);
-        message.channel.send(embed);
+        message.channel.send({ embeds: [embed] });
     }
 };

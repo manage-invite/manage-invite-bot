@@ -56,7 +56,7 @@ module.exports = class extends Command {
             }), true);
         });
 
-        message.channel.send(embed);
+        message.channel.send({ embeds: [embed] });
     }
 
 };

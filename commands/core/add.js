@@ -23,7 +23,7 @@ module.exports = class extends Command {
             .setFooter(message.translate("core/add:REQUEST_BY", {
                 username: message.author.username
             }), message.author.displayAvatarURL());
-        message.channel.send(embed);
+        message.channel.send({ embeds: [embed] });
 
     }
 

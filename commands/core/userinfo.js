@@ -126,7 +126,7 @@ module.exports = class extends Command {
                 : message.translate("core/userinfo:NO_INVITES")
         );
 
-        message.channel.send(embed);
+        message.channel.send({ embeds: [embed] });
     }
 
 };

@@ -42,7 +42,7 @@ module.exports  = class extends Command {
                 .setAuthor(message.translate("core/leaderboard:EMPTY_TITLE"))
                 .setDescription(message.translate("core/leaderboard:EMPTY_CONTENT"))
                 .setColor(data.color);
-            return message.channel.send(embed);
+            return message.channel.send({ embeds: [embed] });
         }
 
         const embeds = [];

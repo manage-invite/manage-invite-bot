@@ -64,7 +64,7 @@ module.exports = class extends Command {
             });
         }
 
-        message.channel.send(embed);
+        message.channel.send({ embeds: [embed] });
 
     }
 };

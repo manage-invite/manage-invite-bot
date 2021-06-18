@@ -46,7 +46,7 @@ module.exports = class extends Command {
             .setThumbnail(message.author.avatarURL())
             .setColor(data.color)
             .setFooter(data.footer);
-        message.channel.send(embed);
+        message.channel.send({ embeds: [embed] });
 
         await this.client.database.updateGuildPlugin(message.guild.id, "joinDM", {
             ...(plugin || {}),

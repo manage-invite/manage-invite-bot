@@ -41,7 +41,7 @@ module.exports = class extends Command {
             .setTitle(`Page: ${page}/${Math.ceil(guilds.length/10)}`)
             .setDescription(description);
 
-        const msg = await message.channel.send(embed);
+        const msg = await message.channel.send({ embeds: [embed] });
         
         await msg.react("⬅");
         await msg.react("➡");

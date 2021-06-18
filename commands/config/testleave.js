@@ -38,7 +38,7 @@ module.exports = class extends Command {
             .setColor(data.color)
             .setFooter(data.footer)
             .setTimestamp();
-        message.channel.send(embed);
+        message.channel.send({ embeds: [embed] });
         
         if (plugin?.enabled && plugin.mainMessage && plugin.channel && message.guild.channels.cache.get(plugin.channel)){
             message.guild.channels.cache.get(plugin.channel).send(this.client.functions.formatMessage(

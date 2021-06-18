@@ -52,6 +52,6 @@ module.exports = class extends Command {
             .setThumbnail(message.author.displayAvatarURL())
             .setColor(data.color);
 
-        message.channel.send(embed);
+        message.channel.send({ embeds: [embed] });
     }
 };

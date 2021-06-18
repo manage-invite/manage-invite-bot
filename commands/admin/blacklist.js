@@ -62,7 +62,7 @@ module.exports = class extends Command {
                 });
                 embed.setDescription(users.join("\n"));
             }
-            message.channel.send(embed);
+            message.channel.send({ embeds: [embed] });
             break;
         }
         default: {

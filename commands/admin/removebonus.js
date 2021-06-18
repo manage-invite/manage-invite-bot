@@ -61,7 +61,7 @@ module.exports = class extends Command {
                 .setColor(data.color)
                 .setFooter(data.footer);
 
-            message.channel.send(embed);
+            message.channel.send({ embeds: [embed] });
         } else {
             const conf = await message.sendT("admin/removebonus:CONFIRMATION_ALL", {
                 count: bonus
