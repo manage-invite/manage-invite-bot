@@ -38,7 +38,7 @@ module.exports = class extends Command {
                 .setColor(data.color)
                 .setFooter(data.footer);
 
-            conf.edit(null, { embed });
+            conf.edit({ embeds: [embed] });
         }).catch((err) => {
             console.error(err);
             return conf.error("common:CANCELLED", null, true);
