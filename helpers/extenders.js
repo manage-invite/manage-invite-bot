@@ -47,7 +47,7 @@ Message.prototype.success = function (key, args, edit = false, embed = false) {
             color: "#32CD32",
             description: this.translate(key, args)
         };
-        return edit ? this.edit({ embed }) : this.channel.send({ embed });
+        return edit ? this.edit({ embeds: [embed] }) : this.channel.send({ embeds: [embed] });
     } else {
         const updatedContent = `${Constants.Emojis.SUCCESS} | ${this.translate(
             key,
@@ -76,7 +76,7 @@ Message.prototype.sendT = function (
             color: Constants.Embed.COLOR,
             description: prefix + this.translate(key, args)
         };
-        return edit ? this.edit({ embed }) : this.channel.send({ embed });
+        return edit ? this.edit({ embeds: [embed] }) : this.channel.send({ embeds: [embed] });
     } else {
         return edit
             ? this.edit(prefix + this.translate(key, args))

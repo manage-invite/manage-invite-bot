@@ -57,7 +57,7 @@ module.exports = class {
                 .setFooter(Constants.Embed.FOOTER)
                 .setTimestamp()
                 .setColor(Constants.Embed.COLOR);
-            inviter.send(joinEmbed);
+            inviter.send({ embeds: [joinEmbed] });
 
             /*
             await this.client.wait(5000);

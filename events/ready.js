@@ -69,7 +69,7 @@ module.exports = class {
                             .setDescription(`${beg} for **${guildNameFound}** expires in 72 hours! Click [here](https://dash.manage-invite.xyz/manage/${paymentData.guildID}/createsub) to continue to use the bot, the price is $2 per month.`)
                             .setColor(Constants.Embed.COLOR)
                             .setFooter(Constants.Embed.FOOTER);
-                        const send = () => new Promise((resolve) => user.send(embed).then(resolve(true)).catch(resolve(false)));
+                        const send = () => new Promise((resolve) => user.send({ embeds: [embed] }).then(resolve(true)).catch(resolve(false)));
                         this.client.database.setPaymentRemindSent({
                             paymentID: paymentData.paymentID, 
                             subID: paymentData.subID,

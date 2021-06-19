@@ -95,7 +95,7 @@ module.exports.load = (discordClient) => {
                     .setAuthor(`${user.tag} purchased ManageInvite Premium`, user.displayAvatarURL())
                     .setDescription(`Server **${message.data.guildName}** is waiting for verification... :clock7:`)
                     .setColor("#ff9966");
-                aLogs.send(logEmbed);
+                aLogs.send({ embeds: [logEmbed] });
                 break;
             }
             case "subscribed": {
@@ -103,7 +103,7 @@ module.exports.load = (discordClient) => {
                     .setAuthor(`${user.tag} created a subscription`, user.displayAvatarURL())
                     .setDescription(`Subscription for guild **${message.data.guildName}** created... :white_check_mark:`)
                     .setColor("#ff9966");
-                aLogs.send(logEmbed);
+                aLogs.send({ embeds: [logEmbed] });
                 discordClient.shard.broadcastEval((client, userID) => {
                     if (client.guilds.cache.some((g) => g.roles.cache.has(client.config.premiumRole))){
                         const guild = client.guilds.cache.find((g) => g.roles.cache.has(client.config.premiumRole));
@@ -119,7 +119,7 @@ module.exports.load = (discordClient) => {
                     .setAuthor(`${user.tag} paid for ManageInvite Premium`, user.displayAvatarURL())
                     .setDescription(`Recurring payment for **${message.data.guildName}** was paid (**$2**) :crown:`)
                     .setColor("#ff9966");
-                aLogs.send(logEmbed);
+                aLogs.send({ embeds: [logEmbed] });
                 break;
             }
             case "cancelled": {
@@ -136,7 +136,7 @@ module.exports.load = (discordClient) => {
                     .setDescription(`Recurring payment for **${message.data.guildName}** was cancelled :wave:\n${formMessage ? "Satisfaction form sent! Awaiting answer... :pencil:" : "I wasn't able to send the satisfaction form... :confused:"}`)
                     .setFooter(`Form ID: ${formMessage ? formMessage.id : "not sent"}`)
                     .setColor("#1E90FF");
-                aLogs.send(logEmbed);
+                aLogs.send({ embeds: [logEmbed] });
                 break;
             }
             case "dms": {
@@ -144,7 +144,7 @@ module.exports.load = (discordClient) => {
                     .setAuthor(`Thanks for purchasing ManageInvite Premium, ${user.tag}`, user.displayAvatarURL())
                     .setDescription(`Congratulations, your server **${message.data.guildName}** is now premium! :crown:`)
                     .setColor("#ff9966");
-                user.send(logEmbed);
+                user.send({ embeds: [logEmbed] });
                 break;
             }
             }

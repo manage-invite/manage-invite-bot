@@ -77,7 +77,7 @@ module.exports = class extends Command {
                     .setDescription(description);
             
                 // Edit the message 
-                msg.edit(embed);
+                msg.edit({ embeds: [embed] });
             
             }
 
@@ -107,7 +107,7 @@ module.exports = class extends Command {
                     .setDescription(description);
             
                 // Edit the message 
-                msg.edit(embed);
+                msg.edit({ embeds: [embed] });
 
             }
 
