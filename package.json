@@ -14,7 +14,7 @@
     "discord-paginationembed": "Androz2091/discord-paginationembed#patch-1",
     "discord.js": "discordjs/discord.js",
     "erlpack": "discord/erlpack",
-    "i18next": "^20.3.1",
+    "i18next": "^20.3.2",
     "i18next-fs-backend": "^1.1.1",
     "inquirer": "^8.1.1",
     "moment": "^2.29.1",
