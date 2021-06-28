@@ -8,7 +8,7 @@
     "@sentry/node": "^6.7.1",
     "bufferutil": "^4.0.3",
     "chalk": "^4.1.1",
-    "chart.js": "^3.3.2",
+    "chart.js": "^3.4.0",
     "chartjs-node-canvas": "^3.2.0",
     "cron": "^1.8.2",
     "discord-paginationembed": "Androz2091/discord-paginationembed#patch-1",
