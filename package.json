@@ -12,7 +12,7 @@
     "chartjs-node-canvas": "^3.2.0",
     "cron": "^1.8.2",
     "discord-paginationembed": "Androz2091/discord-paginationembed#patch-1",
-    "discord.js": "discordjs/discord.js",
+    "discord.js": "^13.0.0-dev.755c180.1625616230",
     "erlpack": "discord/erlpack",
     "i18next": "^20.3.2",
     "i18next-fs-backend": "^1.1.1",
