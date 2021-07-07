@@ -12,7 +12,7 @@ module.exports = class extends Command {
     }
 
     async run (message) {
-        const invites = await message.guild.fetchInvites();
+        const invites = await message.guild.invites.fetch();
         this.client.invitations[message.guild.id] = invites;
         message.success("admin/fetch-invites:SUCCESS");
     }

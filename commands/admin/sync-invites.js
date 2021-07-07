@@ -14,7 +14,7 @@ module.exports = class extends Command {
     }
 
     async run (message, args, data) {
-        const guildInvites = await message.guild.fetchInvites();
+        const guildInvites = await message.guild.invites.fetch();
         if (guildInvites.size === 0) return message.error("admin/sync-invites:NO_INVITES");
         const inviteCount = guildInvites.map((i) => i.uses).reduce((p, c) => p + c);
         const conf = await message.sendT("admin/sync-invites:CONFIRM", {

@@ -26,7 +26,7 @@ module.exports = class {
         await this.client.functions.asyncForEach(this.client.guilds.cache.array(), async (guild) => {
             if (premiumGuildsID.includes(guild.id)){
                 const member = await guild.members.fetch(this.client.user.id).catch(() => {});
-                const i = process.argv.includes("--uncache") ? null : (member.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD) ? await guild.fetchInvites().catch(() => {}) : null);
+                const i = process.argv.includes("--uncache") ? null : (member.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD) ? await guild.invites.fetch().catch(() => {}) : null);
                 invites[guild.id] = i || null;
             }
         });
@@ -87,7 +87,7 @@ module.exports = class {
                 this.client.log(`${guildsToFetch.length} guilds need to be fetched`);
                 await this.client.functions.asyncForEach(guildsToFetch, async (guild) => {
                     const member = await guild.members.fetch(this.client.user.id).catch(() => {});
-                    const i = process.argv.includes("--uncache") ? null : (member.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD) ? await guild.fetchInvites().catch(() => {}) : null);
+                    const i = process.argv.includes("--uncache") ? null : (member.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD) ? await guild.invites.fetch().catch(() => {}) : null);
                     this.client.invitations[guild.id] = i || null;
                 });
                 this.client.fetched = true;
