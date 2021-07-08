@@ -100,6 +100,14 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@discordjs/builders@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@discordjs/builders/-/builders-0.2.0.tgz#832c8d894aad13362db7a99f11a7826b21e4cd94"
+  integrity sha512-TVq7NZBCJrrTRc3CfxOr3IdgY5nrtqVxZ7qDUF1mN6LgxIiOldmFxsSwMrQBzLFVmOwqFyNLKCeblley8UpEuw==
+  dependencies:
+    discord-api-types "^0.18.1"
+    tslib "^2.3.0"
+
 "@discordjs/collection@^0.1.6":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@discordjs/collection/-/collection-0.1.6.tgz#9e9a7637f4e4e0688fd8b2b5c63133c91607682c"
@@ -138,10 +146,10 @@
     ioredis "^4.24.5"
     pg "^8.5.1"
 
-"@sapphire/async-queue@^1.1.2":
-  version "1.1.3"
-  resolved "https://registry.npmjs.org/@sapphire/async-queue/-/async-queue-1.1.3.tgz#fbc70f2687a2473bd824a4723e962dfce933eba7"
-  integrity sha512-pyV+0njfBq6rHKEOpux5xy2cEM5u9KFjVzpmKsgk/8mdslLCuNXX4QvxWsSerLq/EtLhkvvl998cdFbGtpHa9Q==
+"@sapphire/async-queue@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@sapphire/async-queue/-/async-queue-1.1.4.tgz#ae431310917a8880961cebe8e59df6ffa40f2957"
+  integrity sha512-fFrlF/uWpGOX5djw5Mu2Hnnrunao75WGey0sP0J3jnhmrJ5TAPzHYOmytD5iN/+pMxS+f+u/gezqHa9tPhRHEA==
 
 "@sentry/core@6.7.1":
   version "6.7.1"
@@ -228,10 +236,10 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-15.12.2.tgz#1f2b42c4be7156ff4a6f914b2fb03d05fa84e38d"
   integrity sha512-zjQ69G564OCIWIOHSXyQEEDpdpGl+G348RAKY0XXy9Z5kU9Vzv1GMNnkar/ZJ8dzXB3COzD9Mo9NtRZ4xfgUww==
 
-"@types/ws@^7.4.4":
-  version "7.4.4"
-  resolved "https://registry.npmjs.org/@types/ws/-/ws-7.4.4.tgz#93e1e00824c1de2608c30e6de4303ab3b4c0c9bc"
-  integrity sha512-d/7W23JAXPodQNbOZNXvl2K+bqAQrCMwlh/nuQsPSQk6Fq0opHoPrUw43aHsvSbIiQPr8Of2hkFbnz1XBFVyZQ==
+"@types/ws@^7.4.5":
+  version "7.4.6"
+  resolved "https://registry.yarnpkg.com/@types/ws/-/ws-7.4.6.tgz#c4320845e43d45a7129bb32905e28781c71c1fff"
+  integrity sha512-ijZ1vzRawI7QoWnTNL8KpHixd2b2XVb9I9HAqI3triPsh1EC0xH0Eg6w2O3TKbDCgiNNlJqfrof6j4T2I+l9vw==
   dependencies:
     "@types/node" "*"
 
@@ -826,6 +834,11 @@ discord-api-types@^0.18.1:
   resolved "https://registry.npmjs.org/discord-api-types/-/discord-api-types-0.18.1.tgz#5d08ed1263236be9c21a22065d0e6b51f790f492"
   integrity sha512-hNC38R9ZF4uaujaZQtQfm5CdQO58uhdkoHQAVvMfIL0LgOSZeW575W8H6upngQOuoxWd8tiRII3LLJm9zuQKYg==
 
+discord-api-types@^0.19.0-next.f393ba520d7d6d2aacaca7b3ca5d355fab614f6e:
+  version "0.19.0-next.f393ba520d7d6d2aacaca7b3ca5d355fab614f6e"
+  resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.19.0-next.f393ba520d7d6d2aacaca7b3ca5d355fab614f6e.tgz#d5f36f5712ec8fe2fe928b5c37618c94a3969d6a"
+  integrity sha512-ttRA/8e/WKHDbGFfED5WlS7gID+kalmNr6iMiWBCvkphQ7kFHiTOVbnj/zX9ksaRaYXp/I38SCQ+qZvLu8DJZg==
+
 discord-paginationembed@Androz2091/discord-paginationembed#patch-1:
   version "2.1.0"
   resolved "https://codeload.github.com/Androz2091/discord-paginationembed/tar.gz/f387593e0649aae11886b08975ea7baa374906d1"
@@ -834,17 +847,18 @@ discord-paginationembed@Androz2091/discord-paginationembed#patch-1:
 
 discord.js@discordjs/discord.js:
   version "13.0.0-dev"
-  uid "807ea2d3c197c7c6556bd1c894114932f6657d49"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/807ea2d3c197c7c6556bd1c894114932f6657d49"
+  uid "9cd5e7ed6104e40c038d17456abd0cc4a3778b9e"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/9cd5e7ed6104e40c038d17456abd0cc4a3778b9e"
   dependencies:
+    "@discordjs/builders" "^0.2.0"
     "@discordjs/collection" "^0.1.6"
     "@discordjs/form-data" "^3.0.1"
-    "@sapphire/async-queue" "^1.1.2"
-    "@types/ws" "^7.4.4"
+    "@sapphire/async-queue" "^1.1.4"
+    "@types/ws" "^7.4.5"
     abort-controller "^3.0.0"
-    discord-api-types "^0.18.1"
+    discord-api-types "^0.19.0-next.f393ba520d7d6d2aacaca7b3ca5d355fab614f6e"
     node-fetch "^2.6.1"
-    ws "^7.4.6"
+    ws "^7.5.1"
 
 doctrine@^3.0.0:
   version "3.0.0"
@@ -2534,6 +2548,11 @@ tslib@^2.0.3:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
   integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
 
+tslib@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
+  integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
+
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/type-check/-/type-check-0.4.0.tgz#07b8203bfa7056c0657050e3ccd2c37730bab8f1"
@@ -2689,10 +2708,10 @@ write-file-atomic@^3.0.0:
     signal-exit "^3.0.2"
     typedarray-to-buffer "^3.1.5"
 
-ws@^7.4.6:
-  version "7.4.6"
-  resolved "https://registry.npmjs.org/ws/-/ws-7.4.6.tgz#5654ca8ecdeee47c33a9a4bf6d28e2be2980377c"
-  integrity sha512-YmhHDO4MzaDLB+M9ym/mDA5z0naX8j7SIlT8f8z+I0VtzsRbekxEutHSme7NPS2qE8StCYQNUnfWdXta/Yu85A==
+ws@^7.5.1:
+  version "7.5.2"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.2.tgz#09cc8fea3bec1bc5ed44ef51b42f945be36900f6"
+  integrity sha512-lkF7AWRicoB9mAgjeKbGqVUekLnSNO4VjKVnuPHpQeOxZOErX6BPXwJk70nFslRCEEA8EVW7ZjKwXaP9N+1sKQ==
 
 xdg-basedir@^4.0.0:
   version "4.0.0"
