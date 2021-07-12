@@ -52,7 +52,7 @@ module.exports = class {
                     const aLogs = client.channels.cache.get(client.config.premiumLogs);
                     if (aLogs) aLogs.send({ embeds: [waitingAnswerEmbed] });
                 }, { context: waitingAnswerEmbed });
-                const collected = await message.channel.awaitMessages(() => true, { max: 1, time: 24*60*60*1000, errors: ["time"] })
+                const collected = await message.channel.awaitMessages({ filter: () => true, max: 1, time: 24*60*60*1000, errors: ["time"] })
                     .catch(async () => {
                         const noAnswerEmbed = new Discord.MessageEmbed()
                             .setAuthor(`No feedback received for other from ${user.tag}`, user.displayAvatarURL())
