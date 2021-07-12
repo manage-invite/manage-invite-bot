@@ -61,13 +61,13 @@ module.exports = class {
         } else if (!perm) {
             const fetchGuildInvitesStart = Date.now();
             // Fetch the current invites of the guild
-            const guildInvites = await member.guild.invites.fetch().catch(() => {});
+            await member.guild.invites.fetch().catch(() => {});
             logMessage += `Fetch guild invites: ${Date.now()-fetchGuildInvitesStart}ms\n`;
             // Fetch the invites of the guild BEFORE that the member has joined
             const oldGuildInvites = this.client.invitations[member.guild.id];
             if (guildInvites && oldGuildInvites){
                 // Update the cache
-                this.client.invitations[member.guild.id] = guildInvites;
+                this.client.invitations[member.guild.id] = message.guild.invites.cache;
                 // Find the invitations which doesn't have the same number of use
                 let inviteUsed = guildInvites.find((i) => oldGuildInvites.get(i.code) && ((Object.prototype.hasOwnProperty.call(oldGuildInvites.get(i.code), "uses") ? oldGuildInvites.get(i.code).uses : "Infinite") < i.uses));
                 if ((isEqual(oldGuildInvites.map((i) => `${i.code}|${i.uses}` ).sort(), guildInvites.map((i) => `${i.code}|${i.uses}` ).sort())) && !inviteUsed && member.guild.features.includes("VANITY_URL")){
