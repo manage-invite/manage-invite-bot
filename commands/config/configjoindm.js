@@ -18,8 +18,7 @@ module.exports = class extends Command {
         const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
         const plugin = guildPlugins.find((p) => p.pluginName === "joinDM")?.pluginData;
 
-        const filter = (m) => m.author.id === message.author.id,
-            opt = { max: 1, time: 90000, errors: [ "time" ] };
+        const opt = { filter: (m) => m.author.id === message.author.id, max: 1, time: 90000, errors: [ "time" ] };
         
         const str = plugin?.enabled ? message.translate("config/configjoindm:DISABLE", {
             prefix: message.guild.settings.prefix
