@@ -18,8 +18,7 @@ module.exports = class extends Command {
         const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
         const plugin = guildPlugins.find((p) => p.pluginName === "join")?.pluginData;
 
-        const filter = (m) => m.author.id === message.author.id,
-            opt = { max: 1, time: 90000, errors: [ "time" ] };
+        const opt = { filter: (m) => m.author.id === message.author.id, max: 1, time: 90000, errors: [ "time" ] };
         
         const str = plugin?.enabled ? message.translate("config/configjoin:DISABLE", {
             prefix: message.guild.settings.prefix
@@ -29,7 +28,7 @@ module.exports = class extends Command {
             variables: variables.filter((v) => !v.ignore).map((variable) => `{${variable.name}} | ${message.translate(`config/configjoin:VARIABLE_${variable.name.toUpperCase()}`)}` + (variable.endPart ? "\n" : "")).join("\n")
         });
 
-        let collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
+        let collected = await message.channel.awaitMessages(opt).catch(() => {});
         if (!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
         const confMessage = collected.first().content;
         if (confMessage === "cancel") return msg.error("common:CANCELLED", null, true);
@@ -38,7 +37,7 @@ module.exports = class extends Command {
 
         msg.sendT("config/configjoin:INSTRUCTIONS_2", null, true);
 
-        collected = await message.channel.awaitMessages(filter, opt).catch(() => {});
+        collected = await message.channel.awaitMessages(opt).catch(() => {});
         if (!collected || !collected.first()) return msg.error("common:CANCELLED", null, true);
         const confChannel = collected.first();
         if (confChannel.content === "cancel") return msg.error("common:CANCELLED", null, true);
