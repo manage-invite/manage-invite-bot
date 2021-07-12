@@ -66,7 +66,7 @@ module.exports = class extends Command {
             const conf = await message.sendT("admin/removebonus:CONFIRMATION_ALL", {
                 count: bonus
             });
-            await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
+            await message.channel.awaitMessages({ filter: (m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), max: 1, time: 90000 }).then(async (collected) => {
                 if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
                 collected.first().delete().catch(() => {});
 
