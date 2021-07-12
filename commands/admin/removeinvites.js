@@ -19,7 +19,7 @@ module.exports = class extends Command {
             error: Constants.Emojis.ERROR,
             success: Constants.Emojis.SUCCESS
         });
-        await message.channel.awaitMessages((m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), { max: 1, time: 90000 }).then(async (collected) => {
+        await message.channel.awaitMessages({ filter: (m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), max: 1, time: 90000 }).then(async (collected) => {
             if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
             collected.first().delete().catch(() => {});
 
