@@ -68,7 +68,7 @@ module.exports = class {
             const oldGuildInvites = this.client.invitations[member.guild.id];
             if (guildInvites && oldGuildInvites){
                 // Update the cache
-                this.client.invitations[member.guild.id] = message.guild.invites.cache;
+                this.client.invitations[member.guild.id] = guildInvites;
                 // Find the invitations which doesn't have the same number of use
                 let inviteUsed = guildInvites.find((i) => oldGuildInvites.get(i.code) && ((Object.prototype.hasOwnProperty.call(oldGuildInvites.get(i.code), "uses") ? oldGuildInvites.get(i.code).uses : "Infinite") < i.uses));
                 if ((isEqual(oldGuildInvites.map((i) => `${i.code}|${i.uses}` ).sort(), guildInvites.map((i) => `${i.code}|${i.uses}` ).sort())) && !inviteUsed && member.guild.features.includes("VANITY_URL")){
