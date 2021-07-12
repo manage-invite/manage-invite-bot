@@ -118,7 +118,8 @@ module.exports = class extends Command {
             embed.addField(message.translate("core/userinfo:FIRST_JOIN_WAY_TITLE"), await getJoinWay(joins[0]));
         }
 
-        const guildInvites = await message.guild.invites.fetch();
+        await message.guild.invites.fetch();
+        const guildInvites = message.guild.invites.cache;
         const userInvites = guildInvites.filter((i) => i?.inviter?.id === user.id);
         embed.addField(message.translate("core/userinfo:INVITE_CODES"),
             userInvites.size > 0
