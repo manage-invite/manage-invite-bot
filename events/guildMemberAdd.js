@@ -62,7 +62,7 @@ module.exports = class {
             const fetchGuildInvitesStart = Date.now();
             // Fetch the current invites of the guild
             await member.guild.invites.fetch().catch(() => {});
-            const guildInvites = message.guild.invites.cache;
+            const guildInvites = member.guild.invites.cache;
             logMessage += `Fetch guild invites: ${Date.now()-fetchGuildInvitesStart}ms\n`;
             // Fetch the invites of the guild BEFORE that the member has joined
             const oldGuildInvites = this.client.invitations[member.guild.id];
