@@ -1,6 +1,7 @@
 const CronJob = require("cron").CronJob;
 const Discord = require("discord.js");
 const Constants = require("../helpers/constants");
+const { generateInvitesCache } = require("../helpers/functions");
 
 module.exports = class {
     constructor (client) {
@@ -29,7 +30,7 @@ module.exports = class {
                 let fetchedInvites = null;
                 if (!process.argv.includes("--uncache") && member.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD)) {
                     await guild.invites.fetch().catch(() => {})
-                    fetchedInvites = guild.invites.cache.clone();
+                    fetchedInvites = generateInvitesCache(guild.invites.cache);
                 }
                 invites[guild.id] = fetchedInvites;
             }
@@ -94,7 +95,7 @@ module.exports = class {
                     let fetchedInvites = null;
                     if (!process.argv.includes("--uncache") && member.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD)) {
                         await guild.invites.fetch().catch(() => {})
-                        fetchedInvites = guild.invites.cache.clone();
+                        fetchedInvites = generateInvitesCache(guild.invites.cache);
                     }
                     this.client.invitations[guild.id] = fetchedInvites;
                 });

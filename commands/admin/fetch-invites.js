@@ -1,4 +1,5 @@
 const Command = require("../../structures/Command.js");
+const { generateInvitesCache } = require("../../helpers/functions.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -13,7 +14,7 @@ module.exports = class extends Command {
 
     async run (message) {
         await message.guild.invites.fetch();
-        this.client.invitations[message.guild.id] = message.guild.invites.cache.clone();
+        this.client.invitations[message.guild.id] = generateInvitesCache(message.guild.invites.cache);
         message.success("admin/fetch-invites:SUCCESS");
     }
 

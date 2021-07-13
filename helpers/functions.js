@@ -9,6 +9,17 @@ const variables = require("./variables");
 const stringOrNull = (string) => string ? `'${string}'` : "null";
 const pgEscape = (string) => string ? string.replace(/'/g, "''") : null;
 
+const generateInvitesCache = (invitesCache) => {
+    return invitesCache.clone().map((invite) => ({
+        code: invite.code,
+        uses: invite.uses,
+        maxUses: invite.maxUses,
+        inviter: invite.inviter,
+        channel: invite.channel,
+        url: invite.url
+    }));
+}
+
 /**
  * @param {array} array The array to loop
  * @param {function} callback The callback function to call each time
@@ -219,6 +230,7 @@ const sendStatusWebhook = (content) => {
 };
 
 module.exports = {
+    generateInvitesCache,
     stringOrNull,
     pgEscape,
     asyncForEach,

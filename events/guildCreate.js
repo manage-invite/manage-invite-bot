@@ -62,7 +62,7 @@ module.exports = class {
             /*
             await this.client.wait(5000);
             await guild.invites.fetch().catch(() => {});
-            const guildInvites = guild.invites.cache.clone();
+            const guildInvites = generateInvitesCache(guild.invites.cache);
             this.client.invitations[guild.id] = guildInvites || null;
             if (!guildInvites) return;
             const users = new Set(guildInvites.map((i) => i.inviter.id));

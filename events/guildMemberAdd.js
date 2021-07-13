@@ -1,5 +1,5 @@
 const { Permissions } = require("discord.js");
-const { isEqual } = require("../helpers/functions.js");
+const { isEqual, generateInvitesCache } = require("../helpers/functions.js");
 
 module.exports = class {
     constructor (client) {
@@ -62,7 +62,7 @@ module.exports = class {
             const fetchGuildInvitesStart = Date.now();
             // Fetch the current invites of the guild
             await member.guild.invites.fetch().catch(() => {});
-            const guildInvites = member.guild.invites.cache.clone();
+            const guildInvites = generateInvitesCache(member.guild.invites.cache);
             logMessage += `Fetch guild invites: ${Date.now()-fetchGuildInvitesStart}ms\n`;
             // Fetch the invites of the guild BEFORE that the member has joined
             const oldGuildInvites = this.client.invitations[member.guild.id];
