@@ -828,7 +828,8 @@ discord-api-types@^0.18.1:
 
 discord-paginationembed@Androz2091/discord-paginationembed#patch-1:
   version "2.1.0"
-  resolved "https://codeload.github.com/Androz2091/discord-paginationembed/tar.gz/f387593e0649aae11886b08975ea7baa374906d1"
+  uid "6e213b491c4927b86f2a1bf9fc3dbf201ba82ea1"
+  resolved "https://codeload.github.com/Androz2091/discord-paginationembed/tar.gz/6e213b491c4927b86f2a1bf9fc3dbf201ba82ea1"
   dependencies:
     discord.js discordjs/discord.js
 
