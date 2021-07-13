@@ -13,7 +13,7 @@ module.exports = class extends Command {
 
     async run (message) {
         await message.guild.invites.fetch();
-        this.client.invitations[message.guild.id] = message.guild.invites.cache;
+        this.client.invitations[message.guild.id] = message.guild.invites.cache.clone();
         message.success("admin/fetch-invites:SUCCESS");
     }
 
