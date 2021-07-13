@@ -26,12 +26,12 @@ module.exports = class {
         await this.client.functions.asyncForEach(this.client.guilds.cache.array(), async (guild) => {
             if (premiumGuildsID.includes(guild.id)){
                 const member = await guild.members.fetch(this.client.user.id).catch(() => {});
-                let invites = null;
+                let fetchedInvites = null;
                 if (!process.argv.includes("--uncache") && member.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD)) {
                     await guild.invites.fetch().catch(() => {})
                     invites = guild.invites.cache.clone();
                 }
-                invites[guild.id] = invites;
+                invites[guild.id] = fetchedInvites;
             }
         });
         this.client.invitations = invites;
@@ -91,10 +91,10 @@ module.exports = class {
                 this.client.log(`${guildsToFetch.length} guilds need to be fetched`);
                 await this.client.functions.asyncForEach(guildsToFetch, async (guild) => {
                     const member = await guild.members.fetch(this.client.user.id).catch(() => {});
-                    let invites = null;
+                    let fetchedInvites = null;
                     if (!process.argv.includes("--uncache") && member.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD)) {
                         await guild.invites.fetch().catch(() => {})
-                        invites = guild.invites.cache.clone();
+                        fetchedInvites = guild.invites.cache.clone();
                     }
                     this.client.invitations[guild.id] = invites;
                 });
