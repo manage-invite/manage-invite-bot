@@ -10,14 +10,18 @@ const stringOrNull = (string) => string ? `'${string}'` : "null";
 const pgEscape = (string) => string ? string.replace(/'/g, "''") : null;
 
 const generateInvitesCache = (invitesCache) => {
-    return invitesCache.clone().map((invite) => ({
-        code: invite.code,
-        uses: invite.uses,
-        maxUses: invite.maxUses,
-        inviter: invite.inviter,
-        channel: invite.channel,
-        url: invite.url
-    }));
+    const cacheCollection = new Discord.Collection();
+    invitesCache.forEach((invite) => {
+        cacheCollection.set(invite.code, {
+            code: invite.code,
+            uses: invite.uses,
+            maxUses: invite.maxUses,
+            inviter: invite.inviter,
+            channel: invite.channel,
+            url: invite.url
+        });
+    });
+    return cacheCollection;
 }
 
 /**
