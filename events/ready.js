@@ -29,7 +29,7 @@ module.exports = class {
                 let fetchedInvites = null;
                 if (!process.argv.includes("--uncache") && member.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD)) {
                     await guild.invites.fetch().catch(() => {})
-                    invites = guild.invites.cache.clone();
+                    fetchedInvites = guild.invites.cache.clone();
                 }
                 invites[guild.id] = fetchedInvites;
             }
@@ -96,7 +96,7 @@ module.exports = class {
                         await guild.invites.fetch().catch(() => {})
                         fetchedInvites = guild.invites.cache.clone();
                     }
-                    this.client.invitations[guild.id] = invites;
+                    this.client.invitations[guild.id] = fetchedInvites;
                 });
                 this.client.fetched = true;
             }
