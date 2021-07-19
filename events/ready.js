@@ -10,7 +10,9 @@ module.exports = class {
 
     async run () {
 
-        await this.client.synchronizeSlashCommands();
+        this.client.synchronizeSlashCommands().then(() => {
+            this.client.log(`Synchronized ${this.client.commands.filter((c) => c.slashCommandOptions).size} slash commands.`);
+        });
 
         this.client.user.setActivity("+help | manage-invite.xyz");
         setInterval(() => {
