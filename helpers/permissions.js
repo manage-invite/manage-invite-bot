@@ -9,22 +9,22 @@ module.exports = [
     {
         level: 1,
         name: "Moderator",
-        check: (message) => (message.guild ? message.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES) : false),
+        check: (member) => member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES),
     },
     {
         level: 2,
         name: "Administrator",
-        check: (message) => (message.guild ? message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR) : false),
+        check: (member) => member.permissions.has(Permissions.FLAGS.ADMINISTRATOR),
     },
     {
         level: 3,
         name: "Owner",
-        check: (message) => (message.guild ? message.author.id === message.guild.ownerID : false),
+        check: (member) => member.id === member.guild.ownerID,
     },
     {
         level: 4,
         name: "Bot moderator",
-        check: (message) => {
+        check: (member) => {
             return (
                 [
                     "709481084286533773", // Rome
@@ -33,12 +33,12 @@ module.exports = [
                     "456500252048883714", // Clèm31
                     "547514927019982864", // Mystèreee
                     "592782178350399673" // Micka
-                ].includes(message.author.id)
+                ].includes(member.id)
                 || (
-                    message.client.guilds.cache.has(message.client.config.supportServer)
+                    member.client.guilds.cache.has(member.client.config.supportServer)
                         ? (
-                            message.client.guilds.cache.get(message.client.config.supportServer).members.cache.get(message.author.id)
-                                ? message.client.guilds.cache.get(message.client.config.supportServer).members.cache.get(message.author.id).roles.cache.has(message.client.config.modRole)
+                            member.client.guilds.cache.get(member.client.config.supportServer).members.cache.get(member.id)
+                                ? member.client.guilds.cache.get(member.client.config.supportServer).members.cache.get(member.id).roles.cache.has(member.client.config.modRole)
                                 : false)
                         : false)
             );
@@ -47,6 +47,6 @@ module.exports = [
     {
         level: 5,
         name: "Bot owner",
-        check: (message) => message.client.config.owners.includes(message.author.id),
+        check: (member) => member.client.config.owners.includes(member.id),
     }
 ];

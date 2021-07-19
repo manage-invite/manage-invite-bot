@@ -1,7 +1,4 @@
-const Discord = require("discord.js");
 const Constants = require("../helpers/constants");
-
-const cooldownedUsers = new Discord.Collection();
 
 module.exports = class {
 
@@ -55,7 +52,7 @@ module.exports = class {
         if (!cmd) return;
         else message.cmd = cmd;
 
-        const permLevel = await this.client.getLevel(message);
+        const permLevel = await this.client.getLevel(message.member || await message.guild.members.fetch(message.author.id));
 
         if (!isPremium && permLevel < 4){
             return message.sendT("misc:NEED_UPGRADE", {
@@ -97,7 +94,7 @@ module.exports = class {
         }
         
         const userKey = `${message.author.id}${message.guild.id}`;
-        const cooldownTime = cooldownedUsers.get(userKey);
+        const cooldownTime = this.client.cooldownedUsers.get(userKey);
         const currentDate = parseInt(Date.now()/1000);
         if (cooldownTime) {
             const isExpired = cooldownTime <= currentDate;
@@ -110,8 +107,8 @@ module.exports = class {
             }
         }
 
-        const cooldown = cmd.conf.cooldown(message, args);
-        cooldownedUsers.set(userKey, cooldown + currentDate);
+        const cooldown = cmd.conf.cooldown(args);
+        this.client.cooldownedUsers.set(userKey, cooldown + currentDate);
 
         this.client.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name} (${Date.now()-startAt}ms)`, "cmd");
 

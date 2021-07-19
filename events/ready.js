@@ -10,6 +10,8 @@ module.exports = class {
 
     async run () {
 
+        await this.client.synchronizeSlashCommands();
+
         this.client.user.setActivity("+help | manage-invite.xyz");
         setInterval(() => {
             this.client.user.setActivity("+help | manage-invite.xyz");
@@ -29,7 +31,7 @@ module.exports = class {
                 const member = await guild.members.fetch(this.client.user.id).catch(() => {});
                 let fetchedInvites = null;
                 if (!process.argv.includes("--uncache") && member.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD)) {
-                    await guild.invites.fetch().catch(() => {})
+                    await guild.invites.fetch().catch(() => {});
                     fetchedInvites = generateInvitesCache(guild.invites.cache);
                 }
                 invites[guild.id] = fetchedInvites;
@@ -94,7 +96,7 @@ module.exports = class {
                     const member = await guild.members.fetch(this.client.user.id).catch(() => {});
                     let fetchedInvites = null;
                     if (!process.argv.includes("--uncache") && member.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD)) {
-                        await guild.invites.fetch().catch(() => {})
+                        await guild.invites.fetch().catch(() => {});
                         fetchedInvites = generateInvitesCache(guild.invites.cache);
                     }
                     this.client.invitations[guild.id] = fetchedInvites;

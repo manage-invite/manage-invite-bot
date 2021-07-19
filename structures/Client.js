@@ -55,6 +55,8 @@ class ManageInvite extends Client {
         this.pgQueries = 0;
         // Waiting for verifications guilds ID
         this.waitingForVerification = [];
+        // cooldown
+        this.cooldownedUsers = new Collection();
     }
 
     // This function is used to load a command and add it to the collection
@@ -73,6 +75,33 @@ class ManageInvite extends Client {
         } catch (e) {
             console.error(e);
             return `Unable to load command ${commandName}: ${e}`;
+        }
+    }
+
+    async synchronizeSlashCommands () {
+        const commands = this.commands.filter((c) => c.slashCommandOptions).array();
+        console.log(commands[0].slashCommandOptions);
+        const guildID = this.config.slashCommandsGuildID;
+        const fetchOptions = guildID && { guildId: guildID };
+        const exisitingSlashCommands = await this.application.commands.fetch(fetchOptions);
+        const createdCommands = exisitingSlashCommands.filter((slashCommand) => commands.some((c) => {
+            return c.slashCommandOptions.name === slashCommand.name
+                && c.slashCommandOptions.options === slashCommand.options
+                && c.slashCommandOptions.description === slashCommand.description;
+        })).array();
+        for (const command of commands) {
+            // if the command is already created
+            if (createdCommands.some((slashCommand) => slashCommand.name === command.name)) continue;
+            // otherwise create it
+            await this.application.commands.create(command.slashCommandOptions, guildID);
+            createdCommands.push(command.slashCommandOptions);
+        }
+        for (const slashCommand of exisitingSlashCommands) {
+            // if the command is not created
+            if (!createdCommands.some((slashCommand) => slashCommand.name === slashCommand.name)) {
+                // delete it
+                await this.application.commands.delete(slashCommand.id);
+            }
         }
     }
 
@@ -133,13 +162,12 @@ class ManageInvite extends Client {
         return user;
     }
 
-    getLevel (message) {
+    getLevel (member) {
         let permlvl = 0;
         const permOrder = this.permLevels.slice(0).sort((p, c) => p.level < c.level ? 1 : -1);
         while (permOrder.length) {
             const currentLevel = permOrder.shift();
-            if (message.guild && currentLevel.guildOnly) continue;
-            if (currentLevel.check(message)) {
+            if (currentLevel.check(member)) {
                 permlvl = currentLevel.level;
                 break;
             }
