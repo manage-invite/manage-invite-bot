@@ -1,6 +1,5 @@
 const Command = require("../../structures/Command.js"),
-    Discord = require("discord.js"),
-    Pagination = require("discord-paginationembed");
+    Discord = require("discord.js");
 
 module.exports  = class extends Command {
     constructor (client) {
@@ -10,7 +9,11 @@ module.exports  = class extends Command {
             aliases: [ "top", "lb" ],
             clientPermissions: [ "EMBED_LINKS", "ADD_REACTIONS", "MANAGE_MESSAGES" ],
             permLevel: 0,
-            cooldown: () => 5
+            cooldown: () => 5,
+
+            slashCommandOptions: {
+                description: "Get the invites leaderboard"
+            }
         });
     }
 
@@ -87,24 +90,60 @@ module.exports  = class extends Command {
             })}\n`);
             memberCount++;
         });
+        
+        const previousButton = new Discord.MessageButton()
+            .setLabel("Previous Page")
+            .setCustomId("prev")
+            .setStyle("PRIMARY")
+            .setDisabled(true);
+        
+        const nextButton = new Discord.MessageButton()
+            .setLabel("Next Page")
+            .setCustomId("next")
+            .setStyle("PRIMARY")
+            .setDisabled(!embeds[1]);
+        
+        const calculateRow = () => new Discord.MessageActionRow()
+            .addComponents([
+                previousButton,
+                nextButton
+            ]);
 
-        const pagination = new Pagination.Embeds()
-            .setArray(embeds)
-            .setAuthorizedUsers([message.author.id])
-            .setChannel(message.channel)
-            .setPageIndicator(false)
-            .setPage(1)
-            .setDisabledNavigationEmojis(["delete"])
-            .setColor(data.color)
-            .setFooter(data.footer)
-            .setClientAssets({
-                prompt: message.translate("core/leaderboard:PROMPT", {
-                    skipInterpolation: true
-                })
-            })
-            .setTitle(message.translate("core/leaderboard:TITLE"));
+        let currentEmbedIndex = 0;
 
-        pagination.build();
+        const sentLeaderboard = await message.channel.send({ embeds: [embeds[currentEmbedIndex]], components: [calculateRow()] });
+
+        const collector = message.channel.createMessageComponentCollector({
+            filter: () => true,
+            time: 60000
+        });
+
+        collector.on("collect", (component) => {
+            if (component.user.id !== message.author.id) {
+                component.reply({ content: `You can not interact with the leaderboard asked by ${message.author.username}`, ephemeral: true });
+                return;
+            }
+            if (component.customId === "prev") {
+                if (currentEmbedIndex > 0) {
+                    currentEmbedIndex--;
+                    if (currentEmbedIndex === 0) previousButton.setDisabled(true);
+                    nextButton.setDisabled(false);
+                    sentLeaderboard.edit({ embeds: [embeds[currentEmbedIndex]], components: [calculateRow()] });
+                }
+            } else if (component.customId === "next") {
+                if (currentEmbedIndex < embeds.length - 1) {
+                    currentEmbedIndex++;
+                    if (currentEmbedIndex === embeds.length - 1) nextButton.setDisabled(true);
+                    previousButton.setDisabled(false);
+                    sentLeaderboard.edit({ embeds: [embeds[currentEmbedIndex]], components: [calculateRow()] });
+                }
+            }
+            component.deferUpdate();
+        });
+
+        collector.on("end", () => {
+            sentLeaderboard.edit({ components: [] });
+        });
     }
 
 };

@@ -11,7 +11,6 @@
     "chart.js": "^3.3.2",
     "chartjs-node-canvas": "^3.2.0",
     "cron": "^1.8.2",
-    "discord-paginationembed": "Androz2091/discord-paginationembed#patch-1",
     "discord.js": "discordjs/discord.js",
     "erlpack": "discord/erlpack",
     "i18next": "^20.3.2",
