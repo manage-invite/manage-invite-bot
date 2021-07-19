@@ -133,7 +133,7 @@ module.exports  = class extends Command {
 
         collector.on("collect", (component) => {
             if (component.user.id !== message.author.id) {
-                component.reply({ content: `You can not interact with the leaderboard asked by ${message.author.username}`, ephemeral: true });
+                component.reply({ content: message.translate("core/leaderboard:ERR_INTERACT"), ephemeral: true });
                 return;
             }
             if (component.customId === "prev") {
@@ -223,7 +223,7 @@ module.exports  = class extends Command {
 
         collector.on("collect", (component) => {
             if (component.user.id !== interaction.user.id) {
-                component.reply({ content: `You can not interact with the leaderboard asked by ${interaction.user.username}`, ephemeral: true });
+                component.reply({ content: interaction.guild.translate("core/leaderboard:ERR_INTERACT"), ephemeral: true });
                 return;
             }
             const action = component.customId.split("_")[0];
