@@ -35,6 +35,10 @@ module.exports = class {
             // Gets the command
             const cmd = this.client.commands.get(interaction.command.name);
 
+            if (!cmd) {
+                return this.client.log(`Command ${interaction.command.name} not found!`, "error");
+            }
+
             const guild = this.client.guilds.cache.get(interaction.guildId);
 
             const member = interaction.member || await guild.members.fetch(interaction.user.id);
