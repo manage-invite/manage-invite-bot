@@ -8,7 +8,11 @@ module.exports = class extends Command {
             enabled: true,
             aliases: [ "s" ],
             clientPermissions: [ "EMBED_LINKS" ],
-            permLevel: 0
+            permLevel: 0,
+
+            slashCommandOptions: {
+                description: "Get the link to the support server"
+            }
         });
     }
 
@@ -16,6 +20,12 @@ module.exports = class extends Command {
         message.sendT("core/support:CONTENT", {
             discord: Constants.Links.DISCORD
         });
+    }
+
+    async runInteraction (interaction) {
+        interaction.reply({ content: interaction.guild.translate("core/support:CONTENT", {
+            discord: Constants.Links.DISCORD
+        }) });
     }
 
 };
