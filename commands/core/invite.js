@@ -4,11 +4,23 @@ const Command = require("../../structures/Command.js"),
 module.exports = class extends Command {
     constructor (client) {
         super(client, {
-            name: "invite",
+            name: "invites",
             enabled: true,
-            aliases: [ "invites", "rank" ],
+            aliases: [ "invite", "rank" ],
             clientPermissions: [ "EMBED_LINKS" ],
-            permLevel: 0
+            permLevel: 0,
+
+            slashCommandOptions: {
+                description: "Get user invites",
+                
+                options: [
+                    {
+                        type: 6,
+                        name: "user",
+                        description: "User to get invites of (default is you)"
+                    }
+                ]
+            }
         });
     }
 
@@ -45,6 +57,42 @@ module.exports = class extends Command {
             .setFooter(data.footer);
 
         message.channel.send({ embeds: [embed] });
+    }
+
+    async runInteraction (interaction, data) {
+        const blacklistedUsers = await this.client.database.fetchGuildBlacklistedUsers(interaction.guild.id);
+        if (blacklistedUsers.includes(interaction.user.id)) {
+            return interaction.reply({ content: interaction.guild.translate("admin/blacklist:AUTHOR_BLACKLISTED"), ephemeral: true });
+        }
+
+        const user = interaction.options.getUser("user") || interaction.user;
+        const memberData = await this.client.database.fetchGuildMember({
+            storageID: interaction.guild.settings.storageID,
+            userID: user.id,
+            guildID: interaction.guild.id
+        });
+
+        const translation = {
+            username: user.username,
+            inviteCount: memberData.invites,
+            regularCount: memberData.regular,
+            bonusCount: memberData.bonus,
+            fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
+            leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
+        };
+
+        const description = user.id === interaction.user.id ?
+            interaction.guild.translate("core/invite:AUTHOR_CONTENT", translation) :
+            interaction.guild.translate("core/invite:MEMBER_CONTENT", translation);
+
+
+        const embed = new Discord.MessageEmbed()
+            .setAuthor(user.tag, user.displayAvatarURL())
+            .setDescription(description)
+            .setColor(data.color)
+            .setFooter(data.footer);
+
+        interaction.reply({ embeds: [embed] });
     }
 
 };
