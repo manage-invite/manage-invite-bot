@@ -1,0 +1,7178 @@
+[
+  {
+      "name": ":100:",
+      "unicode": "💯"
+  },
+  {
+      "name": ":1234:",
+      "unicode": "🔢"
+  },
+  {
+      "name": ":8ball:",
+      "unicode": "🎱"
+  },
+  {
+      "name": ":a:",
+      "unicode": "🅰"
+  },
+  {
+      "name": ":ab:",
+      "unicode": "🆎"
+  },
+  {
+      "name": ":abc:",
+      "unicode": "🔤"
+  },
+  {
+      "name": ":abcd:",
+      "unicode": "🔡"
+  },
+  {
+      "name": ":accept:",
+      "unicode": "🉑"
+  },
+  {
+      "name": ":aerial_tramway:",
+      "unicode": "🚡"
+  },
+  {
+      "name": ":airplane:",
+      "unicode": "✈"
+  },
+  {
+      "name": ":airplane_arriving:",
+      "unicode": "🛬"
+  },
+  {
+      "name": ":airplane_departure:",
+      "unicode": "🛫"
+  },
+  {
+      "name": ":airplane_small:",
+      "unicode": "🛩"
+  },
+  {
+      "name": ":alarm_clock:",
+      "unicode": "⏰"
+  },
+  {
+      "name": ":alembic:",
+      "unicode": "⚗"
+  },
+  {
+      "name": ":alien:",
+      "unicode": "👽"
+  },
+  {
+      "name": ":ambulance:",
+      "unicode": "🚑"
+  },
+  {
+      "name": ":amphora:",
+      "unicode": "🏺"
+  },
+  {
+      "name": ":anchor:",
+      "unicode": "⚓"
+  },
+  {
+      "name": ":angel:",
+      "unicode": "👼"
+  },
+  {
+      "name": ":angel_tone1:",
+      "unicode": "👼🏻"
+  },
+  {
+      "name": ":angel_tone2:",
+      "unicode": "👼🏼"
+  },
+  {
+      "name": ":angel_tone3:",
+      "unicode": "👼🏽"
+  },
+  {
+      "name": ":angel_tone4:",
+      "unicode": "👼🏾"
+  },
+  {
+      "name": ":angel_tone5:",
+      "unicode": "👼🏿"
+  },
+  {
+      "name": ":anger:",
+      "unicode": "💢"
+  },
+  {
+      "name": ":anger_right:",
+      "unicode": "🗯"
+  },
+  {
+      "name": ":angry:",
+      "unicode": "😠"
+  },
+  {
+      "name": ":anguished:",
+      "unicode": "😧"
+  },
+  {
+      "name": ":ant:",
+      "unicode": "🐜"
+  },
+  {
+      "name": ":apple:",
+      "unicode": "🍎"
+  },
+  {
+      "name": ":aquarius:",
+      "unicode": "♒"
+  },
+  {
+      "name": ":aries:",
+      "unicode": "♈"
+  },
+  {
+      "name": ":arrow_backward:",
+      "unicode": "◀"
+  },
+  {
+      "name": ":arrow_double_down:",
+      "unicode": "⏬"
+  },
+  {
+      "name": ":arrow_double_up:",
+      "unicode": "⏫"
+  },
+  {
+      "name": ":arrow_down:",
+      "unicode": "⬇"
+  },
+  {
+      "name": ":arrow_down_small:",
+      "unicode": "🔽"
+  },
+  {
+      "name": ":arrow_forward:",
+      "unicode": "▶"
+  },
+  {
+      "name": ":arrow_heading_down:",
+      "unicode": "⤵"
+  },
+  {
+      "name": ":arrow_heading_up:",
+      "unicode": "⤴"
+  },
+  {
+      "name": ":arrow_left:",
+      "unicode": "⬅"
+  },
+  {
+      "name": ":arrow_lower_left:",
+      "unicode": "↙"
+  },
+  {
+      "name": ":arrow_lower_right:",
+      "unicode": "↘"
+  },
+  {
+      "name": ":arrow_right:",
+      "unicode": "➡"
+  },
+  {
+      "name": ":arrow_right_hook:",
+      "unicode": "↪"
+  },
+  {
+      "name": ":arrow_up:",
+      "unicode": "⬆"
+  },
+  {
+      "name": ":arrow_up_down:",
+      "unicode": "↕"
+  },
+  {
+      "name": ":arrow_up_small:",
+      "unicode": "🔼"
+  },
+  {
+      "name": ":arrow_upper_left:",
+      "unicode": "↖"
+  },
+  {
+      "name": ":arrow_upper_right:",
+      "unicode": "↗"
+  },
+  {
+      "name": ":arrows_clockwise:",
+      "unicode": "🔃"
+  },
+  {
+      "name": ":arrows_counterclockwise:",
+      "unicode": "🔄"
+  },
+  {
+      "name": ":art:",
+      "unicode": "🎨"
+  },
+  {
+      "name": ":articulated_lorry:",
+      "unicode": "🚛"
+  },
+  {
+      "name": ":asterisk:",
+      "unicode": "*⃣"
+  },
+  {
+      "name": ":astonished:",
+      "unicode": "😲"
+  },
+  {
+      "name": ":athletic_shoe:",
+      "unicode": "👟"
+  },
+  {
+      "name": ":atm:",
+      "unicode": "🏧"
+  },
+  {
+      "name": ":atom:",
+      "unicode": "⚛"
+  },
+  {
+      "name": ":avocado:",
+      "unicode": "🥑"
+  },
+  {
+      "name": ":b:",
+      "unicode": "🅱"
+  },
+  {
+      "name": ":baby:",
+      "unicode": "👶"
+  },
+  {
+      "name": ":baby_bottle:",
+      "unicode": "🍼"
+  },
+  {
+      "name": ":baby_chick:",
+      "unicode": "🐤"
+  },
+  {
+      "name": ":baby_symbol:",
+      "unicode": "🚼"
+  },
+  {
+      "name": ":baby_tone1:",
+      "unicode": "👶🏻"
+  },
+  {
+      "name": ":baby_tone2:",
+      "unicode": "👶🏼"
+  },
+  {
+      "name": ":baby_tone3:",
+      "unicode": "👶🏽"
+  },
+  {
+      "name": ":baby_tone4:",
+      "unicode": "👶🏾"
+  },
+  {
+      "name": ":baby_tone5:",
+      "unicode": "👶🏿"
+  },
+  {
+      "name": ":back:",
+      "unicode": "🔙"
+  },
+  {
+      "name": ":bacon:",
+      "unicode": "🥓"
+  },
+  {
+      "name": ":badminton:",
+      "unicode": "🏸"
+  },
+  {
+      "name": ":baggage_claim:",
+      "unicode": "🛄"
+  },
+  {
+      "name": ":balloon:",
+      "unicode": "🎈"
+  },
+  {
+      "name": ":ballot_box:",
+      "unicode": "🗳"
+  },
+  {
+      "name": ":ballot_box_with_check:",
+      "unicode": "☑"
+  },
+  {
+      "name": ":bamboo:",
+      "unicode": "🎍"
+  },
+  {
+      "name": ":banana:",
+      "unicode": "🍌"
+  },
+  {
+      "name": ":bangbang:",
+      "unicode": "‼"
+  },
+  {
+      "name": ":bank:",
+      "unicode": "🏦"
+  },
+  {
+      "name": ":bar_chart:",
+      "unicode": "📊"
+  },
+  {
+      "name": ":barber:",
+      "unicode": "💈"
+  },
+  {
+      "name": ":baseball:",
+      "unicode": "⚾"
+  },
+  {
+      "name": ":basketball:",
+      "unicode": "🏀"
+  },
+  {
+      "name": ":basketball_player:",
+      "unicode": "⛹"
+  },
+  {
+      "name": ":basketball_player_tone1:",
+      "unicode": "⛹🏻"
+  },
+  {
+      "name": ":basketball_player_tone2:",
+      "unicode": "⛹🏼"
+  },
+  {
+      "name": ":basketball_player_tone3:",
+      "unicode": "⛹🏽"
+  },
+  {
+      "name": ":basketball_player_tone4:",
+      "unicode": "⛹🏾"
+  },
+  {
+      "name": ":basketball_player_tone5:",
+      "unicode": "⛹🏿"
+  },
+  {
+      "name": ":bat:",
+      "unicode": "🦇"
+  },
+  {
+      "name": ":bath:",
+      "unicode": "🛀"
+  },
+  {
+      "name": ":bath_tone1:",
+      "unicode": "🛀🏻"
+  },
+  {
+      "name": ":bath_tone2:",
+      "unicode": "🛀🏼"
+  },
+  {
+      "name": ":bath_tone3:",
+      "unicode": "🛀🏽"
+  },
+  {
+      "name": ":bath_tone4:",
+      "unicode": "🛀🏾"
+  },
+  {
+      "name": ":bath_tone5:",
+      "unicode": "🛀🏿"
+  },
+  {
+      "name": ":bathtub:",
+      "unicode": "🛁"
+  },
+  {
+      "name": ":battery:",
+      "unicode": "🔋"
+  },
+  {
+      "name": ":beach:",
+      "unicode": "🏖"
+  },
+  {
+      "name": ":beach_umbrella:",
+      "unicode": "⛱"
+  },
+  {
+      "name": ":bear:",
+      "unicode": "🐻"
+  },
+  {
+      "name": ":bed:",
+      "unicode": "🛏"
+  },
+  {
+      "name": ":bee:",
+      "unicode": "🐝"
+  },
+  {
+      "name": ":beer:",
+      "unicode": "🍺"
+  },
+  {
+      "name": ":beers:",
+      "unicode": "🍻"
+  },
+  {
+      "name": ":beetle:",
+      "unicode": "🐞"
+  },
+  {
+      "name": ":beginner:",
+      "unicode": "🔰"
+  },
+  {
+      "name": ":bell:",
+      "unicode": "🔔"
+  },
+  {
+      "name": ":bellhop:",
+      "unicode": "🛎"
+  },
+  {
+      "name": ":bento:",
+      "unicode": "🍱"
+  },
+  {
+      "name": ":bicyclist:",
+      "unicode": "🚴"
+  },
+  {
+      "name": ":bicyclist_tone1:",
+      "unicode": "🚴🏻"
+  },
+  {
+      "name": ":bicyclist_tone2:",
+      "unicode": "🚴🏼"
+  },
+  {
+      "name": ":bicyclist_tone3:",
+      "unicode": "🚴🏽"
+  },
+  {
+      "name": ":bicyclist_tone4:",
+      "unicode": "🚴🏾"
+  },
+  {
+      "name": ":bicyclist_tone5:",
+      "unicode": "🚴🏿"
+  },
+  {
+      "name": ":bike:",
+      "unicode": "🚲"
+  },
+  {
+      "name": ":bikini:",
+      "unicode": "👙"
+  },
+  {
+      "name": ":biohazard:",
+      "unicode": "☣"
+  },
+  {
+      "name": ":bird:",
+      "unicode": "🐦"
+  },
+  {
+      "name": ":birthday:",
+      "unicode": "🎂"
+  },
+  {
+      "name": ":black_circle:",
+      "unicode": "⚫"
+  },
+  {
+      "name": ":black_heart:",
+      "unicode": "🖤"
+  },
+  {
+      "name": ":black_joker:",
+      "unicode": "🃏"
+  },
+  {
+      "name": ":black_large_square:",
+      "unicode": "⬛"
+  },
+  {
+      "name": ":black_medium_small_square:",
+      "unicode": "◾"
+  },
+  {
+      "name": ":black_medium_square:",
+      "unicode": "◼"
+  },
+  {
+      "name": ":black_nib:",
+      "unicode": "✒"
+  },
+  {
+      "name": ":black_small_square:",
+      "unicode": "▪"
+  },
+  {
+      "name": ":black_square_button:",
+      "unicode": "🔲"
+  },
+  {
+      "name": ":blossom:",
+      "unicode": "🌼"
+  },
+  {
+      "name": ":blowfish:",
+      "unicode": "🐡"
+  },
+  {
+      "name": ":blue_book:",
+      "unicode": "📘"
+  },
+  {
+      "name": ":blue_car:",
+      "unicode": "🚙"
+  },
+  {
+      "name": ":blue_heart:",
+      "unicode": "💙"
+  },
+  {
+      "name": ":blush:",
+      "unicode": "😊"
+  },
+  {
+      "name": ":boar:",
+      "unicode": "🐗"
+  },
+  {
+      "name": ":bomb:",
+      "unicode": "💣"
+  },
+  {
+      "name": ":book:",
+      "unicode": "📖"
+  },
+  {
+      "name": ":bookmark:",
+      "unicode": "🔖"
+  },
+  {
+      "name": ":bookmark_tabs:",
+      "unicode": "📑"
+  },
+  {
+      "name": ":books:",
+      "unicode": "📚"
+  },
+  {
+      "name": ":boom:",
+      "unicode": "💥"
+  },
+  {
+      "name": ":boot:",
+      "unicode": "👢"
+  },
+  {
+      "name": ":bouquet:",
+      "unicode": "💐"
+  },
+  {
+      "name": ":bow:",
+      "unicode": "🙇"
+  },
+  {
+      "name": ":bow_and_arrow:",
+      "unicode": "🏹"
+  },
+  {
+      "name": ":bow_tone1:",
+      "unicode": "🙇🏻"
+  },
+  {
+      "name": ":bow_tone2:",
+      "unicode": "🙇🏼"
+  },
+  {
+      "name": ":bow_tone3:",
+      "unicode": "🙇🏽"
+  },
+  {
+      "name": ":bow_tone4:",
+      "unicode": "🙇🏾"
+  },
+  {
+      "name": ":bow_tone5:",
+      "unicode": "🙇🏿"
+  },
+  {
+      "name": ":bowling:",
+      "unicode": "🎳"
+  },
+  {
+      "name": ":boxing_glove:",
+      "unicode": "🥊"
+  },
+  {
+      "name": ":boy:",
+      "unicode": "👦"
+  },
+  {
+      "name": ":boy_tone1:",
+      "unicode": "👦🏻"
+  },
+  {
+      "name": ":boy_tone2:",
+      "unicode": "👦🏼"
+  },
+  {
+      "name": ":boy_tone3:",
+      "unicode": "👦🏽"
+  },
+  {
+      "name": ":boy_tone4:",
+      "unicode": "👦🏾"
+  },
+  {
+      "name": ":boy_tone5:",
+      "unicode": "👦🏿"
+  },
+  {
+      "name": ":bread:",
+      "unicode": "🍞"
+  },
+  {
+      "name": ":bride_with_veil:",
+      "unicode": "👰"
+  },
+  {
+      "name": ":bride_with_veil_tone1:",
+      "unicode": "👰🏻"
+  },
+  {
+      "name": ":bride_with_veil_tone2:",
+      "unicode": "👰🏼"
+  },
+  {
+      "name": ":bride_with_veil_tone3:",
+      "unicode": "👰🏽"
+  },
+  {
+      "name": ":bride_with_veil_tone4:",
+      "unicode": "👰🏾"
+  },
+  {
+      "name": ":bride_with_veil_tone5:",
+      "unicode": "👰🏿"
+  },
+  {
+      "name": ":bridge_at_night:",
+      "unicode": "🌉"
+  },
+  {
+      "name": ":briefcase:",
+      "unicode": "💼"
+  },
+  {
+      "name": ":broken_heart:",
+      "unicode": "💔"
+  },
+  {
+      "name": ":bug:",
+      "unicode": "🐛"
+  },
+  {
+      "name": ":bulb:",
+      "unicode": "💡"
+  },
+  {
+      "name": ":bullettrain_front:",
+      "unicode": "🚅"
+  },
+  {
+      "name": ":bullettrain_side:",
+      "unicode": "🚄"
+  },
+  {
+      "name": ":burrito:",
+      "unicode": "🌯"
+  },
+  {
+      "name": ":bus:",
+      "unicode": "🚌"
+  },
+  {
+      "name": ":busstop:",
+      "unicode": "🚏"
+  },
+  {
+      "name": ":bust_in_silhouette:",
+      "unicode": "👤"
+  },
+  {
+      "name": ":busts_in_silhouette:",
+      "unicode": "👥"
+  },
+  {
+      "name": ":butterfly:",
+      "unicode": "🦋"
+  },
+  {
+      "name": ":cactus:",
+      "unicode": "🌵"
+  },
+  {
+      "name": ":cake:",
+      "unicode": "🍰"
+  },
+  {
+      "name": ":calendar:",
+      "unicode": "📆"
+  },
+  {
+      "name": ":calendar_spiral:",
+      "unicode": "🗓"
+  },
+  {
+      "name": ":call_me:",
+      "unicode": "🤙"
+  },
+  {
+      "name": ":call_me_tone1:",
+      "unicode": "🤙🏻"
+  },
+  {
+      "name": ":call_me_tone2:",
+      "unicode": "🤙🏼"
+  },
+  {
+      "name": ":call_me_tone3:",
+      "unicode": "🤙🏽"
+  },
+  {
+      "name": ":call_me_tone4:",
+      "unicode": "🤙🏾"
+  },
+  {
+      "name": ":call_me_tone5:",
+      "unicode": "🤙🏿"
+  },
+  {
+      "name": ":calling:",
+      "unicode": "📲"
+  },
+  {
+      "name": ":camel:",
+      "unicode": "🐫"
+  },
+  {
+      "name": ":camera:",
+      "unicode": "📷"
+  },
+  {
+      "name": ":camera_with_flash:",
+      "unicode": "📸"
+  },
+  {
+      "name": ":camping:",
+      "unicode": "🏕"
+  },
+  {
+      "name": ":cancer:",
+      "unicode": "♋"
+  },
+  {
+      "name": ":candle:",
+      "unicode": "🕯"
+  },
+  {
+      "name": ":candy:",
+      "unicode": "🍬"
+  },
+  {
+      "name": ":canoe:",
+      "unicode": "🛶"
+  },
+  {
+      "name": ":capital_abcd:",
+      "unicode": "🔠"
+  },
+  {
+      "name": ":capricorn:",
+      "unicode": "♑"
+  },
+  {
+      "name": ":card_box:",
+      "unicode": "🗃"
+  },
+  {
+      "name": ":card_index:",
+      "unicode": "📇"
+  },
+  {
+      "name": ":carousel_horse:",
+      "unicode": "🎠"
+  },
+  {
+      "name": ":carrot:",
+      "unicode": "🥕"
+  },
+  {
+      "name": ":cartwheel:",
+      "unicode": "🤸"
+  },
+  {
+      "name": ":cartwheel_tone1:",
+      "unicode": "🤸🏻"
+  },
+  {
+      "name": ":cartwheel_tone2:",
+      "unicode": "🤸🏼"
+  },
+  {
+      "name": ":cartwheel_tone3:",
+      "unicode": "🤸🏽"
+  },
+  {
+      "name": ":cartwheel_tone4:",
+      "unicode": "🤸🏾"
+  },
+  {
+      "name": ":cartwheel_tone5:",
+      "unicode": "🤸🏿"
+  },
+  {
+      "name": ":cat:",
+      "unicode": "🐱"
+  },
+  {
+      "name": ":cat2:",
+      "unicode": "🐈"
+  },
+  {
+      "name": ":cd:",
+      "unicode": "💿"
+  },
+  {
+      "name": ":chains:",
+      "unicode": "⛓"
+  },
+  {
+      "name": ":champagne:",
+      "unicode": "🍾"
+  },
+  {
+      "name": ":champagne_glass:",
+      "unicode": "🥂"
+  },
+  {
+      "name": ":chart:",
+      "unicode": "💹"
+  },
+  {
+      "name": ":chart_with_downwards_trend:",
+      "unicode": "📉"
+  },
+  {
+      "name": ":chart_with_upwards_trend:",
+      "unicode": "📈"
+  },
+  {
+      "name": ":checkered_flag:",
+      "unicode": "🏁"
+  },
+  {
+      "name": ":cheese:",
+      "unicode": "🧀"
+  },
+  {
+      "name": ":cherries:",
+      "unicode": "🍒"
+  },
+  {
+      "name": ":cherry_blossom:",
+      "unicode": "🌸"
+  },
+  {
+      "name": ":chestnut:",
+      "unicode": "🌰"
+  },
+  {
+      "name": ":chicken:",
+      "unicode": "🐔"
+  },
+  {
+      "name": ":children_crossing:",
+      "unicode": "🚸"
+  },
+  {
+      "name": ":chipmunk:",
+      "unicode": "🐿"
+  },
+  {
+      "name": ":chocolate_bar:",
+      "unicode": "🍫"
+  },
+  {
+      "name": ":christmas_tree:",
+      "unicode": "🎄"
+  },
+  {
+      "name": ":church:",
+      "unicode": "⛪"
+  },
+  {
+      "name": ":cinema:",
+      "unicode": "🎦"
+  },
+  {
+      "name": ":circus_tent:",
+      "unicode": "🎪"
+  },
+  {
+      "name": ":city_dusk:",
+      "unicode": "🌆"
+  },
+  {
+      "name": ":city_sunset:",
+      "unicode": "🌇"
+  },
+  {
+      "name": ":cityscape:",
+      "unicode": "🏙"
+  },
+  {
+      "name": ":cl:",
+      "unicode": "🆑"
+  },
+  {
+      "name": ":clap:",
+      "unicode": "👏"
+  },
+  {
+      "name": ":clap_tone1:",
+      "unicode": "👏🏻"
+  },
+  {
+      "name": ":clap_tone2:",
+      "unicode": "👏🏼"
+  },
+  {
+      "name": ":clap_tone3:",
+      "unicode": "👏🏽"
+  },
+  {
+      "name": ":clap_tone4:",
+      "unicode": "👏🏾"
+  },
+  {
+      "name": ":clap_tone5:",
+      "unicode": "👏🏿"
+  },
+  {
+      "name": ":clapper:",
+      "unicode": "🎬"
+  },
+  {
+      "name": ":classical_building:",
+      "unicode": "🏛"
+  },
+  {
+      "name": ":clipboard:",
+      "unicode": "📋"
+  },
+  {
+      "name": ":clock:",
+      "unicode": "🕰"
+  },
+  {
+      "name": ":clock1:",
+      "unicode": "🕐"
+  },
+  {
+      "name": ":clock10:",
+      "unicode": "🕙"
+  },
+  {
+      "name": ":clock1030:",
+      "unicode": "🕥"
+  },
+  {
+      "name": ":clock11:",
+      "unicode": "🕚"
+  },
+  {
+      "name": ":clock1130:",
+      "unicode": "🕦"
+  },
+  {
+      "name": ":clock12:",
+      "unicode": "🕛"
+  },
+  {
+      "name": ":clock1230:",
+      "unicode": "🕧"
+  },
+  {
+      "name": ":clock130:",
+      "unicode": "🕜"
+  },
+  {
+      "name": ":clock2:",
+      "unicode": "🕑"
+  },
+  {
+      "name": ":clock230:",
+      "unicode": "🕝"
+  },
+  {
+      "name": ":clock3:",
+      "unicode": "🕒"
+  },
+  {
+      "name": ":clock330:",
+      "unicode": "🕞"
+  },
+  {
+      "name": ":clock4:",
+      "unicode": "🕓"
+  },
+  {
+      "name": ":clock430:",
+      "unicode": "🕟"
+  },
+  {
+      "name": ":clock5:",
+      "unicode": "🕔"
+  },
+  {
+      "name": ":clock530:",
+      "unicode": "🕠"
+  },
+  {
+      "name": ":clock6:",
+      "unicode": "🕕"
+  },
+  {
+      "name": ":clock630:",
+      "unicode": "🕡"
+  },
+  {
+      "name": ":clock7:",
+      "unicode": "🕖"
+  },
+  {
+      "name": ":clock730:",
+      "unicode": "🕢"
+  },
+  {
+      "name": ":clock8:",
+      "unicode": "🕗"
+  },
+  {
+      "name": ":clock830:",
+      "unicode": "🕣"
+  },
+  {
+      "name": ":clock9:",
+      "unicode": "🕘"
+  },
+  {
+      "name": ":clock930:",
+      "unicode": "🕤"
+  },
+  {
+      "name": ":closed_book:",
+      "unicode": "📕"
+  },
+  {
+      "name": ":closed_lock_with_key:",
+      "unicode": "🔐"
+  },
+  {
+      "name": ":closed_umbrella:",
+      "unicode": "🌂"
+  },
+  {
+      "name": ":cloud:",
+      "unicode": "☁"
+  },
+  {
+      "name": ":cloud_lightning:",
+      "unicode": "🌩"
+  },
+  {
+      "name": ":cloud_rain:",
+      "unicode": "🌧"
+  },
+  {
+      "name": ":cloud_snow:",
+      "unicode": "🌨"
+  },
+  {
+      "name": ":cloud_tornado:",
+      "unicode": "🌪"
+  },
+  {
+      "name": ":clown:",
+      "unicode": "🤡"
+  },
+  {
+      "name": ":clubs:",
+      "unicode": "♣"
+  },
+  {
+      "name": ":cocktail:",
+      "unicode": "🍸"
+  },
+  {
+      "name": ":coffee:",
+      "unicode": "☕"
+  },
+  {
+      "name": ":coffin:",
+      "unicode": "⚰"
+  },
+  {
+      "name": ":cold_sweat:",
+      "unicode": "😰"
+  },
+  {
+      "name": ":comet:",
+      "unicode": "☄"
+  },
+  {
+      "name": ":compression:",
+      "unicode": "🗜"
+  },
+  {
+      "name": ":computer:",
+      "unicode": "💻"
+  },
+  {
+      "name": ":confetti_ball:",
+      "unicode": "🎊"
+  },
+  {
+      "name": ":confounded:",
+      "unicode": "😖"
+  },
+  {
+      "name": ":confused:",
+      "unicode": "😕"
+  },
+  {
+      "name": ":congratulations:",
+      "unicode": "㊗"
+  },
+  {
+      "name": ":construction:",
+      "unicode": "🚧"
+  },
+  {
+      "name": ":construction_site:",
+      "unicode": "🏗"
+  },
+  {
+      "name": ":construction_worker:",
+      "unicode": "👷"
+  },
+  {
+      "name": ":construction_worker_tone1:",
+      "unicode": "👷🏻"
+  },
+  {
+      "name": ":construction_worker_tone2:",
+      "unicode": "👷🏼"
+  },
+  {
+      "name": ":construction_worker_tone3:",
+      "unicode": "👷🏽"
+  },
+  {
+      "name": ":construction_worker_tone4:",
+      "unicode": "👷🏾"
+  },
+  {
+      "name": ":construction_worker_tone5:",
+      "unicode": "👷🏿"
+  },
+  {
+      "name": ":control_knobs:",
+      "unicode": "🎛"
+  },
+  {
+      "name": ":convenience_store:",
+      "unicode": "🏪"
+  },
+  {
+      "name": ":cookie:",
+      "unicode": "🍪"
+  },
+  {
+      "name": ":cooking:",
+      "unicode": "🍳"
+  },
+  {
+      "name": ":cool:",
+      "unicode": "🆒"
+  },
+  {
+      "name": ":cop:",
+      "unicode": "👮"
+  },
+  {
+      "name": ":cop_tone1:",
+      "unicode": "👮🏻"
+  },
+  {
+      "name": ":cop_tone2:",
+      "unicode": "👮🏼"
+  },
+  {
+      "name": ":cop_tone3:",
+      "unicode": "👮🏽"
+  },
+  {
+      "name": ":cop_tone4:",
+      "unicode": "👮🏾"
+  },
+  {
+      "name": ":cop_tone5:",
+      "unicode": "👮🏿"
+  },
+  {
+      "name": ":copyright:",
+      "unicode": "©"
+  },
+  {
+      "name": ":corn:",
+      "unicode": "🌽"
+  },
+  {
+      "name": ":couch:",
+      "unicode": "🛋"
+  },
+  {
+      "name": ":couple:",
+      "unicode": "👫"
+  },
+  {
+      "name": ":couple_mm:",
+      "unicode": "👨‍❤️‍👨"
+  },
+  {
+      "name": ":couple_with_heart:",
+      "unicode": "💑"
+  },
+  {
+      "name": ":couple_ww:",
+      "unicode": "👩‍❤️‍👩"
+  },
+  {
+      "name": ":couplekiss:",
+      "unicode": "💏"
+  },
+  {
+      "name": ":cow:",
+      "unicode": "🐮"
+  },
+  {
+      "name": ":cow2:",
+      "unicode": "🐄"
+  },
+  {
+      "name": ":cowboy:",
+      "unicode": "🤠"
+  },
+  {
+      "name": ":crab:",
+      "unicode": "🦀"
+  },
+  {
+      "name": ":crayon:",
+      "unicode": "🖍"
+  },
+  {
+      "name": ":credit_card:",
+      "unicode": "💳"
+  },
+  {
+      "name": ":crescent_moon:",
+      "unicode": "🌙"
+  },
+  {
+      "name": ":cricket:",
+      "unicode": "🏏"
+  },
+  {
+      "name": ":crocodile:",
+      "unicode": "🐊"
+  },
+  {
+      "name": ":croissant:",
+      "unicode": "🥐"
+  },
+  {
+      "name": ":cross:",
+      "unicode": "✝"
+  },
+  {
+      "name": ":crossed_flags:",
+      "unicode": "🎌"
+  },
+  {
+      "name": ":crossed_swords:",
+      "unicode": "⚔"
+  },
+  {
+      "name": ":crown:",
+      "unicode": "👑"
+  },
+  {
+      "name": ":cruise_ship:",
+      "unicode": "🛳"
+  },
+  {
+      "name": ":cry:",
+      "unicode": "😢"
+  },
+  {
+      "name": ":crying_cat_face:",
+      "unicode": "😿"
+  },
+  {
+      "name": ":crystal_ball:",
+      "unicode": "🔮"
+  },
+  {
+      "name": ":cucumber:",
+      "unicode": "🥒"
+  },
+  {
+      "name": ":cupid:",
+      "unicode": "💘"
+  },
+  {
+      "name": ":curly_loop:",
+      "unicode": "➰"
+  },
+  {
+      "name": ":currency_exchange:",
+      "unicode": "💱"
+  },
+  {
+      "name": ":curry:",
+      "unicode": "🍛"
+  },
+  {
+      "name": ":custard:",
+      "unicode": "🍮"
+  },
+  {
+      "name": ":customs:",
+      "unicode": "🛃"
+  },
+  {
+      "name": ":cyclone:",
+      "unicode": "🌀"
+  },
+  {
+      "name": ":dagger:",
+      "unicode": "🗡"
+  },
+  {
+      "name": ":dancer:",
+      "unicode": "💃"
+  },
+  {
+      "name": ":dancer_tone1:",
+      "unicode": "💃🏻"
+  },
+  {
+      "name": ":dancer_tone2:",
+      "unicode": "💃🏼"
+  },
+  {
+      "name": ":dancer_tone3:",
+      "unicode": "💃🏽"
+  },
+  {
+      "name": ":dancer_tone4:",
+      "unicode": "💃🏾"
+  },
+  {
+      "name": ":dancer_tone5:",
+      "unicode": "💃🏿"
+  },
+  {
+      "name": ":dancers:",
+      "unicode": "👯"
+  },
+  {
+      "name": ":dango:",
+      "unicode": "🍡"
+  },
+  {
+      "name": ":dark_sunglasses:",
+      "unicode": "🕶"
+  },
+  {
+      "name": ":dart:",
+      "unicode": "🎯"
+  },
+  {
+      "name": ":dash:",
+      "unicode": "💨"
+  },
+  {
+      "name": ":date:",
+      "unicode": "📅"
+  },
+  {
+      "name": ":deciduous_tree:",
+      "unicode": "🌳"
+  },
+  {
+      "name": ":deer:",
+      "unicode": "🦌"
+  },
+  {
+      "name": ":department_store:",
+      "unicode": "🏬"
+  },
+  {
+      "name": ":desert:",
+      "unicode": "🏜"
+  },
+  {
+      "name": ":desktop:",
+      "unicode": "🖥"
+  },
+  {
+      "name": ":diamond_shape_with_a_dot_inside:",
+      "unicode": "💠"
+  },
+  {
+      "name": ":diamonds:",
+      "unicode": "♦"
+  },
+  {
+      "name": ":disappointed:",
+      "unicode": "😞"
+  },
+  {
+      "name": ":disappointed_relieved:",
+      "unicode": "😥"
+  },
+  {
+      "name": ":dividers:",
+      "unicode": "🗂"
+  },
+  {
+      "name": ":dizzy:",
+      "unicode": "💫"
+  },
+  {
+      "name": ":dizzy_face:",
+      "unicode": "😵"
+  },
+  {
+      "name": ":do_not_litter:",
+      "unicode": "🚯"
+  },
+  {
+      "name": ":dog:",
+      "unicode": "🐶"
+  },
+  {
+      "name": ":dog2:",
+      "unicode": "🐕"
+  },
+  {
+      "name": ":dollar:",
+      "unicode": "💵"
+  },
+  {
+      "name": ":dolls:",
+      "unicode": "🎎"
+  },
+  {
+      "name": ":dolphin:",
+      "unicode": "🐬"
+  },
+  {
+      "name": ":door:",
+      "unicode": "🚪"
+  },
+  {
+      "name": ":doughnut:",
+      "unicode": "🍩"
+  },
+  {
+      "name": ":dove:",
+      "unicode": "🕊"
+  },
+  {
+      "name": ":dragon:",
+      "unicode": "🐉"
+  },
+  {
+      "name": ":dragon_face:",
+      "unicode": "🐲"
+  },
+  {
+      "name": ":dress:",
+      "unicode": "👗"
+  },
+  {
+      "name": ":dromedary_camel:",
+      "unicode": "🐪"
+  },
+  {
+      "name": ":drooling_face:",
+      "unicode": "🤤"
+  },
+  {
+      "name": ":droplet:",
+      "unicode": "💧"
+  },
+  {
+      "name": ":drum:",
+      "unicode": "🥁"
+  },
+  {
+      "name": ":duck:",
+      "unicode": "🦆"
+  },
+  {
+      "name": ":dvd:",
+      "unicode": "📀"
+  },
+  {
+      "name": ":e-mail:",
+      "unicode": "📧"
+  },
+  {
+      "name": ":eagle:",
+      "unicode": "🦅"
+  },
+  {
+      "name": ":ear:",
+      "unicode": "👂"
+  },
+  {
+      "name": ":ear_of_rice:",
+      "unicode": "🌾"
+  },
+  {
+      "name": ":ear_tone1:",
+      "unicode": "👂🏻"
+  },
+  {
+      "name": ":ear_tone2:",
+      "unicode": "👂🏼"
+  },
+  {
+      "name": ":ear_tone3:",
+      "unicode": "👂🏽"
+  },
+  {
+      "name": ":ear_tone4:",
+      "unicode": "👂🏾"
+  },
+  {
+      "name": ":ear_tone5:",
+      "unicode": "👂🏿"
+  },
+  {
+      "name": ":earth_africa:",
+      "unicode": "🌍"
+  },
+  {
+      "name": ":earth_americas:",
+      "unicode": "🌎"
+  },
+  {
+      "name": ":earth_asia:",
+      "unicode": "🌏"
+  },
+  {
+      "name": ":egg:",
+      "unicode": "🥚"
+  },
+  {
+      "name": ":eggplant:",
+      "unicode": "🍆"
+  },
+  {
+      "name": ":eight:",
+      "unicode": "8️⃣"
+  },
+  {
+      "name": ":eight_pointed_black_star:",
+      "unicode": "✴"
+  },
+  {
+      "name": ":eight_spoked_asterisk:",
+      "unicode": "✳"
+  },
+  {
+      "name": ":eject:",
+      "unicode": "⏏"
+  },
+  {
+      "name": ":electric_plug:",
+      "unicode": "🔌"
+  },
+  {
+      "name": ":elephant:",
+      "unicode": "🐘"
+  },
+  {
+      "name": ":end:",
+      "unicode": "🔚"
+  },
+  {
+      "name": ":envelope:",
+      "unicode": "✉"
+  },
+  {
+      "name": ":envelope_with_arrow:",
+      "unicode": "📩"
+  },
+  {
+      "name": ":euro:",
+      "unicode": "💶"
+  },
+  {
+      "name": ":european_castle:",
+      "unicode": "🏰"
+  },
+  {
+      "name": ":european_post_office:",
+      "unicode": "🏤"
+  },
+  {
+      "name": ":evergreen_tree:",
+      "unicode": "🌲"
+  },
+  {
+      "name": ":exclamation:",
+      "unicode": "❗"
+  },
+  {
+      "name": ":expressionless:",
+      "unicode": "😑"
+  },
+  {
+      "name": ":eye:",
+      "unicode": "👁"
+  },
+  {
+      "name": ":eye_in_speech_bubble:",
+      "unicode": "👁‍🗨"
+  },
+  {
+      "name": ":eyeglasses:",
+      "unicode": "👓"
+  },
+  {
+      "name": ":eyes:",
+      "unicode": "👀"
+  },
+  {
+      "name": ":face_palm:",
+      "unicode": "🤦"
+  },
+  {
+      "name": ":face_palm_tone1:",
+      "unicode": "🤦🏻"
+  },
+  {
+      "name": ":face_palm_tone2:",
+      "unicode": "🤦🏼"
+  },
+  {
+      "name": ":face_palm_tone3:",
+      "unicode": "🤦🏽"
+  },
+  {
+      "name": ":face_palm_tone4:",
+      "unicode": "🤦🏾"
+  },
+  {
+      "name": ":face_palm_tone5:",
+      "unicode": "🤦🏿"
+  },
+  {
+      "name": ":factory:",
+      "unicode": "🏭"
+  },
+  {
+      "name": ":fallen_leaf:",
+      "unicode": "🍂"
+  },
+  {
+      "name": ":family:",
+      "unicode": "👪"
+  },
+  {
+      "name": ":family_mmb:",
+      "unicode": "👨‍👨‍👦"
+  },
+  {
+      "name": ":family_mmbb:",
+      "unicode": "👨‍👨‍👦‍👦"
+  },
+  {
+      "name": ":family_mmg:",
+      "unicode": "👨‍👨‍👧"
+  },
+  {
+      "name": ":family_mmgb:",
+      "unicode": "👨‍👨‍👧‍👦"
+  },
+  {
+      "name": ":family_mmgg:",
+      "unicode": "👨‍👨‍👧‍👧"
+  },
+  {
+      "name": ":family_mwbb:",
+      "unicode": "👨‍👩‍👦‍👦"
+  },
+  {
+      "name": ":family_mwg:",
+      "unicode": "👨‍👩‍👧"
+  },
+  {
+      "name": ":family_mwgb:",
+      "unicode": "👨‍👩‍👧‍👦"
+  },
+  {
+      "name": ":family_mwgg:",
+      "unicode": "👨‍👩‍👧‍👧"
+  },
+  {
+      "name": ":family_wwb:",
+      "unicode": "👩‍👩‍👦"
+  },
+  {
+      "name": ":family_wwbb:",
+      "unicode": "👩‍👩‍👦‍👦"
+  },
+  {
+      "name": ":family_wwg:",
+      "unicode": "👩‍👩‍👧"
+  },
+  {
+      "name": ":family_wwgb:",
+      "unicode": "👩‍👩‍👧‍👦"
+  },
+  {
+      "name": ":family_wwgg:",
+      "unicode": "👩‍👩‍👧‍👧"
+  },
+  {
+      "name": ":fast_forward:",
+      "unicode": "⏩"
+  },
+  {
+      "name": ":fax:",
+      "unicode": "📠"
+  },
+  {
+      "name": ":fearful:",
+      "unicode": "😨"
+  },
+  {
+      "name": ":feet:",
+      "unicode": "🐾"
+  },
+  {
+      "name": ":fencer:",
+      "unicode": "🤺"
+  },
+  {
+      "name": ":ferris_wheel:",
+      "unicode": "🎡"
+  },
+  {
+      "name": ":ferry:",
+      "unicode": "⛴"
+  },
+  {
+      "name": ":field_hockey:",
+      "unicode": "🏑"
+  },
+  {
+      "name": ":file_cabinet:",
+      "unicode": "🗄"
+  },
+  {
+      "name": ":file_folder:",
+      "unicode": "📁"
+  },
+  {
+      "name": ":film_frames:",
+      "unicode": "🎞"
+  },
+  {
+      "name": ":fingers_crossed:",
+      "unicode": "🤞"
+  },
+  {
+      "name": ":fingers_crossed_tone1:",
+      "unicode": "🤞🏻"
+  },
+  {
+      "name": ":fingers_crossed_tone2:",
+      "unicode": "🤞🏼"
+  },
+  {
+      "name": ":fingers_crossed_tone3:",
+      "unicode": "🤞🏽"
+  },
+  {
+      "name": ":fingers_crossed_tone4:",
+      "unicode": "🤞🏾"
+  },
+  {
+      "name": ":fingers_crossed_tone5:",
+      "unicode": "🤞🏿"
+  },
+  {
+      "name": ":fire:",
+      "unicode": "🔥"
+  },
+  {
+      "name": ":fire_engine:",
+      "unicode": "🚒"
+  },
+  {
+      "name": ":fireworks:",
+      "unicode": "🎆"
+  },
+  {
+      "name": ":first_place:",
+      "unicode": "🥇"
+  },
+  {
+      "name": ":first_quarter_moon:",
+      "unicode": "🌓"
+  },
+  {
+      "name": ":first_quarter_moon_with_face:",
+      "unicode": "🌛"
+  },
+  {
+      "name": ":fish:",
+      "unicode": "🐟"
+  },
+  {
+      "name": ":fish_cake:",
+      "unicode": "🍥"
+  },
+  {
+      "name": ":fishing_pole_and_fish:",
+      "unicode": "🎣"
+  },
+  {
+      "name": ":fist:",
+      "unicode": "✊"
+  },
+  {
+      "name": ":fist_tone1:",
+      "unicode": "✊🏻"
+  },
+  {
+      "name": ":fist_tone2:",
+      "unicode": "✊🏼"
+  },
+  {
+      "name": ":fist_tone3:",
+      "unicode": "✊🏽"
+  },
+  {
+      "name": ":fist_tone4:",
+      "unicode": "✊🏾"
+  },
+  {
+      "name": ":fist_tone5:",
+      "unicode": "✊🏿"
+  },
+  {
+      "name": ":five:",
+      "unicode": "5️⃣"
+  },
+  {
+      "name": ":flag_ac:",
+      "unicode": "🇦🇨"
+  },
+  {
+      "name": ":flag_ad:",
+      "unicode": "🇦🇩"
+  },
+  {
+      "name": ":flag_ae:",
+      "unicode": "🇦🇪"
+  },
+  {
+      "name": ":flag_af:",
+      "unicode": "🇦🇫"
+  },
+  {
+      "name": ":flag_ag:",
+      "unicode": "🇦🇬"
+  },
+  {
+      "name": ":flag_ai:",
+      "unicode": "🇦🇮"
+  },
+  {
+      "name": ":flag_al:",
+      "unicode": "🇦🇱"
+  },
+  {
+      "name": ":flag_am:",
+      "unicode": "🇦🇲"
+  },
+  {
+      "name": ":flag_ao:",
+      "unicode": "🇦🇴"
+  },
+  {
+      "name": ":flag_aq:",
+      "unicode": "🇦🇶"
+  },
+  {
+      "name": ":flag_ar:",
+      "unicode": "🇦🇷"
+  },
+  {
+      "name": ":flag_as:",
+      "unicode": "🇦🇸"
+  },
+  {
+      "name": ":flag_at:",
+      "unicode": "🇦🇹"
+  },
+  {
+      "name": ":flag_au:",
+      "unicode": "🇦🇺"
+  },
+  {
+      "name": ":flag_aw:",
+      "unicode": "🇦🇼"
+  },
+  {
+      "name": ":flag_ax:",
+      "unicode": "🇦🇽"
+  },
+  {
+      "name": ":flag_az:",
+      "unicode": "🇦🇿"
+  },
+  {
+      "name": ":flag_ba:",
+      "unicode": "🇧🇦"
+  },
+  {
+      "name": ":flag_bb:",
+      "unicode": "🇧🇧"
+  },
+  {
+      "name": ":flag_bd:",
+      "unicode": "🇧🇩"
+  },
+  {
+      "name": ":flag_be:",
+      "unicode": "🇧🇪"
+  },
+  {
+      "name": ":flag_bf:",
+      "unicode": "🇧🇫"
+  },
+  {
+      "name": ":flag_bg:",
+      "unicode": "🇧🇬"
+  },
+  {
+      "name": ":flag_bh:",
+      "unicode": "🇧🇭"
+  },
+  {
+      "name": ":flag_bi:",
+      "unicode": "🇧🇮"
+  },
+  {
+      "name": ":flag_bj:",
+      "unicode": "🇧🇯"
+  },
+  {
+      "name": ":flag_bl:",
+      "unicode": "🇧🇱"
+  },
+  {
+      "name": ":flag_black:",
+      "unicode": "🏴"
+  },
+  {
+      "name": ":flag_bm:",
+      "unicode": "🇧🇲"
+  },
+  {
+      "name": ":flag_bn:",
+      "unicode": "🇧🇳"
+  },
+  {
+      "name": ":flag_bo:",
+      "unicode": "🇧🇴"
+  },
+  {
+      "name": ":flag_bq:",
+      "unicode": "🇧🇶"
+  },
+  {
+      "name": ":flag_br:",
+      "unicode": "🇧🇷"
+  },
+  {
+      "name": ":flag_bs:",
+      "unicode": "🇧🇸"
+  },
+  {
+      "name": ":flag_bt:",
+      "unicode": "🇧🇹"
+  },
+  {
+      "name": ":flag_bv:",
+      "unicode": "🇧🇻"
+  },
+  {
+      "name": ":flag_bw:",
+      "unicode": "🇧🇼"
+  },
+  {
+      "name": ":flag_by:",
+      "unicode": "🇧🇾"
+  },
+  {
+      "name": ":flag_bz:",
+      "unicode": "🇧🇿"
+  },
+  {
+      "name": ":flag_ca:",
+      "unicode": "🇨🇦"
+  },
+  {
+      "name": ":flag_cc:",
+      "unicode": "🇨🇨"
+  },
+  {
+      "name": ":flag_cd:",
+      "unicode": "🇨🇩"
+  },
+  {
+      "name": ":flag_cf:",
+      "unicode": "🇨🇫"
+  },
+  {
+      "name": ":flag_cg:",
+      "unicode": "🇨🇬"
+  },
+  {
+      "name": ":flag_ch:",
+      "unicode": "🇨🇭"
+  },
+  {
+      "name": ":flag_ci:",
+      "unicode": "🇨🇮"
+  },
+  {
+      "name": ":flag_ck:",
+      "unicode": "🇨🇰"
+  },
+  {
+      "name": ":flag_cl:",
+      "unicode": "🇨🇱"
+  },
+  {
+      "name": ":flag_cm:",
+      "unicode": "🇨🇲"
+  },
+  {
+      "name": ":flag_cn:",
+      "unicode": "🇨🇳"
+  },
+  {
+      "name": ":flag_co:",
+      "unicode": "🇨🇴"
+  },
+  {
+      "name": ":flag_cp:",
+      "unicode": "🇨🇵"
+  },
+  {
+      "name": ":flag_cr:",
+      "unicode": "🇨🇷"
+  },
+  {
+      "name": ":flag_cu:",
+      "unicode": "🇨🇺"
+  },
+  {
+      "name": ":flag_cv:",
+      "unicode": "🇨🇻"
+  },
+  {
+      "name": ":flag_cw:",
+      "unicode": "🇨🇼"
+  },
+  {
+      "name": ":flag_cx:",
+      "unicode": "🇨🇽"
+  },
+  {
+      "name": ":flag_cy:",
+      "unicode": "🇨🇾"
+  },
+  {
+      "name": ":flag_cz:",
+      "unicode": "🇨🇿"
+  },
+  {
+      "name": ":flag_de:",
+      "unicode": "🇩🇪"
+  },
+  {
+      "name": ":flag_dg:",
+      "unicode": "🇩🇬"
+  },
+  {
+      "name": ":flag_dj:",
+      "unicode": "🇩🇯"
+  },
+  {
+      "name": ":flag_dk:",
+      "unicode": "🇩🇰"
+  },
+  {
+      "name": ":flag_dm:",
+      "unicode": "🇩🇲"
+  },
+  {
+      "name": ":flag_do:",
+      "unicode": "🇩🇴"
+  },
+  {
+      "name": ":flag_dz:",
+      "unicode": "🇩🇿"
+  },
+  {
+      "name": ":flag_ea:",
+      "unicode": "🇪🇦"
+  },
+  {
+      "name": ":flag_ec:",
+      "unicode": "🇪🇨"
+  },
+  {
+      "name": ":flag_ee:",
+      "unicode": "🇪🇪"
+  },
+  {
+      "name": ":flag_eg:",
+      "unicode": "🇪🇬"
+  },
+  {
+      "name": ":flag_eh:",
+      "unicode": "🇪🇭"
+  },
+  {
+      "name": ":flag_er:",
+      "unicode": "🇪🇷"
+  },
+  {
+      "name": ":flag_es:",
+      "unicode": "🇪🇸"
+  },
+  {
+      "name": ":flag_et:",
+      "unicode": "🇪🇹"
+  },
+  {
+      "name": ":flag_eu:",
+      "unicode": "🇪🇺"
+  },
+  {
+      "name": ":flag_fi:",
+      "unicode": "🇫🇮"
+  },
+  {
+      "name": ":flag_fj:",
+      "unicode": "🇫🇯"
+  },
+  {
+      "name": ":flag_fk:",
+      "unicode": "🇫🇰"
+  },
+  {
+      "name": ":flag_fm:",
+      "unicode": "🇫🇲"
+  },
+  {
+      "name": ":flag_fo:",
+      "unicode": "🇫🇴"
+  },
+  {
+      "name": ":flag_fr:",
+      "unicode": "🇫🇷"
+  },
+  {
+      "name": ":flag_ga:",
+      "unicode": "🇬🇦"
+  },
+  {
+      "name": ":flag_gb:",
+      "unicode": "🇬🇧"
+  },
+  {
+      "name": ":flag_gd:",
+      "unicode": "🇬🇩"
+  },
+  {
+      "name": ":flag_ge:",
+      "unicode": "🇬🇪"
+  },
+  {
+      "name": ":flag_gf:",
+      "unicode": "🇬🇫"
+  },
+  {
+      "name": ":flag_gg:",
+      "unicode": "🇬🇬"
+  },
+  {
+      "name": ":flag_gh:",
+      "unicode": "🇬🇭"
+  },
+  {
+      "name": ":flag_gi:",
+      "unicode": "🇬🇮"
+  },
+  {
+      "name": ":flag_gl:",
+      "unicode": "🇬🇱"
+  },
+  {
+      "name": ":flag_gm:",
+      "unicode": "🇬🇲"
+  },
+  {
+      "name": ":flag_gn:",
+      "unicode": "🇬🇳"
+  },
+  {
+      "name": ":flag_gp:",
+      "unicode": "🇬🇵"
+  },
+  {
+      "name": ":flag_gq:",
+      "unicode": "🇬🇶"
+  },
+  {
+      "name": ":flag_gr:",
+      "unicode": "🇬🇷"
+  },
+  {
+      "name": ":flag_gs:",
+      "unicode": "🇬🇸"
+  },
+  {
+      "name": ":flag_gt:",
+      "unicode": "🇬🇹"
+  },
+  {
+      "name": ":flag_gu:",
+      "unicode": "🇬🇺"
+  },
+  {
+      "name": ":flag_gw:",
+      "unicode": "🇬🇼"
+  },
+  {
+      "name": ":flag_gy:",
+      "unicode": "🇬🇾"
+  },
+  {
+      "name": ":flag_hk:",
+      "unicode": "🇭🇰"
+  },
+  {
+      "name": ":flag_hm:",
+      "unicode": "🇭🇲"
+  },
+  {
+      "name": ":flag_hn:",
+      "unicode": "🇭🇳"
+  },
+  {
+      "name": ":flag_hr:",
+      "unicode": "🇭🇷"
+  },
+  {
+      "name": ":flag_ht:",
+      "unicode": "🇭🇹"
+  },
+  {
+      "name": ":flag_hu:",
+      "unicode": "🇭🇺"
+  },
+  {
+      "name": ":flag_ic:",
+      "unicode": "🇮🇨"
+  },
+  {
+      "name": ":flag_id:",
+      "unicode": "🇮🇩"
+  },
+  {
+      "name": ":flag_ie:",
+      "unicode": "🇮🇪"
+  },
+  {
+      "name": ":flag_il:",
+      "unicode": "🇮🇱"
+  },
+  {
+      "name": ":flag_im:",
+      "unicode": "🇮🇲"
+  },
+  {
+      "name": ":flag_in:",
+      "unicode": "🇮🇳"
+  },
+  {
+      "name": ":flag_io:",
+      "unicode": "🇮🇴"
+  },
+  {
+      "name": ":flag_iq:",
+      "unicode": "🇮🇶"
+  },
+  {
+      "name": ":flag_ir:",
+      "unicode": "🇮🇷"
+  },
+  {
+      "name": ":flag_is:",
+      "unicode": "🇮🇸"
+  },
+  {
+      "name": ":flag_it:",
+      "unicode": "🇮🇹"
+  },
+  {
+      "name": ":flag_je:",
+      "unicode": "🇯🇪"
+  },
+  {
+      "name": ":flag_jm:",
+      "unicode": "🇯🇲"
+  },
+  {
+      "name": ":flag_jo:",
+      "unicode": "🇯🇴"
+  },
+  {
+      "name": ":flag_jp:",
+      "unicode": "🇯🇵"
+  },
+  {
+      "name": ":flag_ke:",
+      "unicode": "🇰🇪"
+  },
+  {
+      "name": ":flag_kg:",
+      "unicode": "🇰🇬"
+  },
+  {
+      "name": ":flag_kh:",
+      "unicode": "🇰🇭"
+  },
+  {
+      "name": ":flag_ki:",
+      "unicode": "🇰🇮"
+  },
+  {
+      "name": ":flag_km:",
+      "unicode": "🇰🇲"
+  },
+  {
+      "name": ":flag_kn:",
+      "unicode": "🇰🇳"
+  },
+  {
+      "name": ":flag_kp:",
+      "unicode": "🇰🇵"
+  },
+  {
+      "name": ":flag_kr:",
+      "unicode": "🇰🇷"
+  },
+  {
+      "name": ":flag_kw:",
+      "unicode": "🇰🇼"
+  },
+  {
+      "name": ":flag_ky:",
+      "unicode": "🇰🇾"
+  },
+  {
+      "name": ":flag_kz:",
+      "unicode": "🇰🇿"
+  },
+  {
+      "name": ":flag_la:",
+      "unicode": "🇱🇦"
+  },
+  {
+      "name": ":flag_lb:",
+      "unicode": "🇱🇧"
+  },
+  {
+      "name": ":flag_lc:",
+      "unicode": "🇱🇨"
+  },
+  {
+      "name": ":flag_li:",
+      "unicode": "🇱🇮"
+  },
+  {
+      "name": ":flag_lk:",
+      "unicode": "🇱🇰"
+  },
+  {
+      "name": ":flag_lr:",
+      "unicode": "🇱🇷"
+  },
+  {
+      "name": ":flag_ls:",
+      "unicode": "🇱🇸"
+  },
+  {
+      "name": ":flag_lt:",
+      "unicode": "🇱🇹"
+  },
+  {
+      "name": ":flag_lu:",
+      "unicode": "🇱🇺"
+  },
+  {
+      "name": ":flag_lv:",
+      "unicode": "🇱🇻"
+  },
+  {
+      "name": ":flag_ly:",
+      "unicode": "🇱🇾"
+  },
+  {
+      "name": ":flag_ma:",
+      "unicode": "🇲🇦"
+  },
+  {
+      "name": ":flag_mc:",
+      "unicode": "🇲🇨"
+  },
+  {
+      "name": ":flag_md:",
+      "unicode": "🇲🇩"
+  },
+  {
+      "name": ":flag_me:",
+      "unicode": "🇲🇪"
+  },
+  {
+      "name": ":flag_mf:",
+      "unicode": "🇲🇫"
+  },
+  {
+      "name": ":flag_mg:",
+      "unicode": "🇲🇬"
+  },
+  {
+      "name": ":flag_mh:",
+      "unicode": "🇲🇭"
+  },
+  {
+      "name": ":flag_mk:",
+      "unicode": "🇲🇰"
+  },
+  {
+      "name": ":flag_ml:",
+      "unicode": "🇲🇱"
+  },
+  {
+      "name": ":flag_mm:",
+      "unicode": "🇲🇲"
+  },
+  {
+      "name": ":flag_mn:",
+      "unicode": "🇲🇳"
+  },
+  {
+      "name": ":flag_mo:",
+      "unicode": "🇲🇴"
+  },
+  {
+      "name": ":flag_mp:",
+      "unicode": "🇲🇵"
+  },
+  {
+      "name": ":flag_mq:",
+      "unicode": "🇲🇶"
+  },
+  {
+      "name": ":flag_mr:",
+      "unicode": "🇲🇷"
+  },
+  {
+      "name": ":flag_ms:",
+      "unicode": "🇲🇸"
+  },
+  {
+      "name": ":flag_mt:",
+      "unicode": "🇲🇹"
+  },
+  {
+      "name": ":flag_mu:",
+      "unicode": "🇲🇺"
+  },
+  {
+      "name": ":flag_mv:",
+      "unicode": "🇲🇻"
+  },
+  {
+      "name": ":flag_mw:",
+      "unicode": "🇲🇼"
+  },
+  {
+      "name": ":flag_mx:",
+      "unicode": "🇲🇽"
+  },
+  {
+      "name": ":flag_my:",
+      "unicode": "🇲🇾"
+  },
+  {
+      "name": ":flag_mz:",
+      "unicode": "🇲🇿"
+  },
+  {
+      "name": ":flag_na:",
+      "unicode": "🇳🇦"
+  },
+  {
+      "name": ":flag_nc:",
+      "unicode": "🇳🇨"
+  },
+  {
+      "name": ":flag_ne:",
+      "unicode": "🇳🇪"
+  },
+  {
+      "name": ":flag_nf:",
+      "unicode": "🇳🇫"
+  },
+  {
+      "name": ":flag_ng:",
+      "unicode": "🇳🇬"
+  },
+  {
+      "name": ":flag_ni:",
+      "unicode": "🇳🇮"
+  },
+  {
+      "name": ":flag_nl:",
+      "unicode": "🇳🇱"
+  },
+  {
+      "name": ":flag_no:",
+      "unicode": "🇳🇴"
+  },
+  {
+      "name": ":flag_np:",
+      "unicode": "🇳🇵"
+  },
+  {
+      "name": ":flag_nr:",
+      "unicode": "🇳🇷"
+  },
+  {
+      "name": ":flag_nu:",
+      "unicode": "🇳🇺"
+  },
+  {
+      "name": ":flag_nz:",
+      "unicode": "🇳🇿"
+  },
+  {
+      "name": ":flag_om:",
+      "unicode": "🇴🇲"
+  },
+  {
+      "name": ":flag_pa:",
+      "unicode": "🇵🇦"
+  },
+  {
+      "name": ":flag_pe:",
+      "unicode": "🇵🇪"
+  },
+  {
+      "name": ":flag_pf:",
+      "unicode": "🇵🇫"
+  },
+  {
+      "name": ":flag_pg:",
+      "unicode": "🇵🇬"
+  },
+  {
+      "name": ":flag_ph:",
+      "unicode": "🇵🇭"
+  },
+  {
+      "name": ":flag_pk:",
+      "unicode": "🇵🇰"
+  },
+  {
+      "name": ":flag_pl:",
+      "unicode": "🇵🇱"
+  },
+  {
+      "name": ":flag_pm:",
+      "unicode": "🇵🇲"
+  },
+  {
+      "name": ":flag_pn:",
+      "unicode": "🇵🇳"
+  },
+  {
+      "name": ":flag_pr:",
+      "unicode": "🇵🇷"
+  },
+  {
+      "name": ":flag_ps:",
+      "unicode": "🇵🇸"
+  },
+  {
+      "name": ":flag_pt:",
+      "unicode": "🇵🇹"
+  },
+  {
+      "name": ":flag_pw:",
+      "unicode": "🇵🇼"
+  },
+  {
+      "name": ":flag_py:",
+      "unicode": "🇵🇾"
+  },
+  {
+      "name": ":flag_qa:",
+      "unicode": "🇶🇦"
+  },
+  {
+      "name": ":flag_re:",
+      "unicode": "🇷🇪"
+  },
+  {
+      "name": ":flag_ro:",
+      "unicode": "🇷🇴"
+  },
+  {
+      "name": ":flag_rs:",
+      "unicode": "🇷🇸"
+  },
+  {
+      "name": ":flag_ru:",
+      "unicode": "🇷🇺"
+  },
+  {
+      "name": ":flag_rw:",
+      "unicode": "🇷🇼"
+  },
+  {
+      "name": ":flag_sa:",
+      "unicode": "🇸🇦"
+  },
+  {
+      "name": ":flag_sb:",
+      "unicode": "🇸🇧"
+  },
+  {
+      "name": ":flag_sc:",
+      "unicode": "🇸🇨"
+  },
+  {
+      "name": ":flag_sd:",
+      "unicode": "🇸🇩"
+  },
+  {
+      "name": ":flag_se:",
+      "unicode": "🇸🇪"
+  },
+  {
+      "name": ":flag_sg:",
+      "unicode": "🇸🇬"
+  },
+  {
+      "name": ":flag_sh:",
+      "unicode": "🇸🇭"
+  },
+  {
+      "name": ":flag_si:",
+      "unicode": "🇸🇮"
+  },
+  {
+      "name": ":flag_sj:",
+      "unicode": "🇸🇯"
+  },
+  {
+      "name": ":flag_sk:",
+      "unicode": "🇸🇰"
+  },
+  {
+      "name": ":flag_sl:",
+      "unicode": "🇸🇱"
+  },
+  {
+      "name": ":flag_sm:",
+      "unicode": "🇸🇲"
+  },
+  {
+      "name": ":flag_sn:",
+      "unicode": "🇸🇳"
+  },
+  {
+      "name": ":flag_so:",
+      "unicode": "🇸🇴"
+  },
+  {
+      "name": ":flag_sr:",
+      "unicode": "🇸🇷"
+  },
+  {
+      "name": ":flag_ss:",
+      "unicode": "🇸🇸"
+  },
+  {
+      "name": ":flag_st:",
+      "unicode": "🇸🇹"
+  },
+  {
+      "name": ":flag_sv:",
+      "unicode": "🇸🇻"
+  },
+  {
+      "name": ":flag_sx:",
+      "unicode": "🇸🇽"
+  },
+  {
+      "name": ":flag_sy:",
+      "unicode": "🇸🇾"
+  },
+  {
+      "name": ":flag_sz:",
+      "unicode": "🇸🇿"
+  },
+  {
+      "name": ":flag_ta:",
+      "unicode": "🇹🇦"
+  },
+  {
+      "name": ":flag_tc:",
+      "unicode": "🇹🇨"
+  },
+  {
+      "name": ":flag_td:",
+      "unicode": "🇹🇩"
+  },
+  {
+      "name": ":flag_tf:",
+      "unicode": "🇹🇫"
+  },
+  {
+      "name": ":flag_tg:",
+      "unicode": "🇹🇬"
+  },
+  {
+      "name": ":flag_th:",
+      "unicode": "🇹🇭"
+  },
+  {
+      "name": ":flag_tj:",
+      "unicode": "🇹🇯"
+  },
+  {
+      "name": ":flag_tk:",
+      "unicode": "🇹🇰"
+  },
+  {
+      "name": ":flag_tl:",
+      "unicode": "🇹🇱"
+  },
+  {
+      "name": ":flag_tm:",
+      "unicode": "🇹🇲"
+  },
+  {
+      "name": ":flag_tn:",
+      "unicode": "🇹🇳"
+  },
+  {
+      "name": ":flag_to:",
+      "unicode": "🇹🇴"
+  },
+  {
+      "name": ":flag_tr:",
+      "unicode": "🇹🇷"
+  },
+  {
+      "name": ":flag_tt:",
+      "unicode": "🇹🇹"
+  },
+  {
+      "name": ":flag_tv:",
+      "unicode": "🇹🇻"
+  },
+  {
+      "name": ":flag_tw:",
+      "unicode": "🇹🇼"
+  },
+  {
+      "name": ":flag_tz:",
+      "unicode": "🇹🇿"
+  },
+  {
+      "name": ":flag_ua:",
+      "unicode": "🇺🇦"
+  },
+  {
+      "name": ":flag_ug:",
+      "unicode": "🇺🇬"
+  },
+  {
+      "name": ":flag_um:",
+      "unicode": "🇺🇲"
+  },
+  {
+      "name": ":flag_us:",
+      "unicode": "🇺🇸"
+  },
+  {
+      "name": ":flag_uy:",
+      "unicode": "🇺🇾"
+  },
+  {
+      "name": ":flag_uz:",
+      "unicode": "🇺🇿"
+  },
+  {
+      "name": ":flag_va:",
+      "unicode": "🇻🇦"
+  },
+  {
+      "name": ":flag_vc:",
+      "unicode": "🇻🇨"
+  },
+  {
+      "name": ":flag_ve:",
+      "unicode": "🇻🇪"
+  },
+  {
+      "name": ":flag_vg:",
+      "unicode": "🇻🇬"
+  },
+  {
+      "name": ":flag_vi:",
+      "unicode": "🇻🇮"
+  },
+  {
+      "name": ":flag_vn:",
+      "unicode": "🇻🇳"
+  },
+  {
+      "name": ":flag_vu:",
+      "unicode": "🇻🇺"
+  },
+  {
+      "name": ":flag_wf:",
+      "unicode": "🇼🇫"
+  },
+  {
+      "name": ":flag_white:",
+      "unicode": "🏳"
+  },
+  {
+      "name": ":flag_ws:",
+      "unicode": "🇼🇸"
+  },
+  {
+      "name": ":flag_xk:",
+      "unicode": "🇽🇰"
+  },
+  {
+      "name": ":flag_ye:",
+      "unicode": "🇾🇪"
+  },
+  {
+      "name": ":flag_yt:",
+      "unicode": "🇾🇹"
+  },
+  {
+      "name": ":flag_za:",
+      "unicode": "🇿🇦"
+  },
+  {
+      "name": ":flag_zm:",
+      "unicode": "🇿🇲"
+  },
+  {
+      "name": ":flag_zw:",
+      "unicode": "🇿🇼"
+  },
+  {
+      "name": ":flags:",
+      "unicode": "🎏"
+  },
+  {
+      "name": ":flashlight:",
+      "unicode": "🔦"
+  },
+  {
+      "name": ":fleur-de-lis:",
+      "unicode": "⚜"
+  },
+  {
+      "name": ":floppy_disk:",
+      "unicode": "💾"
+  },
+  {
+      "name": ":flower_playing_cards:",
+      "unicode": "🎴"
+  },
+  {
+      "name": ":flushed:",
+      "unicode": "😳"
+  },
+  {
+      "name": ":fog:",
+      "unicode": "🌫"
+  },
+  {
+      "name": ":foggy:",
+      "unicode": "🌁"
+  },
+  {
+      "name": ":football:",
+      "unicode": "🏈"
+  },
+  {
+      "name": ":footprints:",
+      "unicode": "👣"
+  },
+  {
+      "name": ":fork_and_knife:",
+      "unicode": "🍴"
+  },
+  {
+      "name": ":fork_knife_plate:",
+      "unicode": "🍽"
+  },
+  {
+      "name": ":fountain:",
+      "unicode": "⛲"
+  },
+  {
+      "name": ":four:",
+      "unicode": "4️⃣"
+  },
+  {
+      "name": ":four_leaf_clover:",
+      "unicode": "🍀"
+  },
+  {
+      "name": ":fox:",
+      "unicode": "🦊"
+  },
+  {
+      "name": ":frame_photo:",
+      "unicode": "🖼"
+  },
+  {
+      "name": ":free:",
+      "unicode": "🆓"
+  },
+  {
+      "name": ":french_bread:",
+      "unicode": "🥖"
+  },
+  {
+      "name": ":fried_shrimp:",
+      "unicode": "🍤"
+  },
+  {
+      "name": ":fries:",
+      "unicode": "🍟"
+  },
+  {
+      "name": ":frog:",
+      "unicode": "🐸"
+  },
+  {
+      "name": ":frowning:",
+      "unicode": "😦"
+  },
+  {
+      "name": ":frowning2:",
+      "unicode": "☹"
+  },
+  {
+      "name": ":fuelpump:",
+      "unicode": "⛽"
+  },
+  {
+      "name": ":full_moon:",
+      "unicode": "🌕"
+  },
+  {
+      "name": ":full_moon_with_face:",
+      "unicode": "🌝"
+  },
+  {
+      "name": ":game_die:",
+      "unicode": "🎲"
+  },
+  {
+      "name": ":gear:",
+      "unicode": "⚙"
+  },
+  {
+      "name": ":gem:",
+      "unicode": "💎"
+  },
+  {
+      "name": ":gay_pride_flag:",
+      "unicode": "🏳🌈"
+  },
+  {
+      "name": ":gemini:",
+      "unicode": "♊"
+  },
+  {
+      "name": ":ghost:",
+      "unicode": "👻"
+  },
+  {
+      "name": ":gift:",
+      "unicode": "🎁"
+  },
+  {
+      "name": ":gift_heart:",
+      "unicode": "💝"
+  },
+  {
+      "name": ":girl:",
+      "unicode": "👧"
+  },
+  {
+      "name": ":girl_tone1:",
+      "unicode": "👧🏻"
+  },
+  {
+      "name": ":girl_tone2:",
+      "unicode": "👧🏼"
+  },
+  {
+      "name": ":girl_tone3:",
+      "unicode": "👧🏽"
+  },
+  {
+      "name": ":girl_tone4:",
+      "unicode": "👧🏾"
+  },
+  {
+      "name": ":girl_tone5:",
+      "unicode": "👧🏿"
+  },
+  {
+      "name": ":globe_with_meridians:",
+      "unicode": "🌐"
+  },
+  {
+      "name": ":goal:",
+      "unicode": "🥅"
+  },
+  {
+      "name": ":goat:",
+      "unicode": "🐐"
+  },
+  {
+      "name": ":golf:",
+      "unicode": "⛳"
+  },
+  {
+      "name": ":golfer:",
+      "unicode": "🏌"
+  },
+  {
+      "name": ":gorilla:",
+      "unicode": "🦍"
+  },
+  {
+      "name": ":grapes:",
+      "unicode": "🍇"
+  },
+  {
+      "name": ":green_apple:",
+      "unicode": "🍏"
+  },
+  {
+      "name": ":green_book:",
+      "unicode": "📗"
+  },
+  {
+      "name": ":green_heart:",
+      "unicode": "💚"
+  },
+  {
+      "name": ":grey_exclamation:",
+      "unicode": "❕"
+  },
+  {
+      "name": ":grey_question:",
+      "unicode": "❔"
+  },
+  {
+      "name": ":grimacing:",
+      "unicode": "😬"
+  },
+  {
+      "name": ":grin:",
+      "unicode": "😁"
+  },
+  {
+      "name": ":grinning:",
+      "unicode": "😀"
+  },
+  {
+      "name": ":guardsman:",
+      "unicode": "💂"
+  },
+  {
+      "name": ":guardsman_tone1:",
+      "unicode": "💂🏻"
+  },
+  {
+      "name": ":guardsman_tone2:",
+      "unicode": "💂🏼"
+  },
+  {
+      "name": ":guardsman_tone3:",
+      "unicode": "💂🏽"
+  },
+  {
+      "name": ":guardsman_tone4:",
+      "unicode": "💂🏾"
+  },
+  {
+      "name": ":guardsman_tone5:",
+      "unicode": "💂🏿"
+  },
+  {
+      "name": ":guitar:",
+      "unicode": "🎸"
+  },
+  {
+      "name": ":gun:",
+      "unicode": "🔫"
+  },
+  {
+      "name": ":haircut:",
+      "unicode": "💇"
+  },
+  {
+      "name": ":haircut_tone1:",
+      "unicode": "💇🏻"
+  },
+  {
+      "name": ":haircut_tone2:",
+      "unicode": "💇🏼"
+  },
+  {
+      "name": ":haircut_tone3:",
+      "unicode": "💇🏽"
+  },
+  {
+      "name": ":haircut_tone4:",
+      "unicode": "💇🏾"
+  },
+  {
+      "name": ":haircut_tone5:",
+      "unicode": "💇🏿"
+  },
+  {
+      "name": ":hamburger:",
+      "unicode": "🍔"
+  },
+  {
+      "name": ":hammer:",
+      "unicode": "🔨"
+  },
+  {
+      "name": ":hammer_pick:",
+      "unicode": "⚒"
+  },
+  {
+      "name": ":hamster:",
+      "unicode": "🐹"
+  },
+  {
+      "name": ":hand_splayed:",
+      "unicode": "🖐"
+  },
+  {
+      "name": ":hand_splayed_tone1:",
+      "unicode": "🖐🏻"
+  },
+  {
+      "name": ":hand_splayed_tone2:",
+      "unicode": "🖐🏼"
+  },
+  {
+      "name": ":hand_splayed_tone3:",
+      "unicode": "🖐🏽"
+  },
+  {
+      "name": ":hand_splayed_tone4:",
+      "unicode": "🖐🏾"
+  },
+  {
+      "name": ":hand_splayed_tone5:",
+      "unicode": "🖐🏿"
+  },
+  {
+      "name": ":handbag:",
+      "unicode": "👜"
+  },
+  {
+      "name": ":handball:",
+      "unicode": "🤾"
+  },
+  {
+      "name": ":handball_tone1:",
+      "unicode": "🤾🏻"
+  },
+  {
+      "name": ":handball_tone2:",
+      "unicode": "🤾🏼"
+  },
+  {
+      "name": ":handball_tone3:",
+      "unicode": "🤾🏽"
+  },
+  {
+      "name": ":handball_tone4:",
+      "unicode": "🤾🏾"
+  },
+  {
+      "name": ":handball_tone5:",
+      "unicode": "🤾🏿"
+  },
+  {
+      "name": ":handshake:",
+      "unicode": "🤝"
+  },
+  {
+      "name": ":handshake_tone1:",
+      "unicode": "🤝🏻"
+  },
+  {
+      "name": ":handshake_tone2:",
+      "unicode": "🤝🏼"
+  },
+  {
+      "name": ":handshake_tone3:",
+      "unicode": "🤝🏽"
+  },
+  {
+      "name": ":handshake_tone4:",
+      "unicode": "🤝🏾"
+  },
+  {
+      "name": ":handshake_tone5:",
+      "unicode": "🤝🏿"
+  },
+  {
+      "name": ":hash:",
+      "unicode": "#⃣"
+  },
+  {
+      "name": ":hatched_chick:",
+      "unicode": "🐥"
+  },
+  {
+      "name": ":hatching_chick:",
+      "unicode": "🐣"
+  },
+  {
+      "name": ":head_bandage:",
+      "unicode": "🤕"
+  },
+  {
+      "name": ":headphones:",
+      "unicode": "🎧"
+  },
+  {
+      "name": ":hear_no_evil:",
+      "unicode": "🙉"
+  },
+  {
+      "name": ":heart:",
+      "unicode": "❤"
+  },
+  {
+      "name": ":heart_decoration:",
+      "unicode": "💟"
+  },
+  {
+      "name": ":heart_exclamation:",
+      "unicode": "❣"
+  },
+  {
+      "name": ":heart_eyes:",
+      "unicode": "😍"
+  },
+  {
+      "name": ":heart_eyes_cat:",
+      "unicode": "😻"
+  },
+  {
+      "name": ":heartbeat:",
+      "unicode": "💓"
+  },
+  {
+      "name": ":heartpulse:",
+      "unicode": "💗"
+  },
+  {
+      "name": ":hearts:",
+      "unicode": "♥"
+  },
+  {
+      "name": ":heavy_check_mark:",
+      "unicode": "✔"
+  },
+  {
+      "name": ":heavy_division_sign:",
+      "unicode": "➗"
+  },
+  {
+      "name": ":heavy_dollar_sign:",
+      "unicode": "💲"
+  },
+  {
+      "name": ":heavy_minus_sign:",
+      "unicode": "➖"
+  },
+  {
+      "name": ":heavy_multiplication_x:",
+      "unicode": "✖"
+  },
+  {
+      "name": ":heavy_plus_sign:",
+      "unicode": "➕"
+  },
+  {
+      "name": ":helicopter:",
+      "unicode": "🚁"
+  },
+  {
+      "name": ":helmet_with_cross:",
+      "unicode": "⛑"
+  },
+  {
+      "name": ":herb:",
+      "unicode": "🌿"
+  },
+  {
+      "name": ":hibiscus:",
+      "unicode": "🌺"
+  },
+  {
+      "name": ":high_brightness:",
+      "unicode": "🔆"
+  },
+  {
+      "name": ":high_heel:",
+      "unicode": "👠"
+  },
+  {
+      "name": ":hockey:",
+      "unicode": "🏒"
+  },
+  {
+      "name": ":hole:",
+      "unicode": "🕳"
+  },
+  {
+      "name": ":homes:",
+      "unicode": "🏘"
+  },
+  {
+      "name": ":honey_pot:",
+      "unicode": "🍯"
+  },
+  {
+      "name": ":horse:",
+      "unicode": "🐴"
+  },
+  {
+      "name": ":horse_racing:",
+      "unicode": "🏇"
+  },
+  {
+      "name": ":horse_racing_tone1:",
+      "unicode": "🏇🏻"
+  },
+  {
+      "name": ":horse_racing_tone2:",
+      "unicode": "🏇🏼"
+  },
+  {
+      "name": ":horse_racing_tone3:",
+      "unicode": "🏇🏽"
+  },
+  {
+      "name": ":horse_racing_tone4:",
+      "unicode": "🏇🏾"
+  },
+  {
+      "name": ":horse_racing_tone5:",
+      "unicode": "🏇🏿"
+  },
+  {
+      "name": ":hospital:",
+      "unicode": "🏥"
+  },
+  {
+      "name": ":hot_pepper:",
+      "unicode": "🌶"
+  },
+  {
+      "name": ":hotdog:",
+      "unicode": "🌭"
+  },
+  {
+      "name": ":hotel:",
+      "unicode": "🏨"
+  },
+  {
+      "name": ":hotsprings:",
+      "unicode": "♨"
+  },
+  {
+      "name": ":hourglass:",
+      "unicode": "⌛"
+  },
+  {
+      "name": ":hourglass_flowing_sand:",
+      "unicode": "⏳"
+  },
+  {
+      "name": ":house:",
+      "unicode": "🏠"
+  },
+  {
+      "name": ":house_abandoned:",
+      "unicode": "🏚"
+  },
+  {
+      "name": ":house_with_garden:",
+      "unicode": "🏡"
+  },
+  {
+      "name": ":hugging:",
+      "unicode": "🤗"
+  },
+  {
+      "name": ":hushed:",
+      "unicode": "😯"
+  },
+  {
+      "name": ":ice_cream:",
+      "unicode": "🍨"
+  },
+  {
+      "name": ":ice_skate:",
+      "unicode": "⛸"
+  },
+  {
+      "name": ":icecream:",
+      "unicode": "🍦"
+  },
+  {
+      "name": ":id:",
+      "unicode": "🆔"
+  },
+  {
+      "name": ":ideograph_advantage:",
+      "unicode": "🉐"
+  },
+  {
+      "name": ":imp:",
+      "unicode": "👿"
+  },
+  {
+      "name": ":inbox_tray:",
+      "unicode": "📥"
+  },
+  {
+      "name": ":incoming_envelope:",
+      "unicode": "📨"
+  },
+  {
+      "name": ":information_desk_person:",
+      "unicode": "💁"
+  },
+  {
+      "name": ":information_desk_person_tone1:",
+      "unicode": "💁🏻"
+  },
+  {
+      "name": ":information_desk_person_tone2:",
+      "unicode": "💁🏼"
+  },
+  {
+      "name": ":information_desk_person_tone3:",
+      "unicode": "💁🏽"
+  },
+  {
+      "name": ":information_desk_person_tone4:",
+      "unicode": "💁🏾"
+  },
+  {
+      "name": ":information_desk_person_tone5:",
+      "unicode": "💁🏿"
+  },
+  {
+      "name": ":information_source:",
+      "unicode": "ℹ"
+  },
+  {
+      "name": ":innocent:",
+      "unicode": "😇"
+  },
+  {
+      "name": ":interrobang:",
+      "unicode": "⁉"
+  },
+  {
+      "name": ":iphone:",
+      "unicode": "📱"
+  },
+  {
+      "name": ":island:",
+      "unicode": "🏝"
+  },
+  {
+      "name": ":izakaya_lantern:",
+      "unicode": "🏮"
+  },
+  {
+      "name": ":jack_o_lantern:",
+      "unicode": "🎃"
+  },
+  {
+      "name": ":japan:",
+      "unicode": "🗾"
+  },
+  {
+      "name": ":japanese_castle:",
+      "unicode": "🏯"
+  },
+  {
+      "name": ":japanese_goblin:",
+      "unicode": "👺"
+  },
+  {
+      "name": ":japanese_ogre:",
+      "unicode": "👹"
+  },
+  {
+      "name": ":jeans:",
+      "unicode": "👖"
+  },
+  {
+      "name": ":joy:",
+      "unicode": "😂"
+  },
+  {
+      "name": ":joy_cat:",
+      "unicode": "😹"
+  },
+  {
+      "name": ":joystick:",
+      "unicode": "🕹"
+  },
+  {
+      "name": ":juggling:",
+      "unicode": "🤹"
+  },
+  {
+      "name": ":juggling_tone1:",
+      "unicode": "🤹🏻"
+  },
+  {
+      "name": ":juggling_tone2:",
+      "unicode": "🤹🏼"
+  },
+  {
+      "name": ":juggling_tone3:",
+      "unicode": "🤹🏽"
+  },
+  {
+      "name": ":juggling_tone4:",
+      "unicode": "🤹🏾"
+  },
+  {
+      "name": ":juggling_tone5:",
+      "unicode": "🤹🏿"
+  },
+  {
+      "name": ":kaaba:",
+      "unicode": "🕋"
+  },
+  {
+      "name": ":key:",
+      "unicode": "🔑"
+  },
+  {
+      "name": ":key2:",
+      "unicode": "🗝"
+  },
+  {
+      "name": ":keyboard:",
+      "unicode": "⌨"
+  },
+  {
+      "name": ":kimono:",
+      "unicode": "👘"
+  },
+  {
+      "name": ":kiss:",
+      "unicode": "💋"
+  },
+  {
+      "name": ":kiss_mm:",
+      "unicode": "👨‍❤️‍💋‍👨"
+  },
+  {
+      "name": ":kiss_ww:",
+      "unicode": "👩‍❤️‍💋‍👩"
+  },
+  {
+      "name": ":kissing:",
+      "unicode": "😗"
+  },
+  {
+      "name": ":kissing_cat:",
+      "unicode": "😽"
+  },
+  {
+      "name": ":kissing_closed_eyes:",
+      "unicode": "😚"
+  },
+  {
+      "name": ":kissing_heart:",
+      "unicode": "😘"
+  },
+  {
+      "name": ":kissing_smiling_eyes:",
+      "unicode": "😙"
+  },
+  {
+      "name": ":kiwi:",
+      "unicode": "🥝"
+  },
+  {
+      "name": ":knife:",
+      "unicode": "🔪"
+  },
+  {
+      "name": ":koala:",
+      "unicode": "🐨"
+  },
+  {
+      "name": ":koko:",
+      "unicode": "🈁"
+  },
+  {
+      "name": ":label:",
+      "unicode": "🏷"
+  },
+  {
+      "name": ":large_blue_circle:",
+      "unicode": "🔵"
+  },
+  {
+      "name": ":large_blue_diamond:",
+      "unicode": "🔷"
+  },
+  {
+      "name": ":large_orange_diamond:",
+      "unicode": "🔶"
+  },
+  {
+      "name": ":last_quarter_moon:",
+      "unicode": "🌗"
+  },
+  {
+      "name": ":last_quarter_moon_with_face:",
+      "unicode": "🌜"
+  },
+  {
+      "name": ":laughing:",
+      "unicode": "😆"
+  },
+  {
+      "name": ":leaves:",
+      "unicode": "🍃"
+  },
+  {
+      "name": ":ledger:",
+      "unicode": "📒"
+  },
+  {
+      "name": ":left_facing_fist:",
+      "unicode": "🤛"
+  },
+  {
+      "name": ":left_facing_fist_tone1:",
+      "unicode": "🤛🏻"
+  },
+  {
+      "name": ":left_facing_fist_tone2:",
+      "unicode": "🤛🏼"
+  },
+  {
+      "name": ":left_facing_fist_tone3:",
+      "unicode": "🤛🏽"
+  },
+  {
+      "name": ":left_facing_fist_tone4:",
+      "unicode": "🤛🏾"
+  },
+  {
+      "name": ":left_facing_fist_tone5:",
+      "unicode": "🤛🏿"
+  },
+  {
+      "name": ":left_luggage:",
+      "unicode": "🛅"
+  },
+  {
+      "name": ":left_right_arrow:",
+      "unicode": "↔"
+  },
+  {
+      "name": ":leftwards_arrow_with_hook:",
+      "unicode": "↩"
+  },
+  {
+      "name": ":lemon:",
+      "unicode": "🍋"
+  },
+  {
+      "name": ":leo:",
+      "unicode": "♌"
+  },
+  {
+      "name": ":leopard:",
+      "unicode": "🐆"
+  },
+  {
+      "name": ":level_slider:",
+      "unicode": "🎚"
+  },
+  {
+      "name": ":levitate:",
+      "unicode": "🕴"
+  },
+  {
+      "name": ":libra:",
+      "unicode": "♎"
+  },
+  {
+      "name": ":lifter:",
+      "unicode": "🏋"
+  },
+  {
+      "name": ":lifter_tone1:",
+      "unicode": "🏋🏻"
+  },
+  {
+      "name": ":lifter_tone2:",
+      "unicode": "🏋🏼"
+  },
+  {
+      "name": ":lifter_tone3:",
+      "unicode": "🏋🏽"
+  },
+  {
+      "name": ":lifter_tone4:",
+      "unicode": "🏋🏾"
+  },
+  {
+      "name": ":lifter_tone5:",
+      "unicode": "🏋🏿"
+  },
+  {
+      "name": ":light_rail:",
+      "unicode": "🚈"
+  },
+  {
+      "name": ":link:",
+      "unicode": "🔗"
+  },
+  {
+      "name": ":lion_face:",
+      "unicode": "🦁"
+  },
+  {
+      "name": ":lips:",
+      "unicode": "👄"
+  },
+  {
+      "name": ":lipstick:",
+      "unicode": "💄"
+  },
+  {
+      "name": ":lizard:",
+      "unicode": "🦎"
+  },
+  {
+      "name": ":lock:",
+      "unicode": "🔒"
+  },
+  {
+      "name": ":lock_with_ink_pen:",
+      "unicode": "🔏"
+  },
+  {
+      "name": ":lollipop:",
+      "unicode": "🍭"
+  },
+  {
+      "name": ":loop:",
+      "unicode": "➿"
+  },
+  {
+      "name": ":loud_sound:",
+      "unicode": "🔊"
+  },
+  {
+      "name": ":loudspeaker:",
+      "unicode": "📢"
+  },
+  {
+      "name": ":love_hotel:",
+      "unicode": "🏩"
+  },
+  {
+      "name": ":love_letter:",
+      "unicode": "💌"
+  },
+  {
+      "name": ":low_brightness:",
+      "unicode": "🔅"
+  },
+  {
+      "name": ":lying_face:",
+      "unicode": "🤥"
+  },
+  {
+      "name": ":m:",
+      "unicode": "Ⓜ"
+  },
+  {
+      "name": ":mag:",
+      "unicode": "🔍"
+  },
+  {
+      "name": ":mag_right:",
+      "unicode": "🔎"
+  },
+  {
+      "name": ":mahjong:",
+      "unicode": "🀄"
+  },
+  {
+      "name": ":mailbox:",
+      "unicode": "📫"
+  },
+  {
+      "name": ":mailbox_closed:",
+      "unicode": "📪"
+  },
+  {
+      "name": ":mailbox_with_mail:",
+      "unicode": "📬"
+  },
+  {
+      "name": ":mailbox_with_no_mail:",
+      "unicode": "📭"
+  },
+  {
+      "name": ":man:",
+      "unicode": "👨"
+  },
+  {
+      "name": ":man_dancing:",
+      "unicode": "🕺"
+  },
+  {
+      "name": ":man_dancing_tone1:",
+      "unicode": "🕺🏻"
+  },
+  {
+      "name": ":man_dancing_tone2:",
+      "unicode": "🕺🏼"
+  },
+  {
+      "name": ":man_dancing_tone3:",
+      "unicode": "🕺🏽"
+  },
+  {
+      "name": ":man_dancing_tone4:",
+      "unicode": "🕺🏾"
+  },
+  {
+      "name": ":man_dancing_tone5:",
+      "unicode": "🕺🏿"
+  },
+  {
+      "name": ":man_in_tuxedo:",
+      "unicode": "🤵"
+  },
+  {
+      "name": ":man_in_tuxedo_tone1:",
+      "unicode": "🤵🏻"
+  },
+  {
+      "name": ":man_in_tuxedo_tone2:",
+      "unicode": "🤵🏼"
+  },
+  {
+      "name": ":man_in_tuxedo_tone3:",
+      "unicode": "🤵🏽"
+  },
+  {
+      "name": ":man_in_tuxedo_tone4:",
+      "unicode": "🤵🏾"
+  },
+  {
+      "name": ":man_in_tuxedo_tone5:",
+      "unicode": "🤵🏿"
+  },
+  {
+      "name": ":man_tone1:",
+      "unicode": "👨🏻"
+  },
+  {
+      "name": ":man_tone2:",
+      "unicode": "👨🏼"
+  },
+  {
+      "name": ":man_tone3:",
+      "unicode": "👨🏽"
+  },
+  {
+      "name": ":man_tone4:",
+      "unicode": "👨🏾"
+  },
+  {
+      "name": ":man_tone5:",
+      "unicode": "👨🏿"
+  },
+  {
+      "name": ":man_with_gua_pi_mao:",
+      "unicode": "👲"
+  },
+  {
+      "name": ":man_with_gua_pi_mao_tone1:",
+      "unicode": "👲🏻"
+  },
+  {
+      "name": ":man_with_gua_pi_mao_tone2:",
+      "unicode": "👲🏼"
+  },
+  {
+      "name": ":man_with_gua_pi_mao_tone3:",
+      "unicode": "👲🏽"
+  },
+  {
+      "name": ":man_with_gua_pi_mao_tone4:",
+      "unicode": "👲🏾"
+  },
+  {
+      "name": ":man_with_gua_pi_mao_tone5:",
+      "unicode": "👲🏿"
+  },
+  {
+      "name": ":man_with_turban:",
+      "unicode": "👳"
+  },
+  {
+      "name": ":man_with_turban_tone1:",
+      "unicode": "👳🏻"
+  },
+  {
+      "name": ":man_with_turban_tone2:",
+      "unicode": "👳🏼"
+  },
+  {
+      "name": ":man_with_turban_tone3:",
+      "unicode": "👳🏽"
+  },
+  {
+      "name": ":man_with_turban_tone4:",
+      "unicode": "👳🏾"
+  },
+  {
+      "name": ":man_with_turban_tone5:",
+      "unicode": "👳🏿"
+  },
+  {
+      "name": ":mans_shoe:",
+      "unicode": "👞"
+  },
+  {
+      "name": ":map:",
+      "unicode": "🗺"
+  },
+  {
+      "name": ":maple_leaf:",
+      "unicode": "🍁"
+  },
+  {
+      "name": ":martial_arts_uniform:",
+      "unicode": "🥋"
+  },
+  {
+      "name": ":mask:",
+      "unicode": "😷"
+  },
+  {
+      "name": ":massage:",
+      "unicode": "💆"
+  },
+  {
+      "name": ":massage_tone1:",
+      "unicode": "💆🏻"
+  },
+  {
+      "name": ":massage_tone2:",
+      "unicode": "💆🏼"
+  },
+  {
+      "name": ":massage_tone3:",
+      "unicode": "💆🏽"
+  },
+  {
+      "name": ":massage_tone4:",
+      "unicode": "💆🏾"
+  },
+  {
+      "name": ":massage_tone5:",
+      "unicode": "💆🏿"
+  },
+  {
+      "name": ":meat_on_bone:",
+      "unicode": "🍖"
+  },
+  {
+      "name": ":medal:",
+      "unicode": "🏅"
+  },
+  {
+      "name": ":mega:",
+      "unicode": "📣"
+  },
+  {
+      "name": ":melon:",
+      "unicode": "🍈"
+  },
+  {
+      "name": ":menorah:",
+      "unicode": "🕎"
+  },
+  {
+      "name": ":mens:",
+      "unicode": "🚹"
+  },
+  {
+      "name": ":metal:",
+      "unicode": "🤘"
+  },
+  {
+      "name": ":metal_tone1:",
+      "unicode": "🤘🏻"
+  },
+  {
+      "name": ":metal_tone2:",
+      "unicode": "🤘🏼"
+  },
+  {
+      "name": ":metal_tone3:",
+      "unicode": "🤘🏽"
+  },
+  {
+      "name": ":metal_tone4:",
+      "unicode": "🤘🏾"
+  },
+  {
+      "name": ":metal_tone5:",
+      "unicode": "🤘🏿"
+  },
+  {
+      "name": ":metro:",
+      "unicode": "🚇"
+  },
+  {
+      "name": ":microphone:",
+      "unicode": "🎤"
+  },
+  {
+      "name": ":microphone2:",
+      "unicode": "🎙"
+  },
+  {
+      "name": ":microscope:",
+      "unicode": "🔬"
+  },
+  {
+      "name": ":middle_finger:",
+      "unicode": "🖕"
+  },
+  {
+      "name": ":middle_finger_tone1:",
+      "unicode": "🖕🏻"
+  },
+  {
+      "name": ":middle_finger_tone2:",
+      "unicode": "🖕🏼"
+  },
+  {
+      "name": ":middle_finger_tone3:",
+      "unicode": "🖕🏽"
+  },
+  {
+      "name": ":middle_finger_tone4:",
+      "unicode": "🖕🏾"
+  },
+  {
+      "name": ":middle_finger_tone5:",
+      "unicode": "🖕🏿"
+  },
+  {
+      "name": ":military_medal:",
+      "unicode": "🎖"
+  },
+  {
+      "name": ":milk:",
+      "unicode": "🥛"
+  },
+  {
+      "name": ":milky_way:",
+      "unicode": "🌌"
+  },
+  {
+      "name": ":minibus:",
+      "unicode": "🚐"
+  },
+  {
+      "name": ":minidisc:",
+      "unicode": "💽"
+  },
+  {
+      "name": ":mobile_phone_off:",
+      "unicode": "📴"
+  },
+  {
+      "name": ":money_mouth:",
+      "unicode": "🤑"
+  },
+  {
+      "name": ":money_with_wings:",
+      "unicode": "💸"
+  },
+  {
+      "name": ":moneybag:",
+      "unicode": "💰"
+  },
+  {
+      "name": ":monkey:",
+      "unicode": "🐒"
+  },
+  {
+      "name": ":monkey_face:",
+      "unicode": "🐵"
+  },
+  {
+      "name": ":monorail:",
+      "unicode": "🚝"
+  },
+  {
+      "name": ":mortar_board:",
+      "unicode": "🎓"
+  },
+  {
+      "name": ":mosque:",
+      "unicode": "🕌"
+  },
+  {
+      "name": ":motor_scooter:",
+      "unicode": "🛵"
+  },
+  {
+      "name": ":motorboat:",
+      "unicode": "🛥"
+  },
+  {
+      "name": ":motorcycle:",
+      "unicode": "🏍"
+  },
+  {
+      "name": ":motorway:",
+      "unicode": "🛣"
+  },
+  {
+      "name": ":mount_fuji:",
+      "unicode": "🗻"
+  },
+  {
+      "name": ":mountain:",
+      "unicode": "⛰"
+  },
+  {
+      "name": ":mountain_bicyclist:",
+      "unicode": "🚵"
+  },
+  {
+      "name": ":mountain_bicyclist_tone1:",
+      "unicode": "🚵🏻"
+  },
+  {
+      "name": ":mountain_bicyclist_tone2:",
+      "unicode": "🚵🏼"
+  },
+  {
+      "name": ":mountain_bicyclist_tone3:",
+      "unicode": "🚵🏽"
+  },
+  {
+      "name": ":mountain_bicyclist_tone4:",
+      "unicode": "🚵🏾"
+  },
+  {
+      "name": ":mountain_bicyclist_tone5:",
+      "unicode": "🚵🏿"
+  },
+  {
+      "name": ":mountain_cableway:",
+      "unicode": "🚠"
+  },
+  {
+      "name": ":mountain_railway:",
+      "unicode": "🚞"
+  },
+  {
+      "name": ":mountain_snow:",
+      "unicode": "🏔"
+  },
+  {
+      "name": ":mouse:",
+      "unicode": "🐭"
+  },
+  {
+      "name": ":mouse2:",
+      "unicode": "🐁"
+  },
+  {
+      "name": ":mouse_three_button:",
+      "unicode": "🖱"
+  },
+  {
+      "name": ":movie_camera:",
+      "unicode": "🎥"
+  },
+  {
+      "name": ":moyai:",
+      "unicode": "🗿"
+  },
+  {
+      "name": ":mrs_claus:",
+      "unicode": "🤶"
+  },
+  {
+      "name": ":mrs_claus_tone1:",
+      "unicode": "🤶🏻"
+  },
+  {
+      "name": ":mrs_claus_tone2:",
+      "unicode": "🤶🏼"
+  },
+  {
+      "name": ":mrs_claus_tone3:",
+      "unicode": "🤶🏽"
+  },
+  {
+      "name": ":mrs_claus_tone4:",
+      "unicode": "🤶🏾"
+  },
+  {
+      "name": ":mrs_claus_tone5:",
+      "unicode": "🤶🏿"
+  },
+  {
+      "name": ":muscle:",
+      "unicode": "💪"
+  },
+  {
+      "name": ":muscle_tone1:",
+      "unicode": "💪🏻"
+  },
+  {
+      "name": ":muscle_tone2:",
+      "unicode": "💪🏼"
+  },
+  {
+      "name": ":muscle_tone3:",
+      "unicode": "💪🏽"
+  },
+  {
+      "name": ":muscle_tone4:",
+      "unicode": "💪🏾"
+  },
+  {
+      "name": ":muscle_tone5:",
+      "unicode": "💪🏿"
+  },
+  {
+      "name": ":mushroom:",
+      "unicode": "🍄"
+  },
+  {
+      "name": ":musical_keyboard:",
+      "unicode": "🎹"
+  },
+  {
+      "name": ":musical_note:",
+      "unicode": "🎵"
+  },
+  {
+      "name": ":musical_score:",
+      "unicode": "🎼"
+  },
+  {
+      "name": ":mute:",
+      "unicode": "🔇"
+  },
+  {
+      "name": ":nail_care:",
+      "unicode": "💅"
+  },
+  {
+      "name": ":nail_care_tone1:",
+      "unicode": "💅🏻"
+  },
+  {
+      "name": ":nail_care_tone2:",
+      "unicode": "💅🏼"
+  },
+  {
+      "name": ":nail_care_tone3:",
+      "unicode": "💅🏽"
+  },
+  {
+      "name": ":nail_care_tone4:",
+      "unicode": "💅🏾"
+  },
+  {
+      "name": ":nail_care_tone5:",
+      "unicode": "💅🏿"
+  },
+  {
+      "name": ":name_badge:",
+      "unicode": "📛"
+  },
+  {
+      "name": ":nauseated_face:",
+      "unicode": "🤢"
+  },
+  {
+      "name": ":necktie:",
+      "unicode": "👔"
+  },
+  {
+      "name": ":negative_squared_cross_mark:",
+      "unicode": "❎"
+  },
+  {
+      "name": ":nerd:",
+      "unicode": "🤓"
+  },
+  {
+      "name": ":neutral_face:",
+      "unicode": "😐"
+  },
+  {
+      "name": ":new:",
+      "unicode": "🆕"
+  },
+  {
+      "name": ":new_moon:",
+      "unicode": "🌑"
+  },
+  {
+      "name": ":new_moon_with_face:",
+      "unicode": "🌚"
+  },
+  {
+      "name": ":newspaper:",
+      "unicode": "📰"
+  },
+  {
+      "name": ":newspaper2:",
+      "unicode": "🗞"
+  },
+  {
+      "name": ":ng:",
+      "unicode": "🆖"
+  },
+  {
+      "name": ":night_with_stars:",
+      "unicode": "🌃"
+  },
+  {
+      "name": ":nine:",
+      "unicode": "9️⃣"
+  },
+  {
+      "name": ":no_bell:",
+      "unicode": "🔕"
+  },
+  {
+      "name": ":no_bicycles:",
+      "unicode": "🚳"
+  },
+  {
+      "name": ":no_entry:",
+      "unicode": "⛔"
+  },
+  {
+      "name": ":no_entry_sign:",
+      "unicode": "🚫"
+  },
+  {
+      "name": ":no_good:",
+      "unicode": "🙅"
+  },
+  {
+      "name": ":no_good_tone1:",
+      "unicode": "🙅🏻"
+  },
+  {
+      "name": ":no_good_tone2:",
+      "unicode": "🙅🏼"
+  },
+  {
+      "name": ":no_good_tone3:",
+      "unicode": "🙅🏽"
+  },
+  {
+      "name": ":no_good_tone4:",
+      "unicode": "🙅🏾"
+  },
+  {
+      "name": ":no_good_tone5:",
+      "unicode": "🙅🏿"
+  },
+  {
+      "name": ":no_mobile_phones:",
+      "unicode": "📵"
+  },
+  {
+      "name": ":no_mouth:",
+      "unicode": "😶"
+  },
+  {
+      "name": ":no_pedestrians:",
+      "unicode": "🚷"
+  },
+  {
+      "name": ":no_smoking:",
+      "unicode": "🚭"
+  },
+  {
+      "name": ":non-potable_water:",
+      "unicode": "🚱"
+  },
+  {
+      "name": ":nose:",
+      "unicode": "👃"
+  },
+  {
+      "name": ":nose_tone1:",
+      "unicode": "👃🏻"
+  },
+  {
+      "name": ":nose_tone2:",
+      "unicode": "👃🏼"
+  },
+  {
+      "name": ":nose_tone3:",
+      "unicode": "👃🏽"
+  },
+  {
+      "name": ":nose_tone4:",
+      "unicode": "👃🏾"
+  },
+  {
+      "name": ":nose_tone5:",
+      "unicode": "👃🏿"
+  },
+  {
+      "name": ":notebook:",
+      "unicode": "📓"
+  },
+  {
+      "name": ":notebook_with_decorative_cover:",
+      "unicode": "📔"
+  },
+  {
+      "name": ":notepad_spiral:",
+      "unicode": "🗒"
+  },
+  {
+      "name": ":notes:",
+      "unicode": "🎶"
+  },
+  {
+      "name": ":nut_and_bolt:",
+      "unicode": "🔩"
+  },
+  {
+      "name": ":o:",
+      "unicode": "⭕"
+  },
+  {
+      "name": ":o2:",
+      "unicode": "🅾"
+  },
+  {
+      "name": ":ocean:",
+      "unicode": "🌊"
+  },
+  {
+      "name": ":octagonal_sign:",
+      "unicode": "🛑"
+  },
+  {
+      "name": ":octopus:",
+      "unicode": "🐙"
+  },
+  {
+      "name": ":oden:",
+      "unicode": "🍢"
+  },
+  {
+      "name": ":office:",
+      "unicode": "🏢"
+  },
+  {
+      "name": ":oil:",
+      "unicode": "🛢"
+  },
+  {
+      "name": ":ok:",
+      "unicode": "🆗"
+  },
+  {
+      "name": ":ok_hand:",
+      "unicode": "👌"
+  },
+  {
+      "name": ":ok_hand_tone1:",
+      "unicode": "👌🏻"
+  },
+  {
+      "name": ":ok_hand_tone2:",
+      "unicode": "👌🏼"
+  },
+  {
+      "name": ":ok_hand_tone3:",
+      "unicode": "👌🏽"
+  },
+  {
+      "name": ":ok_hand_tone4:",
+      "unicode": "👌🏾"
+  },
+  {
+      "name": ":ok_hand_tone5:",
+      "unicode": "👌🏿"
+  },
+  {
+      "name": ":ok_woman:",
+      "unicode": "🙆"
+  },
+  {
+      "name": ":ok_woman_tone1:",
+      "unicode": "🙆🏻"
+  },
+  {
+      "name": ":ok_woman_tone2:",
+      "unicode": "🙆🏼"
+  },
+  {
+      "name": ":ok_woman_tone3:",
+      "unicode": "🙆🏽"
+  },
+  {
+      "name": ":ok_woman_tone4:",
+      "unicode": "🙆🏾"
+  },
+  {
+      "name": ":ok_woman_tone5:",
+      "unicode": "🙆🏿"
+  },
+  {
+      "name": ":older_man:",
+      "unicode": "👴"
+  },
+  {
+      "name": ":older_man_tone1:",
+      "unicode": "👴🏻"
+  },
+  {
+      "name": ":older_man_tone2:",
+      "unicode": "👴🏼"
+  },
+  {
+      "name": ":older_man_tone3:",
+      "unicode": "👴🏽"
+  },
+  {
+      "name": ":older_man_tone4:",
+      "unicode": "👴🏾"
+  },
+  {
+      "name": ":older_man_tone5:",
+      "unicode": "👴🏿"
+  },
+  {
+      "name": ":older_woman:",
+      "unicode": "👵"
+  },
+  {
+      "name": ":older_woman_tone1:",
+      "unicode": "👵🏻"
+  },
+  {
+      "name": ":older_woman_tone2:",
+      "unicode": "👵🏼"
+  },
+  {
+      "name": ":older_woman_tone3:",
+      "unicode": "👵🏽"
+  },
+  {
+      "name": ":older_woman_tone4:",
+      "unicode": "👵🏾"
+  },
+  {
+      "name": ":older_woman_tone5:",
+      "unicode": "👵🏿"
+  },
+  {
+      "name": ":om_symbol:",
+      "unicode": "🕉"
+  },
+  {
+      "name": ":on:",
+      "unicode": "🔛"
+  },
+  {
+      "name": ":oncoming_automobile:",
+      "unicode": "🚘"
+  },
+  {
+      "name": ":oncoming_bus:",
+      "unicode": "🚍"
+  },
+  {
+      "name": ":oncoming_police_car:",
+      "unicode": "🚔"
+  },
+  {
+      "name": ":oncoming_taxi:",
+      "unicode": "🚖"
+  },
+  {
+      "name": ":one:",
+      "unicode": "1️⃣"
+  },
+  {
+      "name": ":open_file_folder:",
+      "unicode": "📂"
+  },
+  {
+      "name": ":open_hands:",
+      "unicode": "👐"
+  },
+  {
+      "name": ":open_hands_tone1:",
+      "unicode": "👐🏻"
+  },
+  {
+      "name": ":open_hands_tone2:",
+      "unicode": "👐🏼"
+  },
+  {
+      "name": ":open_hands_tone3:",
+      "unicode": "👐🏽"
+  },
+  {
+      "name": ":open_hands_tone4:",
+      "unicode": "👐🏾"
+  },
+  {
+      "name": ":open_hands_tone5:",
+      "unicode": "👐🏿"
+  },
+  {
+      "name": ":open_mouth:",
+      "unicode": "😮"
+  },
+  {
+      "name": ":ophiuchus:",
+      "unicode": "⛎"
+  },
+  {
+      "name": ":orange_book:",
+      "unicode": "📙"
+  },
+  {
+      "name": ":orthodox_cross:",
+      "unicode": "☦"
+  },
+  {
+      "name": ":outbox_tray:",
+      "unicode": "📤"
+  },
+  {
+      "name": ":owl:",
+      "unicode": "🦉"
+  },
+  {
+      "name": ":ox:",
+      "unicode": "🐂"
+  },
+  {
+      "name": ":package:",
+      "unicode": "📦"
+  },
+  {
+      "name": ":page_facing_up:",
+      "unicode": "📄"
+  },
+  {
+      "name": ":page_with_curl:",
+      "unicode": "📃"
+  },
+  {
+      "name": ":pager:",
+      "unicode": "📟"
+  },
+  {
+      "name": ":paintbrush:",
+      "unicode": "🖌"
+  },
+  {
+      "name": ":palm_tree:",
+      "unicode": "🌴"
+  },
+  {
+      "name": ":pancakes:",
+      "unicode": "🥞"
+  },
+  {
+      "name": ":panda_face:",
+      "unicode": "🐼"
+  },
+  {
+      "name": ":paperclip:",
+      "unicode": "📎"
+  },
+  {
+      "name": ":paperclips:",
+      "unicode": "🖇"
+  },
+  {
+      "name": ":park:",
+      "unicode": "🏞"
+  },
+  {
+      "name": ":parking:",
+      "unicode": "🅿"
+  },
+  {
+      "name": ":part_alternation_mark:",
+      "unicode": "〽"
+  },
+  {
+      "name": ":partly_sunny:",
+      "unicode": "⛅"
+  },
+  {
+      "name": ":passport_control:",
+      "unicode": "🛂"
+  },
+  {
+      "name": ":pause_button:",
+      "unicode": "⏸"
+  },
+  {
+      "name": ":peace:",
+      "unicode": "☮"
+  },
+  {
+      "name": ":peach:",
+      "unicode": "🍑"
+  },
+  {
+      "name": ":peanuts:",
+      "unicode": "🥜"
+  },
+  {
+      "name": ":pear:",
+      "unicode": "🍐"
+  },
+  {
+      "name": ":pen_ballpoint:",
+      "unicode": "🖊"
+  },
+  {
+      "name": ":pen_fountain:",
+      "unicode": "🖋"
+  },
+  {
+      "name": ":pencil:",
+      "unicode": "📝"
+  },
+  {
+      "name": ":pencil2:",
+      "unicode": "✏"
+  },
+  {
+      "name": ":penguin:",
+      "unicode": "🐧"
+  },
+  {
+      "name": ":pensive:",
+      "unicode": "😔"
+  },
+  {
+      "name": ":performing_arts:",
+      "unicode": "🎭"
+  },
+  {
+      "name": ":persevere:",
+      "unicode": "😣"
+  },
+  {
+      "name": ":person_frowning:",
+      "unicode": "🙍"
+  },
+  {
+      "name": ":person_frowning_tone1:",
+      "unicode": "🙍🏻"
+  },
+  {
+      "name": ":person_frowning_tone2:",
+      "unicode": "🙍🏼"
+  },
+  {
+      "name": ":person_frowning_tone3:",
+      "unicode": "🙍🏽"
+  },
+  {
+      "name": ":person_frowning_tone4:",
+      "unicode": "🙍🏾"
+  },
+  {
+      "name": ":person_frowning_tone5:",
+      "unicode": "🙍🏿"
+  },
+  {
+      "name": ":person_with_blond_hair:",
+      "unicode": "👱"
+  },
+  {
+      "name": ":person_with_blond_hair_tone1:",
+      "unicode": "👱🏻"
+  },
+  {
+      "name": ":person_with_blond_hair_tone2:",
+      "unicode": "👱🏼"
+  },
+  {
+      "name": ":person_with_blond_hair_tone3:",
+      "unicode": "👱🏽"
+  },
+  {
+      "name": ":person_with_blond_hair_tone4:",
+      "unicode": "👱🏾"
+  },
+  {
+      "name": ":person_with_blond_hair_tone5:",
+      "unicode": "👱🏿"
+  },
+  {
+      "name": ":person_with_pouting_face:",
+      "unicode": "🙎"
+  },
+  {
+      "name": ":person_with_pouting_face_tone1:",
+      "unicode": "🙎🏻"
+  },
+  {
+      "name": ":person_with_pouting_face_tone2:",
+      "unicode": "🙎🏼"
+  },
+  {
+      "name": ":person_with_pouting_face_tone3:",
+      "unicode": "🙎🏽"
+  },
+  {
+      "name": ":person_with_pouting_face_tone4:",
+      "unicode": "🙎🏾"
+  },
+  {
+      "name": ":person_with_pouting_face_tone5:",
+      "unicode": "🙎🏿"
+  },
+  {
+      "name": ":pick:",
+      "unicode": "⛏"
+  },
+  {
+      "name": ":pig:",
+      "unicode": "🐷"
+  },
+  {
+      "name": ":pig2:",
+      "unicode": "🐖"
+  },
+  {
+      "name": ":pig_nose:",
+      "unicode": "🐽"
+  },
+  {
+      "name": ":pill:",
+      "unicode": "💊"
+  },
+  {
+      "name": ":pineapple:",
+      "unicode": "🍍"
+  },
+  {
+      "name": ":ping_pong:",
+      "unicode": "🏓"
+  },
+  {
+      "name": ":pisces:",
+      "unicode": "♓"
+  },
+  {
+      "name": ":pizza:",
+      "unicode": "🍕"
+  },
+  {
+      "name": ":place_of_worship:",
+      "unicode": "🛐"
+  },
+  {
+      "name": ":play_pause:",
+      "unicode": "⏯"
+  },
+  {
+      "name": ":point_down:",
+      "unicode": "👇"
+  },
+  {
+      "name": ":point_down_tone1:",
+      "unicode": "👇🏻"
+  },
+  {
+      "name": ":point_down_tone2:",
+      "unicode": "👇🏼"
+  },
+  {
+      "name": ":point_down_tone3:",
+      "unicode": "👇🏽"
+  },
+  {
+      "name": ":point_down_tone4:",
+      "unicode": "👇🏾"
+  },
+  {
+      "name": ":point_down_tone5:",
+      "unicode": "👇🏿"
+  },
+  {
+      "name": ":point_left:",
+      "unicode": "👈"
+  },
+  {
+      "name": ":point_left_tone1:",
+      "unicode": "👈🏻"
+  },
+  {
+      "name": ":point_left_tone2:",
+      "unicode": "👈🏼"
+  },
+  {
+      "name": ":point_left_tone3:",
+      "unicode": "👈🏽"
+  },
+  {
+      "name": ":point_left_tone4:",
+      "unicode": "👈🏾"
+  },
+  {
+      "name": ":point_left_tone5:",
+      "unicode": "👈🏿"
+  },
+  {
+      "name": ":point_right:",
+      "unicode": "👉"
+  },
+  {
+      "name": ":point_right_tone1:",
+      "unicode": "👉🏻"
+  },
+  {
+      "name": ":point_right_tone2:",
+      "unicode": "👉🏼"
+  },
+  {
+      "name": ":point_right_tone3:",
+      "unicode": "👉🏽"
+  },
+  {
+      "name": ":point_right_tone4:",
+      "unicode": "👉🏾"
+  },
+  {
+      "name": ":point_right_tone5:",
+      "unicode": "👉🏿"
+  },
+  {
+      "name": ":point_up:",
+      "unicode": "☝"
+  },
+  {
+      "name": ":point_up_2:",
+      "unicode": "👆"
+  },
+  {
+      "name": ":point_up_2_tone1:",
+      "unicode": "👆🏻"
+  },
+  {
+      "name": ":point_up_2_tone2:",
+      "unicode": "👆🏼"
+  },
+  {
+      "name": ":point_up_2_tone3:",
+      "unicode": "👆🏽"
+  },
+  {
+      "name": ":point_up_2_tone4:",
+      "unicode": "👆🏾"
+  },
+  {
+      "name": ":point_up_2_tone5:",
+      "unicode": "👆🏿"
+  },
+  {
+      "name": ":point_up_tone1:",
+      "unicode": "☝🏻"
+  },
+  {
+      "name": ":point_up_tone2:",
+      "unicode": "☝🏼"
+  },
+  {
+      "name": ":point_up_tone3:",
+      "unicode": "☝🏽"
+  },
+  {
+      "name": ":point_up_tone4:",
+      "unicode": "☝🏾"
+  },
+  {
+      "name": ":point_up_tone5:",
+      "unicode": "☝🏿"
+  },
+  {
+      "name": ":police_car:",
+      "unicode": "🚓"
+  },
+  {
+      "name": ":poodle:",
+      "unicode": "🐩"
+  },
+  {
+      "name": ":poop:",
+      "unicode": "💩"
+  },
+  {
+      "name": ":popcorn:",
+      "unicode": "🍿"
+  },
+  {
+      "name": ":post_office:",
+      "unicode": "🏣"
+  },
+  {
+      "name": ":postal_horn:",
+      "unicode": "📯"
+  },
+  {
+      "name": ":postbox:",
+      "unicode": "📮"
+  },
+  {
+      "name": ":potable_water:",
+      "unicode": "🚰"
+  },
+  {
+      "name": ":potato:",
+      "unicode": "🥔"
+  },
+  {
+      "name": ":pouch:",
+      "unicode": "👝"
+  },
+  {
+      "name": ":poultry_leg:",
+      "unicode": "🍗"
+  },
+  {
+      "name": ":pound:",
+      "unicode": "💷"
+  },
+  {
+      "name": ":pouting_cat:",
+      "unicode": "😾"
+  },
+  {
+      "name": ":pray:",
+      "unicode": "🙏"
+  },
+  {
+      "name": ":pray_tone1:",
+      "unicode": "🙏🏻"
+  },
+  {
+      "name": ":pray_tone2:",
+      "unicode": "🙏🏼"
+  },
+  {
+      "name": ":pray_tone3:",
+      "unicode": "🙏🏽"
+  },
+  {
+      "name": ":pray_tone4:",
+      "unicode": "🙏🏾"
+  },
+  {
+      "name": ":pray_tone5:",
+      "unicode": "🙏🏿"
+  },
+  {
+      "name": ":prayer_beads:",
+      "unicode": "📿"
+  },
+  {
+      "name": ":pregnant_woman:",
+      "unicode": "🤰"
+  },
+  {
+      "name": ":pregnant_woman_tone1:",
+      "unicode": "🤰🏻"
+  },
+  {
+      "name": ":pregnant_woman_tone2:",
+      "unicode": "🤰🏼"
+  },
+  {
+      "name": ":pregnant_woman_tone3:",
+      "unicode": "🤰🏽"
+  },
+  {
+      "name": ":pregnant_woman_tone4:",
+      "unicode": "🤰🏾"
+  },
+  {
+      "name": ":pregnant_woman_tone5:",
+      "unicode": "🤰🏿"
+  },
+  {
+      "name": ":prince:",
+      "unicode": "🤴"
+  },
+  {
+      "name": ":prince_tone1:",
+      "unicode": "🤴🏻"
+  },
+  {
+      "name": ":prince_tone2:",
+      "unicode": "🤴🏼"
+  },
+  {
+      "name": ":prince_tone3:",
+      "unicode": "🤴🏽"
+  },
+  {
+      "name": ":prince_tone4:",
+      "unicode": "🤴🏾"
+  },
+  {
+      "name": ":prince_tone5:",
+      "unicode": "🤴🏿"
+  },
+  {
+      "name": ":princess:",
+      "unicode": "👸"
+  },
+  {
+      "name": ":princess_tone1:",
+      "unicode": "👸🏻"
+  },
+  {
+      "name": ":princess_tone2:",
+      "unicode": "👸🏼"
+  },
+  {
+      "name": ":princess_tone3:",
+      "unicode": "👸🏽"
+  },
+  {
+      "name": ":princess_tone4:",
+      "unicode": "👸🏾"
+  },
+  {
+      "name": ":princess_tone5:",
+      "unicode": "👸🏿"
+  },
+  {
+      "name": ":printer:",
+      "unicode": "🖨"
+  },
+  {
+      "name": ":projector:",
+      "unicode": "📽"
+  },
+  {
+      "name": ":punch:",
+      "unicode": "👊"
+  },
+  {
+      "name": ":punch_tone1:",
+      "unicode": "👊🏻"
+  },
+  {
+      "name": ":punch_tone2:",
+      "unicode": "👊🏼"
+  },
+  {
+      "name": ":punch_tone3:",
+      "unicode": "👊🏽"
+  },
+  {
+      "name": ":punch_tone4:",
+      "unicode": "👊🏾"
+  },
+  {
+      "name": ":punch_tone5:",
+      "unicode": "👊🏿"
+  },
+  {
+      "name": ":purple_heart:",
+      "unicode": "💜"
+  },
+  {
+      "name": ":purse:",
+      "unicode": "👛"
+  },
+  {
+      "name": ":pushpin:",
+      "unicode": "📌"
+  },
+  {
+      "name": ":put_litter_in_its_place:",
+      "unicode": "🚮"
+  },
+  {
+      "name": ":question:",
+      "unicode": "❓"
+  },
+  {
+      "name": ":rabbit:",
+      "unicode": "🐰"
+  },
+  {
+      "name": ":rabbit2:",
+      "unicode": "🐇"
+  },
+  {
+      "name": ":race_car:",
+      "unicode": "🏎"
+  },
+  {
+      "name": ":racehorse:",
+      "unicode": "🐎"
+  },
+  {
+      "name": ":radio:",
+      "unicode": "📻"
+  },
+  {
+      "name": ":radio_button:",
+      "unicode": "🔘"
+  },
+  {
+      "name": ":radioactive:",
+      "unicode": "☢"
+  },
+  {
+      "name": ":rage:",
+      "unicode": "😡"
+  },
+  {
+      "name": ":railway_car:",
+      "unicode": "🚃"
+  },
+  {
+      "name": ":railway_track:",
+      "unicode": "🛤"
+  },
+  {
+      "name": ":rainbow:",
+      "unicode": "🌈"
+  },
+  {
+      "name": ":raised_back_of_hand:",
+      "unicode": "🤚"
+  },
+  {
+      "name": ":raised_back_of_hand_tone1:",
+      "unicode": "🤚🏻"
+  },
+  {
+      "name": ":raised_back_of_hand_tone2:",
+      "unicode": "🤚🏼"
+  },
+  {
+      "name": ":raised_back_of_hand_tone3:",
+      "unicode": "🤚🏽"
+  },
+  {
+      "name": ":raised_back_of_hand_tone4:",
+      "unicode": "🤚🏾"
+  },
+  {
+      "name": ":raised_back_of_hand_tone5:",
+      "unicode": "🤚🏿"
+  },
+  {
+      "name": ":raised_hand:",
+      "unicode": "✋"
+  },
+  {
+      "name": ":raised_hand_tone1:",
+      "unicode": "✋🏻"
+  },
+  {
+      "name": ":raised_hand_tone2:",
+      "unicode": "✋🏼"
+  },
+  {
+      "name": ":raised_hand_tone3:",
+      "unicode": "✋🏽"
+  },
+  {
+      "name": ":raised_hand_tone4:",
+      "unicode": "✋🏾"
+  },
+  {
+      "name": ":raised_hand_tone5:",
+      "unicode": "✋🏿"
+  },
+  {
+      "name": ":raised_hands:",
+      "unicode": "🙌"
+  },
+  {
+      "name": ":raised_hands_tone1:",
+      "unicode": "🙌🏻"
+  },
+  {
+      "name": ":raised_hands_tone2:",
+      "unicode": "🙌🏼"
+  },
+  {
+      "name": ":raised_hands_tone3:",
+      "unicode": "🙌🏽"
+  },
+  {
+      "name": ":raised_hands_tone4:",
+      "unicode": "🙌🏾"
+  },
+  {
+      "name": ":raised_hands_tone5:",
+      "unicode": "🙌🏿"
+  },
+  {
+      "name": ":raising_hand:",
+      "unicode": "🙋"
+  },
+  {
+      "name": ":raising_hand_tone1:",
+      "unicode": "🙋🏻"
+  },
+  {
+      "name": ":raising_hand_tone2:",
+      "unicode": "🙋🏼"
+  },
+  {
+      "name": ":raising_hand_tone3:",
+      "unicode": "🙋🏽"
+  },
+  {
+      "name": ":raising_hand_tone4:",
+      "unicode": "🙋🏾"
+  },
+  {
+      "name": ":raising_hand_tone5:",
+      "unicode": "🙋🏿"
+  },
+  {
+      "name": ":ram:",
+      "unicode": "🐏"
+  },
+  {
+      "name": ":ramen:",
+      "unicode": "🍜"
+  },
+  {
+      "name": ":rat:",
+      "unicode": "🐀"
+  },
+  {
+      "name": ":record_button:",
+      "unicode": "⏺"
+  },
+  {
+      "name": ":recycle:",
+      "unicode": "♻"
+  },
+  {
+      "name": ":red_car:",
+      "unicode": "🚗"
+  },
+  {
+      "name": ":red_circle:",
+      "unicode": "🔴"
+  },
+  {
+      "name": ":registered:",
+      "unicode": "®"
+  },
+  {
+      "name": ":relaxed:",
+      "unicode": "☺"
+  },
+  {
+      "name": ":relieved:",
+      "unicode": "😌"
+  },
+  {
+      "name": ":reminder_ribbon:",
+      "unicode": "🎗"
+  },
+  {
+      "name": ":repeat:",
+      "unicode": "🔁"
+  },
+  {
+      "name": ":repeat_one:",
+      "unicode": "🔂"
+  },
+  {
+      "name": ":restroom:",
+      "unicode": "🚻"
+  },
+  {
+      "name": ":revolving_hearts:",
+      "unicode": "💞"
+  },
+  {
+      "name": ":rewind:",
+      "unicode": "⏪"
+  },
+  {
+      "name": ":rhino:",
+      "unicode": "🦏"
+  },
+  {
+      "name": ":ribbon:",
+      "unicode": "🎀"
+  },
+  {
+      "name": ":rice:",
+      "unicode": "🍚"
+  },
+  {
+      "name": ":rice_ball:",
+      "unicode": "🍙"
+  },
+  {
+      "name": ":rice_cracker:",
+      "unicode": "🍘"
+  },
+  {
+      "name": ":rice_scene:",
+      "unicode": "🎑"
+  },
+  {
+      "name": ":right_facing_fist:",
+      "unicode": "🤜"
+  },
+  {
+      "name": ":right_facing_fist_tone1:",
+      "unicode": "🤜🏻"
+  },
+  {
+      "name": ":right_facing_fist_tone2:",
+      "unicode": "🤜🏼"
+  },
+  {
+      "name": ":right_facing_fist_tone3:",
+      "unicode": "🤜🏽"
+  },
+  {
+      "name": ":right_facing_fist_tone4:",
+      "unicode": "🤜🏾"
+  },
+  {
+      "name": ":right_facing_fist_tone5:",
+      "unicode": "🤜🏿"
+  },
+  {
+      "name": ":ring:",
+      "unicode": "💍"
+  },
+  {
+      "name": ":robot:",
+      "unicode": "🤖"
+  },
+  {
+      "name": ":rocket:",
+      "unicode": "🚀"
+  },
+  {
+      "name": ":rofl:",
+      "unicode": "🤣"
+  },
+  {
+      "name": ":roller_coaster:",
+      "unicode": "🎢"
+  },
+  {
+      "name": ":rolling_eyes:",
+      "unicode": "🙄"
+  },
+  {
+      "name": ":rooster:",
+      "unicode": "🐓"
+  },
+  {
+      "name": ":rose:",
+      "unicode": "🌹"
+  },
+  {
+      "name": ":rosette:",
+      "unicode": "🏵"
+  },
+  {
+      "name": ":rotating_light:",
+      "unicode": "🚨"
+  },
+  {
+      "name": ":round_pushpin:",
+      "unicode": "📍"
+  },
+  {
+      "name": ":rowboat:",
+      "unicode": "🚣"
+  },
+  {
+      "name": ":rowboat_tone1:",
+      "unicode": "🚣🏻"
+  },
+  {
+      "name": ":rowboat_tone2:",
+      "unicode": "🚣🏼"
+  },
+  {
+      "name": ":rowboat_tone3:",
+      "unicode": "🚣🏽"
+  },
+  {
+      "name": ":rowboat_tone4:",
+      "unicode": "🚣🏾"
+  },
+  {
+      "name": ":rowboat_tone5:",
+      "unicode": "🚣🏿"
+  },
+  {
+      "name": ":rugby_football:",
+      "unicode": "🏉"
+  },
+  {
+      "name": ":runner:",
+      "unicode": "🏃"
+  },
+  {
+      "name": ":runner_tone1:",
+      "unicode": "🏃🏻"
+  },
+  {
+      "name": ":runner_tone2:",
+      "unicode": "🏃🏼"
+  },
+  {
+      "name": ":runner_tone3:",
+      "unicode": "🏃🏽"
+  },
+  {
+      "name": ":runner_tone4:",
+      "unicode": "🏃🏾"
+  },
+  {
+      "name": ":runner_tone5:",
+      "unicode": "🏃🏿"
+  },
+  {
+      "name": ":running_shirt_with_sash:",
+      "unicode": "🎽"
+  },
+  {
+      "name": ":sa:",
+      "unicode": "🈂"
+  },
+  {
+      "name": ":sagittarius:",
+      "unicode": "♐"
+  },
+  {
+      "name": ":sailboat:",
+      "unicode": "⛵"
+  },
+  {
+      "name": ":sake:",
+      "unicode": "🍶"
+  },
+  {
+      "name": ":salad:",
+      "unicode": "🥗"
+  },
+  {
+      "name": ":sandal:",
+      "unicode": "👡"
+  },
+  {
+      "name": ":santa:",
+      "unicode": "🎅"
+  },
+  {
+      "name": ":santa_tone1:",
+      "unicode": "🎅🏻"
+  },
+  {
+      "name": ":santa_tone2:",
+      "unicode": "🎅🏼"
+  },
+  {
+      "name": ":santa_tone3:",
+      "unicode": "🎅🏽"
+  },
+  {
+      "name": ":santa_tone4:",
+      "unicode": "🎅🏾"
+  },
+  {
+      "name": ":santa_tone5:",
+      "unicode": "🎅🏿"
+  },
+  {
+      "name": ":satellite:",
+      "unicode": "📡"
+  },
+  {
+      "name": ":satellite_orbital:",
+      "unicode": "🛰"
+  },
+  {
+      "name": ":saxophone:",
+      "unicode": "🎷"
+  },
+  {
+      "name": ":scales:",
+      "unicode": "⚖"
+  },
+  {
+      "name": ":school:",
+      "unicode": "🏫"
+  },
+  {
+      "name": ":school_satchel:",
+      "unicode": "🎒"
+  },
+  {
+      "name": ":scissors:",
+      "unicode": "✂"
+  },
+  {
+      "name": ":scooter:",
+      "unicode": "🛴"
+  },
+  {
+      "name": ":scorpion:",
+      "unicode": "🦂"
+  },
+  {
+      "name": ":scorpius:",
+      "unicode": "♏"
+  },
+  {
+      "name": ":scream:",
+      "unicode": "😱"
+  },
+  {
+      "name": ":scream_cat:",
+      "unicode": "🙀"
+  },
+  {
+      "name": ":scroll:",
+      "unicode": "📜"
+  },
+  {
+      "name": ":seat:",
+      "unicode": "💺"
+  },
+  {
+      "name": ":second_place:",
+      "unicode": "🥈"
+  },
+  {
+      "name": ":secret:",
+      "unicode": "㊙"
+  },
+  {
+      "name": ":see_no_evil:",
+      "unicode": "🙈"
+  },
+  {
+      "name": ":seedling:",
+      "unicode": "🌱"
+  },
+  {
+      "name": ":selfie:",
+      "unicode": "🤳"
+  },
+  {
+      "name": ":selfie_tone1:",
+      "unicode": "🤳🏻"
+  },
+  {
+      "name": ":selfie_tone2:",
+      "unicode": "🤳🏼"
+  },
+  {
+      "name": ":selfie_tone3:",
+      "unicode": "🤳🏽"
+  },
+  {
+      "name": ":selfie_tone4:",
+      "unicode": "🤳🏾"
+  },
+  {
+      "name": ":selfie_tone5:",
+      "unicode": "🤳🏿"
+  },
+  {
+      "name": ":seven:",
+      "unicode": "7️⃣"
+  },
+  {
+      "name": ":shallow_pan_of_food:",
+      "unicode": "🥘"
+  },
+  {
+      "name": ":shamrock:",
+      "unicode": "☘"
+  },
+  {
+      "name": ":shark:",
+      "unicode": "🦈"
+  },
+  {
+      "name": ":shaved_ice:",
+      "unicode": "🍧"
+  },
+  {
+      "name": ":sheep:",
+      "unicode": "🐑"
+  },
+  {
+      "name": ":shell:",
+      "unicode": "🐚"
+  },
+  {
+      "name": ":shield:",
+      "unicode": "🛡"
+  },
+  {
+      "name": ":shinto_shrine:",
+      "unicode": "⛩"
+  },
+  {
+      "name": ":ship:",
+      "unicode": "🚢"
+  },
+  {
+      "name": ":shirt:",
+      "unicode": "👕"
+  },
+  {
+      "name": ":shopping_bags:",
+      "unicode": "🛍"
+  },
+  {
+      "name": ":shopping_cart:",
+      "unicode": "🛒"
+  },
+  {
+      "name": ":shower:",
+      "unicode": "🚿"
+  },
+  {
+      "name": ":shrimp:",
+      "unicode": "🦐"
+  },
+  {
+      "name": ":shrug:",
+      "unicode": "🤷"
+  },
+  {
+      "name": ":shrug_tone1:",
+      "unicode": "🤷🏻"
+  },
+  {
+      "name": ":shrug_tone2:",
+      "unicode": "🤷🏼"
+  },
+  {
+      "name": ":shrug_tone3:",
+      "unicode": "🤷🏽"
+  },
+  {
+      "name": ":shrug_tone4:",
+      "unicode": "🤷🏾"
+  },
+  {
+      "name": ":shrug_tone5:",
+      "unicode": "🤷🏿"
+  },
+  {
+      "name": ":signal_strength:",
+      "unicode": "📶"
+  },
+  {
+      "name": ":six:",
+      "unicode": "6️⃣"
+  },
+  {
+      "name": ":six_pointed_star:",
+      "unicode": "🔯"
+  },
+  {
+      "name": ":ski:",
+      "unicode": "🎿"
+  },
+  {
+      "name": ":skier:",
+      "unicode": "⛷"
+  },
+  {
+      "name": ":skull:",
+      "unicode": "💀"
+  },
+  {
+      "name": ":skull_crossbones:",
+      "unicode": "☠"
+  },
+  {
+      "name": ":sleeping:",
+      "unicode": "😴"
+  },
+  {
+      "name": ":sleeping_accommodation:",
+      "unicode": "🛌"
+  },
+  {
+      "name": ":sleepy:",
+      "unicode": "😪"
+  },
+  {
+      "name": ":slight_frown:",
+      "unicode": "🙁"
+  },
+  {
+      "name": ":slight_smile:",
+      "unicode": "🙂"
+  },
+  {
+      "name": ":slot_machine:",
+      "unicode": "🎰"
+  },
+  {
+      "name": ":small_blue_diamond:",
+      "unicode": "🔹"
+  },
+  {
+      "name": ":small_orange_diamond:",
+      "unicode": "🔸"
+  },
+  {
+      "name": ":small_red_triangle:",
+      "unicode": "🔺"
+  },
+  {
+      "name": ":small_red_triangle_down:",
+      "unicode": "🔻"
+  },
+  {
+      "name": ":smile:",
+      "unicode": "😄"
+  },
+  {
+      "name": ":smile_cat:",
+      "unicode": "😸"
+  },
+  {
+      "name": ":smiley:",
+      "unicode": "😃"
+  },
+  {
+      "name": ":smiley_cat:",
+      "unicode": "😺"
+  },
+  {
+      "name": ":smiling_imp:",
+      "unicode": "😈"
+  },
+  {
+      "name": ":smirk:",
+      "unicode": "😏"
+  },
+  {
+      "name": ":smirk_cat:",
+      "unicode": "😼"
+  },
+  {
+      "name": ":smoking:",
+      "unicode": "🚬"
+  },
+  {
+      "name": ":snail:",
+      "unicode": "🐌"
+  },
+  {
+      "name": ":snake:",
+      "unicode": "🐍"
+  },
+  {
+      "name": ":sneezing_face:",
+      "unicode": "🤧"
+  },
+  {
+      "name": ":snowboarder:",
+      "unicode": "🏂"
+  },
+  {
+      "name": ":snowflake:",
+      "unicode": "❄"
+  },
+  {
+      "name": ":snowman:",
+      "unicode": "⛄"
+  },
+  {
+      "name": ":snowman2:",
+      "unicode": "☃"
+  },
+  {
+      "name": ":sob:",
+      "unicode": "😭"
+  },
+  {
+      "name": ":soccer:",
+      "unicode": "⚽"
+  },
+  {
+      "name": ":soon:",
+      "unicode": "🔜"
+  },
+  {
+      "name": ":sos:",
+      "unicode": "🆘"
+  },
+  {
+      "name": ":sound:",
+      "unicode": "🔉"
+  },
+  {
+      "name": ":space_invader:",
+      "unicode": "👾"
+  },
+  {
+      "name": ":spades:",
+      "unicode": "♠"
+  },
+  {
+      "name": ":spaghetti:",
+      "unicode": "🍝"
+  },
+  {
+      "name": ":sparkle:",
+      "unicode": "❇"
+  },
+  {
+      "name": ":sparkler:",
+      "unicode": "🎇"
+  },
+  {
+      "name": ":sparkles:",
+      "unicode": "✨"
+  },
+  {
+      "name": ":sparkling_heart:",
+      "unicode": "💖"
+  },
+  {
+      "name": ":speak_no_evil:",
+      "unicode": "🙊"
+  },
+  {
+      "name": ":speaker:",
+      "unicode": "🔈"
+  },
+  {
+      "name": ":speaking_head:",
+      "unicode": "🗣"
+  },
+  {
+      "name": ":speech_balloon:",
+      "unicode": "💬"
+  },
+  {
+      "name": ":speech_left:",
+      "unicode": "🗨"
+  },
+  {
+      "name": ":speedboat:",
+      "unicode": "🚤"
+  },
+  {
+      "name": ":spider:",
+      "unicode": "🕷"
+  },
+  {
+      "name": ":spider_web:",
+      "unicode": "🕸"
+  },
+  {
+      "name": ":spoon:",
+      "unicode": "🥄"
+  },
+  {
+      "name": ":spy:",
+      "unicode": "🕵"
+  },
+  {
+      "name": ":spy_tone1:",
+      "unicode": "🕵🏻"
+  },
+  {
+      "name": ":spy_tone2:",
+      "unicode": "🕵🏼"
+  },
+  {
+      "name": ":spy_tone3:",
+      "unicode": "🕵🏽"
+  },
+  {
+      "name": ":spy_tone4:",
+      "unicode": "🕵🏾"
+  },
+  {
+      "name": ":spy_tone5:",
+      "unicode": "🕵🏿"
+  },
+  {
+      "name": ":squid:",
+      "unicode": "🦑"
+  },
+  {
+      "name": ":stadium:",
+      "unicode": "🏟"
+  },
+  {
+      "name": ":star:",
+      "unicode": "⭐"
+  },
+  {
+      "name": ":star2:",
+      "unicode": "🌟"
+  },
+  {
+      "name": ":star_and_crescent:",
+      "unicode": "☪"
+  },
+  {
+      "name": ":star_of_david:",
+      "unicode": "✡"
+  },
+  {
+      "name": ":stars:",
+      "unicode": "🌠"
+  },
+  {
+      "name": ":station:",
+      "unicode": "🚉"
+  },
+  {
+      "name": ":statue_of_liberty:",
+      "unicode": "🗽"
+  },
+  {
+      "name": ":steam_locomotive:",
+      "unicode": "🚂"
+  },
+  {
+      "name": ":stew:",
+      "unicode": "🍲"
+  },
+  {
+      "name": ":stop_button:",
+      "unicode": "⏹"
+  },
+  {
+      "name": ":stopwatch:",
+      "unicode": "⏱"
+  },
+  {
+      "name": ":straight_ruler:",
+      "unicode": "📏"
+  },
+  {
+      "name": ":strawberry:",
+      "unicode": "🍓"
+  },
+  {
+      "name": ":stuck_out_tongue:",
+      "unicode": "😛"
+  },
+  {
+      "name": ":stuck_out_tongue_closed_eyes:",
+      "unicode": "😝"
+  },
+  {
+      "name": ":stuck_out_tongue_winking_eye:",
+      "unicode": "😜"
+  },
+  {
+      "name": ":stuffed_flatbread:",
+      "unicode": "🥙"
+  },
+  {
+      "name": ":sun_with_face:",
+      "unicode": "🌞"
+  },
+  {
+      "name": ":sunflower:",
+      "unicode": "🌻"
+  },
+  {
+      "name": ":sunglasses:",
+      "unicode": "😎"
+  },
+  {
+      "name": ":sunny:",
+      "unicode": "☀"
+  },
+  {
+      "name": ":sunrise:",
+      "unicode": "🌅"
+  },
+  {
+      "name": ":sunrise_over_mountains:",
+      "unicode": "🌄"
+  },
+  {
+      "name": ":surfer:",
+      "unicode": "🏄"
+  },
+  {
+      "name": ":surfer_tone1:",
+      "unicode": "🏄🏻"
+  },
+  {
+      "name": ":surfer_tone2:",
+      "unicode": "🏄🏼"
+  },
+  {
+      "name": ":surfer_tone3:",
+      "unicode": "🏄🏽"
+  },
+  {
+      "name": ":surfer_tone4:",
+      "unicode": "🏄🏾"
+  },
+  {
+      "name": ":surfer_tone5:",
+      "unicode": "🏄🏿"
+  },
+  {
+      "name": ":sushi:",
+      "unicode": "🍣"
+  },
+  {
+      "name": ":suspension_railway:",
+      "unicode": "🚟"
+  },
+  {
+      "name": ":sweat:",
+      "unicode": "😓"
+  },
+  {
+      "name": ":sweat_drops:",
+      "unicode": "💦"
+  },
+  {
+      "name": ":sweat_smile:",
+      "unicode": "😅"
+  },
+  {
+      "name": ":sweet_potato:",
+      "unicode": "🍠"
+  },
+  {
+      "name": ":swimmer:",
+      "unicode": "🏊"
+  },
+  {
+      "name": ":swimmer_tone1:",
+      "unicode": "🏊🏻"
+  },
+  {
+      "name": ":swimmer_tone2:",
+      "unicode": "🏊🏼"
+  },
+  {
+      "name": ":swimmer_tone3:",
+      "unicode": "🏊🏽"
+  },
+  {
+      "name": ":swimmer_tone4:",
+      "unicode": "🏊🏾"
+  },
+  {
+      "name": ":swimmer_tone5:",
+      "unicode": "🏊🏿"
+  },
+  {
+      "name": ":symbols:",
+      "unicode": "🔣"
+  },
+  {
+      "name": ":synagogue:",
+      "unicode": "🕍"
+  },
+  {
+      "name": ":syringe:",
+      "unicode": "💉"
+  },
+  {
+      "name": ":taco:",
+      "unicode": "🌮"
+  },
+  {
+      "name": ":tada:",
+      "unicode": "🎉"
+  },
+  {
+      "name": ":tanabata_tree:",
+      "unicode": "🎋"
+  },
+  {
+      "name": ":tangerine:",
+      "unicode": "🍊"
+  },
+  {
+      "name": ":taurus:",
+      "unicode": "♉"
+  },
+  {
+      "name": ":taxi:",
+      "unicode": "🚕"
+  },
+  {
+      "name": ":tea:",
+      "unicode": "🍵"
+  },
+  {
+      "name": ":telephone:",
+      "unicode": "☎"
+  },
+  {
+      "name": ":telephone_receiver:",
+      "unicode": "📞"
+  },
+  {
+      "name": ":telescope:",
+      "unicode": "🔭"
+  },
+  {
+      "name": ":ten:",
+      "unicode": "🔟"
+  },
+  {
+      "name": ":tennis:",
+      "unicode": "🎾"
+  },
+  {
+      "name": ":tent:",
+      "unicode": "⛺"
+  },
+  {
+      "name": ":thermometer:",
+      "unicode": "🌡"
+  },
+  {
+      "name": ":thermometer_face:",
+      "unicode": "🤒"
+  },
+  {
+      "name": ":thinking:",
+      "unicode": "🤔"
+  },
+  {
+      "name": ":third_place:",
+      "unicode": "🥉"
+  },
+  {
+      "name": ":thought_balloon:",
+      "unicode": "💭"
+  },
+  {
+      "name": ":three:",
+      "unicode": "3️⃣"
+  },
+  {
+      "name": ":thumbsdown:",
+      "unicode": "👎"
+  },
+  {
+      "name": ":thumbsdown_tone1:",
+      "unicode": "👎🏻"
+  },
+  {
+      "name": ":thumbsdown_tone2:",
+      "unicode": "👎🏼"
+  },
+  {
+      "name": ":thumbsdown_tone3:",
+      "unicode": "👎🏽"
+  },
+  {
+      "name": ":thumbsdown_tone4:",
+      "unicode": "👎🏾"
+  },
+  {
+      "name": ":thumbsdown_tone5:",
+      "unicode": "👎🏿"
+  },
+  {
+      "name": ":thumbsup:",
+      "unicode": "👍"
+  },
+  {
+      "name": ":thumbsup_tone1:",
+      "unicode": "👍🏻"
+  },
+  {
+      "name": ":thumbsup_tone2:",
+      "unicode": "👍🏼"
+  },
+  {
+      "name": ":thumbsup_tone3:",
+      "unicode": "👍🏽"
+  },
+  {
+      "name": ":thumbsup_tone4:",
+      "unicode": "👍🏾"
+  },
+  {
+      "name": ":thumbsup_tone5:",
+      "unicode": "👍🏿"
+  },
+  {
+      "name": ":thunder_cloud_rain:",
+      "unicode": "⛈"
+  },
+  {
+      "name": ":ticket:",
+      "unicode": "🎫"
+  },
+  {
+      "name": ":tickets:",
+      "unicode": "🎟"
+  },
+  {
+      "name": ":tiger:",
+      "unicode": "🐯"
+  },
+  {
+      "name": ":tiger2:",
+      "unicode": "🐅"
+  },
+  {
+      "name": ":timer:",
+      "unicode": "⏲"
+  },
+  {
+      "name": ":tired_face:",
+      "unicode": "😫"
+  },
+  {
+      "name": ":tm:",
+      "unicode": "™"
+  },
+  {
+      "name": ":toilet:",
+      "unicode": "🚽"
+  },
+  {
+      "name": ":tokyo_tower:",
+      "unicode": "🗼"
+  },
+  {
+      "name": ":tomato:",
+      "unicode": "🍅"
+  },
+  {
+      "name": ":tone1:",
+      "unicode": "🏻"
+  },
+  {
+      "name": ":tone2:",
+      "unicode": "🏼"
+  },
+  {
+      "name": ":tone3:",
+      "unicode": "🏽"
+  },
+  {
+      "name": ":tone4:",
+      "unicode": "🏾"
+  },
+  {
+      "name": ":tone5:",
+      "unicode": "🏿"
+  },
+  {
+      "name": ":tongue:",
+      "unicode": "👅"
+  },
+  {
+      "name": ":tools:",
+      "unicode": "🛠"
+  },
+  {
+      "name": ":top:",
+      "unicode": "🔝"
+  },
+  {
+      "name": ":tophat:",
+      "unicode": "🎩"
+  },
+  {
+      "name": ":track_next:",
+      "unicode": "⏭"
+  },
+  {
+      "name": ":track_previous:",
+      "unicode": "⏮"
+  },
+  {
+      "name": ":trackball:",
+      "unicode": "🖲"
+  },
+  {
+      "name": ":tractor:",
+      "unicode": "🚜"
+  },
+  {
+      "name": ":traffic_light:",
+      "unicode": "🚥"
+  },
+  {
+      "name": ":train:",
+      "unicode": "🚋"
+  },
+  {
+      "name": ":train2:",
+      "unicode": "🚆"
+  },
+  {
+      "name": ":tram:",
+      "unicode": "🚊"
+  },
+  {
+      "name": ":triangular_flag_on_post:",
+      "unicode": "🚩"
+  },
+  {
+      "name": ":triangular_ruler:",
+      "unicode": "📐"
+  },
+  {
+      "name": ":trident:",
+      "unicode": "🔱"
+  },
+  {
+      "name": ":triumph:",
+      "unicode": "😤"
+  },
+  {
+      "name": ":trolleybus:",
+      "unicode": "🚎"
+  },
+  {
+      "name": ":trophy:",
+      "unicode": "🏆"
+  },
+  {
+      "name": ":tropical_drink:",
+      "unicode": "🍹"
+  },
+  {
+      "name": ":tropical_fish:",
+      "unicode": "🐠"
+  },
+  {
+      "name": ":truck:",
+      "unicode": "🚚"
+  },
+  {
+      "name": ":trumpet:",
+      "unicode": "🎺"
+  },
+  {
+      "name": ":tulip:",
+      "unicode": "🌷"
+  },
+  {
+      "name": ":tumbler_glass:",
+      "unicode": "🥃"
+  },
+  {
+      "name": ":turkey:",
+      "unicode": "🦃"
+  },
+  {
+      "name": ":turtle:",
+      "unicode": "🐢"
+  },
+  {
+      "name": ":tv:",
+      "unicode": "📺"
+  },
+  {
+      "name": ":twisted_rightwards_arrows:",
+      "unicode": "🔀"
+  },
+  {
+      "name": ":two:",
+      "unicode": "2️⃣"
+  },
+  {
+      "name": ":two_hearts:",
+      "unicode": "💕"
+  },
+  {
+      "name": ":two_men_holding_hands:",
+      "unicode": "👬"
+  },
+  {
+      "name": ":two_women_holding_hands:",
+      "unicode": "👭"
+  },
+  {
+      "name": ":u5272:",
+      "unicode": "🈹"
+  },
+  {
+      "name": ":u5408:",
+      "unicode": "🈴"
+  },
+  {
+      "name": ":u55b6:",
+      "unicode": "🈺"
+  },
+  {
+      "name": ":u6307:",
+      "unicode": "🈯"
+  },
+  {
+      "name": ":u6708:",
+      "unicode": "🈷"
+  },
+  {
+      "name": ":u6709:",
+      "unicode": "🈶"
+  },
+  {
+      "name": ":u6e80:",
+      "unicode": "🈵"
+  },
+  {
+      "name": ":u7121:",
+      "unicode": "🈚"
+  },
+  {
+      "name": ":u7533:",
+      "unicode": "🈸"
+  },
+  {
+      "name": ":u7981:",
+      "unicode": "🈲"
+  },
+  {
+      "name": ":u7a7a:",
+      "unicode": "🈳"
+  },
+  {
+      "name": ":umbrella:",
+      "unicode": "☔"
+  },
+  {
+      "name": ":umbrella2:",
+      "unicode": "☂"
+  },
+  {
+      "name": ":unamused:",
+      "unicode": "😒"
+  },
+  {
+      "name": ":underage:",
+      "unicode": "🔞"
+  },
+  {
+      "name": ":unicorn:",
+      "unicode": "🦄"
+  },
+  {
+      "name": ":unlock:",
+      "unicode": "🔓"
+  },
+  {
+      "name": ":up:",
+      "unicode": "🆙"
+  },
+  {
+      "name": ":upside_down:",
+      "unicode": "🙃"
+  },
+  {
+      "name": ":urn:",
+      "unicode": "⚱"
+  },
+  {
+      "name": ":v:",
+      "unicode": "✌"
+  },
+  {
+      "name": ":v_tone1:",
+      "unicode": "✌🏻"
+  },
+  {
+      "name": ":v_tone2:",
+      "unicode": "✌🏼"
+  },
+  {
+      "name": ":v_tone3:",
+      "unicode": "✌🏽"
+  },
+  {
+      "name": ":v_tone4:",
+      "unicode": "✌🏾"
+  },
+  {
+      "name": ":v_tone5:",
+      "unicode": "✌🏿"
+  },
+  {
+      "name": ":vertical_traffic_light:",
+      "unicode": "🚦"
+  },
+  {
+      "name": ":vhs:",
+      "unicode": "📼"
+  },
+  {
+      "name": ":vibration_mode:",
+      "unicode": "📳"
+  },
+  {
+      "name": ":video_camera:",
+      "unicode": "📹"
+  },
+  {
+      "name": ":video_game:",
+      "unicode": "🎮"
+  },
+  {
+      "name": ":violin:",
+      "unicode": "🎻"
+  },
+  {
+      "name": ":virgo:",
+      "unicode": "♍"
+  },
+  {
+      "name": ":volcano:",
+      "unicode": "🌋"
+  },
+  {
+      "name": ":volleyball:",
+      "unicode": "🏐"
+  },
+  {
+      "name": ":vs:",
+      "unicode": "🆚"
+  },
+  {
+      "name": ":vulcan:",
+      "unicode": "🖖"
+  },
+  {
+      "name": ":vulcan_tone1:",
+      "unicode": "🖖🏻"
+  },
+  {
+      "name": ":vulcan_tone2:",
+      "unicode": "🖖🏼"
+  },
+  {
+      "name": ":vulcan_tone3:",
+      "unicode": "🖖🏽"
+  },
+  {
+      "name": ":vulcan_tone4:",
+      "unicode": "🖖🏾"
+  },
+  {
+      "name": ":vulcan_tone5:",
+      "unicode": "🖖🏿"
+  },
+  {
+      "name": ":walking:",
+      "unicode": "🚶"
+  },
+  {
+      "name": ":walking_tone1:",
+      "unicode": "🚶🏻"
+  },
+  {
+      "name": ":walking_tone2:",
+      "unicode": "🚶🏼"
+  },
+  {
+      "name": ":walking_tone3:",
+      "unicode": "🚶🏽"
+  },
+  {
+      "name": ":walking_tone4:",
+      "unicode": "🚶🏾"
+  },
+  {
+      "name": ":walking_tone5:",
+      "unicode": "🚶🏿"
+  },
+  {
+      "name": ":waning_crescent_moon:",
+      "unicode": "🌘"
+  },
+  {
+      "name": ":waning_gibbous_moon:",
+      "unicode": "🌖"
+  },
+  {
+      "name": ":warning:",
+      "unicode": "⚠"
+  },
+  {
+      "name": ":wastebasket:",
+      "unicode": "🗑"
+  },
+  {
+      "name": ":watch:",
+      "unicode": "⌚"
+  },
+  {
+      "name": ":water_buffalo:",
+      "unicode": "🐃"
+  },
+  {
+      "name": ":water_polo:",
+      "unicode": "🤽"
+  },
+  {
+      "name": ":water_polo_tone1:",
+      "unicode": "🤽🏻"
+  },
+  {
+      "name": ":water_polo_tone2:",
+      "unicode": "🤽🏼"
+  },
+  {
+      "name": ":water_polo_tone3:",
+      "unicode": "🤽🏽"
+  },
+  {
+      "name": ":water_polo_tone4:",
+      "unicode": "🤽🏾"
+  },
+  {
+      "name": ":water_polo_tone5:",
+      "unicode": "🤽🏿"
+  },
+  {
+      "name": ":watermelon:",
+      "unicode": "🍉"
+  },
+  {
+      "name": ":wave:",
+      "unicode": "👋"
+  },
+  {
+      "name": ":wave_tone1:",
+      "unicode": "👋🏻"
+  },
+  {
+      "name": ":wave_tone2:",
+      "unicode": "👋🏼"
+  },
+  {
+      "name": ":wave_tone3:",
+      "unicode": "👋🏽"
+  },
+  {
+      "name": ":wave_tone4:",
+      "unicode": "👋🏾"
+  },
+  {
+      "name": ":wave_tone5:",
+      "unicode": "👋🏿"
+  },
+  {
+      "name": ":wavy_dash:",
+      "unicode": "〰"
+  },
+  {
+      "name": ":waxing_crescent_moon:",
+      "unicode": "🌒"
+  },
+  {
+      "name": ":waxing_gibbous_moon:",
+      "unicode": "🌔"
+  },
+  {
+      "name": ":wc:",
+      "unicode": "🚾"
+  },
+  {
+      "name": ":weary:",
+      "unicode": "😩"
+  },
+  {
+      "name": ":wedding:",
+      "unicode": "💒"
+  },
+  {
+      "name": ":whale:",
+      "unicode": "🐳"
+  },
+  {
+      "name": ":whale2:",
+      "unicode": "🐋"
+  },
+  {
+      "name": ":wheel_of_dharma:",
+      "unicode": "☸"
+  },
+  {
+      "name": ":wheelchair:",
+      "unicode": "♿"
+  },
+  {
+      "name": ":white_check_mark:",
+      "unicode": "✅"
+  },
+  {
+      "name": ":white_circle:",
+      "unicode": "⚪"
+  },
+  {
+      "name": ":white_flower:",
+      "unicode": "💮"
+  },
+  {
+      "name": ":white_large_square:",
+      "unicode": "⬜"
+  },
+  {
+      "name": ":white_medium_small_square:",
+      "unicode": "◽"
+  },
+  {
+      "name": ":white_medium_square:",
+      "unicode": "◻"
+  },
+  {
+      "name": ":white_small_square:",
+      "unicode": "▫"
+  },
+  {
+      "name": ":white_square_button:",
+      "unicode": "🔳"
+  },
+  {
+      "name": ":white_sun_cloud:",
+      "unicode": "🌥"
+  },
+  {
+      "name": ":white_sun_rain_cloud:",
+      "unicode": "🌦"
+  },
+  {
+      "name": ":white_sun_small_cloud:",
+      "unicode": "🌤"
+  },
+  {
+      "name": ":wilted_rose:",
+      "unicode": "🥀"
+  },
+  {
+      "name": ":wind_blowing_face:",
+      "unicode": "🌬"
+  },
+  {
+      "name": ":wind_chime:",
+      "unicode": "🎐"
+  },
+  {
+      "name": ":wine_glass:",
+      "unicode": "🍷"
+  },
+  {
+      "name": ":wink:",
+      "unicode": "😉"
+  },
+  {
+      "name": ":wolf:",
+      "unicode": "🐺"
+  },
+  {
+      "name": ":woman:",
+      "unicode": "👩"
+  },
+  {
+      "name": ":woman_tone1:",
+      "unicode": "👩🏻"
+  },
+  {
+      "name": ":woman_tone2:",
+      "unicode": "👩🏼"
+  },
+  {
+      "name": ":woman_tone3:",
+      "unicode": "👩🏽"
+  },
+  {
+      "name": ":woman_tone4:",
+      "unicode": "👩🏾"
+  },
+  {
+      "name": ":woman_tone5:",
+      "unicode": "👩🏿"
+  },
+  {
+      "name": ":womans_clothes:",
+      "unicode": "👚"
+  },
+  {
+      "name": ":womans_hat:",
+      "unicode": "👒"
+  },
+  {
+      "name": ":womens:",
+      "unicode": "🚺"
+  },
+  {
+      "name": ":worried:",
+      "unicode": "😟"
+  },
+  {
+      "name": ":wrench:",
+      "unicode": "🔧"
+  },
+  {
+      "name": ":wrestlers:",
+      "unicode": "🤼"
+  },
+  {
+      "name": ":wrestlers_tone1:",
+      "unicode": "🤼🏻"
+  },
+  {
+      "name": ":wrestlers_tone2:",
+      "unicode": "🤼🏼"
+  },
+  {
+      "name": ":wrestlers_tone3:",
+      "unicode": "🤼🏽"
+  },
+  {
+      "name": ":wrestlers_tone4:",
+      "unicode": "🤼🏾"
+  },
+  {
+      "name": ":wrestlers_tone5:",
+      "unicode": "🤼🏿"
+  },
+  {
+      "name": ":writing_hand:",
+      "unicode": "✍"
+  },
+  {
+      "name": ":writing_hand_tone1:",
+      "unicode": "✍🏻"
+  },
+  {
+      "name": ":writing_hand_tone2:",
+      "unicode": "✍🏼"
+  },
+  {
+      "name": ":writing_hand_tone3:",
+      "unicode": "✍🏽"
+  },
+  {
+      "name": ":writing_hand_tone4:",
+      "unicode": "✍🏾"
+  },
+  {
+      "name": ":writing_hand_tone5:",
+      "unicode": "✍🏿"
+  },
+  {
+      "name": ":x:",
+      "unicode": "❌"
+  },
+  {
+      "name": ":yellow_heart:",
+      "unicode": "💛"
+  },
+  {
+      "name": ":yen:",
+      "unicode": "💴"
+  },
+  {
+      "name": ":yin_yang:",
+      "unicode": "☯"
+  },
+  {
+      "name": ":yum:",
+      "unicode": "😋"
+  },
+  {
+      "name": ":zap:",
+      "unicode": "⚡"
+  },
+  {
+      "name": ":zero:",
+      "unicode": "0️⃣"
+  },
+  {
+      "name": ":zipper_mouth:",
+      "unicode": "🤐"
+  },
+  {
+      "name": ":zzz:",
+      "unicode": "💤"
+  }
+]
