@@ -8,12 +8,15 @@ module.exports = class extends Command {
             name: "botinfos",
             enabled: true,
             clientPermissions: [ "EMBED_LINKS" ],
-            permLevel: 0
+            permLevel: 0,
+
+            slashCommandOptions: {
+                description: "Shows information about ManageInvite"
+            }
         });
     }
 
-    async run (message, args, data) {
-
+    async fetchShardsData () {
         const guildsCounts = await this.client.shard.fetchClientValues("guilds.cache.size");
         const guildsCount = guildsCounts.reduce((p, count) => p + count);
         const usersCounts = await this.client.shard.fetchClientValues("users.cache.size");
@@ -27,6 +30,16 @@ module.exports = class extends Command {
                 Math.round(client.ws.ping)
             ];
         });
+        return {
+            guildsCount,
+            usersCount,
+            results
+        };
+    }
+
+    async run (message, args, data) {
+
+        const { guildsCount, usersCount, results } = await this.fetchShardsData();
 
         const embed = new Discord.MessageEmbed()
             .setColor(data.color)
@@ -59,4 +72,39 @@ module.exports = class extends Command {
         message.channel.send({ embeds: [embed] });
     }
 
+    async runInteraction (interaction, data) {
+
+        const { guildsCount, usersCount, results } = await this.fetchShardsData();
+
+        const embed = new Discord.MessageEmbed()
+            .setColor(data.color)
+            .setFooter(data.footer)
+            .setAuthor(interaction.guild.translate("core/botinfos:TITLE", {
+                username: this.client.user.username
+            }))
+            .addField(interaction.guild.translate("core/botinfos:STATS_TITLE"), interaction.guild.translate("core/botinfos:STATS_CONTENT", {
+                guilds: guildsCount,
+                users: usersCount,
+                keys: await this.client.database.redis.getStats()
+            }), true)
+            .addField(interaction.guild.translate("core/botinfos:VERSIONS_TITLE"), interaction.guild.translate("core/botinfos:VERSIONS_CONTENT", {
+                discord: Discord.version,
+                node: process.version
+            }), true)
+            .addField("\u200B", "\u200B");
+        results.forEach((shard) => {
+            const title = interaction.guild.translate(`core/botinfos:SHARD_TITLE${this.client.shard.ids.includes(shard[2]) ? "_CURRENT" : ""}`, {
+                online: Constants.Emojis.ONLINE,
+                shardID: shard[2]+1
+            });
+            embed.addField(title, interaction.guild.translate("core/botinfos:SHARD_CONTENT", {
+                guilds: shard[1],
+                ping: shard[3],
+                ram: shard[0]
+            }), true);
+        });
+
+        interaction.reply({ embeds: [embed] });
+    }
+        
 };
