@@ -80,7 +80,6 @@ class ManageInvite extends Client {
 
     async synchronizeSlashCommands () {
         const commands = this.commands.filter((c) => c.slashCommandOptions).array();
-        console.log(commands[0].slashCommandOptions);
         const guildID = this.config.slashCommandsGuildID;
         const fetchOptions = guildID && { guildId: guildID };
         const exisitingSlashCommands = await this.application.commands.fetch(fetchOptions);
