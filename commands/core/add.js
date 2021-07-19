@@ -8,7 +8,11 @@ module.exports = class extends Command {
             enabled: true,
             aliases: [],
             clientPermissions: [ "EMBED_LINKS" ],
-            permLevel: 0
+            permLevel: 0,
+
+            slashCommandOptions: {
+                description: "Add ManageInvite to your server"
+            }
         });
     }
 
@@ -24,6 +28,21 @@ module.exports = class extends Command {
                 username: message.author.username
             }), message.author.displayAvatarURL());
         message.channel.send({ embeds: [embed] });
+
+    }
+
+    async runInteraction (interaction) {
+
+        const embed = new Discord.MessageEmbed()
+            .setAuthor("ManageInvite", this.client.user.displayAvatarURL())
+            .setDescription(interaction.guild.translate("core/add:CONTENT", {
+                clientID: this.client.user.id
+            }))
+            .setColor(this.client.config.color)
+            .setFooter(interaction.guild.translate("core/add:REQUEST_BY", {
+                username: interaction.user.username
+            }), interaction.user.displayAvatarURL());
+        interaction.reply({ embeds: [embed] });
 
     }
 
