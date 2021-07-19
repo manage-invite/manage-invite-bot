@@ -95,11 +95,11 @@ class ManageInvite extends Client {
             await this.application.commands.create(command.slashCommandOptions, guildID);
             createdCommands.push(command.slashCommandOptions);
         }
-        for (const slashCommand of exisitingSlashCommands) {
+        for (const slashCommand of exisitingSlashCommands.array()) {
             // if the command is not created
-            if (!createdCommands.some((slashCommand) => slashCommand.name === slashCommand.name)) {
+            if (!createdCommands.some((shouldBeCreatedSlashCommand) => shouldBeCreatedSlashCommand.name === slashCommand.name)) {
                 // delete it
-                await this.application.commands.delete(slashCommand.id);
+                await this.application.commands.delete(slashCommand.id, guildID);
             }
         }
     }
