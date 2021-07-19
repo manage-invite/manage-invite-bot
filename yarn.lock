@@ -857,10 +857,9 @@ discord-paginationembed@Androz2091/discord-paginationembed#patch-1:
   dependencies:
     discord.js discordjs/discord.js
 
-discord.js@^13.0.0-dev.755c180.1625616230:
-  version "13.0.0-dev.755c180.1625616230"
-  resolved "https://registry.npmjs.org/discord.js/-/discord.js-13.0.0-dev.755c180.1625616230.tgz#c3982e2454e8c1d5e6e5372b28ef4a22499f82c4"
-  integrity sha512-hFYz6N7cGMhqODS09g+wO7n6QgvbtxAgiSqo5dFwzWf7r4EuKmN+sCQaRD0MbxKCaCNAz4d+nxPRT0rtUcIriA==
+discord.js@discordjs/discord.js:
+  version "13.0.0-dev"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/77784aca431709ff3c17095bd06f9e4016fbd11d"
   dependencies:
     "@discordjs/builders" "^0.2.0"
     "@discordjs/collection" "^0.1.6"
@@ -871,19 +870,6 @@ discord.js@^13.0.0-dev.755c180.1625616230:
     discord-api-types "^0.19.0-next.f393ba520d7d6d2aacaca7b3ca5d355fab614f6e"
     node-fetch "^2.6.1"
     ws "^7.5.1"
-
-discord.js@discordjs/discord.js:
-  version "13.0.0-dev"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/807ea2d3c197c7c6556bd1c894114932f6657d49"
-  dependencies:
-    "@discordjs/collection" "^0.1.6"
-    "@discordjs/form-data" "^3.0.1"
-    "@sapphire/async-queue" "^1.1.2"
-    "@types/ws" "^7.4.4"
-    abort-controller "^3.0.0"
-    discord-api-types "^0.18.1"
-    node-fetch "^2.6.1"
-    ws "^7.4.6"
 
 doctrine@^3.0.0:
   version "3.0.0"
