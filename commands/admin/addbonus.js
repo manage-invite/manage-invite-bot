@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js"),
-    Discord = require("discord.js");
+    Discord = require("discord.js"),
+    Constants = require("../../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -8,7 +9,26 @@ module.exports = class extends Command {
             enabled: true,
             aliases: [ "addinvites", "addinvite" ],
             clientPermissions: [ "EMBED_LINKS" ],
-            permLevel: 2
+            permLevel: 2,
+
+            /*slashCommandOptions: {
+                description: "Add bonus invites to a user",
+                
+                options: [
+                    {
+                        name: "user",
+                        type: 6,
+                        required: true,
+                        description: "The user to add bonus invites to"
+                    },
+                    {
+                        name: "invites",
+                        type: 4,
+                        required: true,
+                        description: "The number of invites to add"
+                    }
+                ]
+            }*/
         });
     }
 
@@ -64,34 +84,63 @@ module.exports = class extends Command {
 
             message.channel.send({ embeds: [embed] });
         } else {
-            const conf = await message.sendT("admin/addbonus:CONFIRMATION_ALL", {
+
+            const confirmRow = new Discord.MessageActionRow()
+                .addComponents(
+                    new Discord.MessageButton()
+                        .setStyle("SUCCESS")
+                        .setLabel(message.translate("common:CONFIRM"))
+                        .setCustomId("confirm"),
+                    new Discord.MessageButton()
+                        .setStyle("SECONDARY")
+                        .setLabel(message.translate("common:CANCEL"))
+                        .setCustomId("cancel")
+                );
+
+            const conf = await message.channel.send({ content: message.translate("admin/addbonus:CONFIRMATION_ALL", {
                 count: bonus
+            }), components: [confirmRow] });
+            const collector = conf.createMessageComponentCollector({
+                filter: () => true,
+                time: 90000
             });
-            await message.channel.awaitMessages({ filter: (m) => m.author.id === message.author.id && (m.content === "cancel" || m.content === "-confirm"), max: 1, time: 90000 }).then(async (collected) => {
-                if (collected.first().content === "cancel") return conf.error("common:CANCELLED", null, true);
-                collected.first().delete().catch(() => {});
 
-                await conf.sendT("misc:PLEASE_WAIT", null, true, false, "loading");
-                await message.guild.members.fetch();
-                await this.client.database.addGuildInvites({
-                    userIDs: message.guild.members.cache.map((m) => m.id),
-                    guildID: message.guild.id,
-                    storageID: message.guild.settings.storageID,
-                    number: parseInt(bonus),
-                    type: "bonus"
-                });
-                const embed = new Discord.MessageEmbed()
-                    .setAuthor(message.translate("admin/addbonus:SUCCESS_TITLE"))
-                    .setDescription(message.translate("admin/addbonus:SUCCESS_CONTENT_ALL", {
-                        prefix: message.guild.settings.prefix
-                    }))
-                    .setColor(data.color)
-                    .setFooter(data.footer);
+            collector.on("collect", async (component) => {
 
-                conf.edit({ embeds: [embed] });
-            }).catch((err) => {
-                console.error(err);
-                return conf.error("common:CANCELLED", null, true);
+                if (component.customId === "confirm") {
+
+                    await conf.edit({ content: Constants.Emojis.LOADING + " " + message.translate("misc:PLEASE_WAIT"), components: [] });
+                    await message.guild.members.fetch();
+                    await this.client.database.addGuildInvites({
+                        usersID: message.guild.members.cache.map((m) => m.id),
+                        guildID: message.guild.id,
+                        storageID: message.guild.settings.storageID,
+                        number: parseInt(bonus),
+                        type: "bonus"
+                    });
+                    const embed = new Discord.MessageEmbed()
+                        .setAuthor(message.translate("admin/addbonus:SUCCESS_TITLE"))
+                        .setDescription(message.translate("admin/addbonus:SUCCESS_CONTENT_ALL", {
+                            prefix: message.guild.settings.prefix
+                        }))
+                        .setColor(data.color)
+                        .setFooter(data.footer);
+
+                    conf.edit({ content: null, embeds: [embed] });
+
+                } else if (component.customId === "cancel") {
+                    conf.edit({ content: Constants.Emojis.SUCCESS + " " + message.translate("common:CANCELLED"), components: [] });
+                    collector.stop();
+                }
+
+                component.deferUpdate();
+
+            });
+
+            collector.on("end", (_, reason) => {
+                if (reason === "time") {
+                    conf.edit({ content: Constants.Emojis.ERROR + " " + message.translate("common:CANCELLED"), components: [] });
+                }
             });
         }
     }
