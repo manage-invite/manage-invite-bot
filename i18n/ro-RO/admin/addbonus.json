@@ -2,7 +2,7 @@
     "MISSING_AMOUNT": "You must specify the number of bonus invites you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
     "INVALID_AMOUNT": "You must specify a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
     "MISSING_TARGET": "Trebuie neaparat sa mentionezi membrul căruia vrei să-i adaugi invitatiile bonus (sau `toti` dacă vrei să adaugi invite-uri tuturor). (Sintaxa: {{prefix}}addbonus numar @membru/all)",
-    "CONFIRMATION_ALL": ":warning: Ești sigur ca vrei să adaugi **{{count}}** de invitatii bonus tuturor? Acest lucru poate dura mult timp (în funcție de dimensiunea serverului dvs.)! Trimite `-confirm` pentru a continua și `cancel` pentru a anula.",
+    "CONFIRMATION_ALL": ":warning: Are you sure you want to add **{{count}}** bonus invites to everyone? This can take a long time (depending on the size of your server)!",
     "SUCCESS_TITLE": "📥 Invitatii Bonus Adăugate",
     "SUCCESS_CONTENT_ALL": "Invitatii bonus adăugate pentru toți!",
     "SUCCESS_CONTENT_MEMBER": "Send `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
