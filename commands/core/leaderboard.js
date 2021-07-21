@@ -1,6 +1,7 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js");
 const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
+const Constants = require("../../helpers/constants");
 
 module.exports  = class extends Command {
     constructor (client) {
@@ -35,11 +36,13 @@ module.exports  = class extends Command {
             const index = embeds.length === 0 ? 0 : embeds.length-1;
             let lastEmbed = embeds[index];
             if (lastEmbed && memberCount > 9){
-                lastEmbed = new Discord.MessageEmbed();
+                lastEmbed = new Discord.MessageEmbed()
+                    .setColor(Constants.Embed.COLOR);
                 embeds[embeds.length] = lastEmbed;
                 memberCount = 0;
             } else if (!lastEmbed){
-                lastEmbed = new Discord.MessageEmbed();
+                lastEmbed = new Discord.MessageEmbed()
+                    .setColor(Constants.Embed.COLOR);
                 embeds[index] = lastEmbed;
             }
             const oldDesc = lastEmbed.description || "";
