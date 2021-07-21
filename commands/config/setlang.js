@@ -16,6 +16,7 @@ module.exports = class extends Command {
                     {
                         name: "language",
                         type: 3,
+                        required: true,
                         description: "The new guild language",
                         choices: client.enabledLanguages.map((language) => ({
                             name: `${language.aliases[0]} ${emojis.find((e) => e.name === language.flag).unicode}`,
