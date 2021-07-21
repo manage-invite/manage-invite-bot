@@ -2,6 +2,7 @@ const Command = require("../../structures/Command.js"),
     moment = require("moment"),
     Discord = require("discord.js");
 const { uniqBy } = require("lodash");
+const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -16,7 +17,7 @@ module.exports = class extends Command {
                 description: "Get user information",
                 options: [
                     {
-                        type: 6,
+                        type: ApplicationCommandOptionTypes.USER,
                         name: "user",
                         description: "The user to get information about"
                     }

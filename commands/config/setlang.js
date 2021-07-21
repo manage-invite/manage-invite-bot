@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js");
 const emojis = require("../../emojis.json");
+const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -15,7 +16,7 @@ module.exports = class extends Command {
                 options: [
                     {
                         name: "language",
-                        type: 3,
+                        type: ApplicationCommandOptionTypes.STRING,
                         required: true,
                         description: "The new guild language",
                         choices: client.enabledLanguages.map((language) => ({

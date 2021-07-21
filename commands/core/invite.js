@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js");
+const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -15,7 +16,7 @@ module.exports = class extends Command {
                 
                 options: [
                     {
-                        type: 6,
+                        type: ApplicationCommandOptionTypes.USER,
                         name: "user",
                         description: "User to get invites of (default is you)"
                     }

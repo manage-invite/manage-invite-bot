@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js");
 const Constants = require("../../helpers/constants");
+const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -16,7 +17,7 @@ module.exports = class extends Command {
                     {
                         name: "prefix",
                         description: "The new bot's prefix",
-                        type: 3,
+                        type: ApplicationCommandOptionTypes.STRING,
                         required: true
                     }
                 ]

@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js");
+const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 module.exports  = class extends Command {
     constructor (client) {
@@ -18,7 +19,7 @@ module.exports  = class extends Command {
                     {
                         name: "with-ids",
                         description: "Whether to show the IDs of the user on the leaderboard",
-                        type: 5
+                        type: ApplicationCommandOptionTypes.BOOLEAN
                     }
                 ]
             }

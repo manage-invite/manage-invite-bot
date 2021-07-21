@@ -1,3 +1,4 @@
+const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 const Command = require("../../structures/Command.js");
 const Constants = require("../../helpers/constants");
 
@@ -16,12 +17,12 @@ module.exports = class extends Command {
                     {
                         name: "set",
                         description: "Enable or change the command channel",
-                        type: 1,
+                        type: ApplicationCommandOptionTypes.SUB_COMMAND,
                         options: [
                             {
                                 name: "channel",
                                 description: "The channel to set the command channel to.",
-                                type: 7,
+                                type: ApplicationCommandOptionTypes.CHANNEL,
                                 required: true
                             }
                         ]
@@ -29,7 +30,7 @@ module.exports = class extends Command {
                     {
                         name: "disable",
                         description: "Disable the command channel.",
-                        type: 1
+                        type: ApplicationCommandOptionTypes.SUB_COMMAND
                     }
                 ]
             }

@@ -83,15 +83,20 @@ class ManageInvite extends Client {
         const guildID = this.config.slashCommandsGuildID;
         const fetchOptions = guildID && { guildId: guildID };
         const exisitingSlashCommands = await this.application.commands.fetch(fetchOptions);
-        const createdCommands = exisitingSlashCommands.filter((slashCommand) => commands.some((c) => {
-            return c.slashCommandOptions.name === slashCommand.name
-                && c.slashCommandOptions.options === slashCommand.options
-                && c.slashCommandOptions.description === slashCommand.description;
-        })).array();
+        console.log(exisitingSlashCommands);
+        const createdCommands = exisitingSlashCommands.filter((slashCommand) => {
+            return commands.some((c) => {
+                return c.slashCommandOptions.name === slashCommand.name
+                    // TODO: implement comparison of options
+                    // && JSON.stringify(c.slashCommandOptions.options) === JSON.stringify(slashCommand.options)
+                    && c.slashCommandOptions.description === slashCommand.description;
+            });
+        }).array();
         for (const command of commands) {
             // if the command is already created
-            if (createdCommands.some((slashCommand) => slashCommand.name === command.name)) continue;
+            if (!createdCommands.some((slashCommand) => slashCommand.name === command.help.name)) continue;
             // otherwise create it
+            console.log(`Creating ${command.help.name} slash command`);
             await this.application.commands.create(command.slashCommandOptions, guildID);
             createdCommands.push(command.slashCommandOptions);
         }
@@ -99,6 +104,7 @@ class ManageInvite extends Client {
             // if the command is not created
             if (!createdCommands.some((shouldBeCreatedSlashCommand) => shouldBeCreatedSlashCommand.name === slashCommand.name)) {
                 // delete it
+                console.log(`Deleting ${slashCommand.name} slash command`);
                 await this.application.commands.delete(slashCommand.id, guildID);
             }
         }

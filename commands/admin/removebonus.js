@@ -1,6 +1,7 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js"),
     Constants = require("../../helpers/constants");
+const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -17,13 +18,13 @@ module.exports = class extends Command {
                 options: [
                     {
                         name: "user",
-                        type: 6,
+                        type: ApplicationCommandOptionTypes.USER,
                         required: true,
                         description: "The user to remove bonus invites from"
                     },
                     {
                         name: "invites",
-                        type: 4,
+                        type: ApplicationCommandOptionTypes.INTEGER,
                         required: true,
                         description: "The number of invites to remove"
                     }

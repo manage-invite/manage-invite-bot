@@ -1,6 +1,7 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js"),
     Constants = require("../../helpers/constants");
+const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -16,33 +17,33 @@ module.exports = class extends Command {
                 options: [
                     {
                         name: "add",
-                        type: 1,
+                        type: ApplicationCommandOptionTypes.SUB_COMMAND,
                         description: "Add a user to the blacklist",
                         options: [
                             {
                                 name: "user",
                                 description: "The user to blacklist",
-                                type: 6,
+                                type: ApplicationCommandOptionTypes.USER,
                                 required: true
                             }
                         ]
                     },
                     {
                         name: "remove",
-                        type: 1,
+                        type: ApplicationCommandOptionTypes.SUB_COMMAND,
                         description: "Remove a user from the blacklist",
                         options: [
                             {
                                 name: "user",
                                 description: "The user to remove from the blacklist",
-                                type: 6,
+                                type: ApplicationCommandOptionTypes.USER,
                                 required: true
                             }
                         ]
                     },
                     {
                         name: "list",
-                        type: 1,
+                        type: ApplicationCommandOptionTypes.SUB_COMMAND,
                         description: "List all the blacklisted users"
                     }
                 ]

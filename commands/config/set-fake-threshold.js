@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js");
 const Constants = require("../../helpers/constants");
+const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -16,12 +17,12 @@ module.exports = class extends Command {
                     {
                         name: "set",
                         description: "Add or change the threshold",
-                        type: 1,
+                        type: ApplicationCommandOptionTypes.SUB_COMMAND,
                         options: [
                             {
                                 name: "days",
                                 description: "The number of days before a member is considered a fake.",
-                                type: 4,
+                                type: ApplicationCommandOptionTypes.INTEGER,
                                 required: true
                             }
                         ]
@@ -29,7 +30,7 @@ module.exports = class extends Command {
                     {
                         name: "disable",
                         description: "Disable the threshold",
-                        type: 1
+                        type: ApplicationCommandOptionTypes.SUB_COMMAND
                     }
                 ]
             }

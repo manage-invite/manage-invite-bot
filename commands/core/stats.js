@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js");
+const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 const { ChartJSNodeCanvas } = require("chartjs-node-canvas");
 const width = 800;
@@ -33,7 +34,6 @@ const generateCanvas = async (joinedXDays, lastXDays) => {
         },
         options
     });
-    console.log(image);
     const attachment = new Discord.MessageAttachment(image, "image.png");
     return attachment;
 };
@@ -53,7 +53,7 @@ module.exports = class extends Command {
                 options: [
                     {
                         name: "days",
-                        type: 4,
+                        type: ApplicationCommandOptionTypes.INTEGER,
                         description: "The number of days to show on the graph",
                         required: true
                     }
