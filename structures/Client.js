@@ -94,7 +94,7 @@ class ManageInvite extends Client {
         }).array();
         for (const command of commands) {
             // if the command is already created
-            if (!createdCommands.some((slashCommand) => slashCommand.name === command.help.name)) continue;
+            if (createdCommands.some((slashCommand) => slashCommand.name === command.help.name)) continue;
             // otherwise create it
             console.log(`Creating ${command.help.name} slash command`);
             await this.application.commands.create(command.slashCommandOptions, guildID);
