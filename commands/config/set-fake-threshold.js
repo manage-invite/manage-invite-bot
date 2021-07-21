@@ -1,4 +1,5 @@
 const Command = require("../../structures/Command.js");
+const Constants = require("../../helpers/constants");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -7,7 +8,31 @@ module.exports = class extends Command {
             enabled: true,
             aliases: [ "setfake-threshold", "setfake", "set-fake" ],
             clientPermissions: [ "EMBED_LINKS" ],
-            permLevel: 2
+            permLevel: 2,
+
+            slashCommandOptions: {
+                description: "Sets the number of days before a member is considered a fake.",
+                options: [
+                    {
+                        name: "set",
+                        description: "Add or change the threshold",
+                        type: 1,
+                        options: [
+                            {
+                                name: "days",
+                                description: "The number of days before a member is considered a fake.",
+                                type: 4,
+                                required: true
+                            }
+                        ]
+                    },
+                    {
+                        name: "disable",
+                        description: "Disable the threshold",
+                        type: 1
+                    }
+                ]
+            }
         });
     }
 
@@ -25,6 +50,22 @@ module.exports = class extends Command {
             message.success("config/set-fake-threshold:UPDATED", {
                 dayCount
             });
+        }
+    }
+
+    async runInteraction (interaction) {
+
+        const action = interaction.options.getSubCommand();
+
+        if (action === "disable") {
+            await this.client.database.updateGuildSetting(interaction.guild.id, "fakeThreshold", null);
+            interaction.reply({ content: Constants.Emojis.SUCCESS + " " + interaction.guild.translate("config/set-fake-threshold:DISABLED") });
+        } else if (action === "set") {
+            const dayCount = interaction.options.getInteger("days");
+            await this.client.database.updateGuildSetting(interaction.guild.id, "fakeThreshold", dayCount);
+            interaction.reply({ content: Constants.Emojis.SUCCESS + " " + interaction.guild.translate("config/set-fake-threshold:UPDATED", {
+                dayCount
+            }) });
         }
     }
 };
