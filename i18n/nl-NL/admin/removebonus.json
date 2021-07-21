@@ -2,7 +2,7 @@
     "MISSING_AMOUNT": "You must specify the number of bonus invites you want to remove. (Syntax: {{prefix}}removebonus number @member/all)",
     "INVALID_AMOUNT": "You must specify a __**valid**__ number of bonus invites that you want to remove. (Syntax: {{prefix}}removebonus number @member/all)",
     "MISSING_TARGET": "Je moet het lid waarvan je bonus uitnodigingen wilt verwijderen vermelden. (of `all` als je de bonus uitnodigingen van iedereen wilt verwijderen). (Syntaxis: {{prefix}}removebonus nummer @lid/all)",
-    "CONFIRMATION_ALL": ":warning: Are you sure you want to remove **{{count}}** bonus invites to everyone? This operation can take a long time (depending on the size of your server)! Send `-confirm` to continue and `cancel` to cancel.",
+    "CONFIRMATION_ALL": ":warning: Are you sure you want to remove **{{count}}** bonus invites to everyone? This operation can take a long time (depending on the size of your server)!",
     "SUCCESS_TITLE": "📥 Bonus Uitnodigingen Verwijderd",
     "SUCCESS_CONTENT_ALL": "Bonus uitnodigingen verwijderd van iedereen!",
     "SUCCESS_CONTENT_MEMBER": "Send `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
