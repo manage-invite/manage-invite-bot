@@ -126,7 +126,7 @@ module.exports = class extends Command {
                         .setColor(data.color)
                         .setFooter(data.footer);
 
-                    conf.edit({ content: null, embeds: [embed] });
+                    conf.edit({ content: null, embeds: [embed], components: [] });
 
                 } else if (component.customId === "cancel") {
                     conf.edit({ content: Constants.Emojis.SUCCESS + " " + message.translate("common:CANCELLED"), components: [] });

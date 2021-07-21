@@ -56,7 +56,7 @@ module.exports = class extends Command {
                     .setColor(data.color)
                     .setFooter(data.footer);
         
-                conf.edit({ embeds: [embed] });
+                conf.edit({ content: null, embeds: [embed], components: [] });
 
             } else if (component.customId === "cancel") {
                 conf.edit({ content: Constants.Emojis.SUCCESS + " " + message.translate("common:CANCELLED"), components: [] });
@@ -118,7 +118,7 @@ module.exports = class extends Command {
                     .setColor(data.color)
                     .setFooter(data.footer);
         
-                interaction.editReply({ content: null, embeds: [embed] });
+                interaction.editReply({ content: null, embeds: [embed], components: [] });
 
             } else if (action === "cancel") {
                 interaction.editReply({ content: Constants.Emojis.SUCCESS + " " + interaction.guild.translate("common:CANCELLED"), components: [] });
