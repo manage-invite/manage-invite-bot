@@ -38,7 +38,7 @@ module.exports = class {
             .addField("Server id :", guild.id)
             .addField("Number of members :", guild.memberCount)
             .setFooter(isValidGuild ? "Add me with +add" : "Guild was just reloaded")
-            .setColor(isValidGuild ? this.client.config.color : "#000000");
+            .setColor(isValidGuild ? Constants.Embed.COLOR : "#000000");
 
         this.client.shard.broadcastEval((client, guildCreateEmbed) => {
             const aLogs = this.channels.cache.get(client.config.addLogs);

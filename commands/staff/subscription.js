@@ -13,7 +13,7 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args) {
+    async run (message, args, data) {
 
         let guildID = args[0];
         if (!guildID) return message.error("Please specify a valid guild ID!");
@@ -43,7 +43,7 @@ module.exports = class extends Command {
         const embed = new Discord.MessageEmbed()
             .setAuthor(`Subscription for ${guildData.name} (${guildID})`, guildData.icon)
             .setDescription(description)
-            .setColor(this.client.config.color);
+            .setColor(data.color);
 
         for (const sub of guildSubscriptions){
             const active = new Date(sub.expiresAt).getTime() > Date.now();

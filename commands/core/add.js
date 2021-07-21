@@ -16,14 +16,14 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message) {
+    async run (message, data) {
 
         const embed = new Discord.MessageEmbed()
             .setAuthor("ManageInvite", this.client.user.displayAvatarURL())
             .setDescription(message.translate("core/add:CONTENT", {
                 clientID: this.client.user.id
             }))
-            .setColor(this.client.config.color)
+            .setColor(data.color)
             .setFooter(message.translate("core/add:REQUEST_BY", {
                 username: message.author.username
             }), message.author.displayAvatarURL());
@@ -31,14 +31,14 @@ module.exports = class extends Command {
 
     }
 
-    async runInteraction (interaction) {
+    async runInteraction (interaction, data) {
 
         const embed = new Discord.MessageEmbed()
             .setAuthor("ManageInvite", this.client.user.displayAvatarURL())
             .setDescription(interaction.guild.translate("core/add:CONTENT", {
                 clientID: this.client.user.id
             }))
-            .setColor(this.client.config.color)
+            .setColor(data.color)
             .setFooter(interaction.guild.translate("core/add:REQUEST_BY", {
                 username: interaction.user.username
             }), interaction.user.displayAvatarURL());

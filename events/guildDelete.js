@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const Constants = require("../helpers/constants");
 
 module.exports = class {
     constructor (client) {
@@ -21,7 +22,7 @@ module.exports = class {
             .addField("Owner name :", user.username)
             .addField("Server id :", guild.id)
             .addField("Number of members :", guild.memberCount)
-            .setColor(this.client.config.color);
+            .setColor(Constants.Embed.COLOR);
 
         this.client.shard.broadcastEval((client, removeLogsEmbed) => {
             const rLogs = this.channels.cache.get(client.config.removeLogs);
