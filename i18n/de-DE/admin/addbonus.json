@@ -2,7 +2,7 @@
     "MISSING_AMOUNT": "Du musst eine gültige Anzahl an Bonuseinladungen festlegen, die du hinzugefügt haben möchtest. (Anwendung: {{prefix}}addbonus Nummer @User/all)",
     "INVALID_AMOUNT": "You must specify a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
     "MISSING_TARGET": "Du musst das Mitglied erwähnen, welches die Bonus-Einladungen erhalten soll. (oder `all` wenn jeder es erhalten soll). (Nutze: {{prefix}}addbonus nummer @User/all)",
-    "CONFIRMATION_ALL": ":warning: Bist du dir sicher, das du **{{count}}** Bonus-Einladungen jedem schenken möchtest? Dies kann sehr lange dauern (Abhängig von der Größe deines Servers)! Nutze `-confirm` um fortzufahren oder `cancel` zum abbrechen.",
+    "CONFIRMATION_ALL": ":warning: Are you sure you want to add **{{count}}** bonus invites to everyone? This can take a long time (depending on the size of your server)!",
     "SUCCESS_TITLE": "📥 Bonus Einladungen hinzugefügt",
     "SUCCESS_CONTENT_ALL": "Es wurden Bonus Einladungen für jeden hinzugefügt!",
     "SUCCESS_CONTENT_MEMBER": "Send `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"

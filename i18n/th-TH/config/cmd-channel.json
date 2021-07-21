@@ -1,5 +1,6 @@
 {
     "MISSING_CHANNEL": "โปรดระบุช่องที่ถูกต้องซึ่งจะอนุญาตให้ใช้คำสั่งได้!",
     "SUCCESS_DISABLED": "ตอนนี้คำสั่งจะได้รับอนุญาตในทุกช่อง!",
-    "SUCCESS_ENABLED": "คำสั่งจะได้รับอนุญาตใน {{channel}} เท่านั้น! (ใช้ `{{prefix}}cmd-channel` เพื่ออนุญาตให้ใช้ได้ในทุกช่อง)"
+    "SUCCESS_ENABLED": "คำสั่งจะได้รับอนุญาตใน {{channel}} เท่านั้น! (ใช้ `{{prefix}}cmd-channel` เพื่ออนุญาตให้ใช้ได้ในทุกช่อง)",
+    "DISABLE_NO_CHANNEL": "Can not disable command channel because it has not been defined yet."
 }

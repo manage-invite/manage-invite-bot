@@ -2,7 +2,7 @@
     "MISSING_AMOUNT": "You must specify the number of bonus invites you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
     "INVALID_AMOUNT": "You must specify a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
     "MISSING_TARGET": "Bonus davetleri eklemek istediğin üyeyi etiketlemelisin (herkese eklemek için `all` argümantını kullanın.) (Örnek: {{prefix}}addbonus number @member/all)",
-    "CONFIRMATION_ALL": ":warning: **{{count}}** adet bonusu herkese eklemek istediğinden emin misin? Bu işlem uzun sürebilir. (Sunucudaki üye yoğunluğuna göre)! Onaylamak için `confirm` yazın,iptal etmek için `cancel` yazın.",
+    "CONFIRMATION_ALL": ":warning: Are you sure you want to add **{{count}}** bonus invites to everyone? This can take a long time (depending on the size of your server)!",
     "SUCCESS_TITLE": "📥 Bonus Davetler Eklendi",
     "SUCCESS_CONTENT_ALL": "Bonus davetler başarıyla herkese eklendi!",
     "SUCCESS_CONTENT_MEMBER": "Send `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"

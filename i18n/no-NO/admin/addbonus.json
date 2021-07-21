@@ -2,7 +2,7 @@
     "MISSING_AMOUNT": "You must specify the number of bonus invites you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
     "INVALID_AMOUNT": "You must specify a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
     "MISSING_TARGET": "Du må nevne medlemmen til den du vil legge til bonus invitasjonene (eller `alle` hvis du vil legge til invitasjonene til alle). (Syntaks: {{prefix}}leggtilbonus nummer @medlem/alle)",
-    "CONFIRMATION_ALL": ":warning: Er du sikker på at du vil legge til **{{count}}** bonus invitasjoner til alle? Dette kan ta lang tid (avhengig på hvor stor din server er)! Send `-bekrefte` for å fortsette og `avbryte` for å avbryte.",
+    "CONFIRMATION_ALL": ":warning: Are you sure you want to add **{{count}}** bonus invites to everyone? This can take a long time (depending on the size of your server)!",
     "SUCCESS_TITLE": "📥 Bonus Invitasjoner Lagt til",
     "SUCCESS_CONTENT_ALL": "Bonusinvitasjoner lagt til for alle!",
     "SUCCESS_CONTENT_MEMBER": "Send `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"

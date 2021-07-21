@@ -1,5 +1,6 @@
 {
     "MISSING_CHANNEL": "Por favor especifique um canal válido onde os comandos serão permitidos!",
     "SUCCESS_DISABLED": "Os comandos agora serão permitidos em todos os canais!",
-    "SUCCESS_ENABLED": "Comandos só serão permitidos no {{channel}}! (Use `{{prefix}}cmg-channel` para permitir ele em todos os canais)"
+    "SUCCESS_ENABLED": "Comandos só serão permitidos no {{channel}}! (Use `{{prefix}}cmg-channel` para permitir ele em todos os canais)",
+    "DISABLE_NO_CHANNEL": "Can not disable command channel because it has not been defined yet."
 }

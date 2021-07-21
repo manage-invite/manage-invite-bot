@@ -1,5 +1,5 @@
 {
-    "CONFIRMATION": "คุณแน่ใจหรือไม่ว่าต้องการกู้คืนคำเชิญของเซิร์ฟเวอร์ สมาชิกทุกคนจะกู้คืนคำเชิญที่มีก่อนครั้งสุดท้ายที่คำสั่ง `{{prefix}}remove-invites`\n\n:information_source: ** ภาพรวมคำเชิญ **:\nการดำเนินการนี้จะคืนค่าโดยรวม: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake\n\n{{success}} พิมพ์ `-confirm` เพื่อยืนยัน\n{{error}} พิมพ์ \"ยกเลิก\" เพื่อยกเลิก",
+    "CONFIRMATION": "Are you sure you want to restore the server invites? All members will recover the invites they had before the last time the command `{{prefix}}remove-invites` was executed.\n\n:information_source: **Invites overview**:\nThis operation will restore, in total: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.",
     "LOADING": "{{loading}} | กำลังกู้คืนคำเชิญเซิร์ฟเวอร์ ...",
     "TITLE": "☄️ กู้คืนคำเชิญแล้ว",
     "DESCRIPTION": "{{success}} | คืนค่าคำเชิญเซิร์ฟเวอร์แล้ว!",

@@ -1,5 +1,6 @@
 {
     "MISSING_CHANNEL": "Bitte gebe einen gültigen Kanal an, wo die Befehle erlaubt sein sollen!",
     "SUCCESS_DISABLED": "Befehle werden jetzt in allen Kanälen erlaubt!",
-    "SUCCESS_ENABLED": "Befehle werden nur in {{channel}} erlaubt! (Nutze `{{prefix}}cmd-channel` um diese in allen Kanälen zu erlauben)"
+    "SUCCESS_ENABLED": "Befehle werden nur in {{channel}} erlaubt! (Nutze `{{prefix}}cmd-channel` um diese in allen Kanälen zu erlauben)",
+    "DISABLE_NO_CHANNEL": "Can not disable command channel because it has not been defined yet."
 }
