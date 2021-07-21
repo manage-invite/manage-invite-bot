@@ -1,5 +1,5 @@
 {
-    "CONFIRMATION": "Are you sure you want to remove all the server invites?\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to abort.",
+    "CONFIRMATION": "Are you sure you want to remove all the server invites?",
     "LOADING": "{{loading}} | Deleting invites of the current server.... You will be able to restore them with the command `{{prefix}}restore-invites`!",
     "TITLE": "☄️ Redefinir Convites!",
     "DESCRIPTION": "{{success}} convites de servidor foram redefinidos! Você poderá restaurá-los com o comando `{{prefix}}restaurá-los novamente`!"
