@@ -1,5 +1,6 @@
 {
     "MISSING_CHANNEL": "Vă rugăm să specificați un canal valid unde comenzile vor fi permise!",
     "SUCCESS_DISABLED": "Comenzile vor fi acum permise în toate canalele!",
-    "SUCCESS_ENABLED": "Comenzile vor fi permise numai în {{channel}}! (Foloseste `{{prefix}}cmd-channel` pentru a le permite în toate canalele)"
+    "SUCCESS_ENABLED": "Comenzile vor fi permise numai în {{channel}}! (Foloseste `{{prefix}}cmd-channel` pentru a le permite în toate canalele)",
+    "DISABLE_NO_CHANNEL": "Can not disable command channel because it has not been defined yet."
 }
