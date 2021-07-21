@@ -853,10 +853,10 @@ discord-api-types@^0.19.0:
   resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.19.0.tgz#86ba8021b29190cf860e90a2bc3e29b1d7aab3ba"
   integrity sha512-t2HKLd43Lbe+rf+ffYfKVv9Kk5f6p7sFqvO6CMV55ZB0PgZv8WigCkt9FoJciYo5S3Q6CGYK+WnE/ZG+6vkBDQ==
 
-discord.js@discordjs/discord.js:
-  version "13.0.0-dev"
-  uid "07017a9699eecc4af7824ace39dd91e8b689f3c6"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/07017a9699eecc4af7824ace39dd91e8b689f3c6"
+discord.js@^13.0.0-dev.07017a9.1626869177:
+  version "13.0.0-dev.07017a9.1626869177"
+  resolved "https://registry.npmjs.org/discord.js/-/discord.js-13.0.0-dev.07017a9.1626869177.tgz#0359edcebd2e21d341d2a4a80af45c4a941b86cc"
+  integrity sha512-awnE/59Sy6tnoAZUP7/f8tudcDT68WXxK0pgZZpA7WTGfyR5+IokWsFmkbS49dDll7OZQbi+L8iRt8ahYo3PGQ==
   dependencies:
     "@discordjs/builders" "^0.2.0"
     "@discordjs/collection" "^0.1.6"
