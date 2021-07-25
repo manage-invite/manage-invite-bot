@@ -16,7 +16,7 @@ module.exports = class {
 
         let reason = "Unknown emoji";
 
-        if (reaction.message.channel.type === "dm"){
+        if (reaction.message.channel.type === "DM"){
 
             if (user.id === this.client.user.id) return;
             if (reaction.message.author.id !== this.client.user.id) return;
