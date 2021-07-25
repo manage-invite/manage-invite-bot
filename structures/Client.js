@@ -86,8 +86,7 @@ class ManageInvite extends Client {
         const createdCommands = exisitingSlashCommands.filter((slashCommand) => {
             return commands.some((c) => {
                 return c.slashCommandOptions.name === slashCommand.name
-                    // TODO: implement comparison of options
-                    // && JSON.stringify(c.slashCommandOptions.options) === JSON.stringify(slashCommand.options)
+                    && this.functions.isEqual(c.slashCommandOptions.options, slashCommand.options)
                     && c.slashCommandOptions.description === slashCommand.description;
             });
         }).array();
