@@ -49,7 +49,7 @@ module.exports = class extends Command {
         const channel = confChannel.mentions.channels.first()
         || message.guild.channels.cache.get(confChannel.content)
         || message.guild.channels.cache.find((ch) => ch.name === confChannel.content || `#${ch.name}` === confChannel.content);
-        if (!channel || channel.type === "voice") return msg.error("config/configleave:CHANNEL_NOT_FOUND", {
+        if (!channel || channel.type === "GUILD_VOICE") return msg.error("config/configleave:CHANNEL_NOT_FOUND", {
             channel: confChannel.content
         }, true);
         collected.first().delete().catch(() => {});
