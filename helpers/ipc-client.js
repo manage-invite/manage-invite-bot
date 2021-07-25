@@ -56,7 +56,7 @@ module.exports.load = (discordClient) => {
             if (!discordClient.shard.ids.includes(shardID)) return message.reply([]);
             const guild = discordClient.guilds.cache.get(message.data.guildID);
             if (!guild) return message.reply([]);
-            return message.reply(guild.channels.cache.filter((c) => c.type === "text").map((c) => ({ id: c.id, name: c.name })));
+            return message.reply(guild.channels.cache.filter((c) => c.type !== "GUILD_VOICE").map((c) => ({ id: c.id, name: c.name })));
         }
         if (message.data.event === "getShardStatus") {
             const status = Object.keys(Constants.Status)[discordClient.ws?.status];
