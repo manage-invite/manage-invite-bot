@@ -1,5 +1,4 @@
 const { Permissions } = require("discord.js");
-const { isEqual, generateInvitesCache } = require("../helpers/functions.js");
 
 module.exports = class {
     constructor (client) {
@@ -62,7 +61,7 @@ module.exports = class {
             const fetchGuildInvitesStart = Date.now();
             // Fetch the current invites of the guild
             await member.guild.invites.fetch().catch(() => {});
-            const guildInvites = generateInvitesCache(member.guild.invites.cache);
+            const guildInvites = this.client.functions.generateInvitesCache(member.guild.invites.cache);
             logMessage += `Fetch guild invites: ${Date.now()-fetchGuildInvitesStart}ms\n`;
             // Fetch the invites of the guild BEFORE that the member has joined
             const oldGuildInvites = this.client.invitations[member.guild.id];
@@ -71,7 +70,7 @@ module.exports = class {
                 this.client.invitations[member.guild.id] = guildInvites;
                 // Find the invitations which doesn't have the same number of use
                 let inviteUsed = guildInvites.find((i) => oldGuildInvites.get(i.code) && ((Object.prototype.hasOwnProperty.call(oldGuildInvites.get(i.code), "uses") ? oldGuildInvites.get(i.code).uses : "Infinite") < i.uses));
-                if ((isEqual(oldGuildInvites.map((i) => `${i.code}|${i.uses}` ).sort(), guildInvites.map((i) => `${i.code}|${i.uses}` ).sort())) && !inviteUsed && member.guild.features.includes("VANITY_URL")){
+                if ((this.client.function.isEqual(oldGuildInvites.map((i) => `${i.code}|${i.uses}` ).sort(), guildInvites.map((i) => `${i.code}|${i.uses}` ).sort())) && !inviteUsed && member.guild.features.includes("VANITY_URL")){
                     vanity = true;
                 } else if (!inviteUsed){
                     const newAndUsed = guildInvites.filter((i) => !oldGuildInvites.get(i.code) && i.uses === 1);
