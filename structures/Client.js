@@ -83,7 +83,6 @@ class ManageInvite extends Client {
         const guildID = this.config.slashCommandsGuildID;
         const fetchOptions = guildID && { guildId: guildID };
         const exisitingSlashCommands = await this.application.commands.fetch(fetchOptions);
-        console.log(exisitingSlashCommands);
         const createdCommands = exisitingSlashCommands.filter((slashCommand) => {
             return commands.some((c) => {
                 return c.slashCommandOptions.name === slashCommand.name
