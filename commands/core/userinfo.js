@@ -44,7 +44,7 @@ module.exports = class extends Command {
             this.client.database.fetchGuildBlacklistedUsers(message.guild.id)
         ]);
 
-        const joins = memberEvents.filter((e) => e.eventType === "join" && e.userID === message.author.id);
+        const joins = memberEvents.filter((e) => e.eventType === "join" && e.userID === user.id);
 
         moment.locale(message.guild.settings.language.substr(0, 2));
         const creationDate = moment(user.createdAt, "YYYYMMDD").fromNow();
@@ -160,7 +160,7 @@ module.exports = class extends Command {
             this.client.database.fetchGuildBlacklistedUsers(interaction.guild.id)
         ]);
 
-        const joins = memberEvents.filter((e) => e.eventType === "join" && e.userID === interaction.user.id);
+        const joins = memberEvents.filter((e) => e.eventType === "join" && e.userID === user.id);
 
         moment.locale(interaction.guild.settings.language.substr(0, 2));
         const creationDate = moment(user.createdAt, "YYYYMMDD").fromNow();
