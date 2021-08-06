@@ -9,17 +9,22 @@ const variables = require("./variables");
 const stringOrNull = (string) => string ? `'${string}'` : "null";
 const pgEscape = (string) => string ? string.replace(/'/g, "''") : null;
 
+const inviteToJson = (invite) => {
+    return {
+        code: invite.code,
+        uses: invite.uses,
+        maxUses: invite.maxUses,
+        inviter: invite.inviter,
+        channel: invite.channel,
+        url: invite.url
+    };
+};
+
+
 const generateInvitesCache = (invitesCache) => {
     const cacheCollection = new Discord.Collection();
     invitesCache.forEach((invite) => {
-        cacheCollection.set(invite.code, {
-            code: invite.code,
-            uses: invite.uses,
-            maxUses: invite.maxUses,
-            inviter: invite.inviter,
-            channel: invite.channel,
-            url: invite.url
-        });
+        cacheCollection.set(invite.code, inviteToJson(invite));
     });
     return cacheCollection;
 };
@@ -234,6 +239,7 @@ const sendStatusWebhook = (content) => {
 };
 
 module.exports = {
+    inviteToJson,
     generateInvitesCache,
     stringOrNull,
     pgEscape,

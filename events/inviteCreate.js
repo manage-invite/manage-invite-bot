@@ -1,3 +1,5 @@
+const { inviteToJson } = require("../helpers/functions");
+
 module.exports = class {
 
     constructor (client) {
@@ -9,7 +11,7 @@ module.exports = class {
         if (!this.client.fetched) return;
         if (!this.client.invitations[invite.guild.id]) return;
         // Add the invite to the cache
-        this.client.invitations[invite.guild.id].set(invite.code, invite);
+        this.client.invitations[invite.guild.id].set(invite.code, inviteToJson(invite));
     }
 
 };
