@@ -22,7 +22,7 @@ const generateInvitesCache = (invitesCache) => {
         });
     });
     return cacheCollection;
-}
+};
 
 /**
  * @param {array} array The array to loop
