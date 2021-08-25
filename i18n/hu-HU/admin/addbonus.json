@@ -5,5 +5,5 @@
     "CONFIRMATION_ALL": ":warning: Are you sure you want to add **{{count}}** bonus invites to everyone? This can take a long time (depending on the size of your server)!",
     "SUCCESS_TITLE": "📥 Bonusz Meghívás Hozzáadva",
     "SUCCESS_CONTENT_ALL": "A Bónusz meghívókat mindenki megkapta!",
-    "SUCCESS_CONTENT_MEMBER": "Send `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
+    "SUCCESS_CONTENT_MEMBER": "Küld be: `{{prefix}}invites {{usertag}}`, hogy lássd a **{{username}}** új meghívóinak számát!"
 }
