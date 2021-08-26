@@ -1,4 +1,4 @@
 {
-    "INVALID": "You must specify a valid language!\n\n{{list}}\n\nYour language is not supported? Join the support server and translate the bot in your language!",
+    "INVALID": "Érvényes nyelvet kell megadnod!\n\n{{list}}\n\nAz te nyelved nem támogatott? Csatlakozzon a support szerverhez, és fordítsd le a botot a te nyelvedre!",
     "SUCCESS": "A nyelv frissült!"
 }
