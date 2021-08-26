@@ -1,6 +1,6 @@
 {
     "DISABLE": "Írd be `{{prefix}}setdmjoin` parancsot, hogy letiltsd az üdvözlő privát üzenetet.",
-    "INSTRUCTIONS_1": "__**More informations**__\n```{{variables}}```\nSend `cancel` to cancel. {{string}}\n\n:sparkles: Embed messages are now available! You can generate an embed here: <https://embed-generator.manage-invite.xyz/> and send the json code below!\n\n\n:pencil: **| Now send the join message in DM... :pencil2:**",
+    "INSTRUCTIONS_1": "__**További Információk**__\n```{{variables}}```\nÍrd be a  `cancel` szót a megszüntetéshez. {{string}}\n\n:sparkles: A beágyazott üzenetek már elérhetőek! Itt készíthetsz beágyazást: <https://embed-generator.manage-invite.xyz/>, és elküldheted az alábbi json kódot!\n\n\n:pencil: **| Most küldd el a csatlakozási privát üzenetet... :pencil2:**",
     "SUCCESS": "✅ **| Sikeresen beállítva...**",
     "TITLE": "**Sikeresen beállítottad a csatlakozás privát üzenetét.**",
     "TEST": "Használd `{{prefix}}testjoindm` csatlakozási privát üzenet tesztelése."
