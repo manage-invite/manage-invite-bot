@@ -2,5 +2,5 @@
     "MISSING_CHANNEL": "Adj meg egy érvényes csatornát, ahol a parancsok megengedettek!",
     "SUCCESS_DISABLED": "A parancsok mostantól minden csatornán engedélyezettek!",
     "SUCCESS_ENABLED": "A parancsok csak itt lesznek engedélyezettek: {{channel}}! (Használd `{{prefix}}cmd-channel` hogy lehetővé tedd őket minden csatornában)",
-    "DISABLE_NO_CHANNEL": "Can not disable command channel because it has not been defined yet."
+    "DISABLE_NO_CHANNEL": "Nem lehet letiltani a parancscsatornát, mert még nincs definiálva."
 }
