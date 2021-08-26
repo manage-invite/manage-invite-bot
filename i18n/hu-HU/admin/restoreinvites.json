@@ -3,5 +3,5 @@
     "LOADING": "{{loading}} | Szerver meghívók visszaállítása...",
     "TITLE": "☄️ Meghívások helyreállítva",
     "DESCRIPTION": "{{success}} | A szerver meghívók visszaállítva!",
-    "NO_BACKUP": "There is no backup to restore!"
+    "NO_BACKUP": "Nincs biztonsági mentés a visszaállításhoz!"
 }
