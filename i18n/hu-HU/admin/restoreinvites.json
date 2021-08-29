@@ -1,7 +1,7 @@
 {
-    "CONFIRMATION": "Are you sure you want to restore the server invites? All members will recover the invites they had before the last time the command `{{prefix}}remove-invites` was executed.\n\n:information_source: **Invites overview**:\nThis operation will restore, in total: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.",
-    "LOADING": "{{loading}} | Restoring server invites...",
+    "CONFIRMATION": "Biztosan visszaállítod a szerver meghívásait? Minden tag visszakapja azokat a meghívásokat, amelyek a `{{prefix}}remove-invites` parancs utolsó végrehajtása előtt voltak.\n\n:information_source: **Meghívók áttekintése**:\nEz a művelet összesen: **{{regular}}** összes, **{{bonus}}** bónuszt **{{leaves}}** kilépett, **{{fake}}** hamis.",
+    "LOADING": "{{loading}} | Szerver meghívók visszaállítása...",
     "TITLE": "☄️ Meghívások helyreállítva",
     "DESCRIPTION": "{{success}} | A szerver meghívók visszaállítva!",
-    "NO_BACKUP": "There is no backup to restore!"
+    "NO_BACKUP": "Nincs biztonsági mentés a visszaállításhoz!"
 }

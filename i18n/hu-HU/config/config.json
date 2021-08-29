@@ -6,5 +6,5 @@
     "JOIN_DM_TITLE": "{{status}} Üdvözlő Privát Üzenet",
     "JOIN_DM_CONTENT": "> Bekapcsolva: {{enabled}}\n> Üzenet: {{message}}",
     "CHANNEL_NOT_FOUND": "**a csatorna nem található**",
-    "STORAGE_TITLE": "Current Storage ID"
+    "STORAGE_TITLE": "Jelenlegi Tárhely ID"
 }

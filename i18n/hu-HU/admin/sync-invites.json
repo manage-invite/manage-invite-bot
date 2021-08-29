@@ -1,6 +1,6 @@
 {
     "NO_INVITES": "Nincs meghívás szinkronizálva.",
-    "CONFIRM": "Are you sure you want to synchronize the server invitations? __Your server data will be cleared and replaced by the invites in \"Server Settings\" > \"Invites\".__\n\n:information_source: **Overview of invitations**:\n**{{inviteCount}}** invites are going to be restored..\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to abort.",
+    "CONFIRM": "Biztosan szinkronizálni szeretnéd a szerver meghívásait? __A szerver adatai törlődnek, és a \"Szerverbeállítások\"> \"Meghívások\" menüpontban a meghívókkal helyettesítik őket.__\n\n:information_source: **A meghívók áttekintése \n**:\n**{{inviteCount}}** meghívót visszaállítunk. \n\n{{success}} Küld el a `-confirm` szót a megerősítéshez.\n{{error}} Küld el a `cancel` szót az elvetéshez.",
     "TITLE": "☄️ A meghívók szinkronizálva lettek",
     "DESCRIPTION": "Szerver meghívások szinkronizálva!"
 }
