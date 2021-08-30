@@ -96,7 +96,7 @@ module.exports = class extends Command {
         
         if (member){
             await message.guild.members.fetch();
-            const members = message.guild.members.cache.array().sort((a,b) => a.joinedTimestamp - b.joinedTimestamp);
+            const members = message.guild.members.cache.toJSON().sort((a,b) => a.joinedTimestamp - b.joinedTimestamp);
             const joinPos = members.map((u) => u.id).indexOf(member.id);
             const previous = members[joinPos - 1] ? members[joinPos - 1].user : null;
             const next = members[joinPos + 1] ? members[joinPos + 1].user : null;
@@ -212,7 +212,7 @@ module.exports = class extends Command {
         
         if (member){
             await interaction.guild.members.fetch();
-            const members = interaction.guild.members.cache.array().sort((a,b) => a.joinedTimestamp - b.joinedTimestamp);
+            const members = interaction.guild.members.cache.toJSON().sort((a,b) => a.joinedTimestamp - b.joinedTimestamp);
             const joinPos = members.map((u) => u.id).indexOf(member.id);
             const previous = members[joinPos - 1] ? members[joinPos - 1].user : null;
             const next = members[joinPos + 1] ? members[joinPos + 1].user : null;

@@ -22,7 +22,7 @@ module.exports = class extends Command {
         let page = 1;
 
         const results = await this.client.shard.broadcastEval((client) => {
-            return client.guilds.cache.array();
+            return client.guilds.cache.toJSON();
         });
         let guilds = [];
         results.forEach((a) => guilds = [...guilds, ...a]);

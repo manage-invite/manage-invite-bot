@@ -2,6 +2,7 @@ const { Client, Collection, Intents } = require("discord.js"),
     util = require("util"),
     path = require("path");
 
+const synchronizeSlashCommands = require("discord-sync-commands");
 const DatabaseHandler = require("@manage-invite/manage-invite-db-client");
 
 // Creates ManageInvite class
@@ -79,34 +80,10 @@ class ManageInvite extends Client {
     }
 
     async synchronizeSlashCommands () {
-        const commands = this.commands.filter((c) => c.slashCommandOptions).array();
+        const commands = this.commands.filter((c) => c.slashCommandOptions);
         const guildID = this.config.slashCommandsGuildID;
-        const fetchOptions = guildID && { guildId: guildID };
-        const exisitingSlashCommands = await this.application.commands.fetch(fetchOptions);
-        const createdCommands = exisitingSlashCommands.filter((slashCommand) => {
-            return commands.some((c) => {
-                return c.slashCommandOptions.name === slashCommand.name
-                    // TODO: implement comparison of options
-                    // && JSON.stringify(c.slashCommandOptions.options) === JSON.stringify(slashCommand.options)
-                    && c.slashCommandOptions.description === slashCommand.description;
-            });
-        }).array();
-        for (const command of commands) {
-            // if the command is already created
-            if (createdCommands.some((slashCommand) => slashCommand.name === command.help.name)) continue;
-            // otherwise create it
-            console.log(`Creating ${command.help.name} slash command`);
-            await this.application.commands.create(command.slashCommandOptions, guildID);
-            createdCommands.push(command.slashCommandOptions);
-        }
-        for (const slashCommand of exisitingSlashCommands.array()) {
-            // if the command is not created
-            if (!createdCommands.some((shouldBeCreatedSlashCommand) => shouldBeCreatedSlashCommand.name === slashCommand.name)) {
-                // delete it
-                console.log(`Deleting ${slashCommand.name} slash command`);
-                await this.application.commands.delete(slashCommand.id, guildID);
-            }
-        }
+        const fetchOptions = guildID ? { debug: true, guildId: guildID } : { debug: true };
+        return synchronizeSlashCommands(this, commands.map((c) => c.slashCommandOptions), fetchOptions);
     }
 
     // This function is used to unload a command (you need to load them again)

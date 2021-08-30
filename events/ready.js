@@ -28,7 +28,7 @@ module.exports = class {
 
         const premiumGuildsID = await this.client.database.fetchPremiumGuildIDs();
         this.client.log(`Shard #${this.client.shard.ids[0]} is ready!`);
-        await this.client.functions.asyncForEach(this.client.guilds.cache.array(), async (guild) => {
+        await this.client.functions.asyncForEach(this.client.guilds.cache.toJSON(), async (guild) => {
             if (premiumGuildsID.includes(guild.id)){
                 const member = await guild.members.fetch(this.client.user.id).catch(() => {});
                 let fetchedInvites = null;
@@ -92,7 +92,7 @@ module.exports = class {
 
         new CronJob("0 */15 * * * *", async () => {
             if (this.client.fetched){
-                const guildsToFetch = this.client.guilds.cache.filter((guild) => !this.client.invitations[guild.id]).array();
+                const guildsToFetch = this.client.guilds.cache.filter((guild) => !this.client.invitations[guild.id]).toJSON();
                 this.client.log(`${guildsToFetch.length} guilds need to be fetched`);
                 await this.client.functions.asyncForEach(guildsToFetch, async (guild) => {
                     const member = await guild.members.fetch(this.client.user.id).catch(() => {});

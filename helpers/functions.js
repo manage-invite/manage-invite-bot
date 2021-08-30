@@ -234,7 +234,10 @@ const formatDate = (dateToFormat, format, locale) => {
  * @param {string} content The content to send
  */
 const sendStatusWebhook = (content) => {
-    const webhook = new Discord.WebhookClient(config.statusWebhook.id, config.statusWebhook.token);
+    const webhook = new Discord.WebhookClient({
+        id: config.statusWebhook.id,
+        token: config.statusWebhook.token
+    });
     return webhook.send(content);
 };
 
