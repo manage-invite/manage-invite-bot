@@ -19,7 +19,7 @@ module.exports = [
     {
         level: 3,
         name: "Owner",
-        check: (member) => member.id === member.guild.ownerID,
+        check: (member) => member.id === member.guild.ownerId,
     },
     {
         level: 4,
