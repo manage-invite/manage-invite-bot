@@ -1,9 +1,9 @@
 {
     "MISSING_AMOUNT": "אתה צריך לכתוב את כמות הזמנות הבונוס שאתה רוצה להוסיף (דוגמה: {{prefix}}addbonus number @member/all)",
-    "INVALID_AMOUNT": "You must specify a __**valid**__ number of bonus invites that you want to add. (Syntax: {{prefix}}addbonus number @member/all)",
+    "INVALID_AMOUNT": "אתה צריך לכתוב את כמות הזמנות הבונוס שאתה רוצה להוסיף (דוגמה: {{prefix}}addbonus number @member/all)",
     "MISSING_TARGET": "You must mention the member to whom you want to add the bonus invites (or `all` if you want to add the invites to everyone). (Syntax: {{prefix}}addbonus number @member/all)",
     "CONFIRMATION_ALL": ":warning: האם אתה בטוח שאתה רוצה להוסיף **{{count}}** הזמנות בונוס לכל השרת? (זה יכול לקחת הרבה זמן, זה תלוי בכמות המשתמשים בשרת)!",
     "SUCCESS_TITLE": "📥 נוספו הזמנות בונוס",
     "SUCCESS_CONTENT_ALL": "נוספו הזמנות בונוס לכולם!",
-    "SUCCESS_CONTENT_MEMBER": "Send `{{prefix}}invites {{usertag}}` to see the new number of invites of **{{username}}**!"
+    "SUCCESS_CONTENT_MEMBER": "תשלח `{{prefix}}invites {{usertag}}`, כדי לראות את מספר ההזמנות החדש של **{{username}}**!"
 }
