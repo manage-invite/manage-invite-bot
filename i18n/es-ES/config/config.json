@@ -1,10 +1,10 @@
 {
-    "TITLE": "{{guild}} configuration",
-    "JOIN_TITLE": "{{status}} Join Messages",
-    "JOIN_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}\n> Channel: {{channel}}",
-    "LEAVE_TITLE": "{{status}} Leave Messages",
-    "JOIN_DM_TITLE": "{{status}} Join DM Messages",
-    "JOIN_DM_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}",
-    "CHANNEL_NOT_FOUND": "**channel not found**",
-    "STORAGE_TITLE": "Current Storage ID"
+    "TITLE": "{{guild}} configuración",
+    "JOIN_TITLE": "{{status}} Mensajes de Bienvenida",
+    "JOIN_CONTENT": "> Activado: {{enabled}}\n> Mensaje: {{message}}\n> Canal: {{channel}}",
+    "LEAVE_TITLE": "{{status}} Mensajes de Salida",
+    "JOIN_DM_TITLE": "{{status}} Mensajes de Bienvenida Internos",
+    "JOIN_DM_CONTENT": "> Activado: {{enabled}}\n> Mensaje: {{message}}",
+    "CHANNEL_NOT_FOUND": "**Canal no encontrado**",
+    "STORAGE_TITLE": "ID de Almacenamiento Actual"
 }
