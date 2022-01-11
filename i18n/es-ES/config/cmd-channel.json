@@ -1,6 +1,6 @@
 {
-    "MISSING_CHANNEL": "Please specify a valid channel where the commands will be allowed!",
-    "SUCCESS_DISABLED": "Commands will now be allowed in all the channels!",
-    "SUCCESS_ENABLED": "Commands will only be allowed in {{channel}}! (Use `{{prefix}}cmd-channel` to allow them in all the channels)",
-    "DISABLE_NO_CHANNEL": "Can not disable command channel because it has not been defined yet."
+    "MISSING_CHANNEL": "¡Por favor, especifica un canal válido donde se permitirán los comandos!",
+    "SUCCESS_DISABLED": "¡Ahora se permitirán comandos en todos los canales!",
+    "SUCCESS_ENABLED": "¡Los comandos solo serán permitidos en {{channel}}! (Use `{{prefix}}cmd-channel` para permitirlos en todos los canales)",
+    "DISABLE_NO_CHANNEL": "No se puede desactivar el canal de comandos porque aún no ha sido definido."
 }
