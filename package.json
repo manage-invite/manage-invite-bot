@@ -9,7 +9,7 @@
     "bufferutil": "^4.0.3",
     "chalk": "^4.1.1",
     "chart.js": "^3.4.1",
-    "chartjs-node-canvas": "^3.2.0",
+    "chartjs-node-canvas": "^4.1.6",
     "cron": "^1.8.2",
     "discord.js": "^13.0.0-dev.07017a9.1626869177",
     "erlpack": "discord/erlpack",
