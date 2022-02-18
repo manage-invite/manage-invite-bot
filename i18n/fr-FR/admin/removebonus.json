@@ -2,7 +2,7 @@
     "MISSING_AMOUNT": "Vous devez indiquer le nombre d'invitations bonus que vous souhaitez retirer. (Syntaxe : {{prefix}}}removebonus nombre @membre/all)",
     "INVALID_AMOUNT": "Vous devez écrire un nombre __**valide**__ d'invitations bonus que vous souhaitez supprimer. (Syntaxe : {{prefix}}removebonus nombre @membre/all)",
     "MISSING_TARGET": "Vous devez mentionner le membre qui perdra les invitations bonus (ou `all` si vous voulez les supprimer à tous les membres). (Syntaxe: {{prefix}}removebonus nombre @membre/all)",
-    "CONFIRMATION_ALL": ":warning: Are you sure you want to remove **{{count}}** bonus invites to everyone? This operation can take a long time (depending on the size of your server)!",
+    "CONFIRMATION_ALL": ":warning: Êtes-vous sûr de vouloir ajouter **{{count}}** invitations bonus à tout le monde ? Cette opération peut prendre beaucoup de temps (cela dépend de la taille de votre serveur) !",
     "SUCCESS_TITLE": "📥 Invitations Bonus Enlevées",
     "SUCCESS_CONTENT_ALL": "Les invitations bonus ont bien été supprimées à tout le monde !",
     "SUCCESS_CONTENT_MEMBER": "Envoyez `{{prefix}}invites {{usertag}}` pour voir le nouveau nombre d'invitations de **{{username}}** !"
