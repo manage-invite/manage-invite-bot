@@ -37,9 +37,9 @@ module.exports = class extends Command {
 
         const embed = new Discord.MessageEmbed()
             .setAuthor(user.tag, user.displayAvatarURL())
-            .setDescription(userInvites.length > 0 ? userInvites.map((invite) => `<#${invite.channelId}> | ${invite.uses} uses`) : `${message.translate("core/codes:NO_CODE")}`)
+            .setDescription(userInvites.size > 0 ? userInvites.map((invite) => `<#${invite.channelId}> | ${invite.uses} uses`) : `${message.translate("core/codes:NO_CODE")}`)
             .setColor(data.color)
-            .setFooter(userInvites.length > 0 ? `Total: ${userInvites.map((invite) => invite.uses).reduce((p, c) => p + c)} uses` : data.footer);
+            .setFooter(userInvites.size > 0 ? `Total: ${userInvites.map((invite) => invite.uses).reduce((p, c) => p + c)} uses` : data.footer);
 
         message.channel.send({ embeds: [embed] });
     }
@@ -58,9 +58,9 @@ module.exports = class extends Command {
 
         const embed = new Discord.MessageEmbed()
             .setAuthor(user.tag, user.displayAvatarURL())
-            .setDescription(userInvites.length > 0 ? userInvites.map((invite) => `<#${invite.channelId}> | ${invite.uses} uses`) : `${interaction.guild.translate("core/codes:NO_CODE")}`)
+            .setDescription(userInvites.size > 0 ? userInvites.map((invite) => `<#${invite.channelId}> | ${invite.uses} uses`) : `${interaction.guild.translate("core/codes:NO_CODE")}`)
             .setColor(data.color)
-            .setFooter(userInvites.length > 0 ? `Total: ${userInvites.map((invite) => invite.uses).reduce((p, c) => p + c)} uses` : data.footer);
+            .setFooter(userInvites.size > 0 ? `Total: ${userInvites.map((invite) => invite.uses).reduce((p, c) => p + c)} uses` : data.footer);
 
         interaction.reply({ embeds: [embed] });
     }
