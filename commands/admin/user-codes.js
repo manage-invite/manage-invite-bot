@@ -16,7 +16,7 @@ module.exports = class extends Command {
                 
                 options: [
                     {
-                        type: ApplicationCommandOptionTypes.STRING,
+                        type: ApplicationCommandOptionTypes.USER,
                         name: "user",
                         description: "User to get codes of (default is you)"
                     }
