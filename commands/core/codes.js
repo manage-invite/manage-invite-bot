@@ -25,11 +25,11 @@ module.exports = class extends Command {
 
         const invites = await message.guild.invites.fetch();
 
-        const userInvites = invites.filter((i) => i.inviter?.id === user.id);
+        const userInvites = invites.filter((i) => i.inviterId === user.id);
 
         const embed = new Discord.MessageEmbed()
             .setAuthor(user.tag, user.displayAvatarURL())
-            .setDescription(userInvites.size > 0 ? userInvites.map((invite) => `<#${invite.channelId}> | ${invite.uses} uses`).join('\n') : `${message.translate("core/codes:NO_CODE")}`)
+            .setDescription(userInvites.size > 0 ? userInvites.map((invite) => `<#${invite.channelId}> | ${invite.uses} uses`).join() : `${message.translate("core/codes:NO_CODE")}`)
             .setColor(data.color)
             .setFooter(userInvites.size > 0 ? `Total: ${userInvites.map((invite) => invite.uses).reduce((p, c) => p + c)} uses` : data.footer);
 
@@ -46,7 +46,7 @@ module.exports = class extends Command {
 
         const user = interaction.user;
 
-        const userInvites = invites.filter((i) => i.inviter?.id === user.id);
+        const userInvites = invites.filter((i) => i.inviterId === user.id);
 
         const embed = new Discord.MessageEmbed()
             .setAuthor(user.tag, user.displayAvatarURL())
