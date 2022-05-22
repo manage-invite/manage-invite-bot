@@ -25,7 +25,7 @@ module.exports = class extends Command {
 
         const invites = await message.guild.invites.fetch();
 
-        const userInvites = invites.filter((i) => i.inviterId === user.id);
+        const userInvites = invites.filter((i) => i.inviter?.id === user.id);
 
         const embed = new Discord.MessageEmbed()
             .setAuthor(user.tag, user.displayAvatarURL())
@@ -46,7 +46,7 @@ module.exports = class extends Command {
 
         const user = interaction.user;
 
-        const userInvites = invites.filter((i) => i.inviterId === user.id);
+        const userInvites = invites.filter((i) => i.inviter?.id === user.id);
 
         const embed = new Discord.MessageEmbed()
             .setAuthor(user.tag, user.displayAvatarURL())
