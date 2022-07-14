@@ -1,7 +1,7 @@
 {
     "TITLE": "{{guild}} configuration",
     "JOIN_TITLE": "{{status}} Join Messages",
-    "JOIN_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}\n> Channel: {{channel}}",
+    "JOIN_CONTENT": "> ممكّن: {{enabled}}\n> الرسالة: {{message}}\n> القناة: {{channel}}",
     "LEAVE_TITLE": "{{status}} Leave Messages",
     "JOIN_DM_TITLE": "{{status}} Join DM Messages",
     "JOIN_DM_CONTENT": "> Enabled: {{enabled}}\n> Message: {{message}}",
