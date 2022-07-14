@@ -1,7 +1,7 @@
 {
     "DISABLE": "Type `{{prefix}}setdmjoin` to disable join messages in dm.",
     "INSTRUCTIONS_1": "__**More informations**__\n```{{variables}}```\nSend `cancel` to cancel. {{string}}\n\n:sparkles: Embed messages are now available! You can generate an embed here: <https://embed-generator.manage-invite.xyz/> and send the json code below!\n\n\n:pencil: **| Now send the join message in DM... :pencil2:**",
-    "SUCCESS": "✅ **| Done successfully...**",
-    "TITLE": "**Done The join DM Msg Has Been Setup**",
+    "SUCCESS": "✅ ** | فعلت بنجاح...**",
+    "TITLE": "** تم إعداد رسالة DM المشتركة **",
     "TEST": "Use `{{prefix}}testjoindm` to test the new message."
 }
