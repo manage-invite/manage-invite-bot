@@ -2,7 +2,7 @@
   "BOT_MISSING_PERMISSIONS": "__**صلاحيات مفقودة**__\nأحتاج إلى صلاحيات التالية ليعمل هذا الأمر بشكل صحيح: {{permissions}}",
   "CANNOT_SEND": "لا يمكنني ارسال رسالة الى هذة القناة.",
   "COMMAND_DISABLED": "هذا الامر معطل حاليا!",
-  "JOIN_MAIN_DEFAULT": "{user} joined the server! They were invited by **{inviter.tag}** (who has **{inviter.invites}** invites).",
+  "JOIN_MAIN_DEFAULT": "انضم {user} إلى الخادم! تمت دعوته من قبل ** {inviter.tag} ** (من لديه ** {inviter.invites} ** من الدعوات).",
   "JOIN_OAUTH2_DEFAULT": "{user} joined the server using OAuth flow.",
   "JOIN_PERMISSIONS": "I need the manage server permissions to know who is the inviter of {user}.",
   "JOIN_UNKNOWN_DEFAULT": "I can't figure out how {user} joined the server.",
