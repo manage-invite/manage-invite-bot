@@ -20,10 +20,10 @@
   "UPDATE": "تحديث",
   "YES": "نعم",
   "CANCEL": "إلغاء",
-  "MAIN": "Main",
-  "BOTS": "Bots",
-  "VANITY_URL": "Vanity URL",
-  "UNKNOWN": "Unknown",
-  "USES": "Uses",
-  "CONFIRM": "Confirm"
+  "MAIN": "رئيسي",
+  "BOTS": "الروبوتات",
+  "VANITY_URL": "الرابط المختصر",
+  "UNKNOWN": "مجهول",
+  "USES": "الاستخدامات",
+  "CONFIRM": "تأكيد\n"
 }
