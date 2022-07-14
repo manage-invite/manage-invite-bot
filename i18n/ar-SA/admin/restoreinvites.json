@@ -1,7 +1,7 @@
 {
     "CONFIRMATION": "Are you sure you want to restore the server invites? All members will recover the invites they had before the last time the command `{{prefix}}remove-invites` was executed.\n\n:information_source: **Invites overview**:\nThis operation will restore, in total: **{{regular}}** regulars, **{{bonus}}** bonus, **{{leaves}}** leaves, **{{fake}}** fake.",
     "LOADING": "{{loading}} | Restoring server invites...",
-    "TITLE": "☄️ Invites restored",
-    "DESCRIPTION": "{{success}} | Server invites restored!",
-    "NO_BACKUP": "There is no backup to restore!"
+    "TITLE": "☄️ الدعوات المستعادة",
+    "DESCRIPTION": "{{success}} | استعادة خادم يدعو!",
+    "NO_BACKUP": "لا توجد نسخة احتياطية لاستعادة!"
 }
