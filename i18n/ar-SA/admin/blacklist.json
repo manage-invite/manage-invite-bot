@@ -7,6 +7,6 @@
     "SUCCESS_MEMBER_ADD": "** {{username}} ** أضيف إلى القائمة السوداء!",
     "SUCCESS_MEMBER_REMOVE": "** {{username}} ** تمت إزالته من القائمة السوداء!",
     "EMPTY": "لا يوجد مستخدمون مدرجون في القائمة السوداء!",
-    "NOT_BLACKLISTED": "**{{username}}** is not in the blacklist!",
-    "ALREADY_BLACKLISTED": "**{{username}}** is already blacklisted!"
+    "NOT_BLACKLISTED": "** {{username}} ** ليس في القائمة السوداء!",
+    "ALREADY_BLACKLISTED": "** {{username}} ** مدرج في القائمة السوداء بالفعل!"
 }
