@@ -1,6 +1,6 @@
 {
-    "NO_INVITES": "No invites to synchronize.",
-    "CONFIRM": "Are you sure you want to synchronize the server invitations? __Your server data will be cleared and replaced by the invites in \"Server Settings\" > \"Invites\".__\n\n:information_source: **Overview of invitations**:\n**{{inviteCount}}** invites are going to be restored..\n\n{{success}} Send `-confirm` to confirm.\n{{error}} Send `cancel` to abort.",
+    "NO_INVITES": "لا توجد دعوات للمزامنة.",
+    "CONFIRM": "هل أنت متأكد أنك تريد مزامنة دعوات الخادم؟ __ سيتم مسح بيانات الخادم واستبدالها بالدعوات الموجودة في \"إعدادات الخادم\"> \"الدعوات\" .__\n\n: information_source: ** نظرة عامة على الدعوات **:\n** {{callingCount}} ** ستتم استعادة الدعوات ..\n\n{{Success}} أرسل \"-confirm\" للتأكيد.\n{{error}} أرسل \"إلغاء\" للإحباط.",
     "TITLE": "☄️ Invites synchronized",
     "DESCRIPTION": "Server invites synchronized!"
 }
