@@ -1,7 +1,7 @@
 {
     "USER": "{{position}} **{{username}}** - **{{invites}}** invites (**{{regular}}** regular, **{{bonus}}** bonus, **{{fake}}** fake, **{{leaves}}** leaves)",
     "PROMPT": "{{user}}, on which page would you like to go? Send `cancel` or `0` to cancel.",
-    "EMPTY_TITLE": "😕 No invite found",
-    "EMPTY_CONTENT": "Start inviting people and you will appear on this page!",
+    "EMPTY_TITLE": "😕 لا يوجد دعوة",
+    "EMPTY_CONTENT": "ابدأ دعوة الناس وسوف تظهر على هذه الصفحة!",
     "TITLE": "Invites Leaderboard"
 }
