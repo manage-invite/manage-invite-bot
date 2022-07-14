@@ -2,7 +2,7 @@
     "TITLE": "{{username}}'s stats",
     "STATS_TITLE": "📊 Statistics",
     "STATS_CONTENT": "`Servers: {{guilds}}`\n`Users: {{users}}`\n`Redis: {{keys}}`",
-    "VERSIONS_TITLE": "⚙️ Versions",
+    "VERSIONS_TITLE": "⚙️ إصدارات",
     "VERSIONS_CONTENT": "`Discord: {{discord}}`\n`Node: {{node}}`",
     "SHARD_TITLE": "{{online}} Shard #{{shardID}}",
     "SHARD_TITLE_CURRENT": "{{online}} Shard #{{shardID}} (current)",
