@@ -2,7 +2,7 @@
     "TITLE": "{{username}} account ({{userID}})",
     "CREATED_AT_TITLE": "Creation",
     "BOT_TITLE": "Robot",
-    "JOINED_AT_TITLE": "Join",
+    "JOINED_AT_TITLE": "إنضم",
     "JOIN_WAY_TITLE": "Join due to",
     "JOIN_WAY_OAUTH": "Oauth invitation (via discordapp.com).",
     "JOIN_WAY_VANITY": "Customized invite configured by an administrator.",
