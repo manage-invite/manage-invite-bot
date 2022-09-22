@@ -1,10 +1,10 @@
 {
-  "BOT_MISSING_PERMISSIONS": "__**صلاحيات مفقودة**__\nأحتاج إلى صلاحيات التالية ليعمل هذا الأمر بشكل صحيح: {{permissions}}",
+  "BOT_MISSING_PERMISSIONS": "__**صلاحيات مفقودة**__\nأحتاج إلى صلاحيات التالية ليعمل هذا الأمر بشكل صحيح:\n{{permissions}}",
   "CANNOT_SEND": "لا يمكنني ارسال رسالة الى هذة القناة.",
   "COMMAND_DISABLED": "هذا الامر معطل حاليا!",
   "JOIN_MAIN_DEFAULT": "انضم {user} إلى الخادم! تمت دعوته من قبل ** {inviter.tag} ** (من لديه ** {inviter.invites} ** من الدعوات).",
-  "JOIN_OAUTH2_DEFAULT": "{user} joined the server using OAuth flow.",
-  "JOIN_PERMISSIONS": "I need the manage server permissions to know who is the inviter of {user}.",
+  "JOIN_OAUTH2_DEFAULT": "{user} لقد دخل إلى السيرفر باستخدام OAuth flow.",
+  "JOIN_PERMISSIONS": "أحتاج إلى صلاحية **manage server** لمعرفة من هو الذي دعا {user}.",
   "JOIN_UNKNOWN_DEFAULT": "لا يمكنني معرفة كيفية انضمام {user} إلى الخادم.",
   "JOIN_VANITY_DEFAULT": "انضم {user} إلى الخادم باستخدام دعوة discord.gg يحددها مالك الجماعة (أو المسؤول).",
   "JOIN_DM_MAIN_DEFAULT": "مرحبًا {user} في ** {server} **! تمت دعوتك بواسطة ** {inviter.tag} ** (الذي لديه الآن ** {inviter.invites} ** من الدعوات).",
