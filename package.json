@@ -11,7 +11,7 @@
     "chart.js": "^3.4.1",
     "chartjs-node-canvas": "^3.2.0",
     "cron": "^1.8.2",
-    "discord.js": "^13.0.0-dev.07017a9.1626869177",
+    "discord.js": "^14.7.1",
     "erlpack": "discord/erlpack",
     "i18next": "^20.3.4",
     "i18next-fs-backend": "^1.1.1",
