@@ -92,7 +92,10 @@ module.exports.load = (discordClient) => {
             switch (message.data.notificationType) {
             case "verification": {
                 const logEmbed = new MessageEmbed()
-                    .setAuthor(`${user.tag} purchased ManageInvite Premium`, user.displayAvatarURL())
+                    .setAuthor({
+                        name: `${user.tag} purchased ManageInvite Premium`,
+                        iconURL: user.displayAvatarURL()
+                    })
                     .setDescription(`Server **${message.data.guildName}** is waiting for verification... :clock7:`)
                     .setColor("#ff9966");
                 aLogs.send({ embeds: [logEmbed] });
@@ -100,7 +103,10 @@ module.exports.load = (discordClient) => {
             }
             case "subscribed": {
                 const logEmbed = new MessageEmbed()
-                    .setAuthor(`${user.tag} created a subscription`, user.displayAvatarURL())
+                    .setAuthor({
+                        name: `${user.tag} created a subscription`,
+                        iconURL: user.displayAvatarURL()
+                    })
                     .setDescription(`Subscription for guild **${message.data.guildName}** created... :white_check_mark:`)
                     .setColor("#ff9966");
                 aLogs.send({ embeds: [logEmbed] });
@@ -116,7 +122,10 @@ module.exports.load = (discordClient) => {
             }
             case "paid": {
                 const logEmbed = new MessageEmbed()
-                    .setAuthor(`${user.tag} paid for ManageInvite Premium`, user.displayAvatarURL())
+                    .setAuthor({
+                        name: `${user.tag} paid for ManageInvite Premium`,
+                        iconURL: user.displayAvatarURL()
+                    })
                     .setDescription(`Recurring payment for **${message.data.guildName}** was paid (**$2**) :crown:`)
                     .setColor("#ff9966");
                 aLogs.send({ embeds: [logEmbed] });
@@ -132,7 +141,10 @@ module.exports.load = (discordClient) => {
                     formMessage.react("\u0034\u20E3");
                 }
                 const logEmbed = new MessageEmbed()
-                    .setAuthor(`${user.tag} cancelled their subscription for ManageInvite Premium`, user.displayAvatarURL())
+                    .setAuthor({
+                        name: `${user.tag} cancelled their subscription for ManageInvite Premium`,
+                        iconURL: user.displayAvatarURL()
+                    })
                     .setDescription(`Recurring payment for **${message.data.guildName}** was cancelled :wave:\n${formMessage ? "Satisfaction form sent! Awaiting answer... :pencil:" : "I wasn't able to send the satisfaction form... :confused:"}`)
                     .setFooter(`Form ID: ${formMessage ? formMessage.id : "not sent"}`)
                     .setColor("#1E90FF");
@@ -141,7 +153,10 @@ module.exports.load = (discordClient) => {
             }
             case "dms": {
                 const logEmbed = new MessageEmbed()
-                    .setAuthor(`Thanks for purchasing ManageInvite Premium, ${user.tag}`, user.displayAvatarURL())
+                    .setAuthor({
+                        name: `Thanks for purchasing ManageInvite Premium, ${user.tag}`,
+                        iconURL: user.displayAvatarURL()
+                    })
                     .setDescription(`Congratulations, your server **${message.data.guildName}** is now premium! :crown:`)
                     .setColor("#ff9966");
                 user.send({ embeds: [logEmbed] });

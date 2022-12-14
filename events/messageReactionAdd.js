@@ -10,7 +10,10 @@ module.exports = class {
         const message = await reaction.message.channel.messages.fetch(reaction.message.id);
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor(`${user.tag} answered satisfaction form`, user.displayAvatarURL())
+            .setAuthor({
+                name: `${user.tag} answered satisfaction form`,
+                iconURL: user.displayAvatarURL()
+            })
             .setFooter(`Form ID: ${message.id}`)
             .setColor("#4682B4");
 
@@ -45,7 +48,10 @@ module.exports = class {
                 await message.reactions.cache.each(r => r.users.remove(this.client.user.id));
                 await message.edit(message.content+"\nEnter the reason below (send a message):");
                 const waitingAnswerEmbed = escape(JSON.stringify(new Discord.MessageEmbed()
-                    .setAuthor(`Awaiting other feedback from ${user.tag}`, user.displayAvatarURL())
+                    .setAuthor({
+                        name: `Awaiting other feedback from ${user.tag}`,
+                        iconURL: user.displayAvatarURL()
+                    })
                     .setFooter(`Form ID: ${message.id}`)
                     .setColor("#B0E0E6")));
                 this.client.shard.broadcastEval((client, waitingAnswerEmbed) => {
@@ -55,7 +61,10 @@ module.exports = class {
                 const collected = await message.channel.awaitMessages({ filter: () => true, max: 1, time: 24*60*60*1000, errors: ["time"] })
                     .catch(async () => {
                         const noAnswerEmbed = new Discord.MessageEmbed()
-                            .setAuthor(`No feedback received for other from ${user.tag}`, user.displayAvatarURL())
+                            .setAuthor({
+                                name: `No feedback received for other from ${user.tag}`,
+                                iconURL: user.displayAvatarURL()
+                            })
                             .setFooter(`Form ID: ${message.id}`)
                             .setColor("#ADD8E6");
                         this.client.shard.broadcastEval((client, noAnswerEmbed) => {

@@ -66,12 +66,14 @@ module.exports = class extends Command {
                 await this.client.database.restoreGuildInvites(interaction.guild.id, interaction.guild.settings.storageID);
     
                 const embed = new Discord.MessageEmbed()
-                    .setAuthor(interaction.guild.translate("admin/restoreinvites:TITLE"))
+                    .setAuthor({
+                        name: interaction.guild.translate("admin/restoreinvites:TITLE")
+                    })
                     .setDescription(interaction.guild.translate("admin/restoreinvites:DESCRIPTION", {
                         success: Constants.Emojis.SUCCESS
                     }))
                     .setColor(data.color)
-                    .setFooter(data.footer);
+                    .setFooter({ text: data.footer });
     
                 interaction.editReply({ content: null, embeds: [embed], components: [] });
 

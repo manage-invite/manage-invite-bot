@@ -74,7 +74,9 @@ module.exports = class {
                         }
                         const beg = paymentData.subLabel === "Trial Version" ? "Your trial period" : "Your premium subscription";
                         const embed = new Discord.MessageEmbed()
-                            .setAuthor(`Hello, ${user.username}`)
+                            .setAuthor({
+                                name: `Hello, ${user.username}`
+                            })
                             .setDescription(`${beg} for **${guildNameFound}** expires in 72 hours! Click [here](https://dash.manage-invite.xyz/manage/${paymentData.guildID}/createsub) to continue to use the bot, the price is $2 per month.`)
                             .setColor(Constants.Embed.COLOR)
                             .setFooter(Constants.Embed.FOOTER);

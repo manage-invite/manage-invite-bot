@@ -71,10 +71,12 @@ module.exports = class extends Command {
                     });
                 });
                 const embed = new Discord.MessageEmbed()
-                    .setAuthor(interaction.guild.translate("admin/sync-invites:TITLE"))
+                    .setAuthor({
+                        name: interaction.guild.translate("admin/sync-invites:TITLE")
+                    })
                     .setDescription(interaction.guild.translate("admin/sync-invites:DESCRIPTION"))
                     .setColor(data.color)
-                    .setFooter(data.footer);
+                    .setFooter({ text: data.footer });
                 interaction.editReply({ content: null, embeds: [embed], components: [] });
 
             } else if (action === "cancel") {

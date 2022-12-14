@@ -63,14 +63,16 @@ module.exports = class extends Command {
         });
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor(interaction.guild.translate("admin/addbonus:SUCCESS_TITLE"))
+            .setAuthor({
+                name: interaction.guild.translate("admin/addbonus:SUCCESS_TITLE")
+            })
             .setDescription(interaction.guild.translate("admin/addbonus:SUCCESS_CONTENT_MEMBER", {
                 prefix: interaction.guild.settings.prefix,
                 usertag: user.tag,
                 username: user.username
             }))
             .setColor(data.color)
-            .setFooter(data.footer);
+            .setFooter({ text: data.footer });
 
         interaction.reply({ embeds: [embed] });
     }

@@ -57,7 +57,7 @@ module.exports = class extends Command {
 
         const embed = new Discord.MessageEmbed()
             .setColor(data.color)
-            .setFooter(data.footer);
+            .setFooter({ text: data.footer });
         const action = interaction.options.getSubCommand();
         switch (action){
         case "add": {

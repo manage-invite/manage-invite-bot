@@ -39,7 +39,7 @@ module.exports = class extends Command {
             })))
             .setThumbnail(interaction.user.avatarURL())
             .setColor(data.color)
-            .setFooter(data.footer)
+            .setFooter({ text: data.footer })
             .setTimestamp();
         interaction.reply({ embeds: [embed] });
 

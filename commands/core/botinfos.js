@@ -43,10 +43,12 @@ module.exports = class extends Command {
 
         const embed = new Discord.MessageEmbed()
             .setColor(data.color)
-            .setFooter(data.footer)
-            .setAuthor(interaction.guild.translate("core/botinfos:TITLE", {
-                username: this.client.user.username
-            }))
+            .setFooter({ text: data.footer })
+            .setAuthor({
+                name: interaction.guild.translate("core/botinfos:TITLE", {
+                    username: this.client.user.username
+                })
+            })
             .addField(interaction.guild.translate("core/botinfos:STATS_TITLE"), interaction.guild.translate("core/botinfos:STATS_CONTENT", {
                 guilds: guildsCount,
                 users: usersCount,

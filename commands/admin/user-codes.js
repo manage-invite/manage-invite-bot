@@ -38,7 +38,10 @@ module.exports = class extends Command {
         const userInvites = invites.filter((i) => i.inviter?.id === user.id).sort((a, b) => b.uses - a.uses);
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor(user.tag, user.displayAvatarURL())
+            .setAuthor({
+                name: user.tag,
+                iconURL: user.displayAvatarURL()
+            })
             .setDescription(userInvites.size > 0 ? userInvites.map((invite) => `<#${invite.channelId}> | ${invite.uses} uses`).join("\n") : `${interaction.guild.translate("core/codes:NO_CODE")}`)
             .setColor(data.color)
             .setFooter(userInvites.size > 0 ? `Total: ${userInvites.map((invite) => invite.uses).reduce((p, c) => p + c)} uses` : data.footer);

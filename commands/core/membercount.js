@@ -21,9 +21,11 @@ module.exports = class extends Command {
         await interaction.guild.members.fetch();
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor(interaction.guild.translate("core/membercount:TITLE", {
-                guild: interaction.guild.name
-            }))
+            .setAuthor({
+                name: interaction.guild.translate("core/membercount:TITLE", {
+                    guild: interaction.guild.name
+                })
+            })
             .setDescription(
                 interaction.guild.translate("core/membercount:TOTAL", {
                     totalCount: interaction.guild.members.cache.size,
@@ -32,7 +34,7 @@ module.exports = class extends Command {
                 })
             )
             .setColor(data.color)
-            .setFooter(data.footer);
+            .setFooter({ text: data.footer });
         
         interaction.reply({ embeds: [embed] });
     }

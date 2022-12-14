@@ -100,7 +100,9 @@ module.exports  = class extends Command {
 
         if (members.length <= 0){
             const embed = new Discord.MessageEmbed()
-                .setAuthor(interaction.guild.translate("core/leaderboard:EMPTY_TITLE"))
+                .setAuthor({
+                    name: interaction.guild.translate("core/leaderboard:EMPTY_TITLE")
+                })
                 .setDescription(interaction.guild.translate("core/leaderboard:EMPTY_CONTENT"))
                 .setColor(data.color);
             return interaction.reply({ embeds: [embed] });

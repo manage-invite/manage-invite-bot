@@ -50,14 +50,17 @@ module.exports = class extends Command {
         const creationDate = moment(user.createdAt, "YYYYMMDD").fromNow();
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor(interaction.guild.translate("core/userinfo:TITLE", {
-                username: user.tag,
-                userID: user.id
-            }), user.displayAvatarURL())
+            .setAuthor({
+                name: interaction.guild.translate("core/userinfo:TITLE", {
+                    username: user.tag,
+                    userID: user.id
+                }),
+                iconURL: user.displayAvatarURL()
+            })
             .addField(interaction.guild.translate("core/userinfo:BOT_TITLE"), user.bot ? interaction.guild.translate("common:YES") : interaction.guild.translate("common:NO"), true)
             .addField(interaction.guild.translate("core/userinfo:CREATED_AT_TITLE"), creationDate.charAt(0).toUpperCase() + creationDate.substr(1, creationDate.length), true)
             .setColor(data.color)
-            .setFooter(data.footer);
+            .setFooter({ text: data.footer });
 
         const getJoinWay = async (joinData) => {
             let joinWay = interaction.guild.translate("core/userinfo:JOIN_WAY_UNKNOWN", {

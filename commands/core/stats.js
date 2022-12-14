@@ -75,12 +75,15 @@ module.exports = class extends Command {
 
         const embed = new Discord.MessageEmbed()
             .setColor(data.color)
-            .setFooter(data.footer);
+            .setFooter({ text: data.footer });
 
-        embed.setAuthor(interaction.guild.translate("core/stats:TITLE", {
-            server: interaction.guild.name,
-            days: numberOfDays
-        }));
+        embed.setAuthor({
+            name: interaction.guild.translate("core/stats:TITLE", {
+                server: interaction.guild.name,
+                days: numberOfDays
+            })
+        });
+
         const attachment = await generateCanvas(joinedXDays, lastXDays);
         embed.setImage("attachment://image.png");
         const total = joinedXDays.reduce((p, c) => p+c);

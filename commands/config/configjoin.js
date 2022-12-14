@@ -63,7 +63,7 @@ module.exports = class extends Command {
             }))
             .setThumbnail(interaction.user.avatarURL())
             .setColor(data.color)
-            .setFooter(data.footer);
+            .setFooter({ text: data.footer });
 
         interaction.editReply({ content: interaction.guild.translate("config/configjoindm:SUCCESS"), embeds: [embed] });
 

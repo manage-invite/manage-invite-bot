@@ -53,10 +53,13 @@ module.exports = class extends Command {
 
 
         const embed = new Discord.MessageEmbed()
-            .setAuthor(user.tag, user.displayAvatarURL())
+            .setAuthor({
+                name: user.tag,
+                iconURL: user.displayAvatarURL()
+            })
             .setDescription(description)
             .setColor(data.color)
-            .setFooter(data.footer);
+            .setFooter({ text: data.footer });
 
         interaction.reply({ embeds: [embed] });
     }

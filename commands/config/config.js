@@ -66,7 +66,7 @@ module.exports = class extends Command {
             }), true)
             .addField(interaction.guild.translate("config/config:STORAGE_TITLE"), interaction.guild.settings.storageID, true)
             .setColor(data.color)
-            .setFooter(data.footer);
+            .setFooter({ text: data.footer });
         interaction.reply({ embeds: [embed] });
     }
 };

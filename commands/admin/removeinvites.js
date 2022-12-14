@@ -53,12 +53,14 @@ module.exports = class extends Command {
                 await this.client.database.removeGuildInvites(interaction.guild.id);
         
                 const embed = new Discord.MessageEmbed()
-                    .setAuthor(interaction.guild.translate("admin/removeinvites:TITLE"))
+                    .setAuthor({
+                        name: interaction.guild.translate("admin/removeinvites:TITLE")
+                    })
                     .setDescription(interaction.guild.translate("admin/removeinvites:DESCRIPTION", {
                         success: Constants.Emojis.SUCCESS
                     }))
                     .setColor(data.color)
-                    .setFooter(data.footer);
+                    .setFooter({ text: data.footer });
         
                 interaction.editReply({ content: null, embeds: [embed], components: [] });
 
