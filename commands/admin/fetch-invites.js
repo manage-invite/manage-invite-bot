@@ -17,12 +17,6 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message) {
-        await message.guild.invites.fetch();
-        this.client.invitations[message.guild.id] = generateInvitesCache(message.guild.invites.cache);
-        message.success("admin/fetch-invites:SUCCESS");
-    }
-
     async runInteraction (interaction) {
         await interaction.guild.invites.fetch();
         this.client.invitations[interaction.guild.id] = generateInvitesCache(interaction.guild.invites.cache);

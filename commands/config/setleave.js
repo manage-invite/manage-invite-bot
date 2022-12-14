@@ -16,26 +16,6 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message) {
-        const guildPlugins = await this.client.database.fetchGuildPlugins(message.guild.id);
-        const plugin = guildPlugins.find((p) => p.pluginName === "leave")?.pluginData;
-
-        if (!plugin?.enabled){
-            await this.client.database.updateGuildPlugin(message.guild.id, "leave", {
-                ...(plugin || {}),
-                enabled: true
-            });
-            return message.success("config/setleave:ENABLED");
-        }
-        if (plugin.enabled){
-            await this.client.database.updateGuildPlugin(message.guild.id, "leave", {
-                ...plugin,
-                enabled: false
-            });
-            return message.success("config/setleave:DISABLED");
-        }
-    }
-
     async runInteraction (interaction) {
         const guildPlugins = await this.client.database.fetchGuildPlugins(interaction.guild.id);
         const plugin = guildPlugins.find((p) => p.pluginName === "leave")?.pluginData;

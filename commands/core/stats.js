@@ -62,45 +62,6 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args, data) {
-
-        let numberOfDays = args[0] || 7;
-        if (isNaN(numberOfDays)) return message.error("core/stats:INVALID");
-        numberOfDays = parseInt(numberOfDays);
-        if (numberOfDays <= 1 || numberOfDays > 1000) return message.error("core/stats:INVALID");
-
-        await message.guild.members.fetch();
-        const joinedXDays = this.client.functions.joinedXDays(numberOfDays, message.guild.members.cache);
-        const lastXDays = this.client.functions.lastXDays(numberOfDays, message.translate("core/stats:months", {
-            returnObjects: true
-        }));
-
-        const embed = new Discord.MessageEmbed()
-            .setColor(data.color)
-            .setFooter(data.footer);
-
-        embed.setAuthor(message.translate("core/stats:TITLE", {
-            server: message.guild.name,
-            days: numberOfDays
-        }));
-        const attachment = await generateCanvas(joinedXDays, lastXDays);
-        embed.setImage("attachment://image.png");
-        const total = joinedXDays.reduce((p, c) => p+c);
-        const percent = Math.round((100*total)/message.guild.members.cache.size);
-        const daysRange = [lastXDays.shift(), lastXDays.pop()];
-        embed.addField("\u200B", message.translate("core/stats:CONTENT", {
-            total,
-            percent,
-            from: daysRange[0],
-            to: daysRange[1]
-        }));
-        message.channel.send({
-            embeds: [embed],
-            files: [attachment]
-        });
-
-    }
-
     async runInteraction (interaction, data) {
 
         const numberOfDays = interaction.options.getInteger("days");

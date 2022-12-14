@@ -25,13 +25,6 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args) {
-        const prefix = args[0];
-        if (!prefix) return message.error("config/setprefix:MISSING");
-        await this.client.database.updateGuildSetting(message.guild.id, "prefix", prefix);
-        message.success("config/setprefix:SUCCESS");
-    }
-
     async runInteraction (interaction) {
         const prefix = interaction.options.getString("prefix");
         await this.client.database.updateGuildSetting(interaction.guild.id, "prefix", prefix);

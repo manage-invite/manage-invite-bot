@@ -16,12 +16,6 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message) {
-        message.sendT("core/support:CONTENT", {
-            discord: Constants.Links.DISCORD
-        });
-    }
-
     async runInteraction (interaction) {
         interaction.reply({ content: interaction.guild.translate("core/support:CONTENT", {
             discord: Constants.Links.DISCORD

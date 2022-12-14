@@ -37,41 +37,6 @@ module.exports = class extends Command {
         };
     }
 
-    async run (message, args, data) {
-
-        const { guildsCount, usersCount, results } = await this.fetchShardsData();
-
-        const embed = new Discord.MessageEmbed()
-            .setColor(data.color)
-            .setFooter(data.footer)
-            .setAuthor(message.translate("core/botinfos:TITLE", {
-                username: this.client.user.username
-            }))
-            .addField(message.translate("core/botinfos:STATS_TITLE"), message.translate("core/botinfos:STATS_CONTENT", {
-                guilds: guildsCount,
-                users: usersCount,
-                keys: await this.client.database.redis.getStats()
-            }), true)
-            .addField(message.translate("core/botinfos:VERSIONS_TITLE"), message.translate("core/botinfos:VERSIONS_CONTENT", {
-                discord: Discord.version,
-                node: process.version
-            }), true)
-            .addField("\u200B", "\u200B");
-        results.forEach((shard) => {
-            const title = message.translate(`core/botinfos:SHARD_TITLE${this.client.shard.ids.includes(shard[2]) ? "_CURRENT" : ""}`, {
-                online: Constants.Emojis.ONLINE,
-                shardID: shard[2]+1
-            });
-            embed.addField(title, message.translate("core/botinfos:SHARD_CONTENT", {
-                guilds: shard[1],
-                ping: shard[3],
-                ram: shard[0]
-            }), true);
-        });
-
-        message.channel.send({ embeds: [embed] });
-    }
-
     async runInteraction (interaction, data) {
 
         const { guildsCount, usersCount, results } = await this.fetchShardsData();

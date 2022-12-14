@@ -29,19 +29,6 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, args) {
-        const language = args.join(" ");
-        if (!this.client.enabledLanguages.some((l) => l.name.toLowerCase() === language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(language.toLowerCase()))){
-            return message.error("config/setlang:INVALID", {
-                list: this.client.enabledLanguages.map((l) => `${l.flag} | \`${l.name}\` (${l.aliases[0]})`).join("\n")
-            });
-        }
-        const newLanguage = this.client.enabledLanguages.find((l) => l.name.toLowerCase() === language.toLowerCase() || (l.aliases.map((a) => a.toLowerCase())).includes(language.toLowerCase())).name;
-        await this.client.database.updateGuildSetting(message.guild.id, "language", newLanguage);
-        message.guild.settings.language = newLanguage;
-        message.success("config/setlang:SUCCESS");
-    }
-
     async runInteraction (interaction) {
         const newLanguage = interaction.options.getString("language");
         await this.client.database.updateGuildSetting(interaction.guild.id, "language", newLanguage);

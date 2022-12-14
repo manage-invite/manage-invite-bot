@@ -16,21 +16,6 @@ module.exports = class extends Command {
         });
     }
 
-    async run (message, data) {
-
-        const embed = new Discord.MessageEmbed()
-            .setAuthor("ManageInvite", this.client.user.displayAvatarURL())
-            .setDescription(message.translate("core/add:CONTENT", {
-                clientID: this.client.user.id
-            }))
-            .setColor(data.color)
-            .setFooter(message.translate("core/add:REQUEST_BY", {
-                username: message.author.username
-            }), message.author.displayAvatarURL());
-        message.channel.send({ embeds: [embed] });
-
-    }
-
     async runInteraction (interaction, data) {
 
         const embed = new Discord.MessageEmbed()
