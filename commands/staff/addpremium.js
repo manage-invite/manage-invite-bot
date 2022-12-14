@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js");
 const Constants = require("../../helpers/constants");
+const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -8,20 +9,56 @@ module.exports = class extends Command {
             enabled: true,
             aliases: [ "add-premium" ],
             clientPermissions: [],
-            permLevel: 5
+            permLevel: 5,
+
+            slashCommandOptions: {
+                description: "Add premium to a guild",
+                options: [
+                    {
+                        name: "guildid",
+                        description: "The guild ID",
+                        type: ApplicationCommandOptionTypes.STRING,
+                        required: true
+                    },
+                    {
+                        name: "dayscount",
+                        description: "The number of days",
+                        type: ApplicationCommandOptionTypes.INTEGER,
+                        required: true
+                    },
+                    {
+                        name: "amount",
+                        description: "The amount of the payment (can be 0)",
+                        type: ApplicationCommandOptionTypes.INTEGER,
+                        required: true
+                    },
+                    {
+                        name: "user",
+                        description: "The user who requested the premium",
+                        type: ApplicationCommandOptionTypes.USER,
+                        required: true
+                    },
+                    {
+                        name: "label",
+                        description: "The label of the payment",
+                        type: ApplicationCommandOptionTypes.STRING,
+                        required: true
+                    }
+                ]
+            }
         });
     }
 
-    async run (message, args) {
+    async runInteraction (interaction) {
 
         const premiumArgs = {
-            guildID: args[0],
-            daysCount: parseInt(args[1]),
-            amount: parseInt(args[2]),
-            user: message.mentions.users.first() || await this.client.users.fetch(args[3]).catch(() => {}),
-            pmtType: args[4],
-            guildsCount: parseInt(args[5]),
-            label: args.slice(6).join(" ")
+            guildID: interaction.options.getString("guildid"),
+            daysCount: interaction.options.getInteger("dayscount"),
+            amount: interaction.options.getInteger("amount"),
+            user: interaction.options.getUser("user"),
+            pmtType: "auto_add_cmd",
+            guildsCount: 1,
+            label: interaction.options.getString("label")
         };
 
         if (premiumArgs.guildID && premiumArgs.guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-zA-Z\d]/)){
@@ -33,7 +70,7 @@ module.exports = class extends Command {
         Object.keys(premiumArgs).forEach((key) => {
             if (premiumArgs[key] === undefined && !send){
                 send = true;
-                return message.channel.send(`${Constants.Emojis.ERROR} | Invalid args. ${Object.keys(premiumArgs).join(", ")}. Missing **${key}**.`);
+                return interaction.reply(`${Constants.Emojis.ERROR} | Invalid args. ${Object.keys(premiumArgs).join(", ")}. Missing **${key}**.`);
             }
         });
         if (send) return;
@@ -48,16 +85,16 @@ module.exports = class extends Command {
         });
 
         await this.client.database.createSubscriptionPayment(subscription.id, {
-            modDiscordID: message.author.id,
+            modDiscordID: interaction.user.id,
             payerDiscordID: premiumArgs.user.id,
             payerDiscordUsername: premiumArgs.user.tag,
-            modID: message.author.id,
+            modID: interaction.user.id,
             amount: premiumArgs.amount,
             type: premiumArgs.pmtType,
             createdAt
         });
 
-        return message.channel.send(`${Constants.Emojis.SUCCESS} | Subscription created. Get more informations with \`${message.guild.settings.prefix}sub ${premiumArgs.guildID}\`.`);
+        return interaction.reply(`${Constants.Emojis.SUCCESS} | Subscription created. Get more informations with \`/sub ${premiumArgs.guildID}\`.`);
 
     }
 };
