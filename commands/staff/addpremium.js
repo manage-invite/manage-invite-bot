@@ -12,6 +12,13 @@ module.exports = class extends Command {
             permLevel: 5,
 
             slashCommandOptions: {
+                permissions: [
+                    {
+                        id: "638688050289049600",
+                        type: 1,
+                        permission: true
+                    }
+                ],
                 description: "Add premium to a guild",
                 options: [
                     {

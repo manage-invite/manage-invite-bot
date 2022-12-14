@@ -8,25 +8,45 @@ module.exports = class extends Command {
             enabled: true,
             aliases: [ "starttrial" ],
             clientPermissions: [],
-            permLevel: 4
+            permLevel: 4,
+
+            slashCommandOptions: {
+                description: "Start a trial for a user",
+                options: [
+                    {
+                        name: "guild",
+                        description: "The guild ID",
+                        type: Constants.ApplicationCommandOptionTypes.STRING,
+                        required: true
+                    },
+                    {
+                        name: "user",
+                        description: "The user who requested the premium",
+                        type: Constants.ApplicationCommandOptionTypes.USER,
+                        required: true
+                    }
+                ],
+                permissions: [
+                    {
+                        id: "638688050289049600",
+                        type: 1,
+                        permission: true
+                    }
+                ]
+            }
         });
     }
 
-    async run (message, args) {
+    async runInteraction (interaction, data) {
 
-        const force = message.content.includes("-f");
-
-        let guildID = args[0];
-        if (!guildID) return message.error("Please specify a valid guild!");
+        let guildID = interaction.options.getString("guild");
 
         if (guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-zA-Z\d]/)){
             const invite = await this.client.fetchInvite(guildID);
             guildID = invite.channel.guild.id;
         }
 
-        if (!args[1]) return message.error("Please specify a valid user!");
-        const user = message.mentions.users.first() || await this.client.users.fetch(args[1]) || message.guild.members.cache.find((m) => `${m.user.username}#${m.user.discriminator}` === args[1])?.user;
-        if (!user) return message.error(`I wasn't able to find a user for \`${args[1]}\``);
+        const user = interaction.options.getUser("user");
 
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(guildID);
         const guildNames = await this.client.shard.broadcastEval((client, guildID) => {
@@ -37,7 +57,7 @@ module.exports = class extends Command {
         const guildName = guildNameFound || guildID;
 
         if (guildSubscriptions.length > 0){
-            if (!force) return message.error(`**${guildName}** has already used the trial period or has already paid.`);
+            return interaction.reply(`**${guildName}** has already used the trial period or has already paid.`);
         }
 
         const createdAt = new Date();
@@ -57,17 +77,17 @@ module.exports = class extends Command {
         );
 
         await this.client.database.createSubscriptionPayment(subscription.id, {
-            modDiscordID: message.author.id,
+            modDiscordID: interaction.user.id,
             payerDiscordID: user.id,
             payerDiscordUsername: user.tag,
-            modID: message.author.id,
+            modID: interaction.user.id,
             amount: 0,
             type: "trial_activation",
             createdAt
         });
 
-        const expiresAt = this.client.functions.formatDate(new Date(subscription.expiresAt), "MMM DD YYYY", message.guild.settings.language);
-        message.channel.send(`${Constants.Emojis.SUCCESS} | Server **${guildName}** is now premium for 7 days (end on **${expiresAt}**) :rocket:`);
+        const expiresAt = this.client.functions.formatDate(new Date(subscription.expiresAt), "MMM DD YYYY", data.settings.language);
+        interaction.reply(`${Constants.Emojis.SUCCESS} | Server **${guildName}** is now premium for 7 days (end on **${expiresAt}**) :rocket:`);
 
     }
 };

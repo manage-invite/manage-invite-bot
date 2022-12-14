@@ -9,14 +9,32 @@ module.exports = class extends Command {
             enabled: true,
             aliases: [ "sub" ],
             clientPermissions: [],
-            permLevel: 4
+            permLevel: 4,
+
+            slashCommandOptions: {
+                description: "Get info about a subscription",
+                options: [
+                    {
+                        name: "guildid",
+                        description: "The guild ID",
+                        type: Discord.Constants.ApplicationCommandOptionTypes.STRING,
+                        required: true
+                    }
+                ],
+                permissions: [
+                    {
+                        id: "638688050289049600",
+                        type: 1,
+                        permission: true
+                    }
+                ]
+            }
         });
     }
 
-    async run (message, args, data) {
+    async runInteraction (interaction, data) {
 
-        let guildID = args[0];
-        if (!guildID) return message.error("Please specify a valid guild ID!");
+        let guildID = interaction.options.getString("guildid");
 
         if (guildID.match(/(https?:\/\/)?(www\.)?(discord\.(gg|io|me|li|com)|discordapp\.com\/invite)\/.+[a-z]/)){
             const invite = await this.client.fetchInvite(guildID);
@@ -37,7 +55,7 @@ module.exports = class extends Command {
         };
 
         const description = isPremium
-            ? `This server is premium. Subscription will expire on ${this.client.functions.formatDate(new Date(guildSubscriptions.sort((a, b) => new Date(b.expiresAt).getTime() - new Date(a.expiresAt).getTime())[0].expiresAt), "MMM DD YYYY", message.guild.settings.language)}.`
+            ? `This server is premium. Subscription will expire on ${this.client.functions.formatDate(new Date(guildSubscriptions.sort((a, b) => new Date(b.expiresAt).getTime() - new Date(a.expiresAt).getTime())[0].expiresAt), "MMM DD YYYY", data.settings.language)}.`
             : "This server is not premium.";
 
         const embed = new Discord.MessageEmbed()
@@ -62,7 +80,7 @@ module.exports = class extends Command {
             });
         }
 
-        message.channel.send({ embeds: [embed] });
+        interaction.reply({ embeds: [embed] });
 
     }
 };
