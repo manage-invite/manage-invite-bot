@@ -1,5 +1,6 @@
 const Command = require("../../structures/Command.js");
 const Constants = require("../../helpers/constants");
+const Discord = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -16,13 +17,13 @@ module.exports = class extends Command {
                     {
                         name: "guild",
                         description: "The guild ID",
-                        type: Constants.ApplicationCommandOptionTypes.STRING,
+                        type: Discord.Constants.ApplicationCommandOptionTypes.STRING,
                         required: true
                     },
                     {
                         name: "user",
                         description: "The user who requested the premium",
-                        type: Constants.ApplicationCommandOptionTypes.USER,
+                        type: Discord.Constants.ApplicationCommandOptionTypes.USER,
                         required: true
                     }
                 ],
