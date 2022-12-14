@@ -146,7 +146,9 @@ module.exports.load = (discordClient) => {
                         iconURL: user.displayAvatarURL()
                     })
                     .setDescription(`Recurring payment for **${message.data.guildName}** was cancelled :wave:\n${formMessage ? "Satisfaction form sent! Awaiting answer... :pencil:" : "I wasn't able to send the satisfaction form... :confused:"}`)
-                    .setFooter(`Form ID: ${formMessage ? formMessage.id : "not sent"}`)
+                    .setFooter({
+                        text: `Form ID: ${formMessage ? formMessage.id : "not sent"}`
+                    })
                     .setColor("#1E90FF");
                 aLogs.send({ embeds: [logEmbed] });
                 break;

@@ -27,9 +27,12 @@ module.exports = class extends Command {
                 clientID: this.client.user.id
             }))
             .setColor(data.color)
-            .setFooter(interaction.guild.translate("core/add:REQUEST_BY", {
-                username: interaction.user.username
-            }), interaction.user.displayAvatarURL());
+            .setFooter({
+                text: interaction.guild.translate("core/add:REQUEST_BY", {
+                    username: interaction.user.username
+                }),
+                iconURL: interaction.user.displayAvatarURL()
+            });
         interaction.reply({ embeds: [embed] });
 
     }

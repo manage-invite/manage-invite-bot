@@ -37,7 +37,9 @@ module.exports = class {
             .addField("Owner name :", inviter.username)
             .addField("Server id :", guild.id)
             .addField("Number of members :", guild.memberCount)
-            .setFooter(isValidGuild ? "Add me with +add" : "Guild was just reloaded")
+            .setFooter({
+                text: isValidGuild ? "Add me with +add" : "Guild was just reloaded"
+            })
             .setColor(isValidGuild ? Constants.Embed.COLOR : "#000000");
 
         this.client.shard.broadcastEval((client, guildCreateEmbed) => {
@@ -54,7 +56,9 @@ module.exports = class {
                 .addField("__**INFORMATIONS**__", welcomeMessage)
                 .addField("__**HELP**__", "If you need some help join the support server!\n \n**--------------**\n")
                 .addField("__**LINKS**__", `> Add the bot [[Click here]](https://discordapp.com/api/oauth2/authorize?client_id=${this.client.user.id}&permissions=2146958847&scope=bot)\n> Support server  [[Click here]](${this.client.config.discord})\n> Dashboard  [[Click here]](${this.client.config.baseURL}) `)
-                .setFooter(Constants.Embed.FOOTER)
+                .setFooter({
+                    text: Constants.Embed.FOOTER
+                })
                 .setTimestamp()
                 .setColor(Constants.Embed.COLOR);
             inviter.send({ embeds: [joinEmbed] });

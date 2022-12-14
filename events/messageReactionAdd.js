@@ -14,7 +14,9 @@ module.exports = class {
                 name: `${user.tag} answered satisfaction form`,
                 iconURL: user.displayAvatarURL()
             })
-            .setFooter(`Form ID: ${message.id}`)
+            .setFooter({
+                text: `Form ID: ${message.id}`
+            })
             .setColor("#4682B4");
 
         let reason = "Unknown emoji";
@@ -52,7 +54,9 @@ module.exports = class {
                         name: `Awaiting other feedback from ${user.tag}`,
                         iconURL: user.displayAvatarURL()
                     })
-                    .setFooter(`Form ID: ${message.id}`)
+                    .setFooter({
+                        text: `Form ID: ${message.id}`
+                    })
                     .setColor("#B0E0E6")));
                 this.client.shard.broadcastEval((client, waitingAnswerEmbed) => {
                     const aLogs = client.channels.cache.get(client.config.premiumLogs);
@@ -65,7 +69,9 @@ module.exports = class {
                                 name: `No feedback received for other from ${user.tag}`,
                                 iconURL: user.displayAvatarURL()
                             })
-                            .setFooter(`Form ID: ${message.id}`)
+                            .setFooter({
+                                text: `Form ID: ${message.id}`
+                            })
                             .setColor("#ADD8E6");
                         this.client.shard.broadcastEval((client, noAnswerEmbed) => {
                             const aLogs = client.channels.cache.get(client.config.premiumLogs);
