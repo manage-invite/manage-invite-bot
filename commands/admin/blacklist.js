@@ -56,7 +56,7 @@ module.exports = class extends Command {
         const embed = new Discord.EmbedBuilder()
             .setColor(data.color)
             .setFooter({ text: data.footer });
-        const action = interaction.options.getSubCommand();
+        const action = interaction.options.getSubcommand();
         switch (action){
         case "add": {
             const user = interaction.options.getUser("user");

@@ -38,7 +38,7 @@ module.exports = class extends Command {
 
     async runInteraction (interaction) {
 
-        const action = interaction.options.getSubCommand();
+        const action = interaction.options.getSubcommand();
 
         if (action === "disable") {
             await this.client.database.updateGuildSetting(interaction.guild.id, "fakeThreshold", null);

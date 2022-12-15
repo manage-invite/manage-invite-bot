@@ -39,7 +39,7 @@ module.exports = class extends Command {
 
     async runInteraction (interaction) {
 
-        const action = interaction.options.getSubCommand();
+        const action = interaction.options.getSubcommand();
 
         if (action === "set") {
             const channel = interaction.options.getChannel("channel");
