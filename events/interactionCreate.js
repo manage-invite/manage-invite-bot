@@ -66,7 +66,7 @@ module.exports = class {
             /* Client permissions */
             const neededPermissions = [];
             cmd.conf.clientPermissions.forEach((permission) => {
-                if (!interaction.channel.permissionsFor(interaction.guild.me).has(permission)) {
+                if (!interaction.channel.permissionsFor(interaction.guild.members.me).has(permission)) {
                     neededPermissions.push(permission);
                 }
             });

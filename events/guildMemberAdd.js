@@ -46,7 +46,7 @@ module.exports = class {
         let oauth = false;
         let perm = false;
 
-        const botMember = member.guild.members.cache.get(this.client.user.id) ?? await member.guild.members.fetch({
+        const botMember = member.guild.members.me ?? await member.guild.members.fetch({
             user: this.client.user.id,
             cache: true
         }).catch(() => {});
