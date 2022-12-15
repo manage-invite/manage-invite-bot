@@ -77,6 +77,10 @@ const formatMessage = (message, member, numberOfJoins, locale, invData, alert, i
         const embedData = JSON.parse(message.substr(0, 10000));
         embed = true;
         data = embedData;
+        if (data.color) {
+            // transform hex color to decimal
+            data.color = parseInt(data.color.replace("#", ""), 16);
+        }
     } catch (e) {
         embed = false;
         data = message.substr(0, 2000);
