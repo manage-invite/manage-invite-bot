@@ -46,15 +46,11 @@ module.exports = class {
         let oauth = false;
         let perm = false;
 
-        if (!member.guild.me) {
-            const fetchMyselfStart = Date.now();
-            await member.guild.members.fetch({
-                user: this.client.user.id,
-                cache: true
-            }).catch(() => {});
-            logMessage += `Fetch myself: ${Date.now()-fetchMyselfStart}ms\n`;
-        }
-        if (!member.guild.me.permissions.has(PermissionsBitField.Flags.ManageGuild)) perm = true;
+        const botMember = member.guild.members.cache.get(this.client.user.id) ?? await member.guild.members.fetch({
+            user: this.client.user.id,
+            cache: true
+        }).catch(() => {});
+        if (!botMember.permissions.has(PermissionsBitField.Flags.ManageGuild)) perm = true;
 
         if (member.user.bot){
             oauth = true;

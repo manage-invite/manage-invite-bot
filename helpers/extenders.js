@@ -1,4 +1,4 @@
-const { Guild, Message, EmbedBuilder } = require("discord.js");
+const { Guild, Message } = require("discord.js");
 const Constants = require("./constants");
 
 Guild.prototype.translate = function (key, args) {
@@ -17,12 +17,13 @@ Message.prototype.translate = function (key, args) {
 
 // Translate and send the message with an error emoji
 Message.prototype.error = function (key, args, edit = false, embed = false) {
+    const botMember = this.guild.members.cache.get(this.client.user.id);
     if (
         embed &&
-        this.channel.permissionsFor(this.guild.me).has("EMBED_LINKS")
+        this.channel.permissionsFor(botMember).has("EMBED_LINKS")
     ) {
         const embed = {
-            color: "#FF0000",
+            color: 0xFF0000,
             description: this.translate(key, args)
         };
         return edit ? this.edit({ embed }) : this.channel.send({ embed });
@@ -39,12 +40,13 @@ Message.prototype.error = function (key, args, edit = false, embed = false) {
 
 // Translate and send the message with a success emoji
 Message.prototype.success = function (key, args, edit = false, embed = false) {
+    const botMember = this.guild.members.cache.get(this.client.user.id);
     if (
         embed &&
-        this.channel.permissionsFor(this.guild.me).has("EMBED_LINKS")
+        this.channel.permissionsFor(botMember).has("EMBED_LINKS")
     ) {
         const embed = {
-            color: "#32CD32",
+            color: 0x32CD32,
             description: this.translate(key, args)
         };
         return edit ? this.edit({ embeds: [embed] }) : this.channel.send({ embeds: [embed] });
@@ -67,10 +69,11 @@ Message.prototype.sendT = function (
     embed = false,
     emoji = null
 ) {
+    const botMember = this.guild.members.cache.get(this.client.user.id);
     const prefix = emoji ? `${Constants.Emojis[emoji.toUpperCase()]} | ` : "";
     if (
         embed &&
-        this.channel.permissionsFor(this.guild.me).has("EMBED_LINKS")
+        this.channel.permissionsFor(botMember).has("EMBED_LINKS")
     ) {
         const embed = {
             color: Constants.Embed.COLOR,
@@ -82,19 +85,4 @@ Message.prototype.sendT = function (
             ? this.edit(prefix + this.translate(key, args))
             : this.channel.send(prefix + this.translate(key, args));
     }
-};
-
-EmbedBuilder.prototype.errorColor = function () {
-    this.setColor("#FF0000");
-    return this;
-};
-
-EmbedBuilder.prototype.successColor = function () {
-    this.setColor("#32CD32");
-    return this;
-};
-
-EmbedBuilder.prototype.defaultColor = function () {
-    this.setColor(Constants.Embed.COLOR);
-    return this;
 };
