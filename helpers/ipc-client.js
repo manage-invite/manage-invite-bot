@@ -1,4 +1,4 @@
-const { Constants, EmbedBuilder } = require("discord.js");
+const { Status, EmbedBuilder } = require("discord.js");
 const { Client } = require("veza");
 
 module.exports.load = (discordClient) => {
@@ -59,7 +59,7 @@ module.exports.load = (discordClient) => {
             return message.reply(guild.channels.cache.filter((c) => c.type !== "GUILD_VOICE").map((c) => ({ id: c.id, name: c.name })));
         }
         if (message.data.event === "getShardStatus") {
-            const status = Object.keys(Constants.Status)[discordClient.ws?.status];
+            const status = Object.keys(Status)[discordClient.ws?.status];
             return message.reply({
                 id: discordClient.shard.ids[0],
                 status: status.charAt(0).toUpperCase() + status.slice(1, status.length).toLowerCase(),

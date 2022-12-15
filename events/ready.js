@@ -32,7 +32,7 @@ module.exports = class {
             if (premiumGuildsID.includes(guild.id)){
                 const member = await guild.members.fetch(this.client.user.id).catch(() => {});
                 let fetchedInvites = null;
-                if (!process.argv.includes("--uncache") && member.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD)) {
+                if (!process.argv.includes("--uncache") && member.permissions.has(Discord.PermissionsBitField.Flags.ManageGuild)) {
                     await guild.invites.fetch().catch(() => {});
                     fetchedInvites = generateInvitesCache(guild.invites.cache);
                 }
@@ -101,7 +101,7 @@ module.exports = class {
                 await this.client.functions.asyncForEach(guildsToFetch, async (guild) => {
                     const member = await guild.members.fetch(this.client.user.id).catch(() => {});
                     let fetchedInvites = null;
-                    if (!process.argv.includes("--uncache") && member.permissions.has(Discord.Permissions.FLAGS.MANAGE_GUILD)) {
+                    if (!process.argv.includes("--uncache") && member.permissions.has(Discord.PermissionsBitField.Flags.ManageGuild)) {
                         await guild.invites.fetch().catch(() => {});
                         fetchedInvites = generateInvitesCache(guild.invites.cache);
                     }

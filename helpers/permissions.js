@@ -1,4 +1,4 @@
-const { Permissions } = require("discord.js");
+const { PermissionsBitField } = require("discord.js");
 
 module.exports = [
     {
@@ -9,12 +9,12 @@ module.exports = [
     {
         level: 1,
         name: "Moderator",
-        check: (member) => member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES),
+        check: (member) => member.permissions.has(PermissionsBitField.Flags.ManageMessages),
     },
     {
         level: 2,
         name: "Administrator",
-        check: (member) => member.permissions.has(Permissions.FLAGS.ADMINISTRATOR),
+        check: (member) => member.permissions.has(PermissionsBitField.Flags.ManageMessages),
     },
     {
         level: 3,

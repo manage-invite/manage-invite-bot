@@ -1,4 +1,4 @@
-const { Permissions } = require("discord.js");
+const { PermissionsBitField } = require("discord.js");
 const { isEqual, generateInvitesCache } = require("../helpers/functions.js");
 
 module.exports = class {
@@ -54,7 +54,7 @@ module.exports = class {
             }).catch(() => {});
             logMessage += `Fetch myself: ${Date.now()-fetchMyselfStart}ms\n`;
         }
-        if (!member.guild.me.permissions.has(Permissions.FLAGS.MANAGE_GUILD)) perm = true;
+        if (!member.guild.me.permissions.has(PermissionsBitField.Flags.ManageGuild)) perm = true;
 
         if (member.user.bot){
             oauth = true;
