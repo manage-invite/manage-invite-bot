@@ -1,4 +1,4 @@
-const { Client, Collection, Intents } = require("discord.js"),
+const { Client, Collection, Partials, IntentsBitField } = require("discord.js"),
     util = require("util"),
     path = require("path");
 
@@ -11,15 +11,15 @@ class ManageInvite extends Client {
     constructor () {
         super({
             intents: [
-                Intents.FLAGS.GUILDS,
-                Intents.FLAGS.GUILD_MEMBERS,
-                Intents.FLAGS.GUILD_MESSAGES,
-                Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-                Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
-                Intents.FLAGS.GUILD_INVITES,
-                Intents.FLAGS.DIRECT_MESSAGES
+                IntentsBitField.Flags.Guilds,
+                IntentsBitField.Flags.GuildMembers,
+                IntentsBitField.Flags.GuildMessages,
+                IntentsBitField.Flags.GuildMessageReactions,
+                IntentsBitField.Flags.DirectMessageReactions,
+                IntentsBitField.Flags.GuildInvites,
+                IntentsBitField.Flags.DirectMessages
             ],
-            partials: [ "REACTION", "MESSAGE", "CHANNEL", "GUILD_MEMBER" ],
+            partials: [ Partials.Reaction, Partials.Message, Partials.Channel, Partials.GuildMember ],
             allowedMentions: {
                 parse: ["users", "roles", "everyone"],
                 repliedUser: true

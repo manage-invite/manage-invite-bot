@@ -8,8 +8,7 @@ module.exports = class extends Command {
         super(client, {
             name: "configdmjoin",
             enabled: true,
-            aliases: [ "dmjoin", "joindm", "configjoindm", "dm", "configdm" ],
-            clientPermissions: [ "EMBED_LINKS", "ADMINISTRATOR" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks, Discord.PermissionFlagsBits.Administrator ],
             permLevel: 2,
 
             slashCommandOptions: {
@@ -39,12 +38,20 @@ module.exports = class extends Command {
         if (confMessage === "cancel") return interaction.editReply({ content: Constants.Emojis.ERROR + " " + interaction.guild.translate("common:CANCELLED") });
         if (confMessage === interaction.guild.settings.prefix+"setdmjoin") return;
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setTitle(interaction.guild.translate("config/configjoindm:TITLE"))
-            .addField(interaction.guild.translate("common:MESSAGE"), confMessage)
-            .addField(interaction.guild.translate("common:TEST_IT"), interaction.guild.translate("config/configjoindm:TEST", {
-                prefix: interaction.guild.settings.prefix
-            }))
+            .addFields([
+                {
+                    name: interaction.guild.translate("common:MESSAGE"),
+                    value: confMessage
+                },
+                {
+                    name: interaction.guild.translate("common:TEST_IT"),
+                    value: interaction.guild.translate("config/configjoindm:TEST", {
+                        prefix: interaction.guild.settings.prefix
+                    })
+                }
+            ])
             .setThumbnail(interaction.user.avatarURL())
             .setColor(data.color)
             .setFooter({ text: data.footer });

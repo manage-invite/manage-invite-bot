@@ -6,8 +6,7 @@ module.exports = class extends Command {
         super(client, {
             name: "my-codes",
             enabled: true,
-            aliases: [ "code" ],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks ],
             permLevel: 0,
 
             slashCommandOptions: {
@@ -28,7 +27,7 @@ module.exports = class extends Command {
 
         const userInvites = invites.filter((i) => i.inviterId === user.id).sort((a, b) => b.uses - a.uses);
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setAuthor({
                 name: user.tag,
                 iconURL: user.displayAvatarURL()

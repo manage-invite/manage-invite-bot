@@ -57,7 +57,7 @@ const syncPremiumRoles = (client) => {
  * @param {object} member The member who joined/has left
  * @param {string} locale The moment locale to use
  * @param {object} invData Data related to the invite and inviter
- * @returns {string|MessageEmbed} The formatted string or embed
+ * @returns {string|EmbedBuilder} The formatted string or embed
  */
 const formatMessage = (message, member, numberOfJoins, locale, invData, alert, inviteCount) => {
 

@@ -1,6 +1,5 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js");
-const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 const { ChartJSNodeCanvas } = require("chartjs-node-canvas");
 const width = 800;
@@ -43,8 +42,7 @@ module.exports = class extends Command {
         super(client, {
             name: "stats",
             enabled: true,
-            aliases: [ "joins" ],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks ],
             permLevel: 0,
             cooldown: (args) => parseInt(!isNaN(args[0]) ? ((parseInt(args[0]) >= 1000 ? 1000 : parseInt(args[0])) / 100) : 0),
 
@@ -53,7 +51,7 @@ module.exports = class extends Command {
                 options: [
                     {
                         name: "days",
-                        type: ApplicationCommandOptionTypes.INTEGER,
+                        type: Discord.ApplicationCommandOptionType.Integer,
                         description: "The number of days to show on the graph",
                         required: true
                     }
@@ -73,7 +71,7 @@ module.exports = class extends Command {
             returnObjects: true
         }));
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setColor(data.color)
             .setFooter({ text: data.footer });
 
@@ -89,12 +87,17 @@ module.exports = class extends Command {
         const total = joinedXDays.reduce((p, c) => p+c);
         const percent = Math.round((100*total)/interaction.guild.members.cache.size);
         const daysRange = [lastXDays.shift(), lastXDays.pop()];
-        embed.addField("\u200B", interaction.guild.translate("core/stats:CONTENT", {
-            total,
-            percent,
-            from: daysRange[0],
-            to: daysRange[1]
-        }));
+        embed.addFields([
+            {
+                name: "\u200B",
+                value: interaction.guild.translate("core/stats:CONTENT", {
+                    total,
+                    percent,
+                    from: daysRange[0],
+                    to: daysRange[1]
+                })
+            }
+        ]);
         interaction.reply({
             embeds: [embed],
             files: [attachment]

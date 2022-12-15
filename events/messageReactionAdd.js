@@ -9,7 +9,7 @@ module.exports = class {
 
         const message = await reaction.message.channel.messages.fetch(reaction.message.id);
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setAuthor({
                 name: `${user.tag} answered satisfaction form`,
                 iconURL: user.displayAvatarURL()
@@ -49,7 +49,7 @@ module.exports = class {
             if (reason.trim() === "Other"){
                 await message.reactions.cache.each(r => r.users.remove(this.client.user.id));
                 await message.edit(message.content+"\nEnter the reason below (send a message):");
-                const waitingAnswerEmbed = escape(JSON.stringify(new Discord.MessageEmbed()
+                const waitingAnswerEmbed = escape(JSON.stringify(new Discord.EmbedBuilder()
                     .setAuthor({
                         name: `Awaiting other feedback from ${user.tag}`,
                         iconURL: user.displayAvatarURL()
@@ -64,7 +64,7 @@ module.exports = class {
                 }, { context: waitingAnswerEmbed });
                 const collected = await message.channel.awaitMessages({ filter: () => true, max: 1, time: 24*60*60*1000, errors: ["time"] })
                     .catch(async () => {
-                        const noAnswerEmbed = new Discord.MessageEmbed()
+                        const noAnswerEmbed = new Discord.EmbedBuilder()
                             .setAuthor({
                                 name: `No feedback received for other from ${user.tag}`,
                                 iconURL: user.displayAvatarURL()

@@ -2,22 +2,20 @@ const Command = require("../../structures/Command.js"),
     moment = require("moment"),
     Discord = require("discord.js");
 const { uniqBy } = require("lodash");
-const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "userinfo",
             enabled: true,
-            aliases: [ "ui", "info", "infos" ],
-            clientPermissions: [ "EMBED_LINKS", "MANAGE_GUILD" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks, Discord.PermissionFlagsBits.ManageGuild ],
             permLevel: 0,
 
             slashCommandOptions: {
                 description: "Get user information",
                 options: [
                     {
-                        type: ApplicationCommandOptionTypes.USER,
+                        type: Discord.ApplicationCommandOptionType.User,
                         name: "user",
                         description: "The user to get information about"
                     }
@@ -49,7 +47,7 @@ module.exports = class extends Command {
         moment.locale(interaction.guild.settings.language.substr(0, 2));
         const creationDate = moment(user.createdAt, "YYYYMMDD").fromNow();
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setAuthor({
                 name: interaction.guild.translate("core/userinfo:TITLE", {
                     username: user.tag,
@@ -57,8 +55,18 @@ module.exports = class extends Command {
                 }),
                 iconURL: user.displayAvatarURL()
             })
-            .addField(interaction.guild.translate("core/userinfo:BOT_TITLE"), user.bot ? interaction.guild.translate("common:YES") : interaction.guild.translate("common:NO"), true)
-            .addField(interaction.guild.translate("core/userinfo:CREATED_AT_TITLE"), creationDate.charAt(0).toUpperCase() + creationDate.substr(1, creationDate.length), true)
+            .addFields([
+                {
+                    name: interaction.guild.translate("core/userinfo:BOT_TITLE"),
+                    value: user.bot ? interaction.guild.translate("common:YES") : interaction.guild.translate("common:NO"),
+                    inline: true
+                },
+                {
+                    name: interaction.guild.translate("core/userinfo:CREATED_AT_TITLE"),
+                    value: creationDate.charAt(0).toUpperCase() + creationDate.substr(1, creationDate.length),
+                    inline: true
+                }
+            ])
             .setColor(data.color)
             .setFooter({ text: data.footer });
 
@@ -79,22 +87,36 @@ module.exports = class extends Command {
         
         if (member){
             const joinDate = member ? moment(member.joinedAt, "YYYYMMDD").fromNow() : null;
-            embed.addField(interaction.guild.translate("core/userinfo:JOINED_AT_TITLE"), joinDate.charAt(0).toUpperCase() + joinDate.substr(1, joinDate.length), true);
+            embed.addFields([
+                {
+                    name: interaction.guild.translate("core/userinfo:JOINED_AT_TITLE"),
+                    value: joinDate.charAt(0).toUpperCase() + joinDate.substr(1, joinDate.length),
+                    inline: true
+                }
+            ]);
         }
 
         if (memberData){
             const joinWay = await getJoinWay(joins[joins.length - 1]);
-            embed.addField(interaction.guild.translate("core/userinfo:INVITES_TITLE"), guildBlacklistedUsers.includes(user.id) ? interaction.guild.translate("admin/blacklist:BLACKLISTED", {
-                username: user.tag
-            }) : interaction.guild.translate("core/invite:MEMBER_CONTENT", {
-                username: user.username,
-                inviteCount: memberData.invites,
-                regularCount: memberData.regular,
-                bonusCount: memberData.bonus,
-                fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
-                leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
-            }))
-                .addField(interaction.guild.translate("core/userinfo:JOIN_WAY_TITLE"), joinWay);
+            embed.addFields([
+                {
+                    name: interaction.guild.translate("core/userinfo:INVITES_TITLE"),
+                    value: guildBlacklistedUsers.includes(user.id) ? interaction.guild.translate("admin/blacklist:BLACKLISTED", {
+                        username: user.tag
+                    }) : interaction.guild.translate("core/invite:MEMBER_CONTENT", {
+                        username: user.username,
+                        inviteCount: memberData.invites,
+                        regularCount: memberData.regular,
+                        bonusCount: memberData.bonus,
+                        fakeCount: memberData.fake > 0 ? `-${memberData.fake}` : memberData.fake,
+                        leavesCount: memberData.leaves > 0 ? `-${memberData.leaves}` : memberData.leaves
+                    })
+                },
+                {
+                    name: interaction.guild.translate("core/userinfo:JOIN_WAY_TITLE"),
+                    value: joinWay
+                }
+            ]);
         }
         
         if (member){
@@ -103,7 +125,12 @@ module.exports = class extends Command {
             const joinPos = members.map((u) => u.id).indexOf(member.id);
             const previous = members[joinPos - 1] ? members[joinPos - 1].user : null;
             const next = members[joinPos + 1] ? members[joinPos + 1].user : null;
-            embed.addField(interaction.guild.translate("core/userinfo:JOIN_ORDER_TITLE"), `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`);
+            embed.addFields([
+                {
+                    name: interaction.guild.translate("core/userinfo:JOIN_ORDER_TITLE"),
+                    value: `${previous ? `**${previous.tag}** > ` : ""}**${user.tag}**${next ? ` > **${next.tag}**` : ""}`
+                }
+            ]);
         }
 
         if (memberData.invitedMembers){
@@ -118,29 +145,46 @@ module.exports = class extends Command {
                 andMore = true;
                 users.length = 19;
             }
-            embed.addField(interaction.guild.translate("core/userinfo:INVITED_TITLE"),
-                nobody ? interaction.guild.translate("core/userinfo:NO_INVITED_USERS") :
-                    (andMore ? interaction.guild.translate("core/userinfo:INVITED_USERS_MORE", {
-                        list: users.join(", ")
-                    }) :
-                        users.join(", ")));
+            embed.addFields([
+                {
+                    name: interaction.guild.translate("core/userinfo:INVITED_TITLE"),
+                    value: nobody ? interaction.guild.translate("core/userinfo:NO_INVITED_USERS") :
+                        (andMore ? interaction.guild.translate("core/userinfo:INVITED_USERS_MORE", {
+                            list: users.join(", ")
+                        }) :
+                            users.join(", "))
+                }
+            ]);
         }
 
         const numberOfJoins = joins.length > 1 ? joins.length : member ? 1 : 0;
-        embed.addField(interaction.guild.translate("core/userinfo:NUMBER_JOINS"), numberOfJoins.toString());
+        embed.addFields([
+            {
+                name: interaction.guild.translate("core/userinfo:NUMBER_JOINS"),
+                value: numberOfJoins.toString()
+            }
+        ]);
                 
         if (numberOfJoins > 1){
-            embed.addField(interaction.guild.translate("core/userinfo:FIRST_JOIN_WAY_TITLE"), await getJoinWay(joins[0]));
+            embed.addFields([
+                {
+                    name: interaction.guild.translate("core/userinfo:FIRST_JOIN_WAY_TITLE"),
+                    value: await getJoinWay(joins[0])
+                }
+            ]);
         }
 
         await interaction.guild.invites.fetch();
         const guildInvites = interaction.guild.invites.cache;
         const userInvites = guildInvites.filter((i) => i?.inviter?.id === user.id);
-        embed.addField(interaction.guild.translate("core/userinfo:INVITE_CODES"),
-            userInvites.size > 0
-                ? userInvites.map((i) => `**${i.code}** | **${i.channel}** | **${i.uses}** ${interaction.guild.translate("common:USES").toLowerCase()}`).join("\n")
-                : interaction.guild.translate("core/userinfo:NO_INVITES")
-        );
+        embed.addFields([
+            {
+                name: interaction.guild.translate("core/userinfo:INVITE_CODES"),
+                value: userInvites.size > 0
+                    ? userInvites.map((i) => `**${i.code}** | **${i.channel}** | **${i.uses}** ${interaction.guild.translate("common:USES").toLowerCase()}`).join("\n")
+                    : interaction.guild.translate("core/userinfo:NO_INVITES")
+            }
+        ]);
 
         interaction.reply({ embeds: [embed] });
     }

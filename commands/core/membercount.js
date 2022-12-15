@@ -6,8 +6,7 @@ module.exports = class extends Command {
         super(client, {
             name: "membercount",
             enabled: true,
-            aliases: [ "m" ],
-            clientPermissions: [ "EMBED_LINKS", "ADD_REACTIONS" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks, Discord.PermissionFlagsBits.AddReactions ],
             permLevel: 0,
 
             slashCommandOptions: {
@@ -20,7 +19,7 @@ module.exports = class extends Command {
 
         await interaction.guild.members.fetch();
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setAuthor({
                 name: interaction.guild.translate("core/membercount:TITLE", {
                     guild: interaction.guild.name

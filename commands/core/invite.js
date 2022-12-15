@@ -1,14 +1,12 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js");
-const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "invites",
             enabled: true,
-            aliases: [ "invite", "rank" ],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks ],
             permLevel: 0,
 
             slashCommandOptions: {
@@ -16,7 +14,7 @@ module.exports = class extends Command {
                 
                 options: [
                     {
-                        type: ApplicationCommandOptionTypes.USER,
+                        type: Discord.ApplicationCommandOptionType.User,
                         name: "user",
                         description: "User to get invites of (default is you)"
                     }
@@ -52,7 +50,7 @@ module.exports = class extends Command {
             interaction.guild.translate("core/invite:MEMBER_CONTENT", translation);
 
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setAuthor({
                 name: user.tag,
                 iconURL: user.displayAvatarURL()

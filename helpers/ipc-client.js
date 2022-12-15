@@ -1,4 +1,4 @@
-const { Constants, MessageEmbed } = require("discord.js");
+const { Constants, EmbedBuilder } = require("discord.js");
 const { Client } = require("veza");
 
 module.exports.load = (discordClient) => {
@@ -91,7 +91,7 @@ module.exports.load = (discordClient) => {
             if (!user) return console.log(`Shard #${discordClient.shard.ids[0]}: PayPal Notif, user can not be found ${message.data.userID}`);
             switch (message.data.notificationType) {
             case "verification": {
-                const logEmbed = new MessageEmbed()
+                const logEmbed = new EmbedBuilder()
                     .setAuthor({
                         name: `${user.tag} purchased ManageInvite Premium`,
                         iconURL: user.displayAvatarURL()
@@ -102,7 +102,7 @@ module.exports.load = (discordClient) => {
                 break;
             }
             case "subscribed": {
-                const logEmbed = new MessageEmbed()
+                const logEmbed = new EmbedBuilder()
                     .setAuthor({
                         name: `${user.tag} created a subscription`,
                         iconURL: user.displayAvatarURL()
@@ -121,7 +121,7 @@ module.exports.load = (discordClient) => {
                 break;
             }
             case "paid": {
-                const logEmbed = new MessageEmbed()
+                const logEmbed = new EmbedBuilder()
                     .setAuthor({
                         name: `${user.tag} paid for ManageInvite Premium`,
                         iconURL: user.displayAvatarURL()
@@ -140,7 +140,7 @@ module.exports.load = (discordClient) => {
                     formMessage.react("\u0033\u20E3");
                     formMessage.react("\u0034\u20E3");
                 }
-                const logEmbed = new MessageEmbed()
+                const logEmbed = new EmbedBuilder()
                     .setAuthor({
                         name: `${user.tag} cancelled their subscription for ManageInvite Premium`,
                         iconURL: user.displayAvatarURL()
@@ -154,7 +154,7 @@ module.exports.load = (discordClient) => {
                 break;
             }
             case "dms": {
-                const logEmbed = new MessageEmbed()
+                const logEmbed = new EmbedBuilder()
                     .setAuthor({
                         name: `Thanks for purchasing ManageInvite Premium, ${user.tag}`,
                         iconURL: user.displayAvatarURL()

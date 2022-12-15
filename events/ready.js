@@ -73,7 +73,7 @@ module.exports = class {
                             });
                         }
                         const beg = paymentData.subLabel === "Trial Version" ? "Your trial period" : "Your premium subscription";
-                        const embed = new Discord.MessageEmbed()
+                        const embed = new Discord.EmbedBuilder()
                             .setAuthor({
                                 name: `Hello, ${user.username}`
                             })

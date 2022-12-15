@@ -8,8 +8,7 @@ module.exports = class extends Command {
         super(client, {
             name: "configjoin",
             enabled: true,
-            aliases: [ "join", "joinconfig" ],
-            clientPermissions: [ "EMBED_LINKS", "ADMINISTRATOR" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks, Discord.PermissionFlagsBits.Administrator ],
             permLevel: 2,
 
             slashCommandOptions: {
@@ -54,13 +53,24 @@ module.exports = class extends Command {
         }) });
         collected.first().delete().catch(() => {});
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setTitle(interaction.guild.translate("config/configjoin:TITLE"))
-            .addField(interaction.guild.translate("common:MESSAGE"), confMessage)
-            .addField(interaction.guild.translate("common:CHANNEL"), channel.toString())
-            .addField(interaction.guild.translate("common:TEST_IT"), interaction.guild.translate("config/configjoin:TEST", {
-                prefix: interaction.guild.settings.prefix
-            }))
+            .addFields([
+                {
+                    name: interaction.guild.translate("common:MESSAGE"),
+                    value: confMessage
+                },
+                {
+                    name: interaction.guild.translate("common:CHANNEL"),
+                    value: channel.toString()
+                },
+                {
+                    name: interaction.guild.translate("common:TEST_IT"),
+                    value: interaction.guild.translate("config/configjoin:TEST", {
+                        prefix: interaction.guild.settings.prefix
+                    })
+                }
+            ])
             .setThumbnail(interaction.user.avatarURL())
             .setColor(data.color)
             .setFooter({ text: data.footer });

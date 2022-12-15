@@ -1,3 +1,4 @@
+const { ButtonStyle } = require("discord.js");
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js"),
     Constants = require("../../helpers/constants");
@@ -7,8 +8,7 @@ module.exports = class extends Command {
         super(client, {
             name: "sync-invites",
             enabled: true,
-            aliases: [ "sync" ],
-            clientPermissions: [ "MANAGE_GUILD" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks, Discord.PermissionFlagsBits.ManageGuild ],
             permLevel: 2,
 
             slashCommandOptions: {
@@ -25,14 +25,14 @@ module.exports = class extends Command {
 
         const randomID = Math.random().toString(36).substring(2, 9);
 
-        const confirmRow = new Discord.MessageActionRow()
+        const confirmRow = new Discord.ActionRowBuilder()
             .addComponents(
-                new Discord.MessageButton()
-                    .setStyle("SUCCESS")
+                new Discord.EmbedBuilder()
+                    .setStyle(ButtonStyle.Success)
                     .setLabel(interaction.guild.translate("common:CONFIRM"))
                     .setCustomId(`confirm_${randomID}`),
-                new Discord.MessageButton()
-                    .setStyle("SECONDARY")
+                new Discord.EmbedBuilder()
+                    .setStyle(ButtonStyle.Secondary)
                     .setLabel(interaction.guild.translate("common:CANCEL"))
                     .setCustomId(`cancel_${randomID}`)
             );
@@ -70,7 +70,7 @@ module.exports = class extends Command {
                         type: "regular"
                     });
                 });
-                const embed = new Discord.MessageEmbed()
+                const embed = new Discord.EmbedBuilder()
                     .setAuthor({
                         name: interaction.guild.translate("admin/sync-invites:TITLE")
                     })

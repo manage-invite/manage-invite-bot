@@ -1,14 +1,13 @@
 const Command = require("../../structures/Command.js");
 const Constants = require("../../helpers/constants");
-const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
+const Discord = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "set-fake-threshold",
             enabled: true,
-            aliases: [ "setfake-threshold", "setfake", "set-fake" ],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks ],
             permLevel: 2,
 
             slashCommandOptions: {
@@ -17,12 +16,12 @@ module.exports = class extends Command {
                     {
                         name: "set",
                         description: "Add or change the threshold",
-                        type: ApplicationCommandOptionTypes.SUB_COMMAND,
+                        type: Discord.ApplicationCommandOptionType.Subcommand,
                         options: [
                             {
                                 name: "days",
                                 description: "The number of days before a member is considered a fake.",
-                                type: ApplicationCommandOptionTypes.INTEGER,
+                                type: Discord.ApplicationCommandOptionType.Integer,
                                 required: true
                             }
                         ]
@@ -30,7 +29,7 @@ module.exports = class extends Command {
                     {
                         name: "disable",
                         description: "Disable the threshold",
-                        type: ApplicationCommandOptionTypes.SUB_COMMAND
+                        type: Discord.ApplicationCommandOptionType.Subcommand
                     }
                 ]
             }

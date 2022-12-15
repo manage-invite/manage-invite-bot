@@ -6,8 +6,7 @@ module.exports = class extends Command {
         super(client, {
             name: "ping",
             enabled: true,
-            aliases: [],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks ],
             permLevel: 0,
 
             slashCommandOptions: {
@@ -18,12 +17,20 @@ module.exports = class extends Command {
 
     async runInteraction (interaction, data) {
   
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setTitle(interaction.guild.translate("core/ping:TITLE"))
             .setColor(data.color)
             .setFooter({ text: data.footer })
-            .addField(interaction.guild.translate("core/ping:WEBSOCKET"), `${Math.floor(this.client.ws.ping)} ms`)
-            .addField(interaction.guild.translate("core/ping:BOT"), `${Math.floor(Date.now() - interaction.createdTimestamp)} ms`);
+            .addFields([
+                {
+                    name: interaction.guild.translate("core/ping:WEBSOCKET"),
+                    value: `${Math.floor(this.client.ws.ping)} ms`
+                },
+                {
+                    name: interaction.guild.translate("core/ping:BOT"),
+                    value: `${Math.floor(Date.now() - interaction.createdTimestamp)} ms`
+                }
+            ]);
         interaction.reply({ embeds: [embed] });
     }
 };

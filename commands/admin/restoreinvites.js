@@ -1,3 +1,4 @@
+const { ButtonStyle } = require("discord.js");
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js"),
     Constants = require("../../helpers/constants");
@@ -7,8 +8,7 @@ module.exports = class extends Command {
         super(client, {
             name: "restoreinvites",
             enabled: true,
-            aliases: [ "resinvites", "restoreinv", "resinv", "restoreinvite", "restore-invites", "restore-invite" ],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks ],
             permLevel: 2,
 
             slashCommandOptions: {
@@ -30,14 +30,14 @@ module.exports = class extends Command {
 
         const randomID = Math.random().toString(36).substr(2, 9);
 
-        const confirmRow = new Discord.MessageActionRow()
+        const confirmRow = new Discord.ActionRowBuilder()
             .addComponents(
-                new Discord.MessageButton()
-                    .setStyle("SUCCESS")
+                new Discord.EmbedBuilder()
+                    .setStyle(ButtonStyle.Success)
                     .setLabel(interaction.guild.translate("common:CONFIRM"))
                     .setCustomId(`confirm_${randomID}`),
-                new Discord.MessageButton()
-                    .setStyle("SECONDARY")
+                new Discord.EmbedBuilder()
+                    .setStyle(ButtonStyle.Secondary)
                     .setLabel(interaction.guild.translate("common:CANCEL"))
                     .setCustomId(`cancel_${randomID}`)
             );
@@ -65,7 +65,7 @@ module.exports = class extends Command {
     
                 await this.client.database.restoreGuildInvites(interaction.guild.id, interaction.guild.settings.storageID);
     
-                const embed = new Discord.MessageEmbed()
+                const embed = new Discord.EmbedBuilder()
                     .setAuthor({
                         name: interaction.guild.translate("admin/restoreinvites:TITLE")
                     })

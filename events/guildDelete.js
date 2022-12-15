@@ -15,13 +15,30 @@ module.exports = class {
 
         const user = await this.client.users.fetch(guild.ownerId);
 
-        const guildDelete = new Discord.MessageEmbed()
+        const guildDelete = new Discord.EmbedBuilder()
             .setTitle("Remove | :broken_heart:")
-            .addField("Server name :", guild.name) 
-            .addField("Owner id :", user.id)
-            .addField("Owner name :", user.username)
-            .addField("Server id :", guild.id)
-            .addField("Number of members :", guild.memberCount)
+            .addFields([
+                {
+                    name: "Server name :",
+                    value: guild.name
+                },
+                {
+                    name: "Owner id :",
+                    value: user.id
+                },
+                {
+                    name: "Owner name :",
+                    value: user.username
+                },
+                {
+                    name: "Server id :",
+                    value: guild.id
+                },
+                {
+                    name: "Number of members :",
+                    value: guild.memberCount
+                }
+            ])
             .setColor(Constants.Embed.COLOR);
 
         this.client.shard.broadcastEval((client, removeLogsEmbed) => {

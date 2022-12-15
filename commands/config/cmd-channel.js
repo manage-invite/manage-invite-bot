@@ -1,14 +1,14 @@
-const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
+const Discord = require("discord.js");
 const Command = require("../../structures/Command.js");
 const Constants = require("../../helpers/constants");
+const { PermissionFlagsBits } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "cmd-channel",
             enabled: true,
-            aliases: [ "cmdchannel" ],
-            clientPermissions: [ "EMBED_LINKS", "MANAGE_MESSAGES" ],
+            clientPermissions: [ PermissionFlagsBits.EmbedLinks, PermissionFlagsBits.ManageMessages ],
             permLevel: 2,
 
             slashCommandOptions: {
@@ -17,12 +17,12 @@ module.exports = class extends Command {
                     {
                         name: "set",
                         description: "Enable or change the command channel",
-                        type: ApplicationCommandOptionTypes.SUB_COMMAND,
+                        type: Discord.ApplicationCommandOptionType.Subcommand,
                         options: [
                             {
                                 name: "channel",
                                 description: "The channel to set the command channel to.",
-                                type: ApplicationCommandOptionTypes.CHANNEL,
+                                type: Discord.ApplicationCommandOptionType.Channel,
                                 required: true
                             }
                         ]
@@ -30,7 +30,7 @@ module.exports = class extends Command {
                     {
                         name: "disable",
                         description: "Disable the command channel.",
-                        type: ApplicationCommandOptionTypes.SUB_COMMAND
+                        type: Discord.ApplicationCommandOptionType.Subcommand
                     }
                 ]
             }

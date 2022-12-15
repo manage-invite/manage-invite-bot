@@ -7,7 +7,6 @@ module.exports = class extends Command {
         super(client, {
             name: "subscription",
             enabled: true,
-            aliases: [ "sub" ],
             clientPermissions: [],
             permLevel: 4,
 
@@ -17,7 +16,7 @@ module.exports = class extends Command {
                     {
                         name: "guildid",
                         description: "The guild ID",
-                        type: Discord.Constants.ApplicationCommandOptionTypes.STRING,
+                        type: Discord.ApplicationCommandOptionType.String,
                         required: true
                     }
                 ],
@@ -58,7 +57,7 @@ module.exports = class extends Command {
             ? `This server is premium. Subscription will expire on ${this.client.functions.formatDate(new Date(guildSubscriptions.sort((a, b) => new Date(b.expiresAt).getTime() - new Date(a.expiresAt).getTime())[0].expiresAt), "MMM DD YYYY", data.settings.language)}.`
             : "This server is not premium.";
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setAuthor({
                 name: `Subscription for ${guildData.name} (${guildID})`,
                 iconURL: guildData.icon
@@ -79,7 +78,12 @@ module.exports = class extends Command {
                 subContents.push(previousContent + currentContent);
             });
             subContents.forEach((content) => {
-                embed.addField(`${aboutToExpire ? Constants.Emojis.IDLE : active ? Constants.Emojis.ONLINE : Constants.Emojis.DND + (invalidated ? ` ${Constants.Emojis.OFFLINE}` : "")} ${sub.subLabel} (${sub.id})`, content || "No payment");
+                embed.addFields([
+                    {
+                        name: `${aboutToExpire ? Constants.Emojis.IDLE : active ? Constants.Emojis.ONLINE : Constants.Emojis.DND + (invalidated ? ` ${Constants.Emojis.OFFLINE}` : "")} ${sub.subLabel} (${sub.id})`,
+                        value: content || "No payment"
+                    }
+                ]);
             });
         }
 

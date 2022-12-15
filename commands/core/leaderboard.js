@@ -1,15 +1,14 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js");
-const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 const Constants = require("../../helpers/constants");
+const { ButtonStyle } = require("discord.js");
 
 module.exports  = class extends Command {
     constructor (client) {
         super(client, {
             name: "leaderboard",
             enabled: true,
-            aliases: [ "top", "lb" ],
-            clientPermissions: [ "EMBED_LINKS", "ADD_REACTIONS", "MANAGE_MESSAGES" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks, Discord.PermissionFlagsBits.AddReactions, Discord.PermissionFlagsBits.ManageMessages ],
             permLevel: 0,
             cooldown: () => 5,
 
@@ -20,7 +19,7 @@ module.exports  = class extends Command {
                     {
                         name: "with-ids",
                         description: "Whether to show the IDs of the user on the leaderboard",
-                        type: ApplicationCommandOptionTypes.BOOLEAN
+                        type: Discord.ApplicationCommandOptionType.Boolean
                     }
                 ]
             }
@@ -36,12 +35,12 @@ module.exports  = class extends Command {
             const index = embeds.length === 0 ? 0 : embeds.length-1;
             let lastEmbed = embeds[index];
             if (lastEmbed && memberCount > 9){
-                lastEmbed = new Discord.MessageEmbed()
+                lastEmbed = new Discord.EmbedBuilder()
                     .setColor(Constants.Embed.COLOR);
                 embeds[embeds.length] = lastEmbed;
                 memberCount = 0;
             } else if (!lastEmbed){
-                lastEmbed = new Discord.MessageEmbed()
+                lastEmbed = new Discord.EmbedBuilder()
                     .setColor(Constants.Embed.COLOR);
                 embeds[index] = lastEmbed;
             }
@@ -99,7 +98,7 @@ module.exports  = class extends Command {
         members = members.filter((m) => m.invites !== 0).sort((a, b) => b.invites - a.invites);
 
         if (members.length <= 0){
-            const embed = new Discord.MessageEmbed()
+            const embed = new Discord.EmbedBuilder()
                 .setAuthor({
                     name: interaction.guild.translate("core/leaderboard:EMPTY_TITLE")
                 })
@@ -112,16 +111,16 @@ module.exports  = class extends Command {
 
         const randomID = Math.random().toString(36).substr(2, 9);
         
-        const previousButton = new Discord.MessageButton()
+        const previousButton = new Discord.EmbedBuilder()
             .setLabel("Previous Page")
             .setCustomId(`prev_${randomID}`)
-            .setStyle("PRIMARY")
+            .setStyle(ButtonStyle.Primary)
             .setDisabled(true);
         
-        const nextButton = new Discord.MessageButton()
+        const nextButton = new Discord.EmbedBuilder()
             .setLabel("Next Page")
             .setCustomId(`next_${randomID}`)
-            .setStyle("PRIMARY")
+            .setStyle(ButtonStyle.Primary)
             .setDisabled(!embeds[1]);
         
         const calculateRow = () => new Discord.MessageActionRow()

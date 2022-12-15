@@ -1,14 +1,14 @@
 const Command = require("../../structures/Command.js");
 const { generateInvitesCache } = require("../../helpers/functions.js");
 const Constants = require("../../helpers/constants.js");
+const { PermissionFlagsBits } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "fetch-invites",
             enabled: true,
-            aliases: [],
-            clientPermissions: [ "EMBED_LINKS", "MANAGE_GUILD" ],
+            clientPermissions: [ PermissionFlagsBits.EmbedLinks, PermissionFlagsBits.ManageGuild ],
             permLevel: 2,
 
             slashCommandOptions: {

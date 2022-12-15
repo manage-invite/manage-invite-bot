@@ -1,13 +1,12 @@
 const Command = require("../../structures/Command.js");
 const Constants = require("../../helpers/constants");
-const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
+const Discord = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "addpremium",
             enabled: true,
-            aliases: [ "add-premium" ],
             clientPermissions: [],
             permLevel: 5,
 
@@ -24,31 +23,31 @@ module.exports = class extends Command {
                     {
                         name: "guildid",
                         description: "The guild ID",
-                        type: ApplicationCommandOptionTypes.STRING,
+                        type: Discord.ApplicationCommandOptionType.String,
                         required: true
                     },
                     {
                         name: "dayscount",
                         description: "The number of days",
-                        type: ApplicationCommandOptionTypes.INTEGER,
+                        type: Discord.ApplicationCommandOptionType.Integer,
                         required: true
                     },
                     {
                         name: "amount",
                         description: "The amount of the payment (can be 0)",
-                        type: ApplicationCommandOptionTypes.INTEGER,
+                        type: Discord.ApplicationCommandOptionType.Integer,
                         required: true
                     },
                     {
                         name: "user",
                         description: "The user who requested the premium",
-                        type: ApplicationCommandOptionTypes.USER,
+                        type: Discord.ApplicationCommandOptionType.User,
                         required: true
                     },
                     {
                         name: "label",
                         description: "The label of the payment",
-                        type: ApplicationCommandOptionTypes.STRING,
+                        type: Discord.ApplicationCommandOptionType.String,
                         required: true
                     }
                 ]

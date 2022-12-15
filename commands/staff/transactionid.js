@@ -7,7 +7,6 @@ module.exports = class extends Command {
         super(client, {
             name: "transactionid",
             enabled: true,
-            aliases: [ "transac" ],
             clientPermissions: [],
             permLevel: 5,
 
@@ -17,7 +16,7 @@ module.exports = class extends Command {
                     {
                         name: "transactionid",
                         description: "The transaction ID",
-                        type: Discord.Constants.ApplicationCommandOptionTypes.STRING,
+                        type: Discord.ApplicationCommandOptionType.String,
                         required: true
                     }
                 ],

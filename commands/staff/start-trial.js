@@ -7,7 +7,6 @@ module.exports = class extends Command {
         super(client, {
             name: "start-trial",
             enabled: true,
-            aliases: [ "starttrial" ],
             clientPermissions: [],
             permLevel: 4,
 
@@ -17,13 +16,13 @@ module.exports = class extends Command {
                     {
                         name: "guild",
                         description: "The guild ID",
-                        type: Discord.Constants.ApplicationCommandOptionTypes.STRING,
+                        type: Discord.ApplicationCommandOptionType.String,
                         required: true
                     },
                     {
                         name: "user",
                         description: "The user who requested the premium",
-                        type: Discord.Constants.ApplicationCommandOptionTypes.USER,
+                        type: Discord.ApplicationCommandOptionType.User,
                         required: true
                     }
                 ],

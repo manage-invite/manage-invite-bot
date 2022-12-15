@@ -30,13 +30,30 @@ module.exports = class {
             `My prefix is \`${guildSettings.prefix || "+"}\`. If you want to remove server invites to start over from scratch, you can use \`${guildSettings.prefix || "+"}remove-invites\`. If you want to synchronize current server invites with the bot, you can use \`${guildSettings.prefix || "+"}sync-invites\`\n \n**--------------**\n`
             : "My prefix is `+`. If you want to remove server invites to start over from scratch, you can use `+remove-invites`.\n \n**--------------**\n";            
 
-        const guildCreate = new Discord.MessageEmbed()
+        const guildCreate = new Discord.EmbedBuilder()
             .setTitle("Add | :heart:")
-            .addField("Server name :", guild.name) 
-            .addField("Owner id :", guild.ownerID)
-            .addField("Owner name :", inviter.username)
-            .addField("Server id :", guild.id)
-            .addField("Number of members :", guild.memberCount)
+            .addFields([
+                {
+                    name: "Server name :",
+                    value: guild.name
+                },
+                {
+                    name: "Owner id :",
+                    value: guild.ownerID
+                },
+                {
+                    name: "Owner name :",
+                    value: inviter.username
+                },
+                {
+                    name: "Server id :",
+                    value: guild.id
+                },
+                {
+                    name: "Number of members :",
+                    value: guild.memberCount
+                }
+            ])
             .setFooter({
                 text: isValidGuild ? "Add me with +add" : "Guild was just reloaded"
             })
@@ -50,12 +67,23 @@ module.exports = class {
         if (isValidGuild){
 
             this.client.guildsCreated++;
-            const joinEmbed = new Discord.MessageEmbed()
+            const joinEmbed = new Discord.EmbedBuilder()
                 .setTitle("Add | :heart:")
                 .setDescription(`Hello ${inviter.username}! Thanks for adding me to your server !\n\n **--------------** `)
-                .addField("__**INFORMATIONS**__", welcomeMessage)
-                .addField("__**HELP**__", "If you need some help join the support server!\n \n**--------------**\n")
-                .addField("__**LINKS**__", `> Add the bot [[Click here]](https://discordapp.com/api/oauth2/authorize?client_id=${this.client.user.id}&permissions=2146958847&scope=bot)\n> Support server  [[Click here]](${this.client.config.discord})\n> Dashboard  [[Click here]](${this.client.config.baseURL}) `)
+                .addFields([
+                    {
+                        name: "__**INFORMATIONS**__",
+                        value: welcomeMessage
+                    },
+                    {
+                        name: "__**HELP**__",
+                        value: "If you need some help join the support server!\n \n**--------------**\n"
+                    },
+                    {
+                        name: "__**LINKS**__",
+                        value: `> Add the bot [[Click here]](https://discordapp.com/api/oauth2/authorize?client_id=${this.client.user.id}&permissions=2146958847&scope=bot)\n> Support server  [[Click here]](${this.client.config.discord})\n> Dashboard  [[Click here]](${this.client.config.baseURL}) `
+                    }
+                ])
                 .setFooter({
                     text: Constants.Embed.FOOTER
                 })

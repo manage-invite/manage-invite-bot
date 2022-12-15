@@ -1,15 +1,13 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js"),
     Constants = require("../../helpers/constants");
-const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "removebonus",
             enabled: true,
-            aliases: [ "removeinvites", "removeinvite" ],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks ],
             permLevel: 2,
 
             slashCommandOptions: {
@@ -18,13 +16,13 @@ module.exports = class extends Command {
                 options: [
                     {
                         name: "user",
-                        type: ApplicationCommandOptionTypes.USER,
+                        type: Discord.ApplicationCommandOptionType.User,
                         required: true,
                         description: "The user to remove bonus invites from"
                     },
                     {
                         name: "invites",
-                        type: ApplicationCommandOptionTypes.INTEGER,
+                        type: Discord.ApplicationCommandOptionType.Integer,
                         required: true,
                         description: "The number of invites to remove"
                     }
@@ -62,7 +60,7 @@ module.exports = class extends Command {
             type: "bonus"
         });
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setAuthor({
                 name: interaction.guild.translate("admin/removebonus:SUCCESS_TITLE")
             })

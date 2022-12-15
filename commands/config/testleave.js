@@ -7,8 +7,7 @@ module.exports = class extends Command {
         super(client, {
             name: "testleave",
             enabled: true,
-            aliases: [],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks ],
             permLevel: 2,
 
             slashCommandOptions: {
@@ -22,22 +21,33 @@ module.exports = class extends Command {
         const guildPlugins = await this.client.database.fetchGuildPlugins(interaction.guild.id);
         const plugin = guildPlugins.find((p) => p.pluginName === "leave")?.pluginData;
    
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setTitle(interaction.guild.translate("config/testleave:TITLE"))
             .setDescription(interaction.guild.translate("config/testleave:DESCRIPTION"))
-            .addField(interaction.guild.translate("config/testleave:ENABLED_TITLE"), (plugin?.enabled ? interaction.guild.translate("config/testleave:ENABLED_YES_CONTENT", {
-                prefix: interaction.guild.settings.prefix,
-                success: Constants.Emojis.SUCCESS
-            }) : interaction.guild.translate("config/testleave:ENABLED_NO_CONTENT", {
-                prefix: interaction.guild.settings.prefix,
-                success: Constants.Emojis.SUCCESS
-            })))
-            .addField(interaction.guild.translate("config/testleave:MESSAGE"), (plugin?.mainMessage || interaction.guild.translate("config/testleave:ENABLED_YES_CONTENT", {
-                prefix: interaction.guild.settings.prefix
-            })))
-            .addField(interaction.guild.translate("config/testleave:CHANNEL_TITLE"), (plugin?.channel ? `<#${plugin.channel}>` : interaction.guild.translate("config/testleave:CHANNEL_CONTENT", {
-                prefix: interaction.guild.settings.prefix
-            })))
+            .addFields([
+                {
+                    name: interaction.guild.translate("config/testleave:ENABLED_TITLE"),
+                    value: (plugin?.enabled ? interaction.guild.translate("config/testleave:ENABLED_YES_CONTENT", {
+                        prefix: interaction.guild.settings.prefix,
+                        success: Constants.Emojis.SUCCESS
+                    }) : interaction.guild.translate("config/testleave:ENABLED_NO_CONTENT", {
+                        prefix: interaction.guild.settings.prefix,
+                        success: Constants.Emojis.SUCCESS
+                    }))
+                },
+                {
+                    name: interaction.guild.translate("config/testleave:MESSAGE"),
+                    value: (plugin?.mainMessage || interaction.guild.translate("config/testleave:ENABLED_YES_CONTENT", {
+                        prefix: interaction.guild.settings.prefix
+                    }))
+                },
+                {
+                    name: interaction.guild.translate("config/testleave:CHANNEL_TITLE"),
+                    value: (plugin?.channel ? `<#${plugin.channel}>` : interaction.guild.translate("config/testleave:CHANNEL_CONTENT", {
+                        prefix: interaction.guild.settings.prefix
+                    }))
+                }
+            ])
             .setThumbnail(interaction.user.avatarURL())
             .setColor(data.color)
             .setFooter({ text: data.footer })

@@ -1,15 +1,13 @@
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js"),
     Constants = require("../../helpers/constants");
-const { Constants: { ApplicationCommandOptionTypes } } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "blacklist",
             enabled: true,
-            aliases: [],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks ],
             permLevel: 2,
 
             slashCommandOptions: {
@@ -17,33 +15,33 @@ module.exports = class extends Command {
                 options: [
                     {
                         name: "add",
-                        type: ApplicationCommandOptionTypes.SUB_COMMAND,
+                        type: Discord.ApplicationCommandOptionType.Subcommand,
                         description: "Add a user to the blacklist",
                         options: [
                             {
                                 name: "user",
                                 description: "The user to blacklist",
-                                type: ApplicationCommandOptionTypes.USER,
+                                type: Discord.ApplicationCommandOptionType.User,
                                 required: true
                             }
                         ]
                     },
                     {
                         name: "remove",
-                        type: ApplicationCommandOptionTypes.SUB_COMMAND,
+                        type: Discord.ApplicationCommandOptionType.Subcommand,
                         description: "Remove a user from the blacklist",
                         options: [
                             {
                                 name: "user",
                                 description: "The user to remove from the blacklist",
-                                type: ApplicationCommandOptionTypes.USER,
+                                type: Discord.ApplicationCommandOptionType.User,
                                 required: true
                             }
                         ]
                     },
                     {
                         name: "list",
-                        type: ApplicationCommandOptionTypes.SUB_COMMAND,
+                        type: Discord.ApplicationCommandOptionType.Subcommand,
                         description: "List all the blacklisted users"
                     }
                 ]
@@ -55,7 +53,7 @@ module.exports = class extends Command {
 
         const guildBlacklistedUsers = await this.client.database.fetchGuildBlacklistedUsers(interaction.guild.id);
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setColor(data.color)
             .setFooter({ text: data.footer });
         const action = interaction.options.getSubCommand();

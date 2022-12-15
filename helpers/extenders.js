@@ -1,4 +1,4 @@
-const { Guild, Message, MessageEmbed } = require("discord.js");
+const { Guild, Message, EmbedBuilder } = require("discord.js");
 const Constants = require("./constants");
 
 Guild.prototype.translate = function (key, args) {
@@ -84,17 +84,17 @@ Message.prototype.sendT = function (
     }
 };
 
-MessageEmbed.prototype.errorColor = function () {
+EmbedBuilder.prototype.errorColor = function () {
     this.setColor("#FF0000");
     return this;
 };
 
-MessageEmbed.prototype.successColor = function () {
+EmbedBuilder.prototype.successColor = function () {
     this.setColor("#32CD32");
     return this;
 };
 
-MessageEmbed.prototype.defaultColor = function () {
+EmbedBuilder.prototype.defaultColor = function () {
     this.setColor(Constants.Embed.COLOR);
     return this;
 };

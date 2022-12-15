@@ -6,8 +6,7 @@ module.exports = class extends Command {
         super(client, {
             name: "add",
             enabled: true,
-            aliases: [],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ Discord.PermissionFlagsBits.EmbedLinks ],
             permLevel: 0,
 
             slashCommandOptions: {
@@ -18,7 +17,7 @@ module.exports = class extends Command {
 
     async runInteraction (interaction, data) {
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.EmbedBuilder()
             .setAuthor({
                 name: "ManageInvite",
                 iconURL: this.client.user.displayAvatarURL()

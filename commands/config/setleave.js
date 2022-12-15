@@ -1,13 +1,13 @@
 const Command = require("../../structures/Command.js");
 const Constants = require("../../helpers/constants");
+const { PermissionFlagsBits } = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
         super(client, {
             name: "setleave",
             enabled: true,
-            aliases: [],
-            clientPermissions: [ "EMBED_LINKS" ],
+            clientPermissions: [ PermissionFlagsBits.EmbedLinks ],
             permLevel: 2,
 
             slashCommandOptions: {
