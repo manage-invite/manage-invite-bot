@@ -123,7 +123,7 @@ module.exports  = class extends Command {
             .setStyle(ButtonStyle.Primary)
             .setDisabled(!embeds[1]);
         
-        const calculateRow = () => new Discord.MessageActionRow()
+        const calculateRow = () => new Discord.ActionRowBuilder()
             .addComponents([
                 previousButton,
                 nextButton
