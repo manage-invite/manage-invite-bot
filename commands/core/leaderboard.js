@@ -44,7 +44,7 @@ module.exports  = class extends Command {
                     .setColor(Constants.Embed.COLOR);
                 embeds[index] = lastEmbed;
             }
-            const oldDesc = lastEmbed.description || "";
+            const oldDesc = lastEmbed.data.description || "";
             let user = this.client.users.cache.get(member.id) || (guild.members.cache.get(member.id) || {}).user;
             if (!user) {
                 if ((members.indexOf(member) < 20)){
