@@ -111,13 +111,13 @@ module.exports  = class extends Command {
 
         const randomID = Math.random().toString(36).substr(2, 9);
         
-        const previousButton = new Discord.EmbedBuilder()
+        const previousButton = new Discord.ButtonBuilder()
             .setLabel("Previous Page")
             .setCustomId(`prev_${randomID}`)
             .setStyle(ButtonStyle.Primary)
             .setDisabled(true);
         
-        const nextButton = new Discord.EmbedBuilder()
+        const nextButton = new Discord.ButtonBuilder()
             .setLabel("Next Page")
             .setCustomId(`next_${randomID}`)
             .setStyle(ButtonStyle.Primary)

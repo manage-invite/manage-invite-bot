@@ -32,11 +32,11 @@ module.exports = class extends Command {
 
         const confirmRow = new Discord.ActionRowBuilder()
             .addComponents(
-                new Discord.EmbedBuilder()
+                new Discord.ButtonBuilder()
                     .setStyle(ButtonStyle.Success)
                     .setLabel(interaction.guild.translate("common:CONFIRM"))
                     .setCustomId(`confirm_${randomID}`),
-                new Discord.EmbedBuilder()
+                new Discord.ButtonBuilder()
                     .setStyle(ButtonStyle.Secondary)
                     .setLabel(interaction.guild.translate("common:CANCEL"))
                     .setCustomId(`cancel_${randomID}`)
