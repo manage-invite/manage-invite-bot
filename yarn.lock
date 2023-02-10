@@ -151,6 +151,11 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz#87de7af9c231826fdd68ac7258f77c429e0e5fcf"
   integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
 
+"@kurkle/color@^0.3.0":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@kurkle/color/-/color-0.3.2.tgz#5acd38242e8bde4f9986e7913c8fdf49d3aa199f"
+  integrity sha512-fuscdXJ9G1qb7W8VdHi+IwRqij3lBkosAm4ydQtEmbY58OzHXqQhvlxqEkoz0yssNVn38bcpRWgA9PP+OGoisw==
+
 "@manage-invite/manage-invite-db-client@^1.0.28":
   version "1.0.28"
   resolved "https://npm.pkg.github.com/download/@manage-invite/manage-invite-db-client/1.0.28/a74838cc0b6e0879d1e1e67853a2ffec2d64f3091736f4710dce87e963e414c7#c837a7a056f11b2627811e1f2e73881c5bccbdd3"
@@ -591,10 +596,12 @@ chardet@^0.7.0:
   resolved "https://registry.npmjs.org/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-chart.js@^3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-3.4.1.tgz#ff3b2b2a04a37b83618b4a6399a5f87ccc0f1e8a"
-  integrity sha512-0R4mL7WiBcYoazIhrzSYnWcOw6RmrRn7Q4nKZNsBQZCBrlkZKodQbfeojCCo8eETPRCs1ZNTsAcZhIfyhyP61g==
+chart.js@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-4.2.1.tgz#d2bd5c98e9a0ae35408975b638f40513b067ba1d"
+  integrity sha512-6YbpQ0nt3NovAgOzbkSSeeAQu/3za1319dPUQTXn9WcOpywM8rGKxJHrhS8V8xEkAlk8YhEfjbuAPfUyp6jIsw==
+  dependencies:
+    "@kurkle/color" "^0.3.0"
 
 chartjs-node-canvas@^3.2.0:
   version "3.2.0"
