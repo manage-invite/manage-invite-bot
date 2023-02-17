@@ -13,7 +13,7 @@
     "cron": "^1.8.2",
     "discord.js": "^13.0.0-dev.07017a9.1626869177",
     "erlpack": "discord/erlpack",
-    "i18next": "^20.3.4",
+    "i18next": "^22.4.10",
     "i18next-fs-backend": "^1.1.1",
     "inquirer": "^8.1.2",
     "moment": "^2.29.1",
