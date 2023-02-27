@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.31.0",
+    "eslint": "^8.35.0",
     "nodemon": "^2.0.12"
   },
   "scripts": {
