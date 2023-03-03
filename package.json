@@ -25,7 +25,7 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.31.0",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.21"
   },
   "scripts": {
     "start": "nodemon sharder.js"
