@@ -1,5 +1,3 @@
-const variables = require("../../helpers/variables.js");
-const Constants = require("../../helpers/constants");
 const Command = require("../../structures/Command.js"),
     Discord = require("discord.js");
 
@@ -17,9 +15,13 @@ module.exports = class extends Command {
         });
     }
 
-    async runInteraction (interaction, data) {
+    async runInteraction (interaction) {
 
-        const guildPlugins = await this.client.database.fetchGuildPlugins(interaction.guild.id);
+        return interaction.reply({
+            content: "This command can no longer work, as Discord has removed the ability to read the content of your messages. **[Use the new Dashboard UI, it is easy!](https://manage-invite.xyz)**",
+        });
+
+        /*const guildPlugins = await this.client.database.fetchGuildPlugins(interaction.guild.id);
         const plugin = guildPlugins.find((p) => p.pluginName === "join")?.pluginData;
 
         const opt = { filter: (m) => m.author.id === interaction.user.id, max: 1, time: 90000, errors: [ "time" ] };
@@ -82,7 +84,7 @@ module.exports = class extends Command {
             enabled: true,
             mainMessage: confMessage,
             channel: channel.id
-        });
+        });*/
 
     }
 };

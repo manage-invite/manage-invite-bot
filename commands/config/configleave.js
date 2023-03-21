@@ -1,7 +1,5 @@
 const Command = require("../../structures/Command.js"),
-    Discord = require("discord.js"),
-    variables = require("../../helpers/variables"),
-    Constants = require("../../helpers/constants");
+    Discord = require("discord.js");
 
 module.exports = class extends Command {
     constructor (client) {
@@ -17,7 +15,13 @@ module.exports = class extends Command {
         });
     }
 
-    async runInteraction (interaction, data) {
+    async runInteraction (interaction) {
+
+        return interaction.reply({
+            content: "This command can no longer work, as Discord has removed the ability to read the content of your messages. **[Use the new Dashboard UI, it is easy!](https://manage-invite.xyz)**",
+        });
+
+        /*
 
         const guildPlugins = await this.client.database.fetchGuildPlugins(interaction.guild.id);
         const plugin = guildPlugins.find((p) => p.pluginName === "leave")?.pluginData;
@@ -82,7 +86,7 @@ module.exports = class extends Command {
             enabled: true,
             mainMessage: confMessage,
             channel: channel.id
-        });
+        });*/
 
     }
 };
