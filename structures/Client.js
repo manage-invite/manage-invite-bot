@@ -3,7 +3,7 @@ const { Client, Collection, Partials, IntentsBitField } = require("discord.js"),
     path = require("path");
 
 const synchronizeSlashCommands = require("discord-sync-commands");
-const DatabaseHandler = require("@manage-invite/manage-invite-db-client");
+const DatabaseHandler = require("@androz2091/manage-invite-db-client");
 
 // Creates ManageInvite class
 class ManageInvite extends Client {
