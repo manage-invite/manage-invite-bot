@@ -12,7 +12,7 @@ RUN python3 --version
 
 RUN mkdir -p /opt/app
 WORKDIR /opt/app
-COPY package.json /opt/app/
+COPY package.json yarn.lock /opt/app/
 RUN yarn install
 COPY . .
 CMD [ "yarn", "start"]
