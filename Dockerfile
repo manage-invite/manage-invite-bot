@@ -1,4 +1,4 @@
-FROM node:22-alpine3.19
+FROM node:18-alpine3.19
 RUN apk add --no-cache \
 	build-base \
 	cairo-dev \
@@ -6,6 +6,10 @@ RUN apk add --no-cache \
 	g++ \
 	pango-dev \
 	python3;
+
+# show python version
+RUN python3 --version
+
 RUN mkdir -p /opt/app
 WORKDIR /opt/app
 COPY package.json yarn.lock /opt/app/
