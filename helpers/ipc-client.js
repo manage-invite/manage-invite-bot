@@ -17,7 +17,7 @@ module.exports.load = (discordClient) => {
         });
 
     const connect = () => {
-        node.connectTo(discordClient.config.ipcServerPort)
+        node.connectTo(discordClient.config.ipcServerPort, discordClient.config.ipcServerHost)
             .then(() => firstConnect = true)
             .catch((error) => {
                 if (error.message.includes("ECONNREFUSED")) return;
