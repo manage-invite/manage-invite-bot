@@ -2,6 +2,15 @@
 # yarn lockfile v1
 
 
+"@androz2091/manage-invite-db-client@^1.0.30":
+  version "1.0.30"
+  resolved "https://registry.yarnpkg.com/@androz2091/manage-invite-db-client/-/manage-invite-db-client-1.0.30.tgz#2c5a7e07f0f7159a14d050a23cbc2a4b2434b96f"
+  integrity sha512-hcgiMQdQKW8F5zMElqdn5GNrpLDXF7Q5bl4hpDRKJW5pYwOmyQJ+fkQSzidMkOAUlyRZQKUgJD/Xoy8Khm1/9g==
+  dependencies:
+    change-case "^4.1.2"
+    ioredis "^4.24.5"
+    pg "^8.5.1"
+
 "@babel/code-frame@7.12.11", "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
@@ -189,15 +198,6 @@
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
-
-"@manage-invite/manage-invite-db-client@^1.0.28":
-  version "1.0.29"
-  resolved "https://npm.pkg.github.com/download/@manage-invite/manage-invite-db-client/1.0.29/da3a3b18e584bdcad2072e157e3020e577153c548422ffba7cb787eee9ec9385#e62463fee2e8c8989794a62794ef4557748581a1"
-  integrity sha512-r2qAzwSY6NtVe4CRCawDVsdjc0dyEaoAyZKylI2ZtCrNpWjMzZMXKjIu3b68bHuuUKqF/Cl/f8wGDZvpd+jr0Q==
-  dependencies:
-    change-case "^4.1.2"
-    ioredis "^4.24.5"
-    pg "^8.5.1"
 
 "@mapbox/node-pre-gyp@^1.0.0":
   version "1.0.9"
@@ -998,7 +998,7 @@ erlpack@discord/erlpack:
   resolved "https://codeload.github.com/discord/erlpack/tar.gz/cbe76be04c2210fc9cb6ff95910f0937c1011d04"
   dependencies:
     bindings "^1.5.0"
-    nan "^2.14.0"
+    nan "^2.15.0"
 
 escape-goat@^2.0.0:
   version "2.1.1"
