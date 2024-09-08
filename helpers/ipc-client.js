@@ -39,6 +39,7 @@ module.exports.load = (discordClient) => {
             message.reply(verifiedGuilds);
         }
         if (message.data.event === "verifyPermissions") {
+            console.log(message.data);
             const userID = message.data.userID;
             const permissionName = message.data.permissionName;
             const verified = [];
