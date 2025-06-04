@@ -1,5 +1,6 @@
 module.exports = {
     ipcServerPort: 3200,
+    ipcServerHost: "",
     token:          "XXXXXXXXXXX",
     shardCount:     2,
     /* Status */
@@ -32,6 +33,8 @@ module.exports = {
         port: 5432
     },
     redis: {
-        user: ""
+        host: "",
+        port: 6379,
+        password: ""
     }
 };
