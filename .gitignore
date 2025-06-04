@@ -23,3 +23,6 @@ config.js
 migrate*
 tets*
 integrations*
+
+# JetBrains IDE
+.idea
