@@ -1,4 +1,4 @@
-const { WebSocketShardStatus, EmbedBuilder } = require("discord.js");
+const { Status, EmbedBuilder } = require("discord.js");
 const io = require("socket.io-client");
 
 module.exports.load = (discordClient) => {
@@ -69,7 +69,7 @@ module.exports.load = (discordClient) => {
     node.on("getShardStatus", async () => {
         node.emit("getShardStatusResponse", {
             id: discordClient.shard.ids[0],
-            status: WebSocketShardStatus[discordClient.ws?.status],
+            status: Status[discordClient.ws.shards.get(discordClient.shard.ids[0]).status],
             ram: Math.round(process.memoryUsage().heapUsed / 1024 / 1024),
             ping: discordClient.ws?.ping,
             serverCount: discordClient.guilds.cache.size
