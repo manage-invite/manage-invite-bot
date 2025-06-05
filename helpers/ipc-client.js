@@ -40,7 +40,7 @@ module.exports.load = (discordClient) => {
     node.on("verifyPermissions", async (data) => {
         console.log(data);
         const userID = data.userID;
-        const permissionName = data.permissionName;
+        const permissionName = BigInt(data.permissionName);
         const verified = [];
         await Promise.all(data.guildIDs.map(async (guildID) => {
             const guild = discordClient.guilds.cache.get(guildID);
