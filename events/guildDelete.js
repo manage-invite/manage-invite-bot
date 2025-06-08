@@ -13,7 +13,7 @@ module.exports = class {
         // Top Stats
         this.client.functions.postTopStats(this.client);
 
-        const user = await this.client.users.fetch(guild.ownerId);
+        const user = await this.client.users.fetch(guild.ownerId).catch(() => {});
 
         const guildDelete = new Discord.EmbedBuilder()
             .setTitle("Remove | :broken_heart:")
@@ -24,11 +24,11 @@ module.exports = class {
                 },
                 {
                     name: "Owner id :",
-                    value: user.id
+                    value: user?.id || "Unknown"
                 },
                 {
                     name: "Owner name :",
-                    value: user.username
+                    value: user?.username || "Unknown"
                 },
                 {
                     name: "Server id :",
