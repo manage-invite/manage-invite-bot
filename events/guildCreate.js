@@ -83,7 +83,7 @@ module.exports = class {
                     },
                     {
                         name: "__**LINKS**__",
-                        value: `> Add the bot [[Click here]](https://discordapp.com/api/oauth2/authorize?client_id=${this.client.user.id}&permissions=2146958847&scope=bot)\n> Support server  [[Click here]](${this.client.config.discord})\n> Dashboard  [[Click here]](${this.client.config.baseURL}) `
+                        value: `> Add the bot [[Click here]](https://discordapp.com/api/oauth2/authorize?client_id=${this.client.user.id}&permissions=2146958847&scope=bot)\n> Support server  [[Click here]](${this.client.config.discord})\n> Dashboard  [[Click here]](https://manage-invite.xyz) `
                     }
                 ])
                 .setFooter({

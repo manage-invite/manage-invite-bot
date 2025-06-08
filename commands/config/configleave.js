@@ -18,7 +18,11 @@ module.exports = class extends Command {
     async runInteraction (interaction) {
 
         return interaction.reply({
-            content: "This command can no longer work, as Discord has removed the ability to read the content of your messages. **[Use the new Dashboard UI, it is easy!](https://manage-invite.xyz)**",
+            embeds: [
+                new Discord.EmbedBuilder()
+                .setDescription("This command has been replaced by a more powerful and **[new dashboard UI, easier to use!](https://manage-invite.xyz)**")
+                .setColor(Constants.Embed.COLOR)
+            ]
         });
 
         /*

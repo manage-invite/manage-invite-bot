@@ -26,7 +26,7 @@ module.exports = class extends Command {
                         required: true
                     },
                     {
-                        name: "duration (days)",
+                        name: "duration",
                         description: "The duration of the trial in days (default: 7)",
                         type: Discord.ApplicationCommandOptionType.Integer,
                         required: false,
