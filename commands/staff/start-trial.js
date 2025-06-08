@@ -53,7 +53,7 @@ module.exports = class extends Command {
         }
 
         const user = interaction.options.getUser("user");
-        const duration = interaction.options.getInteger("duration (days)") || 7;
+        const duration = interaction.options.getInteger("duration") || 7;
 
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(guildID);
         const guildNames = await this.client.shard.broadcastEval((client, guildID) => {
