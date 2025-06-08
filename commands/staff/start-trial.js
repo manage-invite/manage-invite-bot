@@ -24,6 +24,12 @@ module.exports = class extends Command {
                         description: "The user who requested the premium",
                         type: Discord.ApplicationCommandOptionType.User,
                         required: true
+                    },
+                    {
+                        name: "duration (days)",
+                        description: "The duration of the trial in days (default: 7)",
+                        type: Discord.ApplicationCommandOptionType.Integer,
+                        required: false,
                     }
                 ],
                 permissions: [
@@ -47,6 +53,7 @@ module.exports = class extends Command {
         }
 
         const user = interaction.options.getUser("user");
+        const duration = interaction.options.getInteger("duration (days)") || 7;
 
         const guildSubscriptions = await this.client.database.fetchGuildSubscriptions(guildID);
         const guildNames = await this.client.shard.broadcastEval((client, guildID) => {
@@ -67,13 +74,13 @@ module.exports = class extends Command {
 
         if (!subscription) {
             subscription = await this.client.database.createGuildSubscription(guildID, {
-                expiresAt: new Date(Date.now()+(7*24*60*60*1000)),
+                expiresAt: new Date(Date.now()+(duration*24*60*60*1000)),
                 createdAt,
                 guildsCount: 1,
                 subLabel: "Trial Version"
             });
         } else await this.client.database.updateGuildSubscription(subscription.id, guildID, "expiresAt",
-            new Date((new Date(subscription.expiresAt).getTime() > Date.now() ? new Date(subscription.expiresAt).getTime() : Date.now()) + 7 * 24 * 60 * 60 * 1000).toISOString()
+            new Date((new Date(subscription.expiresAt).getTime() > Date.now() ? new Date(subscription.expiresAt).getTime() : Date.now()) + duration * 24 * 60 * 60 * 1000).toISOString()
         );
 
         await this.client.database.createSubscriptionPayment(subscription.id, {
@@ -87,7 +94,7 @@ module.exports = class extends Command {
         });
 
         const expiresAt = this.client.functions.formatDate(new Date(subscription.expiresAt), "MMM DD YYYY", data.settings.language);
-        interaction.reply(`${Constants.Emojis.SUCCESS} | Server **${guildName}** is now premium for 7 days (end on **${expiresAt}**) :rocket:`);
+        interaction.reply(`${Constants.Emojis.SUCCESS} | Server **${guildName}** is now premium for ${duration} days (end on **${expiresAt}**) :rocket:`);
 
     }
 };
