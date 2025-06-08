@@ -15,7 +15,6 @@ module.exports = {
     voteLogs:       "XXXXXXXXXXX",
     /* Other */
     discord:        "XXXXXXXXXXX",
-    prefix:         "+",
     owners: [ "XXXXXXXXXXX", "XXXXXXXXXXX" ],
     modRole:        "XXXXXXXXXXX",
     premiumRole:    "XXXXXXXXXXX",

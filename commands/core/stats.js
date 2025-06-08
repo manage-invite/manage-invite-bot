@@ -5,11 +5,12 @@ const { ChartJSNodeCanvas } = require("chartjs-node-canvas");
 const width = 800;
 const height = 300;
 // White color and bold font
-const ticksOptions = [{ ticks: { fontColor: "white", fontStyle: "bold" } }];
+// gray background color
+const ticksOptions = { ticks: { font: { color: "white", weight: "bold" , backgroundColor: "#bec4d1" } }, grid: { color: "#2f3136" } };
 const options = {
     // Hide legend
     legend: { display: false },
-    scales: { yAxes: ticksOptions, xAxes: ticksOptions }
+    scales: { y: ticksOptions, x: ticksOptions }
 };
 
 const generateCanvas = async (joinedXDays, lastXDays) => {
@@ -33,7 +34,7 @@ const generateCanvas = async (joinedXDays, lastXDays) => {
         },
         options
     });
-    const attachment = new Discord.MessageAttachment(image, "image.png");
+    const attachment = new Discord.AttachmentBuilder(image, "image.png");
     return attachment;
 };
 

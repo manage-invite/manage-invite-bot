@@ -6,7 +6,7 @@
   "settings": {
     "terminal.integrated.defaultProfile.linux": "bash"
   },
-  "remoteUser": "node",
+  "remoteUser": "root",
   "runArgs": [
     "--network=host"
   ]

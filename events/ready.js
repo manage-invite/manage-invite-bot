@@ -14,9 +14,9 @@ module.exports = class {
             this.client.log(`Synchronized ${this.client.commands.filter((c) => c.slashCommandOptions).size} slash commands.`);
         });
 
-        this.client.user.setActivity("+help | manage-invite.xyz");
+        this.client.user.setActivity("/help | manage-invite.xyz");
         setInterval(() => {
-            this.client.user.setActivity("+help | manage-invite.xyz");
+            this.client.user.setActivity("/help | manage-invite.xyz");
         }, 60000*60);
         this.client.log("Shard #"+this.client.shard.ids[0]+" has started.", "log");
         this.client.functions.postTopStats(this.client);
