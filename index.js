@@ -75,7 +75,10 @@ init();
 // if there are errors, log them
 client.on("disconnect", () => client.log("Bot is disconnecting...", "warn"))
     .on("reconnecting", () => client.log("Bot reconnecting...", "log"))
-    .on("error", (e) => client.log(e, "error"))
+    .on("error", (e) => {
+        console.error(e);
+        client.log(e, "error");
+    })
     .on("warn", (info) => client.log(info, "warn"));
 
 // if there is an unhandledRejection, log them

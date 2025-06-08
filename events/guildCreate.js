@@ -16,19 +16,21 @@ module.exports = class {
         // Wait 2 seconds to be sure that a request have been sent to the dashboard
         await this.client.wait(2000);
         const knownGuild = this.client.knownGuilds.find((g) => g.id === guild.id);
+        const owner = await guild.fetchOwner().catch(() => null);
         if (knownGuild){
-            inviter = await this.client.users.fetch(knownGuild.user);
+            inviter = await this.client.users.fetch(knownGuild.user).catch(() => null);
         } else {
-            inviter = await this.client.users.fetch(guild.ownerID);
+            if (owner) {
+                inviter = owner.user;
+            }
         }
         
         await guild.members.fetch(this.client.user.id);
-        const isValidGuild = guild.me.joinedTimestamp > (Date.now() - 20000);
+        const me = guild.members.cache.get(this.client.user.id);
+        const isValidGuild = me && me.joinedTimestamp > (Date.now() - 20000);
 
         const guildSettings = await this.client.database.fetchGuildSettings(guild.id);
-        const welcomeMessage = guildSettings ?
-            `My prefix is \`${guildSettings.prefix || "+"}\`. If you want to remove server invites to start over from scratch, you can use \`${guildSettings.prefix || "+"}remove-invites\`. If you want to synchronize current server invites with the bot, you can use \`${guildSettings.prefix || "+"}sync-invites\`\n \n**--------------**\n`
-            : "My prefix is `+`. If you want to remove server invites to start over from scratch, you can use `+remove-invites`.\n \n**--------------**\n";            
+        const welcomeMessage = `If you want to remove server invites to start over from scratch, you can use \`/remove-invites\`. If you want to synchronize current server invites with the bot, you can use \`/sync-invites\`\n \n**--------------**\n`
 
         const guildCreate = new Discord.EmbedBuilder()
             .setTitle("Add | :heart:")
@@ -39,11 +41,11 @@ module.exports = class {
                 },
                 {
                     name: "Owner id :",
-                    value: guild.ownerID
+                    value: owner ? owner.id : "Unknown"
                 },
                 {
                     name: "Owner name :",
-                    value: inviter.username
+                    value: inviter ? inviter.username : "Unknown"
                 },
                 {
                     name: "Server id :",
@@ -51,11 +53,11 @@ module.exports = class {
                 },
                 {
                     name: "Number of members :",
-                    value: guild.memberCount
+                    value: guild.memberCount?.toString() || "Unknown"
                 }
             ])
             .setFooter({
-                text: isValidGuild ? "Add me with +add" : "Guild was just reloaded"
+                text: isValidGuild ? "Add me with /add" : "Guild was just reloaded"
             })
             .setColor(isValidGuild ? Constants.Embed.COLOR : "#000000");
 

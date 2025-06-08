@@ -1,0 +1,13 @@
+{
+  "name": "node-pango-bot",
+  "build": {
+    "dockerfile": "../Dockerfile"
+  },
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash"
+  },
+  "remoteUser": "node",
+  "runArgs": [
+    "--network=host"
+  ]
+}

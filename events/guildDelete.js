@@ -36,7 +36,7 @@ module.exports = class {
                 },
                 {
                     name: "Number of members :",
-                    value: guild.memberCount
+                    value: guild.memberCount?.toString() || "Unknown"
                 }
             ])
             .setColor(Constants.Embed.COLOR);
